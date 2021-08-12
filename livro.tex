@@ -1,0 +1,553 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Análises Ecológicas no R},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{Análises Ecológicas no R}
+\author{}
+\date{\vspace{-2.5em}2021-08-12}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{capa}{%
+\section*{Capa}\label{capa}}
+\addcontentsline{toc}{section}{Capa}
+
+\newpage
+
+\hypertarget{prefuxe1cio}{%
+\section*{Prefácio}\label{prefuxe1cio}}
+\addcontentsline{toc}{section}{Prefácio}
+
+\newpage
+
+\hypertarget{base-r}{%
+\section{Pré-requisitos}\label{base-r}}
+
+\hypertarget{introduuxe7uxe3o}{%
+\subsection{Introdução}\label{introduuxe7uxe3o}}
+
+O objetivo desta seção é
+
+\hypertarget{pacotes}{%
+\subsection{Pacotes}\label{pacotes}}
+
+\hypertarget{versuxe3o-do-r}{%
+\subsection{Versão do R}\label{versuxe3o-do-r}}
+
+\hypertarget{dados}{%
+\subsection{Dados}\label{dados}}
+
+\hypertarget{cap2}{%
+\section{Introdução}\label{cap2}}
+
+\hypertarget{histuxf3rico-deste-livro}{%
+\subsection{Histórico deste livro}\label{histuxf3rico-deste-livro}}
+
+Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso \emph{Estatística aplicada à ecologia usando o R} no PPG em Biologia Animal da UNESP de São José Rio Preto/SP, em abril de 2011. Os três pesquisadores eram então alunos do PPG em Biologia Animal quando elaboraram o material disponibilizado na \href{(https://cran.r-project.org/doc/contrib/Provete-Estatistica_aplicada.pdf)}{apostila}. A proposta de transformar a apostila em livro sempre foi um tópico recorrente desde 2011, e concretizado agora, 10 anos depois.
+
+Neste período, Diogo, Fernando e Thiago foram contratados pela Universidade Federal de Mato Grosso do Sul, Universidade Federal de São Carlos campus Sorocaba, e Universidade Federal Rural de Pernambuco, respectivamente. Nestes anos eles ofertaram diferentes versões do curso \emph{Estatística aplicada à ecologia usando o R} para alunos de graduação e pós-graduação em diferentes instituições do Brasil. A possibilidade da oferta destes novos cursos fortaleceu a ideia de trasformar a apostila em um livro com base nas experiências dos pesquisadores em sala de aula.
+
+Considerando que novas abordagens ecológicas vêm sendo descritas e criadas a uma taxa elevada nos últimos anos, era de se esperar que as informações disponíveis na apostila estivessem defasadas após 10 anos. Por este motivo, Diogo, Fernando e Thiago convidaram outros dois pesquisadores, Gustavo B. Paterno da Georg-August-University of Göttingen e Maurício H. Vancine do PPG em Ecologia, Evolução e Biodiversidade da UNESP Câmpus de Rio Claro, que são referências no uso de estatística em ecologia usando o R. Com o time completo, passaram mais de um ano realizando reuniões, compartilhando scripts e pagando cerveja para os coautores por capítulos atrasados até chegarem neste primeira versão do livro.
+
+\hypertarget{objetivo-deste-livro}{%
+\subsection{Objetivo deste livro}\label{objetivo-deste-livro}}
+
+Nossa proposta com este livro é de traçar o melhor caminho (pelo menos do nosso ponto de vista) entre questões ecológicas e os métodos estatísticos mais robustos para testá-las. Guiar seus passos nesse caminho (nem sempre linear) necessita que você utilize um requisito básico: o de utilizar seu esforço para caminhar. O nosso esforço, em contrapartida, será o de indicar as melhores direções para que você adquira certa independência em análises ecológicas. Um dos nossos objetivos é mostrar que o conhecimento de teorias ecológicas e a utilização de questões apropriadas são o primeiro passo na caminhada rumo à compreensão da lógica estatística. Não deixe que a estatística se torne a ``pedra no seu caminho.'' Em nossa opinião, programas com ambiente de programação favorecem o entendimento da lógica estatística, uma vez que cada passo (lembre-se de que você está caminhado em uma estrada desconhecida e cheia de pedras) precisa ser coordenado, ou seja, as linhas de comando (detalhes abaixo) precisam ser compreendidas para que você teste suas hipóteses.
+
+A primeira parte deste livro pretende utilizar uma estratégia que facilita a escolha do teste estatístico apropriado, por meio da seleção de questões/hipóteses claras e da ligação dessas hipóteses com a teoria e o método (veja Figura \ref{fig:fig-statistical-thinking} no Capítulo \ref{cap3}). Enfatizamos que é fundamental ter em mente aonde se quer chegar, para poder escolher o que deve ser feito. Posteriormente à escolha de suas questões, é necessário transferir o contexto ecológico para um contexto meramente estatístico (hipótese nula/alternativa). A partir da definição de uma hipótese nula, partiremos para a aplicação de cada teste estatístico (de modelos lineares generalizados à análises multivariadas) utilizando a linguagem R.
+
+Antes de detalhar cada análise estatística, apresentaremos os comandos básicos para a utilização da linguagem R e os tipos de distribuição estatística que são essenciais para a compreensão dos testes estatísticos. Para isso, organizamos um esquema que chamamos de ``estrutura lógica'' que facilita a compreensão dos passos necessários para testar suas hipóteses (veja Figura \ref{fig:fig-box} no Capítulo \ref{cap3}).
+
+\hypertarget{o-que-vocuxea-nuxe3o-encontraruxe1-neste-livro}{%
+\subsection{O que você não encontrará neste livro}\label{o-que-vocuxea-nuxe3o-encontraruxe1-neste-livro}}
+
+Aprofundamento teórico, detalhes matemáticos, e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Para tanto, o livro de Pierre e Louis Legendre (\protect\hyperlink{ref-legendre_numerical_2012}{Legendre and Legendre 2012}) é uma leitura que permite o aprofundamento de cada uma das análises multivariadas propostas aqui. Além disso, são de fundamental importância para o amadurecimento em análises ecológicas as seguintes leituras: \protect\hyperlink{ref-manly_randomization_1991}{Manly} (\protect\hyperlink{ref-manly_randomization_1991}{1991}), \protect\hyperlink{ref-pinheiro_mixed-effects_2000}{Pinheiro and Bates} (\protect\hyperlink{ref-pinheiro_mixed-effects_2000}{2000}), \protect\hyperlink{ref-scheiner_design_2001}{Scheiner and Gurevitch} (\protect\hyperlink{ref-scheiner_design_2001}{2001}), \protect\hyperlink{ref-burnham_pvalues_2014}{Burnham and Anderson} (\protect\hyperlink{ref-burnham_pvalues_2014}{2014}), \protect\hyperlink{ref-quinn_experimental_2002}{Quinn and Keough} (\protect\hyperlink{ref-quinn_experimental_2002}{2002}), \protect\hyperlink{ref-venables_modern_2002}{Venables and Ripley} (\protect\hyperlink{ref-venables_modern_2002}{2002}), \protect\hyperlink{ref-magurran_biological_2011}{Magurran and McGill} (\protect\hyperlink{ref-magurran_biological_2011}{2011}), \protect\hyperlink{ref-gotelli_primer_2013}{N. J. Gotelli and Ellison} (\protect\hyperlink{ref-gotelli_primer_2013}{2013}), \protect\hyperlink{ref-zar_biostatistical_2010}{Zar} (\protect\hyperlink{ref-zar_biostatistical_2010}{2010}), \protect\hyperlink{ref-zuur_protocol_2009}{Zuur, Ieno, and Elphick} (\protect\hyperlink{ref-zuur_protocol_2009}{2009}), \protect\hyperlink{ref-crawley_r_2012}{Crawley} (\protect\hyperlink{ref-crawley_r_2012}{2012}) e \protect\hyperlink{ref-james_introduction_2013}{James et al.} (\protect\hyperlink{ref-james_introduction_2013}{2013}).
+
+\hypertarget{por-que-usar-o-r}{%
+\subsection{Por que usar o R?}\label{por-que-usar-o-r}}
+
+Os criadores do R o chamam de uma linguagem e ambiente de programação estatística e gráfica (\protect\hyperlink{ref-venables_modern_2002}{Venables and Ripley 2002}). A linguagem R também é chamada de programação ``orientada ao objeto'' (\emph{object oriented programming}), o que significa que utilizar o R envolve basicamente a criação e manipulação de objetos em uma tela branca, em que o usuário tem de dizer exatamente o que deseja que o programa execute, ao invés de simplesmente clicar em botões. E vem daí uma das grandes vantagens em se usar o R: o usuário tem total controle sobre o que está acontecendo e também tem de compreender o que deseja antes de executar uma análise. Além disso, o R permite integração com outros programas escritos em C++, Python e Java, permitindo que os usuários possam aplicar novas metodologias sem ter que aprender novas linguagens.
+
+Na página pessoal do Prof.~Nicolas J. Gotelli (\href{http://www.uvm.edu/~ngotelli/homepage.html}{link}), existem vários conselhos para um estudante iniciante de ecologia. Dentre esses conselhos, o Prof.~Gotelli menciona que o domínio de uma linguagem de programação é uma das habilidades mais importantes, porque dá liberdade ao ecólogo para executar tarefas que vão além daquelas disponíveis em pacotes estatísticos comerciais. Além disso, a maioria das novas análises propostas nos mais reconhecidos periódicos em ecologia normalmente são implementadas em linguagem R, e os autores incluem normalmente o código fonte no material suplementar dos artigos, tornando a análise acessível. A partir do momento que essas análises ficam disponíveis (seja por código fornecido pelo autor ou por implementação em pacotes pré-existentes), é mais simples entendermos a lógica de análises complexas, especialmente as multivariadas, utilizando nossos próprios dados, realizando-as passo a passo. Sem a utilização do R, normalmente temos que contatar os autores que nem sempre são tão acessíveis.
+
+Uma última vantagem é que por ser um software livre, a citação do R em artigos é permitida e até aconselhável. Para saber como citar o R, digite \texttt{citation()} na linha de comando. Para citar um pacote específico, digite \texttt{citation()} com o nome do pacote entre aspas dentro dos parênteses. Neste ponto, esperamos ter convencido você leitor, de que aprender a utilizar o R tem inúmeras vantagens. Entretanto, provavelmente vai ser difícil no começo, mas continue e perceberá que o investimento vai valer à pena no futuro.
+
+\hypertarget{indo-aluxe9m-da-linguagem-de-prograuxe7uxe3o-para-a-ecologia}{%
+\subsection{Indo além da linguagem de progração para a Ecologia}\label{indo-aluxe9m-da-linguagem-de-prograuxe7uxe3o-para-a-ecologia}}
+
+Um ponto em comum em que todos os autores deste livro concordaram em conversas durante sua estruturação, foi a dificuldade que todos tivemos quando estávamos aprendendo a linguagem:
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Como transcrever os objetivos (manipulação de dados, análises e gráficos) em linguagem R
+\item
+  Como interpretar os resultados das análises estatísticas do R para os objetivos ecológicos
+\end{enumerate}
+\end{quote}
+
+Num primeiro momento, quando estamos aprendendo a linguagem R é muito desafiador pensar em como estruturar nossos códigos para que eles façam o que precisamos: importar dados, selecionar linhas ou colunas, qual pacote ou função usar para uma certa análise ou como fazer um gráfico que nas nossas anotações são simples, mas no código parece impossível. Bem, não há um caminho fácil nesse sentido e ele depende muito da experiência e familiaridade adquirida com o tempo de uso da linguagem, assim como outra língua qualquer, como inglês ou espanhol. Entretanto, uma dica pode ajudar: estruture seus códigos antes de partir para o R. Num papel escreva os pontos que quer que seus códigos façam, como se estivesse explicando para alguém os passos que precisa para realizar as tarefas. Depois disso, transcreva para o script (iremos explicar esse conceito no @{[}cap4{]}) esse texto. Por fim, traduza isso em linguam R. Pode parecer massante e cansativo no começo, mas isso o ajudará a ter maior domínio da linguagem, sendo que esse passo se torna desnecessário quando se adquire bastante experiência.
+
+Uma vez transposta esse barreira inicial e temos os resultados de nossas análises (valores de estatísticas, parâmetros estimados, valores de p e R², etc.), com gráficos e outras figuras que precisamos, como interpretamos à luz da teoria ecológica? Esse ponto é talvez um dos mais complicados. Com o tempo, ter um valor final de uma estatística ou gráfico à partir da linaguagem R é relativamente simples, mas o que esse valor ou gráfico significam para nossa hipótese ecológica é o ponto mais complicado. Essa dificuldade por ser por inexperiência teórica (ainda não lemos muito sobre um aspecto ecológico) ou inexperiência científica (ainda temos dificuldade para expandir nossos argumentos de forma indutiva). Destacamos esse ponto porque ele é fundamental no processo científico e talvez seja o principal aspecto que diferencia os cientistas de outros profissionais: sua capacidade de entendimento dos padrões à partir dos processos e mecanismos atrelados. Nesse ponto, quase sempre recorremos à nossos orientadores ou colegas mais experientes para nos ajudar, mas é natural e faz parte do processo de aprendizado de uso da linguagem R junto à Ecologia como ciência. Entretanto, contrapomos a importância dessa extrapolação para não nos tornarmos apenas especialistas em linguagem R sem a fundamental capacidade de entendimento do sistema ecológico que estamos estudando.
+
+\hypertarget{como-usar-este-livro}{%
+\subsection{Como usar este livro}\label{como-usar-este-livro}}
+
+Os conteúdos apresentados em cada capítulo são independentes entre si. Portanto, você pode utilizar este livro de duas formas. A primeira é seguir uma ordem sequencial (capítulos 1, 2, 3, \ldots) que recomendamos, principalmente, para as pessoas que não possuem familiaridade com a linguagem R. A segunda forma, é selecionar o capítulo que contém a análise de seu interesse e mudar de um capítulo para outro sem seguir a sequência apresentada no livro.
+
+Com exceção dos capítulos 3, 4, 5 e 15, os outros capítulos foram elaborados seguindo a mesma estrutura contendo uma descrição da análise estatística (aspecto teóricos) e exemplos relacionados com questões ecólogicas que podem ser respondidas por esta análise. Todos os exemplos são compostos por: i) uma descrição dos dados utilizados, ii) pergunta e predição do trabalho, iii) descrição das variáveis resposta(s) e preditora(s), e iv) descrição e explicação das linhas de comando do R necessárias para realização das análises. Os exemplos utilizados são baseados em dados reais que já foram publicados em artigos científicos ou são dados coletados por um dos autores deste livro. Nós recomendamos que primeiro você utilize estes exemplos para se familiarizar com as análises e a formatação das linhas e colunas das planilhas. Em seguida, utilize seus próprios dados para realizar as análises. Esta é a melhor maneira de se familiarizar com as linhas de comando do R.
+
+Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muito outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os leitores adquiram independência e segurança, para que possam caminhar sozinhos na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.
+
+\hypertarget{cap3}{%
+\section{Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes}\label{cap3}}
+
+\emph{Capítulo originalmente publicado por Gonçalves-Souza, Provete, Garey, Silva \& Albuquerque (\protect\hyperlink{ref-albuquerque_going_2019}{2019}), in Methods and Techniques in Ethnobiology and Ethnoecology (tradução autorizada por Springer).}
+
+\hypertarget{introduuxe7uxe3o-1}{%
+\subsection{Introdução}\label{introduuxe7uxe3o-1}}
+
+\begin{quote}
+\emph{Aquele que ama a prática sem teoria é como um marinheiro que embarca em um barco sem um leme e uma bússola e nunca sabe onde pode atracar - Leonardo da Vinci.}
+\end{quote}
+
+Qual é a sua pergunta? Talvez esta seja a frase que pesquisadores mais jovens ouvem quando começam suas atividades científicas. Apesar de aparentemente simples, responder a esta pergunta se torna um dos maiores desafios da formação científica. Seja na pesquisa quantitativa ou qualitativa, todo processo de busca de conhecimento parte de uma questão/problema formulada pelo pesquisador no início desse processo. Esta questão guiará o pesquisador em todas as etapas da pesquisa. No caso específico de pesquisa quantitativa, a questão é a porta de entrada de uma das formas mais poderosas de pensar cientificamente: o método hipotético-dedutivo (MHD) definido por Karl Popper (\protect\hyperlink{ref-popper_logic_1959}{1959}). Este capítulo propõe uma maneira de pensar sobre hipóteses (geradas dentro do MHD) para melhorar o pensamento estatístico usando um fluxograma que relaciona variáveis por ligações causais. Além disso, argumentamos que você pode facilmente usar fluxogramas para (1) identificar variáveis relevantes e como elas afetam umas às outras; (2) melhorar (quando necessário) o desenho experimental/observacional; (3) facilitar a escolha de análises estatísticas; e (4) melhorar a interpretação e comunicação dos dados e análises.
+
+\hypertarget{perguntas-devem-preceder-as-anuxe1lises-estatuxedsticas}{%
+\subsection{Perguntas devem preceder as análises estatísticas}\label{perguntas-devem-preceder-as-anuxe1lises-estatuxedsticas}}
+
+\hypertarget{um-bestiuxe1rio1-para-o-teste-de-hipuxf3teses-vocuxea-estuxe1-fazendo-a-pergunta-certa}{%
+\subsubsection[Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)]{\texorpdfstring{Um bestiário\footnote{O bestiário é uma literatura do Século XII que descrevia animais (reais ou imaginários) com uma visão divertida e fantasiosa. Parte da interpretação continha lições de moral dos monges católicos que escreviam e ilustravam os bestiários. Longe de ser uma lição de moral ou mesmo uma descrição fantasiosa, usamos o termo bestiário neste livro para expressar o que há de mais importante e fantástico (na visão dos autores) para fazer um bom teste de hipóteses.} para o teste de hipóteses (Você está fazendo a pergunta certa?)}{Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)}}\label{um-bestiuxe1rio1-para-o-teste-de-hipuxf3teses-vocuxea-estuxe1-fazendo-a-pergunta-certa}}
+
+A maioria dos alunos e professores de ciências biológicas possuem aversão à palavra ``estatística.'' Não surpreendentemente, enquanto a maioria das disciplinas acadêmicas que compõem o ``STEM'' (termo em inglês para aglomerar \emph{Ciência, Tecnologia, Engenharia e Matemática}) têm uma sólida formação estatística durante a graduação, cursos de ciências biológicas têm um currículo fraco ao integrar o pensamento estatístico dentro de um contexto biológico (\protect\hyperlink{ref-metz_teaching_2008}{Metz 2008}). Esses cursos têm sido frequentemente ministrados sem qualquer abordagem prática para integrar os alunos em uma plataforma de solução de problemas (\protect\hyperlink{ref-horgan_teaching_1999}{Horgan et al. 1999}). Infelizmente, a Etnobiologia, Ecologia e Conservação (daqui em diante EEC) não são exceções. Talvez mais importante, uma grande preocupação durante o treinamento estatístico de estudantes de EEC é a necessidade de trabalhar com problemas complexos e multidemensionais que exigem soluções analíticas ainda mais complicadas para um público sem experiência em estatística e matemática. Por este motivo, muitos pesquisadores consideram a estatística como a parte mais problemática de sua pesquisa científica. Argumentamos neste capítulo que a dificuldade de usar estatística em EEC está associada à ausência de uma plataforma de solução de problemas gerando hipóteses claras que são derivadas de uma teoria. No entanto, concordamos que há um grande desafio em algumas disciplinas como a Etnobiologia para integrar esta abordagem direcionada por hipóteses, uma vez que foi introduzida apenas recentemente {[}veja \protect\hyperlink{ref-phillips_useful_1993}{Phillips and Gentry} (\protect\hyperlink{ref-phillips_useful_1993}{1993}); phillips\_useful\_1993-1; \protect\hyperlink{ref-albuquerque_five_2009}{U. P. Albuquerque and Hanazaki} (\protect\hyperlink{ref-albuquerque_five_2009}{2009}){]}. Devido à falta de uma plataforma de solução de problemas, frequentemente percebemos que alunos/pesquisadores na EEC geralmente têm dificuldades de responder
+perguntas básicas para uma pesquisa científica, tais como:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Qual é a principal teoria ou raciocínio lógico do seu estudo?
+\item
+  Qual é a questão principal do seu estudo?
+\item
+  Qual é a sua hipótese? Quais são suas predições?
+\item
+  Qual é a unidade amostral, variável independente e dependente de seu trabalho? Existe alguma covariável?
+\item
+  Qual é o grupo controle?
+\end{enumerate}
+
+Como selecionar qualquer teste estatístico sem responder a essas cinco perguntas? A estrutura estatística frequentista fornece uma maneira de ir progressivamente suportando ou falseando uma hipótese (\protect\hyperlink{ref-neyman__problem_1933}{Neyman and Pearson 1933}; \protect\hyperlink{ref-popper_logic_1959}{Popper 1959}). A decisão de rejeitar uma hipótese nula é feita usando um valor de probabilidade (geralmente P \textless{} 0,05) calculado pela comparação de eventos observados com observações repetidas obtidas a partir de uma distribuição nula.
+
+Agora, vamos ensinar através de um exemplo e apresentar um ``guia para o pensamento estatístico'' que conecta alguns elementos essenciais para executar qualquer análise multivariada (ou univariada) \protect\hyperlink{ref-underwood_experiments_1997}{Underwood} (\protect\hyperlink{ref-underwood_experiments_1997}{1997}). Primeiro, imagine que você observou os seguintes fenômenos na natureza: (1) ``indivíduos de uma população tradicional selecionar algumas plantas para fins médicos'' e (2)``manchas monodominantes da árvore \emph{Prosopis juliflora}, uma espécie invasora em várias regiões.'' Do lado da etnobiologia, para entender como e porque o conhecimento tradicional é construído, existe uma teoria ou hipótese (por exemplo, hipótese de aparência: \protect\hyperlink{ref-goncalves_most_2016}{Gonçalves, Albuquerque, and Medeiros 2016}) explicando os principais processos que ditam a seleção da planta (Fig. \ref{fig:fig-statistical-thinking}a).Então, você pode fazer uma ou mais perguntas relacionadas àquele fenômeno observado (Fig. \ref{fig:fig-statistical-thinking}b). Por exemplo, como a urbanização afeta o conhecimento das pessoas sobre o uso de plantas medicinais em diferentes biomas? Do lado ecológico/conservação, para entender por que espécies introduzidas afetam as espécies nativas locais, você precisa entender as teorias do nicho ecológico e evolutiva (\protect\hyperlink{ref-macdougall_plant_2009}{MacDougall, Gilbert, and Levine 2009}; \protect\hyperlink{ref-saul_eco-evolutionary_2015}{Saul and Jeschke 2015}). Você pode perguntar, por exemplo, como as plantas exóticas afetam a estrutura de comunidades de plantas nativas? Questões complexas ou vagas dificultam a construção do fluxograma de pesquisa (ver descrição abaixo) e a seleção de testes estatísticos. Em vez disso, uma pergunta útil deve indicar as variáveis relevantes do seu estudo, como as independentes e dependentes, covariáveis, unidade de amostral e a escala espacial de interesse (Fig. \ref{fig:fig-statistical-thinking}b). No exemplo etnobiológico fornecido, a urbanização e o conhecimento das pessoas são as variáveis independentes e dependentes, respectivamente. Além disso, este estudo tem uma escala ampla, pois compara biomas diferentes. A próxima etapa é construir a hipótese biológica (Fig. \ref{fig:fig-statistical-thinking}c), que indicará a associação entre variáveis independentes e dependentes. No exemplo etnobiológico, a hipótese é que (1) ``a urbanização afeta o conhecimento das pessoas sobre o uso de plantas medicinais,'' enquanto a hipótese ecológica é que (2) ``espécies exóticas afetam a estrutura de comunidades de plantas nativas.'' Observe que isso é muito semelhante à questão principal. Mas você pode ter múltiplas hipóteses (\protect\hyperlink{ref-platt_strong_1964}{Platt 1964}) derivado de uma teoria. Depois de selecionar a hipótese biológica (ou científica), é hora de pensar sobre a derivação lógica da hipótese, que é chamada de predição ou previsão (Fig. \ref{fig:fig-statistical-thinking}d). Os padrões preditos são uma etapa muito importante, pois após defini-los você pode operacionalizar suas variáveis e visualizar seus dados. Por exemplo, a variável teórica ``Urbanização'' pode ser medida como ``grau de urbanização ao longo das áreas urbanas, periurbanas e rurais'' e ``conhecimento das pessoas'' como ``o número e tipo de espécies de plantas úteis usadas para diferentes doenças.'' Assim, a predição é que o grau de urbanização diminua o número e tipo de espécies de plantas conhecidas utilizadas para fins medicinais. No exemplo ecológico, a variável ``espécies exóticas'' pode ser medida como ``a densidade da planta exótica \emph{Prosopis juliflora}'' e ``Estrutura da comunidade'' como ``riqueza e composição de espécies nativas.'' Depois de operacionalizar o seu trabalho à luz do método hipotético-dedutivo (HDM), o próximo passo é ``pensar estatisticamente'' sobre a hipótese biológica formulada (ver Figura \ref{fig:fig-statistical-thinking} e, f).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/cap03_fig01} 
+
+}
+
+\caption{Um guia para o pensamento estatístico combinando o método hipotético-dedutivo (a -- d, i) e estatística frequentista (e -- i). Veja também a Fig. 1 em Underwood 1997, Fig. 1 em Ford 2004 e Fig. 1.3 em Legendre & Legendre 2012.}\label{fig:fig-statistical-thinking}
+\end{figure}
+
+Então, você precisa definir as hipótese estatística nula (H0) e a alternativa (H1). Duas ``hipóteses estatísticas'' diferentes podem ser derivadas de uma hipótese biológica (Fig. \ref{fig:fig-statistical-thinking}e). Portanto, nós usamos o termo ``hipótese estatística'' entre aspas, porque as chamadas hipóteses estatísticas são predições \emph{sensu stricto}, e muitas vezes confundem jovens estudantes. A hipótese estatística nula representa uma ausência de relacão entre as variáveis independentese e dependentes. Depois de definir a hipótese estatística nula, você pode derivar uma ou várias hipóteses estatísticas alternativas, que demonstram a(s) associação(ões) esperada(s) entre suas variáveis (Fig. \ref{fig:fig-statistical-thinking}e). Em nosso exemplo, a hipótese nula é que ``o grau de urbanização não afeta o número de espécies de plantas úteis conhecidas pela população local.'' Por sua vez, a hipótese alternativa é que ``o grau de urbanização afeta o número de espécies de plantas úteis conhecidas pela população local.'' Depois de operacionalizar suas variáveis e definir o valor nulo e hipóteses alternativas, é hora de visualizar o resultado esperado (Fig. \ref{fig:fig-box}, Caixa 1) e escolher um método estatístico adequado. Por exemplo, se você deseja comparar a diferença na composição de plantas úteis entre áreas urbanas, periurbanas e rurais, você pode executar uma PERMANOVA (\protect\hyperlink{ref-albuquerque_multidimensional_2019}{Gonçalves-Souza, Garey, et al. 2019}) que usa uma estatística de teste chamada \emph{pseudo-F}. Então, você deve escolher o limite de probabilidade (o valor P) do teste estatístico para decidir se a hipótese nula deve ou não deve ser rejeitada (\protect\hyperlink{ref-gotelli_primer_2012}{Nicholas J. Gotelli and Ellison 2012}). Se você encontrar um P \textless{} 0,05, você deve rejeitar a hipótese estatística nula (urbanização não afeta o número e a composição das plantas). Por outro lado, um P \textgreater{} 0,05 indica que você não pode rejeitar a hipótese nula estatística. Assim, a estatística do teste e o valor P representam a última parte do teste de hipótese estatística, que é a decisão e conclusões apropriadas que serão usadas para retroalimentar a teoria principal (Figura \ref{fig:fig-statistical-thinking}g -- i). Generalizando seus resultados e falseando (ou não) suas hipóteses, o estudo busca refinar a construção conceitual da teoria, que muda constantemente (Fig. 1i, \protect\hyperlink{ref-ford_scientific_2004}{Ford 2004}). No entanto, há um ponto crítico nesta última frase, porque a significância estatística não significa necessariamente relevância biológica \protect\hyperlink{ref-martinez-abrain_statistical_2008}{Martínez-Abraín} (\protect\hyperlink{ref-martinez-abrain_statistical_2008}{2008}). Nas palavras de Ford (2004): ``as estatísticas são usadas para iluminar o problema, e não para apoiar uma posição.'' Além disso, o procedimento de teste de hipótese tem alguma incerteza, que pode influenciar resultados ``falso-positivos'' (erro tipo 1) e ``falso-negativos'' (erro tipo 2) (\protect\hyperlink{ref-whitlock_analysis_2015}{Whitlock and Schluter 2015}). Para simplificar, não discutiremos em detalhes os prós e contras da estatística frequentista, bem como métodos alternativos (por exemplo, Bayesiano e Máxima Verossimilhança), e questões filosóficas relativas ao ``valor P'' (para uma discussão sobre esses tópicos, consulte o fórum em \protect\hyperlink{ref-ellison_p_2014}{Ellison et al. 2014}).
+
+\begin{quote}
+\textbf{Caixa 1. Tipo de variáveis e visualização de dados}
+Conforme descrito na Seção 3, o fluxograma é essencial para conectar variáveis relevantes para a pesquisa. Para aproveitar ao máximo esta abordagem, você pode desenhar suas próprias predições gráficas para te ajudar a pensar sobre diferentes possibilidades analíticas. Aqui, nós fornecemos uma descrição completa dos tipos de variáveis que você deve saber antes de executar qualquer análise estatística e representar seus resultados. Além disso, mostramos uma breve galeria (Fig. \ref{fig:fig-box}) com exemplos de boas práticas em visualização de dados (Fig. \ref{fig:fig-research-flowchart}b, veja também figuras em \protect\hyperlink{ref-albuquerque_multidimensional_2019}{Gonçalves-Souza, Garey, et al. 2019}). Além de conectar diferentes variáveis no fluxograma, você deve distinguir o tipo de variável. Primeiro você deve identificar as variáveis independentes (também conhecidos como explicativas ou preditoras) e dependentes (também conhecidas como resposta). A variável independente é aquela (ou aquelas) que prevê ou afeta a variável resposta (por exemplo, a fertilidade do solo é a variável independente capaz de afetar a abundância de uma espécie de planta focal, a variável dependente). Além disso, uma covariável é uma variável contínua que pode afetar tanto a variável resposta quanto a independente (ou ambos), mas geralmente não é do interesse do pesquisador. Depois de definir as variáveis relevantes, conectando-as no fluxograma, é hora de diferenciar seu tipo: (1) quantitativa ou contínua, e (2) categórica ou qualitativa (Fig. \ref{fig:fig-box}a, Caixa 1). O tipo de variável irá definir que tipo de figura você pode selecionar. Por exemplo, se você está comparando duas variáveis contínuas ou uma variável contínua e uma binária, a melhor maneira de visualizá-los (Fig. \ref{fig:fig-box}b) é um gráfico de dispersão (Fig. \ref{fig:fig-box}c, d). A linha representa os valores preditos pelo modelo estatístico usado (por exemplo, linear, logístico). Se você está interessado em comparar a gama de diferentes atributos (ou a descrição de qualquer variável numérica) entre as variáveis categóricas (por exemplo, espécies ou populações locais), um gráfico de halteres (do inglês Dumbbell plot) é uma boa opção (Fig. \ref{fig:fig-box}e). Histogramas também podem ser usados para mostrar a distribuição de duas variáveis contínuas de dois grupos ou fatores (Fig. \ref{fig:fig-box}f). No entanto, se você quiser testar o efeito de uma variável categórica independente (como em um desenho de ANOVA) sobre uma variável dependente, boxplots (Fig. \ref{fig:fig-box}g) ou gráficos de violino podem resumir essas relações de maneira elegante. Conjuntos de dados multivariados, por sua vez, podem ser visualizados com ordenação (Fig. \ref{fig:fig-box}h) ou gráficos de agrupamento (não mostrados). Existe um site abrangente apresentando várias maneiras de visualizar dados chamado \url{https://www.datavizproject.com/}.
+\end{quote}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/cap03_fig02} 
+
+}
+
+\caption{(A) Tipos de variáveis e (B) visualização de dados para representar a relação entre variáveis independentes e dependentes ou covariáveis.}\label{fig:fig-box}
+\end{figure}
+
+\hypertarget{fluxograma-conectando-variuxe1veis-para-melhorar-o-desenho-experimental-e-as-anuxe1lises-estatuxedsticas}{%
+\subsection{Fluxograma: Conectando Variáveis para Melhorar o desenho experimental e as análises estatísticas}\label{fluxograma-conectando-variuxe1veis-para-melhorar-o-desenho-experimental-e-as-anuxe1lises-estatuxedsticas}}
+
+McIntosh e Pontius (\protect\hyperlink{ref-mcintosh_science_2017}{2017}) afirmaram que o pensamento estatístico (representado na Fig. \ref{fig:fig-statistical-thinking} inclui quatro etapas importantes: (1) quais perguntas você investigaria (Seção 4), (2) como e onde coletar os dados (\protect\hyperlink{ref-ruxton_experimental_2016}{Ruxton and Colegrave 2016}), (3) quais fatores devem ser considerados e como eles afetam suas variáveis de interesse (e como elas afetam umas às outras), e (4) qual análise estatística você deve usar e como interpretar e comunicar os resultados (Seção 4). No entanto, a etapa (3) deve ser feita antes de coletar os dados. Por exemplo, se você está interessado na investigação dos benefícios das matas ciliares para as espécies nativas de peixes, quais variáveis devem ser incluídas no estudo? Se você escolher rios com e sem mata ciliar como única variável preditora, seu projeto de amostragem irá omitir outras variáveis de confusão, como ordem do rio e carbono orgânico do solo a montante. Vellend (\protect\hyperlink{ref-vellend_theory_2016}{2016}) nomeou este problema como o ``problema de três caixas'' (ver também \protect\hyperlink{ref-ruxton_experimental_2016}{Ruxton and Colegrave 2016}) , que se refere à limitação em inferir que X (variável independente) causa variação em Y (variável depende) quando outras variáveis criam ou ampliam a correlação entre X e Y (ver Fig. 2 em \protect\hyperlink{ref-ruxton_experimental_2016}{Ruxton and Colegrave 2016}). Uma ferramenta útil para compreender a relação entre todas as variáveis relevantes do seu estudo é um fluxograma. No ``fluxograma de pesquisa'' {[}ver também magnusson\_statistics\_2015{]} proposto aqui, variáveis dependentes (também conhecidas como resposta) e independentes (ou preditora), bem como covariáveis são representadas como caixas (com formas distintas: Fig. \ref{fig:fig-research-flowchart}). Além disso, você pode usar uma seta para representar uma (possível) via causal indicando força e sinal (positivo ou negativo) da variável preditora na variável dependente (Fig. \ref{fig:fig-research-flowchart}) Ao fazer isso, você pode melhorar o desenho experimental ou observacional incluindo ou controlando variáveis de confusão o que, por sua vez, pode ajudar a separar a contribuição relativa de diferentes variáveis preditoras em seu sistema. Mais importante, fazer conexões entre variáveis melhora sua capacidade de visualizar o ``Quadro geral'' de sua pesquisa, o que pode afetar seu experimento, análise estatística e revisão da literatura. Na verdade, Arlidge et al. (\protect\hyperlink{ref-arlidge_using_2017}{2017})argumentam que fluxogramas facilitam a construção de narrativas, melhorando: (1) a definição de múltiplas hipóteses, (2) coleta, interpretação e disseminação de dados e (3) a comunicação do conteúdo do estudo. Você também pode ler o livro de Magnusson et al. (\protect\hyperlink{ref-magnusson_statistics_2015}{2015}) para entender mais como usar fluxogramas para auxiliar análises estatísticas. Além disso, Ford (\protect\hyperlink{ref-ford_scientific_2004}{2004}) recomenda o uso de uma abordagem analítica para fomentar o desenvolvimento da pesquisa. Além disso, o fluxograma de pesquisa pode ser usado como uma ferramenta forte para contemplar os conselhos de Ford (\protect\hyperlink{ref-ford_scientific_2004}{2004}), que foram: (1) definir a pergunta da pesquisa, (2) definir a teoria a ser usada, (3) definir a técnica de investigação (por exemplo, experimento, observação de campo), (4) definir as medições, (5) definir como fazer inferência, e (6) interpretar, generalizar,e sintetizar a partir de dados que, por sua vez, são usados para refinar a teoria e modificar (quando necessário) questões futuras (Fig. \ref{fig:fig-statistical-thinking}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/cap03_fig03} 
+
+}
+
+\caption{Exemplo de como usar um fluxograma para melhorar o entendimento do sistema estudado. A pergunta teórica "Qual é o impacto da invasão na comunidade nativa e nas propriedades do ecossistema?" pode gerar duas predições: (1) a planta exótica *Prosopis juliflora* reduz a diversidade beta de comunidades de plantas nativas, e (2) *Prosopis juliflora* modifica a composição das comunidades de plantas e reduz o estoque de carbono e as taxas de decomposição. Após selecionar suas predições, você pode construir um fluxograma conectando as variáveis relevantes e as associações entre elas. Além disso, você pode usar as informações na **Caixa 1** para identificar que tipo de variável você irá coletar e quais figuras podem ser usadas (b).}\label{fig:fig-research-flowchart}
+\end{figure}
+
+\hypertarget{questuxf5es-fundamentais-em-etnobiologia-ecologia-e-conservauxe7uxe3o}{%
+\subsection{Questões fundamentais em etnobiologia, ecologia e conservação}\label{questuxf5es-fundamentais-em-etnobiologia-ecologia-e-conservauxe7uxe3o}}
+
+\begin{quote}
+\emph{As teorias são generalizações. As teorias contêm perguntas. Para algumas teorias, as perguntas são explícitas e representam o que a teoria pretende explicar. Para outras, as questões são implícitas e se relacionam com a quantidade e tipo de generalização, dada a escolha de métodos e exemplos usados por pesquisadores na construção da teoria. As teorias mudam continuamente, à medida que exceções são encontradas às suas generalizações e como questões implícitas sobre método e opções de estudos são expostas. - E. David Ford (\protect\hyperlink{ref-ford_scientific_2004}{2004})}
+\end{quote}
+
+Como argumentamos antes, uma questão relevante e testável precede as análises estatísticas. Assim, apresentamos a seguir 12 questões que podem estimular pesquisas futuras na ECC. Observe, no entanto, que não queremos dizer que eles são as únicas questões relevantes a serem testadas na EEC (ver, por exemplo, Sutherland et al. (\protect\hyperlink{ref-sutherland_identification_2013}{2013}) para uma avaliação completa da pesquisa de ponta em Ecologia; e Caixa 6.1 em Pickett et al. (\protect\hyperlink{ref-pickett_ecological_2007}{2007})\footnote{Após a publicação original deste capítulo, Ulysses Albuquerque e colaboradores publicaram artigo sugerindo questões fundamentais em Etnobiologia: Albuquerque et al.~2019, Acta Bot. Bras. 33, 2.}). Especificamente, essas questões são muito amplas e podem ser desenvolvidas em perguntas, hipóteses e predições mais restritas. Depois de cada questão teórica, apresentamos um estudo que testou essas hipóteses bem como as variáveis relevantes que podem estimular estudos futuros.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \textbf{Como o uso da terra afeta a manutenção da biodiversidade e a distribuição de espécies em diferentes escalas espaciais?}
+
+  \emph{Exemplo}: Vários estudos em diferentes ecossistemas e escalas investigaram como o uso da terra afeta a biodiversidade. No entanto, destacamos um estudo comparando os efeitos globais do uso da terra (por exemplo, densidade populacional humana, paisagem para usos humanos, tempo desde a conversão da floresta) em espécies terrestres (por exemplo, mudança líquida na riqueza local, dissimilaridade composicional média) (\protect\hyperlink{ref-newbold_global_2015}{Newbold et al. 2015}).
+\item
+  \textbf{Qual é o impacto da invasão biótica nas comunidades nativas e propriedades do ecossistema?}
+
+  \emph{Exemplo}: Investigar como o estabelecimento de espécies exóticas afetam a riqueza de espécies do receptor, comunidades nativas, bem como como isso afeta a entrega do serviços ecossitêmicos. Estudos anteriores controlaram a presença de espécies invasoras ou registros históricos comparados (estudos observacionais) dessas espécies e como elas impactam a biodiversidade. Além disso, há algum esforço em compreender os preditores de invasibilidade (por exemplo, produto interno bruto de regiões, densidade populacional humana, litoral continental e ilhas) Dawson et al. (\protect\hyperlink{ref-dawson_global_2017}{2017}).
+\item
+  \textbf{Como o declínio do predador de topo afeta a entrega de serviços ecossistêmicos?}
+
+  \emph{Exemplo}: Investigar como a remoção de grandes carnívoros afeta o fornecimento de serviços ecossistêmicos, como o sequestro de carbono, doenças e controle de danos às colheitas. Estudos anteriores investigaram esta questão controlando a presença de predadores de topo ou comparando registros históricos (estudo observacionais) de espécies e vários preditores (por exemplo, perda e fragmentação de habitat, conflito entre humanos e espécies caçadas, utilização para a medicina tradicional e superexploração de presas) (\protect\hyperlink{ref-ripple_status_2014}{Ripple et al. 2014}).
+\item
+  \textbf{Como a acidificação dos oceanos afeta a produtividade primária e teias alimentares em ecossistemas marinhos?}
+
+  \emph{Exemplo}: Estudos recentes testaram os efeitos individuais e interativos da acidificação e do aquecimento do oceano nas interações tróficas em uma teia alimentar. A acidificação e o aquecimento foram manipulados pela mudança dos níveis de CO2 e temperatura, respectivamente. Estudos anteriores demonstraram que elevação de CO2 e temperatura aumentou a produtividade primária e afetou a força do controle de cima para baixo exercido por predadores (\protect\hyperlink{ref-goldenberg_boosted_2017}{Goldenberg et al. 2017}).
+\item
+  \textbf{Como podemos reconciliar as necessidades da sociedade por recursos naturais com conservação da Natureza?}
+
+  \emph{Exemplo}: Existe uma literatura crescente usando abordagens de paisagem para melhorar a gestão da terra para reconciliar conservação e desenvolvimento econômico. Os estudos possuem diversos objetivos, mas em geral eles usaram o engajamento das partes interessadas, apoio institucional, estruturas eficazes de governança como variáveis preditoras e melhorias ambientais (por exemplo, conservação do solo e da água, cobertura vegetal) e socioeconômicas (renda, capital social, saúde pública, emprego) como variáveis dependentes (\protect\hyperlink{ref-reed_have_2017}{Reed et al. 2017}).
+\item
+  \textbf{Qual é o papel das áreas protegidas (UCs) para a manutenção da biodiversidade e dos serviços ecossistêmicos?}
+
+  \emph{Exemplo}: Houve um trabalho considerável na última década comparando a eficácia das UCs para a conservação da biodiversidade. Embora esta questão não esteja completamente separada da questão anterior, o desenho dos estudos é relativamente distinto. Em geral, os pesquisadores contrastam o número de espécies e o fornecimento de serviços ecossistêmicos (por exemplo, retenção de água e solo, sequestro de carbono) entre áreas legalmente protegidas (UCs) e não protegidas (\protect\hyperlink{ref-xu_strengthening_2017}{Xu et al. 2017}).
+\item
+  \textbf{Como integrar o conhecimento científico e das pessoas locais para mitigar os impactos negativos das mudanças climáticas e do uso da terra na biodiversidade?}
+
+  \emph{Exemplo}: Eventos climáticos extremos podem ter forte impacto sobre rendimento agrícola e produção de alimentos. Autores recentes têm argumentado que esse efeito pode ser mais forte para os pequenos agricultores. Estudos futuros podem investigar como a precipitação e a temperatura afetam o rendimento agrícola e como os agricultores tradicionais ou indígenas lidam com esse impacto negativo. Sistemas de agricultura tradicional têm menor erosão do solo e emissões de N2O / CO2 do que as monoculturas e, portanto, podem ser vistos como uma atividade de mitigação viável em um mundo em constante mudança (\protect\hyperlink{ref-niggli_low_2009}{Niggli et al. 2009}; \protect\hyperlink{ref-altieri_adaptation_2017}{Altieri and Nicholls 2017}).
+\item
+  \textbf{Como as mudanças climáticas afetam a resiliência e estratégias adaptativas em sistemas socioecológicos?}
+
+  \emph{Exemplo}: A mudança do clima altera tanto a pesca quanto a agricultura em todo o mundo, o que por sua vez obriga os humanos a mudar suas estratégias de cultivo. Estudos recentes têm argumentado que a agricultura em alguns países enfrentará riscos com as mudanças climáticas. Esses estudos comparam diferentes sistemas de produção, de agricultura convencional a outros tipos empregados por populações locais. Por exemplo, há uma forte conexão entre (1) espécies ameaçadas e sobrepesca, (2) índice de desenvolvimento humano (IDH) e dependência média da pesca e aquicultura. Além disso, há evidências de que a biodiversidade pode amortecer os impactos das mudanças climáticas aumentando a resiliência da terra {[}\protect\hyperlink{ref-niggli_low_2009}{Niggli et al.} (\protect\hyperlink{ref-niggli_low_2009}{2009}); \protect\hyperlink{ref-altieri_adaptation_2017}{Altieri and Nicholls} (\protect\hyperlink{ref-altieri_adaptation_2017}{2017}); blanchard\_linked\_2017{]}. Uma abordagem interessante é investigar como as populações locais lidam com esses desafios em termos de percepções e comportamento.
+\item
+  \textbf{Como a invasão biológica afeta espacial e temporalmente a estrutura e funcionalidade dos sistemas sócio-ecológicos?}
+
+  \emph{Exemplo}: Muitos estudos demonstraram que espécies invasoras têm consequências biológicas, econômicas e sociais negativas. Aqui, da mesma forma que a pergunta B, os pesquisadores controlaram a presença de espécies invasoras ou utilizaram registros históricos. No entanto, trabalhos recentes quantificam não apenas a riqueza e composição de espécies nativas, mas também atributos funcionais de animais/vegetais que afetam diretamente o fornecimento de serviços ecossistêmicos como abastecimento (comida, água), regulação (clima, controle de inundações), suporte (ciclagem de nutrientes, formação do solo) e cultural (ecoturismo, patrimônio cultural) (\protect\hyperlink{ref-chaffin_biological_2016}{Chaffin et al. 2016}). Mas, espécies invasoras podem provocar efeitos positivos no sistema sócio-ecológico aumentando a disponibilidade de recursos naturais, impactando como as pessoas gerenciam e usam a biodiversidade local.
+\item
+  \textbf{Qual é a relação entre as diversidades filogenética e taxonômica com a diversidade biocultural?}
+
+  \emph{Exemplo}: Estudos recentes mostraram que existe um padrão filogenético e taxonômico nos recursos que as pessoas incorporam em seus sistemas sócio-ecológicos, especialmente em plantas medicinais. Existe uma tendência para as pessoas, em diferentes partes do mundo, para usar plantas próximas filogeneticamente para os mesmos propósitos. Aqui, os pesquisadores podem testar o quanto isso afeta a diversidade de práticas em um sistema sócio-ecológico considerando o ambiente, bem como sua estrutura e funções {[}\protect\hyperlink{ref-saslis-lagoudakis_phylogenies_2012}{C. H. Saslis-Lagoudakis et al.} (\protect\hyperlink{ref-saslis-lagoudakis_phylogenies_2012}{2012}); saslis-lagoudakis\_evolution\_2014{]}.
+\item
+  \textbf{Quais variáveis ambientais e sócio-políticas mudam a estrutura e funcionalidade dos sistemas sócio-ecológicos tropicais?}
+
+  \emph{Exemplo}: Testar a influência das mudanças ambientais afetadas pela espécie humana (por exemplo, fogo, exploração madeireira, aquecimento) em espécies-chave e, consequentemente, como esse efeito em cascata pode afetar outras espécies e serviços ecossistêmicos (por exemplo, armazenamento de carbono, ciclo da água e dinâmica do fogo) (\protect\hyperlink{ref-lindenmayer_hidden_2018}{Lindenmayer and Sato 2018}).
+\item
+  \textbf{Os atributos das espécies influenciam como as populações locais distinguem plantas ou animais úteis e não-úteis?}
+
+  \emph{Exemplo}: Investigar se a população local possui preferência ao selecionar espécies de animais ou plantas. Você pode avaliar se grupos diferentes (por exemplo, turistas) ou populações locais (por exemplo, pescadores) selecionam espécies com base em atributos das espécies. Estudos recentes têm mostrado uma ligação potencial entre planta (por exemplo, cor, folha, floração) e pássaro (por exemplo, cor, vocalzação) e alguns serviços culturais do ecossistema, como estética, recreativa e espiritual/religiosa (\protect\hyperlink{ref-goodness_exploring_2016}{Goodness et al. 2016}).
+\end{enumerate}
+
+Como você notou, as questões eram mais teóricas e, consequentemente, você pode derivar prediões testáveis (usando variáveis) a partir delas (Figuras 1 e 3). Por exemplo, da questão \emph{``Como o uso da terra afeta a manutenção da biodiversidade e distribuição de espécies em diferentes escalas?''} podemos derivar duas predições diferentes: (1) densidade populacional (variável operacional de uso da terra) muda a composição de espécies e reduz a riqueza de espécies na escala da paisagem (predição derivada da hipótese da homogeneização biótica: \protect\hyperlink{ref-solar_how_2015}{Solar et al. 2015}); (2) a composição dos atributos funcionais das plantas é diferente em remanescentes florestais com diferentes matrizes (cana-de-açúcar, gado, cidade, etc.).
+
+\hypertarget{considerauxe7uxf5es-finais}{%
+\subsection{Considerações Finais}\label{considerauxe7uxf5es-finais}}
+
+\begin{quote}
+\emph{Conte-me seus segredos}\\
+\emph{E faça-me suas perguntas}\\
+\emph{Oh, vamos voltar para o início}\\
+\emph{Correndo em círculos, perseguindo caudas}\\
+\emph{Cabeças em uma ciência à parte}\\
+\emph{Ninguém disse que seria fácil}\\
+\emph{(\ldots) Desfazendo enígmas}\\
+\emph{Questões da ciência, ciência e progresso}\\
+\emph{- O Cientista, Coldplay}
+\end{quote}
+
+Este é um trecho de uma música da banda britânica de rock Coldplay, do álbum de 2002 \emph{A Rush of Blood to the Head}. A letra é uma comparação incrível entre a ciência e os altos e baixos de um relacionamento fadado ao fracaço. A banda traz uma mensagem surpreendentemente clara de que como cientistas, nós (deveríamos) frequentemente fazer perguntas, voltar ao início após descobrir que estávamos errados (ou não) e que corremos em círculos tentando melhorar nosso conhecimento. A banda descreveu de uma forma tão precisa o quão cíclico (mas não repetitivo) é o método científico. Como disse a canção: não é fácil, mas aprender como fazer boas perguntas é um passo essencial para a consolidação do conhecimento. Ao incluir o teste de hipótese no EEC, podemos ser mais precisos. Definitivamente, isso não significa que a ciência descritiva seja inútil. Ao contrário, o desenvolvimento da ECC e principalmente da Etnobiologia, foi construído sobre uma linha de frente descritiva, o que significa que foi valioso para a fundação da Etnobiologia como disciplina consolidada {[}\protect\hyperlink{ref-ethnobiology_working_group_intellectual_2003}{Group} (\protect\hyperlink{ref-ethnobiology_working_group_intellectual_2003}{2003}); stepp\_advances\_2005{]}. No entanto, estudos recentes defendem que a etnobiologia deve dialogar com disciplinas com maior respaldo teórico, como ecologia e biologia evolutiva para melhorar a pesquisa sobre biodiversidade (\protect\hyperlink{ref-albuquerque_what_2017}{U. P. Albuquerque and Ferreira Júnior 2017}). Por sua vez, incorporando o conhecimento local em ecologia e evolução irá certamente refinar seu próprio desenvolvimento, que em última análise beneficia a conservação biológica (\protect\hyperlink{ref-saslis-lagoudakis_ethnobiology:_2013}{C. Haris Saslis-Lagoudakis and Clarke 2013}). Além disso, há uma necessidade urgente de formar jovens pesquisadores em filosofia e metodologia da ciência, bem como comunicação e produção científica (\protect\hyperlink{ref-albuquerque_how_2013}{U. Albuquerque P. 2013}). Como comentário final, acreditamos que a formação dos alunos em EEC precisa de uma reavaliação que necessariamente volta aos conceitos e métodos básicos. Assim, os pesquisadores podem combinar o método hipotético-dedutivo com pensamento estatístico usando um fluxograma de pesquisa para ir além da descrição básica.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.07}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.93}}@{}}
+\toprule
+Termo\footnote{Glossário (adaptado de \protect\hyperlink{ref-pickett_ecological_2007}{Pickett, Kolasa, and Jones 2007})} & Definição \\
+\midrule
+\endhead
+Pressuposto & Condições necessárias para sustentar uma hipótese ou construçãoa teoria \\
+Hipótese & Afirmação testável derivada ou representando vários componentes de uma teoria \\
+Mecanismo & Interação direta de uma relação causal que resultaem um fenômeno \\
+Padrão & Eventos repetidos, entidades recorrentes ou relações replicadasrelações observadas no tempo ou no espaço \\
+Fenômeno & Um evento, entidade ou relacionamento observável \\
+Predição & Uma declaração de expectativa deduzida da lógicaestrutura ou derivada da estrutura causal de um teoria \\
+Processo & Um subconjunto de fenômenos em que os eventos seguem umoutro no tempo ou espaço, que pode ou não sercausalmente conectado. É causa, mecanismo ou contensão explicando um padrão \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{referuxeancias}{%
+\subsection{Referências}\label{referuxeancias}}
+
+\hypertarget{referuxeancias-1}{%
+\section*{Referências}\label{referuxeancias-1}}
+\addcontentsline{toc}{section}{Referências}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-albuquerque_how_2013}{}%
+Albuquerque, Ulysses, P. 2013. {``How to Improve the Quality of Scientific Publications in Ethnobiology.''} \emph{Ethnobiology and Conservation} 2: 1--5. \url{https://doi.org/10.15451/ec2013-8-2.4-1-05}.
+
+\leavevmode\hypertarget{ref-albuquerque_what_2017}{}%
+Albuquerque, Ulysses Paulino, and Washington Soares Ferreira Júnior. 2017. {``What {Do} {We} {Study} in {Evolutionary} {Ethnobiology}? {Defining} the {Theoretical} {Basis} for a {Research} {Program}.''} \emph{Evolutionary Biology} 44 (2): 206--15. \url{https://doi.org/10.1007/s11692-016-9398-z}.
+
+\leavevmode\hypertarget{ref-albuquerque_five_2009}{}%
+Albuquerque, Ulysses Paulino, and Natalia Hanazaki. 2009. {``Five {Problems} in {Current} {Ethnobotanical} {Research}---and {Some} {Suggestions} for {Strengthening} {Them}.''} \emph{Human Ecology} 37 (5): 653--61. \url{https://doi.org/10.1007/s10745-009-9259-9}.
+
+\leavevmode\hypertarget{ref-altieri_adaptation_2017}{}%
+Altieri, Miguel A., and Clara I. Nicholls. 2017. {``The Adaptation and Mitigation Potential of Traditional Agriculture in a Changing Climate.''} \emph{Climatic Change} 140 (1): 33--45. \url{https://doi.org/10.1007/s10584-013-0909-y}.
+
+\leavevmode\hypertarget{ref-arlidge_using_2017}{}%
+Arlidge, Susan Marie, Anastasia Thanukos, and Jessica R. Bean. 2017. {``Using the {Understanding} {Science} {Flowchart} to {Illustrate} and {Bring} {Students}' {Science} {Stories} to {Life}.''} \emph{The Bulletin of the Ecological Society of America} 98 (3): 211--26. \url{https://doi.org/10.1002/bes2.1330}.
+
+\leavevmode\hypertarget{ref-burnham_pvalues_2014}{}%
+Burnham, K. P., and D. R. Anderson. 2014. {``Pvalues Are Only an Index to Evidence: 20th- Vs. 21st-Century Statistical Science.''} \emph{Ecology} 95 (3): 627--30. \url{https://doi.org/10.1890/13-1066.1}.
+
+\leavevmode\hypertarget{ref-chaffin_biological_2016}{}%
+Chaffin, Brian C., Ahjond S. Garmestani, David G. Angeler, Dustin L. Herrmann, Craig A. Stow, Magnus Nyström, Jan Sendzimir, Matthew E. Hopton, Jurek Kolasa, and Craig R. Allen. 2016. {``Biological Invasions, Ecological Resilience and Adaptive Governance.''} \emph{Journal of Environmental Management} 183 (December): 399--407. \url{https://doi.org/10.1016/j.jenvman.2016.04.040}.
+
+\leavevmode\hypertarget{ref-crawley_r_2012}{}%
+Crawley, M. J. 2012. \emph{The {R} {Book}}. John Wiley \& Sons, Ltd. \url{https://doi.org/10.1002/9781118448908}.
+
+\leavevmode\hypertarget{ref-dawson_global_2017}{}%
+Dawson, Wayne, Dietmar Moser, Mark van Kleunen, Holger Kreft, Jan Pergl, Petr Pyšek, Patrick Weigelt, et al. 2017. {``Global Hotspots and Correlates of Alien Species Richness Across Taxonomic Groups.''} \emph{Nature Ecology \& Evolution} 1 (7): 0186. \url{https://doi.org/10.1038/s41559-017-0186}.
+
+\leavevmode\hypertarget{ref-ellison_p_2014}{}%
+Ellison, Aaron M., Nicholas J. Gotelli, Brian D. Inouye, and Donald R. Strong. 2014. {``\emph{P} Values, Hypothesis Testing, and Model Selection: It's déjà Vu All over Again.''} \emph{Ecology} 95 (3): 609--10. \url{https://doi.org/10.1890/13-1911.1}.
+
+\leavevmode\hypertarget{ref-ford_scientific_2004}{}%
+Ford, Edward David. 2004. \emph{Scientific Method for Ecological Research}. 1. publ., Transferred to digital printing. Cambridge, UK: Cambridge Univ. Press.
+
+\leavevmode\hypertarget{ref-goldenberg_boosted_2017}{}%
+Goldenberg, Silvan U., Ivan Nagelkerken, Camilo M. Ferreira, Hadayet Ullah, and Sean D. Connell. 2017. {``Boosted Food Web Productivity Through Ocean Acidification Collapses Under Warming.''} \emph{Global Change Biology} 23 (10): 4177--84. \url{https://doi.org/10.1111/gcb.13699}.
+
+\leavevmode\hypertarget{ref-goncalves_most_2016}{}%
+Gonçalves, Paulo Henrique Santos, Ulysses Paulino Albuquerque, and Patrícia Muniz de Medeiros. 2016. {``The Most Commonly Available Woody Plant Species Are the Most Useful for Human Populations: A Meta-Analysis.''} \emph{Ecological Applications} 26 (7): 2238--53. \url{https://doi.org/10.1002/eap.1364}.
+
+\leavevmode\hypertarget{ref-albuquerque_multidimensional_2019}{}%
+Gonçalves-Souza, Thiago, Michel V. Garey, Fernando R. da Silva, Ulysses Paulino Albuquerque, and Diogo B. Provete. 2019. {``Multidimensional {Analyses} for {Testing} {Ecological}, {Ethnobiological}, and {Conservation} {Hypotheses}.''} In \emph{Methods and {Techniques} in {Ethnobiology} and {Ethnoecology}}, edited by Ulysses Paulino Albuquerque, Reinaldo Farias Paiva de Lucena, Luiz Vital Fernandes Cruz da Cunha, and Rômulo Romeu Nóbrega Alves, 87--110. New York, NY: Springer New York. \url{https://doi.org/10.1007/978-1-4939-8919-5_8}.
+
+\leavevmode\hypertarget{ref-albuquerque_going_2019}{}%
+Gonçalves-Souza, Thiago, Diogo B. Provete, Michel V. Garey, Fernando R. da Silva, and Ulysses Paulino Albuquerque. 2019. {``Going {Back} to {Basics}: {How} to {Master} the {Art} of {Making} {Scientifically} {Sound} {Questions}.''} In \emph{Methods and {Techniques} in {Ethnobiology} and {Ethnoecology}}, edited by Ulysses Paulino Albuquerque, Reinaldo Farias Paiva de Lucena, Luiz Vital Fernandes Cruz da Cunha, and Rômulo Romeu Nóbrega Alves, 71--86. New York, NY: Springer New York. \url{https://doi.org/10.1007/978-1-4939-8919-5_7}.
+
+\leavevmode\hypertarget{ref-goodness_exploring_2016}{}%
+Goodness, Julie, Erik Andersson, Pippin M. L. Anderson, and Thomas Elmqvist. 2016. {``Exploring the Links Between Functional Traits and Cultural Ecosystem Services to Enhance Urban Ecosystem Management.''} \emph{Ecological Indicators} 70 (November): 597--605. \url{https://doi.org/10.1016/j.ecolind.2016.02.031}.
+
+\leavevmode\hypertarget{ref-gotelli_primer_2013}{}%
+Gotelli, N. J., and A. M. Ellison. 2013. \emph{A Primer of Ecological Statistics}. Sinauer Associates.
+
+\leavevmode\hypertarget{ref-gotelli_primer_2012}{}%
+Gotelli, Nicholas J., and Aaron M. Ellison. 2012. \emph{A Primer of Ecological Statistics}. Second edition. Sunderland, Massachusetts: Sinauer Associates, Inc., Publishers.
+
+\leavevmode\hypertarget{ref-ethnobiology_working_group_intellectual_2003}{}%
+Group, Ethnobiology Working. 2003. {``Intellectual Imperatives in Ethnobiology.''} St. Louis: Missouri Botanical Garden Press.
+
+\leavevmode\hypertarget{ref-horgan_teaching_1999}{}%
+Horgan, G. W., D. A. Elston, M. F. Franklin, C. A. Glasbey, E. A. Hunter, M. Talbot, R. A. Kempton, J. W. McNicol, and F. Wright. 1999. {``Teaching {Statistics} to {Biological} {Research} {Scientists}.''} \emph{Journal of the Royal Statistical Society: Series D (The Statistician)} 48 (3): 393--400. \url{https://doi.org/10.1111/1467-9884.00197}.
+
+\leavevmode\hypertarget{ref-james_introduction_2013}{}%
+James, G., D. Witten, T. Hastie, and R. Tibshirani. 2013. \emph{An {Introduction} to {Statistical} {Learning}}. Springer New York. \url{https://doi.org/10.1007/978-1-4614-7138-7}.
+
+\leavevmode\hypertarget{ref-legendre_numerical_2012}{}%
+Legendre, P., and L. Legendre. 2012. \emph{Numerical {Ecology}}. Elsevier. \url{https://doi.org/10.1016/c2010-0-66470-4}.
+
+\leavevmode\hypertarget{ref-lindenmayer_hidden_2018}{}%
+Lindenmayer, David B., and Chloe Sato. 2018. {``Hidden Collapse Is Driven by Fire and Logging in a Socioecological Forest Ecosystem.''} \emph{Proceedings of the National Academy of Sciences} 115 (20): 5181--86. \url{https://doi.org/10.1073/pnas.1721738115}.
+
+\leavevmode\hypertarget{ref-macdougall_plant_2009}{}%
+MacDougall, Andrew S., Benjamin Gilbert, and Jonathan M. Levine. 2009. {``Plant Invasions and the Niche.''} \emph{Journal of Ecology} 97 (4): 609--15. \url{https://doi.org/10.1111/j.1365-2745.2009.01514.x}.
+
+\leavevmode\hypertarget{ref-magnusson_statistics_2015}{}%
+Magnusson, Mourão, William E., and Costa F. 2015. \emph{Statistics Without Math}. Sala, Brazil : Sunderland, MA: Editora Planta ; North American distributor, Sinauer Associates.
+
+\leavevmode\hypertarget{ref-magurran_biological_2011}{}%
+Magurran, A. E., and B. J. McGill. 2011. \emph{Biological {Diversity}: {Frontiers} in {Measurement} and {Assessment}}. Oxford: Oxford University Press.
+
+\leavevmode\hypertarget{ref-manly_randomization_1991}{}%
+Manly, B. F. J. 1991. \emph{Randomization and {Monte} {Carlo} Methods in Biology}. Chapman \& Hall.
+
+\leavevmode\hypertarget{ref-martinez-abrain_statistical_2008}{}%
+Martínez-Abraín, Alejandro. 2008. {``Statistical Significance and Biological Relevance: {A} Call for a More Cautious Interpretation of Results in Ecology.''} \emph{Acta Oecologica} 34 (1): 9--11. \url{https://doi.org/10.1016/j.actao.2008.02.004}.
+
+\leavevmode\hypertarget{ref-mcintosh_science_2017}{}%
+McIntosh, Alan, and Jennifer Pontius. 2017. \emph{Science and the Global Environment: Case Studies for Integrating Science and the Global Environment}. \url{http://ezproxy.uniandes.edu.co:8080/login?url=http://www.sciencedirect.com/science/book/9780128017128}.
+
+\leavevmode\hypertarget{ref-metz_teaching_2008}{}%
+Metz, Anneke M. 2008. {``Teaching {Statistics} in {Biology}: {Using} {Inquiry}-Based {Learning} to {Strengthen} {Understanding} of {Statistical} {Analysis} in {Biology} {Laboratory} {Courses}.''} Edited by Diane Ebert-May. \emph{CBE---Life Sciences Education} 7 (3): 317--26. \url{https://doi.org/10.1187/cbe.07-07-0046}.
+
+\leavevmode\hypertarget{ref-newbold_global_2015}{}%
+Newbold, Tim, Lawrence N. Hudson, Samantha L. L. Hill, Sara Contu, Igor Lysenko, Rebecca A. Senior, Luca Börger, et al. 2015. {``Global Effects of Land Use on Local Terrestrial Biodiversity.''} \emph{Nature} 520 (7545): 45--50. \url{https://doi.org/10.1038/nature14324}.
+
+\leavevmode\hypertarget{ref-neyman__problem_1933}{}%
+Neyman, J., and E. S. Pearson. 1933. {``On the Problem of the Most Efficient Tests of Statistical Hypotheses.''} \emph{Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character} 231 (694-706): 289--337. \url{https://doi.org/10.1098/rsta.1933.0009}.
+
+\leavevmode\hypertarget{ref-niggli_low_2009}{}%
+Niggli, U., A. Fliessbach, P. Hepperly, and N. Scialabba. 2009. {``Low {Greenhouse} {Gas} {Agriculture}: {Mitigation} {And} {Adaptation} {Potential} {Of} {Sustainable} {Farming} {Systems}.''} Food; Agriculture Organization of the United Nations (FAO).
+
+\leavevmode\hypertarget{ref-phillips_useful_1993}{}%
+Phillips, Oliver, and Alwyn H. Gentry. 1993. {``The Useful Plants of {Tambopata}, {Peru}: {II}. {Additional} Hypothesis Testing in Quantitative Ethnobotany.''} \emph{Economic Botany} 47 (1): 33--43. \url{https://doi.org/10.1007/BF02862204}.
+
+\leavevmode\hypertarget{ref-pickett_ecological_2007}{}%
+Pickett, Steward T., Jurek Kolasa, and Clive G. Jones. 2007. \emph{Ecological Understanding: The Nature of Theory and the Theory of Nature}. 2nd ed. Amsterdam ; Boston: Elsevier/Academic Press.
+
+\leavevmode\hypertarget{ref-pinheiro_mixed-effects_2000}{}%
+Pinheiro, J. C., and D. M. Bates. 2000. \emph{Mixed-{Effects} {Models} in {S} and {S}-{PLUS}}. Springer-Verlag. \url{https://doi.org/10.1007/b98882}.
+
+\leavevmode\hypertarget{ref-platt_strong_1964}{}%
+Platt, J. R. 1964. {``Strong {Inference}: {Certain} Systematic Methods of Scientific Thinking May Produce Much More Rapid Progress Than Others.''} \emph{Science} 146 (3642): 347--53. \url{https://doi.org/10.1126/science.146.3642.347}.
+
+\leavevmode\hypertarget{ref-popper_logic_1959}{}%
+Popper, Karl Raimund. 1959. \emph{The Logic of Scientific Discovery}. London; New York: Routledge. \url{http://nukweb.nuk.uni-lj.si/login?url=http://search.ebscohost.com/login.aspx?authtype=ip\&direct=true\&db=nlebk\&AN=143035\&site=eds-live\&scope=site\&lang=sl}.
+
+\leavevmode\hypertarget{ref-quinn_experimental_2002}{}%
+Quinn, G. P., and M. J. Keough. 2002. {``Experimental {Design} and {Data} {Analysis} for {Biologists}.''} \url{https://doi.org/10.1017/cbo9780511806384}.
+
+\leavevmode\hypertarget{ref-reed_have_2017}{}%
+Reed, James, Josh van Vianen, Jos Barlow, and Terry Sunderland. 2017. {``Have Integrated Landscape Approaches Reconciled Societal and Environmental Issues in the Tropics?''} \emph{Land Use Policy} 63 (April): 481--92. \url{https://doi.org/10.1016/j.landusepol.2017.02.021}.
+
+\leavevmode\hypertarget{ref-ripple_status_2014}{}%
+Ripple, W. J., J. A. Estes, R. L. Beschta, C. C. Wilmers, E. G. Ritchie, M. Hebblewhite, J. Berger, et al. 2014. {``Status and {Ecological} {Effects} of the {World}'s {Largest} {Carnivores}.''} \emph{Science} 343 (6167): 1241484--84. \url{https://doi.org/10.1126/science.1241484}.
+
+\leavevmode\hypertarget{ref-ruxton_experimental_2016}{}%
+Ruxton, Graeme D., and Nick Colegrave. 2016. \emph{Experimental Design for the Life Sciences}. 3rd ed. Oxford ; New York: Oxford University Press.
+
+\leavevmode\hypertarget{ref-saslis-lagoudakis_phylogenies_2012}{}%
+Saslis-Lagoudakis, C. H., V. Savolainen, E. M. Williamson, F. Forest, S. J. Wagstaff, S. R. Baral, M. F. Watson, C. A. Pendry, and J. A. Hawkins. 2012. {``Phylogenies Reveal Predictive Power of Traditional Medicine in Bioprospecting.''} \emph{Proceedings of the National Academy of Sciences} 109 (39): 15835--40. \url{https://doi.org/10.1073/pnas.1202242109}.
+
+\leavevmode\hypertarget{ref-saslis-lagoudakis_ethnobiology:_2013}{}%
+Saslis-Lagoudakis, C. Haris, and Andrew C. Clarke. 2013. {``Ethnobiology: The Missing Link in Ecology and Evolution.''} \emph{Trends in Ecology \& Evolution} 28 (2): 67--68. \url{https://doi.org/10.1016/j.tree.2012.10.017}.
+
+\leavevmode\hypertarget{ref-saul_eco-evolutionary_2015}{}%
+Saul, Wolf-Christian, and Jonathan M. Jeschke. 2015. {``Eco-Evolutionary Experience in Novel Species Interactions.''} Edited by Micky Eubanks. \emph{Ecology Letters} 18 (3): 236--45. \url{https://doi.org/10.1111/ele.12408}.
+
+\leavevmode\hypertarget{ref-scheiner_design_2001}{}%
+Scheiner, S. M., and J. Gurevitch. 2001. \emph{Design and Analysis of Ecological Experiments}. Oxford University Press.
+
+\leavevmode\hypertarget{ref-solar_how_2015}{}%
+Solar, Ricardo Ribeiro de Castro, Jos Barlow, Joice Ferreira, Erika Berenguer, Alexander C. Lees, James R. Thomson, Júlio Louzada, et al. 2015. {``How Pervasive Is Biotic Homogenization in Human-Modified Tropical Forest Landscapes?''} Edited by Howard Cornell. \emph{Ecology Letters} 18 (10): 1108--18. \url{https://doi.org/10.1111/ele.12494}.
+
+\leavevmode\hypertarget{ref-sutherland_identification_2013}{}%
+Sutherland, William J., Robert P. Freckleton, H. Charles J. Godfray, Steven R. Beissinger, Tim Benton, Duncan D. Cameron, Yohay Carmel, et al. 2013. {``Identification of 100 Fundamental Ecological Questions.''} Edited by David Gibson. \emph{Journal of Ecology} 101 (1): 58--67. \url{https://doi.org/10.1111/1365-2745.12025}.
+
+\leavevmode\hypertarget{ref-underwood_experiments_1997}{}%
+Underwood, A. J. 1997. \emph{Experiments in Ecology: Their Logical Design and Interpretation Using Analysis of Variance}. Cambridge {[}England{]} ; New York, NY, USA: Cambridge University Press.
+
+\leavevmode\hypertarget{ref-vellend_theory_2016}{}%
+Vellend, Mark. 2016. \emph{The Theory of Ecological Communities}. Monographs in Population Biology. Princeton: Princeton University Press.
+
+\leavevmode\hypertarget{ref-venables_modern_2002}{}%
+Venables, W. N., and B. D. Ripley. 2002. \emph{Modern Applied Statistics with {S}}. Springer-Verlag.
+
+\leavevmode\hypertarget{ref-whitlock_analysis_2015}{}%
+Whitlock, Michael, and Dolph Schluter. 2015. \emph{The Analysis of Biological Data}. Second edition. Greenwood Village, Colorado: Roberts; Company Publishers.
+
+\leavevmode\hypertarget{ref-xu_strengthening_2017}{}%
+Xu, Weihua, Yi Xiao, Jingjing Zhang, Wu Yang, Lu Zhang, Vanessa Hull, Zhi Wang, et al. 2017. {``Strengthening Protected Areas for Biodiversity and Ecosystem Services in {China}.''} \emph{Proceedings of the National Academy of Sciences} 114 (7): 1601--6. \url{https://doi.org/10.1073/pnas.1620503114}.
+
+\leavevmode\hypertarget{ref-zar_biostatistical_2010}{}%
+Zar, J. H. 2010. \emph{Biostatistical Analysis}. Pearson.
+
+\leavevmode\hypertarget{ref-zuur_protocol_2009}{}%
+Zuur, A. F., E. N. Ieno, and C. S. Elphick. 2009. {``A Protocol for Data Exploration to Avoid Common Statistical Problems.''} \emph{Methods in Ecology and Evolution} 1 (1): 3--14. \url{https://doi.org/10.1111/j.2041-210x.2009.00001.x}.
+
+\end{CSLReferences}
+
+\end{document}
