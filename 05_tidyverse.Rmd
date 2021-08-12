@@ -731,14 +731,14 @@ Como dissemos, muitas vezes queremos resumir nossos dados, principalmente para t
 ## Resumo
 penguins_summarise <- penguins %>% 
   dplyr::group_by(species) %>% 
-  summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
             body_mass_g_sd = sd(body_mass_g, na.rm = TRUE))
 penguins_summarise
 
 ## Resumo para várias colunas
 penguins_summarise_across <- penguins %>% 
   dplyr::group_by(species) %>% 
-  summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+  dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 penguins_summarise_across
 ```
 
@@ -1315,7 +1315,7 @@ for(i in 1:10){
 
 Com essa ideia em mente, a programação funcional utilizando a função `purrr::map()`. O mesmo for ficaria dessa forma.
 
-```{r}
+```{r, cache=FALSE}
 ## Loop for com map
 purrr::map(.x = 1:10, .f = print)
 ```

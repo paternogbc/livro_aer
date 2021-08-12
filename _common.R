@@ -2,6 +2,7 @@ set.seed(1014)
 
 knitr::opts_chunk$set(
   bookdown.clean_book = TRUE,
+  tinytex.verbose = TRUE,
   echo = TRUE,
   message = FALSE,
   warning = FALSE,

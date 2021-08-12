@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.5 Regressão Linear Múltipla | Análises Ecológicas no R</title>
+  <meta name="description" content="7.5 Regressão Linear Múltipla | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.22.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.5 Regressão Linear Múltipla | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.5 Regressão Linear Múltipla | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regressão-linear-simples.html"/>
+<link rel="next" href="análises-de-variância-anova.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>1</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1.1</b> Introdução</a></li>
+<li class="chapter" data-level="1.2" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>1.2</b> Pacotes</a></li>
+<li class="chapter" data-level="1.3" data-path="versão-do-r.html"><a href="versão-do-r.html"><i class="fa fa-check"></i><b>1.3</b> Versão do R</a></li>
+<li class="chapter" data-level="1.4" data-path="dados.html"><a href="dados.html"><i class="fa fa-check"></i><b>1.4</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="histórico-deste-livro.html"><a href="histórico-deste-livro.html"><i class="fa fa-check"></i><b>2.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="2.2" data-path="objetivo-deste-livro.html"><a href="objetivo-deste-livro.html"><i class="fa fa-check"></i><b>2.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="2.3" data-path="o-que-você-não-encontrará-neste-livro.html"><a href="o-que-você-não-encontrará-neste-livro.html"><i class="fa fa-check"></i><b>2.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="2.4" data-path="por-que-usar-o-r.html"><a href="por-que-usar-o-r.html"><i class="fa fa-check"></i><b>2.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="2.5" data-path="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><a href="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><i class="fa fa-check"></i><b>2.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="2.6" data-path="como-usar-este-livro.html"><a href="como-usar-este-livro.html"><i class="fa fa-check"></i><b>2.6</b> Como usar este livro</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introdução-1.html"><a href="introdução-1.html"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html#um-bestiário1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>3.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><a href="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.3</b> Fluxograma: Conectando Variáveis para Melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="3.4" data-path="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><a href="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><i class="fa fa-check"></i><b>3.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="3.5" data-path="considerações-finais.html"><a href="considerações-finais.html"><i class="fa fa-check"></i><b>3.5</b> Considerações Finais</a></li>
+<li class="chapter" data-level="3.6" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>3.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo.html"><a href="pré-requisitos-do-capítulo.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="contextualização.html"><a href="contextualização.html"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+<li class="chapter" data-level="4.6" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html"><i class="fa fa-check"></i><b>4.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#livros"><i class="fa fa-check"></i><b>4.6.1</b> Livros</a></li>
+<li class="chapter" data-level="4.6.2" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#links"><i class="fa fa-check"></i><b>4.6.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo-1.html"><a href="pré-requisitos-do-capítulo-1.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="contextualização-1.html"><a href="contextualização-1.html"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="here.html"><a href="here.html"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="readr-readxl-e-writexl.html"><a href="readr-readxl-e-writexl.html"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="tibble.html"><a href="tibble.html"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr-pipe-.html"><a href="magrittr-pipe-.html"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="tidyr.html"><a href="tidyr.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="tidyr.html"><a href="tidyr.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="tidyr.html"><a href="tidyr.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="tidyr.html"><a href="tidyr.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="dplyr.html"><a href="dplyr.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="dplyr.html"><a href="dplyr.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="dplyr.html"><a href="dplyr.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="dplyr.html"><a href="dplyr.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="dplyr.html"><a href="dplyr.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="dplyr.html"><a href="dplyr.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="dplyr.html"><a href="dplyr.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
+<li class="chapter" data-level="5.14" data-path="para-se-aprofundar-1.html"><a href="para-se-aprofundar-1.html"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Guia de bolso de gráficos no R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introdução-2.html"><a href="introdução-2.html"><i class="fa fa-check"></i><b>6.1</b> 1. Introdução</a></li>
+<li class="chapter" data-level="6.2" data-path="pacotes-necessários.html"><a href="pacotes-necessários.html"><i class="fa fa-check"></i><b>6.2</b> 2. Pacotes necessários</a></li>
+<li class="chapter" data-level="6.3" data-path="principais-pacotes.html"><a href="principais-pacotes.html"><i class="fa fa-check"></i><b>6.3</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.4" data-path="grámatica-dos-gráficos.html"><a href="grámatica-dos-gráficos.html"><i class="fa fa-check"></i><b>6.4</b> 3. Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html"><i class="fa fa-check"></i><b>6.5</b> 4. Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#histograma-histogram"><i class="fa fa-check"></i><b>6.5.1</b> 4.1. Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.5.2</b> 4.2 Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.5.3" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#dot"><i class="fa fa-check"></i><b>6.5.3</b> 4.3. Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.5.4" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#bars"><i class="fa fa-check"></i><b>6.5.4</b> 4.4. Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.5.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.5.5</b> 4.5. Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.5.6" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.5.6</b> 4.6. Gráfico de caixa (<em>boxplot</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html"><i class="fa fa-check"></i><b>6.6</b> 4.7. Gráfico de dispersão (<em>scatter plot</em>)</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#versão-padrão-5"><i class="fa fa-check"></i><b>6.6.1</b> 4.7.1. Versão padrão</a></li>
+<li class="chapter" data-level="6.6.2" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos"><i class="fa fa-check"></i><b>6.6.2</b> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</a></li>
+<li class="chapter" data-level="6.6.3" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-linhas-de-ajuste"><i class="fa fa-check"></i><b>6.6.3</b> 4.7.3. Definindo linhas de ajuste</a></li>
+<li class="chapter" data-level="6.6.4" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#ajustes-finos-versão-personalizada-5"><i class="fa fa-check"></i><b>6.6.4</b> 4.7.4. Ajustes finos (versão personalizada)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html"><i class="fa fa-check"></i><b>6.7</b> 4.8. Visualização de múltiplos gráficos pareados</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-variáveis-contínuas"><i class="fa fa-check"></i><b>6.7.1</b> 4.8.1. Gráfico pareado com variáveis contínuas</a></li>
+<li class="chapter" data-level="6.7.2" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-vários-tipos-de-variáveis"><i class="fa fa-check"></i><b>6.7.2</b> 4.8.2. Gráfico pareado com vários tipos de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><a href="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><i class="fa fa-check"></i><b>6.8</b> 5. Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+<li class="chapter" data-level="6.9" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html"><i class="fa fa-check"></i><b>6.9</b> 6. Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.9.1</b> 6.1. Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.9.2" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#elementos-gráficos-eixo-fonte-grid"><i class="fa fa-check"></i><b>6.9.2</b> 6.2. Elementos gráficos: eixo, fonte, grid</a></li>
+<li class="chapter" data-level="6.9.3" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.9.3</b> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
+<li class="chapter" data-level="6.9.4" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.9.4</b> 6.4. Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.9.5" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.9.5</b> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="check-list-para-garantir-bons-gráficos.html"><a href="check-list-para-garantir-bons-gráficos.html"><i class="fa fa-check"></i><b>6.10</b> Check-list para garantir bons gráficos</a></li>
+<li class="chapter" data-level="6.11" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html"><i class="fa fa-check"></i><b>6.11</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#livros-1"><i class="fa fa-check"></i><b>6.11.1</b> Livros</a></li>
+<li class="chapter" data-level="6.11.2" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#links-1"><i class="fa fa-check"></i><b>6.11.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Cap. 7 - Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i><b>7.0.1</b> Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="teste-t-de-student-para-duas-amostras-independentes.html"><a href="teste-t-de-student-para-duas-amostras-independentes.html"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="correlação-de-pearson.html"><a href="correlação-de-pearson.html"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="regressão-linear-simples.html"><a href="regressão-linear-simples.html"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="análises-de-variância-anova.html"><a href="análises-de-variância-anova.html"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a></li>
+<li class="chapter" data-level="7.7" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html"><i class="fa fa-check"></i><b>7.7</b> ANOVA de um fator</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html#análise"><i class="fa fa-check"></i><b>7.7.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html"><i class="fa fa-check"></i><b>7.8</b> ANOVA com dois fatores ou ANOVA fatorial</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html#análise-1"><i class="fa fa-check"></i><b>7.8.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="anova-em-blocos-aleatorizados.html"><a href="anova-em-blocos-aleatorizados.html"><i class="fa fa-check"></i><b>7.9</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.10" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html"><i class="fa fa-check"></i><b>7.10</b> Análise de covariância (ANCOVA)</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#análise-2"><i class="fa fa-check"></i><b>7.10.1</b> Análise</a></li>
+<li class="chapter" data-level="7.10.2" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.10.2</b> Para se aprofundar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regressão-linear-múltipla" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Regressão Linear Múltipla</h2>
+<p>A regressão linear múltipla é uma extensão da regressão linear simples. Ela é usada quando queremos determinar o valor da variável resposta (Y) com base nos valores de duas ou mais variáveis preditoras (X<sub>1</sub>, X<sub>2</sub>, X<sub><em>n</em></sub>).</p>
+<blockquote>
+<p><span class="math display">\[ Y = \beta_0 + \beta_{1}X_1 + \beta_{n}X_n + \epsilon_i \]</span></p>
+</blockquote>
+<p>Onde:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_0\)</span> = intercepto (<em>intercept</em>) que representa o valor da função quando X = 0;</p></li>
+<li><p><span class="math inline">\(\beta_{n}\)</span> = inclinação (<em>slope</em>) que mede a mudança na variável Y para cada mudança de unidade das variáveis X<sub>n</sub>;</p></li>
+<li><p><span class="math inline">\(\epsilon_{1}\)</span> = erro aleatório referente a variável Y que não pode ser explicado pelas variáveis preditoras.</p></li>
+</ul>
+<blockquote>
+<h4 id="premissas-da-regressão-linear-múltipla">Premissas da Regressão Linear Múltipla:</h4>
+<ul>
+<li>As amostras devem ser independentes;</li>
+<li>As unidades amostrais são selecionadas aleatoriamente;</li>
+<li>Distribuição normal (gaussiana) dos resíduos;</li>
+<li>Homogeneidade da variância.</li>
+</ul>
+</blockquote>
+<p>
+<p> </p>
+</p>
+<div id="exemplo-prático-1---regressão-linear-múltipla" class="section level4" number="7.5.0.1">
+<h4><span class="header-section-number">7.5.0.1</span> Exemplo prático 1 - Regressão linear múltipla</h4>
+<p><strong>Explicação dos dados</strong></p>
+<p>Utilizaremos o mesmo exemplo da regressão linear simples. Contudo, além do gradiente de temperatura média anual (°C), incluiremos o gradiente de precipitação anual (mm) como outra variável preditora do tamanho médio do comprimento rostro-cloacal (CRC em mm) de populações de <em>Dendropsophus minutus</em> (Anura:Hylidae) amostradas em 109 localidades no Brasil <span class="citation">(<a href="#ref-boaratti2015" role="doc-biblioref">Boaratti and da Silva 2015</a>)</span>.</p>
+<p><strong>Pergunta:</strong></p>
+<blockquote>
+<p>O tamanho do CRC das populações de <em>D. minutus</em> é influênciado pela temperatura e precipitação das localidades onde os indivíduos ocorrem?</p>
+</blockquote>
+<p><strong>Predições</strong></p>
+<blockquote>
+<p>O CRC das populações serão menores em localidades com clima quente e chuvoso do que em localidades com clima frio e seco.</p>
+</blockquote>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li><p>Variáveis resposta e preditoras</p>
+<ul>
+<li>Dataframe com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura e precipitação (variáveis preditoras) como colunas.</li>
+</ul></li>
+</ul>
+<p><strong>Checklist</strong></p>
+<ul>
+<li>Verificar se o seu dataframe está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas.</li>
+</ul>
+<p><strong>Análise</strong></p>
+<p>Olhando os dados usando a função <code>head</code></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="regressão-linear-múltipla.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_regressao_mul) </span>
+<span id="cb245-2"><a href="regressão-linear-múltipla.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Municipio      CRC Temperatura Precipitacao</span></span>
+<span id="cb245-3"><a href="regressão-linear-múltipla.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     Acorizal 22.98816    24.13000       1228.2</span></span>
+<span id="cb245-4"><a href="regressão-linear-múltipla.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  Alpinopolis 22.91788    20.09417       1487.6</span></span>
+<span id="cb245-5"><a href="regressão-linear-múltipla.html#cb245-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Alto_Paraiso 21.97629    21.86167       1812.4</span></span>
+<span id="cb245-6"><a href="regressão-linear-múltipla.html#cb245-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    Americana 23.32453    20.28333       1266.2</span></span>
+<span id="cb245-7"><a href="regressão-linear-múltipla.html#cb245-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      Apiacas 22.83651    25.47333       2154.0</span></span>
+<span id="cb245-8"><a href="regressão-linear-múltipla.html#cb245-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  Arianopolis 20.86989    20.12167       1269.2</span></span></code></pre></div>
+<p>Comandos para o modelo de regressão múltipla.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="regressão-linear-múltipla.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Regressão múltipla</span></span>
+<span id="cb246-2"><a href="regressão-linear-múltipla.html#cb246-2" aria-hidden="true" tabindex="-1"></a>modelo_regressao_mul <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRC <span class="sc">~</span> Temperatura <span class="sc">+</span> Precipitacao,</span>
+<span id="cb246-3"><a href="regressão-linear-múltipla.html#cb246-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> dados_regressao_mul)</span></code></pre></div>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+</p>
+<p>Multicolinearidade ocorre quando as variáveis preditoras são correlacionadas. Essa correlação é um problema porque as variáveis preditoras deveriam ser independentes. O Fator de Inflação da Variância (VIF) é um teste que identifica a correlação entre as variáveis e mostra a força dessa correlação. Alguns autores consideram valores de VIF acima de 10 como fortemente correlacionadas, outros mais conservadores consideram o valor de 3.</p>
+</div>
+<p>Vamos analisar se as variáveis apresentam multicolinearidade.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="regressão-linear-múltipla.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multicolinearidade</span></span>
+<span id="cb247-2"><a href="regressão-linear-múltipla.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(modelo_regressao_mul)</span>
+<span id="cb247-3"><a href="regressão-linear-múltipla.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Temperatura Precipitacao </span></span>
+<span id="cb247-4"><a href="regressão-linear-múltipla.html#cb247-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1.041265     1.041265</span></span></code></pre></div>
+<p>Os valores são menores que 3 indicando que não há multicolinearidade.</p>
+<p>Agora vamos verificar as premissas de normalidade e homogeneidade das variâncias.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="regressão-linear-múltipla.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Normalidade e homogeneidade </span></span>
+<span id="cb248-2"><a href="regressão-linear-múltipla.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
+<span id="cb248-3"><a href="regressão-linear-múltipla.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo_regressao_mul)</span>
+<span id="cb248-4"><a href="regressão-linear-múltipla.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb248-5"><a href="regressão-linear-múltipla.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
+<span id="cb248-6"><a href="regressão-linear-múltipla.html#cb248-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-255-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Os resíduos apresentam distribuição normal e variâncias homogêneas.</p>
+<p>Podemos ver os resultados da análise.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="regressão-linear-múltipla.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Regressão múltipla</span></span>
+<span id="cb249-2"><a href="regressão-linear-múltipla.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_regressao_mul)</span>
+<span id="cb249-3"><a href="regressão-linear-múltipla.html#cb249-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb249-4"><a href="regressão-linear-múltipla.html#cb249-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb249-5"><a href="regressão-linear-múltipla.html#cb249-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lm(formula = CRC ~ Temperatura + Precipitacao, data = dados_regressao_mul)</span></span>
+<span id="cb249-6"><a href="regressão-linear-múltipla.html#cb249-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb249-7"><a href="regressão-linear-múltipla.html#cb249-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb249-8"><a href="regressão-linear-múltipla.html#cb249-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb249-9"><a href="regressão-linear-múltipla.html#cb249-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -3.4351 -0.8026  0.0140  0.9420  3.4300 </span></span>
+<span id="cb249-10"><a href="regressão-linear-múltipla.html#cb249-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb249-11"><a href="regressão-linear-múltipla.html#cb249-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb249-12"><a href="regressão-linear-múltipla.html#cb249-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb249-13"><a href="regressão-linear-múltipla.html#cb249-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  16.7162571  1.0108674  16.537  &lt; 2e-16 ***</span></span>
+<span id="cb249-14"><a href="regressão-linear-múltipla.html#cb249-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Temperatura   0.2787445  0.0439601   6.341 5.71e-09 ***</span></span>
+<span id="cb249-15"><a href="regressão-linear-múltipla.html#cb249-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao -0.0004270  0.0003852  -1.108     0.27    </span></span>
+<span id="cb249-16"><a href="regressão-linear-múltipla.html#cb249-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb249-17"><a href="regressão-linear-múltipla.html#cb249-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb249-18"><a href="regressão-linear-múltipla.html#cb249-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb249-19"><a href="regressão-linear-múltipla.html#cb249-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 1.44 on 106 degrees of freedom</span></span>
+<span id="cb249-20"><a href="regressão-linear-múltipla.html#cb249-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.2751, Adjusted R-squared:  0.2614 </span></span>
+<span id="cb249-21"><a href="regressão-linear-múltipla.html#cb249-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic: 20.12 on 2 and 106 DF,  p-value: 3.927e-08</span></span></code></pre></div>
+<p>Percebam que a temperatura tem uma relação significativa e positiva com o tamanho do CRC das populações (P &lt; 0.001), enquanto que a precipitação não apresenta relação com o CRC (P = 0.27). Neste caso, é interessante saber se um modelo mais simples (e.g. contendo apenas temperatura) explicaria a distribuição tão bem ou melhor do que este modelo mais complexo considerando duas variáveis (temperatura e precipitação).</p>
+<p>Para isso, podemos utilizar a <em>Likelihood Ratio Test</em> <em>(LRT)</em> para comparar modelos. A LRT compara dois modelos aninhados, testando se os parâmetros do modelo mais complexo diferem significativamente do modelo mais simples. Em outras palavras, ele testa se há necessidade de se incluir uma variável extra no modelo para explicar os dados.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="regressão-linear-múltipla.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando os modelos aninhados</span></span>
+<span id="cb250-2"><a href="regressão-linear-múltipla.html#cb250-2" aria-hidden="true" tabindex="-1"></a>modelo_regressao_mul <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRC <span class="sc">~</span> Temperatura <span class="sc">+</span> Precipitacao, </span>
+<span id="cb250-3"><a href="regressão-linear-múltipla.html#cb250-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> dados_regressao_mul)</span>
+<span id="cb250-4"><a href="regressão-linear-múltipla.html#cb250-4" aria-hidden="true" tabindex="-1"></a>modelo_regressao <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRC <span class="sc">~</span> Temperatura, <span class="at">data =</span> dados_regressao_mul)</span>
+<span id="cb250-5"><a href="regressão-linear-múltipla.html#cb250-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb250-6"><a href="regressão-linear-múltipla.html#cb250-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Likelihood Ratio Test (LRT)</span></span>
+<span id="cb250-7"><a href="regressão-linear-múltipla.html#cb250-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(modelo_regressao_mul, modelo_regressao)</span>
+<span id="cb250-8"><a href="regressão-linear-múltipla.html#cb250-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Likelihood ratio test</span></span>
+<span id="cb250-9"><a href="regressão-linear-múltipla.html#cb250-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb250-10"><a href="regressão-linear-múltipla.html#cb250-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model 1: CRC ~ Temperatura + Precipitacao</span></span>
+<span id="cb250-11"><a href="regressão-linear-múltipla.html#cb250-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model 2: CRC ~ Temperatura</span></span>
+<span id="cb250-12"><a href="regressão-linear-múltipla.html#cb250-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   #Df  LogLik Df  Chisq Pr(&gt;Chisq)</span></span>
+<span id="cb250-13"><a href="regressão-linear-múltipla.html#cb250-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   4 -192.93                     </span></span>
+<span id="cb250-14"><a href="regressão-linear-múltipla.html#cb250-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   3 -193.55 -1 1.2558     0.2624</span></span></code></pre></div>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+</p>
+<p>Hipótese nula é que o modelo mais simples é o melhor</p>
+<ul>
+<li>Valor de p &lt; 0.05 rejeita a hipótese nula e o modelo mais complexo é o melhor;</li>
+</ul>
+<!-- -->
+<ul>
+<li>valor de p &gt; 0.05 não rejeita a hipótese nula e o modelo mais simples é o melhor.</li>
+</ul>
+</div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="regressão-linear-múltipla.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Comparando com o modelo somente com o intercepto</span></span>
+<span id="cb251-2"><a href="regressão-linear-múltipla.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um modelo sem variáveis, só o intercepto.</span></span>
+<span id="cb251-3"><a href="regressão-linear-múltipla.html#cb251-3" aria-hidden="true" tabindex="-1"></a>modelo_intercepto <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRC <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dados_regressao_mul)</span>
+<span id="cb251-4"><a href="regressão-linear-múltipla.html#cb251-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(modelo_regressao, modelo_intercepto)</span>
+<span id="cb251-5"><a href="regressão-linear-múltipla.html#cb251-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Likelihood ratio test</span></span>
+<span id="cb251-6"><a href="regressão-linear-múltipla.html#cb251-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb251-7"><a href="regressão-linear-múltipla.html#cb251-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model 1: CRC ~ Temperatura</span></span>
+<span id="cb251-8"><a href="regressão-linear-múltipla.html#cb251-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model 2: CRC ~ 1</span></span>
+<span id="cb251-9"><a href="regressão-linear-múltipla.html#cb251-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   #Df  LogLik Df  Chisq Pr(&gt;Chisq)    </span></span>
+<span id="cb251-10"><a href="regressão-linear-múltipla.html#cb251-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   3 -193.55                         </span></span>
+<span id="cb251-11"><a href="regressão-linear-múltipla.html#cb251-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   2 -210.46 -1 33.815  6.061e-09 ***</span></span>
+<span id="cb251-12"><a href="regressão-linear-múltipla.html#cb251-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb251-13"><a href="regressão-linear-múltipla.html#cb251-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Neste exemplo, a precipitação não está associada com a variação no tamanho do CRC das populações de <em>D. minutus</em>. Por outro lado, a temperatura explicou 26% da variação do tamanho do CRC das populações.</p>
+<p>
+<p> </p>
+</p>
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-boaratti2015" class="csl-entry">
+Boaratti, A. Z., and F. R. da Silva. 2015. <span>“Relationships Between Environmental Gradients and Geographic Variation in the Intraspecific Body Size of Three Species of Frogs (Anura).”</span> <em>Austral Ecology</em> 40 (8): 869–76. <a href="https://doi.org/10.1111/aec.12267">https://doi.org/10.1111/aec.12267</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regressão-linear-simples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análises-de-variância-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/06_Modelos_lineares.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/06_Modelos_lineares.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

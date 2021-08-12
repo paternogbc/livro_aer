@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.13 Exercícios | Análises Ecológicas no R</title>
+  <meta name="description" content="5.13 Exercícios | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.22.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.13 Exercícios | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.13 Exercícios | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="purrr.html"/>
+<link rel="next" href="para-se-aprofundar-1.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>1</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1.1</b> Introdução</a></li>
+<li class="chapter" data-level="1.2" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>1.2</b> Pacotes</a></li>
+<li class="chapter" data-level="1.3" data-path="versão-do-r.html"><a href="versão-do-r.html"><i class="fa fa-check"></i><b>1.3</b> Versão do R</a></li>
+<li class="chapter" data-level="1.4" data-path="dados.html"><a href="dados.html"><i class="fa fa-check"></i><b>1.4</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="histórico-deste-livro.html"><a href="histórico-deste-livro.html"><i class="fa fa-check"></i><b>2.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="2.2" data-path="objetivo-deste-livro.html"><a href="objetivo-deste-livro.html"><i class="fa fa-check"></i><b>2.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="2.3" data-path="o-que-você-não-encontrará-neste-livro.html"><a href="o-que-você-não-encontrará-neste-livro.html"><i class="fa fa-check"></i><b>2.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="2.4" data-path="por-que-usar-o-r.html"><a href="por-que-usar-o-r.html"><i class="fa fa-check"></i><b>2.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="2.5" data-path="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><a href="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><i class="fa fa-check"></i><b>2.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="2.6" data-path="como-usar-este-livro.html"><a href="como-usar-este-livro.html"><i class="fa fa-check"></i><b>2.6</b> Como usar este livro</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introdução-1.html"><a href="introdução-1.html"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html#um-bestiário1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>3.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><a href="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.3</b> Fluxograma: Conectando Variáveis para Melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="3.4" data-path="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><a href="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><i class="fa fa-check"></i><b>3.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="3.5" data-path="considerações-finais.html"><a href="considerações-finais.html"><i class="fa fa-check"></i><b>3.5</b> Considerações Finais</a></li>
+<li class="chapter" data-level="3.6" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>3.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo.html"><a href="pré-requisitos-do-capítulo.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="contextualização.html"><a href="contextualização.html"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+<li class="chapter" data-level="4.6" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html"><i class="fa fa-check"></i><b>4.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#livros"><i class="fa fa-check"></i><b>4.6.1</b> Livros</a></li>
+<li class="chapter" data-level="4.6.2" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#links"><i class="fa fa-check"></i><b>4.6.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo-1.html"><a href="pré-requisitos-do-capítulo-1.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="contextualização-1.html"><a href="contextualização-1.html"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="here.html"><a href="here.html"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="readr-readxl-e-writexl.html"><a href="readr-readxl-e-writexl.html"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="tibble.html"><a href="tibble.html"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr-pipe-.html"><a href="magrittr-pipe-.html"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="tidyr.html"><a href="tidyr.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="tidyr.html"><a href="tidyr.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="tidyr.html"><a href="tidyr.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="tidyr.html"><a href="tidyr.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="dplyr.html"><a href="dplyr.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="dplyr.html"><a href="dplyr.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="dplyr.html"><a href="dplyr.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="dplyr.html"><a href="dplyr.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="dplyr.html"><a href="dplyr.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="dplyr.html"><a href="dplyr.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="dplyr.html"><a href="dplyr.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
+<li class="chapter" data-level="5.14" data-path="para-se-aprofundar-1.html"><a href="para-se-aprofundar-1.html"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Guia de bolso de gráficos no R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introdução-2.html"><a href="introdução-2.html"><i class="fa fa-check"></i><b>6.1</b> 1. Introdução</a></li>
+<li class="chapter" data-level="6.2" data-path="pacotes-necessários.html"><a href="pacotes-necessários.html"><i class="fa fa-check"></i><b>6.2</b> 2. Pacotes necessários</a></li>
+<li class="chapter" data-level="6.3" data-path="principais-pacotes.html"><a href="principais-pacotes.html"><i class="fa fa-check"></i><b>6.3</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.4" data-path="grámatica-dos-gráficos.html"><a href="grámatica-dos-gráficos.html"><i class="fa fa-check"></i><b>6.4</b> 3. Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html"><i class="fa fa-check"></i><b>6.5</b> 4. Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#histograma-histogram"><i class="fa fa-check"></i><b>6.5.1</b> 4.1. Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.5.2</b> 4.2 Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.5.3" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#dot"><i class="fa fa-check"></i><b>6.5.3</b> 4.3. Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.5.4" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#bars"><i class="fa fa-check"></i><b>6.5.4</b> 4.4. Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.5.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.5.5</b> 4.5. Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.5.6" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.5.6</b> 4.6. Gráfico de caixa (<em>boxplot</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html"><i class="fa fa-check"></i><b>6.6</b> 4.7. Gráfico de dispersão (<em>scatter plot</em>)</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#versão-padrão-5"><i class="fa fa-check"></i><b>6.6.1</b> 4.7.1. Versão padrão</a></li>
+<li class="chapter" data-level="6.6.2" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos"><i class="fa fa-check"></i><b>6.6.2</b> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</a></li>
+<li class="chapter" data-level="6.6.3" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-linhas-de-ajuste"><i class="fa fa-check"></i><b>6.6.3</b> 4.7.3. Definindo linhas de ajuste</a></li>
+<li class="chapter" data-level="6.6.4" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#ajustes-finos-versão-personalizada-5"><i class="fa fa-check"></i><b>6.6.4</b> 4.7.4. Ajustes finos (versão personalizada)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html"><i class="fa fa-check"></i><b>6.7</b> 4.8. Visualização de múltiplos gráficos pareados</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-variáveis-contínuas"><i class="fa fa-check"></i><b>6.7.1</b> 4.8.1. Gráfico pareado com variáveis contínuas</a></li>
+<li class="chapter" data-level="6.7.2" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-vários-tipos-de-variáveis"><i class="fa fa-check"></i><b>6.7.2</b> 4.8.2. Gráfico pareado com vários tipos de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><a href="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><i class="fa fa-check"></i><b>6.8</b> 5. Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+<li class="chapter" data-level="6.9" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html"><i class="fa fa-check"></i><b>6.9</b> 6. Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.9.1</b> 6.1. Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.9.2" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#elementos-gráficos-eixo-fonte-grid"><i class="fa fa-check"></i><b>6.9.2</b> 6.2. Elementos gráficos: eixo, fonte, grid</a></li>
+<li class="chapter" data-level="6.9.3" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.9.3</b> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
+<li class="chapter" data-level="6.9.4" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.9.4</b> 6.4. Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.9.5" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.9.5</b> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="check-list-para-garantir-bons-gráficos.html"><a href="check-list-para-garantir-bons-gráficos.html"><i class="fa fa-check"></i><b>6.10</b> Check-list para garantir bons gráficos</a></li>
+<li class="chapter" data-level="6.11" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html"><i class="fa fa-check"></i><b>6.11</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#livros-1"><i class="fa fa-check"></i><b>6.11.1</b> Livros</a></li>
+<li class="chapter" data-level="6.11.2" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#links-1"><i class="fa fa-check"></i><b>6.11.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Cap. 7 - Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i><b>7.0.1</b> Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="teste-t-de-student-para-duas-amostras-independentes.html"><a href="teste-t-de-student-para-duas-amostras-independentes.html"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="correlação-de-pearson.html"><a href="correlação-de-pearson.html"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="regressão-linear-simples.html"><a href="regressão-linear-simples.html"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="análises-de-variância-anova.html"><a href="análises-de-variância-anova.html"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a></li>
+<li class="chapter" data-level="7.7" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html"><i class="fa fa-check"></i><b>7.7</b> ANOVA de um fator</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html#análise"><i class="fa fa-check"></i><b>7.7.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html"><i class="fa fa-check"></i><b>7.8</b> ANOVA com dois fatores ou ANOVA fatorial</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html#análise-1"><i class="fa fa-check"></i><b>7.8.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="anova-em-blocos-aleatorizados.html"><a href="anova-em-blocos-aleatorizados.html"><i class="fa fa-check"></i><b>7.9</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.10" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html"><i class="fa fa-check"></i><b>7.10</b> Análise de covariância (ANCOVA)</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#análise-2"><i class="fa fa-check"></i><b>7.10.1</b> Análise</a></li>
+<li class="chapter" data-level="7.10.2" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.10.2</b> Para se aprofundar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercícios-1" class="section level2" number="5.13">
+<h2><span class="header-section-number">5.13</span> Exercícios</h2>
+<ol style="list-style-type: decimal">
+<li>Reescreva as operações abaixo utilizando pipes <code>%&gt;%</code>.</li>
+</ol>
+<ul>
+<li><code>log10(cumsum(1:100))</code></li>
+<li><code>sum(sqrt(abs(rnorm(100))))</code></li>
+<li><code>sum(sort(sample(1:10, 10000, rep = TRUE)))</code></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Use a função <code>download.file()</code> e <code>unzip()</code> para baixar e extrair o arquivo do data paper de médios e grandes mamíferos: <a href="https://doi.org/10.1002/ecy.2785">ATLANTIC MAMMALS</a>. Em seguinda, importe para o R, usando a função <code>readxl::read_excel()</code>.</p></li>
+<li><p>Use a função <code>tibble::glimpse()</code> para ter uma noção geral dos dados importados no item anterior.</p></li>
+<li><p>Compare os dados de penguins (<em>palmerpenguins::penguins_raw</em> e <em>palmerpenguins::penguins</em>). Monte uma série de funções dos pacotes <em>tidyr</em> e <code>dplyr</code> para fazer limpar os dados e fazer com que o primeiro dado seja igual ao segundo.</p></li>
+<li><p>Usando os dados de penguins (<em>palmerpenguins::penguins</em>), calcule a correlação de Pearson entre comprimento e profundidade do bico para cada espécie e para todas as espécies. Compare os índices de correlação para exemplificar o Paradoxo de Simpsom.</p></li>
+<li><p>Oficialmente a pandemia de COVID-19 começou no Brasil com o primeiro caso no dia 26 de fevereiro de 2020. Calcule quantos anos, meses, dias, semanas, horas, minutos e segundos se passou desde então. Calcule também quanto tempo se passou até você ser vacinado.</p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="purrr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="para-se-aprofundar-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/05_tidyverse.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/05_tidyverse.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

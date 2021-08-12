@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.7 ANOVA de um fator | Análises Ecológicas no R</title>
+  <meta name="description" content="7.7 ANOVA de um fator | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.22.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.7 ANOVA de um fator | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.7 ANOVA de um fator | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="análises-de-variância-anova.html"/>
+<link rel="next" href="anova-com-dois-fatores-ou-anova-fatorial.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>1</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1.1</b> Introdução</a></li>
+<li class="chapter" data-level="1.2" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>1.2</b> Pacotes</a></li>
+<li class="chapter" data-level="1.3" data-path="versão-do-r.html"><a href="versão-do-r.html"><i class="fa fa-check"></i><b>1.3</b> Versão do R</a></li>
+<li class="chapter" data-level="1.4" data-path="dados.html"><a href="dados.html"><i class="fa fa-check"></i><b>1.4</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="histórico-deste-livro.html"><a href="histórico-deste-livro.html"><i class="fa fa-check"></i><b>2.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="2.2" data-path="objetivo-deste-livro.html"><a href="objetivo-deste-livro.html"><i class="fa fa-check"></i><b>2.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="2.3" data-path="o-que-você-não-encontrará-neste-livro.html"><a href="o-que-você-não-encontrará-neste-livro.html"><i class="fa fa-check"></i><b>2.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="2.4" data-path="por-que-usar-o-r.html"><a href="por-que-usar-o-r.html"><i class="fa fa-check"></i><b>2.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="2.5" data-path="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><a href="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><i class="fa fa-check"></i><b>2.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="2.6" data-path="como-usar-este-livro.html"><a href="como-usar-este-livro.html"><i class="fa fa-check"></i><b>2.6</b> Como usar este livro</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introdução-1.html"><a href="introdução-1.html"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html#um-bestiário1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>3.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><a href="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.3</b> Fluxograma: Conectando Variáveis para Melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="3.4" data-path="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><a href="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><i class="fa fa-check"></i><b>3.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="3.5" data-path="considerações-finais.html"><a href="considerações-finais.html"><i class="fa fa-check"></i><b>3.5</b> Considerações Finais</a></li>
+<li class="chapter" data-level="3.6" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>3.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo.html"><a href="pré-requisitos-do-capítulo.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="contextualização.html"><a href="contextualização.html"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+<li class="chapter" data-level="4.6" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html"><i class="fa fa-check"></i><b>4.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#livros"><i class="fa fa-check"></i><b>4.6.1</b> Livros</a></li>
+<li class="chapter" data-level="4.6.2" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#links"><i class="fa fa-check"></i><b>4.6.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo-1.html"><a href="pré-requisitos-do-capítulo-1.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="contextualização-1.html"><a href="contextualização-1.html"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="here.html"><a href="here.html"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="readr-readxl-e-writexl.html"><a href="readr-readxl-e-writexl.html"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="tibble.html"><a href="tibble.html"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr-pipe-.html"><a href="magrittr-pipe-.html"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="tidyr.html"><a href="tidyr.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="tidyr.html"><a href="tidyr.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="tidyr.html"><a href="tidyr.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="tidyr.html"><a href="tidyr.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="dplyr.html"><a href="dplyr.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="dplyr.html"><a href="dplyr.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="dplyr.html"><a href="dplyr.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="dplyr.html"><a href="dplyr.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="dplyr.html"><a href="dplyr.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="dplyr.html"><a href="dplyr.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="dplyr.html"><a href="dplyr.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
+<li class="chapter" data-level="5.14" data-path="para-se-aprofundar-1.html"><a href="para-se-aprofundar-1.html"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Guia de bolso de gráficos no R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introdução-2.html"><a href="introdução-2.html"><i class="fa fa-check"></i><b>6.1</b> 1. Introdução</a></li>
+<li class="chapter" data-level="6.2" data-path="pacotes-necessários.html"><a href="pacotes-necessários.html"><i class="fa fa-check"></i><b>6.2</b> 2. Pacotes necessários</a></li>
+<li class="chapter" data-level="6.3" data-path="principais-pacotes.html"><a href="principais-pacotes.html"><i class="fa fa-check"></i><b>6.3</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.4" data-path="grámatica-dos-gráficos.html"><a href="grámatica-dos-gráficos.html"><i class="fa fa-check"></i><b>6.4</b> 3. Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html"><i class="fa fa-check"></i><b>6.5</b> 4. Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#histograma-histogram"><i class="fa fa-check"></i><b>6.5.1</b> 4.1. Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.5.2</b> 4.2 Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.5.3" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#dot"><i class="fa fa-check"></i><b>6.5.3</b> 4.3. Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.5.4" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#bars"><i class="fa fa-check"></i><b>6.5.4</b> 4.4. Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.5.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.5.5</b> 4.5. Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.5.6" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.5.6</b> 4.6. Gráfico de caixa (<em>boxplot</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html"><i class="fa fa-check"></i><b>6.6</b> 4.7. Gráfico de dispersão (<em>scatter plot</em>)</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#versão-padrão-5"><i class="fa fa-check"></i><b>6.6.1</b> 4.7.1. Versão padrão</a></li>
+<li class="chapter" data-level="6.6.2" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos"><i class="fa fa-check"></i><b>6.6.2</b> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</a></li>
+<li class="chapter" data-level="6.6.3" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-linhas-de-ajuste"><i class="fa fa-check"></i><b>6.6.3</b> 4.7.3. Definindo linhas de ajuste</a></li>
+<li class="chapter" data-level="6.6.4" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#ajustes-finos-versão-personalizada-5"><i class="fa fa-check"></i><b>6.6.4</b> 4.7.4. Ajustes finos (versão personalizada)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html"><i class="fa fa-check"></i><b>6.7</b> 4.8. Visualização de múltiplos gráficos pareados</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-variáveis-contínuas"><i class="fa fa-check"></i><b>6.7.1</b> 4.8.1. Gráfico pareado com variáveis contínuas</a></li>
+<li class="chapter" data-level="6.7.2" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-vários-tipos-de-variáveis"><i class="fa fa-check"></i><b>6.7.2</b> 4.8.2. Gráfico pareado com vários tipos de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><a href="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><i class="fa fa-check"></i><b>6.8</b> 5. Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+<li class="chapter" data-level="6.9" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html"><i class="fa fa-check"></i><b>6.9</b> 6. Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.9.1</b> 6.1. Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.9.2" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#elementos-gráficos-eixo-fonte-grid"><i class="fa fa-check"></i><b>6.9.2</b> 6.2. Elementos gráficos: eixo, fonte, grid</a></li>
+<li class="chapter" data-level="6.9.3" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.9.3</b> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
+<li class="chapter" data-level="6.9.4" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.9.4</b> 6.4. Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.9.5" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.9.5</b> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="check-list-para-garantir-bons-gráficos.html"><a href="check-list-para-garantir-bons-gráficos.html"><i class="fa fa-check"></i><b>6.10</b> Check-list para garantir bons gráficos</a></li>
+<li class="chapter" data-level="6.11" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html"><i class="fa fa-check"></i><b>6.11</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#livros-1"><i class="fa fa-check"></i><b>6.11.1</b> Livros</a></li>
+<li class="chapter" data-level="6.11.2" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#links-1"><i class="fa fa-check"></i><b>6.11.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Cap. 7 - Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i><b>7.0.1</b> Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="teste-t-de-student-para-duas-amostras-independentes.html"><a href="teste-t-de-student-para-duas-amostras-independentes.html"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="correlação-de-pearson.html"><a href="correlação-de-pearson.html"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="regressão-linear-simples.html"><a href="regressão-linear-simples.html"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="análises-de-variância-anova.html"><a href="análises-de-variância-anova.html"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a></li>
+<li class="chapter" data-level="7.7" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html"><i class="fa fa-check"></i><b>7.7</b> ANOVA de um fator</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html#análise"><i class="fa fa-check"></i><b>7.7.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html"><i class="fa fa-check"></i><b>7.8</b> ANOVA com dois fatores ou ANOVA fatorial</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html#análise-1"><i class="fa fa-check"></i><b>7.8.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="anova-em-blocos-aleatorizados.html"><a href="anova-em-blocos-aleatorizados.html"><i class="fa fa-check"></i><b>7.9</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.10" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html"><i class="fa fa-check"></i><b>7.10</b> Análise de covariância (ANCOVA)</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#análise-2"><i class="fa fa-check"></i><b>7.10.1</b> Análise</a></li>
+<li class="chapter" data-level="7.10.2" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.10.2</b> Para se aprofundar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova-de-um-fator" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> ANOVA de um fator</h2>
+<p>Este teste considera delineamentos experimentais com apenas um fator (ou tratamento) que pode ser composto por três ou mais grupos (ou níveis).</p>
+<div id="exemplo-prático-1---anova-de-um-fator" class="section level4" number="7.7.0.1">
+<h4><span class="header-section-number">7.7.0.1</span> Exemplo prático 1 - Anova de um fator</h4>
+<p><strong>Explicação dos dados</strong></p>
+<p>Neste exemplo, avaliaremos se o adubo X-2020 disponibilizado recentemente no mercado melhora o crescimento dos indivíduos de <em>Coffea arabica</em> como divulgado pela empresa responsável pela venda do produto. Para isso, foi realizado um experimento com indivíduos de <em>C. arabica</em> cultivados em três grupos: i) grupo controle onde os indivíduos não receberam adubação, ii) grupo onde os indivíduos receberam a adição do adubo tradicional mais utilizado pelos produtores de <em>C. arabica</em>, e iii) grupo onde os indivíduos receberam a adição do adubo X-2020.</p>
+<p><strong>Pergunta:</strong></p>
+<blockquote>
+<p>O crescimento dos indivíduos de <em>C. arabica</em> é melhorado pela adição do adubo X-2020?</p>
+</blockquote>
+<p><strong>Predições</strong></p>
+<blockquote>
+<p>O crescimento dos indivíduos de <em>C. arabica</em> será maior no grupo que recebeu o adubo X-2020.</p>
+</blockquote>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li><p>Variáveis resposta e preditoras</p>
+<ul>
+<li>Dataframe com as plantas (unidade amostral) nas linhas e o crescimento dos indivíduos de <em>C. arabica</em> (variável resposta) e os tratamentos (variável preditora) nas colunas.</li>
+</ul></li>
+</ul>
+<p><strong>Checklist</strong></p>
+<ul>
+<li>Verificar se o seu dataframe está com as unidades amostrais nas linhas e variável preditora e resposta nas colunas.</li>
+</ul>
+</div>
+<div id="análise" class="section level3" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> Análise</h3>
+<p>Olhando os dados e criando o modelo para Anova de um fator.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="anova-de-um-fator.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_anova_simples) </span>
+<span id="cb252-2"><a href="anova-de-um-fator.html#cb252-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Crescimento Tratamento</span></span>
+<span id="cb252-3"><a href="anova-de-um-fator.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7.190   Controle</span></span>
+<span id="cb252-4"><a href="anova-de-um-fator.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6.758   Controle</span></span>
+<span id="cb252-5"><a href="anova-de-um-fator.html#cb252-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       6.101   Controle</span></span>
+<span id="cb252-6"><a href="anova-de-um-fator.html#cb252-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4.758   Controle</span></span>
+<span id="cb252-7"><a href="anova-de-um-fator.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       6.542   Controle</span></span>
+<span id="cb252-8"><a href="anova-de-um-fator.html#cb252-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       7.667   Controle</span></span>
+<span id="cb252-9"><a href="anova-de-um-fator.html#cb252-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-10"><a href="anova-de-um-fator.html#cb252-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Análise ANOVA de um fator</span></span>
+<span id="cb252-11"><a href="anova-de-um-fator.html#cb252-11" aria-hidden="true" tabindex="-1"></a>Modelo_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(Crescimento <span class="sc">~</span> Tratamento, <span class="at">data =</span> dados_anova_simples) </span></code></pre></div>
+<p>Vamos verificar a normalidade e homogeneidade da variância usando os testes de Shapiro-Wilk e bartett.test respectivamente.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="anova-de-um-fator.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Normalidade </span></span>
+<span id="cb253-2"><a href="anova-de-um-fator.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dados_anova_simples<span class="sc">$</span>Crescimento[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb253-3"><a href="anova-de-um-fator.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-4"><a href="anova-de-um-fator.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb253-5"><a href="anova-de-um-fator.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-6"><a href="anova-de-um-fator.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  dados_anova_simples$Crescimento[1:12]</span></span>
+<span id="cb253-7"><a href="anova-de-um-fator.html#cb253-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W = 0.96731, p-value = 0.8806</span></span>
+<span id="cb253-8"><a href="anova-de-um-fator.html#cb253-8" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dados_anova_simples<span class="sc">$</span>Crescimento[<span class="dv">13</span><span class="sc">:</span><span class="dv">24</span>])</span>
+<span id="cb253-9"><a href="anova-de-um-fator.html#cb253-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-10"><a href="anova-de-um-fator.html#cb253-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb253-11"><a href="anova-de-um-fator.html#cb253-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-12"><a href="anova-de-um-fator.html#cb253-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  dados_anova_simples$Crescimento[13:24]</span></span>
+<span id="cb253-13"><a href="anova-de-um-fator.html#cb253-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W = 0.87324, p-value = 0.07184</span></span>
+<span id="cb253-14"><a href="anova-de-um-fator.html#cb253-14" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dados_anova_simples<span class="sc">$</span>Crescimento[<span class="dv">25</span><span class="sc">:</span><span class="dv">36</span>])</span>
+<span id="cb253-15"><a href="anova-de-um-fator.html#cb253-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-16"><a href="anova-de-um-fator.html#cb253-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb253-17"><a href="anova-de-um-fator.html#cb253-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-18"><a href="anova-de-um-fator.html#cb253-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  dados_anova_simples$Crescimento[25:36]</span></span>
+<span id="cb253-19"><a href="anova-de-um-fator.html#cb253-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W = 0.9294, p-value = 0.3738</span></span>
+<span id="cb253-20"><a href="anova-de-um-fator.html#cb253-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-21"><a href="anova-de-um-fator.html#cb253-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Normalidade </span></span>
+<span id="cb253-22"><a href="anova-de-um-fator.html#cb253-22" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(Crescimento <span class="sc">~</span> Tratamento, <span class="at">data =</span> dados_anova_simples)</span>
+<span id="cb253-23"><a href="anova-de-um-fator.html#cb253-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-24"><a href="anova-de-um-fator.html#cb253-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Bartlett test of homogeneity of variances</span></span>
+<span id="cb253-25"><a href="anova-de-um-fator.html#cb253-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb253-26"><a href="anova-de-um-fator.html#cb253-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  Crescimento by Tratamento</span></span>
+<span id="cb253-27"><a href="anova-de-um-fator.html#cb253-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bartlett&#39;s K-squared = 0.61835, df = 2, p-value = 0.7341</span></span></code></pre></div>
+<p>Os resíduos apresentam distribuição normal e variância homogêneas.</p>
+<p>Vamos ver os resultados da análise.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="anova-de-um-fator.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resultados anova</span></span>
+<span id="cb254-2"><a href="anova-de-um-fator.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo_anova)</span>
+<span id="cb254-3"><a href="anova-de-um-fator.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb254-4"><a href="anova-de-um-fator.html#cb254-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb254-5"><a href="anova-de-um-fator.html#cb254-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Crescimento</span></span>
+<span id="cb254-6"><a href="anova-de-um-fator.html#cb254-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
+<span id="cb254-7"><a href="anova-de-um-fator.html#cb254-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tratamento  2 340.32 170.160  77.989 3.124e-13 ***</span></span>
+<span id="cb254-8"><a href="anova-de-um-fator.html#cb254-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  33  72.00   2.182                      </span></span>
+<span id="cb254-9"><a href="anova-de-um-fator.html#cb254-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb254-10"><a href="anova-de-um-fator.html#cb254-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>Percebam que o resultado da ANOVA (Pr(&gt;F) &lt; 0.001) indica que devemos rejeitar a hipótese nula que não há diferença entre as médias dos grupos. Contudo, os resultados não mostram quais são os grupos que apresentam diferenças. Para isso, temos que realizar testes de comparações múltiplas <em>post-hoc</em> para detectar os grupos que apresentam diferenças significativas entre as médias.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+</p>
+<p>Os testes <em>post-hoc</em> só devem ser utilizados quando rejeitamos a hipótese nula (P &lt; 0.05) no teste da ANOVA.</p>
+</div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="anova-de-um-fator.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diferenças entre os tratamentos</span></span>
+<span id="cb255-2"><a href="anova-de-um-fator.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Tuckey&#39;s honest significant difference</span></span>
+<span id="cb255-3"><a href="anova-de-um-fator.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(Modelo_anova)</span>
+<span id="cb255-4"><a href="anova-de-um-fator.html#cb255-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Tukey multiple comparisons of means</span></span>
+<span id="cb255-5"><a href="anova-de-um-fator.html#cb255-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     95% family-wise confidence level</span></span>
+<span id="cb255-6"><a href="anova-de-um-fator.html#cb255-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb255-7"><a href="anova-de-um-fator.html#cb255-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fit: aov(formula = Crescimento ~ Tratamento, data = dados_anova_simples)</span></span>
+<span id="cb255-8"><a href="anova-de-um-fator.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb255-9"><a href="anova-de-um-fator.html#cb255-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $Tratamento</span></span>
+<span id="cb255-10"><a href="anova-de-um-fator.html#cb255-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       diff       lwr       upr     p adj</span></span>
+<span id="cb255-11"><a href="anova-de-um-fator.html#cb255-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Adubo_X-2020-Adubo_Tradicional  0.04991667 -1.429784  1.529617 0.9962299</span></span>
+<span id="cb255-12"><a href="anova-de-um-fator.html#cb255-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Controle-Adubo_Tradicional     -6.49716667 -7.976867 -5.017466 0.0000000</span></span>
+<span id="cb255-13"><a href="anova-de-um-fator.html#cb255-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Controle-Adubo_X-2020          -6.54708333 -8.026784 -5.067383 0.0000000</span></span></code></pre></div>
+<p>Visualizar os resultados em gráfico.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="anova-de-um-fator.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reordenando a ordem que os grupos irão aparecer no gráfico</span></span>
+<span id="cb256-2"><a href="anova-de-um-fator.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="anova-de-um-fator.html#cb256-3" aria-hidden="true" tabindex="-1"></a>dados_anova_simples<span class="sc">$</span>Tratamento <span class="ot">&lt;-</span> <span class="fu">factor</span>(dados_anova_simples<span class="sc">$</span>Tratamento , </span>
+<span id="cb256-4"><a href="anova-de-um-fator.html#cb256-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;Controle&quot;</span>, <span class="st">&quot;Adubo_Tradicional&quot;</span>,</span>
+<span id="cb256-5"><a href="anova-de-um-fator.html#cb256-5" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&quot;Adubo_X-2020&quot;</span>))</span>
+<span id="cb256-6"><a href="anova-de-um-fator.html#cb256-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-7"><a href="anova-de-um-fator.html#cb256-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb256-8"><a href="anova-de-um-fator.html#cb256-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_anova_simples, <span class="fu">aes</span>(<span class="at">x =</span> Tratamento, <span class="at">y =</span> Crescimento, </span>
+<span id="cb256-9"><a href="anova-de-um-fator.html#cb256-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">color =</span> Tratamento)) <span class="sc">+</span> </span>
+<span id="cb256-10"><a href="anova-de-um-fator.html#cb256-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Adubação&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Crescimento Coffea arabica (cm)&quot;</span>, <span class="at">size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb256-11"><a href="anova-de-um-fator.html#cb256-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb256-12"><a href="anova-de-um-fator.html#cb256-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb256-13"><a href="anova-de-um-fator.html#cb256-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape =</span> <span class="dv">16</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="fl">0.1</span>), <span class="at">cex =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb256-14"><a href="anova-de-um-fator.html#cb256-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb256-15"><a href="anova-de-um-fator.html#cb256-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb256-16"><a href="anova-de-um-fator.html#cb256-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="dv">12</span>, <span class="at">label =</span> <span class="st">&quot;ab&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb256-17"><a href="anova-de-um-fator.html#cb256-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">17</span>, <span class="at">label =</span> <span class="st">&quot;a&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb256-18"><a href="anova-de-um-fator.html#cb256-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">17</span>, <span class="at">label =</span> <span class="st">&quot;b&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb256-19"><a href="anova-de-um-fator.html#cb256-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Sem adubo&quot;</span>,<span class="st">&quot;Tradicional&quot;</span>,<span class="st">&quot;X-2020&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb256-20"><a href="anova-de-um-fator.html#cb256-20" aria-hidden="true" tabindex="-1"></a>  tema_livro <span class="sc">+</span></span>
+<span id="cb256-21"><a href="anova-de-um-fator.html#cb256-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-263-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Neste exemplo, os indivíduos de <em>C. arabica</em> que receberam adubação (tradicional e X-2020) apresentaram maior crescimento do que os indivíduos que não receberam adubação. Contudo, diferente do que foi divulgado pela empresa, o adubo X-2020 não apresentou melhor desempenho que o adubo tradicional já utilizado pelos produtores.</p>
+<p>
+<p> </p>
+</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="análises-de-variância-anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="anova-com-dois-fatores-ou-anova-fatorial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/06_Modelos_lineares.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/06_Modelos_lineares.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

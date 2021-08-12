@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.11 lubridate | Análises Ecológicas no R</title>
+  <meta name="description" content="5.11 lubridate | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.22.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.11 lubridate | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.11 lubridate | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="forcats.html"/>
+<link rel="next" href="purrr.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>1</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1.1</b> Introdução</a></li>
+<li class="chapter" data-level="1.2" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>1.2</b> Pacotes</a></li>
+<li class="chapter" data-level="1.3" data-path="versão-do-r.html"><a href="versão-do-r.html"><i class="fa fa-check"></i><b>1.3</b> Versão do R</a></li>
+<li class="chapter" data-level="1.4" data-path="dados.html"><a href="dados.html"><i class="fa fa-check"></i><b>1.4</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="histórico-deste-livro.html"><a href="histórico-deste-livro.html"><i class="fa fa-check"></i><b>2.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="2.2" data-path="objetivo-deste-livro.html"><a href="objetivo-deste-livro.html"><i class="fa fa-check"></i><b>2.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="2.3" data-path="o-que-você-não-encontrará-neste-livro.html"><a href="o-que-você-não-encontrará-neste-livro.html"><i class="fa fa-check"></i><b>2.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="2.4" data-path="por-que-usar-o-r.html"><a href="por-que-usar-o-r.html"><i class="fa fa-check"></i><b>2.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="2.5" data-path="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><a href="indo-além-da-linguagem-de-progração-para-a-ecologia.html"><i class="fa fa-check"></i><b>2.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="2.6" data-path="como-usar-este-livro.html"><a href="como-usar-este-livro.html"><i class="fa fa-check"></i><b>2.6</b> Como usar este livro</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introdução-1.html"><a href="introdução-1.html"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="perguntas-devem-preceder-as-análises-estatísticas.html"><a href="perguntas-devem-preceder-as-análises-estatísticas.html#um-bestiário1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>3.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><a href="fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas.html"><i class="fa fa-check"></i><b>3.3</b> Fluxograma: Conectando Variáveis para Melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="3.4" data-path="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><a href="questões-fundamentais-em-etnobiologia-ecologia-e-conservação.html"><i class="fa fa-check"></i><b>3.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="3.5" data-path="considerações-finais.html"><a href="considerações-finais.html"><i class="fa fa-check"></i><b>3.5</b> Considerações Finais</a></li>
+<li class="chapter" data-level="3.6" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>3.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo.html"><a href="pré-requisitos-do-capítulo.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="contextualização.html"><a href="contextualização.html"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="funcionamento-da-linguagem-r.html"><a href="funcionamento-da-linguagem-r.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="estrutura-e-manipulação-de-objetos.html"><a href="estrutura-e-manipulação-de-objetos.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+<li class="chapter" data-level="4.6" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html"><i class="fa fa-check"></i><b>4.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#livros"><i class="fa fa-check"></i><b>4.6.1</b> Livros</a></li>
+<li class="chapter" data-level="4.6.2" data-path="para-se-aprofundar.html"><a href="para-se-aprofundar.html#links"><i class="fa fa-check"></i><b>4.6.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos-do-capítulo-1.html"><a href="pré-requisitos-do-capítulo-1.html"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="contextualização-1.html"><a href="contextualização-1.html"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="here.html"><a href="here.html"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="readr-readxl-e-writexl.html"><a href="readr-readxl-e-writexl.html"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="tibble.html"><a href="tibble.html"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr-pipe-.html"><a href="magrittr-pipe-.html"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="tidyr.html"><a href="tidyr.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="tidyr.html"><a href="tidyr.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="tidyr.html"><a href="tidyr.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="tidyr.html"><a href="tidyr.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="dplyr.html"><a href="dplyr.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="dplyr.html"><a href="dplyr.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="dplyr.html"><a href="dplyr.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="dplyr.html"><a href="dplyr.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="dplyr.html"><a href="dplyr.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="dplyr.html"><a href="dplyr.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="dplyr.html"><a href="dplyr.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
+<li class="chapter" data-level="5.14" data-path="para-se-aprofundar-1.html"><a href="para-se-aprofundar-1.html"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Guia de bolso de gráficos no R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introdução-2.html"><a href="introdução-2.html"><i class="fa fa-check"></i><b>6.1</b> 1. Introdução</a></li>
+<li class="chapter" data-level="6.2" data-path="pacotes-necessários.html"><a href="pacotes-necessários.html"><i class="fa fa-check"></i><b>6.2</b> 2. Pacotes necessários</a></li>
+<li class="chapter" data-level="6.3" data-path="principais-pacotes.html"><a href="principais-pacotes.html"><i class="fa fa-check"></i><b>6.3</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.4" data-path="grámatica-dos-gráficos.html"><a href="grámatica-dos-gráficos.html"><i class="fa fa-check"></i><b>6.4</b> 3. Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html"><i class="fa fa-check"></i><b>6.5</b> 4. Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#histograma-histogram"><i class="fa fa-check"></i><b>6.5.1</b> 4.1. Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.5.2</b> 4.2 Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.5.3" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#dot"><i class="fa fa-check"></i><b>6.5.3</b> 4.3. Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.5.4" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#bars"><i class="fa fa-check"></i><b>6.5.4</b> 4.4. Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.5.5" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.5.5</b> 4.5. Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.5.6" data-path="tipos-de-gráficos.html"><a href="tipos-de-gráficos.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.5.6</b> 4.6. Gráfico de caixa (<em>boxplot</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html"><i class="fa fa-check"></i><b>6.6</b> 4.7. Gráfico de dispersão (<em>scatter plot</em>)</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#versão-padrão-5"><i class="fa fa-check"></i><b>6.6.1</b> 4.7.1. Versão padrão</a></li>
+<li class="chapter" data-level="6.6.2" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos"><i class="fa fa-check"></i><b>6.6.2</b> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</a></li>
+<li class="chapter" data-level="6.6.3" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#definindo-linhas-de-ajuste"><i class="fa fa-check"></i><b>6.6.3</b> 4.7.3. Definindo linhas de ajuste</a></li>
+<li class="chapter" data-level="6.6.4" data-path="gráfico-de-dispersão-scatter-plot.html"><a href="gráfico-de-dispersão-scatter-plot.html#ajustes-finos-versão-personalizada-5"><i class="fa fa-check"></i><b>6.6.4</b> 4.7.4. Ajustes finos (versão personalizada)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html"><i class="fa fa-check"></i><b>6.7</b> 4.8. Visualização de múltiplos gráficos pareados</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-variáveis-contínuas"><i class="fa fa-check"></i><b>6.7.1</b> 4.8.1. Gráfico pareado com variáveis contínuas</a></li>
+<li class="chapter" data-level="6.7.2" data-path="visualização-de-múltiplos-gráficos-pareados.html"><a href="visualização-de-múltiplos-gráficos-pareados.html#gráfico-pareado-com-vários-tipos-de-variáveis"><i class="fa fa-check"></i><b>6.7.2</b> 4.8.2. Gráfico pareado com vários tipos de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><a href="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los.html"><i class="fa fa-check"></i><b>6.8</b> 5. Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+<li class="chapter" data-level="6.9" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html"><i class="fa fa-check"></i><b>6.9</b> 6. Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.9.1</b> 6.1. Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.9.2" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#elementos-gráficos-eixo-fonte-grid"><i class="fa fa-check"></i><b>6.9.2</b> 6.2. Elementos gráficos: eixo, fonte, grid</a></li>
+<li class="chapter" data-level="6.9.3" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.9.3</b> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
+<li class="chapter" data-level="6.9.4" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.9.4</b> 6.4. Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.9.5" data-path="finalização-de-gráficos-para-publicação.html"><a href="finalização-de-gráficos-para-publicação.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.9.5</b> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="check-list-para-garantir-bons-gráficos.html"><a href="check-list-para-garantir-bons-gráficos.html"><i class="fa fa-check"></i><b>6.10</b> Check-list para garantir bons gráficos</a></li>
+<li class="chapter" data-level="6.11" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html"><i class="fa fa-check"></i><b>6.11</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#livros-1"><i class="fa fa-check"></i><b>6.11.1</b> Livros</a></li>
+<li class="chapter" data-level="6.11.2" data-path="para-se-aprofundar-2.html"><a href="para-se-aprofundar-2.html#links-1"><i class="fa fa-check"></i><b>6.11.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Cap. 7 - Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i><b>7.0.1</b> Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="teste-t-de-student-para-duas-amostras-independentes.html"><a href="teste-t-de-student-para-duas-amostras-independentes.html"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="correlação-de-pearson.html"><a href="correlação-de-pearson.html"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="regressão-linear-simples.html"><a href="regressão-linear-simples.html"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="análises-de-variância-anova.html"><a href="análises-de-variância-anova.html"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a></li>
+<li class="chapter" data-level="7.7" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html"><i class="fa fa-check"></i><b>7.7</b> ANOVA de um fator</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="anova-de-um-fator.html"><a href="anova-de-um-fator.html#análise"><i class="fa fa-check"></i><b>7.7.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html"><i class="fa fa-check"></i><b>7.8</b> ANOVA com dois fatores ou ANOVA fatorial</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="anova-com-dois-fatores-ou-anova-fatorial.html"><a href="anova-com-dois-fatores-ou-anova-fatorial.html#análise-1"><i class="fa fa-check"></i><b>7.8.1</b> Análise</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="anova-em-blocos-aleatorizados.html"><a href="anova-em-blocos-aleatorizados.html"><i class="fa fa-check"></i><b>7.9</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.10" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html"><i class="fa fa-check"></i><b>7.10</b> Análise de covariância (ANCOVA)</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#análise-2"><i class="fa fa-check"></i><b>7.10.1</b> Análise</a></li>
+<li class="chapter" data-level="7.10.2" data-path="análise-de-covariância-ancova.html"><a href="análise-de-covariância-ancova.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.10.2</b> Para se aprofundar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lubridate" class="section level2" number="5.11">
+<h2><span class="header-section-number">5.11</span> lubridate</h2>
+<p>O pacote <code>lubridate</code> fornece um conjunto de funções para a manipulação de dados de data e horário. Dessa forma, esse pacote facilita a manipulação dessa classe de dado no R, pois geralmente esses dados não são intuitivos e mudam dependendo do tipo de objeto de data e horário. Além disso, os métodos que usam datas e horários devem levar em consideração fusos horários, anos bissextos, horários de verão, além de outras particularidades. Existem diversas funções nesse pacote, sendo as mesmas focadas em: transformações de data/horário, componentes, arredondamentos, durações, períodos, intervalos, além de muitas outras funções específicas.</p>
+<p>Todas as funções deste pacote são listadas na <a href="https://lubridate.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
+<p>Apesar de estar inserido no escopo do <em>tidyverse</em>, este pacote não é carregado com os demais, requisitando seu carregamento solo.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="lubridate.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Carregar</span></span>
+<span id="cb145-2"><a href="lubridate.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<p>Existem três tipos de dados data/horário:</p>
+<ul>
+<li><strong>Data</strong>: tempo em dias, meses e anos <code>&lt;date&gt;</code></li>
+<li><strong>Horário</strong>: tempo dentro de um dia <code>&lt;time&gt;</code></li>
+<li><strong>Data-horário</strong>: tempo em um instante (data mais tempo) <code>&lt;dttm&gt;</code></li>
+</ul>
+<p>Para trabalhar exclusivamente com horários, podemos utilizar o pacote <code>hms</code>.</p>
+<p>É fundamental também destacar que algumas letras terão um significado temporal, sendo abreviações de diferentes períodos em inglês: <strong>y</strong>ear (ano), <strong>m</strong>onth (mês), <strong>w</strong>eak (semana), <strong>d</strong>ay (dia), <strong>h</strong>our (hora), <strong>m</strong>inute (minuto), e <strong>s</strong>econd (segundo).</p>
+<p>Para acessar a informação da data e horários atuais podemos utilizar as funções <code>lubridate::today()</code> e <code>lubridate::now()</code>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lubridate.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extrair a data nesse instante</span></span>
+<span id="cb146-2"><a href="lubridate.html#cb146-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">today</span>()</span>
+<span id="cb146-3"><a href="lubridate.html#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12&quot;</span></span>
+<span id="cb146-4"><a href="lubridate.html#cb146-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-5"><a href="lubridate.html#cb146-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Extrair a data e tempo nesse instante</span></span>
+<span id="cb146-6"><a href="lubridate.html#cb146-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">now</span>()</span>
+<span id="cb146-7"><a href="lubridate.html#cb146-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 14:30:57 CEST&quot;</span></span></code></pre></div>
+<p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
+<ul>
+<li>De um string</li>
+<li>De componentes individuais de data e horário</li>
+<li>De um objeto de data/horário existente</li>
+</ul>
+<p>Os dados de data/horário geralmente estão no formato de strings. Podemos transformar os dados especificando a ordem dos seus componentes, ou seja, a ordem em que ano, mês e dia aparecem no string, usando as letras <code>y</code> (ano), <code>m</code> (mês) e <code>d</code> (dia) na mesma ordem, por exemplo, <code>lubridate::dmy()</code>.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="lubridate.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Strings e números para datas</span></span>
+<span id="cb147-2"><a href="lubridate.html#cb147-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;03-03-2021&quot;</span>)</span>
+<span id="cb147-3"><a href="lubridate.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-03&quot;</span></span></code></pre></div>
+<p>Essas funções também aceitam números sem aspas, além de serem muito versáteis e funcionarem em outros diversos formatos.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="lubridate.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Strings e números para datas</span></span>
+<span id="cb148-2"><a href="lubridate.html#cb148-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;03-Mar-2021&quot;</span>)</span>
+<span id="cb148-3"><a href="lubridate.html#cb148-3" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="dv">03032021</span>)</span>
+<span id="cb148-4"><a href="lubridate.html#cb148-4" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;03032021&quot;</span>)</span>
+<span id="cb148-5"><a href="lubridate.html#cb148-5" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;03/03/2021&quot;</span>)</span>
+<span id="cb148-6"><a href="lubridate.html#cb148-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;03.03.2021&quot;</span>)</span></code></pre></div>
+<p>Além da data, podemos especificar horários atrelados a essas datas. Para criar uma data com horário adicionamos um underscore (<code>_</code>) e os <code>h</code> (hora), <code>m</code> (minuto) e <code>s</code> (segundo) ao nome da função, além do argumento <code>tz</code> para especificar o <em>fuso horário</em> (tema tratado mais adiante nessa seção).</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="lubridate.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Especificar horários e fuso horário</span></span>
+<span id="cb149-2"><a href="lubridate.html#cb149-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy_h</span>(<span class="st">&quot;03-03-2021 13&quot;</span>)</span>
+<span id="cb149-3"><a href="lubridate.html#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-03 13:00:00 UTC&quot;</span></span>
+<span id="cb149-4"><a href="lubridate.html#cb149-4" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy_hm</span>(<span class="st">&quot;03-03-2021 13:32&quot;</span>)</span>
+<span id="cb149-5"><a href="lubridate.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-03 13:32:00 UTC&quot;</span></span>
+<span id="cb149-6"><a href="lubridate.html#cb149-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy_hms</span>(<span class="st">&quot;03-03-2021 13:32:01&quot;</span>)</span>
+<span id="cb149-7"><a href="lubridate.html#cb149-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-03 13:32:01 UTC&quot;</span></span>
+<span id="cb149-8"><a href="lubridate.html#cb149-8" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dmy_hms</span>(<span class="st">&quot;03-03-2021 13:32:01&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;America/Sao_Paulo&quot;</span>)</span>
+<span id="cb149-9"><a href="lubridate.html#cb149-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-03 13:32:01 -03&quot;</span></span></code></pre></div>
+<p>Podemos ainda ter componentes individuais de data/horário em múltiplas colunas. Para realizar essa transformação, podemos usar as funções <code>lubridate::make_date()</code> e <code>lubridate::make_datetime()</code>.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="lubridate.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados com componentes individuais</span></span>
+<span id="cb150-2"><a href="lubridate.html#cb150-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb150-3"><a href="lubridate.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="fu">c</span>(<span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>),</span>
+<span id="cb150-4"><a href="lubridate.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb150-5"><a href="lubridate.html#cb150-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">31</span>),</span>
+<span id="cb150-6"><a href="lubridate.html#cb150-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">hora =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">14</span>, <span class="dv">18</span>), </span>
+<span id="cb150-7"><a href="lubridate.html#cb150-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuto =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">44</span>, <span class="dv">55</span>))</span>
+<span id="cb150-8"><a href="lubridate.html#cb150-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-9"><a href="lubridate.html#cb150-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Data de componentes individuais</span></span>
+<span id="cb150-10"><a href="lubridate.html#cb150-10" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb150-11"><a href="lubridate.html#cb150-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">data =</span> lubridate<span class="sc">::</span><span class="fu">make_datetime</span>(ano, mes, dia, hora, minuto))</span>
+<span id="cb150-12"><a href="lubridate.html#cb150-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [90m# A tibble: 3 x 6[39m</span></span>
+<span id="cb150-13"><a href="lubridate.html#cb150-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     [1mano[22m   [1mmes[22m   [1mdia[22m  [1mhora[22m [1mminuto[22m [1mdata[22m               </span></span>
+<span id="cb150-14"><a href="lubridate.html#cb150-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m             </span></span>
+<span id="cb150-15"><a href="lubridate.html#cb150-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [90m1[39m  [4m2[24m021     1    12     2      2 2021-01-12 [90m02:02:00[39m</span></span>
+<span id="cb150-16"><a href="lubridate.html#cb150-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [90m2[39m  [4m2[24m021     2    20    14     44 2021-02-20 [90m14:44:00[39m</span></span>
+<span id="cb150-17"><a href="lubridate.html#cb150-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [90m3[39m  [4m2[24m021     3    31    18     55 2021-03-31 [90m18:55:00[39m</span></span></code></pre></div>
+<p>Por fim, podemo criar datas modificando entre data/horário e data, utilizando as funções <code>lubridate::as_datetime()</code> e <code>lubridate::as_date()</code>.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="lubridate.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data para data-horário</span></span>
+<span id="cb151-2"><a href="lubridate.html#cb151-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">as_datetime</span>(<span class="fu">today</span>())</span>
+<span id="cb151-3"><a href="lubridate.html#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 UTC&quot;</span></span>
+<span id="cb151-4"><a href="lubridate.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-5"><a href="lubridate.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Data-horário para data</span></span>
+<span id="cb151-6"><a href="lubridate.html#cb151-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">as_date</span>(<span class="fu">now</span>())</span>
+<span id="cb151-7"><a href="lubridate.html#cb151-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12&quot;</span></span></code></pre></div>
+<p>Uma vez que entendemos como podemos criar dados de data/horário, podemos explorar funções para acessar e definir componentes individuais. Para essa tarefa existe uma grande quantidade de funções para acessar de partes específicas de datas e horários.</p>
+<ul>
+<li><code>year()</code>: acessa o ano</li>
+<li><code>month()</code>: acessa o mês</li>
+<li><code>month()</code>: acessa o dia</li>
+<li><code>yday()</code>: acessa o dia do ano</li>
+<li><code>mday()</code>: acessa o dia do mês</li>
+<li><code>wday()</code>: acessa o dia da semana</li>
+<li><code>hour()</code>: acessa as horas</li>
+<li><code>minute()</code>: acessa os minutos</li>
+<li><code>second()</code>: acessa os segundos</li>
+</ul>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="lubridate.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extrair</span></span>
+<span id="cb152-2"><a href="lubridate.html#cb152-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="fu">now</span>())</span>
+<span id="cb152-3"><a href="lubridate.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2021</span></span>
+<span id="cb152-4"><a href="lubridate.html#cb152-4" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">month</span>(<span class="fu">now</span>())</span>
+<span id="cb152-5"><a href="lubridate.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb152-6"><a href="lubridate.html#cb152-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">month</span>(<span class="fu">now</span>(), <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb152-7"><a href="lubridate.html#cb152-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Aug</span></span>
+<span id="cb152-8"><a href="lubridate.html#cb152-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</span></span>
+<span id="cb152-9"><a href="lubridate.html#cb152-9" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">day</span>(<span class="fu">now</span>())</span>
+<span id="cb152-10"><a href="lubridate.html#cb152-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span>
+<span id="cb152-11"><a href="lubridate.html#cb152-11" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">wday</span>(<span class="fu">now</span>())</span>
+<span id="cb152-12"><a href="lubridate.html#cb152-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb152-13"><a href="lubridate.html#cb152-13" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">wday</span>(<span class="fu">now</span>(), <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb152-14"><a href="lubridate.html#cb152-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Thu</span></span>
+<span id="cb152-15"><a href="lubridate.html#cb152-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span></span>
+<span id="cb152-16"><a href="lubridate.html#cb152-16" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">second</span>(<span class="fu">now</span>())</span>
+<span id="cb152-17"><a href="lubridate.html#cb152-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 57.86818</span></span></code></pre></div>
+<p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="lubridate.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data</span></span>
+<span id="cb153-2"><a href="lubridate.html#cb153-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">dmy_hms</span>(<span class="st">&quot;04-03-2021 01:04:56&quot;</span>)</span>
+<span id="cb153-3"><a href="lubridate.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="lubridate.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Incluir</span></span>
+<span id="cb153-5"><a href="lubridate.html#cb153-5" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">year</span>(data) <span class="ot">&lt;-</span> <span class="dv">2020</span></span>
+<span id="cb153-6"><a href="lubridate.html#cb153-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">month</span>(data) <span class="ot">&lt;-</span> <span class="dv">01</span></span>
+<span id="cb153-7"><a href="lubridate.html#cb153-7" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">hour</span>(data) <span class="ot">&lt;-</span> <span class="dv">13</span></span></code></pre></div>
+<p>Mais convenientemente, podemos utilizar a função <code>update()</code> para alterar vários valores de uma vez.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="lubridate.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Incluir vários valores</span></span>
+<span id="cb154-2"><a href="lubridate.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(data, <span class="at">year =</span> <span class="dv">2020</span>, <span class="at">month =</span> <span class="dv">1</span>, <span class="at">mday =</span> <span class="dv">1</span>, <span class="at">hour =</span> <span class="dv">1</span>)</span>
+<span id="cb154-3"><a href="lubridate.html#cb154-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-01-01 01:04:56 UTC&quot;</span></span></code></pre></div>
+<p>Muitas vezes precisamos fazer operações com datas, como a aritmética com datas: subtração, adição e divisão. Para tanto, é preciso entender três classes importantes que representam intervalos de tempo.</p>
+<ul>
+<li><strong>Durações</strong>: representam um número exato de segundos</li>
+<li><strong>Períodos</strong>: representam unidades humanas como semanas e meses</li>
+<li><strong>Intervalos</strong>: representam um ponto inicial e final</li>
+</ul>
+<p>Quando fazemos uma subtração de datas, criamos um objeto da classe <code>difftime</code>. Essa classe pode ser um pouco complicada de trabalhar, então dentro do <em>lubridate</em>, podemos usar funções que convertem essa classe em duração, da classe <code>Duration</code>. As durações sempre registram o intervalo de tempo em segundos, com alguma unidade de tempo maior entre parênteses. Há uma série de funções para tratar dessa classe.</p>
+<ul>
+<li><code>duration()</code>: cria data em duração</li>
+<li><code>as.duration()</code>: converte datas em duração</li>
+<li><code>dyears()</code>: duração de anos</li>
+<li><code>dmonths()</code>: duração de meses</li>
+<li><code>dweeks()</code>: duração de semanas</li>
+<li><code>ddays()</code>: duração de dias</li>
+<li><code>dhours()</code>: duração de horas</li>
+<li><code>dminutes()</code>: duração de minutos</li>
+<li><code>dseconds()</code>: duração de segundos</li>
+</ul>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="lubridate.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Subtração de datas</span></span>
+<span id="cb155-2"><a href="lubridate.html#cb155-2" aria-hidden="true" tabindex="-1"></a>tempo_estudando_r <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">today</span>() <span class="sc">-</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;30-11-2011&quot;</span>)</span>
+<span id="cb155-3"><a href="lubridate.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="lubridate.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Conversão para duração</span></span>
+<span id="cb155-5"><a href="lubridate.html#cb155-5" aria-hidden="true" tabindex="-1"></a>tempo_estudando_r_dur <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as.duration</span>(tempo_estudando_r)</span>
+<span id="cb155-6"><a href="lubridate.html#cb155-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-7"><a href="lubridate.html#cb155-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando durações</span></span>
+<span id="cb155-8"><a href="lubridate.html#cb155-8" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">duration</span>(<span class="dv">90</span>, <span class="st">&quot;seconds&quot;</span>)</span>
+<span id="cb155-9"><a href="lubridate.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;90s (~1.5 minutes)&quot;</span></span>
+<span id="cb155-10"><a href="lubridate.html#cb155-10" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">duration</span>(<span class="fl">1.5</span>, <span class="st">&quot;minutes&quot;</span>)</span>
+<span id="cb155-11"><a href="lubridate.html#cb155-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;90s (~1.5 minutes)&quot;</span></span>
+<span id="cb155-12"><a href="lubridate.html#cb155-12" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">duration</span>(<span class="dv">1</span>, <span class="st">&quot;days&quot;</span>)</span>
+<span id="cb155-13"><a href="lubridate.html#cb155-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;86400s (~1 days)&quot;</span></span>
+<span id="cb155-14"><a href="lubridate.html#cb155-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-15"><a href="lubridate.html#cb155-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Transformação da duração</span></span>
+<span id="cb155-16"><a href="lubridate.html#cb155-16" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dseconds</span>(<span class="dv">100</span>)</span>
+<span id="cb155-17"><a href="lubridate.html#cb155-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;100s (~1.67 minutes)&quot;</span></span>
+<span id="cb155-18"><a href="lubridate.html#cb155-18" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dminutes</span>(<span class="dv">100</span>)</span>
+<span id="cb155-19"><a href="lubridate.html#cb155-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;6000s (~1.67 hours)&quot;</span></span>
+<span id="cb155-20"><a href="lubridate.html#cb155-20" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dhours</span>(<span class="dv">100</span>)</span>
+<span id="cb155-21"><a href="lubridate.html#cb155-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;360000s (~4.17 days)&quot;</span></span>
+<span id="cb155-22"><a href="lubridate.html#cb155-22" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">ddays</span>(<span class="dv">100</span>)</span>
+<span id="cb155-23"><a href="lubridate.html#cb155-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;8640000s (~14.29 weeks)&quot;</span></span>
+<span id="cb155-24"><a href="lubridate.html#cb155-24" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dweeks</span>(<span class="dv">100</span>)</span>
+<span id="cb155-25"><a href="lubridate.html#cb155-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;60480000s (~1.92 years)&quot;</span></span>
+<span id="cb155-26"><a href="lubridate.html#cb155-26" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">dyears</span>(<span class="dv">100</span>)</span>
+<span id="cb155-27"><a href="lubridate.html#cb155-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;3155760000s (~100 years)&quot;</span></span></code></pre></div>
+<p>Podemos ainda utilizar as durações para fazer operações aritméticas com datas como adição, subtração e multiplicação.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="lubridate.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Somando durações a datas</span></span>
+<span id="cb156-2"><a href="lubridate.html#cb156-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">today</span>() <span class="sc">+</span> lubridate<span class="sc">::</span><span class="fu">ddays</span>(<span class="dv">1</span>)</span>
+<span id="cb156-3"><a href="lubridate.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-13&quot;</span></span>
+<span id="cb156-4"><a href="lubridate.html#cb156-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="lubridate.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Subtraindo durações de datas</span></span>
+<span id="cb156-6"><a href="lubridate.html#cb156-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">today</span>() <span class="sc">-</span> lubridate<span class="sc">::</span><span class="fu">dyears</span>(<span class="dv">1</span>)</span>
+<span id="cb156-7"><a href="lubridate.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-08-11 18:00:00 UTC&quot;</span></span>
+<span id="cb156-8"><a href="lubridate.html#cb156-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-9"><a href="lubridate.html#cb156-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiplicando durações</span></span>
+<span id="cb156-10"><a href="lubridate.html#cb156-10" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">dyears</span>(<span class="dv">2</span>)</span>
+<span id="cb156-11"><a href="lubridate.html#cb156-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;126230400s (~4 years)&quot;</span></span></code></pre></div>
+<p>Além das durações, podemos usar períodos, que são extensões de tempo não fixados em segundos como as durações, mas flexíveis, com o tempo em dias, semanas, meses ou anos, permitindo uma interpretação mais intuitiva das datas. Novamente, há uma série de funções para realizar essas operações.</p>
+<ul>
+<li><code>period()</code>: cria data em período</li>
+<li><code>as.period()</code>: converte datas em período</li>
+<li><code>seconds()</code>: período em segundos</li>
+<li><code>minutes()</code>: período em minutos</li>
+<li><code>hours()</code>: período em horas</li>
+<li><code>days()</code>: período em dias</li>
+<li><code>weeks()</code>: período em semanas</li>
+<li><code>months()</code>: período em meses</li>
+<li><code>years()</code>: período em anos</li>
+</ul>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="lubridate.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando períodos</span></span>
+<span id="cb157-2"><a href="lubridate.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">period</span>(<span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">5</span>), <span class="fu">c</span>(<span class="st">&quot;second&quot;</span>, <span class="st">&quot;minute&quot;</span>))</span>
+<span id="cb157-3"><a href="lubridate.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;5M 90S&quot;</span></span>
+<span id="cb157-4"><a href="lubridate.html#cb157-4" aria-hidden="true" tabindex="-1"></a><span class="fu">period</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">13</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="st">&quot;second&quot;</span>, <span class="st">&quot;minute&quot;</span>, <span class="st">&quot;hour&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;week&quot;</span>))</span>
+<span id="cb157-5"><a href="lubridate.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;20d 2H 1M 3S&quot;</span></span>
+<span id="cb157-6"><a href="lubridate.html#cb157-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-7"><a href="lubridate.html#cb157-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Transformação de períodos</span></span>
+<span id="cb157-8"><a href="lubridate.html#cb157-8" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">seconds</span>(<span class="dv">100</span>)</span>
+<span id="cb157-9"><a href="lubridate.html#cb157-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;100S&quot;</span></span>
+<span id="cb157-10"><a href="lubridate.html#cb157-10" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">minutes</span>(<span class="dv">100</span>)</span>
+<span id="cb157-11"><a href="lubridate.html#cb157-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;100M 0S&quot;</span></span>
+<span id="cb157-12"><a href="lubridate.html#cb157-12" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">hours</span>(<span class="dv">100</span>)</span>
+<span id="cb157-13"><a href="lubridate.html#cb157-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;100H 0M 0S&quot;</span></span>
+<span id="cb157-14"><a href="lubridate.html#cb157-14" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">days</span>(<span class="dv">100</span>)</span>
+<span id="cb157-15"><a href="lubridate.html#cb157-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;100d 0H 0M 0S&quot;</span></span>
+<span id="cb157-16"><a href="lubridate.html#cb157-16" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">weeks</span>(<span class="dv">100</span>)</span>
+<span id="cb157-17"><a href="lubridate.html#cb157-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;700d 0H 0M 0S&quot;</span></span>
+<span id="cb157-18"><a href="lubridate.html#cb157-18" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">years</span>(<span class="dv">100</span>)</span>
+<span id="cb157-19"><a href="lubridate.html#cb157-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;100y 0m 0d 0H 0M 0S&quot;</span></span></code></pre></div>
+<p>Além disso, podemos fazer operações com os períodos, somando e subtraindo.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="lubridate.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Somando datas</span></span>
+<span id="cb158-2"><a href="lubridate.html#cb158-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">today</span>() <span class="sc">+</span> lubridate<span class="sc">::</span><span class="fu">weeks</span>(<span class="dv">10</span>)</span>
+<span id="cb158-3"><a href="lubridate.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-21&quot;</span></span>
+<span id="cb158-4"><a href="lubridate.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-5"><a href="lubridate.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Subtraindo datas</span></span>
+<span id="cb158-6"><a href="lubridate.html#cb158-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">today</span>() <span class="sc">-</span> lubridate<span class="sc">::</span><span class="fu">weeks</span>(<span class="dv">10</span>)</span>
+<span id="cb158-7"><a href="lubridate.html#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-06-03&quot;</span></span>
+<span id="cb158-8"><a href="lubridate.html#cb158-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-9"><a href="lubridate.html#cb158-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando datas recorrentes</span></span>
+<span id="cb158-10"><a href="lubridate.html#cb158-10" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">today</span>() <span class="sc">+</span> lubridate<span class="sc">::</span><span class="fu">weeks</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb158-11"><a href="lubridate.html#cb158-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;2021-08-12&quot; &quot;2021-08-19&quot; &quot;2021-08-26&quot; &quot;2021-09-02&quot; &quot;2021-09-09&quot;</span></span>
+<span id="cb158-12"><a href="lubridate.html#cb158-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;2021-09-16&quot; &quot;2021-09-23&quot; &quot;2021-09-30&quot; &quot;2021-10-07&quot; &quot;2021-10-14&quot;</span></span>
+<span id="cb158-13"><a href="lubridate.html#cb158-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;2021-10-21&quot;</span></span></code></pre></div>
+<p>Por fim, intervalos são períodos de tempo limitados por duas datas, possuindo uma duração com um ponto de partida, que o faz preciso para determinar uma duração. Intervalos são objetos da classe <code>Interval</code>. Da mesma forma que para duração e períodos, há uma série de funções para realizar essas operações.</p>
+<ul>
+<li><code>interval()</code>: cria data em intervalo</li>
+<li><code>%--%</code>: cria data em intervalo</li>
+<li><code>as.interval()</code>: converte datas em intervalo</li>
+<li><code>int_start()</code>: acessa ou atribui data inicial de um intervalo</li>
+<li><code>int_end()</code>: acessa ou atribui data final de um intervalo</li>
+<li><code>int_length()</code>: comprimento de um intervalo em segundos</li>
+<li><code>int_flip()</code>: inverte a ordem da data de início e da data de término em um intervalo</li>
+<li><code>int_shift()</code>: desloca as datas de início e término de um intervalo</li>
+<li><code>int_aligns()</code>: testa se dois intervalos compartilham um ponto final</li>
+<li><code>int_standardize()</code>: garante que todos os intervalos sejam positivos</li>
+<li><code>int_diff()</code>: retorna os intervalos que ocorrem entre os elementos de data/horário</li>
+<li><code>int_overlaps()</code>: testa se dois intervalos se sobrepõem</li>
+<li><code>%within%</code>: testa se o primeiro intervalo está contido no segundo</li>
+</ul>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="lubridate.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando duas datas - início de estudos do R e nascimento do meu filho</span></span>
+<span id="cb159-2"><a href="lubridate.html#cb159-2" aria-hidden="true" tabindex="-1"></a>r_inicio <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;30-11-2011&quot;</span>)</span>
+<span id="cb159-3"><a href="lubridate.html#cb159-3" aria-hidden="true" tabindex="-1"></a>filho_nascimento <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="st">&quot;26-09-2013&quot;</span>)</span>
+<span id="cb159-4"><a href="lubridate.html#cb159-4" aria-hidden="true" tabindex="-1"></a>r_hoje <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">today</span>()</span>
+<span id="cb159-5"><a href="lubridate.html#cb159-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-6"><a href="lubridate.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando intervalos - interval</span></span>
+<span id="cb159-7"><a href="lubridate.html#cb159-7" aria-hidden="true" tabindex="-1"></a>r_intervalo <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">interval</span>(r_inicio, r_hoje)</span>
+<span id="cb159-8"><a href="lubridate.html#cb159-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-9"><a href="lubridate.html#cb159-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando intervalos - interval %--%</span></span>
+<span id="cb159-10"><a href="lubridate.html#cb159-10" aria-hidden="true" tabindex="-1"></a>filho_intervalo <span class="ot">&lt;-</span> filho_nascimento <span class="sc">%--%</span> lubridate<span class="sc">::</span><span class="fu">today</span>()</span>
+<span id="cb159-11"><a href="lubridate.html#cb159-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-12"><a href="lubridate.html#cb159-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Operações com intervalos</span></span>
+<span id="cb159-13"><a href="lubridate.html#cb159-13" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">int_start</span>(r_intervalo)</span>
+<span id="cb159-14"><a href="lubridate.html#cb159-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2011-11-30 UTC&quot;</span></span>
+<span id="cb159-15"><a href="lubridate.html#cb159-15" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">int_end</span>(r_intervalo)</span>
+<span id="cb159-16"><a href="lubridate.html#cb159-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 UTC&quot;</span></span>
+<span id="cb159-17"><a href="lubridate.html#cb159-17" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">int_length</span>(r_intervalo)</span>
+<span id="cb159-18"><a href="lubridate.html#cb159-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 306115200</span></span>
+<span id="cb159-19"><a href="lubridate.html#cb159-19" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">int_flip</span>(r_intervalo)</span>
+<span id="cb159-20"><a href="lubridate.html#cb159-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2021-08-12 UTC--2011-11-30 UTC</span></span>
+<span id="cb159-21"><a href="lubridate.html#cb159-21" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">int_shift</span>(r_intervalo, <span class="fu">duration</span>(<span class="at">days =</span> <span class="dv">30</span>))</span>
+<span id="cb159-22"><a href="lubridate.html#cb159-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2011-12-30 UTC--2021-09-11 UTC</span></span></code></pre></div>
+<p>Uma operação de destaque é verificar a sobreposição entre dois intervalos.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="lubridate.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verificar sobreposição - int_overlaps</span></span>
+<span id="cb160-2"><a href="lubridate.html#cb160-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">int_overlaps</span>(r_intervalo, filho_intervalo)</span>
+<span id="cb160-3"><a href="lubridate.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb160-4"><a href="lubridate.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-5"><a href="lubridate.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Verificar se intervalo está contido</span></span>
+<span id="cb160-6"><a href="lubridate.html#cb160-6" aria-hidden="true" tabindex="-1"></a>r_intervalo <span class="sc">%within%</span> filho_intervalo</span>
+<span id="cb160-7"><a href="lubridate.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb160-8"><a href="lubridate.html#cb160-8" aria-hidden="true" tabindex="-1"></a>filho_intervalo <span class="sc">%within%</span> r_intervalo</span>
+<span id="cb160-9"><a href="lubridate.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Podemos ainda calcular quantos períodos existem dentro de um intervalo, utilizando as operações de <code>/</code> e <code>%/%</code>.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="lubridate.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Períodos dentro de um intervalo - anos</span></span>
+<span id="cb161-2"><a href="lubridate.html#cb161-2" aria-hidden="true" tabindex="-1"></a>r_intervalo <span class="sc">/</span> lubridate<span class="sc">::</span><span class="fu">years</span>()</span>
+<span id="cb161-3"><a href="lubridate.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9.69863</span></span>
+<span id="cb161-4"><a href="lubridate.html#cb161-4" aria-hidden="true" tabindex="-1"></a>r_intervalo <span class="sc">%/%</span> lubridate<span class="sc">::</span><span class="fu">years</span>()</span>
+<span id="cb161-5"><a href="lubridate.html#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb161-6"><a href="lubridate.html#cb161-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-7"><a href="lubridate.html#cb161-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Períodos dentro de um intervalo - dias e semandas</span></span>
+<span id="cb161-8"><a href="lubridate.html#cb161-8" aria-hidden="true" tabindex="-1"></a>filho_intervalo <span class="sc">/</span> lubridate<span class="sc">::</span><span class="fu">days</span>()</span>
+<span id="cb161-9"><a href="lubridate.html#cb161-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2877</span></span>
+<span id="cb161-10"><a href="lubridate.html#cb161-10" aria-hidden="true" tabindex="-1"></a>filho_intervalo <span class="sc">/</span> lubridate<span class="sc">::</span><span class="fu">weeks</span>()</span>
+<span id="cb161-11"><a href="lubridate.html#cb161-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 411</span></span></code></pre></div>
+<p>Ainda podemos fazer transformações dos dados para períodos e ter todas as unidades de data e tempo que o intervalo compreende.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="lubridate.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Tempo total estudando R</span></span>
+<span id="cb162-2"><a href="lubridate.html#cb162-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">as.period</span>(r_intervalo)</span>
+<span id="cb162-3"><a href="lubridate.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;9y 8m 13d 0H 0M 0S&quot;</span></span>
+<span id="cb162-4"><a href="lubridate.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-5"><a href="lubridate.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Idade do meu filho</span></span>
+<span id="cb162-6"><a href="lubridate.html#cb162-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">as.period</span>(filho_intervalo)</span>
+<span id="cb162-7"><a href="lubridate.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;7y 10m 17d 0H 0M 0S&quot;</span></span></code></pre></div>
+<p>Por fim, fusos horários tendem a ser um fator complicador quando precisamos analisar informações instantâneas de tempo (horário) de outras partes do planeta, ou mesmo fazer conversões dos horários. No <code>lubridate</code> há funções para ajudar nesse sentido. Para isso, podemos utilizar a função <code>lubridate::with_tz()</code>, e no argumento <code>tzone</code> informar o fuso horário para a transformação do horário.</p>
+<p>Podemos descobrir o fuso horário que o R está considerando com a função <code>Sys.timezone()</code>.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="lubridate.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fuso horário no R</span></span>
+<span id="cb163-2"><a href="lubridate.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.timezone</span>()</span>
+<span id="cb163-3"><a href="lubridate.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Europe/Berlin&quot;</span></span></code></pre></div>
+<p>No R há uma listagem dos nomes dos fusos horários que podemos utilizar no argumento <code>tzone</code> para diferentes fusos horários.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="lubridate.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verificar os fuso horários</span></span>
+<span id="cb164-2"><a href="lubridate.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">OlsonNames</span>())</span>
+<span id="cb164-3"><a href="lubridate.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 593</span></span>
+<span id="cb164-4"><a href="lubridate.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">OlsonNames</span>())</span>
+<span id="cb164-5"><a href="lubridate.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Africa/Abidjan&quot;     &quot;Africa/Accra&quot;       &quot;Africa/Addis_Ababa&quot;</span></span>
+<span id="cb164-6"><a href="lubridate.html#cb164-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] &quot;Africa/Algiers&quot;     &quot;Africa/Asmara&quot;      &quot;Africa/Asmera&quot;</span></span></code></pre></div>
+<p>Podemos nos perguntar que horas são em outra parte do globo ou fazer as conversões facilmente no <em>lubridate</em>.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="lubridate.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Que horas são em...</span></span>
+<span id="cb165-2"><a href="lubridate.html#cb165-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">with_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;America/Sao_Paulo&quot;</span>)</span>
+<span id="cb165-3"><a href="lubridate.html#cb165-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 09:31:00 -03&quot;</span></span>
+<span id="cb165-4"><a href="lubridate.html#cb165-4" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">with_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;GMT&quot;</span>)</span>
+<span id="cb165-5"><a href="lubridate.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 12:31:00 GMT&quot;</span></span>
+<span id="cb165-6"><a href="lubridate.html#cb165-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">with_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;Europe/Berlin&quot;</span>)</span>
+<span id="cb165-7"><a href="lubridate.html#cb165-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 14:31:00 CEST&quot;</span></span>
+<span id="cb165-8"><a href="lubridate.html#cb165-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-9"><a href="lubridate.html#cb165-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Altera o fuso sem mudar a hora</span></span>
+<span id="cb165-10"><a href="lubridate.html#cb165-10" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">force_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;GMT&quot;</span>)</span>
+<span id="cb165-11"><a href="lubridate.html#cb165-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-12 14:31:00 GMT&quot;</span></span></code></pre></div>
+<p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de <span class="citation"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-wickham2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. First edition. Sebastopol, CA: O’Reilly.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="forcats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="purrr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/05_tidyverse.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/05_tidyverse.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
