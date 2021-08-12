@@ -1,6 +1,10 @@
 set.seed(1014)
 
 knitr::opts_chunk$set(
+  bookdown.clean_book = TRUE,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
   comment = "#>",
   collapse = TRUE,
   cache = TRUE,
