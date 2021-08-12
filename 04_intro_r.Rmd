@@ -526,7 +526,7 @@ load("meus_objs.RData")
 
 Ou ainda podemos salvar apenas um objeto com a extensão `.rds`. Para isso, usamos as funções `saveRDS()` e `readRDS()`, para exportar e importar esses dados, respectivamente.
 
-```{r eval=FALSE}
+```{r eval=FALSE, cache = FALSE}
 ## Salvar um objeto para um arquivo
 saveRDS(obj, file = "meu_obj.rds")
 
@@ -567,7 +567,7 @@ Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, 
 
 Esquecer de completar uma função ou bloco de códigos é algo bem comum. Geralmente esquecemos de fechar aspas `""` ou parênteses `()`, mas felizmente geralmente o R nos informa isso, indicando um símbolo de `+`.
 
-```{r error=TRUE}
+```{r error=TRUE, cache = FALSE}
 sum(1, 2
   +
 ```
@@ -576,7 +576,7 @@ sum(1, 2
 
 Outro erro bastante comum é esquecer de acrescentar a vírgula `,` para separar argumentos dentro de uma função, principalmente se estamos compondo várias funções acopladas, i.e., uma função dentro da outra.
 
-```{r error=TRUE}
+```{r error=TRUE, cache = FALSE}
 sum(1 2)
 ```
 
@@ -584,7 +584,7 @@ sum(1 2)
 
 Pode parecer simples, mas esse é de longe o erro mais comum que pessoas iniciantes comentem. Quando temos um longo script, é de se esperar que tenhamos atribuído diversos objetos e em algum momento atribuímos um nome do qual não lembramos. Dessa forma, quando chamamos o objeto ele não existe e devolve um erro. Entretanto, esse tipo de erro pode ser facilmente identificado, como o exemplo abaixo.
 
-```{r error=TRUE}
+```{r error=TRUE, cache = FALSE}
 obj <- 10
 OBJ
 ```
@@ -593,7 +593,7 @@ OBJ
 
 Esse também é um erro recorrente, mesmo para usuários mais experientes. Em scripts de análises complexas, que requerem vários pacotes, geralmente esquecemos de um ou outro... A melhor forma de evitar esse tipo de erro é listar os pacotes que vamos precisar usar logo no início do script.
 
-```{r error=TRUE}
+```{r error=TRUE, cache = FALSE}
 ## Carregar dados
 data(dune)
 
@@ -618,7 +618,7 @@ decostand(dune[1:6, 1:6], "hell")
 
 Esse erro não é tão comum, mas pode ser incômodo às vezes. Algumas funções possuem nomes no padrão "Camel Case", i.e., com letras maiúsculas para no meio do nome da função. Isso às vezes pode confundir, ou ainda, as funções podem ou não ser separadas com `.`, como `row.names()` e `rownames()`. No Capítulo de *tidyverse* \@ref(cap5), veremos que houve uma tentativa de padronização nos nomes das funções para "Snake Case", i.e, todas as funções possuem letras minúsculas, com palavras separadas por *underscore* `_`.
 
-```{r error=TRUE}
+```{r error=TRUE, cache = FALSE}
 ## Soma das colunas
 colsums(dune)
 ```

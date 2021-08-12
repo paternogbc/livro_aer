@@ -1,0 +1,1438 @@
+# Tidyverse {#cap5}
+
+## Pré-requisitos do capítulo {-}
+
+Pacotes que serão utilizados nesse capítulo.
+
+```{r eval=FALSE}
+## Pacotes
+library(tidyverse)
+library(here)
+library(ggplot2)
+library(purrr)
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(readr)
+library(forcats)
+library(palmerpenguins)
+library(lubridate)
+```
+
+## Contextualização
+
+Como todo idioma, a linguagem R vem passando por transformações nos últimos anos. Grande parte dessas mudanças estão dentro do paradigma da Ciência de Dados (*Data Science*), uma nova área de conhecimento que vem se moldando a partir do desenvolvimento da sociedade em torno da era digital e da grande quantidade de dados gerados e disponíveis pela internet, de onde advém os pilares das inovações tecnológicas: *Big Data*, *Machine Learning* e *Internet of Things*. A grande necessidade de computação para desenvolver esse novo paradigma colocaram o R e o python como as principais linguagens de programação frente a esses novos desafios. Apesar de não serem as únicas ferramentas utilizadas para esse propósito, elas rapidamente se tornaram uma das melhores escolhas, dado vários fatores como: são de código-aberto e gratuitas, possuírem grandes comunidades contribuidoras, serem linguagens de interpretação (orientadas a objeto) e relativamente fáceis de serem aprendidas e aplicadas.
+
+Essas mudanças e expanções na utilização da linguagem R para a Ciência de Dados começaram a ser implementadas principalmente devido a um pesquisador: [Hadley Wickham](http://hadley.nz/), que iniciou sua contribuição à comunidade R com o desenvolvimento do já consagrado pacote `ggplot2` [@wickham2016] para a composição de gráficos no R (ver mais no Capítulo \@ref(cap6)), baseado na gramática de gráficos [@wilkinson2005]. Depois disso, Wickham dedicou-se ao desenvolvimento do pensamento de uma nova abordagem dentro da manipulação de dados, denominada **Tidy Data** (Dados organizados) [@wickham2014], na qual focou na limpeza e organização de dados. A ideia postula que dados estão `tidy` quando: 1) variáveis estão nas colunas, 2) observações estão nas linhas e 3) valores estão nas células, sendo que para esse último, não deve haver mais de um valor por célula (Figura \@ref(fig:fig-r-dados-tidy)).
+
+A partir dessas ideias, o [*tidyverse*](https://www.tidyverse.org/) foi operacionalizado no R como uma coleção de pacotes que atuam no workflow comum da ciência de dados: importação, manipulação, exploração, visualização, análise e comunicação de dados e análises [@tidyverse2019] (Figura \@ref(fig:fig-r-tidyverse)). O principal objetivo do *tidyverse* é aproximar a linguagem para melhorar a interação entre ser humano e computador sobre dados, de modo que os pacotes compartilham uma filosofia de design de alto nível e gramática, além da estrutura de dados de baixo nível [@tidyverse2019]. As principais leituras sobre o tema no R são os artigos [@wickham2014] e [@tidyverse2019], e o livro [@wickham2017], disponível on-line neste [link](https://r4ds.had.co.nz/), além do [site](https://www.tidyverse.org/) que possui muito mais informações.
+
+```{r fig-r-tidyverse, echo=FALSE, fig.cap="Modelo das ferramentas necessárias em um projeto típico de ciência de dados: importar, organizar, entender (transformar, visualizar, modelar) e comunicar, envolto à essas ferramentas está a programação. Adaptado de: @wickham2017."}
+knitr::include_graphics("img/cap05_fig01.png")
+```
+
+## *tidyverse*
+
+Uma vez instalado e carregado, o pacote `tidyverse` disponibiliza um conjunto de ferramentas através de vários pacotes. Esses pacotes compartilham uma filosofia de design, gramática e estruturas. Podemos entender o *tidyverse* como um "dialeto novo" para a linguagem R, onde *tidy* quer dizer organizado, arrumado, ordenado, e *verse* é universo. A seguir, listamos os principais pacotes e suas especificações.
+
+-   [`readr`](https://readr.tidyverse.org/): importa dados tabulares (e.g. `.csv` e `.txt`)
+-   [`tibble`](https://tibble.tidyverse.org/): implementa a classe `tibble`
+-   [`tidyr`](https://tidyr.tidyverse.org/): transformação de dados para `tidy`
+  - [`dplyr`](https://dplyr.tidyverse.org/): manipulação de dados
+-   [`stringr`](https://github.com/tidyverse/stringr): manipulação de caracteres
+-   [`forcats`](https://github.com/hadley/forcats): manipulação de fatores
+-   [`ggplot2`](https://ggplot2.tidyverse.org/): possibilita a visualização de dados
+-   [`purrr`](https://purrr.tidyverse.org/): disponibiliza ferramentas para programação funcional
+
+Além dos pacotes principais, fazemos também menção a outros pacotes que estão dentro dessa abordagem e que trataremos ainda neste capítulo, em outro momento do livro, ou que você leitor(a) deve se familiarizar. Alguns pacotes compõem o tidyverse outros são mais gerais, entretanto, todos estão envolvidos de alguma forma com Data Science.
+
+-   [`readxl`](https://readxl.tidyverse.org/) e [`writexl`](https://cran.r-project.org/package=writexl): importa e exporta dados tabulares (.xlsx)
+-   [`janitor`](http://sfirke.github.io/janitor/): examinar e limpar dados sujos
+-   [`DBI`](https://github.com/rstats-db/DBI): interface de banco de dados R
+-   [`haven`](https://github.com/tidyverse/haven): importa e exporta dados do SPSS, Stata e SAS
+-   [`httr`](https://github.com/r-lib/httr): ferramentas para trabalhar com URLs e HTTP
+-   [`rvest`](https://github.com/tidyverse/rvest): coletar facilmente (raspe) páginas da web
+-   [`xml2`](https://github.com/r-lib/xml2): trabalhar com arquivos XML
+-   [`jsonlite`](https://github.com/jeroen/jsonlite): um analisador e gerador JSON simples e robusto para R
+-   [`hms`](https://github.com/rstats-db/hms): hora do dia
+-   [`lubridate`](https://github.com/tidyverse/lubridate): facilita o tratamento de datas
+-   [`magrittr`](https://magrittr.tidyverse.org/): provê os operadores pipe (`%>%`, `%$%`, `%<>%`)
+-   [`glue`](https://github.com/tidyverse/glue): facilita combinar dados e caracteres
+-   [`rmarkdown`](https://rmarkdown.rstudio.com/): cria documentos de análise dinâmica que combinam código, saída renderizada (como figuras) e texto
+-   [`knitr`](https://yihui.org/knitr/): projetado para ser um mecanismo transparente para geração de relatórios dinâmicos com R
+-   [`shiny`](https://shiny.rstudio.com/): framework de aplicativo Web para R
+-   [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/): painéis interativos para R
+-   [`here`](https://here.r-lib.org/): facilita a definição de diretórios
+-   [`usethis`](https://usethis.r-lib.org/): automatiza tarefas durante a configuração e desenvolvimento de projetos (Git, 'GitHub' e Projetos RStudio)
+-   [`data.table`](https://rdatatable.gitlab.io/data.table/): pacote que fornece uma versão de alto desempenho do `data.frame` (importar, manipular e expotar)
+-   [`reticulate`](https://rstudio.github.io/reticulate/): pacote que fornece ferramentas para integrar Python e R
+-   [`sparklyr`](https://spark.rstudio.com/): interface R para Apache Spark
+-   [`broom`](https://github.com/tidymodels/broom): converte objetos estatísticos em tibbles organizados
+-   [`modelr`](https://github.com/tidyverse/modelr): funções de modelagem que funcionam com o pipe
+-   [`tidymodels`](https://www.tidymodels.org/): coleção de pacotes para modelagem e aprendizado de máquina usando os princípios do tidyverse
+
+Destacamos a grande expansão e aplicabilidade dos pacotes [rmarkdown](https://rmarkdown.rstudio.com/), [knitr](https://yihui.org/knitr/) e [bookdown](https://bookdown.org/), que permitiram a escrita desse livro usando essas ferramentas.
+
+Para instalar os principais pacotes que integram o *tidyverse* podemos instalar o pacote `tidyverse`.
+
+```{r eval=FALSE}
+## Instalar o pacote tidyverse
+install.packages("tidyverse")
+```
+
+Quando carregamos o pacote `tidyverse` podemos notar uma mensagem indicando quais pacotes foram carregados, suas respectivas versões e os conflitos com outros pacotes.
+
+```{r message=TRUE}
+## Carregar o pacote tidyverse
+library(tidyverse)
+```
+
+Podemos ainda listar todos os pacotes do *tidyverse* com a função `tidyverse::tidyverse_packages()`.
+
+```{r}
+## Listar todos os pacotes do tidyverse 
+tidyverse::tidyverse_packages()
+```
+
+Também podemos verificar se os pacotes estão atualizados, senão, podemos atualizá-los com a função `tidyverse::tidyverse_update()`.
+
+```{r}
+## Verificar e atualizar os pacotes do tidyverse 
+tidyverse::tidyverse_update(repos = "http://cran.us.r-project.org")
+```
+
+Apesar de podermos fazer a instalação e carregamento de todos os pacotes juntos, usando o pacote `tidyverse`, podemos instalar e carregar os pacotes individualmente.
+
+```{r eval=FALSE}
+## Instalar os pacotes do tidyverse individualmente
+install.packages(c("ggplot2", "purrr", "tibble", "dplyr", "tidyr", "stringr", 
+                   "readr", "forcats"), dependencies = TRUE)
+
+## Carregar os pacotes do tidyverse individualmente
+library(ggplot2)
+library(purrr)
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(readr)
+library(forcats)
+```
+
+Todas as funções dos pacotes tidyverse usam **fonte minúscula** e **`_` (*underscore*)** para separar os nomes internos das funções, seguindo a mesma sintaxe do python ("Snake Case"). Neste sentido de padronização, é importante destacar ainda que existe um guia próprio para que os scripts sigam a recomendação de padronização, o [The tidyverse style guide](https://style.tidyverse.org/), criado pelo Hadley Wickham. Para pessoas que desenvolvem existe o [Tidyverse design guide](https://design.tidyverse.org/) criado pelo *Tidyverse team*.
+
+```{r eval=FALSE}
+## Funções no formato snake case
+read_csv()
+read_xlsx()
+as_tibble()
+left_join()
+group_by()
+```
+
+Por fim, para evitar possíveis conflitos de funções com o mesmo nome entre pacotes, recomendamos fortemente o hábito de usar as funções precedidas do operador `::` e o respectivo pacote. Assim, garante-se que a função utilizada é referente ao pacote daquela função. Segue um exemplo com as funções apresentadas anteriormente.
+
+```{r eval=FALSE}
+## Funções seguidas de seus respectivos pacotes
+readr::read_csv()
+readxl::read_xlsx()
+tibble::as_tibble()
+dplyr::left_join()
+dplyr::group_by()
+```
+
+Seguindo essas ideias do novo paradigma da **Ciência de Dados**, outro conjunto de pacotes foi desenvolvido, chamado de [`tidymodels`](https://www.tidymodels.org/) que atuam no workflow da análise de dados em ciência de dados: separação e reamostragem, pré-processamento, ajuste de modelos e métricas de performasse de ajustes. Por razões de espaço e especificidade, não entraremos em detalhes desse pacote.
+
+Seguindo o workflow da Figura \@ref(fig:fig-r-tidyverse), iremos ver nos itens das próximas seções como esses passos são realizados com funções de cada pacote.
+
+## here
+
+Dentro do workflow do tidyverse, devemos sempre trabalhar com **Projetos do RStudio**. Junto com o projeto, também podemos fazer uso do pacote `here`. Ele permite construir caminhos para os arquivos do projeto de forma mais simples e com maior reprodutibilidade.
+
+Esse pacote cobre o ponto que discutimos no capítulo \@ref(cap4), dado que muitas vezes mudar o diretório com a função `setwd()` tende a ser demorado, principalmente quando se trata de um script em que várias pessoas estão trabalhando em diferentes computadores e sistemas operacionais. Além disso, ele elimina a questão da fragilidade dos scripts, pois geralmente um script está com os diretórios conectados exatamente a um lugar e a um momento. Por fim, ele também simplifica o trabalho com subdiretórios, facilitando importar ou exportar arquivos para subpastas.
+
+Seu uso é relativamente simples: uma vez criado e aberto o RStudio pelo Projeto do RStudio, o diretório automaticamente é definido para o diretório do projeto. Depois disso, podemos usar a função `here::here()` para definir os subdiretórios onde estão os dados. O exemplo da aplicação fica para a seção seguinte, quando iremos de fato importar um arquivo para o R. Logo abaixo, mostramos como instalar e carregar o pacote `here`.
+
+```{r eval=FALSE}
+## Instalar
+install.packages("here")
+
+## Carregar
+library(here)
+```
+
+## readr, readxl e writexl
+
+Dado que possuímos um conjunto de dados e que geralmente esse conjunto de dados estará no formato tabular com umas das extensões: .csv, .txt ou .xlsx, usaremos o pacote `readr` ou `readxl` para importar esses dados para o R. Esses pacotes leem e escrevem grandes arquivos de forma mais rápida, além de fornecerem medidores de progresso de importação e exportação, e imprimir a informação dos modos das colunas quando faz a importação. Outro ponto bastante positivo é que também classificam automaticamente o modo dos dados de cada coluna, i.e., se uma coluna possui dados numéricos ou apenas texto, essa informação será considerada para classificar o modo da coluna toda. A classe do objeto atribuído quando lido por esses pacotes é automaticamente um `tibble`, que veremos melhor na seção seguinte. Todas as funções deste pacote são listadas na [página de referência](https://readr.tidyverse.org/reference/index.html) do pacote.
+
+Usamos as funções `readr::read_csv()` e `readr::write_csv()` para importar e exportar arquivos .csv do R, respectivamente. Para dados com a extensão .txt, podemos utilizar as funções `readr::read_tsv()` ou ainda `readr::read_delim()`. Para arquivos tabulares com a extensão .xlsx, temos de instalar e carregar dois pacotes adicionais: `readxl` e `writexl`, dos quais usaremos as funções `readxl::read_excel()`, `readxl::read_xlsx()` ou `readxl::read_xls()` para importar dados, atentado para o fato de podermos indicar a aba com os dados com o argumento `sheet`, e `writexl::write_xlsx()` para exportar.
+
+```{r eval=FALSE}
+## Instalar
+install.packages("writexl")
+
+## Carregar
+library(readxl)
+library(writexl)
+```
+
+Se o arquivo .csv foi criado com separador de decimais sendo `.` e separador de colunas sendo `,`, usamos as funções normalmente. Caso seja criado com separador de decimais sendo `,` e separador de colunas sendo `;`, usaríamos a função `readr::read_csv2()` para importar e `readr::write_csv2()` para exportar nesse formato, que é mais comum no Brasil.
+
+Para exemplificar como essas funções funcionam, vamos importar novamente os dados de comunidades de anfíbios da Mata Atlântica (Atlantic Amphibians, @vancine2018), que fizemos o download no Capítulo \@ref(cap4). Estamos usando a função `readr::read_csv()`, indicando os diretórios com a função `here::here()`, e a classe do arquivo é `tibble`. Devemos atentar para o argumento `locale = readr::locale(encoding = "latin1"`, que selecionamos aqui como `latin1` para corrigir um erro do autor dos dados que publicou esse data paper com erros...
+
+```{r message=TRUE}
+## Importar locais
+tidy_anfibios_locais <- readr::read_csv(
+  here::here("dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
+  locale = readr::locale(encoding = "latin1")
+  )
+```
+
+Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote `ecodados`.
+
+```{r eval=FALSE}
+## Importar os dados pelo pacote ecodados
+data(tidy_anfibios_locais)
+head(tidy_anfibios_locais)
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [11 Data import](https://r4ds.had.co.nz/data-import.html) de @wickham2017.
+
+## tibble
+
+O `tibble` (`tbl_sf`) é uma versão aprimorada do data frame (`data.frame`). Ele é a classe aconselhada para que as funções do tidyverse funcionem melhor sobre conjuntos de dados tabulares importados para o R.
+
+Geralmente, quando utilizamos funções tidyverse para importar dados para o R, é essa classe que os dados adquirem depois de importados. Além da importação de dados, podemos criar um tibble no R usando a função `tibble::tibble()`, semelhante ao uso da função `data.frame()`. Podemos ainda converter um `data.frame` para um `tibble` usando a função `tibble::as_tibble()`. Entretanto, em alguns momentos precisaremos da classe `data.frame` para algumas funções específicas, e podemos converter um `tibble` para `data.frame` usando a função `tibble::as_data_frame()`.
+
+Existem duas diferenças principais no uso do `tibble` e do `data.frame`: impressão e subconjunto. Objetos da classe `tibbles` possuem um método de impressão que mostra a contagem do número de linhas e colunas, e apenas as primeiras 10 linhas e todas as colunas que cabem na tela no console, além dos modos ou tipos das colunas. Dessa forma, cada coluna ou variável, pode ser do modo numbers (`int` ou `dbl`), character (`chr`), logical (`lgl`), factor (`fctr`), date + time (`dttm`) e date (`date`), além de outras [inúmeras possibilidades](https://tibble.tidyverse.org/articles/types.html).
+
+Todas as funções deste pacote são listadas na [página de referência](https://tibble.tidyverse.org/reference/index.html) do pacote.
+
+```{r}
+## Tibble - impressão
+tidy_anfibios_locais
+```
+
+Para o subconjunto, como vimos anteriormente, para selecionar colunas e linhas de objetos bidimensionais podemos utilizar os operadores `[]` ou `[[]]`, associado com números separados por vírgulas ou o nome da coluna entre aspas, e o operador `$` para extrair uma coluna pelo seu nome. Comparando um `data.frame` a um `tibble`, o último é mais rígido na seleção das colunas: eles nunca fazem correspondência parcial e gerarão um aviso se a coluna que você está tentando acessar não existir.
+
+```{r, error=TRUE, warning=TRUE}
+## Tibble - subconjunto
+tidy_anfibios_locais$ref
+```
+
+Por fim, podemos "espiar" os dados utilizando a função `tibble::glimpse()` para ter uma noção geral de número de linhas, colunas, e conteúdo de todas as colunas. Essa é função *tidyverse* da função R Base `str()`.
+
+```{r}
+## Espiar os dados
+tibble::glimpse(tidy_anfibios_locais[, 1:10])
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [10 Tibbles](https://r4ds.had.co.nz/tibbles.html) de @wickham2017.
+
+## magrittr (pipe - %>%)
+
+O operador pipe `%>%` permite o encadeamento de várias funções, eliminando a necessidade de criar objetos para armazenar resultados intermediários. Dessa forma, pipes são uma ferramenta poderosa para expressar uma sequência de múltiplas operações.
+
+O operador pipe `%>%` vem do pacote `magrittr`, entretanto, todos os pacotes no tidyverse automaticamente tornam o pipe disponível. Essa função torna os códigos em R mais simples, pois realizamos múltiplas operações em uma única linha. Ele captura o resultado de uma declaração e o torna a entrada da próxima declaração, então podemos pensar como "EM SEGUIDA FAÇA" ao final de cada linha de código.
+
+Todas as funções deste pacote são listadas na [página de referência](https://maggritr.tidyverse.org/reference/index.html) do pacote.
+
+A principal vantagem do uso dos pipes é facilitar o **debuging** (achar erros) nos códigos, porque seu uso torna a linguagem R mais próxima do que falamos e pensamos, uma vez que evita o uso de funções dentro de funções (funções compostas, lembra-se do fog e gof? Evitamos eles aqui também...).
+
+Digitar `%>%` é um pouco chato, dessa forma, existe um atalho para sua inserção nos scripts: `Ctrl + Shift + M`.
+
+Para deixar esse tópico menos estranho a quem possa ver essa operação pela primeira vez, vamos fazer alguns exemplos.
+
+```{r}
+## Base R - sem pipe
+sqrt(sum(1:100))
+
+## Tidyverse - com pipe
+1:100 %>% 
+  sum() %>% 
+  sqrt()
+```
+
+Essas operações ainda estão simples, vamos torná-las mais complexas com várias funções compostas. É nesses casos que a propriedade organizacional do uso do pipe emerge: podemos facilmente ver o encadeamento de operações, onde cada função é disposta numa linha. Apenas um adendo: a função `set.seed()` que fixa a amostragem de funções que geram valores aleatório, como é o caso da função `rpois()`.
+
+```{r}
+## Fixar amostragem
+set.seed(42)
+
+## Base R - sem pipe
+ve <- sum(sqrt(sort(log10(rpois(100, 10)))))
+ve
+
+## Fixar amostragem
+set.seed(42)
+
+## Tidyverse - com pipe
+ve <- rpois(100, 10) %>% 
+  log10() %>%
+  sort() %>% 
+  sqrt() %>% 
+  sum()
+ve
+```
+
+O uso do pipe vai se tornar especialmente útil quando seguirmos para os pacotes das próximas duas seções: `tidyr` e `dplyr`. Com esses pacotes faremos operações em linhas e colunas de nossos dados tabulares, então podemos encadear uma série de funções para manipulação, limpeza e análise de dados.
+
+Há ainda três outras variações do pipe que podem ser úteis em alguns momentos, mas que para funcionar precisam que o pacote`magrittr` seja carregado:
+
+- `%T>%`: retorna o lado esquerdo em vez do lado direito
+- `%$%`: "explode" as variáveis em um quadro de dados
+- `%<>%`: permite atribuição usando pipes
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [18 Pipes](https://r4ds.had.co.nz/pipes.html) de @wickham2017.
+
+**Observação**: A partir da versão do R 4.1+ (18/05/2021), o operador pipe se tornou nativo do R. Entretanto, o operador foi atualizado para `|>`, podendo ser inserido com o mesmo atalho `Ctrl + Shift + M`, mas necessitando uma mudança de opção em `Tools > Global Options > Code > [x] Use native pipe operator, |> (requires R 4.1+)`, necessitando que o RStudio esteja numa versão igual ou superior a 1.4.17+.
+
+## tidyr
+
+Os conjuntos de dados `tidy` (organizados) são mais fáceis de manipular, modelar e visualizar. Um conjunto de dados está no formato `tidy` ou não, dependendo de como linhas, colunas e células são combinadas com observações, variáveis e valores. Nos dados tidy, as variáveis estão nas colunas, observações estão nas linhas e valores estão nas células, sendo que para esse último, não deve haver mais de um valor por célula (Figura \@ref(fig:fig-r-dados-tidy)).
+
+1. Cada variável em uma coluna
+2. Cada observação em uma linha
+3. Cada valor como uma célula
+
+```{r fig-r-dados-tidy, echo=FALSE, fig.cap="As três regras que tornam um conjunto de dados *tidy*. Adaptado de: @wickham2017."}
+knitr::include_graphics("img/cap05_fig02.png")
+```
+
+Todas as funções deste pacote são listadas na [página de referência](https://tidyr.tidyverse.org/reference/index.html) do pacote.
+
+Para realizar diversas transformações nos dados, a fim de ajustá-los ao formato `tidy` existe uma série de funções, para: unir colunas, separar colunas, lidar com valores faltantes (`NA`), transformar a base de dados de formato longo para largo (ou vice-e-versa), além de outras [funções específicas](https://tidyr.tidyverse.org/reference/index.html).
+
+- `unite()`: junta dados de múltiplas colunas em uma coluna
+- `separate()`: separa caracteres em múltiplas colunas
+- `separate_rows()`: separa caracteres em múltiplas colunas e linhas
+- `drop_na()`: retira linhas com `NA` do conjunto de dados
+- `replace_na()`: substitui `NA` do conjunto de dados
+- `pivot_wider()`: transforma um conjunto de dados longo (*long*) para largo (*wide*)
+- `pivot_longer()`: transforma um conjunto de dados largo (*wide*) para longo (*long*)
+
+### palmerpenguins
+
+Para exemplificar o funcionamento dessas funções, usaremos os dados de medidas de pinguins chamados [*palmerpenguins*](https://allisonhorst.github.io/palmerpenguins), disponíveis no pacote `palmerpenguins`.
+
+```{r eval=FALSE}
+## Instalar o pacote
+install.packages("palmerpenguins")
+```
+
+Esses dados foram coletados e disponibilizados pela [Dra. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) e pela [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), membro da Long Term Ecological Research Network.
+
+O pacote `palmerpenguins` contém dois conjuntos de dados. Um é chamado de `penguins`, e é uma versão simplificada dos dados brutos. O segundo conjunto de dados é `penguins_raw` e contém todas as variáveis e nomes originais baixados. Ambos os conjuntos de dados contêm dados para 344 pinguins, de três espécies diferentes, coletados em três ilhas no arquipélago de Palmer, na Antártica. Destacamos também a versão traduzida desses dados para o português, disponível no pacote [`dados`](https://cienciadedatos.github.io/dados/).
+
+Vamos utilizar principalmente o conjunto de dados `penguins_raw`, que é a versão dos dados brutos.
+
+```{r}
+## Carregar o pacote palmerpenguins
+library(palmerpenguins)
+
+## Ajuda dos dados
+?penguins
+?penguins_raw
+```
+
+### glimpse()
+
+Primeiramente, vamos observar os dados e utilizar a função `tibble::glimpse()` para ter uma noção geral.
+
+```{r}
+## Visualizar os dados
+penguins_raw
+
+## Espiar os dados
+dplyr::glimpse(penguins_raw)
+```
+
+### unite()
+
+Primeiramente, vamos exemplificar como juntar e separar colunas. Vamos utilizar a função `tidyr::unite()` para unir as colunas. Há diversos parâmetros para alterar como essa função funciona, entretanto, é importante destacar três deles: `col` nome da coluna que vai receber as colunas unidas, `sep` indicando o caracter separador das colunas unidas, e `remove` para uma resposta lógica se as colunas unidas são removidas ou não. Vamos unir as colunas "Region" e "Island" na nova coluna "region_island".
+
+```{r}
+## Unir colunas
+penguins_raw_unir <- tidyr::unite(data = penguins_raw, 
+                                  col = "region_island",
+                                  Region:Island, 
+                                  sep = ", ",
+                                  remove = FALSE)
+head(penguins_raw_unir[, c("Region", "Island", "region_island")])
+```
+
+### separate()
+
+De forma contrária, podemos utilizar as funções `tidyr::separate()` e `tidyr::separate_rows()` para separar elementos de uma coluna em mais colunas. Respectivamente, a primeira função separa uma coluna em novas colunas conforme a separação, e a segunda função separa uma coluna, distribuindo os elementos também nas linhas. Novamente, há diversos parâmetros para mudar o comportamento dessas funções, mas destacaremos aqui quatro deles: `col` coluna a ser separada, `into` os nomes das novas colunas, `sep` indicando o caractere separador das colunas, e `remove` para uma resposta lógica se as colunas separadas são removidas ou não. Vamos separar a coluna "Stage" nas colunas "stage" e "egg_stage".
+
+```{r}
+## Separar colunas
+penguins_raw_separar <- tidyr::separate(data = penguins_raw, 
+                                        col = Stage,
+                                        into = c("stage", "egg_stage"), 
+                                        sep = ", ",
+                                        remove = FALSE)
+head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
+
+## Separar colunas em novas linhas
+penguins_raw_separar_linhas <- tidyr::separate_rows(data = penguins_raw,
+                                                    Stage,
+                                                    sep = ", ")
+head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species", 
+                                     "Region", "Island", "Stage")])
+```
+
+### drop_na() e replace_na()
+
+*Valores faltantes* (`NA`) é um tipo especial de elemento que discutimos no Capítulo \@ref(cap4), e são relativamente comuns em conjuntos de dados. Em Base R, vimos algumas formas de lidar com esse tipo de elemento. No formato `tidyverse`, existem várias formas de lidar com eles, mas aqui focaremos nas funções `tidyr::drop_na()` e `tidyr::replace_na()`, para retirar linhas e substitui-los, respectivamente.
+
+```{r, cache=TRUE}
+## Remover todas as linhas com NAs
+penguins_raw_todas_na <- tidyr::drop_na(data = penguins_raw)
+head(penguins_raw_todas_na)
+
+## Remover linhas de colunas específicas com NAs
+penguins_raw_colunas_na <- tidyr::drop_na(data = penguins_raw,
+                                          any_of("Comments"))
+head(penguins_raw_colunas_na[, "Comments"])
+
+## Substituir NAs por outro valor
+penguins_raw_subs_na <- tidyr::replace_na(data = penguins_raw,
+                                          list(Comments = "Unknown"))
+head(penguins_raw_subs_na[, "Comments"])
+```
+
+### pivot_longer() e pivot_wider()
+
+Por fim, trataremos da pivotagem ou remodelagem de dados. Veremos como mudar o formato do nosso conjunto de dados de longo (*long*) para largo (*wide*) e vice-versa. Essa é uma operação semelhante à "Tabela Dinâmica" das planilhas eletrônicas. Consiste em usar uma coluna para distribuir seus valores em outras colunas, de modo que os valores dos elementos são preenchidos corretamente, reduzindo assim o número de linhas. Essa operação é bastante comum em Ecologia de Comunidades, quando queremos transformar uma lista de espécies em uma matriz de comunidades, com várias espécies nas colunas. Para realizar essa operação, usarmos a função `tidyr::pivot_wider()`. Dos diversos parâmetros que podem compor essa função, dois deles são fundamentais: `names_from` que indica a coluna de onde os nomes serão usados e `values_from` a coluna com os valores.
+
+```{r}
+## Selecionar colunas
+penguins_raw_sel_col <- penguins_raw[, c(2, 3, 13)]
+head(penguins_raw_sel_col)
+
+## Pivotar para largo
+penguins_raw_pivot_wider <- tidyr::pivot_wider(data = penguins_raw_sel_col, 
+                                               names_from = Species, 
+                                               values_from = `Body Mass (g)`)
+head(penguins_raw_pivot_wider)
+```
+
+De modo oposto, podemos partir de um conjunto de dados largo (*wide*), ou seja, com várias colunas, e queremos que essas colunas preencham uma única coluna, e que os valores antes espalhados nessas várias colunas sejam adicionados um embaixo do outro, numa única coluna. Para essa operação, podemos utilizar a função `tidyr::pivot_longer()`. Novamente, dos diversos parâmetros que podem compor essa função, três deles são fundamentais: `cols` indicando as colunas que serão usadas para serem pivotadas, `names_to` que indica a coluna de onde os nomes serão usados e `values_to` a coluna com os valores.
+
+```{r}
+## Selecionar colunas
+penguins_raw_sel_col <- penguins_raw[, c(2, 3, 10:13)]
+head(penguins_raw_sel_col)
+
+## Pivotar para largo
+penguins_raw_pivot_longer <- tidyr::pivot_longer(data = penguins_raw_sel_col, 
+                                                 cols = `Culmen Length (mm)`:`Body Mass (g)`,
+                                                 names_to = "medidas", 
+                                                 values_to = "valores")
+head(penguins_raw_pivot_longer)
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [12 Tidy data](https://r4ds.had.co.nz/tidy-data.html) de @wickham2017.
+
+## dplyr
+
+O `dplyr` é um pacote que facilita a manipulação de dados, com uma gramática simples e flexível (por exemplo, como filtragem, reordenamento, seleção, entre outras). Ele foi construído com o intuito de obter uma forma mais rápida e expressiva de manipular dados tabulares. O `tibble` é a versão de data frame mais conveniente para se usar com pacote `dplyr`.
+
+Todas as funções deste pacote são listadas na [página de referência](https://dplyr.tidyverse.org/reference/index.html) do pacote.
+
+### Gramática
+
+Sua gramática simples contém funções verbais para manipulação de dados, baseada em:
+
+-   Verbos: `mutate()`, `select()`, `filter()`, `arrange()`, `summarise()`, `slice()`, `rename()`, etc.
+-   Replicação: `across()`, `if_any()`, `if_all()`, `where()`, `starts_with()`, `ends_with()`, `contains()`, etc.
+-   Agrupamento: `group_by()` e `ungroup()`
+-   Junções: `inner_join()`, `full_join()`, `left_join()`, `right_join()`, etc.
+-   Combinações: `bind_rows()` e `bind_cols()`
+-   Resumos, contagem e seleção: `n()`, `n_distinct()`, `first()`, `last()`, `nth()`, etc.
+
+Existe uma série de funções para realizar a manipulação dos dados, com diversas finalidades: manipulação de uma tabela, manipulação de duas tabelas, replicação, agrupamento, funções de vetores, além de muitas outras [funções específicas](https://dplyr.tidyverse.org/reference/index.html).
+
+-   `relocate()`: muda a ordem das colunas
+-   `rename()`: muda o nome das colunas
+-   `select()`: seleciona colunas pelo nome ou posição
+-   `pull()`: seleciona uma coluna como vetor
+-   `mutate()`: adiciona novas colunas ou resultados em colunas existentes
+-   `arrange()`: reordena as linhas com base nos valores de colunas
+-   `filter()`: seleciona linhas com base em valores de colunas
+-   `slice()`: seleciona linhas de diferente formas
+-   `distinct()`: remove linhas com valores repetidos com base nos valores de colunas
+-   `count()`: conta observações para um grupo
+-   `group_by()`: agrupa linhas pelos valores das colunas
+-   `summarise()`: resume os dados através de funções considerando valores das colunas
+-   `*_join()`: funções que juntam dados de duas tabelas através de uma coluna chave
+
+### Sintaxe
+
+As funções do `dplyr` podem seguir uma mesma sintaxe: o `tibble` será sempre o primeiro argumento dessas funções, seguido de um pipe e pelo nome da função que irá fazer a manipulação nesses dados. Isso permite o encadeamento de várias operações consecutivas mantendo a estrutura do dado original e acrescentando mudanças num encadeamento lógico.
+
+Sendo assim, as funções verbais não precisam modificar necessariamente o tibble original, sendo que as operações de manipulações podem e devem ser atribuídas a um novo objeto.
+
+```{r eval=FALSE}
+## Sintaxe
+tb_dplyr <- tb %>% 
+  funcao_verbal1(argumento1, argumento2, ...) %>% 
+  funcao_verbal2(argumento1, argumento2, ...) %>% 
+  funcao_verbal3(argumento1, argumento2, ...)
+```
+
+Além de `data.frames` e `tibbles`, a manipulação pelo formato `dplyr` torna o trabalho com outros formatos de classes e dados acessíveis e eficientes como `data.table`, SQL e Apache Spark, para os quais existem pacotes específicos.
+
+-   [*dtplyr*](https://dtplyr.tidyverse.org/): manipular conjuntos de dados `data.table`
+-   [*dbplyr*](https://dbplyr.tidyverse.org/): manipular conjuntos de dados SQL
+-   [*sparklyr*](https://spark.rstudio.com/): manipular conjuntos de dados no Apache Spark
+
+### palmerpenguins
+
+Para nossos exemplos, vamos utilizar novamente os dados de pinguins [*palmerpenguins*](https://allisonhorst.github.io/palmerpenguins). Esses dados estão disponíveis no pacote `palmerpenguins`. Vamos utilizar principalmente o conjunto de dados `penguins`, que é a versão simplificada dos dados brutos `penguins_raw`.
+
+```{r}
+## Carrega o pacote palmerpenguins
+library(palmerpenguins)
+```
+
+### relocate()
+
+Primeiramente, vamos reordenar as colunas com a função `dplyr::relocate()`, onde simplesmente listamos as colunas que queremos mudar de posição e para onde elas devem ir. Para esse último passo há dois argumentos: `.before` que indica qual a coluna que as colunas realocadas devem se mover antes, e o argumento `.after` indicando onde devem se mover depois. Ambos podem ser informados com os nomes ou posições dessas colunas com números.
+
+```{r}
+## Reordenar colunas - nome
+penguins_relocate_col <- penguins %>% 
+ dplyr::relocate(sex, year, .after = island)
+head(penguins_relocate_col)
+
+## Reordenar colunas - posição
+penguins_relocate_ncol <- penguins %>% 
+  dplyr::relocate(sex, year, .after = 2)
+head(penguins_relocate_ncol)
+```
+
+### rename()
+
+Podemos ainda renomear colunas facilmente com a função `dplyr::rename()`, onde primeiramente informamos o nome que queremos que a coluna tenha, seguido do operador `=` e a coluna do nosso dado ("nova_coluna = antiga_coluna"). Também podemos utilizar a função `dplyr::rename_with()`, que faz a mudança do nome em múltiplas colunas, que pode depender ou não de resultados booleanos.
+
+```{r}
+## Renomear as colunas
+penguins_rename <- penguins %>% 
+  dplyr::rename(bill_length = bill_length_mm,
+                bill_depth = bill_depth_mm,
+                flipper_length = flipper_length_mm,
+                body_mass = body_mass_g)
+head(penguins_rename)
+
+## mudar o nome de todas as colunas
+penguins_rename_with <- penguins %>% 
+  dplyr::rename_with(toupper)
+head(penguins_rename_with)
+```
+
+### select()
+
+Outra operação bastante usual dentro da manipulação de dados tabulares é a seleção de colunas. Podemos fazer essa operação com a função `dplyr::select()`, que seleciona colunas pelo nome ou pela sua posição. Aqui há uma série de possibilidades de seleção de colunas, desde utilizar operadores como `:` para selecionar intervalos de colunas, `!` para tomar o complemento (todas menos as listadas), além de funções como `dplyr::starts_with()`, `dplyr::ends_with()`, `dplyr::contains()` para procurar colunas com um padrão de texto.
+
+```{r}
+## Selecionar colunas por posição
+penguins_select_position <- penguins %>% 
+  dplyr::select(3:6)
+head(penguins_select_position)
+
+## Selecionar colunas por nomes
+penguins_select_names <- penguins %>% 
+  dplyr::select(bill_length_mm:body_mass_g)
+head(penguins_select_names)
+
+## Selecionar colunas por padrão
+penguins_select_contains <- penguins %>% 
+  dplyr::select(contains("_mm"))
+head(penguins_select_contains)
+```
+
+### pull()
+
+Quando usamos a função `dplyr::select()`, mesmo que para uma coluna, o retorno é sempre um `tibble`. Caso precisemos que essa coluna se torne um vetor dentro do encadeamento dos `pipes`, usamos a função `dplyr::pull()` que extrai uma única coluna como vetor.
+
+```{r}
+## Coluna como vetor
+penguins_select_pull <- penguins %>% 
+  dplyr::pull(bill_length_mm)
+head(penguins_select_pull, 15)
+```
+
+### mutate()
+
+Uma das operações mais úteis dentre as operações para colunas é adicionar ou atualizar os valores de colunas. Para essa operação, usaremos a função `dplyr::mutate()`. Podemos ainda usar os argumentos `.before` e `.after` para indicar onde a nova coluna deve ficar, além do parâmetro `.keep` com diversas possibilidades de manter colunas depois de usar a função `dplyr::mutate()`. Por fim, é fundamental destacar o uso das funções de replicação: `dplyr::across()`, `dplyr::if_any()` e `dplyr::if_all()`, para os quais a função fará alterações em múltiplas colunas de uma vez, dependendo de resultados booleanos.
+
+```{r}
+## Adicionar colunas
+penguins_mutate <- penguins %>% 
+  dplyr::mutate(body_mass_kg = body_mass_g/1e3, .before = sex)
+head(penguins_mutate)
+
+## Modificar várias colunas
+penguins_mutate_across <- penguins %>% 
+  dplyr::mutate(across(where(is.factor), as.character))
+head(penguins_mutate_across)
+```
+
+### arrange()
+
+Além de operações em colunas, podemos fazer operações em linhas. Vamos começar com a reordenação das linhas com base nos valores das colunas. Para essa operação, usamos a função `dplyr::arrange()`. Podemos reordenar por uma ou mais colunas de forma crescente ou de forma decrescente usando a função `desc()` ou o operador `-`. Da mesma forma que na função `dplyr::mutate()`, podemos usar as funções de replicação para ordenar as linhas para várias colunas de uma vez, dependendo de resultados booleanos.
+
+```{r}
+## Reordenar linhas - crescente
+penguins_arrange <- penguins %>% 
+  dplyr::arrange(body_mass_g)
+head(penguins_arrange)
+
+## Reordenar linhas - decrescente
+penguins_arrange_desc <- penguins %>% 
+  dplyr::arrange(desc(body_mass_g))
+head(penguins_arrange_desc)
+
+## Reordenar linhas - decrescente
+penguins_arrange_desc_m <- penguins %>% 
+  dplyr::arrange(-body_mass_g)
+head(penguins_arrange_desc_m)
+
+## Reordenar linhas - multiplas colunas
+penguins_arrange_across <- penguins %>% 
+  dplyr::arrange(across(where(is.numeric)))
+head(penguins_arrange_across)
+```
+
+### filter()
+
+Uma das principais e mais usuais operações que podemos realizar em linhas é a seleção de linhas através do filtro por valores de uma ou mais colunas, utilizando a função `dplyr::filter()`. Para realizar os filtros utilizaremos grande parte dos operadores relacionais e lógicos que listamos na Tabela \@ref(tab:tab-operadores), especialmente os lógicos para combinações de filtros em mais de uma coluna. Além desses operadores, podemos utilizar a função `is.na()` para filtros em elementos faltantes, e as funções `dplyr::between()` e `dplyr::near()` para filtros entre valores, e para valores próximos com certa tolerância, respectivamente. Por fim, podemos usar as funções de replicação para filtro das linhas para mais de uma coluna, dependendo de resultados booleanos.
+
+```{r}
+## Filtrar linhas
+penguins_filter <- penguins %>% 
+  dplyr::filter(species == "Adelie")
+head(penguins_filter)
+
+## Filtrar linhas
+penguins_filter_two <- penguins %>% 
+  dplyr::filter(species == "Adelie" & sex == "female")
+head(penguins_filter_two)
+
+## Filtrar linhas
+penguins_filter_in <- penguins %>% 
+  dplyr::filter(species %in% c("Adelie", "Gentoo"),
+                sex == "female")
+head(penguins_filter_in)
+
+## Filtrar linhas - NA
+penguins_filter_na <- penguins %>% 
+  dplyr::filter(!is.na(sex) == TRUE)
+head(penguins_filter_na)
+
+## Filtrar linhas - intervalos
+penguins_filter_between <- penguins %>% 
+  dplyr::filter(between(body_mass_g, 3000, 4000))
+head(penguins_filter_between)
+
+## Filtrar linhas por várias colunas
+penguins_filter_if <- penguins %>% 
+  dplyr::filter(if_all(where(is.integer), ~ . > 200))
+head(penguins_filter_if)
+```
+
+### slice()
+
+Além da seleção de linhas por filtros, podemos fazer a seleção das linhas por intervalos, indicando quais linhas desejamos, usando a função `dplyr::slice()`, e informando o argumento `n` para o número da linha ou intervalo das linhas. Essa função possui variações no sufixo muito interessantes: `dplyr::slice_head()` e `dplyr::slice_tail()` seleciona as primeiras e últimas linhas, `dplyr::slice_min()` e `dplyr::slice_max()` seleciona linhas com os maiores e menores valores de uma coluna, e `dplyr::slice_sample()` seleciona linhas aleatoriamente.
+
+```{r}
+## Seleciona linhas
+penguins_slice <- penguins %>% 
+  dplyr::slice(n = c(1, 3, 300:n()))
+head(penguins_slice)
+
+## Seleciona linhas - head
+penguins_slice_head <- penguins %>% 
+  dplyr::slice_head(n = 5)
+head(penguins_slice_head)
+
+## Seleciona linhas - max
+penguins_slice_max <- penguins %>% 
+  dplyr::slice_max(body_mass_g, n = 5)
+head(penguins_slice_max)
+
+## Seleciona linhas - sample
+penguins_slice_sample <- penguins %>% 
+  dplyr::slice_sample(n = 30)
+head(penguins_slice_sample)
+```
+
+### distinct()
+
+A última operação que apresentaremos para linhas é a retirada de linhas com valores repetidos com base nos valores de colunas, utilizando a função `dplyr::distinct()`. Essa função por padrão retorna apenas a coluna utilizada para retirar as linhas com valores repetidos, sendo necessário acrescentar o argumento `.keep_all = TRUE` para retornar todas as colunas. Por fim, podemos usar as funções de replicação para retirar linhas com valores repetidos para mais de uma coluna, dependendo de resultados booleanos.
+
+```{r}
+## Retirar linhas com valores repetidos
+penguins_distinct <- penguins %>% 
+  dplyr::distinct(body_mass_g)
+head(penguins_distinct)
+
+## Retirar linhas com valores repetidos - manter as outras colunas
+penguins_distinct_keep_all <- penguins %>% 
+  dplyr::distinct(body_mass_g, .keep_all = TRUE)
+head(penguins_distinct_keep_all)
+
+## Retirar linhas com valores repetidos para várias colunas
+penguins_distinct_keep_all_across <- penguins %>% 
+  dplyr::distinct(across(where(is.integer)), .keep_all = TRUE)
+head(penguins_distinct_keep_all_across)
+```
+
+### count()
+
+Agora entraremos no assunto de resumo das observações. Podemos fazer contagens resumos dos nossos dados, utilizando para isso a função `dplyr::count()`. Essa função contará valores de uma ou mais colunas, geralmente para variáveis categóricas, semelhante à função Base R `table()`, mas num contexto *tidyverse*.
+
+```{r}
+## Contagens de valores para uma coluna
+penguins_count <- penguins %>% 
+  dplyr::count(species)
+penguins_count
+
+## Contagens de valores para mais de uma coluna
+penguins_count_two <- penguins %>% 
+  dplyr::count(species, island)
+penguins_count_two
+```
+
+### group_by()
+
+Uma grande parte das operações feitas nos dados são realizadas em grupos definidos por valores de colunas ou variáveis categóricas. A função `dplyr::group_by()` transforma um `tibble` em um `tibble` agrupado, onde as operações são realizadas "por grupo". Essa função é utilizada geralmente junto com a função `dplyr::summarise()`, que veremos logo em seguida. O agrupamento não altera a aparência dos dados (além de informar como estão agrupados). A função `dplyr::ungroup()` remove o agrupamento. Podemos ainda usar funções de replicação para fazer os agrupamentos para mais de uma coluna, dependendo de resultados booleanos.
+
+```{r}
+## Agrupamento
+penguins_group_by <- penguins %>% 
+  dplyr::group_by(species)
+head(penguins_group_by)
+
+## Agrupamento de várias colunas
+penguins_group_by_across <- penguins %>% 
+  dplyr::group_by(across(where(is.factor)))
+head(penguins_group_by_across)
+```
+
+### summarise()
+
+Como dissemos, muitas vezes queremos resumir nossos dados, principalmente para ter uma noção geral das variáveis (colunas) ou mesmo começar a análise exploratória resumindo variáveis contínuas por grupos de variáveis categóricas. Dessa forma, ao utilizar a função `dplyr::summarise()` teremos um novo `tibble` com os dados resumidos, que é a agregação ou resumo dos dados através de funções. Da mesma forma que outras funções, podemos usar funções de replicação para resumir valores para mais de uma coluna, dependendo de resultados booleanos.
+
+```{r}
+## Resumo
+penguins_summarise <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+            body_mass_g_sd = sd(body_mass_g, na.rm = TRUE))
+penguins_summarise
+
+## Resumo para várias colunas
+penguins_summarise_across <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+penguins_summarise_across
+```
+
+### bind_rows() e bind_cols()
+
+Muitas vezes teremos de combinar duas ou mais tabelas de dados. Podemos utilizar as funções Base R `rbind()` e `cbind()`, como vimos. Entretanto, pode ser interessante avançar para as funções `dplyr::bind_rows()` e `dplyr::bind_cols()` do formato *tidyverse*. A ideia é muito semelhante: a primeira função combina dados por linhas e a segunda por colunas. Entretanto, há vantagens no uso dessas funções, como a identificação das linhas pelo argumento `.id` para a primeira função, e a conferência do nome das colunas pelo argumento `.name_repair` para a segunda função.
+
+```{r}
+## Selecionar as linhas para dois tibbles
+penguins_01 <- dplyr::slice(penguins, 1:5)
+penguins_02 <- dplyr::slice(penguins, 51:55)
+
+## Combinar as linhas
+penguins_bind_rows <- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")
+head(penguins_bind_rows)
+
+## Combinar as colunas
+penguins_bind_cols <- dplyr::bind_cols(penguins_01, penguins_02, .name_repair = "unique")
+head(penguins_bind_cols)
+```
+
+### *_join()
+
+Finalmente, veremos o último conjunto de funções do pacote `dplyr`, a junção de tabelas. Nessa operação, fazemos a combinação de pares de conjunto de dados tabulares por uma ou mais colunas chaves. Há dois tipos de junções: junção de mutação e junção de filtragem. A junção de mutação primeiro combina as observações por suas chaves e, em seguida, copia as variáveis (colunas) de uma tabela para a outra. É fundamental destacar a importância da coluna chave, que é indicada pelo argumento `by`. Essa coluna deve conter elementos que sejam comuns às duas tabelas para que haja a combinação dos elementos.
+
+Existem quatro tipos de junções, que são realizadas pelas funções: `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::full_join()` e `dplyr::right_join()`, e que podem ser representadas na Figura \@ref(fig:fig-r-join).
+
+```{r fig-r-join, echo=FALSE, fig.cap="Diferentes tipos de joins, representados com um diagrama de Venn. Adaptado de: @wickham2017."}
+knitr::include_graphics("img/cap05_fig03.png")
+```
+
+Considerando a nomenclatura de duas tabelas de dados por `x` e `y`, temos:
+
+-   `inner_join(x, y)`: mantém apenas as observações em `x` e em `y`
+-   `left_join(x, y)`: mantém todas as observações em `x`
+-   `right_join(x, y)`: mantém todas as observações em `y`
+-   `full_join(x, y)`: mantém todas as observações em `x` e em `y`
+
+Aqui, vamos demostrar apenas a função `dplyr::left_join()`, combinando um `tibble` de coordenadas geográficas das ilhas com o conjunto de dados do penguins.
+
+```{r}
+## Adicionar uma coluna chave de ids
+penguin_islands <- tibble(
+  island = c("Torgersen", "Biscoe", "Dream", "Alpha"),
+  longitude = c(-64.083333, -63.775636, -64.233333, -63),
+  latitude = c(-64.766667, -64.818569, -64.733333, -64.316667))
+  
+## Junção - left
+penguins_left_join <- dplyr::left_join(penguins, penguin_islands, by = "island")
+head(penguins_left_join)
+```
+
+Já a junção de filtragem combina as observações da mesma maneira que as junções de mutação, mas afetam as observações (linhas), não as variáveis (colunas). Existem dois tipos.
+
+-   `semi_join(x, y)`: mantém todas as observações em `x` que têm uma correspondência em `y`
+-   `anti_join(x, y)`: elimina todas as observações em `x` que têm uma correspondência em `y`
+
+*Semi-joins* são úteis para corresponder tabelas de resumo filtradas de volta às linhas originais, removendo as linhas que não estavam antes do join. *Anti-joins* são úteis para diagnosticar incompatibilidades de junção, por exemplo, ao verificar os elementos que não combinam entre duas tabelas de dados.
+
+### Operações de conjuntos e comparação de dados
+
+Temos ainda operações de conjuntos e comparação de dados.
+
+-   `union(x, y)`: retorna todas as linhas que aparecem em `x`, `y` ou mais dos conjuntos de dados
+-   `interesect(x, y)`: retorna apenas as linhas que aparecem em `x` e em `y`
+-   `setdiff(x, y)`: retorna as linhas que aparecem `x`, mas não em `y`
+-   `setequal(x, y)`: retorna se `x` e `y` são iguais e quais suas diferenças
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [13 Relational data](https://r4ds.had.co.nz/relational-data.html) de @wickham2017.
+
+## stringr
+
+O pacote `stringr` fornece um conjunto de funções para a manipulação de caracteres ou strings. O pacote concentra-se nas funções de manipulação mais importantes e comumente usadas. Para funções mais específicas, recomenda-se usar o pacote `stringi`, que fornece um conjunto mais abrangente de funções. As funções do `stringr` podem ser agrupadas em algumas operações para tarefas específicas como correspondência de padrões, retirar e acrescentar espaços em branco, mudar maiúsculas e minúsculas, além de outras operações.
+
+Todas as funções deste pacote são listadas na [página de referência](https://stringr.tidyverse.org/reference/index.html) do pacote.
+
+Demonstraremos algumas funções para algumas operações mais comuns, utilizando um vetor de um elemento, com o string "penguins".
+
+Podemos explorar o comprimento de strings com a função `stringr::str_length()`.
+
+```{r}
+## Comprimento
+stringr::str_length(string = "penguins")
+```
+
+Extrair um string por sua posição usando a função `stringr::str_sub()` ou por um padrão com `stringr::str_extract()`.
+
+```{r}
+## Extrair pela posição
+stringr::str_sub(string = "penguins", end = 3)
+
+## Extrair por padrão
+stringr::str_extract(string = "penguins", pattern = "p")
+```
+
+Substituir strings por outros strings com `stringr::str_replace()`.
+
+```{r}
+## Substituir
+stringr::str_replace(string = "penguins", pattern = "i", replacement = "y")
+```
+
+Separar strings por um padrão com a função `stringr::str_split()`.
+
+```{r}
+## Separar
+stringr::str_split(string = "p-e-n-g-u-i-n-s", pattern = "-", simplify = TRUE)
+```
+
+Inserir espaços em brancos pela esquerda, direita ou ambos com a função `stringr::str_pad()`.
+
+```{r}
+## Inserir espacos em branco
+stringr::str_pad(string = "penguins", width = 10, side = "left")
+stringr::str_pad(string = "penguins", width = 10, side = "right")
+stringr::str_pad(string = "penguins", width = 10, side = "both")
+```
+
+Também podemos remover espaços em branco da esquerda, direita ou ambos, utilizando `stringr::str_trim()`.
+
+```{r}
+## Remover espacos em branco
+stringr::str_trim(string = " penguins ", side = "left")
+stringr::str_trim(string = " penguins ", side = "right")
+stringr::str_trim(string = " penguins ", side = "both")
+```
+
+Podemos também alterar minúsculas e maiúsculas em diferentes posições do string, com várias funções.
+
+```{r}
+## Alterar minúsculas e maiúsculas
+stringr::str_to_lower(string = "Penguins")
+stringr::str_to_upper(string = "penguins")
+stringr::str_to_sentence(string = "penGuins")
+stringr::str_to_title(string = "penGuins")
+```
+
+Podemos ainda ordenar os elementos de um vetor por ordem alfabética de forma crescente ou decrescente, usando `stringr::str_sort()`.
+
+```{r}
+## Ordenar
+stringr::str_sort(x = letters)
+stringr::str_sort(x = letters, dec = TRUE)
+```
+
+Podemos ainda utilizar essas funções em complemento com o pacote `dplyr`, para alterar os strings de colunas ou nome das colunas.
+
+```{r}
+## Alterar valores das colunas
+penguins_stringr_valores <- penguins %>% 
+  dplyr::mutate(species = stringr::str_to_lower(species))
+
+## Alterar nome das colunas
+penguins_stringr_nomes <- penguins %>% 
+  dplyr::rename_with(stringr::str_to_title)
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [14 Strings](https://r4ds.had.co.nz/strings.html) de @wickham2017.
+
+## forcats
+
+O pacote `forcats` fornece um conjunto de ferramentas úteis para facilitar a manipulação de fatores. Como dito anteriormente, usamos fatores geralmente quando temos dados categóricos, que são variáveis que possuem um conjunto de valores fixos e conhecidos. As funções são utilizadas principalmente para: mudar a ordem dos níveis, mudar os valores dos níveis, adicionar e remover níveis, combinar múltiplos níveis, além de outras operações.
+
+Todas as funções deste pacote são listadas na [página de referência](https://forcats.tidyverse.org/reference/index.html) do pacote.
+
+Vamos utilizar ainda os dados penguins e penguins_raw para exemplificar o uso do pacote `forcats`.
+
+```{r}
+## Carregar o pacote palmerpenguins
+library(palmerpenguins)
+```
+
+Primeiramente, vamos converter dados de string para fator, utilizando a função `forcats::as_factor()`.
+
+```{r}
+## String
+forcats::as_factor(penguins_raw$Species) %>% head()
+```
+
+Podemos facilmente mudar o nome dos níveis utilizando a função `forcats::fct_recode()`.
+
+```{r}
+## Mudar o nome dos níveis
+forcats::fct_recode(penguins$species, a = "Adelie", c = "Chinstrap", g = "Gentoo") %>% head()
+```
+
+Para inverter os níveis, usamos a função `forcats::fct_rev()`.
+
+```{r}
+## Inverter os níveis
+forcats::fct_rev(penguins$species) %>% head()
+```
+
+Uma operação muito comum com fatores é mudar a ordem dos níveis. Quando precisamos especificar a ordem dos níveis, podemos fazer essa operação manualmente com a função `forcats::fct_relevel()`.
+
+```{r}
+## Especificar a ordem dos níveis
+forcats::fct_relevel(penguins$species, "Chinstrap", "Gentoo", "Adelie") %>% head()
+```
+
+Como vimos, a reordenação dos níveis pode ser feita manualmente. Mas existem outras formas automáticas de reordenação seguindo algumas regras, para as quais existem funções específicas.
+
+-   `forcats::fct_inorder()`: pela ordem em que aparecem pela primeira vez
+-   `forcats::fct_infreq()`: por número de observações com cada nível (decrescente, i.e., o maior primeiro)
+-   `forcats::fct_inseq()`: pelo valor numérico do nível
+
+```{r}
+## Níveis pela ordem em que aparecem
+forcats::fct_inorder(penguins$species) %>% head()
+
+## Ordem (decrescente) de frequência
+forcats::fct_infreq(penguins$species) %>% head()
+```
+
+Por fim, podemos fazer a agregação de níveis raros em um nível utilizando a função `forcats::fct_lump()`.
+
+```{r}
+## Agregação de níveis raros em um nível
+forcats::fct_lump(penguins$species) %>% head()
+```
+
+Podemos ainda utilizar essas funções em complemento com o pacote `dplyr` para fazer manipulações de fatores nas colunas de `tibbles`.
+
+```{r}
+## Transformar várias colunas em fator
+penguins_raw_multi_factor <- penguins_raw %>% 
+  dplyr::mutate(across(where(is.character), forcats::as_factor))
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [15 Factors](https://r4ds.had.co.nz/factors.html) de @wickham2017.
+
+## lubridate
+
+O pacote `lubridate` fornece um conjunto de funções para a manipulação de dados de data e horário. Dessa forma, esse pacote facilita a manipulação dessa classe de dado no R, pois geralmente esses dados não são intuitivos e mudam dependendo do tipo de objeto de data e horário. Além disso, os métodos que usam datas e horários devem levar em consideração fusos horários, anos bissextos, horários de verão, além de outras particularidades. Existem diversas funções nesse pacote, sendo as mesmas focadas em: transformações de data/horário, componentes, arredondamentos, durações, períodos, intervalos, além de muitas outras funções específicas.
+
+Todas as funções deste pacote são listadas na [página de referência](https://lubridate.tidyverse.org/reference/index.html) do pacote.
+
+Apesar de estar inserido no escopo do *tidyverse*, este pacote não é carregado com os demais, requisitando seu carregamento solo.
+
+```{r}
+## Carregar
+library(lubridate)
+```
+
+Existem três tipos de dados data/horário:
+
+- **Data**: tempo em dias, meses e anos `<date>`
+- **Horário**: tempo dentro de um dia `<time>`
+- **Data-horário**: tempo em um instante (data mais tempo) `<dttm>`
+
+Para trabalhar exclusivamente com horários, podemos utilizar o pacote `hms`.
+
+É fundamental também destacar que algumas letras terão um significado temporal, sendo abreviações de diferentes períodos em inglês: **y**ear (ano), **m**onth (mês), **w**eak (semana), **d**ay (dia), **h**our (hora), **m**inute (minuto), e **s**econd (segundo).
+
+Para acessar a informação da data e horários atuais podemos utilizar as funções `lubridate::today()` e `lubridate::now()`.
+
+```{r}
+## Extrair a data nesse instante
+lubridate::today()
+
+## Extrair a data e tempo nesse instante
+lubridate::now()
+```
+
+Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.
+
+-   De um string
+-   De componentes individuais de data e horário
+-   De um objeto de data/horário existente
+
+Os dados de data/horário geralmente estão no formato de strings. Podemos transformar os dados especificando a ordem dos seus componentes, ou seja, a ordem em que ano, mês e dia aparecem no string, usando as letras `y` (ano), `m` (mês) e `d` (dia) na mesma ordem, por exemplo, `lubridate::dmy()`.
+
+```{r}
+## Strings e números para datas
+lubridate::dmy("03-03-2021")
+```
+
+Essas funções também aceitam números sem aspas, além de serem muito versáteis e funcionarem em outros diversos formatos.
+
+```{r, eval=FALSE}
+## Strings e números para datas
+lubridate::dmy("03-Mar-2021")
+lubridate::dmy(03032021)
+lubridate::dmy("03032021")
+lubridate::dmy("03/03/2021")
+lubridate::dmy("03.03.2021")
+```
+
+Além da data, podemos especificar horários atrelados a essas datas. Para criar uma data com horário adicionamos um underscore (`_`) e os `h` (hora), `m` (minuto) e `s` (segundo) ao nome da função, além do argumento `tz` para especificar o *fuso horário* (tema tratado mais adiante nessa seção).
+
+```{r}
+## Especificar horários e fuso horário
+lubridate::dmy_h("03-03-2021 13")
+lubridate::dmy_hm("03-03-2021 13:32")
+lubridate::dmy_hms("03-03-2021 13:32:01")
+lubridate::dmy_hms("03-03-2021 13:32:01", tz = "America/Sao_Paulo")
+```
+
+Podemos ainda ter componentes individuais de data/horário em múltiplas colunas. Para realizar essa transformação, podemos usar as funções `lubridate::make_date()` e `lubridate::make_datetime()`.
+
+```{r}
+## Dados com componentes individuais
+dados <- tibble::tibble(
+  ano = c(2021, 2021, 2021),
+  mes = c(1, 2, 3),
+  dia = c(12, 20, 31),
+  hora = c(2, 14, 18), 
+  minuto = c(2, 44, 55))
+
+## Data de componentes individuais
+dados %>% 
+  dplyr::mutate(data = lubridate::make_datetime(ano, mes, dia, hora, minuto))
+```
+
+Por fim, podemo criar datas modificando entre data/horário e data, utilizando as funções `lubridate::as_datetime()` e `lubridate::as_date()`.
+
+```{r}
+## Data para data-horário
+lubridate::as_datetime(today())
+
+## Data-horário para data
+lubridate::as_date(now())
+```
+
+Uma vez que entendemos como podemos criar dados de data/horário, podemos explorar funções para acessar e definir componentes individuais. Para essa tarefa existe uma grande quantidade de funções para acessar de partes específicas de datas e horários.
+
+-   `year()`: acessa o ano
+-   `month()`: acessa o mês
+-   `month()`: acessa o dia
+-   `yday()`: acessa o dia do ano
+-   `mday()`: acessa o dia do mês
+-   `wday()`: acessa o dia da semana
+-   `hour()`: acessa as horas
+-   `minute()`: acessa os minutos
+-   `second()`: acessa os segundos
+
+```{r}
+## Extrair
+lubridate::year(now())
+lubridate::month(now())
+lubridate::month(now(), label = TRUE)
+lubridate::day(now())
+lubridate::wday(now())
+lubridate::wday(now(), label = TRUE)
+lubridate::second(now())
+```
+
+Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.
+
+```{r}
+## Data
+data <- dmy_hms("04-03-2021 01:04:56")
+
+## Incluir
+lubridate::year(data) <- 2020
+lubridate::month(data) <- 01
+lubridate::hour(data) <- 13
+```
+
+Mais convenientemente, podemos utilizar a função `update()` para alterar vários valores de uma vez.
+
+```{r}
+## Incluir vários valores
+update(data, year = 2020, month = 1, mday = 1, hour = 1)
+```
+
+Muitas vezes precisamos fazer operações com datas, como a aritmética com datas: subtração, adição e divisão. Para tanto, é preciso entender três classes importantes que representam intervalos de tempo.
+
+-   **Durações**: representam um número exato de segundos
+-   **Períodos**: representam unidades humanas como semanas e meses
+-   **Intervalos**: representam um ponto inicial e final
+
+Quando fazemos uma subtração de datas, criamos um objeto da classe `difftime`. Essa classe pode ser um pouco complicada de trabalhar, então dentro do *lubridate*, podemos usar funções que convertem essa classe em duração, da classe `Duration`. As durações sempre registram o intervalo de tempo em segundos, com alguma unidade de tempo maior entre parênteses. Há uma série de funções para tratar dessa classe.
+
+-   `duration()`: cria data em duração
+-   `as.duration()`: converte datas em duração
+-   `dyears()`: duração de anos
+-   `dmonths()`: duração de meses
+-   `dweeks()`: duração de semanas
+-   `ddays()`: duração de dias
+-   `dhours()`: duração de horas
+-   `dminutes()`: duração de minutos
+-   `dseconds()`: duração de segundos
+
+```{r}
+## Subtração de datas
+tempo_estudando_r <- lubridate::today() - lubridate::dmy("30-11-2011")
+
+## Conversão para duração
+tempo_estudando_r_dur <- lubridate::as.duration(tempo_estudando_r)
+
+## Criando durações
+lubridate::duration(90, "seconds")
+lubridate::duration(1.5, "minutes")
+lubridate::duration(1, "days")
+
+## Transformação da duração
+lubridate::dseconds(100)
+lubridate::dminutes(100)
+lubridate::dhours(100)
+lubridate::ddays(100)
+lubridate::dweeks(100)
+lubridate::dyears(100)
+```
+
+Podemos ainda utilizar as durações para fazer operações aritméticas com datas como adição, subtração e multiplicação.
+
+```{r}
+## Somando durações a datas
+lubridate::today() + lubridate::ddays(1)
+
+## Subtraindo durações de datas
+lubridate::today() - lubridate::dyears(1)
+
+## Multiplicando durações
+2 * dyears(2)
+```
+
+Além das durações, podemos usar períodos, que são extensões de tempo não fixados em segundos como as durações, mas flexíveis, com o tempo em dias, semanas, meses ou anos, permitindo uma interpretação mais intuitiva das datas. Novamente, há uma série de funções para realizar essas operações.
+
+-   `period()`: cria data em período
+-   `as.period()`: converte datas em período
+-   `seconds()`: período em segundos
+-   `minutes()`: período em minutos
+-   `hours()`: período em horas
+-   `days()`: período em dias
+-   `weeks()`: período em semanas
+-   `months()`: período em meses
+-   `years()`: período em anos
+
+```{r}
+## Criando períodos
+period(c(90, 5), c("second", "minute"))
+period(c(3, 1, 2, 13, 1), c("second", "minute", "hour", "day", "week"))
+
+## Transformação de períodos
+lubridate::seconds(100)
+lubridate::minutes(100)
+lubridate::hours(100)
+lubridate::days(100)
+lubridate::weeks(100)
+lubridate::years(100)
+```
+
+Além disso, podemos fazer operações com os períodos, somando e subtraindo.
+
+```{r}
+## Somando datas
+lubridate::today() + lubridate::weeks(10)
+
+## Subtraindo datas
+lubridate::today() - lubridate::weeks(10)
+
+## Criando datas recorrentes
+lubridate::today() + lubridate::weeks(0:10)
+```
+
+Por fim, intervalos são períodos de tempo limitados por duas datas, possuindo uma duração com um ponto de partida, que o faz preciso para determinar uma duração. Intervalos são objetos da classe `Interval`. Da mesma forma que para duração e períodos, há uma série de funções para realizar essas operações.
+
+-   `interval()`: cria data em intervalo
+-   `%--%`: cria data em intervalo
+-   `as.interval()`: converte datas em intervalo
+-   `int_start()`: acessa ou atribui data inicial de um intervalo
+-   `int_end()`: acessa ou atribui data final de um intervalo
+-   `int_length()`: comprimento de um intervalo em segundos
+-   `int_flip()`: inverte a ordem da data de início e da data de término em um intervalo
+-   `int_shift()`: desloca as datas de início e término de um intervalo
+-   `int_aligns()`: testa se dois intervalos compartilham um ponto final
+-   `int_standardize()`: garante que todos os intervalos sejam positivos
+-   `int_diff()`: retorna os intervalos que ocorrem entre os elementos de data/horário
+-   `int_overlaps()`: testa se dois intervalos se sobrepõem
+-   `%within%`: testa se o primeiro intervalo está contido no segundo
+
+```{r}
+## Criando duas datas - início de estudos do R e nascimento do meu filho
+r_inicio <- lubridate::dmy("30-11-2011")
+filho_nascimento <- lubridate::dmy("26-09-2013")
+r_hoje <- lubridate::today()
+
+## Criando intervalos - interval
+r_intervalo <- lubridate::interval(r_inicio, r_hoje)
+
+## Criando intervalos - interval %--%
+filho_intervalo <- filho_nascimento %--% lubridate::today()
+
+## Operações com intervalos
+lubridate::int_start(r_intervalo)
+lubridate::int_end(r_intervalo)
+lubridate::int_length(r_intervalo)
+lubridate::int_flip(r_intervalo)
+lubridate::int_shift(r_intervalo, duration(days = 30))
+```
+
+Uma operação de destaque é verificar a sobreposição entre dois intervalos.
+
+```{r}
+## Verificar sobreposição - int_overlaps
+lubridate::int_overlaps(r_intervalo, filho_intervalo)
+
+## Verificar se intervalo está contido
+r_intervalo %within% filho_intervalo
+filho_intervalo %within% r_intervalo
+```
+
+Podemos ainda calcular quantos períodos existem dentro de um intervalo, utilizando as operações de `/` e `%/%`.
+
+```{r}
+## Períodos dentro de um intervalo - anos
+r_intervalo / lubridate::years()
+r_intervalo %/% lubridate::years()
+
+## Períodos dentro de um intervalo - dias e semandas
+filho_intervalo / lubridate::days()
+filho_intervalo / lubridate::weeks()
+```
+
+Ainda podemos fazer transformações dos dados para períodos e ter todas as unidades de data e tempo que o intervalo compreende.
+
+```{r}
+## Tempo total estudando R
+lubridate::as.period(r_intervalo)
+
+## Idade do meu filho
+lubridate::as.period(filho_intervalo)
+```
+
+Por fim, fusos horários tendem a ser um fator complicador quando precisamos analisar informações instantâneas de tempo (horário) de outras partes do planeta, ou mesmo fazer conversões dos horários. No `lubridate` há funções para ajudar nesse sentido. Para isso, podemos utilizar a função `lubridate::with_tz()`, e no argumento `tzone` informar o fuso horário para a transformação do horário.
+
+Podemos descobrir o fuso horário que o R está considerando com a função `Sys.timezone()`.
+
+```{r}
+## Fuso horário no R
+Sys.timezone()
+```
+
+No R há uma listagem dos nomes dos fusos horários que podemos utilizar no argumento `tzone` para diferentes fusos horários.
+
+```{r}
+## Verificar os fuso horários
+length(OlsonNames())
+head(OlsonNames())
+```
+
+Podemos nos perguntar que horas são em outra parte do globo ou fazer as conversões facilmente no *lubridate*.
+
+```{r}
+## Que horas são em...
+lubridate::with_tz(lubridate::now(), tzone = "America/Sao_Paulo")
+lubridate::with_tz(lubridate::now(), tzone = "GMT")
+lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
+
+## Altera o fuso sem mudar a hora
+lubridate::force_tz(lubridate::now(), tzone = "GMT")
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [16 Dates and times](https://r4ds.had.co.nz/dates-and-times.html) de @wickham2017.
+
+## purrr
+
+O pacote `purrr` implementa a *Programação Funcional* no R, fornecendo um conjunto completo e consistente de ferramentas para trabalhar com funções e vetores. A programação funcional é um assunto bastante extenso, sendo mais conhecido no R pela família de funções `purrr::map()`, que permite substituir muitos *loops for* por um código mais sucinto e fácil de ler. Não focaremos aqui nas outras funções.
+
+Todas as funções deste pacote são listadas na [página de referência](https://purrr.tidyverse.org/reference/index.html) do pacote.
+
+Um loop for pode ser entendido como uma iteração: um bloco de códigos é repetido mudando um contador de uma lista de possibilidades. Vamos exemplificar com uma iteração bem simples, onde imprimiremos no console os valores de 1 a 10, utilizando a função `for()`, um contador `i` em um vetor de dez números `1:10` que será iterado, no bloco de códigos definido entre `{}`, usando a função `print()` para imprimir os valores.
+
+A ideia é bastante simples: a função `for()` vai atribuir o primeiro valor da lista ao contador `i`, esse contador será utilizado em todo o bloco de códigos. Quando o bloco terminar, o segundo valor é atribuído ao contador `i` e entra no bloco de códigos, repetindo esse processo até que todos os elementos da lista tenham sido atribuídos ao contador.
+
+```{r}
+## Loop for
+for(i in 1:10){
+  print(i)
+}
+```
+
+Com essa ideia em mente, a programação funcional utilizando a função `purrr::map()`. O mesmo for ficaria dessa forma.
+
+```{r}
+## Loop for com map
+purrr::map(.x = 1:10, .f = print)
+```
+
+Nessa estrutura, temos:
+
+`map(.x, .f)`
+
+-   `.x`: um vetor, lista ou data frame\
+-   `.f`: uma função
+
+Num outro exemplo, aplicaremos a função `sum()` para somar os valores de vários elementos de uma lista.
+
+```{r}
+## Função map
+x <- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
+purrr::map(x, sum)
+```
+
+Há diferente tipos de retornos da família `purrr::map()`.
+
+-   `map()`: retorna uma lista
+-   `map_chr()`: retorna um vetor de strings
+-   `map_dbl()`: retorna um vetor numérico (double)
+-   `map_int()`: retorna um vetor numérico (integer)
+-   `map_lgl()`: retorna um vetor lógico
+-   `map_dfr()`: retorna um data frame (por linhas)
+-   `map_dfc()`: retorna um data frame (por colunas)
+
+```{r}
+## Variações da função map
+purrr::map_dbl(x, sum)
+purrr::map_chr(x, paste, collapse = " ")
+```
+
+Essas funcionalidades já eram conhecidas no Base R pelas funções da *família `apply`*: `apply()`, `lapply()`, `sapply()`, `vapply()`, `mapply()`, `rapply()` e `tapply()`. Essas funções formam a base de combinações mais complexas e ajudam a realizar operações com poucas linhas de código, para diferentes retornos.
+
+Temos ainda duas variantes da função `map()`: `purrr::map2()` e `purrr::pmap()`, para duas ou mais listas, respectivamente. Como vimos para a primeira função, existem várias variações do sufixo para modificar o retorno da função.
+
+```{r}
+## Listas
+x <- list(3, 5, 0, 1)
+y <- list(3, 5, 0, 1)
+z <- list(3, 5, 0, 1)
+
+## Função map2
+purrr::map2_dbl(x, y, prod)
+
+## Função pmap
+purrr::pmap_dbl(list(x, y, z), prod)
+```
+
+Essas funções podem ser usadas em conjunto para implementar rotinas de manipulação e análise de dados com poucas linhas de código, mas que não exploraremos em sua completude aqui. Listamos dois exemplos simples.
+
+```{r}
+## Resumo dos dados
+penguins %>% 
+  dplyr::select(where(is.numeric)) %>% 
+  tidyr::drop_na() %>% 
+  purrr::map_dbl(mean)
+```
+
+```{r}
+## Análise dos dados
+penguins %>%
+  dplyr::group_split(island, species) %>% 
+  purrr::map(~ lm(bill_depth_mm ~ bill_length_mm, data = .x)) %>% 
+  purrr::map(summary) %>% 
+  purrr::map("r.squared")
+```
+
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [21 Iteration](https://r4ds.had.co.nz/iteration.html) de @wickham2017.
+
+## Exercícios
+
+1.  Reescreva as operações abaixo utilizando pipes `%>%`.
+
+-   `log10(cumsum(1:100))`
+-   `sum(sqrt(abs(rnorm(100))))`
+-   `sum(sort(sample(1:10, 10000, rep = TRUE)))`
+
+2.  Use a função `download.file()` e `unzip()` para baixar e extrair o arquivo do data paper de médios e grandes mamíferos: [ATLANTIC MAMMALS](https://doi.org/10.1002/ecy.2785). Em seguinda, importe para o R, usando a função `readxl::read_excel()`.
+
+3.  Use a função `tibble::glimpse()` para ter uma noção geral dos dados importados no item anterior.
+
+4.  Compare os dados de penguins (*palmerpenguins::penguins_raw* e *palmerpenguins::penguins*). Monte uma série de funções dos pacotes *tidyr* e `dplyr` para fazer limpar os dados e fazer com que o primeiro dado seja igual ao segundo.
+
+5.  Usando os dados de penguins (*palmerpenguins::penguins*), calcule a correlação de Pearson entre comprimento e profundidade do bico para cada espécie e para todas as espécies. Compare os índices de correlação para exemplificar o Paradoxo de Simpsom.
+
+6.  Oficialmente a pandemia de COVID-19 começou no Brasil com o primeiro caso no dia 26 de fevereiro de 2020. Calcule quantos anos, meses, dias, semanas, horas, minutos e segundos se passou desde então. Calcule também quanto tempo se passou até você ser vacinado.
+
+## Para se aprofundar
+
+Listamos a seguir livros que recomendamos para seguir com sua aprendizagem em R e tidyverse.
+
+**Português**
+
+Damiani A, Milz B, Lente C, Falbel D, Correa F, Trecenti J, Luduvice N, Amorim W. 2021. Ciência de Dados em R. [<https://livro.curso-r.com/>]
+
+Faria PD, Parga JPFA. 2020. Introdução à Linguagem R: seus fundamentos e sua prática. [<https://www.researchgate.net/publication/345985082_Introducao_a_Linguagem_R_seus_fundamentos_e_sua_pratica>]
+
+Oliveira PF, Guerra S, Mcdonnell, R. 2018. Ciência de dados com R -- Introdução. IBPAD. [<https://cdr.ibpad.com.br/>]
+
+**Inglês**
+
+Grolemund G. 2017. The Essentials of Data Science: Knowledge Discovery Using R. Chapman and Hall/CRC.
+
+Holmes S, Huber W. 2019. Modern Statistics for Modern Biology. Cambridge University Press. [<https://www.huber.embl.de/msmb/>]
+
+Irizarry RA. 2019. Introduction to Data Science: Data Analysis and Prediction Algorithms with R. Chapman and Hall/CRC. [<https://rafalab.github.io/dsbook/>]
+
+Ismay C., Kim AY. 2019. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. Chapman and Hall/CRC. [<https://moderndive.com/>]
+
+Peng DP. 2020. R Programming for Data Science. [<https://bookdown.org/rdpeng/rprogdatascience/>]
+
+Wickham H, Grolemund G. 2017. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media. [<https://r4ds.had.co.nz/>]
+
+Wright C, Ellis S, Hicks S & Peng R D. 2021. Tidyverse Skills for Data Science in R. [<https://jhudatascience.org/tidyversecourse/>]
+
+Zumel N, Mount J. 2014. Practical Data Science with R Paperback. Manning.
