@@ -1,8 +1,7 @@
 bookdown::gitbook:
-  split_by: section
-  css: style.css
   config:
     toc:
+      collapse: subsection
       before: |
         <li><a href="./">Análises Ecológicas no R</a></li>
       after: |
@@ -10,5 +9,11 @@ bookdown::gitbook:
     sharing:
       github: yes
       facebook: yes
+  params:
+    run_page_ind: FALSE
+    
+
 bookdown::word_document2: default
+
 bookdown::epub_book: default
+
