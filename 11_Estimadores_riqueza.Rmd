@@ -1,0 +1,688 @@
+# Estimadores de riqueza {#cap11}
+
+### Pré-requisitos do capítulo {-}
+
+```{r}
+# Carregando todos os pacotes que serão utilizados neste capítulo.
+library(iNEXT)
+library(devtools)
+# remotes::install_github("paternogbc/ecodados")
+library(ecodados)
+library(ggplot2)
+library(vegan)
+library(nlme)
+library(dplyr)
+library(piecewiseSEM)
+
+## Dados necessários
+dados_coleta <- poca_anuros
+data("mite")
+data("mite.xy")
+coord <- mite.xy
+colnames(coord) <- c("long", "lat") # altera o nome das colunas
+data("mite.env")
+agua <- mite.env[,2] # seleciona a variável de interesse
+
+```
+
+## Aspectos teóricos
+
+Uma vez que determinar o número total de espécies numa área é praticamente impossível, principalmente em regiões com alta riqueza de espécies, os estimadores são úteis para extrapolar a riqueza observada e tentar estimar a riqueza total através de uma amostra incompleta de uma comunidade biológica [@walther2005]. Neste capítulo, serão considerados os estimadores não paramétricos que usam informações da frequência de espécies raras na comunidade [@gotelli2013]. Isto porque tanto os testes paramétricos que tentam determinar os parâmetros de uma curva usando o formato da curva de acumulação de espécies (e.g. equação logística, Michaelis-Menten), quanto os testes que usam a frequência do número de indivíduos para enquadrá-las em uma das distribuições de abundância das espécies (e.g. distribuições log-séries, log-normal) não funcionam muito bem com dados empíricos [@gotelli2013]. Para mais detalhes sobre os testes paramétricos veja [@magurran_biological_2011] e Colwell & Coddington [-@colwell1994].
+
+> ### Quatro características para um bom estimador de riqueza [@chazdon1998; @hortal2006]:
+>
+> -   Independência do tamanho da amostra (quantidade de esforço amostral realizado);
+> -   Insensibilidade a diferentes padrões de distribuições (e.g. agrupado, disperso ou aleatório);
+> -   Insensibilidade em relação à ordem das amostragens;
+> -   Insensibilidade à heterogeneidade entre as amostras usadas entre os estudos.
+
+## Estimadores baseados na abundância das espécies
+
+### CHAO 1 - [@chao1984; @chao1987]:
+
+Estimador simples do número absoluto de espécies em uma comunidade. É baseado no número de espécies raras dentro de uma amostra.
+
+> $$Chao_{1} = S_{obs} + \left(\frac{n-1}{n}\right)\frac{F_1(F_1-1)}{2(F_2+1)}$$
+
+onde:
+
+-   S~obs~ = número de espécies observadas na comunidade,
+
+-   *n* = número de amostras,
+
+-   F~1~ = número de espécies observadas com abundância de um indivíduo (espécies *singleton*),
+
+-   F~2~ = número de espécies observadas com abundância de dois indivíduos (espécies *doubletons*).
+
+O valor de Chao 1 é máximo quando todas as espécies menos uma são únicas (*singleton*). Neste caso, a riqueza estimada é aproximadamente o dobro da riqueza observada.
+
+#### Exemplo prático - Chao 1
+
+**Explicação dos dados**
+
+Usaremos os dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Pergunta:**
+
+> Quantas espécies a mais poderiam ser amostradas caso aumentássemos até o infinito o esforço amostral?
+
+**Predições**
+
+> -   O número de espécies estimadas é similar ao número de espécies observada;
+> -   O número de espécies estimadas é maior do que o número de espécies observada.
+
+**Variáveis**
+
+-   Variáveis resposta e preditora
+
+    -   data frame ou matriz com as abundâncias das espécies de anuros (variável resposta) registradas em 14 dias de amostragens (variável preditora) em um habitat reprodutivo.
+
+**Checklist**
+
+-   Verificar se a sua matriz está com as espécies nas colunas e as amostragens nas linhas.
+-   Verificar se os dados são de abundância e não de incidência (presença e ausência).
+
+**Análise**
+
+Vamos olhar os dados.
+
+```{r}
+head(poca_anuros)
+```
+
+Cálculo do estimador de riqueza - Chao 1.
+
+```{r}
+# Análise.
+est_chao1 <- estaccumR(dados_coleta, permutations = 100)
+summary(est_chao1, display = "chao")
+```
+
+Percebam que a função retorna: N = número de amostragens; Chao = valor médio da estimativa do índice de Chao; 2.5% e 97.5% = intervalo de confiança de 95%; e Std.Dev = desvio padrão. Essas dados são obtidos usando permutações, sem reposição, que alteram a ordem das amostragens. Neste exemplo, usamos 100 permutações.
+
+Vamos visualizar os resultados com intervalo de confiança de 95%.
+
+```{r}
+# Preparando os dados para fazer o gráfico.
+resultados <- summary(est_chao1, display = c("S", "chao"))
+res_chao <- cbind(resultados$chao[,1:4], resultados$S[,2:4])
+res_chao <- as.data.frame(res_chao)
+colnames(res_chao) <- c("Amostras", "Chao", "C_inferior", "C_superior", 
+                        "Riqueza", "R_inferior", "R_superior")
+
+# Comando para o gráfico.
+ggplot(res_chao, aes(y = Riqueza, x = Amostras)) +
+  geom_point(aes(y = Chao, x = Amostras + 0.1), size = 4, color = "darkorange", alpha = 0.7) +
+  geom_point(aes(y = Riqueza, x = Amostras), size = 4, color = "cyan4", alpha = 0.7) +
+  geom_line (aes(y = Chao, x = Amostras), color = "darkorange") +
+  geom_line (aes(y = Riqueza, x = Amostras), color = "cyan4") +
+  geom_linerange(aes(ymin = C_inferior, ymax = C_superior,
+                     x = Amostras + 0.1), color = "darkorange") +
+  geom_linerange(aes(ymin = R_inferior, ymax = R_superior,
+                     x = Amostras), color = "cyan4") +
+  ylab ("Riqueza estimada - Chao 1") +
+  xlab ("Número de amostras") +
+  scale_x_continuous(limits = c(1,15), breaks=seq(1,15,1)) +
+  geom_point(y= 7.5, x = 9, size = 4, color = "darkorange", alpha = 0.7) + 
+  geom_point(y= 5.9, x = 9, size = 4, color = "cyan4", alpha = 0.7) + 
+  geom_label( y = 7.5, x = 12, label = "Riqueza estimada - Chao 1") +
+  geom_label( y = 5.9, x = 11.3, label = "Riqueza observada") + 
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Com base no número de espécies raras (*singletons* e *doubletons*), o estimador Chao 1 indica a possibilidade de encontrarmos mais três espécies caso o esforço amostral fosse maior e não estima tendência de estabilização da curva em uma assíntota.
+
+### ACE - *Abundance-based Coverage Estimador* [@chao1992; @chao2000]:
+
+Este método trabalha com a abundância das espécies raras (i.e. abundância baixa). Entretanto, diferente do estimador anterior, esse método permite ao pesquisador determinar os limites para os quais uma espécie seja considerada rara. Em geral, são consideradas raras espécies com abundância entre 1 e 10 indivíduos. A riqueza estimada pode variar conforme se aumente ou diminua o limiar de abundância, e infelizmente não existem critérios biológicos definidos para a escolha do melhor intervalo.
+
+> $$ACE = S_{abund} + \frac{S_{rare}}{C_{ace}} + \frac{F_1}{C_{ace}}Y_{ace}^2$$
+
+onde:
+
+> $$Y_{ace}^2 = max \left[\frac{S_{rare}}{C_{ace}}\frac{\sum_{i=i}^{10}i(i-1)F1}{(N_{rare})({N_{rare} - 1)}}-1,0\right]$$
+
+> $$C_{ace} = 1 - \frac{F1}{N_{rare}}$$
+
+> $$N_{rare} = \sum_{i=1}^{10}iF_i$$
+
+#### Exemplo prático - ACE
+
+**Explicação dos dados**
+
+Usaremos os mesmos dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Análise**
+
+Cálculo do estimador de riqueza - ACE.
+
+```{r}
+# Análise.
+est_ace <- estaccumR(dados_coleta, permutations = 100)
+summary(est_ace, display = "ace")
+```
+
+Visualizar os resultados com intervalo de confiança de 95%.
+
+```{r}
+# Preparando os dados para fazer o gráfico.
+resultados_ace <- summary(est_ace, display = c("S", "ace"))
+res_ace <- cbind(resultados_ace$ace[,1:4], resultados_ace$S[,2:4])
+res_ace <- as.data.frame(res_ace)
+colnames(res_ace) <- c("Amostras", "ACE", "ACE_inferior", "ACE_superior", 
+                       "Riqueza", "R_inferior", "R_superior")
+
+# Gráfico.
+ggplot(res_ace, aes(y = Riqueza, x = Amostras)) +
+  geom_point(aes(y = ACE, x = Amostras + 0.1), size = 4, color = "darkorange", alpha = 0.7) +
+  geom_point(aes(y = Riqueza, x = Amostras), size = 4, color = "cyan4", alpha = 0.7) +
+  geom_line (aes(y = ACE, x = Amostras), color = "darkorange") +
+  geom_line (aes(y = Riqueza, x = Amostras), color = "cyan4") +
+  geom_linerange(aes(ymin = ACE_inferior, ymax = ACE_superior, x = Amostras + 0.1),
+ color = "darkorange") +
+  geom_linerange(aes(ymin = R_inferior, ymax = R_superior, x = Amostras), color = "cyan4") +
+  ylab ("Riqueza estimada - ACE") +
+  xlab ("Número de amostras") +
+  scale_x_continuous(limits = c(1,15), breaks=seq(1,15,1)) +
+  geom_point(y= 7.5, x = 9, size = 4, color = "darkorange", alpha = 0.7) + 
+  geom_point(y= 5.9, x = 9, size = 4, color = "cyan4", alpha = 0.7) + 
+  geom_label( y = 7.5, x = 11.7, label = "Riqueza estimada - ACE") +
+  geom_label( y = 5.9, x = 11.3, label = "Riqueza observada") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Com base no número de espécies raras (abundância menor que 10 indivíduos - *default*), o estimador ACE indica a possibilidade de encontrarmos mais sete espécies caso o esforço amostral fosse maior e não estimou tendência de estabilização da curva em uma assíntota.
+
+## Estimadores baseados na incidência das espécies
+
+### CHAO 2 - [@chao1987]:
+
+De acordo com [Anne Chao](http://chao.stat.nthu.edu.tw/wordpress/), o estimador Chao 1 pode ser modificado para uso com dados de presença/ausência levando em conta a distribuição das espécies entre amostras. Neste caso é necessário somente conhecer o número de espécies encontradas em somente uma amostra e o número de espécies encontradas exatamente em duas amostras. Essa variação ficou denominada como Chao 2:
+
+> $$Chao_{2} = S_{obs} + \left(\frac{m-1}{m}\right)\left(\frac{Q_1(Q_1-1)}{2(Q_2 + 1}\right)$$
+
+onde:
+
+-   S~obs~ = o número de espécies observada na comunidade,
+
+-   *m* = número de amostras,
+
+-   Q~1~ = número de espécies observadas em uma amostra (espécies *uniques*),
+
+-   Q~2~ = número de espécies observadas em duas amostras (espécies *duplicates*).
+
+O valor de Chao2 é máximo quando as espécies menos uma são únicas (*uniques*). Neste caso, a riqueza estimada é aproximadamente o dobro da riqueza observada.
+
+> Colwell & Coddington [-@colwell1994] encontraram que o valor de Chao 2 mostrou ser o estimador menos enviesado para amostras com tamanho pequeno.
+
+::: {.alert .alert-info}
+<strong> 📝 Importante: </strong> Vocês irão perceber que ao longo do capítulo as recomendações sobre qual é o melhor índice varia entre estudos [e.g. @palmer1990; @walther2005].
+:::
+
+<p>
+
+</p>
+
+#### Exemplo prático - Chao 2
+
+**Explicação dos dados**
+
+Usaremos os mesmos dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Análise**
+
+Cálculo do estimador de riqueza - Chao 2.
+
+```{r}
+# Análise.
+est_chao2 <- poolaccum(dados_coleta, permutations = 100)
+summary(est_chao2, display = "chao")
+```
+
+Visualizar os resultados com intervalo de confiança de 95%.
+
+```{r}
+# Preparando os dados para fazer o gráfico.
+resultados_chao2 <- summary(est_chao2, display = c("S", "chao"))
+res_chao2 <- cbind(resultados_chao2$chao[,1:4], resultados_chao2$S[,2:4])
+res_chao2 <- as.data.frame(res_chao2)
+colnames(res_chao2) <- c("Amostras", "Chao2", "C_inferior", "C_superior",
+                         "Riqueza", "R_inferior", "R_superior")
+
+# Gráfico
+ggplot(res_chao2, aes(y = Riqueza, x = Amostras)) +
+  geom_point(aes(y = Chao2, x = Amostras + 0.1), size = 4, color = "darkorange", alpha = 0.7) +
+  geom_point(aes(y = Riqueza, x = Amostras), size = 4, color = "cyan4", alpha = 0.7) +
+  geom_line (aes(y = Chao2, x = Amostras), color = "darkorange") +
+  geom_line (aes(y = Riqueza, x = Amostras), color = "cyan4") +
+  geom_linerange(aes(ymin = C_inferior, ymax = C_superior, x = Amostras + 0.1),
+ color = "darkorange") +
+  geom_linerange(aes(ymin = R_inferior, ymax = R_superior, x = Amostras), color = "cyan4") +
+  ylab ("Riqueza estimada - Chao 2") +
+  xlab ("Número de amostras") +
+  scale_x_continuous(limits = c(1,15), breaks=seq(1,15,1)) +
+  geom_point(y= 9.8, x = 10, size = 4, color = "darkorange", alpha = 0.7) + 
+  geom_point(y= 7.7, x = 10, size = 4, color = "cyan4", alpha = 0.7) + 
+  geom_label( y = 9.8, x = 12.95, label = "Riqueza estimada - Chao 2") +
+  geom_label( y = 7.7, x = 12.3, label = "Riqueza observada") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Com base no número de espécies raras (*uniques* e *duplicates*), Chao 2 estimou a possibilidade de encontrarmos mais dezesseis espécies caso o esforço amostral fosse maior e não estimou tendência de estabilização da curva em uma assíntota.
+
+### JACKKNIFE 1 [@burnham1978; @burnham1979]:
+
+Este estimador baseia-se no número de espécies que ocorrem em somente uma amostra (Q~1~).
+
+$$S_{jack1} = S_{obs} + Q_1\left(\frac{m - 1}{m}\right)$$
+
+onde:
+
+-   S~obs~ = o número de espécies observadas na comunidade,
+
+-   Q~1~ = número de espécies observadas em uma amostra (espécies *uniques*),
+
+-   *m* = número de amostras.
+
+Jackknife é um método de reamostragem (sem repetição) não paramétrico usado para estimar a riqueza de espécies e a variância associada com a estimativa. Para isso, o método: i) exclui uma amostra e contabiliza o valor da riqueza estimada usando a fórmula acima; ii) repete este processo *n* vezes até que todas as amostras tenham sido excluídas; e iii) estima a média e a variância da riqueza de espécie [@smith1984].
+
+> Palmer [-@palmer1990] verificou que Jackknife 1 foi o estimador mais preciso e menos enviesado comparado a outros métodos de extrapolação.
+
+<p>
+
+</p>
+
+#### Exemplo prático - Jackknife 1
+
+**Explicação dos dados**
+
+Usaremos os mesmos dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Análise**
+
+Cálculo do estimador de riqueza - Jackknife 1.
+
+```{r}
+# Análise.
+est_jack1 <- poolaccum(dados_coleta, permutations = 100)
+summary(est_jack1, display = "jack1")
+```
+
+Visualizar os resultados com 95% intervalo de confiança.
+
+```{r}
+# Preparando os dados para fazer o gráfico.
+resultados_jack1 <- summary(est_jack1, display = c("S", "jack1"))
+res_jack1 <- cbind(resultados_jack1$jack1[,1:4], resultados_jack1$S[,2:4])
+res_jack1 <- as.data.frame(res_jack1)
+colnames(res_jack1) <- c("Amostras", "JACK1", "JACK1_inferior", "JACK1_superior", 
+                         "Riqueza", "R_inferior", "R_superior")
+
+# Comando para o gráfico.
+ggplot(res_jack1, aes(y = Riqueza, x = Amostras)) +
+  geom_point(aes(y = JACK1, x = Amostras + 0.1), size = 4, color = "darkorange", alpha = 0.7) +
+  geom_point(aes(y = Riqueza, x = Amostras), size = 4, color = "cyan4", alpha = 0.7) +
+  geom_line (aes(y = JACK1, x = Amostras), color = "darkorange") +
+  geom_line (aes(y = Riqueza, x = Amostras), color = "cyan4") +
+  geom_linerange(aes(ymin = JACK1_inferior, ymax = JACK1_superior, x = Amostras + 0.1),
+ color = "darkorange") +
+  geom_linerange(aes(ymin = R_inferior, ymax = R_superior, x = Amostras), color = "cyan4") +
+  ylab ("Riqueza estimada - Jackknife 1") +
+  xlab ("Número de amostras") +
+  scale_x_continuous(limits = c(1,15), breaks=seq(1,15,1)) +
+  geom_point(y= 9.9, x = 9, size = 4, color = "darkorange", alpha = 0.7) + 
+  geom_point(y= 8.6, x = 9, size = 4, color = "cyan4", alpha = 0.7) + 
+  geom_label( y = 9.9, x = 12.5, label = "Riqueza estimada - Jackknife 1") +
+  geom_label( y = 8.6, x = 11.5, label = "Riqueza observada") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Com base no número de espécies raras, o estimador Jackknife 1 estimou possibilidade de encontrarmos mais seis espécies caso o esforço amostral fosse maior e não estimou tendência de estabilização da curva em uma assíntota.
+
+### JACKKNIFE 2 [@burnham1978; @burnham1979; @palmer1991]:
+
+Este método baseia-se no número de espécies que ocorrem em apenas uma amostra e no número de espécies que ocorrem em exatamente duas amostras.
+
+> $$S_{jack2} = S_{obs} + \left[\frac{Q_1(2m - 3)}{m}-\frac{Q_2(m - 2)^2}{m(m-1)}\right]$$
+
+onde:
+
+-   S~obs~ = o número de espécies observadas na comunidade,
+
+-   *m* = número de amostras,
+
+-   Q~1~ = número de espécies observadas em uma amostra (espécies *uniques*),
+
+-   Q~2~ = número de espécies observadas em duas amostras (espécies *duplicates*).
+
+<p>
+
+</p>
+
+#### Exemplo prático - Jackknife 2
+
+**Explicação dos dados**
+
+Usaremos os mesmos dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Análise**
+
+Cálculo do estimador de riqueza - Jackknife 2.
+
+```{r}
+# Análise.
+est_jack2 <- poolaccum(dados_coleta, permutations = 100)
+summary(est_jack2, display = "jack2")
+```
+
+Visualizar os resultados com intervalo de confiança de 95%.
+
+```{r}
+# Preparando os dados para fazer o gráfico.
+resultados_jack2 <- summary(est_jack2, display = c("S", "jack2"))
+res_jack2 <- cbind(resultados_jack2$jack2[,1:4], resultados_jack2$S[,2:4])
+res_jack2 <- as.data.frame(res_jack2)
+colnames(res_jack2) <- c("Amostras", "JACK2", "JACK2_inferior", "JACK2_superior", 
+                         "Riqueza", "R_inferior", "R_superior")
+
+# Comando para o gráfico.
+ggplot(res_jack2, aes(y = Riqueza, x = Amostras)) +
+  geom_point(aes(y = JACK2, x = Amostras + 0.1), size = 4, color = "darkorange", alpha = 0.7) +
+  geom_point(aes(y = Riqueza, x = Amostras), size = 4, color = "cyan4", alpha = 0.7) +
+  geom_line (aes(y = JACK2, x = Amostras), color = "darkorange") +
+  geom_line (aes(y = Riqueza, x = Amostras), color = "cyan4") +
+  geom_linerange(aes(ymin = JACK2_inferior, ymax = JACK2_superior, x = Amostras + 0.1),
+ color = "darkorange") +
+  geom_linerange(aes(ymin = R_inferior, ymax = R_superior, x = Amostras), color = "cyan4") +
+  ylab ("Riqueza estimada - Jackknife 2") +
+  xlab ("Número de amostras") +
+  scale_x_continuous(limits = c(1,15), breaks=seq(1,15,1)) +
+  geom_point(y= 9.9, x = 9, size = 4, color = "darkorange", alpha = 0.7) + 
+  geom_point(y= 8.2, x = 9, size = 4, color = "cyan4", alpha = 0.7) + 
+  geom_label( y = 9.9, x = 12.5, label = "Riqueza estimada - Jackknife 2") +
+  geom_label( y = 8.2, x = 11.5, label = "Riqueza observada") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Com base no número de espécies raras, o estimador Jackknife 2 estimou a possibilidade de encontrarmos mais dez espécies caso o esforço amostral fosse maior e não estimou tendência estabilização da curva em uma assíntota.
+
+### BOOTSTRAP [@smith1984]:
+
+Este método difere dos demais por utilizar dados de todas as espécies coletadas para estimar a riqueza total, não se restringindo às espécies raras. Ele requer somente dados de incidência. A estimativa pelo bootstrap é calculada somando-se a riqueza observada à soma do inverso da proporção de amostras em que cada espécie ocorre.
+
+> $$S_{boot} = S_{obs} + \sum_{k=1}^{S_{obs}}(1-P_k)^m$$
+
+onde:
+
+-   S~obs~ = o número de espécies observadas na comunidade,
+
+-   *m* = número de amostragens,
+
+-   P~k~ = proporção do número de amostras em que cada espécie foi registrada.
+
+Bootstrap é um método não paramétrico usado para estimar os parâmetros de uma população por reamostragem. A premissa é que as reamostragens podem ser entendidas como pseudo-populações, com características similares as da população original. Para isso, o método: i) seleciona ao acaso um conjunto de amostras (no nosso exemplo 14 amostras) **com reposição**; ii) repete este processo *n* vezes; e iii) estima a média e a variância da riqueza de espécie [@smith1984].
+
+<p>
+
+</p>
+
+#### Exemplo prático - Bootstrap
+
+**Explicação dos dados**
+
+Usaremos os mesmos dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Análise**
+
+Cálculo do estimador de riqueza - Bootstrap.
+
+```{r}
+# Análise.
+est_boot <- poolaccum(dados_coleta, permutations = 100)
+summary(est_boot, display = "boot")
+```
+
+Visualizar os resultados com intervalo de confiança de 95%.
+
+```{r}
+# Preparando os dados para fazer o gráfico.
+resultados_boot <- summary(est_boot, display = c("S", "boot"))
+res_boot <- cbind(resultados_boot$boot[,1:4], resultados_boot$S[,2:4])
+res_boot <- as.data.frame(res_boot)
+colnames(res_boot) <- c("Amostras", "BOOT", "BOOT_inferior", "BOOT_superior", 
+                        "Riqueza", "R_inferior", "R_superior")
+
+# Gráfico.
+ggplot(res_boot, aes(y = Riqueza, x = Amostras)) +
+  geom_point(aes(y = BOOT, x = Amostras + 0.1), size = 4, color = "darkorange", alpha = 0.7) +
+  geom_point(aes(y = Riqueza, x = Amostras), size = 4, color = "cyan4", alpha = 0.7) +
+  geom_line (aes(y = BOOT, x = Amostras), color = "darkorange") +
+  geom_line (aes(y = Riqueza, x = Amostras), color = "cyan4") +
+  geom_linerange(aes(ymin = BOOT_inferior, ymax = BOOT_superior, x = Amostras + 0.1),
+ color = "darkorange") +
+  geom_linerange(aes(ymin = R_inferior, ymax = R_superior, x = Amostras), color = "cyan4") +
+  ylab ("Riqueza estimada - Bootstrap") +
+  xlab ("Número de amostras") +
+  scale_x_continuous(limits = c(1,15), breaks=seq(1,15,1)) +
+  geom_point(y= 10.4, x = 9, size = 4, color = "darkorange", alpha = 0.7) + 
+  geom_point(y= 9.3, x = 9, size = 4, color = "cyan4", alpha = 0.7) + 
+  geom_label( y = 10.4, x = 12.3, label = "Riqueza estimada - Bootstrap") +
+  geom_label( y = 9.3, x = 11.5, label = "Riqueza observada") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Com base na frequência de ocorrência das espécies, o estimador bootstrap estimou a possibilidade de encontrarmos mais duas espécies caso o esforço amostral fosse maior e não estimou tendência de estabilização da curva em uma assíntota.
+
+### Interpolação e Extrapolação baseadas em rarefação usando amostragens de incidência ou abundância [@chao2012; @colwell2012]:
+
+Este método utiliza teoria de amostragem (e.g. modelos multinomial, Poisson e Bernoulli) para conectar rarefação (interpolação) e predição (extrapolação) com base no tamanho da amostra. Este método utiliza uma abordagem com bootstrap para calcular o intervalo de confiança de 95%.
+
+::: {.alert .alert-info}
+<strong> 📝 Importante: </strong> A extrapolação torna-se altamente incerta quando estendida para o dobro ou mais do tamanho da amostragem.
+:::
+
+#### Exemplo prático 1
+
+**Explicação dos dados**
+
+Usaremos os mesmos dados de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região noroeste do estado de São Paulo, Brasil.
+
+**Análise**
+
+Cálculo da extrapolação da riqueza com base no número de indivíduos.
+
+```{r}
+# Preparando os dados para análises considerando a abundância.
+dados_inext_abu <- colSums(dados_coleta) 
+
+resultados_abundancia <- iNEXT(dados_inext_abu, q = 0, datatype = "abundance", 
+			endpoint = 600)
+
+# Visualizar os dados no gráfico.
+anuros_ab <- ggiNEXT(resultados_abundancia, type = 1)
+anuros_ab + labs(x = "Número de indivíduos", y = " Riqueza de espécies") +
+  scale_linetype_discrete(labels = c("Interpolado", "Extrapolado")) +
+  scale_colour_manual(values = "darkorange") +
+  scale_fill_manual(values = "darkorange") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Veja que o ponto no final da linha contínua representa as 17 espécies de anuros (eixo Y) observadas entre os 304 individuos (eixo X). A extrapolação máxima (600 indivíduos no nosso exemplo), estima um aumento de até oito espécies (intervalo de confiança) caso amostrássemos mais 296 indivíduos.
+
+Cálculo da extrapolação da riqueza com base no número de amostras.
+
+```{r}
+# Preparando os dados para análises considerando a incidência.
+# Precisa transpor o dataframe.
+dados_inext <- as.incfreq(t(dados_coleta)) 
+
+resultados_incidencia <- iNEXT(dados_inext, q = 0, datatype = "incidence_freq", 
+			endpoint = 28)
+
+# Visualizar os dados no gráfico.
+anuros_IC <- ggiNEXT(resultados_incidencia, type = 1)
+anuros_IC + labs(x = "Número de amostras", y = " Riqueza de espécies") +
+  scale_linetype_discrete(labels = c("Interpolado", "Extrapolado")) +
+  scale_colour_manual(values = "darkorange") +
+  scale_fill_manual(values = "darkorange") +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+Veja que o ponto no final da linha contínua representa as 17 espécies de anuros (eixo Y) observadas nos 14 dias de coleta (eixo X - amostras). A extrapolação máxima (28 dias de coleta no nosso exemplo), estima um aumento de até 12 espécies (intervalo de confiança) caso amostrássemos mais 14 dias.
+
+#### Exemplo prático 2
+
+**Explicação dos dados**
+
+Neste exemplo, iremos refazer o exemplo do \@[Cap8] que usa Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza extrapolada. Os dados que usaremos estão disponíveis no pacote *vegan* e representa a composição de espécies de ácaros amostradas em 70 comunidades/amostras.
+
+**Pergunta:**
+
+> A riqueza extrapolada de espécies de ácaros é maior em comunidades localizadas em áreas com substratos secos?
+
+**Predições**
+
+> O número de espécies extrapolada será maior em substratos secos uma vez que as limitações fisiológicas impostas pela umidade limitam a ocorrência de várias espécies de ácaros.
+
+**Variáveis**
+
+-   Variáveis resposta e preditoras
+
+    -   matriz ou dataframe com as abundâncias das espécies de ácaros (variável resposta) registradas em 70 comunidades/amostras (variável preditora).
+
+**Checklist**
+
+-   Verificar se a sua matriz ou dataframe estão com as espécies nas linhas e as comunidades nas colunas.
+
+**Análise**
+
+Vamos iniciar calculando a riqueza extrapolada com base na comunidade com maior abundância.
+
+```{r}
+# Os dados estão com as comunidades nas colunas e as espécies nas linhas. 
+# Para as análises teremos que transpor a planilha.
+composicao_acaros <- t(mite)
+
+# A comunidade com maior abundância tem 781 indivíduos. 
+max(colSums(composicao_acaros))
+
+# Calcular a riqueza extrapolada de espécies para todas as comunidades 
+# considerando a maior abundância. 
+resultados_extrapolacao <- iNEXT(composicao_acaros, q = 0, 
+                              datatype = "abundance", 
+                              endpoint = 781)
+```
+
+Vamos criar um`loop` para extrair a riqueza extrapolada para as 70 comunidades.
+
+```{r}
+# Criando um data.frame vazio para salvar os dados
+resultados_comunidades_ext <- data.frame()
+
+# Criando um vetor vazio para salvar os resultados
+riqueza_extrapolada <- c()
+
+
+# Loop repetindo as análises para as 70 comunidades
+# O objetivo é extrair a riqueza estimada extrapolada para 781 individuos
+for (i in 1:70){
+resultados_comunidades_ext <- data.frame(resultados_extrapolacao$iNextEst[i])
+riqueza_extrapolada[i] <- resultados_comunidades_ext[40,4]
+}
+```
+
+Agora, seguindo os passos descritos no \@[Cap8], vamos identificar o melhor modelo que representa a estrutura espacial dos dados extrapolados.
+
+```{r}
+# Criando data frame com todas as variáveis
+dados_combinado_ext <- data.frame(riqueza_extrapolada, agua, coord)
+
+# Modelo gls sem estrutura espacial.
+no_spat_gls <- gls(riqueza_extrapolada ~ agua, 
+                   data = dados_combinado_ext, 
+                   method = "REML")
+
+# Covariância esférica. 
+espher_model <- gls(riqueza_extrapolada ~ agua, 
+                    data = dados_combinado_ext, 
+                    corSpher(form = ~lat + long, nugget = TRUE))
+ 
+# Covariância exponencial (corExp(form=~lat+long)).
+expon_model <- gls(riqueza_extrapolada ~ agua, 
+                   data = dados_combinado_ext, 
+                   corExp(form = ~lat + long, nugget = TRUE))
+
+# Covariância Gaussiana (corGaus(form=~lat+long)).
+gauss_model <- gls(riqueza_extrapolada ~ agua,
+                   data = dados_combinado_ext, 
+                   corGaus(form = ~lat + long, nugget = TRUE))
+
+# Covariância linear (corLin(form=~lat+long).
+cor_linear_model <- gls(riqueza_extrapolada ~ agua,
+                        data = dados_combinado_ext,
+                        corLin(form = ~lat + long, nugget = TRUE))
+
+# Covariância razão quadrática (corRatio(form=~lat+long)).
+ratio_model <- gls(riqueza_extrapolada ~ agua, 
+                   data = dados_combinado_ext, 
+                   corRatio(form = ~lat + long, nugget = TRUE))
+```
+
+Vamos usar o AIC para selecionar o modelo mais "provável" explicando a distribuição da riqueza extrapolada das espécies de ácaros.
+
+```{r}
+# Seleção dos modelos.
+aic_fit_ext <- AIC(no_spat_gls, espher_model, 
+                   cor_linear_model, expon_model, 
+                   gauss_model, ratio_model)
+
+aic_fit_ext %>% arrange(AIC)
+
+# Visualizando os resíduos do modelo com menor valor de AIC (veja Capítulo 8).
+plot(ratio_model)
+```
+
+De forma geral, a distribuição dos resíduos está adequada com apenas dois pontos fugindo da nuvem. Contudo, eles podem influenciar os resultados (veja abaixo).
+
+```{r}
+# Visualizando os resultados e calculando pseudo-R-squared.
+summary(ratio_model)$tTable 
+rsquared(ratio_model)
+
+# Gráfico. 
+predito_ext <-  predict(ratio_model) 
+
+ggplot(data = dados_combinado_ext, aes(x= agua, y= riqueza_extrapolada)) + 
+  labs(x = "Concentração de água no substrato", 
+       y = "Riqueza extrapolada \ndas espécies de ácaros", size = 15) +
+  geom_point(size = 4, shape = 21, fill = "darkorange", alpha = 0.7) +
+  geom_line(aes(y = predito_ext), size = 1) +
+  tema_livro()
+```
+
+**Interpretação dos resultados**
+
+A riqueza extrapolada das espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos. Contudo, apesar do modelo apresentar um relação significativa entre as variáveis, a concentração de água explica apenas 5,9% da variação da riqueza extrapolada das espécies de ácaros. O padrão observado, valor de P \< 0.05 e o baixo valor de R^2^, provavelmente está relacionado com as duas comunidades com altos valores de riqueza extapolada (e.g. **outilers**). Refaça as análises sem os dois pontos e vejam o padrão dos novos resultados.
+
+### Para se aprofundar
+
+-   Recomendamos aos interessados que olhem a página do [EstimateS software](http://viceroy.eeb.uconn.edu/estimates) e baixem o manual do usuário que contém informações detalhadas sobre os índices de rarefação e estimadores de riqueza. Este site foi criado e é mantido pelo Dr. Robert K. Colwell, um dos maiores especialistas do mundo em estimativas da biodiversidade
+
+-   Recomendamos também o livro *Biological Diversity Frontiers in Measurement and Assessment* [@magurran_biological_2011].
+
