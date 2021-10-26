@@ -585,7 +585,7 @@ fviz_pca_biplot(pca.p,
                                    size=12),
         legend.position = "top",
         legend.title = element_blank())+
-  tema_livro
+  tema_livro()
 ```
 
 ### Análise de Coordenadas Principais - PCoA
@@ -680,7 +680,7 @@ pcoa.dat %>%
         legend.title=element_blank()) + 
   geom_hline(yintercept = 0, linetype=2) + 
   geom_vline(xintercept = 0, linetype=2)+
-  tema_livro
+  tema_livro()
 ```
 
 #### Limitações importantes das ordenações irrestritas
@@ -776,7 +776,7 @@ dat %>%
         axis.title.y = element_text(size=14),
         axis.text.y = element_text(vjust=0.5, 
                                    size=12))+
-  tema_livro
+  tema_livro()
 ```
 
 #### Exemplo 2
@@ -852,7 +852,7 @@ g_acari_axi1 <- pred.vars %>%
         axis.title.y = element_text(size=14),
         axis.text.y = element_text(vjust=0.5,
                                    size=12))+
-  tema_livro
+  tema_livro()
 
 g_acari_axi2 <-pred.vars %>% 
   ggplot(aes(x = Axis.2, y = riqueza)) + 
@@ -873,7 +873,7 @@ g_acari_axi2 <-pred.vars %>%
         axis.title.y = element_text(size=14),
         axis.text.y = element_text(vjust=0.5, 
                                    size=12))+
-  tema_livro
+  tema_livro()
 
 ## Função para combinar os dois plots em uma única janela
 grid.arrange(g_acari_axi1, g_acari_axi2, nrow=1)
@@ -974,7 +974,7 @@ ggord(rda.bird,
         axis.title.y = element_text(size=14),
         axis.text.y = element_text(vjust=0.5, 
                                    size=12))+
-  tema_livro
+  tema_livro()
 ```
 
 #### Interpretação dos resultados
@@ -1180,7 +1180,7 @@ dat.graf %>%
                                    size=12), 
         legend.position = "top",
         legend.title = element_blank())+
-  tema_livro
+  tema_livro()
 ```
 
 ### Para se aprofundar
@@ -1193,4 +1193,3 @@ dat.graf %>%
 
 -   [Legendre & Legendre (2012)](https://www.sciencedirect.com/bookseries/developments-in-environmental-modelling/vol/24)
 
-## Referências
