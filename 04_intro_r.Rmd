@@ -27,9 +27,7 @@ No final dos anos 1990, Robert Gentleman e Ross Ihaka (ambos da Universidade de 
 
 Um aspecto digno de nota é que a linguagem R é uma linguagem interpretada, ao contrário de outras linguagens como Fortran e C que são compiladas. Isso a faz ser mais fácil de programar, pois processa linhas de comando e as transforma em linguagem de máquina (código binário que o computador efetivamente lê), apesar desse fato diminuir a velocidade de processamento.
 
-Para começarmos a trabalhar com o R é necessário baixá-lo na página do R Project. Então, acesse esse [site](http://www.r-project.org), e em seguida, clique no link download R, que o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Escolha a página espelho do Brasil mais próxima de você para baixar o programa. Escolha agora o sistema operacional do seu computador (passos adicionais existem para diferentes distribuições Linux), para Windows, clique em base para finalmente chegar à página de download com a versão mais recente do R.
-
-Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
+Para começarmos a trabalhar com o R é necessário baixá-lo na página do R Project. Então, acesse esse [site](http://www.r-project.org), e em seguida, clique no link download R, que o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Os detalhes de instalação são apresentados no \@ref[cap1]. Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
 
 Como o R é um software livre, não existe a possibilidade de o usuário entrar em contato com um serviço de suporte de usuários, muito comuns em softwares pagos. Ao invés disso, existem várias listas de emails que fornecem suporte à [comunidade de usuários](http://www.r-project.org/mail.html). Nós, particularmente, recomendamos o ingresso nas seguintes listas: R-help, R-sig-ecology, e [R-br](http://www.leg.ufpr.br/doku.php/software:rbr). Este último reúne um grupo de pessoas usuárias brasileiras do programa R.
 
@@ -39,7 +37,7 @@ Apesar de podemos utilizar o R com o IDE (Ambiente de Desenvolvimento Integrado 
 knitr::include_graphics("img/cap04_fig01.png")
 ```
 
-Dessa forma, nesse livro todo, nós que escrevemos utilizamos o RStudio e assumimos que você que está lendo fará o mesmo.
+Dessa forma, nós que escrevemos utilizamos o RStudio e assumimos que você que está lendo fará o mesmo.
 
 O RStudio permite diversas personalizações, grande parte delas contidas em `Tools > Global options`. Incentivamos as leitoras e leitores a "fuçar", com certa dose de cuidado, nas opções para customização. Dentre essas mudanças, destacamos duas:
 
@@ -400,7 +398,7 @@ dune[1:6, 1:6]
 
 Se por algum motivo precisarmos desinstalar um pacote, podemos utilizar a função `remove.packages()`. Já para descarregar um pacote de uma sessão do R, podemos usar a função `detach()`.
 
-```{r}
+```{r eval=FALSE}
 ## Descarregar um pacote
 detach("package:vegan", unload = TRUE)
 ```
@@ -526,7 +524,7 @@ load("meus_objs.RData")
 
 Ou ainda podemos salvar apenas um objeto com a extensão `.rds`. Para isso, usamos as funções `saveRDS()` e `readRDS()`, para exportar e importar esses dados, respectivamente.
 
-```{r eval=FALSE, cache = FALSE}
+```{r eval=FALSE}
 ## Salvar um objeto para um arquivo
 saveRDS(obj, file = "meu_obj.rds")
 
@@ -567,7 +565,7 @@ Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, 
 
 Esquecer de completar uma função ou bloco de códigos é algo bem comum. Geralmente esquecemos de fechar aspas `""` ou parênteses `()`, mas felizmente geralmente o R nos informa isso, indicando um símbolo de `+`.
 
-```{r error=TRUE, cache = FALSE}
+```{r error=TRUE}
 sum(1, 2
   +
 ```
@@ -576,7 +574,7 @@ sum(1, 2
 
 Outro erro bastante comum é esquecer de acrescentar a vírgula `,` para separar argumentos dentro de uma função, principalmente se estamos compondo várias funções acopladas, i.e., uma função dentro da outra.
 
-```{r error=TRUE, cache = FALSE}
+```{r error=TRUE}
 sum(1 2)
 ```
 
@@ -584,7 +582,7 @@ sum(1 2)
 
 Pode parecer simples, mas esse é de longe o erro mais comum que pessoas iniciantes comentem. Quando temos um longo script, é de se esperar que tenhamos atribuído diversos objetos e em algum momento atribuímos um nome do qual não lembramos. Dessa forma, quando chamamos o objeto ele não existe e devolve um erro. Entretanto, esse tipo de erro pode ser facilmente identificado, como o exemplo abaixo.
 
-```{r error=TRUE, cache = FALSE}
+```{r error=TRUE}
 obj <- 10
 OBJ
 ```
@@ -593,7 +591,7 @@ OBJ
 
 Esse também é um erro recorrente, mesmo para usuários mais experientes. Em scripts de análises complexas, que requerem vários pacotes, geralmente esquecemos de um ou outro... A melhor forma de evitar esse tipo de erro é listar os pacotes que vamos precisar usar logo no início do script.
 
-```{r error=TRUE, cache = FALSE}
+```{r error=TRUE}
 ## Carregar dados
 data(dune)
 
@@ -618,7 +616,7 @@ decostand(dune[1:6, 1:6], "hell")
 
 Esse erro não é tão comum, mas pode ser incômodo às vezes. Algumas funções possuem nomes no padrão "Camel Case", i.e., com letras maiúsculas para no meio do nome da função. Isso às vezes pode confundir, ou ainda, as funções podem ou não ser separadas com `.`, como `row.names()` e `rownames()`. No Capítulo de *tidyverse* \@ref(cap5), veremos que houve uma tentativa de padronização nos nomes das funções para "Snake Case", i.e, todas as funções possuem letras minúsculas, com palavras separadas por *underscore* `_`.
 
-```{r error=TRUE, cache = FALSE}
+```{r error=TRUE}
 ## Soma das colunas
 colsums(dune)
 ```
@@ -1528,3 +1526,5 @@ Wickham H. 2015. R Packages: Organize, Test, Document, and Share Your Code. O'Re
 [A (very) shortintroduction to R - Paul Torfs & Claudia Brauer](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)
 
 [R forBeginners - Emmanuel Paradis](https://rbasicsworkshop.weebly.com/uploads/1/8/6/0/18603232/paradis_2005_r-forbeginners.pdf)
+
+## Referências
