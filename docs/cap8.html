@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -662,7 +679,7 @@ div.csl-indent {
 <span id="cb280-2"><a href="cap8.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fragmentos, <span class="fu">aes</span>(dfrag, Riqueza_obs))<span class="sc">+</span></span>
 <span id="cb280-3"><a href="cap8.html#cb280-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)<span class="sc">+</span></span>
 <span id="cb280-4"><a href="cap8.html#cb280-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-295-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-296-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui vemos que há de fato uma relação linear positiva entre as duas variáveis.</p>
 <blockquote>
 <p>A partir de agora vamos sempre usar uma mesma estrutura para realizar nossos exercícios de modelagem:</p>
@@ -691,7 +708,7 @@ div.csl-indent {
 <span id="cb282-2"><a href="cap8.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb282-3"><a href="cap8.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod_pois)<span class="co">#TODOS OS 4 PLOTS</span></span>
 <span id="cb282-4"><a href="cap8.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-297-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-297-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-298-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-298-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui vemos quatro gráficos. Na primeira coluna temos dois gráficos dos valores preditos (brutos ou padronizados pela raiz quadrada) contra os resíduos. Eles medem desvio em relação à homogeneidade de variância. Os quatro gráficos não devem ter nenhum padrão aparente, ou seja, os pontos devem cair em cima da linha pontilhada. Neste caso, vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que não exista heterogeneidade de variância dos resíduos. O gráfico superior direito é o plot de quantis que mede desvios da normalidade. No gráfico inferior direito, os valores extremos são todos aqueles que estejam a mais de uma unidade da distância de Cook (linha pontilhada vermelha). Também não temos problemas com esse pressuposto do modelo aqui. Vemos que nos quatro plots alguns dados, 1, 7 e 30 (referem-se às linhas do data.frame) aparecem identificados, pois apresentam ligeiro desvio da normalidade e estão distantes da média. No entanto, não é algo para nos preocuparmos pois não são valores muito extremos. Portanto, a diagnose indicou que o modelo com Poisson parece ser adequado para modelar estes dados, ao menos em termos de homogeneidade de variância.</p>
 </div>
 <div id="diagnose-avançada" class="section level5" number="8.4.0.1.3">
@@ -699,7 +716,7 @@ div.csl-indent {
 <p>Alguns pacotes permitem calcular outros aspectos do modelo que facilitam a diagnose, ou seja, se podemos de fato confiar nos parâmetros estimados por eles, incluindo valores de significância. Um pressuposto importante dos modelos de contagem (incluindo Poisson) é a overdispersion (sobredispersão).</p>
 <p>Vejamos como o pacote <code>DHARMa</code> funciona:</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="cap8.html#cb283-1" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> mod_pois, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-298-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-299-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>O plot claramente indica que há problema com overdispersion, mas não em termos de desvios de normalidade (KS test) ou outlier, já que apenas o primeiro foi significativo (aparece em vermelho).</p>
 </div>
 <div id="detectando-e-lidando-com-overdispersion" class="section level5" number="8.4.0.1.4">
@@ -715,7 +732,7 @@ div.csl-indent {
 <span id="cb284-6"><a href="cap8.html#cb284-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  simulationOutput</span></span>
 <span id="cb284-7"><a href="cap8.html#cb284-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dispersion = 1.6489, p-value &lt; 2.2e-16</span></span>
 <span id="cb284-8"><a href="cap8.html#cb284-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: two.sided</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-299-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-300-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui temos um gráfico e o resultado novamente do teste de overdispersion (que já aparecia no gráfico anterior) mostrando que de fato há overdispersion: perceba que o valor de <em>P</em> é significativo. O gráfico nos motra em preto a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica overdispersion, se estivese à esquerda seria o caso de underdispersion.</p>
 <p>Agora vamos utilizar a função <code>check_overdisperion</code> que utiliza uma distribuição qui-quadradado e o valor de <em>dispersion ratio</em> para testar a presença de overdispersion no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento <code>type="PearsonChisq"</code></p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="cap8.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_overdispersion</span>(mod_pois)<span class="co">#modelo tem overdispersion</span></span>
@@ -767,7 +784,7 @@ div.csl-indent {
 <span id="cb288-6"><a href="cap8.html#cb288-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  simulationOutput</span></span>
 <span id="cb288-7"><a href="cap8.html#cb288-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ratioObsSim = NaN, p-value = 1</span></span>
 <span id="cb288-8"><a href="cap8.html#cb288-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: two.sided</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-303-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-304-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Tanto a função do <code>DHARMa</code> quanto do <code>performance</code> conseguiram detectar que o modelo tem problemas com overdispersion, ou sobre dispersão, mas isso não é causado pelo excesso de zeros. Como já dissemos acima, no caso da distribuição Poisson, tanto a média quanto a variância são modeladas pelo mesmo parâmetro (<span class="math inline">\(\lambda\)</span>). Isso faz com que esta distribuição não seja muito útil para modelar dados de contagem em que haja muita variância em torno da média. Esse infelizmente é o caso da grande maioria dos dados ecológicos.</p>
 <p>Por estes motivos não podemos fazer inferência com este modelo porque os parâmetros estimados não são confiáveis. Mas vejamos como seria feita essa inferência <em>caso este modelo fosse adequado</em>.</p>
 </div>
@@ -822,7 +839,7 @@ div.csl-indent {
 <span id="cb290-4"><a href="cap8.html#cb290-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Distância para o fragmento mais próximo&quot;</span>, <span class="at">y=</span><span class="st">&quot;Riqueza observada&quot;</span>)</span>
 <span id="cb290-5"><a href="cap8.html#cb290-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb290-6"><a href="cap8.html#cb290-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(a1, <span class="at">fill=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-305-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-306-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br />
 Aqui vemos que há uma leve tendência na relação positiva entre distância para o fragmento mais próximo e a riqueza de anfíbios observada. No entanto, há uma grande dispersão nos dados ao redor da reta do modelo, fazendo com que a relação não seja de fato significativa e tenhamos um R<sup>2</sup> bem baixo.
@@ -868,10 +885,10 @@ Caso pudéssemos confiar nos parâmetros deste modelo poderíamos dizer que exis
 <span id="cb292-3"><a href="cap8.html#cb292-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
 <span id="cb292-4"><a href="cap8.html#cb292-4" aria-hidden="true" tabindex="-1"></a>(chat <span class="ot">&lt;-</span> <span class="fu">deviance</span>(mod_nb) <span class="sc">/</span> <span class="fu">df.residual</span>(mod_nb))<span class="co">#DISPERSION PARAMETER</span></span>
 <span id="cb292-5"><a href="cap8.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.126184</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-307-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-308-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Compare estes gráficos com os do modelo anterior com distribuição Poisson. Eles são praticamente idênticos, ou seja, o modelo com Poisson já não tinha heterogeneidade de variância nem problemas com normalidade dos resíduos. Agora vejamos se o problema com overdispersion foi resolvido:</p>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="cap8.html#cb293-1" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> mod_nb, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-308-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-309-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Na diagnose do modelo pelo <code>DHARMa</code> vemos que bastou mudar a distribuição de probabilidade que o problema de overdispersion foi resolvido (nenhum teste foi significativo no quadro da esquerda), e como já sabíamos, não há problemas com heterogeneidade de variância (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de outliers. O dispersion parameter é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R<sup>2</sup> …</p>
 </div>
 <div id="inferência-1" class="section level5" number="8.4.2.1.2">
@@ -924,7 +941,7 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <span id="cb296-2"><a href="cap8.html#cb296-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">alpha=</span><span class="fl">0.7</span>)<span class="sc">+</span></span>
 <span id="cb296-3"><a href="cap8.html#cb296-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm.nb&quot;</span>, <span class="at">formula =</span> y<span class="sc">~</span>x, <span class="at">se=</span><span class="cn">TRUE</span>)<span class="sc">+</span></span>
 <span id="cb296-4"><a href="cap8.html#cb296-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Distância para o fragmento mais próximo&quot;</span>, <span class="at">y=</span><span class="st">&quot;Riqueza observada&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-311-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-312-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui vemos que a reta predita pelo modelo é muito similar ao que tivemos com o Poisson. No entanto, agora que sabemos que este modelo com binomial negativa foi corretamente especificado e podemos confiar nos parâmetros estimados.</p>
 </div>
 </div>
@@ -952,7 +969,7 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <span id="cb298-10"><a href="cap8.html#cb298-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> mu, <span class="at">y =</span> ED, <span class="at">main =</span> <span class="st">&quot;Deviance residuals&quot;</span>)</span>
 <span id="cb298-11"><a href="cap8.html#cb298-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span>
 <span id="cb298-12"><a href="cap8.html#cb298-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-313-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-314-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui vemos que não existe um padrão claro nos resíduos, muito similar ao que tínhamos anteriormente. Devido às limitações de distribuições “quasi” e dado que já temos um modelo adequado com binomial negativa, sugerimos interpretar apenas o modelo anterior com binomial negativa.</p>
 </div>
 </div>
@@ -985,7 +1002,7 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <span id="cb299-11"><a href="cap8.html#cb299-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ Eosinophil   &lt;int&gt; 2, 3, 0, 0, 4, 1, 2, 0, 1, 3, 3, 3, 0, 0, 3, 1, 2, 0, 14, 0, 6, 1, 1, 1…</span></span></code></pre></div>
 <p>Vamos explorar os dados para tentar entender como são as relações:</p>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="cap8.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineplot.CI</span>(UV, Eosinophil, Pigmentation, <span class="at">data=</span>uv_cells)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-315-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-316-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui vemos que a quantidade de eosinófilos é muito maior nos girinos sem pigmentação (“albinos”). Já que estes animais não têm pigmentação melânica, as células brancas do sangue são a única ferramenta de combate aos efeitos deletérios da UV.</p>
 <div id="modelagem-2" class="section level4" number="8.6.1.1">
 <h4><span class="header-section-number">8.6.1.1</span> Modelagem</h4>
@@ -997,12 +1014,12 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="cap8.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb302-2"><a href="cap8.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod1)</span>
 <span id="cb302-3"><a href="cap8.html#cb302-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-317-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-318-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Parece que os resíduos não sofrem de heterogeneidade de variância (linha vermelha está reta), mas parece haver um pequeno desvio da normalidade (veja pontos 19, 29 e 32 destacados no plot de quantis e no de outliers). Vejamos o que o <code>DHARMa</code> nos diz:</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="cap8.html#cb303-1" aria-hidden="true" tabindex="-1"></a>simulationBion <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> mod1, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb303-2"><a href="cap8.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binned_residuals</span>(mod1)</span>
 <span id="cb303-3"><a href="cap8.html#cb303-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Probably bad model fit. Only about 29% of the residuals are inside the error bounds.</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-318-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-318-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-319-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-319-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com heterogeneidade de variância, quanto overdispersion e problemas com outliers. Provavelmente o problema com outliers ocorreu por conta do pequeno tamanho amostral.</p>
 </div>
 <div id="inferência-2" class="section level4" number="8.6.1.3">
@@ -1091,7 +1108,7 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="cap8.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uv_cells, <span class="fu">aes</span>(UV, Eosinophil)) <span class="sc">+</span></span>
 <span id="cb306-2"><a href="cap8.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">color=</span>Pigmentation))<span class="sc">+</span></span>
 <span id="cb306-3"><a href="cap8.html#cb306-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape =</span> <span class="dv">16</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="fl">0.1</span>), <span class="at">cex =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-321-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-322-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Usando o <code>geom_violin</code> podemos perceber que existe uma dispersão maior nos tratamentos que utilizaram girinos sem pigmentação do que nos tratamentos com girinos pigmentados.</p>
 </div>
 </div>
@@ -1123,13 +1140,13 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <span id="cb307-12"><a href="cap8.html#cb307-12" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(dados_semNA)</span>
 <span id="cb307-13"><a href="cap8.html#cb307-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dados_semNA)<span class="co">#verificar as dimensões da tabela depois que os dados tiverem sido excluídos</span></span>
 <span id="cb307-14"><a href="cap8.html#cb307-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 139   6</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-322-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-322-2.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-322-3.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-323-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-323-2.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-323-3.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Agora, seguindo o que já estamos acostumados a fazer, vamos vizualisar os dados com a nossa hipótese:</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="cap8.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_semNA, <span class="fu">aes</span>(SVL, Tail_state))<span class="sc">+</span></span>
 <span id="cb308-2"><a href="cap8.html#cb308-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>Sex, <span class="at">color=</span>Sex), <span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)<span class="sc">+</span></span>
 <span id="cb308-3"><a href="cap8.html#cb308-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args=</span><span class="fu">list</span>(<span class="at">family=</span><span class="st">&quot;binomial&quot;</span>))<span class="sc">+</span></span>
 <span id="cb308-4"><a href="cap8.html#cb308-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Estado da Cauda&quot;</span>, <span class="at">x=</span><span class="st">&quot;Comprimento Rostro-Cloacal (mm)&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-323-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-324-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <div id="modelagem-3" class="section level4" number="8.7.0.1">
 <h4><span class="header-section-number">8.7.0.1</span> Modelagem</h4>
 <p>Aqui vamos construir dois modelos com a mesma distribuição binomial, mas com dois <em>link function</em>: logit e probit. A função logit possui caudas um pouco mais achatadas, isto é, a curva probit se aproxima dos eixos mais rapidamente que a logit. Geralmente não há muita diferença entre elas. Como não temos nenhuma expectativa de qual dos dois link function é o melhor, podemos fazer uma seleção de modelos:</p>
@@ -1147,7 +1164,7 @@ Aqui vemos que o resultado em termos de valor de <em>P</em> não mudou, ou seja,
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="cap8.html#cb310-1" aria-hidden="true" tabindex="-1"></a>simulationBion <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> mod_log, <span class="at">plot =</span> T)</span>
 <span id="cb310-2"><a href="cap8.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binned_residuals</span>(mod_log)</span>
 <span id="cb310-3"><a href="cap8.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: About 92% of the residuals are inside the error bounds (~95% or higher would be good).</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-325-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-325-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-326-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-326-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="inferência-3" class="section level4" number="8.7.0.3">
 <h4><span class="header-section-number">8.7.0.3</span> Inferência</h4>
@@ -1209,7 +1226,7 @@ A interpretação dos resultados é que o tamanho de corpo (SVL) afeta negativam
 <span id="cb313-6"><a href="cap8.html#cb313-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(parasitas, <span class="fu">aes</span>(CRC, Raillietiella_mottae)) <span class="sc">+</span></span>
 <span id="cb313-7"><a href="cap8.html#cb313-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span> , <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb313-8"><a href="cap8.html#cb313-8" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_grid</span>(Sexo<span class="sc">~</span> Especie)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-328-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-328-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-329-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-329-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os gráfico acima mostra a contagem do parasita <em>Raillietiella mottae</em> nos dois sexos (F e M para fêmea e macho) nas duas espécies de lagartos, tanto na forma de uma distribuição de densidade quanto de gráfico de dispersão. Aqui podemos ver que de fato existe um excesso de zeros principalmente em <em>P. pollicaris</em>.</p>
 <p>Quando nos deparamos com dados complexos assim, a estratégia é sempre começar com um modelo simples e depois adicionar mais parâmetros. Portanto, vamos iniciar com um modelo Poisson, mesmo sabendo que ele muito provavelmente não será adequado para modelar estes dados:</p>
 <div id="modelagem-4" class="section level4" number="8.8.0.1">
@@ -1269,7 +1286,7 @@ Vamos ver como os modelos se saem em relação aos outros pressupostos:</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="cap8.html#cb319-1" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> hur_NB, <span class="at">plot =</span> T)</span>
 <span id="cb319-2"><a href="cap8.html#cb319-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb319-3"><a href="cap8.html#cb319-3" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> ziNB_mod2, <span class="at">plot =</span> T)<span class="co">#tem um outlier nos resíduos (asterisco vermelho)</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-334-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-334-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-335-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-335-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os gráficos de diagnose do <code>DHARMa</code> são outra evidência de que tanto o modelo hurdle quanto o zero-inflated Poisson são adequados para os dados, em termos de heterogeneidade de variância, outliers e overdispersion.</p>
 </div>
 <div id="interpretação-dos-resultados-2" class="section level4" number="8.8.0.4">
@@ -1315,7 +1332,7 @@ Agora vejamos como podemos plotar as predições deste modelo:</p>
 <span id="cb321-5"><a href="cap8.html#cb321-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Raillietiella_mottae), <span class="at">size=</span><span class="dv">4</span>, <span class="at">alpha=</span>.<span class="dv">7</span>, <span class="at">position=</span><span class="fu">position_jitter</span>(<span class="at">h=</span>.<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb321-6"><a href="cap8.html#cb321-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb321-7"><a href="cap8.html#cb321-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comprimento Rostro-Cloacal&quot;</span>, <span class="at">y =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Abundância de &quot;</span>, <span class="fu">italic</span>(<span class="st">&quot;Raillietiella mottae&quot;</span>))))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-336-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-337-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="dados-ordinais-os-modelos-cumulative-link" class="section level2" number="8.9">
@@ -1451,7 +1468,7 @@ Agora vejamos como podemos plotar as predições deste modelo:</p>
 <div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="cap8.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineplot.CI</span>(Time, <span class="fu">as.numeric</span>(Red), Treatment, <span class="at">data=</span>redmale, <span class="at">cex =</span> <span class="dv">1</span>,</span>
 <span id="cb327-2"><a href="cap8.html#cb327-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;Experimental time (hours)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Erythrophore Index (EI)&quot;</span>, <span class="at">cex.lab =</span> <span class="fl">1.5</span>, <span class="at">x.leg =</span> <span class="dv">1</span>, <span class="at">y.leg =</span> <span class="fl">1.2</span>, <span class="at">cex.leg =</span> <span class="fl">1.3</span>, <span class="at">cex.axis =</span> <span class="fl">1.5</span>,</span>
 <span id="cb327-3"><a href="cap8.html#cb327-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#EE6363&quot;</span>,<span class="st">&quot;#79CDCD&quot;</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">12</span>), <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">ylim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-342-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-343-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="dados-contínuos-distribuição-beta" class="section level2" number="8.10">
@@ -1474,7 +1491,7 @@ Agora vejamos como podemos plotar as predições deste modelo:</p>
 <span id="cb328-8"><a href="cap8.html#cb328-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(darknessmale, <span class="fu">aes</span>(Darkness<span class="sc">/</span><span class="dv">100</span>)) <span class="sc">+</span></span>
 <span id="cb328-9"><a href="cap8.html#cb328-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">colour=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb328-10"><a href="cap8.html#cb328-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-343-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-344-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>No histograma podemos ver que os dados de fato variam continuamente no intervalo entre 0 e 1, tendo uma distribuição notadamente bimodal.</p>
 <div id="modelagem-6" class="section level4" number="8.10.0.1">
 <h4><span class="header-section-number">8.10.0.1</span> Modelagem</h4>
@@ -1484,7 +1501,7 @@ Agora vejamos como podemos plotar as predições deste modelo:</p>
 <h4><span class="header-section-number">8.10.0.2</span> Diagnose</h4>
 <p>Aqui utilizaremos o mesmo pacote <code>DHARMa</code> para realizar a diagnose do modelo:</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="cap8.html#cb330-1" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> mod2, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-345-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-346-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Podemos ver que o modelo não sofre de heterogeneidade de dispersão, overdispersion, nem problemas com outlier.</p>
 </div>
 <div id="interpretação-dos-resultados-4" class="section level4" number="8.10.0.3">
@@ -1528,7 +1545,7 @@ e então podemos perceber que a diferença entre o controle e o tratado só pass
 <p>Isso fica mais evidente quando plotamos os dados</p>
 </div>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="cap8.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineplot.CI</span>(Time, Darkness, Treatment, <span class="at">data=</span>darknessmale, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">&quot;Tempo experimental (horas)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Escuridão do corpo de machos (%)&quot;</span>, <span class="at">cex.lab =</span> <span class="dv">1</span>, <span class="at">x.leg =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#EE6363&quot;</span>,<span class="st">&quot;#79CDCD&quot;</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">12</span>), <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-348-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-349-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="leituras-recomendadas" class="section level2" number="8.11">

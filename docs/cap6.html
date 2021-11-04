@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -745,7 +762,7 @@ famosa <em>distribuição normal</em>.</p>
 <span id="cb177-4"><a href="cap6.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dist_normal, </span>
 <span id="cb177-5"><a href="cap6.html#cb177-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
 <span id="cb177-6"><a href="cap6.html#cb177-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-190-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-191-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Neste histograma é possível entender que a maioria dos valores da
 variável <code>x</code> no data.frame <code>dist_normal</code> estão próximos ao valor da
 média, i.e., 100. Em ecologia, os histogramas são utilizados para
@@ -765,7 +782,7 @@ os pinguins, independente da espécie).</p>
 <span id="cb178-2"><a href="cap6.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
 <span id="cb178-3"><a href="cap6.html#cb178-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb178-4"><a href="cap6.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-191-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-192-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="definindo-o-número-de-classes" class="section level4" number="6.5.1.2">
 <h4><span class="header-section-number">6.5.1.2</span> 4.1.2. Definindo o número de classes</h4>
@@ -782,7 +799,7 @@ variável <strong>x</strong> deve ser dividida.</p>
 <span id="cb179-9"><a href="cap6.html#cb179-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb179-10"><a href="cap6.html#cb179-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
 <span id="cb179-11"><a href="cap6.html#cb179-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;30 classes&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-192-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-192-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-193-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-193-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="comparando-múltiplas-categorias" class="section level4" number="6.5.1.3">
 <h4><span class="header-section-number">6.5.1.3</span> 4.1.3. Comparando múltiplas categorias</h4>
@@ -800,7 +817,7 @@ a distribuição da variável x entre espécies diferentes (fill = species).</p>
 <span id="cb180-8"><a href="cap6.html#cb180-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb180-9"><a href="cap6.html#cb180-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
 <span id="cb180-10"><a href="cap6.html#cb180-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Sem sobreposiçao&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-193-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-193-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-194-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-194-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ajustes-finos-versão-personalizada" class="section level4" number="6.5.1.4">
 <h4><span class="header-section-number">6.5.1.4</span> 4.1.4. Ajustes finos (versão personalizada)</h4>
@@ -814,7 +831,7 @@ a distribuição da variável x entre espécies diferentes (fill = species).</p>
 <span id="cb181-8"><a href="cap6.html#cb181-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comprimento da nadadeira (mm)&quot;</span>, </span>
 <span id="cb181-9"><a href="cap6.html#cb181-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frequência (%)&quot;</span>, </span>
 <span id="cb181-10"><a href="cap6.html#cb181-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Espécies&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-194-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-195-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="principais-camadas-utilizadas-na-função-geom_histogram" class="section level4" number="6.5.1.5">
 <h4><span class="header-section-number">6.5.1.5</span> 4.1.5. Principais camadas utilizadas na função <code>geom_histogram()</code></h4>
@@ -863,7 +880,7 @@ variável no eixo x.</p>
 <span id="cb182-2"><a href="cap6.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
 <span id="cb182-3"><a href="cap6.html#cb182-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb182-4"><a href="cap6.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-195-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-196-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Além da versão de densidade em linha, é possível utilizar o argumento
 <code>fill</code> para definir a cor de preenchimento do gráfico e o argumento
 <code>alpha</code> para definir a transparência do preenchimento. Utilizamos ainda
@@ -880,7 +897,7 @@ o argumento <code>color</code> para definir a cor da linha.</p>
 <span id="cb183-10"><a href="cap6.html#cb183-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, </span>
 <span id="cb183-11"><a href="cap6.html#cb183-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
 <span id="cb183-12"><a href="cap6.html#cb183-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">5</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-196-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-196-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-197-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-197-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="comparando-múltiplas-categorias-1" class="section level4" number="6.5.2.2">
 <h4><span class="header-section-number">6.5.2.2</span> 4.2.2. Comparando múltiplas categorias</h4>
@@ -902,7 +919,7 @@ espécies diferentes (fill = species).</p>
 <span id="cb184-11"><a href="cap6.html#cb184-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb184-12"><a href="cap6.html#cb184-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb184-13"><a href="cap6.html#cb184-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Com transparência&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-197-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-197-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-198-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-198-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ajustes-finos-versão-personalizada-1" class="section level4" number="6.5.2.3">
 <h4><span class="header-section-number">6.5.2.3</span> 4.2.3. Ajustes finos (versão personalizada)</h4>
@@ -914,7 +931,7 @@ espécies diferentes (fill = species).</p>
 <span id="cb185-6"><a href="cap6.html#cb185-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> .<span class="dv">07</span>, <span class="at">by =</span> .<span class="dv">01</span>)) <span class="sc">+</span></span>
 <span id="cb185-7"><a href="cap6.html#cb185-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb185-8"><a href="cap6.html#cb185-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comprimento da nadadeira (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Espécie&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-198-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-199-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="principais-camadas-utilizadas-na-função-geom_density" class="section level4" number="6.5.2.4">
 <h4><span class="header-section-number">6.5.2.4</span> 4.2.4. Principais camadas utilizadas na função <code>geom_density()</code></h4>
@@ -962,7 +979,7 @@ a função <code>geom_dotplot()</code>.</p>
 <span id="cb186-2"><a href="cap6.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
 <span id="cb186-3"><a href="cap6.html#cb186-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb186-4"><a href="cap6.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-199-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-200-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="comparando-múltiplas-categorias-2" class="section level4" number="6.5.3.2">
 <h4><span class="header-section-number">6.5.3.2</span> 4.3.2. Comparando múltiplas categorias</h4>
@@ -978,7 +995,7 @@ comparar categorias na função <code>geom_dotplot()</code> utilizando o argumen
 <span id="cb187-7"><a href="cap6.html#cb187-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">dotsize=</span><span class="fl">0.7</span>, </span>
 <span id="cb187-8"><a href="cap6.html#cb187-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
 <span id="cb187-9"><a href="cap6.html#cb187-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-200-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-200-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-201-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-201-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ajustes-finos-versão-personalizada-2" class="section level4" number="6.5.3.3">
 <h4><span class="header-section-number">6.5.3.3</span> 4.3.3. Ajustes finos (versão personalizada)</h4>
@@ -991,7 +1008,7 @@ comparar categorias na função <code>geom_dotplot()</code> utilizando o argumen
 <span id="cb188-7"><a href="cap6.html#cb188-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">170</span>, <span class="at">to =</span> <span class="dv">240</span>, <span class="at">by =</span> <span class="dv">10</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>)) <span class="sc">+</span></span>
 <span id="cb188-8"><a href="cap6.html#cb188-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">1.4</span>, <span class="at">by =</span> .<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.4</span>)) <span class="sc">+</span></span>
 <span id="cb188-9"><a href="cap6.html#cb188-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comprimento da nadadeira (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Espécies&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-201-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-202-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Uma das limitações do dotplot é que a sobreposição dos pontos não
 permite a visualização apropriada desses valores sobrepostos entre
 diferentes grupos comparados.</p>
@@ -1055,7 +1072,7 @@ para cada espécie de pinguim.</p>
 <span id="cb189-7"><a href="cap6.html#cb189-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins_count, </span>
 <span id="cb189-8"><a href="cap6.html#cb189-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> n)) <span class="sc">+</span> </span>
 <span id="cb189-9"><a href="cap6.html#cb189-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-202-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-203-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Além disso, é possível alterar as cores (<code>color</code>) e preenchimento
 (<code>fill</code>) das barras, bem como sua transparência (<code>alpha</code>) e largura
 (<code>width</code>), como demonstrado nos próximos quatro gráficos.1</p>
@@ -1072,7 +1089,7 @@ para cada espécie de pinguim.</p>
 <span id="cb190-11"><a href="cap6.html#cb190-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
 <span id="cb190-12"><a href="cap6.html#cb190-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, </span>
 <span id="cb190-13"><a href="cap6.html#cb190-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-203-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-203-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-204-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-204-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="cap6.html#cb191-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb191-2"><a href="cap6.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modificando a largura da barra = 0.75</span></span>
 <span id="cb191-3"><a href="cap6.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins_count, </span>
@@ -1087,7 +1104,7 @@ para cada espécie de pinguim.</p>
 <span id="cb191-12"><a href="cap6.html#cb191-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
 <span id="cb191-13"><a href="cap6.html#cb191-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">width =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
 <span id="cb191-14"><a href="cap6.html#cb191-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;largura = 0.25&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-204-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-204-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-205-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-205-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Outra possibilidade para representação do gráfico de barras é inverter a
 direção das barras com a função <code>coord_flip()</code>.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="cap6.html#cb192-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -1103,7 +1120,7 @@ direção das barras com a função <code>coord_flip()</code>.</p>
 <span id="cb192-11"><a href="cap6.html#cb192-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
 <span id="cb192-12"><a href="cap6.html#cb192-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb192-13"><a href="cap6.html#cb192-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-205-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-205-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-206-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-206-2.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 <p>É possível utilizar variáveis categóricas para definir cores e
 preenchimento e ilustrar, por exemplo, tratamentos ou espécies
 diferentes com os argumentos <code>fill</code> e <code>color</code>.</p>
@@ -1112,7 +1129,7 @@ diferentes com os argumentos <code>fill</code> e <code>color</code>.</p>
 <span id="cb193-3"><a href="cap6.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins_count, </span>
 <span id="cb193-4"><a href="cap6.html#cb193-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> n, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb193-5"><a href="cap6.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-206-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-207-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="adicionando-medidas-de-variação" class="section level4" number="6.5.4.2">
 <h4><span class="header-section-number">6.5.4.2</span> 4.4.2. Adicionando medidas de variação</h4>
@@ -1163,7 +1180,7 @@ maneira simples, como demonstrado no exemplo abaixo.</p>
 <span id="cb194-36"><a href="cap6.html#cb194-36" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
 <span id="cb194-37"><a href="cap6.html#cb194-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb194-38"><a href="cap6.html#cb194-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Barra de erro com erro padrão&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-207-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-207-2.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-208-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-208-2.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ajustes-finos-versão-personalizada-3" class="section level4" number="6.5.4.3">
 <h4><span class="header-section-number">6.5.4.3</span> 4.4.3. Ajustes finos (versão personalizada)</h4>
@@ -1176,7 +1193,7 @@ maneira simples, como demonstrado no exemplo abaixo.</p>
 <span id="cb195-7"><a href="cap6.html#cb195-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb195-8"><a href="cap6.html#cb195-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb195-9"><a href="cap6.html#cb195-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Espécie&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Espécie&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-208-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-209-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="gráfico-de-setores-pie-chart-e-donut-chart" class="section level3" number="6.5.5">
@@ -1206,7 +1223,7 @@ em proporção.</p>
 <span id="cb196-13"><a href="cap6.html#cb196-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb196-14"><a href="cap6.html#cb196-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
 <span id="cb196-15"><a href="cap6.html#cb196-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Espécie&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-209-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-210-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-de-setores-donut-chart" class="section level4" number="6.5.5.2">
 <h4><span class="header-section-number">6.5.5.2</span> 4.5.2. Gráfico de setores (<em>donut chart</em>)</h4>
@@ -1223,7 +1240,7 @@ em proporção.</p>
 <span id="cb197-11"><a href="cap6.html#cb197-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
 <span id="cb197-12"><a href="cap6.html#cb197-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>)) <span class="sc">+</span></span>
 <span id="cb197-13"><a href="cap6.html#cb197-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Espécie&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-210-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-211-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="comparando-gráficos-de-setores-com-gráfico-de-barras" class="section level4" number="6.5.5.3">
 <h4><span class="header-section-number">6.5.5.3</span> 4.5.3. Comparando gráficos de setores com gráfico de barras</h4>
@@ -1278,7 +1295,7 @@ dados <code>penguins</code>.</p>
 <span id="cb198-44"><a href="cap6.html#cb198-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb198-45"><a href="cap6.html#cb198-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb198-46"><a href="cap6.html#cb198-46" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(g_pie, g_donut, g_bar_h, g_bar_v, <span class="at">nrow=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-211-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-212-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="principais-camadas-utilizadas-no-gráfico-de-barras-e-de-setores-geom_bar" class="section level4" number="6.5.5.4">
 <h4><span class="header-section-number">6.5.5.4</span> 4.5.4. Principais camadas utilizadas no gráfico de barras e de setores: <code>geom_bar()</code></h4>
@@ -1353,7 +1370,7 @@ comendo <code>aes()</code>.</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="cap6.html#cb199-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb199-2"><a href="cap6.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species)) <span class="sc">+</span></span>
 <span id="cb199-3"><a href="cap6.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-212-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-213-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>É possível destacar os pontos referentes aos outliers (se houver) com o
 argumento <strong>outlier.color</strong>. Caso tenha interesse, é possível também
 remover os outliers do gráfico.</p>
@@ -1365,14 +1382,14 @@ remover os outliers do gráfico.</p>
 <span id="cb200-6"><a href="cap6.html#cb200-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species)) <span class="sc">+</span></span>
 <span id="cb200-7"><a href="cap6.html#cb200-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>)<span class="sc">+</span></span>
 <span id="cb200-8"><a href="cap6.html#cb200-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;outliers removidos&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-213-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-213-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-214-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-214-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Outra alternativa para os gráficos do tipo boxplot é utilizar o
 argumento <strong>notch = TRUE</strong> para produzir diagramas de caixa entalhados
 (notched). Estes diagramas são úteis para inferir de forma aproximada se
 exite diferença significativa entre as medias dos grupos.</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="cap6.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species)) <span class="sc">+</span></span>
 <span id="cb201-2"><a href="cap6.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-214-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-215-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="comparando-múltiplas-categorias-3" class="section level4" number="6.5.6.2">
 <h4><span class="header-section-number">6.5.6.2</span> 4.6.2. Comparando múltiplas categorias</h4>
@@ -1382,7 +1399,7 @@ diferentes através do argumento <strong>fill = species</strong>.</p>
 <span id="cb202-2"><a href="cap6.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, </span>
 <span id="cb202-3"><a href="cap6.html#cb202-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb202-4"><a href="cap6.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-215-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-216-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combinando-boxplot-com-pontos-jitter" class="section level4" number="6.5.6.3">
 <h4><span class="header-section-number">6.5.6.3</span> 4.6.3. Combinando boxplot com pontos (<em>jitter</em>)</h4>
@@ -1392,7 +1409,7 @@ diferentes através do argumento <strong>fill = species</strong>.</p>
 <span id="cb203-3"><a href="cap6.html#cb203-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb203-4"><a href="cap6.html#cb203-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb203-5"><a href="cap6.html#cb203-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> .<span class="dv">6</span>, <span class="at">width =</span> .<span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-216-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-217-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-de-violino-violin-plot-como-alternativa-ao-boxplot" class="section level4" number="6.5.6.4">
 <h4><span class="header-section-number">6.5.6.4</span> 4.6.4. Gráfico de violino (<em>violin plot</em>) como alternativa ao boxplot</h4>
@@ -1407,14 +1424,14 @@ menor concentração de valores.</p>
 <span id="cb204-2"><a href="cap6.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb204-3"><a href="cap6.html#cb204-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
 <span id="cb204-4"><a href="cap6.html#cb204-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> .<span class="dv">6</span>, <span class="at">width =</span> .<span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-217-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-218-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>É possível também combinar boxplot e gráfico de violino em um único
 gráfico.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="cap6.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># violino com boxplot</span></span>
 <span id="cb205-2"><a href="cap6.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> flipper_length_mm, <span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb205-3"><a href="cap6.html#cb205-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
 <span id="cb205-4"><a href="cap6.html#cb205-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-218-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-219-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ajustes-finos-versão-personalizada-4" class="section level4" number="6.5.6.5">
 <h4><span class="header-section-number">6.5.6.5</span> 4.6.5. Ajustes finos (versão personalizada)</h4>
@@ -1455,7 +1472,7 @@ gráfico.</p>
 <span id="cb206-35"><a href="cap6.html#cb206-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb206-36"><a href="cap6.html#cb206-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb206-37"><a href="cap6.html#cb206-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Pontos com jitter&quot;</span>,, <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-219-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-219-2.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-219-3.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-220-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-220-2.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-220-3.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="principais-camadas-utilizadas-no-geom_boxplote-geom_violin" class="section level4" number="6.5.6.6">
 <h4><span class="header-section-number">6.5.6.6</span> 4.6.6. Principais camadas utilizadas no <code>geom_boxplot()</code>e <code>geom_violin()</code></h4>
@@ -1522,7 +1539,7 @@ ancova, mantel, PCA, PCoA, entre outros (<strong>Capítulos 7-14,</strong> ).</p
 <span id="cb207-2"><a href="cap6.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, </span>
 <span id="cb207-3"><a href="cap6.html#cb207-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb207-4"><a href="cap6.html#cb207-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-220-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-221-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</h3>
@@ -1540,7 +1557,7 @@ ancova, mantel, PCA, PCoA, entre outros (<strong>Capítulos 7-14,</strong> ).</p
 <span id="cb208-12"><a href="cap6.html#cb208-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>,</span>
 <span id="cb208-13"><a href="cap6.html#cb208-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
 <span id="cb208-14"><a href="cap6.html#cb208-14" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Com transparência&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-221-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-221-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-222-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-222-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>A forma dos pontos permite dois controles importantes: a forma em si
 (símbolos como círculo, quadrado, etc.) e a possibilidade de
 preenchimento da forma. A figura a seguir discrimina esses símbolos e o
@@ -1574,7 +1591,7 @@ cor e o preenchimento.</p>
 <span id="cb209-12"><a href="cap6.html#cb209-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, </span>
 <span id="cb209-13"><a href="cap6.html#cb209-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb209-14"><a href="cap6.html#cb209-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-222-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-222-2.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-222-3.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-223-1.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-223-2.png" width="50%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-223-3.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="definindo-linhas-de-ajuste" class="section level3" number="6.6.3">
 <h3><span class="header-section-number">6.6.3</span> 4.7.3. Definindo linhas de ajuste</h3>
@@ -1591,7 +1608,7 @@ para o subconjunto de dados que representa cada espécie.</p>
 <span id="cb210-4"><a href="cap6.html#cb210-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb210-5"><a href="cap6.html#cb210-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> .<span class="dv">5</span>)<span class="sc">+</span></span>
 <span id="cb210-6"><a href="cap6.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> lm)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-223-1.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-224-1.png" width="50%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ajustes-finos-versão-personalizada-5" class="section level3" number="6.6.4">
 <h3><span class="header-section-number">6.6.4</span> 4.7.4. Ajustes finos (versão personalizada)</h3>
@@ -1609,7 +1626,7 @@ para o subconjunto de dados que representa cada espécie.</p>
 <span id="cb211-12"><a href="cap6.html#cb211-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb211-13"><a href="cap6.html#cb211-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comprimento do bico (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Profundidade do bico (mm)&quot;</span>, </span>
 <span id="cb211-14"><a href="cap6.html#cb211-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Espécies&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;Espécies&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-224-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-225-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Além disso, podemos relacionar dados não tão usuais. Recomendamos a
 leitura do artigo de Matejka &amp; Fitzmaurice (2017) que apresenta as
 armadilhas típicas que dados podem gerar quando evitamos de
@@ -1626,7 +1643,7 @@ visualizá-los previmamente.</p>
 <span id="cb212-10"><a href="cap6.html#cb212-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
 <span id="cb212-11"><a href="cap6.html#cb212-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
 <span id="cb212-12"><a href="cap6.html#cb212-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-225-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-226-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="visualização-de-múltiplos-gráficos-pareados" class="section level2" number="6.7">
@@ -1652,7 +1669,7 @@ potencial variável categórica (neste caso, <em>species</em>)</p>
 <span id="cb213-5"><a href="cap6.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb213-6"><a href="cap6.html#cb213-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb213-7"><a href="cap6.html#cb213-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-226-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-227-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-pareado-com-vários-tipos-de-variáveis" class="section level3" number="6.7.2">
 <h3><span class="header-section-number">6.7.2</span> 4.8.2. Gráfico pareado com vários tipos de variáveis</h3>
@@ -1666,7 +1683,7 @@ variáveis.</p>
 <span id="cb214-4"><a href="cap6.html#cb214-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb214-5"><a href="cap6.html#cb214-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb214-6"><a href="cap6.html#cb214-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-227-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-228-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los" class="section level2" number="6.8">
@@ -1726,7 +1743,7 @@ variável categóricas (antes de fazer o ggplot2 ou dentro do
 <span id="cb215-16"><a href="cap6.html#cb215-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb215-17"><a href="cap6.html#cb215-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
 <span id="cb215-18"><a href="cap6.html#cb215-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Figura correta com transformação prévia&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-228-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-228-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-228-3.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-229-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-229-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-229-3.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="finalização-de-gráficos-para-publicação" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> 6. Finalização de gráficos para publicação</h2>
@@ -1832,7 +1849,7 @@ da função <code>element_text()</code></p></li>
 <span id="cb216-83"><a href="cap6.html#cb216-83" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key =</span>  <span class="fu">element_blank</span>(),</span>
 <span id="cb216-84"><a href="cap6.html#cb216-84" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb216-85"><a href="cap6.html#cb216-85" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-229-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-229-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-229-3.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-229-4.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-229-5.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-230-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-230-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-230-3.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-230-4.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-230-5.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="elementos-gráficos-eixo-fonte-grid" class="section level3" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> 6.2. Elementos gráficos: eixo, fonte, grid</h3>
@@ -1878,7 +1895,7 @@ e Y</p></li>
 <span id="cb217-26"><a href="cap6.html#cb217-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb217-27"><a href="cap6.html#cb217-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">60</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">60</span>, <span class="dv">10</span>))<span class="sc">+</span></span>
 <span id="cb217-28"><a href="cap6.html#cb217-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Eixo X&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Eixo Y&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-230-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-230-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-230-3.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-231-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-231-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-231-3.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>Fonte dos eixos X e Y</p>
 <ul>
@@ -1915,7 +1932,7 @@ e Y</p></li>
 <span id="cb218-24"><a href="cap6.html#cb218-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">colour =</span> <span class="st">&quot;royalblue&quot;</span>),</span>
 <span id="cb218-25"><a href="cap6.html#cb218-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))<span class="sc">+</span></span>
 <span id="cb218-26"><a href="cap6.html#cb218-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Eixo X&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Eixo Y&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-231-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-231-2.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-232-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-232-2.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>Grid</p>
 <ul>
@@ -1985,7 +2002,7 @@ e Y</p></li>
 <span id="cb219-59"><a href="cap6.html#cb219-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb219-60"><a href="cap6.html#cb219-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
 <span id="cb219-61"><a href="cap6.html#cb219-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Eixo X&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Eixo Y&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-232-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-232-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-232-3.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-232-4.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-233-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-233-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-233-3.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-233-4.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar" class="section level3" number="6.9.3">
 <h3><span class="header-section-number">6.9.3</span> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</h3>
@@ -2035,7 +2052,7 @@ publicação. Abaixo, demonstramos os modelos mais utilizados.</p>
 <span id="cb220-40"><a href="cap6.html#cb220-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb220-41"><a href="cap6.html#cb220-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_classic()&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Comprimento do bico (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Profundidade do bico (mm)&quot;</span>, </span>
 <span id="cb220-42"><a href="cap6.html#cb220-42" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Espécies&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;Espécies&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-233-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-233-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-233-3.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-234-1.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-234-2.png" width="70%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-234-3.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="criando-seu-próprio-theme_custom" class="section level3" number="6.9.4">
 <h3><span class="header-section-number">6.9.4</span> 6.4. Criando seu próprio <code>theme_custom()</code></h3>
@@ -2111,7 +2128,7 @@ tenham consitência e harmonia estética.</p>
 <span id="cb221-63"><a href="cap6.html#cb221-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Tema personalizado&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Comprimento do bico (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Profundidade do bico (mm)&quot;</span>, </span>
 <span id="cb221-64"><a href="cap6.html#cb221-64" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Espécies&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;Espécies&quot;</span>) <span class="sc">+</span></span>
 <span id="cb221-65"><a href="cap6.html#cb221-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_book</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-234-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-235-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exportando-dados-com-alta-qualidade-com-a-função-ggsave" class="section level3" number="6.9.5">
 <h3><span class="header-section-number">6.9.5</span> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></h3>
@@ -2165,7 +2182,7 @@ tamanho</p></li>
 <span id="cb222-36"><a href="cap6.html#cb222-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">15</span>, </span>
 <span id="cb222-37"><a href="cap6.html#cb222-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi =</span><span class="dv">300</span>,</span>
 <span id="cb222-38"><a href="cap6.html#cb222-38" aria-hidden="true" tabindex="-1"></a>       <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-235-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-236-1.png" width="70%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="check-list-para-garantir-bons-gráficos" class="section level2" number="6.10">

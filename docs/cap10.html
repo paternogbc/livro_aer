@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -607,7 +624,7 @@ div.csl-indent {
 <span id="cb379-7"><a href="cap10.html#cb379-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb379-8"><a href="cap10.html#cb379-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb379-9"><a href="cap10.html#cb379-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-395-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-396-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Foram registrados 166 indivíduos na MC_Tenentes, 413 na MC_Talhadinho e 223 na FF_Experimental. Lembrando, você não pode comparar a riqueza de espécies observada diretamente: 15 espécies na MC_Tenentes, 19 espécies na MC_Talhadinho, e 17 espécies no FF_Experimental. A comparação da riqueza de espécies entre as comunidades deve ser feita com base na riqueza de espécies rarefeita, que é calculada com base no número de indivíduos da comunidade com menor abundância (166 indivíduos). Olhando o gráfico é possível perceber que a riqueza de espécies de morcegos rarefeita não é diferente entre os três fragmentos florestais quando corrigimos o problema da diferença na abundância pela rarefação. A interpretação é feita com base no intervalo de confiança de 95%. As curvas serão diferentes quando os intervalos de confiança não se sobreporem <span class="citation">(<a href="#ref-chao2014" role="doc-biblioref">A. Chao et al. 2014</a>)</span>. Percebam que esta abordagem, além da interpolação (rarefação), também realiza extrapolações que podem ser usadas para estimar o número de espécies caso o esforço de coleta fosse maior. Este é o assunto do nosso próximo capítulo.</p>
 <p>
@@ -659,7 +676,7 @@ div.csl-indent {
 <span id="cb381-9"><a href="cap10.html#cb381-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb381-10"><a href="cap10.html#cb381-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb381-11"><a href="cap10.html#cb381-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-397-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-398-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados - répteis</strong></p>
 <p>Foram registradas oito espécies de répteis nas coletas de campo (40 indivíduos) e 28 espécies nas coleções científicas (77 indivíduos). Com base na rarefação, concluímos que a riqueza de espécies de répteis obtida nas coleções científicas (20,5) é 2,9 vezes maior do que a obtida em coletas de campo (7,05).</p>
 <p>Olhando os dados dos anuros</p>
@@ -682,7 +699,7 @@ div.csl-indent {
 <span id="cb383-8"><a href="cap10.html#cb383-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb383-9"><a href="cap10.html#cb383-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb383-10"><a href="cap10.html#cb383-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-399-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-400-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados - anuros</strong></p>
 <p>Foram registradas 21 espécies de anuros nas coletas de campo (709 indivíduos) e 12 espécies nas coleções científicas (37 indivíduos). Com base na rarefação, concluímos que não há diferença entre a riqueza de espécies de anuros obtida em coletas de campo e coleções científicas.</p>
 </div>
@@ -734,7 +751,7 @@ div.csl-indent {
 <span id="cb386-7"><a href="cap10.html#cb386-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb386-8"><a href="cap10.html#cb386-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb386-9"><a href="cap10.html#cb386-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-402-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-403-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Olhando o gráfico é possível perceber que a riqueza de espécies de morcegos rarefeita não é diferente entre os três fragmentos florestais quando corrigimos o problema da diferença no número de amostras.</p>
 </div>
@@ -755,7 +772,7 @@ div.csl-indent {
 <span id="cb387-6"><a href="cap10.html#cb387-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb387-7"><a href="cap10.html#cb387-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb387-8"><a href="cap10.html#cb387-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-403-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-404-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p><em>Coverage</em> é uma medida que determina a proporção de amostras (<em>sampled-based</em>) ou do número de indivíduos (<em>abundance-based</em>) da comunidade que representa as espécies presentes na amostra. Um valor de <em>coverage</em> = 0,85 representa a riqueza estimada com base em 85% das amostragens ou da abundância da comunidade. No nosso exemplo, os valores de <em>coverage</em> foram acima de 0,93 indicando que precisamos de praticamente todas as amostras para estimar a riqueza observada em cada comunidade. Comparando as comunidades considerando o mesmo valor de <em>coverage,</em> 0,937 na comunidade Tenentes, identificamos que a riqueza de espécies de morcegos estimada na comunidade Experimental é menor do que a estimada para a comunidade de Talhadinho (não há sobreposição do intervalo de confiança). Percebam que usando a curva de rarefação <em>coverage-based</em>, a interpretação dos resultados foi diferente das observadas usando as curvas baseadas nos indivíduos ou amostras. Veja Chao &amp; Jost <span class="citation">(<a href="#ref-chao2012" role="doc-biblioref">2012</a>)</span> e Roswell et al. <span class="citation">(<a href="#ref-roswell2021" role="doc-biblioref">2021</a>)</span> para explicações mais detalhadas sobre esta metodologia.</p>
 <p>
@@ -845,7 +862,7 @@ div.csl-indent {
 <span id="cb393-12"><a href="cap10.html#cb393-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb393-13"><a href="cap10.html#cb393-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os resíduos do modelo selecionado.</span></span>
 <span id="cb393-14"><a href="cap10.html#cb393-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gauss_model)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-409-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-410-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Percebam que os pontos estão dispersos no gráfico e não apresentam padrões que indiquem heterogeneidade de variância.</p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="cap10.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os resultados.</span></span>
 <span id="cb394-2"><a href="cap10.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gauss_model)<span class="sc">$</span>tTable </span>
@@ -868,7 +885,7 @@ div.csl-indent {
 <span id="cb394-19"><a href="cap10.html#cb394-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb394-20"><a href="cap10.html#cb394-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb394-21"><a href="cap10.html#cb394-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predito), <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-410-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-411-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>A concentração de água no substrato explica 29,9% da variação na riqueza rarefeita das espécies de ácaros. Como predito, a riqueza de espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos (t = -4.71, df = 68, P &lt; 0.01).</p>
 </div>

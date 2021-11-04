@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -932,47 +949,46 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="cap5.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Remover todas as linhas com NAs</span></span>
 <span id="cb111-2"><a href="cap5.html#cb111-2" aria-hidden="true" tabindex="-1"></a>penguins_raw_todas_na <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">drop_na</span>(<span class="at">data =</span> penguins_raw)</span>
 <span id="cb111-3"><a href="cap5.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins_raw_todas_na)</span>
-<span id="cb111-4"><a href="cap5.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 17</span></span>
-<span id="cb111-5"><a href="cap5.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   studyName `Sample Number` Species           Region Island  Stage     `Individual ID`</span></span>
-<span id="cb111-6"><a href="cap5.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;          </span></span>
-<span id="cb111-7"><a href="cap5.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 PAL0708                 7 Adelie Penguin (~ Anvers Torger~ Adult, 1~ N4A1           </span></span>
-<span id="cb111-8"><a href="cap5.html#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 PAL0708                 8 Adelie Penguin (~ Anvers Torger~ Adult, 1~ N4A2           </span></span>
-<span id="cb111-9"><a href="cap5.html#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 PAL0708                29 Adelie Penguin (~ Anvers Biscoe  Adult, 1~ N18A1          </span></span>
-<span id="cb111-10"><a href="cap5.html#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 PAL0708                30 Adelie Penguin (~ Anvers Biscoe  Adult, 1~ N18A2          </span></span>
-<span id="cb111-11"><a href="cap5.html#cb111-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 PAL0708                39 Adelie Penguin (~ Anvers Dream   Adult, 1~ N25A1          </span></span>
-<span id="cb111-12"><a href="cap5.html#cb111-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 PAL0809                69 Adelie Penguin (~ Anvers Torger~ Adult, 1~ N32A1          </span></span>
-<span id="cb111-13"><a href="cap5.html#cb111-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 10 more variables: Clutch Completion &lt;chr&gt;, Date Egg &lt;date&gt;,</span></span>
-<span id="cb111-14"><a href="cap5.html#cb111-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   Culmen Length (mm) &lt;dbl&gt;, Culmen Depth (mm) &lt;dbl&gt;, Flipper Length (mm) &lt;dbl&gt;,</span></span>
-<span id="cb111-15"><a href="cap5.html#cb111-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   Body Mass (g) &lt;dbl&gt;, Sex &lt;chr&gt;, Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;,</span></span>
-<span id="cb111-16"><a href="cap5.html#cb111-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   Comments &lt;chr&gt;</span></span>
-<span id="cb111-17"><a href="cap5.html#cb111-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-18"><a href="cap5.html#cb111-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Remover linhas de colunas específicas com NAs</span></span>
-<span id="cb111-19"><a href="cap5.html#cb111-19" aria-hidden="true" tabindex="-1"></a>penguins_raw_colunas_na <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">drop_na</span>(<span class="at">data =</span> penguins_raw,</span>
-<span id="cb111-20"><a href="cap5.html#cb111-20" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">any_of</span>(<span class="st">&quot;Comments&quot;</span>))</span>
-<span id="cb111-21"><a href="cap5.html#cb111-21" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins_raw_colunas_na[, <span class="st">&quot;Comments&quot;</span>])</span>
-<span id="cb111-22"><a href="cap5.html#cb111-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 1</span></span>
-<span id="cb111-23"><a href="cap5.html#cb111-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Comments                             </span></span>
-<span id="cb111-24"><a href="cap5.html#cb111-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                                </span></span>
-<span id="cb111-25"><a href="cap5.html#cb111-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Not enough blood for isotopes.       </span></span>
-<span id="cb111-26"><a href="cap5.html#cb111-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Adult not sampled.                   </span></span>
-<span id="cb111-27"><a href="cap5.html#cb111-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Nest never observed with full clutch.</span></span>
-<span id="cb111-28"><a href="cap5.html#cb111-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Nest never observed with full clutch.</span></span>
-<span id="cb111-29"><a href="cap5.html#cb111-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 No blood sample obtained.            </span></span>
-<span id="cb111-30"><a href="cap5.html#cb111-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 No blood sample obtained for sexing.</span></span>
-<span id="cb111-31"><a href="cap5.html#cb111-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-32"><a href="cap5.html#cb111-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Substituir NAs por outro valor</span></span>
-<span id="cb111-33"><a href="cap5.html#cb111-33" aria-hidden="true" tabindex="-1"></a>penguins_raw_subs_na <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">replace_na</span>(<span class="at">data =</span> penguins_raw,</span>
-<span id="cb111-34"><a href="cap5.html#cb111-34" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">list</span>(<span class="at">Comments =</span> <span class="st">&quot;Unknown&quot;</span>))</span>
-<span id="cb111-35"><a href="cap5.html#cb111-35" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins_raw_subs_na[, <span class="st">&quot;Comments&quot;</span>])</span>
-<span id="cb111-36"><a href="cap5.html#cb111-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 1</span></span>
-<span id="cb111-37"><a href="cap5.html#cb111-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Comments                      </span></span>
-<span id="cb111-38"><a href="cap5.html#cb111-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                         </span></span>
-<span id="cb111-39"><a href="cap5.html#cb111-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Not enough blood for isotopes.</span></span>
-<span id="cb111-40"><a href="cap5.html#cb111-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Unknown                       </span></span>
-<span id="cb111-41"><a href="cap5.html#cb111-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Unknown                       </span></span>
-<span id="cb111-42"><a href="cap5.html#cb111-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Adult not sampled.            </span></span>
-<span id="cb111-43"><a href="cap5.html#cb111-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Unknown                       </span></span>
-<span id="cb111-44"><a href="cap5.html#cb111-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Unknown</span></span></code></pre></div>
+<span id="cb111-4"><a href="cap5.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 17</span></span>
+<span id="cb111-5"><a href="cap5.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   studyName `Sample Number` Species     Region Island  Stage  `Individual ID` `Clutch Complet…</span></span>
+<span id="cb111-6"><a href="cap5.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;           </span></span>
+<span id="cb111-7"><a href="cap5.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 PAL0708                 7 Adelie Pen… Anvers Torger… Adult… N4A1            No              </span></span>
+<span id="cb111-8"><a href="cap5.html#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 PAL0708                 8 Adelie Pen… Anvers Torger… Adult… N4A2            No              </span></span>
+<span id="cb111-9"><a href="cap5.html#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 PAL0708                29 Adelie Pen… Anvers Biscoe  Adult… N18A1           No              </span></span>
+<span id="cb111-10"><a href="cap5.html#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 PAL0708                30 Adelie Pen… Anvers Biscoe  Adult… N18A2           No              </span></span>
+<span id="cb111-11"><a href="cap5.html#cb111-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 PAL0708                39 Adelie Pen… Anvers Dream   Adult… N25A1           No              </span></span>
+<span id="cb111-12"><a href="cap5.html#cb111-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 PAL0809                69 Adelie Pen… Anvers Torger… Adult… N32A1           No              </span></span>
+<span id="cb111-13"><a href="cap5.html#cb111-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 9 more variables: Date Egg &lt;date&gt;, Culmen Length (mm) &lt;dbl&gt;,</span></span>
+<span id="cb111-14"><a href="cap5.html#cb111-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   Culmen Depth (mm) &lt;dbl&gt;, Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;, Sex &lt;chr&gt;,</span></span>
+<span id="cb111-15"><a href="cap5.html#cb111-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;, Comments &lt;chr&gt;</span></span>
+<span id="cb111-16"><a href="cap5.html#cb111-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-17"><a href="cap5.html#cb111-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Remover linhas de colunas específicas com NAs</span></span>
+<span id="cb111-18"><a href="cap5.html#cb111-18" aria-hidden="true" tabindex="-1"></a>penguins_raw_colunas_na <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">drop_na</span>(<span class="at">data =</span> penguins_raw,</span>
+<span id="cb111-19"><a href="cap5.html#cb111-19" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">any_of</span>(<span class="st">&quot;Comments&quot;</span>))</span>
+<span id="cb111-20"><a href="cap5.html#cb111-20" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins_raw_colunas_na[, <span class="st">&quot;Comments&quot;</span>])</span>
+<span id="cb111-21"><a href="cap5.html#cb111-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 1</span></span>
+<span id="cb111-22"><a href="cap5.html#cb111-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Comments                             </span></span>
+<span id="cb111-23"><a href="cap5.html#cb111-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                                </span></span>
+<span id="cb111-24"><a href="cap5.html#cb111-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Not enough blood for isotopes.       </span></span>
+<span id="cb111-25"><a href="cap5.html#cb111-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Adult not sampled.                   </span></span>
+<span id="cb111-26"><a href="cap5.html#cb111-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Nest never observed with full clutch.</span></span>
+<span id="cb111-27"><a href="cap5.html#cb111-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Nest never observed with full clutch.</span></span>
+<span id="cb111-28"><a href="cap5.html#cb111-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 No blood sample obtained.            </span></span>
+<span id="cb111-29"><a href="cap5.html#cb111-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 No blood sample obtained for sexing.</span></span>
+<span id="cb111-30"><a href="cap5.html#cb111-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-31"><a href="cap5.html#cb111-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Substituir NAs por outro valor</span></span>
+<span id="cb111-32"><a href="cap5.html#cb111-32" aria-hidden="true" tabindex="-1"></a>penguins_raw_subs_na <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">replace_na</span>(<span class="at">data =</span> penguins_raw,</span>
+<span id="cb111-33"><a href="cap5.html#cb111-33" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">list</span>(<span class="at">Comments =</span> <span class="st">&quot;Unknown&quot;</span>))</span>
+<span id="cb111-34"><a href="cap5.html#cb111-34" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins_raw_subs_na[, <span class="st">&quot;Comments&quot;</span>])</span>
+<span id="cb111-35"><a href="cap5.html#cb111-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 1</span></span>
+<span id="cb111-36"><a href="cap5.html#cb111-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Comments                      </span></span>
+<span id="cb111-37"><a href="cap5.html#cb111-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                         </span></span>
+<span id="cb111-38"><a href="cap5.html#cb111-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Not enough blood for isotopes.</span></span>
+<span id="cb111-39"><a href="cap5.html#cb111-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Unknown                       </span></span>
+<span id="cb111-40"><a href="cap5.html#cb111-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Unknown                       </span></span>
+<span id="cb111-41"><a href="cap5.html#cb111-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Adult not sampled.            </span></span>
+<span id="cb111-42"><a href="cap5.html#cb111-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Unknown                       </span></span>
+<span id="cb111-43"><a href="cap5.html#cb111-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Unknown</span></span></code></pre></div>
 </div>
 <div id="pivot_longer-e-pivot_wider" class="section level3" number="5.7.6">
 <h3><span class="header-section-number">5.7.6</span> pivot_longer() e pivot_wider()</h3>
@@ -1817,7 +1833,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span id="cb148-4"><a href="cap5.html#cb148-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb148-5"><a href="cap5.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Extrair a data e tempo nesse instante</span></span>
 <span id="cb148-6"><a href="cap5.html#cb148-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">now</span>()</span>
-<span id="cb148-7"><a href="cap5.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 10:56:57 CET&quot;</span></span></code></pre></div>
+<span id="cb148-7"><a href="cap5.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 14:17:54 CET&quot;</span></span></code></pre></div>
 <p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
 <ul>
 <li>De um string</li>
@@ -1899,7 +1915,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span id="cb154-14"><a href="cap5.html#cb154-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Thu</span></span>
 <span id="cb154-15"><a href="cap5.html#cb154-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span></span>
 <span id="cb154-16"><a href="cap5.html#cb154-16" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">second</span>(<span class="fu">now</span>())</span>
-<span id="cb154-17"><a href="cap5.html#cb154-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 57.67871</span></span></code></pre></div>
+<span id="cb154-17"><a href="cap5.html#cb154-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 54.56615</span></span></code></pre></div>
 <p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="cap5.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data</span></span>
 <span id="cb155-2"><a href="cap5.html#cb155-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">dmy_hms</span>(<span class="st">&quot;04-03-2021 01:04:56&quot;</span>)</span>
@@ -2096,15 +2112,15 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>Podemos nos perguntar que horas são em outra parte do globo ou fazer as conversões facilmente no <em>lubridate</em>.</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="cap5.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Que horas são em...</span></span>
 <span id="cb167-2"><a href="cap5.html#cb167-2" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">with_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;America/Sao_Paulo&quot;</span>)</span>
-<span id="cb167-3"><a href="cap5.html#cb167-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 06:56:57 -03&quot;</span></span>
+<span id="cb167-3"><a href="cap5.html#cb167-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 10:17:55 -03&quot;</span></span>
 <span id="cb167-4"><a href="cap5.html#cb167-4" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">with_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;GMT&quot;</span>)</span>
-<span id="cb167-5"><a href="cap5.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 09:56:57 GMT&quot;</span></span>
+<span id="cb167-5"><a href="cap5.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 13:17:55 GMT&quot;</span></span>
 <span id="cb167-6"><a href="cap5.html#cb167-6" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">with_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;Europe/Berlin&quot;</span>)</span>
-<span id="cb167-7"><a href="cap5.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 10:56:57 CET&quot;</span></span>
+<span id="cb167-7"><a href="cap5.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 14:17:55 CET&quot;</span></span>
 <span id="cb167-8"><a href="cap5.html#cb167-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb167-9"><a href="cap5.html#cb167-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Altera o fuso sem mudar a hora</span></span>
 <span id="cb167-10"><a href="cap5.html#cb167-10" aria-hidden="true" tabindex="-1"></a>lubridate<span class="sc">::</span><span class="fu">force_tz</span>(lubridate<span class="sc">::</span><span class="fu">now</span>(), <span class="at">tzone =</span> <span class="st">&quot;GMT&quot;</span>)</span>
-<span id="cb167-11"><a href="cap5.html#cb167-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 10:56:57 GMT&quot;</span></span></code></pre></div>
+<span id="cb167-11"><a href="cap5.html#cb167-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-11-04 14:17:55 GMT&quot;</span></span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de <span class="citation"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="purrr" class="section level2" number="5.12">

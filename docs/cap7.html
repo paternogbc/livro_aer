@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -615,7 +632,7 @@ Estatísticas frequentistas como as que serão abordadas neste capítulo são ba
 <span id="cb225-2"><a href="cap7.html#cb225-2" aria-hidden="true" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRC <span class="sc">~</span> Estacao, <span class="at">data =</span> CRC_PN_macho)</span>
 <span id="cb225-3"><a href="cap7.html#cb225-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(residuos)</span>
 <span id="cb225-4"><a href="cap7.html#cb225-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 22 26</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-239-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-240-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os pontos estão próximos a reta indicando que a distribuição dos resíduos é normal (Figura 1).</p>
 <p>Outra possibilidade é usar os testes de Shapiro-Wilk e Levene para verificar a normalidade e a homogeneidade da variância respectivamente.</p>
 <div class="alert alert-info">
@@ -670,7 +687,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb229-8"><a href="cap7.html#cb229-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb229-9"><a href="cap7.html#cb229-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb229-10"><a href="cap7.html#cb229-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-243-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-244-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Neste exemplo, rejeitamos a hipótese nula de que as médias do CRC dos machos entre as estações seca e chuvosa são iguais. Os resultados mostram que os machos de <em>P. nattereri</em> coletados na estação chuvosa foram em média 0,43 mm maiores do que os coletados na estação seca (t<sub>49</sub> = 4,15, P &lt; 0,001).</p>
 <p>
@@ -715,7 +732,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb231-2"><a href="cap7.html#cb231-2" aria-hidden="true" tabindex="-1"></a>residuos_LP <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRC <span class="sc">~</span> Estacao, <span class="at">data =</span> CRC_LP_femea)</span>
 <span id="cb231-3"><a href="cap7.html#cb231-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(residuos_LP)</span>
 <span id="cb231-4"><a href="cap7.html#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 6</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-245-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-246-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os resíduos apresentam distribuição normal. Agora vamos avaliar a homogeneidade da variância.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="cap7.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de homogeneidade da variância</span></span>
 <span id="cb232-2"><a href="cap7.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(CRC <span class="sc">~</span> Estacao, <span class="at">data =</span> CRC_LP_femea)</span>
@@ -748,7 +765,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb234-6"><a href="cap7.html#cb234-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb234-7"><a href="cap7.html#cb234-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb234-8"><a href="cap7.html#cb234-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-248-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-249-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Os resultados mostram que as fêmeas de <em>L. podicipinus</em> coletadas na estação chuvosa não são maiores do que as fêmeas coletadas na estação seca, apesar de possuirem maior variância, o que pode ser biologicamente interessante.</p>
 <p>
@@ -839,7 +856,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb237-6"><a href="cap7.html#cb237-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Riqueza de Espécies&quot;</span>) <span class="sc">+</span></span>
 <span id="cb237-7"><a href="cap7.html#cb237-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">150</span>)) <span class="sc">+</span></span>
 <span id="cb237-8"><a href="cap7.html#cb237-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-251-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-252-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Os resultados mostram que as localidades após as queimadas apresentam em média 44,5 espécies de artrópodes a menos do que antes das queimadas.</p>
 <p>
@@ -932,7 +949,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb240-7"><a href="cap7.html#cb240-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb240-8"><a href="cap7.html#cb240-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
 <span id="cb240-9"><a href="cap7.html#cb240-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span><span class="st">&quot;dashed&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-254-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-255-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante: </strong> a linha de tendência tracejada no gráfico é apenas para ilustrar a relação positiva entre as variáveis. Ela não é gerada pela análise de correlação.</p>
 </div>
@@ -1010,7 +1027,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb243-4"><a href="cap7.html#cb243-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>() <span class="co"># volta a configuração dos gráficos para o formato padrão </span></span>
 <span id="cb243-5"><a href="cap7.html#cb243-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
 <span id="cb243-6"><a href="cap7.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-257-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-258-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os gráficos <em>Residuals vs Fitted</em>, <em>Scale-Location</em>, e <em>Residual vs Leverage</em> estão relacionados com a homogeneidade da variância. Nestes gráficos, esperamos ver os pontos dispersos no espaço sem padrões com formatos em <em>U</em> ou funil. Podemos observar que tanto a normalidade como a homogeneidade do resíduos estão dentro dos padrões esperados.</p>
 <p>Vamos ver os resultados da regressão simples usando as funções <code>anova</code> e <code>summary</code>. A função <code>anova</code> retorna uma tabela contendo o grau de liberdade (df), soma dos quadrados, valor de F e o valor de P.</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="cap7.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resultados usando a função anova</span></span>
@@ -1053,7 +1070,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb246-6"><a href="cap7.html#cb246-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb246-7"><a href="cap7.html#cb246-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
 <span id="cb246-8"><a href="cap7.html#cb246-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-260-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-261-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Neste exemplo, rejeitamos a hipótese nula de que não existe relação entre o tamanho do CRC das populações de <em>D. minutus</em> e a temperatura da localidade onde elas ocorrem (F<sub>1,107</sub> = 38,92, P &lt; 0,001). Os resultados mostram que o tamanho do CRC das populações tem uma relação positiva com a temperatura das localidades. Assim, populações de <em>D. minutus</em> em localidades mais quentes apresentam maior CRC do que as populações em localidades mais frias.</p>
 <p>
@@ -1140,7 +1157,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb250-4"><a href="cap7.html#cb250-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb250-5"><a href="cap7.html#cb250-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
 <span id="cb250-6"><a href="cap7.html#cb250-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-264-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-265-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os resíduos apresentam distribuição normal e variâncias homogêneas.</p>
 <p>Podemos ver os resultados da análise.</p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="cap7.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Regressão múltipla</span></span>
@@ -1350,7 +1367,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb258-19"><a href="cap7.html#cb258-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Sem adubo&quot;</span>,<span class="st">&quot;Tradicional&quot;</span>,<span class="st">&quot;X-2020&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb258-20"><a href="cap7.html#cb258-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb258-21"><a href="cap7.html#cb258-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-272-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-273-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Neste exemplo, os indivíduos de <em>C. arabica</em> que receberam adubação (tradicional e X-2020) apresentaram maior crescimento do que os indivíduos que não receberam adubação. Contudo, diferente do que foi divulgado pela empresa, o adubo X-2020 não apresentou melhor desempenho que o adubo tradicional já utilizado pelos produtores.</p>
 <p>
@@ -1434,7 +1451,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb262-4"><a href="cap7.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb262-5"><a href="cap7.html#cb262-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
 <span id="cb262-6"><a href="cap7.html#cb262-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-276-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-277-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Dois pontos estão fugindo da reta e chamam atenção sobre a normalidade da distribuição dos resíduos. A homogeneidade da variância está adequada. Por enquanto, vamos seguir a análise, mas veja o <a href="#Cap8"><strong>??</strong></a> para entender como lidar como modelos que os resíduos não apresentam distribuição normal.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="cap7.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultados do modelo</span></span>
 <span id="cb263-2"><a href="cap7.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo2)</span>
@@ -1502,7 +1519,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb265-16"><a href="cap7.html#cb265-16" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb265-17"><a href="cap7.html#cb265-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
 <span id="cb265-18"><a href="cap7.html#cb265-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()  </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-279-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-280-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Percebam que para saber a resposta do fator idade (jovem ou idoso) na eliminação da droga, você precisa saber com qual pessoa (XX ou XY) ele está associado. Isso porque a resposta de um fator, depende do outro fator. Jovens eliminam a droga do corpo mais rápido nas pessoas XY, enquanto os idosos eliminam a droga mais rápido nas pessoas XX.</p>
 <p>
@@ -1557,7 +1574,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb267-15"><a href="cap7.html#cb267-15" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb267-16"><a href="cap7.html#cb267-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
 <span id="cb267-17"><a href="cap7.html#cb267-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-281-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-282-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Percebam que as linhas se cruzam. Esse é um exemplo clássico de interação. Novamente, para saber a resposta do fator idade (jovem ou idoso), você precisa saber com qual pessoa (XX ou XY) ele está associado. Jovens são mais rápidos para eliminarem a droga em pessoas XX, enquanto os idosos são mais rápidos para eliminarem a droga nas pessoas XY.</p>
 <p>
@@ -1674,7 +1691,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb272-12"><a href="cap7.html#cb272-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;-100m&quot;</span>,<span class="st">&quot;-50m&quot;</span>,<span class="st">&quot;Borda&quot;</span>, <span class="st">&quot;50m&quot;</span>, <span class="st">&quot;100m&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb272-13"><a href="cap7.html#cb272-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb272-14"><a href="cap7.html#cb272-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-286-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-287-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Neste exemplo, rejeitamos a hipótese nula de que a distância das poças artificiais até as bordas dos fragmentos florestais não influência a riqueza de espécies de anuros. As poças artificiais instaladas nas bordas dos fragmentos florestais apresentaram maior riqueza de espécies do que as poças distantes.</p>
 <p>
@@ -1729,7 +1746,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb274-3"><a href="cap7.html#cb274-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-4"><a href="cap7.html#cb274-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificando as premissas da Anova.</span></span>
 <span id="cb274-5"><a href="cap7.html#cb274-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(<span class="fu">plot_model</span>(modelo_ancova, <span class="at">type =</span> <span class="st">&quot;diag&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-288-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-289-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>As premissas da anova estão adequadas. Vamos olhar os resultados do modelo.</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="cap7.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resultados do modelo</span></span>
 <span id="cb275-2"><a href="cap7.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo_ancova)</span>
@@ -1768,7 +1785,7 @@ Hipótese nula destes testes é que a distribuição é normal ou homogênea:</p
 <span id="cb277-7"><a href="cap7.html#cb277-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>),</span>
 <span id="cb277-8"><a href="cap7.html#cb277-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Com herbivoria&quot;</span>, <span class="st">&quot;Sem herbivoria&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb277-9"><a href="cap7.html#cb277-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> Herbivoria), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-291-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-292-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Neste exemplo, o tamanho da raiz (covariável) tem uma relação positiva com a biomassa dos frutos. Quanto maior o tamanho da raiz, maior a biomassa dos frutos. Usando a ANCOVA e controlando o efeito da covariável, percebemos que a herbivoria também afeta a biomassa dos frutos. Os indivíduos com mesmo tamanho de raiz que não sofreram herbivoria produziram frutos com maior biomassa do que os indivíduos com herbivoria.</p>
 <p>

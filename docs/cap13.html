@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="cap12.html"/>
-<link rel="next" href="referências-1.html"/>
+<link rel="next" href="cap14.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -546,7 +563,7 @@ div.csl-indent {
 </div>
 <div id="aspectos-teóricos-4" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Aspectos teóricos</h2>
-<p>A diversidade filogenética captura a ancestralidade compartilhada entre as espécies em termos de quantidade da história evolutiva e o grau de parentesco entre as espécies. Pesquisadores têm utilizado diferentes métricas de diversidade filogenética em duas linhas de investigações principais: i) incorporar a história evolutiva das espécies na seleção das áreas prioritárias para conservação visando minimizar a perda da diversidade evolutiva <span class="citation">(<a href="#ref-vane-wright1991" role="doc-biblioref">Vane-Wright, Humphries, and Williams 1991</a>; <a href="#ref-faith1992" role="doc-biblioref">Faith 1992</a>; <a href="#ref-véron2019" role="doc-biblioref">Véron et al. 2019</a>)</span>, e ii) produzir explicações sobre os processos atuando na montagem das comunidades <span class="citation">(<a href="#ref-webb2002" role="doc-biblioref">Webb et al. 2002</a>; <a href="#ref-helmus2007" role="doc-biblioref">Helmus et al. 2007</a>)</span>. A quantidade de artigos abordando ecologia, macroecologia e conservação com diversidade filogenética cresceram exponencialmente nas últimas décadas <span class="citation">(<a href="#ref-véron2019" role="doc-biblioref">Véron et al. 2019</a>)</span>. Seguindo esta tendência, o número de métricas de diversidade filogenética propostas não param de aumentar. Tucker et al. <span class="citation">(<a href="#ref-tucker2016" role="doc-biblioref">2016</a>)</span> revisaram 70 métricas de diversidade filogenética e classificaram estas métricas em três dimensões: i) <strong>riqueza</strong> - representa a soma da diferença filogenética acumulada entre táxons; ii) <strong>divergência</strong> - representa o padrão de diferença filogenética entre táxons de uma assembleia; e iii) <strong>regularidade</strong> - representa o grau de variação das diferenças filogenéticas entre táxons em uma assembleia. Outros autores utilizaram diferentes classificações <span class="citation">(<a href="#ref-pavoine2010" role="doc-biblioref">Pavoine and Bonsall 2010</a>; <a href="#ref-vellend2011" role="doc-biblioref">M. Vellend et al. 2011</a>; <a href="#ref-garamszegi2014" role="doc-biblioref">Garamszegi 2014</a>)</span>. Neste capítulo, iremos seguir a classificação de Tucker et al. <span class="citation">(<a href="#ref-tucker2016" role="doc-biblioref">2016</a>)</span> e mostrar algumas das principais métricas dentro de cada uma dessas dimensões. Alguns autores recomendam que os pesquisadores não foquem em apenas uma dimensão, mas comparem métricas de diferentes dimensões <span class="citation">(<a href="#ref-tucker2016" role="doc-biblioref">Tucker et al. 2016</a>)</span>.</p>
+<p>A diversidade filogenética captura a ancestralidade compartilhada entre as espécies em termos de quantidade da história evolutiva e o grau de parentesco entre as espécies. Pesquisadores têm utilizado diferentes métricas de diversidade filogenética em duas linhas de investigações principais: i) incorporar a história evolutiva das espécies na seleção das áreas prioritárias para conservação visando minimizar a perda da diversidade evolutiva <span class="citation">(<a href="#ref-vane-wright1991" role="doc-biblioref">Vane-Wright, Humphries, and Williams 1991</a>; <a href="#ref-faith1992" role="doc-biblioref">Faith 1992</a>; <a href="#ref-véron2019" role="doc-biblioref">Véron et al. 2019</a>)</span>, e ii) produzir explicações sobre os processos atuando na montagem das comunidades <span class="citation">(<a href="#ref-webb2002" role="doc-biblioref">Webb et al. 2002</a>; <a href="#ref-helmus2007" role="doc-biblioref">Helmus et al. 2007</a>)</span>. A quantidade de artigos abordando ecologia, macroecologia e conservação com diversidade filogenética cresceram exponencialmente nas últimas décadas <span class="citation">(<a href="#ref-véron2019" role="doc-biblioref">Véron et al. 2019</a>)</span>. Seguindo esta tendência, o número de métricas de diversidade filogenética propostas não param de aumentar. Tucker et al. <span class="citation">(<a href="#ref-tucker2016" role="doc-biblioref">2016</a>)</span> revisaram 70 métricas de diversidade filogenética e classificaram estas métricas em três dimensões: i) <strong>riqueza</strong> - representa a soma da diferença filogenética acumulada entre táxons; ii) <strong>divergência</strong> - representa o padrão de diferença filogenética entre táxons de uma assembleia; e iii) <strong>regularidade</strong> - representa o grau de variação das diferenças filogenéticas entre táxons em uma assembleia. Outros autores utilizaram diferentes classificações <span class="citation">(<a href="#ref-pavoine2010" role="doc-biblioref">S. Pavoine and Bonsall 2010</a>; <a href="#ref-vellend2011" role="doc-biblioref">M. Vellend et al. 2011</a>; <a href="#ref-garamszegi2014" role="doc-biblioref">Garamszegi 2014</a>)</span>. Neste capítulo, iremos seguir a classificação de Tucker et al. <span class="citation">(<a href="#ref-tucker2016" role="doc-biblioref">2016</a>)</span> e mostrar algumas das principais métricas dentro de cada uma dessas dimensões. Alguns autores recomendam que os pesquisadores não foquem em apenas uma dimensão, mas comparem métricas de diferentes dimensões <span class="citation">(<a href="#ref-tucker2016" role="doc-biblioref">Tucker et al. 2016</a>)</span>.</p>
 </div>
 <div id="manipulação-de-filogenias" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Manipulação de filogenias</h2>
@@ -575,12 +592,12 @@ div.csl-indent {
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="cap13.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.phylo</span> (minha_arvore, <span class="at">type =</span> <span class="st">&quot;phylogram&quot;</span>, <span class="at">show.tip.label =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb455-2"><a href="cap13.html#cb455-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">show.node.label =</span> <span class="cn">TRUE</span>, <span class="at">edge.color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">edge.width =</span> <span class="fl">1.5</span>, </span>
 <span id="cb455-3"><a href="cap13.html#cb455-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">tip.color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">cex =</span> <span class="fl">0.45</span>, <span class="at">label.offset =</span> <span class="dv">2</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-474-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-475-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Podemos alterar o formato de apresentação da filogenia usando o argumento <code>type</code> e a cor dos ramos usando o argumento <code>edge.color</code>.</p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="cap13.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.phylo</span> (minha_arvore, <span class="at">type =</span> <span class="st">&quot;fan&quot;</span>, <span class="at">show.tip.label =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb456-2"><a href="cap13.html#cb456-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">show.node.label =</span> <span class="cn">TRUE</span>, <span class="at">edge.color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">edge.width =</span> <span class="fl">1.5</span>, </span>
 <span id="cb456-3"><a href="cap13.html#cb456-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">tip.color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">cex =</span> <span class="fl">0.45</span>, <span class="at">label.offset =</span> <span class="dv">2</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-475-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-476-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Percebam que existem vários argumentos para modificar a largura e cor dos ramos, tamanho da fonte, distância entre a filogenia e o nomes da espécies e muito mais. Uma sugestão é visitar o blog do professor Liam Revell (<a href="http://blog.phytools.org/" class="uri">http://blog.phytools.org/</a>) que é o criador e mantenedor do pacote <em>phytools</em> no R.</p>
 <p>Um das características mais interessantes do R é que podemos acessar as informações do objeto. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função <code>names()</code>.</p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="cap13.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(minha_arvore)</span>
@@ -660,7 +677,7 @@ div.csl-indent {
 <span id="cb462-4"><a href="cap13.html#cb462-4" aria-hidden="true" tabindex="-1"></a>                                       Strix[i], <span class="at">where=</span><span class="st">&quot;root&quot;</span>)</span>
 <span id="cb462-5"><a href="cap13.html#cb462-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb462-6"><a href="cap13.html#cb462-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(filogenia_nova, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-481-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-482-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Vamos fazer outro exemplo usando a função <code>phylo.maker()</code> do pacote <code>V.PhyloMaker</code> que adiciona as espécies nos gêneros ou os gêneros nas famílias usando uma filogênia <em>backbone</em>.</p>
 <p>Essa função permite a adição dos gêneros ou espécies considerando três cenários diferentes:</p>
 <p>Cenário 1 - adiciona gêneros ou espécies como politomias basais dentro das famílias ou gêneros da filogenia respectivamente.</p>
@@ -681,7 +698,7 @@ div.csl-indent {
 <span id="cb463-13"><a href="cap13.html#cb463-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb463-14"><a href="cap13.html#cb463-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
 <span id="cb463-15"><a href="cap13.html#cb463-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-482-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-483-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="métricas-de-diversidade-alfa-filogenética" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Métricas de diversidade alfa filogenética</h2>
@@ -913,7 +930,7 @@ div.csl-indent {
 <span id="cb475-9"><a href="cap13.html#cb475-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ii) superior o valor da correlação de pearson; e </span></span>
 <span id="cb475-10"><a href="cap13.html#cb475-10" aria-hidden="true" tabindex="-1"></a><span class="co"># iii) diagonal a curva de densidade. </span></span>
 <span id="cb475-11"><a href="cap13.html#cb475-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(metricas_riqueza, <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-494-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-495-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Percebam que as três métricas apresentam correlações pareadas acima de 96%. Isso indica que as métricas são redundantes. Portanto, não há necessidade de calcular mais de uma métrica dentro da dimensão da riqueza filogenética. Além disso, as três métricas de diversidade alfa filogenética também apresentam alta correlação com a riqueza de espécies. Veja abaixo na seção de modelos nulos como controlar o efeito da riqueza de espécies nas métricas de diversidade filogenética.</p>
 <p>Vamos avaliar a correlação entre os valores das métricas de diversidade alfa filogénetica para a dimensão divergência.</p>
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="cap13.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos criar um data.frame com os resultados das métricas da dimensão divergência.</span></span>
@@ -926,7 +943,7 @@ div.csl-indent {
 <span id="cb476-8"><a href="cap13.html#cb476-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb476-9"><a href="cap13.html#cb476-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico.</span></span>
 <span id="cb476-10"><a href="cap13.html#cb476-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(metricas_divergencia, <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-495-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-496-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Como mencionado, as métricas MPD e PSV são idênticas quando usamos uma filogenia ultramétrica. Contudo, as métricas de divergência não apresentam correlações tão altas como as métricas da dimensão riqueza, com exceção do MNTD usando dados de incidência e abundância que foram fortemente correlacionados (r = 0,9). Além disso, estas métricas não são tão afetadas pela riqueza de espécies das comunidades como as métricas da dimensão riqueza.</p>
 </div>
 <div id="associação-entre-as-métricas-de-diversidade-alfa-filogenética-e-o-gradiente-de-precipitação" class="section level2" number="13.15">
@@ -961,7 +978,7 @@ div.csl-indent {
 <span id="cb477-27"><a href="cap13.html#cb477-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span>
 <span id="cb477-28"><a href="cap13.html#cb477-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(MPD_PA_plot, MPD_AB_plot, MNTD_AP_plot, MNTD_AB_plot,</span>
 <span id="cb477-29"><a href="cap13.html#cb477-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-496-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-497-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>O MPD, que avalia as relações de parentesco mais internas da filogenia (i.e. relações entre espécies de famílias diferentes) não apresentou associação com o gradiente de precipitação. Por outro lado, o MNTD que avalia as relações mais terminais da filogenia (i.e. espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação. Interessante que a associação só foi significativa quando pesamos a análise pela abundância das espécies nas comunidades. Esses resultados demonstram a importância da seleção das métricas de diversidade filogenética e tipos de dados (e.g. incidência ou abundância) utilizados na interpretação dos padrões observados na natureza.</p>
 <p>Vamos ver os gráficos das métricas da dimensão riqueza da diversidade alfa filogenética</p>
 <div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="cap13.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos inserir os dados de precipitação na planilha metrica_riqueza.</span></span>
@@ -999,7 +1016,7 @@ div.csl-indent {
 <span id="cb478-33"><a href="cap13.html#cb478-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span>
 <span id="cb478-34"><a href="cap13.html#cb478-34" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb478-35"><a href="cap13.html#cb478-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(Riqueza_plot, PD_plot, PSR_plot, PE_plot, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-497-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-498-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>As três métricas de diversidade filogenética foram relacionadas com o gradiente de precipitação. Esse resultado indica que comunidades localizadas em áreas com maior precipitação anual abrigaram maior diversidade filogenética do que comunidades localizadas em áreas mais secas. Contudo, estas métricas são dependentes da riqueza de espécies nas comunidades. Veja abaixo a seção de modelos nulos para entender como lidar com essa dependência.</p>
 </div>
 <div id="métricas-de-diversidade-beta-filogenética" class="section level2" number="13.16">
@@ -1051,7 +1068,7 @@ div.csl-indent {
 <span id="cb483-9"><a href="cap13.html#cb483-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico.</span></span>
 <span id="cb483-10"><a href="cap13.html#cb483-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(metricas_divergencia_beta,</span>
 <span id="cb483-11"><a href="cap13.html#cb483-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">upper=</span><span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-502-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-503-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os valores das métricas de divergência filogenética beta apresentam correlações mais baixas do que as métricas da dimensão riqueza . Lembrem-se que COMDIST e COMDISTNT dão pesos diferentes para as relações de parentesco. COMDIST pesa as relações mais basais e internas da filogenia, enquanto COMDISTNT pesa as relações nas partes terminais da filogenia. Portanto, elas podem trazer informações complementares.</p>
 </div>
 <div id="associação-entre-as-métricas-de-diversidade-beta-filogenética-e-o-gradiente-de-precipitação" class="section level2" number="13.21">
@@ -1102,7 +1119,7 @@ div.csl-indent {
 <span id="cb484-43"><a href="cap13.html#cb484-43" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb484-44"><a href="cap13.html#cb484-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
 <span id="cb484-45"><a href="cap13.html#cb484-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-503-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-504-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>O COMDIST que avalia as relações de parentesco mais internas da filogenia (i.e. relações entre espécies de famílias diferentes) apresentou associação com o gradiente de precipitação quando avaliado pesado pela abundância das espécies. Por outro lado, o COMDISTNT que avalia as relações mais terminais da filogenia (i.e. espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação quando avaliado usando a incidência das espécies.</p>
 </div>
 <div id="análise-da-dimensão-riqueza-da-diversidade-beta-filogenética" class="section level2" number="13.22">
@@ -1156,7 +1173,7 @@ div.csl-indent {
 <span id="cb487-6"><a href="cap13.html#cb487-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb487-7"><a href="cap13.html#cb487-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico.</span></span>
 <span id="cb487-8"><a href="cap13.html#cb487-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(metricas_riqueza_beta, <span class="at">upper=</span><span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-506-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-507-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Os valores de Phylosor e UniFrac apresenta 99% de correlação entre eles. Portanto, essas duas métricas identificam padrões idênticos e não devem ser utilizadas simultaneamente.</p>
 <p>Gráficos das métricas da dimensão riqueza da diversidade beta filogenética</p>
 <div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="cap13.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos inserir os dados de precipitação na planilha metrica_riqueza_beta.</span></span>
@@ -1183,7 +1200,7 @@ div.csl-indent {
 <span id="cb488-22"><a href="cap13.html#cb488-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span>
 <span id="cb488-23"><a href="cap13.html#cb488-23" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb488-24"><a href="cap13.html#cb488-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(plot_phylosor, plot_unifrac, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-507-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-508-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Phylosor (similaridade) e UniFrac (dissimilaridade) foram relacionadas com o gradiente de precipitação. Comunidades com quantidade de precipitação parecidas abrigaram linhagens similares enquanto comunidades que recebem quantidade de precipitação diferentes abrigam linhagens mais distintas.</p>
 </div>
 <div id="partição-da-diversidade-beta-filogenética" class="section level2" number="13.26">
@@ -1247,7 +1264,7 @@ div.csl-indent {
 <span id="cb491-36"><a href="cap13.html#cb491-36" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb491-37"><a href="cap13.html#cb491-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; null device </span></span>
 <span id="cb491-38"><a href="cap13.html#cb491-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-510-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-511-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Percebam que o componente substituição é maior entre comunidades que apresentam diferenças altas na quantidade de precipitação, enquanto o componente aninhamento é maior entre as comunidades que apresentam quantidade similar de precipitação.</p>
 </div>
 <div id="modelos-nulos" class="section level2" number="13.27">
@@ -1463,7 +1480,7 @@ Webb, C. O., D. D. Ackerly, M. A. McPeek, and M. J. Donoghue. 2002. <span>“Phy
         </div>
       </div>
 <a href="cap12.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cap14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

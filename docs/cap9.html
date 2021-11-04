@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -649,7 +666,7 @@ div.csl-indent {
 <span id="cb336-16"><a href="cap9.html#cb336-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb336-17"><a href="cap9.html#cb336-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados</span></span>
 <span id="cb336-18"><a href="cap9.html#cb336-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dendro)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-351-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-352-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="assessando-a-qualidade-do-dendrograma" class="section level3" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Assessando a qualidade do dendrograma</h3>
@@ -663,7 +680,7 @@ div.csl-indent {
 <span id="cb338-3"><a href="cap9.html#cb338-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">ncol</span>(sp_compos)</span>
 <span id="cb338-4"><a href="cap9.html#cb338-4" aria-hidden="true" tabindex="-1"></a>MidPoint <span class="ot">&lt;-</span> (dendro<span class="sc">$</span>height[n<span class="sc">-</span>k] <span class="sc">+</span> dendro<span class="sc">$</span>height[n<span class="sc">-</span>k<span class="sc">+</span><span class="dv">1</span>]) <span class="sc">/</span> <span class="dv">2</span></span>
 <span id="cb338-5"><a href="cap9.html#cb338-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> MidPoint, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-353-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-354-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Nesse caso teremos a formação de cinco grupos, representados pelos nós que estão abaixo da linha de corte. Portanto, o resultado não suporta a nossa hipótese <em>a priori</em> que predizia a formação de apenas dois grupos de espécies.</p>
 <div id="exemplo-2" class="section level4" number="9.2.2.1">
 <h4><span class="header-section-number">9.2.2.1</span> Exemplo 2</h4>
@@ -702,7 +719,7 @@ div.csl-indent {
 <span id="cb339-27"><a href="cap9.html#cb339-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Passo 3: dendrograma</span></span>
 <span id="cb339-28"><a href="cap9.html#cb339-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(analise, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb339-29"><a href="cap9.html#cb339-29" aria-hidden="true" tabindex="-1"></a><span class="fu">pvrect</span>(analise)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-354-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-355-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>É possível notar que existe um único grupo com BS &gt; 95%. Agora vamos tentar usar a distância de Hellinger, que é recomendada (junto com a distância de Chord) para transformar dados de composição de espécies e, desse modo, reduzem distorções nas ordenações como PCA e CA <span class="citation">(<a href="#ref-legendre2001" role="doc-biblioref">Pierre Legendre and Gallagher 2001</a>)</span>.</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="cap9.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Passo 1: transformar dados com Hellinger</span></span>
 <span id="cb340-2"><a href="cap9.html#cb340-2" aria-hidden="true" tabindex="-1"></a>bocaina_transf2 <span class="ot">&lt;-</span> <span class="fu">disttransform</span>(bocaina, <span class="st">&quot;hellinger&quot;</span>)</span>
@@ -723,7 +740,7 @@ div.csl-indent {
 <span id="cb340-17"><a href="cap9.html#cb340-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Passo 3: dendrograma</span></span>
 <span id="cb340-18"><a href="cap9.html#cb340-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(analise2, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb340-19"><a href="cap9.html#cb340-19" aria-hidden="true" tabindex="-1"></a><span class="fu">pvrect</span>(analise2)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-355-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-356-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <div id="interpretação-dos-resultados-5" class="section level4" number="9.2.3.1">
 <h4><span class="header-section-number">9.2.3.1</span> Interpretação dos resultados</h4>
 <p>Notem que se mudarmos o coeficiente de associação, o resultado também muda. Agora temos 1 grupo a mais, composto por <em>Dendropsophus minutus</em> e <em>Scinax duartei</em> que não apareciam antes. Isso se deve ao fato de que a distância de Hellinger dá menos peso para espécies raras do que a Chord.</p>
@@ -821,7 +838,7 @@ div.csl-indent {
 <span id="cb344-8"><a href="cap9.html#cb344-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ssi 0.06817212</span></span></code></pre></div>
 <p>SSE: critério utilizado pelo algorítimo para achar o agrupamento ótimo dos objetos.</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="cap9.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spe.KM.cascade, <span class="at">sortg=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-360-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-361-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="interpretação-dos-resultados-6" class="section level3" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Interpretação dos resultados</h3>
@@ -1151,7 +1168,7 @@ div.csl-indent {
 <span id="cb350-12"><a href="cap9.html#cb350-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>),</span>
 <span id="cb350-13"><a href="cap9.html#cb350-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="fl">0.5</span>, </span>
 <span id="cb350-14"><a href="cap9.html#cb350-14" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-365-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-366-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Checklist</strong></p>
 <ul>
 <li><p>Verifique se todas as variáveis utilizadas são contínuas. Caso contrário, considere utilizar PCoA.</p></li>
@@ -1261,7 +1278,7 @@ div.csl-indent {
 <span id="cb353-47"><a href="cap9.html#cb353-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb353-48"><a href="cap9.html#cb353-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Escores (posição) das localidades (&quot;site scores&quot;) em cada eixo </span></span>
 <span id="cb353-49"><a href="cap9.html#cb353-49" aria-hidden="true" tabindex="-1"></a>ind_env <span class="ot">&lt;-</span> <span class="fu">get_pca_ind</span>(pca.p)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-368-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-369-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>O pacote FactoMineR criou uma função (dimdesc) que seleciona as melhores variáveis (aquelas mais explicativas) para cada eixo através de uma análise fatorial. No exemplo com pinguins, o primeiro eixo (objeto <code>pca.p$eig</code>) explica ~69% da variação morfológica. A função dimdesc mostra que as quatro variáveis morfológicas estão fortemente associadas com o eixo 1. Porém, enquanto comprimento da nadadeira, massa corporal e comprimento do bico estão positivamente associados com o eixo 1 (correlação positiva), a largura do bico tem relação negativa. O eixo 2, por sua vez, explica ~20% da variação, sendo relacionado somente com largura e comprimento do bico.</p>
 <div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="cap9.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variáveis mais importantes para o Eixo 1</span></span>
 <span id="cb354-2"><a href="cap9.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimdesc</span>(pca.p)<span class="sc">$</span>Dim<span class="fl">.1</span> </span>
@@ -1310,7 +1327,7 @@ div.csl-indent {
 <span id="cb355-23"><a href="cap9.html#cb355-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
 <span id="cb355-24"><a href="cap9.html#cb355-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
 <span id="cb355-25"><a href="cap9.html#cb355-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-370-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-371-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="análise-de-coordenadas-principais---pcoa" class="section level3" number="9.5.2">
@@ -1394,7 +1411,7 @@ div.csl-indent {
 <span id="cb358-22"><a href="cap9.html#cb358-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span> </span>
 <span id="cb358-23"><a href="cap9.html#cb358-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>)<span class="sc">+</span></span>
 <span id="cb358-24"><a href="cap9.html#cb358-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-373-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-374-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="limitações-importantes-das-ordenações-irrestritas" class="section level4" number="9.5.2.3">
 <h4><span class="header-section-number">9.5.2.3</span> Limitações importantes das ordenações irrestritas</h4>
@@ -1510,7 +1527,7 @@ div.csl-indent {
 <span id="cb361-36"><a href="cap9.html#cb361-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb361-37"><a href="cap9.html#cb361-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;class&quot;)</span></span>
 <span id="cb361-38"><a href="cap9.html#cb361-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;condes&quot; &quot;list&quot;</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-376-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-377-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Como percebemos, a Dim.1 foi o único gradiente ambiental que afetou a riqueza de espécies. Para interpretar esta dimensão (e outras importantes), podemos usar a função dimdesc para verificar as variáveis mais importantes. Neste caso, os valores mais extremos de correlação (maior que 0.8) indicam que a temperatura do mês de janeiro e julho bem como a chuva do mês de julho foram as variáveis mais importantes para determinar o gradiente ambiental expresso na dimensão 1. Assim, podemos fazer um gráfico para representar a relação entre Eixo 1 (gradiente chuva-temperatura) e a riqueza de espécies de aves. Valores negativos do eixo 1 (Gradiente ambiental - PC1) representam localidades com mais chuva, ao passo que valores positivos indicam localidades com temperaturas maiores.</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="cap9.html#cb362-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
 <span id="cb362-2"><a href="cap9.html#cb362-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> riqueza)) <span class="sc">+</span> </span>
@@ -1532,7 +1549,7 @@ div.csl-indent {
 <span id="cb362-18"><a href="cap9.html#cb362-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="fl">0.5</span>, </span>
 <span id="cb362-19"><a href="cap9.html#cb362-19" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
 <span id="cb362-20"><a href="cap9.html#cb362-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-377-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-378-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exemplo-2-1" class="section level4" number="9.6.0.2">
 <h4><span class="header-section-number">9.6.0.2</span> Exemplo 2</h4>
@@ -1596,7 +1613,7 @@ div.csl-indent {
 <span id="cb364-29"><a href="cap9.html#cb364-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 3.784 on 67 degrees of freedom</span></span>
 <span id="cb364-30"><a href="cap9.html#cb364-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.3548, Adjusted R-squared:  0.3355 </span></span>
 <span id="cb364-31"><a href="cap9.html#cb364-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic: 18.42 on 2 and 67 DF,  p-value: 4.225e-07</span></span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-379-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-380-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Finalmente, após interpretar os resultados do modelo, podemos fazer a figura com as variáveis (eixos) importantes</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="cap9.html#cb365-1" aria-hidden="true" tabindex="-1"></a>g_acari_axi1 <span class="ot">&lt;-</span> pred.vars <span class="sc">%&gt;%</span> </span>
 <span id="cb365-2"><a href="cap9.html#cb365-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Axis<span class="fl">.1</span>, <span class="at">y =</span> riqueza)) <span class="sc">+</span> </span>
@@ -1642,7 +1659,7 @@ div.csl-indent {
 <span id="cb365-42"><a href="cap9.html#cb365-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb365-43"><a href="cap9.html#cb365-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Função para combinar os dois plots em uma única janela</span></span>
 <span id="cb365-44"><a href="cap9.html#cb365-44" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(g_acari_axi1, g_acari_axi2, <span class="at">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-380-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-381-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="ordenação-restrita" class="section level2" number="9.7">
@@ -1768,7 +1785,7 @@ div.csl-indent {
 <span id="cb367-68"><a href="cap9.html#cb367-68" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="fl">0.5</span>, </span>
 <span id="cb367-69"><a href="cap9.html#cb367-69" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
 <span id="cb367-70"><a href="cap9.html#cb367-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-382-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-382-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-383-1.png" width="100%" height="100%" style="display: block; margin: auto;" /><img src="livro_files/figure-html/unnamed-chunk-383-2.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="interpretação-dos-resultados-8" class="section level4" number="9.7.1.2">
 <h4><span class="header-section-number">9.7.1.2</span> Interpretação dos resultados</h4>
@@ -1932,7 +1949,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="cap9.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Partição de variância</span></span>
 <span id="cb371-2"><a href="cap9.html#cb371-2" aria-hidden="true" tabindex="-1"></a>pv.birds <span class="ot">&lt;-</span> <span class="fu">varpart</span>(species.hel, env.pad.cat, spatial.pred)</span>
 <span id="cb371-3"><a href="cap9.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pv.birds)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-386-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-387-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="permanova" class="section level2" number="9.8">
@@ -1971,7 +1988,7 @@ F = (SSa / SSr)*[(N-g) / (g-1)]
 <span id="cb373-4"><a href="cap9.html#cb373-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb373-5"><a href="cap9.html#cb373-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Após verificar a estrutura de correlação, vamos manter somente três #variáveis</span></span>
 <span id="cb373-6"><a href="cap9.html#cb373-6" aria-hidden="true" tabindex="-1"></a>env2 <span class="ot">&lt;-</span> env[,<span class="fu">c</span>(<span class="st">&quot;mini.jan&quot;</span>, <span class="st">&quot;rain.tot&quot;</span>, <span class="st">&quot;altitude&quot;</span>)]</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-388-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-389-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Após selecionar as variáveis do modelo, vamos executar a PERMANOVA e entender as principais etapas para interpretar corretamente o teste. A função adonis do pacote vegan é a melhor opção no vegan. Porém, é importante referir o programa PRIMER e PERMANOVA+ como ótima opção para implementar a PERMANOVA e ter maior controle em desenhos complexos <span class="citation">(<a href="#ref-anderson_permanova+_2008" role="doc-biblioref">M. J. Anderson, Gorley, and Clarke 2008</a>)</span>. Assim como nos modelos lineares apresentados no <span class="citation">(<a href="#ref-cap7" role="doc-biblioref"><strong>cap7?</strong></a>)</span>, os argumento seguem o mesmo formato, com variável dependente separada por um “~” das variáveis preditoras. Porém, alguns autores demonstraram que a PERMANOVA (assim como Mantel e ANOSIM) não pode identificar se diferenças significativas do teste (usando a estatística <em>pseudo-F</em>) se devem a diferenças no posição, na dispersão ou ambos. Ou seja, ao comparar grupos não é possível identificar se existe mudanças de composição (posição) ou a variação da composição de espécies dentro de um grupo (dispersão) é maior do que a variação dentro do outro grupo <span class="citation">(<a href="#ref-anderson_permanova_2013" role="doc-biblioref">Marti J. Anderson and Walsh 2013</a>)</span>. Para solucionar este problema, é possível combinar a PERMANOVA com a análise PERMDISP (ou BETADISPER, como chamado no pacote vegan). Esta análise permite comparar se existe heterogeneidade nas variâncias entre grupos. Deste modo, a presença de heterogeneidade de variâncias (valor do BETADISPER significativo), é possível saber que as diferenças entre os grupos ocorre principalmente por diferenças na dispersão e não, necessariamente, de posição. Mais detalhes sobre a relevância de combinar essas duas análises estão disponíveis em Anderson &amp; Walsh <span class="citation">(<a href="#ref-anderson_permanova_2013" role="doc-biblioref">2013</a>)</span>.</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="cap9.html#cb374-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb374-2"><a href="cap9.html#cb374-2" aria-hidden="true" tabindex="-1"></a>perm.aves <span class="ot">&lt;-</span> <span class="fu">adonis2</span>(sps.dis <span class="sc">~</span> mini.jan <span class="sc">+</span> rain.tot <span class="sc">+</span> altitude, <span class="at">data =</span> env2)</span>
@@ -2133,7 +2150,7 @@ F = (SSa / SSr)*[(N-g) / (g-1)]
 <span id="cb375-127"><a href="cap9.html#cb375-127" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
 <span id="cb375-128"><a href="cap9.html#cb375-128" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
 <span id="cb375-129"><a href="cap9.html#cb375-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-390-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-391-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="para-se-aprofundar-4" class="section level3" number="9.8.1">
 <h3><span class="header-section-number">9.8.1</span> Para se aprofundar</h3>

@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -633,157 +650,336 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <h3><span class="header-section-number">4.3.3</span> Operadores</h3>
 <p>No R, temos cinco tipos de operadores: aritméticos, relacionais, lógicos, atribuição e diversos. Grande parte deles são descritos na Tabela <a href="cap4.html#tab:tab-operadores">4.1</a>.</p>
 <table>
-<caption><span id="tab:tab-operadores">Tabela 4.1: </span>Operadores no R.</caption>
+<caption>
+<span id="tab:tab-operadores">Tabela 4.1: </span>Operadores no R.
+</caption>
 <thead>
-<tr class="header">
-<th align="center">Operador</th>
-<th align="center">Tipo</th>
-<th align="center">Descrição</th>
+<tr>
+<th style="text-align:center;">
+Operador
+</th>
+<th style="text-align:center;">
+Tipo
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">+</td>
-<td align="center">Aritmético</td>
-<td align="center">Adição</td>
+<tr>
+<td style="text-align:center;">
+<ul>
+<li></td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Adição
+</td>
 </tr>
-<tr class="even">
-<td align="center">-</td>
-<td align="center">Aritmético</td>
-<td align="center">Subtração</td>
+<tr>
+<td style="text-align:center;">
+<ul>
+<li></td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Subtração
+</td>
 </tr>
-<tr class="odd">
-<td align="center">*</td>
-<td align="center">Aritmético</td>
-<td align="center">Multiplicação</td>
+<tr>
+<td style="text-align:center;">
+<ul>
+<li></td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Multiplicação
+</td>
 </tr>
-<tr class="even">
-<td align="center">/</td>
-<td align="center">Aritmético</td>
-<td align="center">Divisão</td>
+<tr>
+<td style="text-align:center;">
+/
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão
+</td>
 </tr>
-<tr class="odd">
-<td align="center">%%</td>
-<td align="center">Aritmético</td>
-<td align="center">Resto da divisão</td>
+<tr>
+<td style="text-align:center;">
+%%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Resto da divisão
+</td>
 </tr>
-<tr class="even">
-<td align="center">%/%</td>
-<td align="center">Aritmético</td>
-<td align="center">Divisão inteira</td>
+<tr>
+<td style="text-align:center;">
+%/%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão inteira
+</td>
 </tr>
-<tr class="odd">
-<td align="center">^ ou **</td>
-<td align="center">Aritmético</td>
-<td align="center">Expoente</td>
+<tr>
+<td style="text-align:center;">
+^ ou **
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
 </tr>
-<tr class="even">
-<td align="center">&gt;</td>
-<td align="center">Relacional</td>
-<td align="center">Maior</td>
+<tr>
+<td style="text-align:center;">
+&gt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;</td>
-<td align="center">Relacional</td>
-<td align="center">Menor</td>
+<tr>
+<td style="text-align:center;">
+&lt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor
+</td>
 </tr>
-<tr class="even">
-<td align="center">&gt;=</td>
-<td align="center">Relacional</td>
-<td align="center">Maior ou igual</td>
+<tr>
+<td style="text-align:center;">
+&gt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior ou igual
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;=</td>
-<td align="center">Relacional</td>
-<td align="center">Menor ou igual</td>
+<tr>
+<td style="text-align:center;">
+&lt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor ou igual
+</td>
 </tr>
-<tr class="even">
-<td align="center">==</td>
-<td align="center">Relacional</td>
-<td align="center">Igualdade</td>
+<tr>
+<td style="text-align:center;">
+==
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Igualdade
+</td>
 </tr>
-<tr class="odd">
-<td align="center">!=</td>
-<td align="center">Relacional</td>
-<td align="center">Diferença</td>
+<tr>
+<td style="text-align:center;">
+!=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Diferença
+</td>
 </tr>
-<tr class="even">
-<td align="center">!</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico NÃO</td>
+<tr>
+<td style="text-align:center;">
+!
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico NÃO
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&amp;</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico elementar E</td>
+<tr>
+<td style="text-align:center;">
+&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico elementar E
+</td>
 </tr>
-<tr class="even">
-<td align="center">|</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico elementar OU</td>
+<tr>
+<td style="text-align:center;">
+|
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico elementar OU
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&amp;&amp;</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico E</td>
+<tr>
+<td style="text-align:center;">
+&amp;&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico E
+</td>
 </tr>
-<tr class="even">
-<td align="center">||</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico OU</td>
+<tr>
+<td style="text-align:center;">
+||
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico OU
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;- ou =</td>
-<td align="center">Atribuição</td>
-<td align="center">Atribuição à esquerda</td>
+<tr>
+<td style="text-align:center;">
+&lt;- ou =
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à esquerda
+</td>
 </tr>
-<tr class="even">
-<td align="center">&lt;&lt;-</td>
-<td align="center">Atribuição</td>
-<td align="center">Super atribuição à esquerda</td>
+<tr>
+<td style="text-align:center;">
+&lt;&lt;-
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à esquerda
+</td>
 </tr>
-<tr class="odd">
-<td align="center">-&gt;</td>
-<td align="center">Atribuição</td>
-<td align="center">Atribuição à direita</td>
+<tr>
+<td style="text-align:center;">
+-&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à direita
+</td>
 </tr>
-<tr class="even">
-<td align="center">-&gt;&gt;</td>
-<td align="center">Atribuição</td>
-<td align="center">Super atribuição à direita</td>
+<tr>
+<td style="text-align:center;">
+-&gt;&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à direita
+</td>
 </tr>
-<tr class="odd">
-<td align="center">:</td>
-<td align="center">Diversos</td>
-<td align="center">Sequência unitária</td>
+<tr>
+<td style="text-align:center;">
+:
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Sequência unitária
+</td>
 </tr>
-<tr class="even">
-<td align="center">%in%</td>
-<td align="center">Diversos</td>
-<td align="center">Elementos que pertencem a um vetor</td>
+<tr>
+<td style="text-align:center;">
+%in%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Elementos que pertencem a um vetor
+</td>
 </tr>
-<tr class="odd">
-<td align="center">%*%</td>
-<td align="center">Diversos</td>
-<td align="center">Multiplicar matriz com sua transposta</td>
+<tr>
+<td style="text-align:center;">
+%*%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Multiplicar matriz com sua transposta
+</td>
 </tr>
-<tr class="even">
-<td align="center">%&gt;%</td>
-<td align="center">Diversos</td>
-<td align="center">Pipe (pacote magrittr)</td>
+<tr>
+<td style="text-align:center;">
+%&gt;%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (pacote magrittr)
+</td>
 </tr>
-<tr class="odd">
-<td align="center">|&gt;</td>
-<td align="center">Diversos</td>
-<td align="center">Pipe (R base nativo)</td>
+<tr>
+<td style="text-align:center;">
+|&gt;
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (R base nativo)
+</td>
 </tr>
-<tr class="even">
-<td align="center">%–%</td>
-<td align="center">Diversos</td>
-<td align="center">Intervalo de datas (pacote lubridate)</td>
+<tr>
+<td style="text-align:center;">
+%–%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Intervalo de datas (pacote lubridate)
+</td>
 </tr>
 </tbody>
-</table>
+</table></li>
+</ul></li>
+</ul></li>
+</ul>
 <p>Como exemplo, podemos fazer operações simples usando os operadores aritméticos.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="cap4.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Operações aritméticas</span></span>
 <span id="cb10-2"><a href="cap4.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span> <span class="co"># adição</span></span>
@@ -1020,190 +1216,243 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <span id="cb34-3"><a href="cap4.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] &quot;a1&quot;                                &quot;abu&quot;                              </span></span>
 <span id="cb34-4"><a href="cap4.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [3] &quot;abundancia&quot;                        &quot;adi&quot;                              </span></span>
 <span id="cb34-5"><a href="cap4.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [5] &quot;agua&quot;                              &quot;aic_fit&quot;                          </span></span>
-<span id="cb34-6"><a href="cap4.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7] &quot;aic_fit_ext&quot;                       &quot;amostragem&quot;                       </span></span>
-<span id="cb34-7"><a href="cap4.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] &quot;analise&quot;                           &quot;analise2&quot;                         </span></span>
-<span id="cb34-8"><a href="cap4.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11] &quot;anuros_ab&quot;                         &quot;anuros_IC&quot;                        </span></span>
-<span id="cb34-9"><a href="cap4.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13] &quot;ar&quot;                                &quot;aranha.cent&quot;                      </span></span>
-<span id="cb34-10"><a href="cap4.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [15] &quot;aranhas&quot;                           &quot;assumption3&quot;                      </span></span>
-<span id="cb34-11"><a href="cap4.html#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] &quot;autovalores&quot;                       &quot;autovetores&quot;                      </span></span>
-<span id="cb34-12"><a href="cap4.html#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19] &quot;betad.aves&quot;                        &quot;bird.rda&quot;                         </span></span>
-<span id="cb34-13"><a href="cap4.html#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21] &quot;bocaina_transf&quot;                    &quot;bocaina_transf2&quot;                  </span></span>
-<span id="cb34-14"><a href="cap4.html#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [23] &quot;ca.env&quot;                            &quot;candidates&quot;                       </span></span>
-<span id="cb34-15"><a href="cap4.html#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] &quot;Carpornis&quot;                         &quot;chat&quot;                             </span></span>
-<span id="cb34-16"><a href="cap4.html#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [27] &quot;cofresult&quot;                         &quot;colar&quot;                            </span></span>
-<span id="cb34-17"><a href="cap4.html#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29] &quot;composicao_acaros&quot;                 &quot;composicao_especies&quot;              </span></span>
-<span id="cb34-18"><a href="cap4.html#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] &quot;composicao_PA&quot;                     &quot;comunidade&quot;                       </span></span>
-<span id="cb34-19"><a href="cap4.html#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] &quot;concatenar&quot;                        &quot;coord&quot;                            </span></span>
-<span id="cb34-20"><a href="cap4.html#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [35] &quot;cor_linear_model&quot;                  &quot;cores&quot;                            </span></span>
-<span id="cb34-21"><a href="cap4.html#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37] &quot;correlacao_arbustos&quot;               &quot;CRC_LP_femea&quot;                     </span></span>
-<span id="cb34-22"><a href="cap4.html#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] &quot;CRC_PN_macho&quot;                      &quot;curvas_dominancia_com2&quot;           </span></span>
-<span id="cb34-23"><a href="cap4.html#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] &quot;curvas_dominancia_todas&quot;           &quot;dados&quot;                            </span></span>
-<span id="cb34-24"><a href="cap4.html#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] &quot;dados_amostras&quot;                    &quot;dados_ancova&quot;                     </span></span>
-<span id="cb34-25"><a href="cap4.html#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [45] &quot;dados_anova_simples&quot;               &quot;dados_bloco&quot;                      </span></span>
-<span id="cb34-26"><a href="cap4.html#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [47] &quot;dados_coleta&quot;                      &quot;dados_combinado&quot;                  </span></span>
-<span id="cb34-27"><a href="cap4.html#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] &quot;dados_combinado_ext&quot;               &quot;dados_dis&quot;                        </span></span>
-<span id="cb34-28"><a href="cap4.html#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51] &quot;dados_dis_AB&quot;                      &quot;dados_div&quot;                        </span></span>
-<span id="cb34-29"><a href="cap4.html#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [53] &quot;dados_dois_fatores&quot;                &quot;dados_dois_fatores_interacao&quot;     </span></span>
-<span id="cb34-30"><a href="cap4.html#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55] &quot;dados_dois_fatores_interacao2&quot;     &quot;dados_inext&quot;                      </span></span>
-<span id="cb34-31"><a href="cap4.html#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] &quot;dados_inext_abu&quot;                   &quot;dados_matriz&quot;                     </span></span>
-<span id="cb34-32"><a href="cap4.html#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [59] &quot;dados_prec&quot;                        &quot;dados_rarefacao&quot;                  </span></span>
-<span id="cb34-33"><a href="cap4.html#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] &quot;dados_regressao&quot;                   &quot;dados_regressao_mul&quot;              </span></span>
-<span id="cb34-34"><a href="cap4.html#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [63] &quot;dados_semNA&quot;                       &quot;darknessmale&quot;                     </span></span>
-<span id="cb34-35"><a href="cap4.html#cb34-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] &quot;dat&quot;                               &quot;dat.graf&quot;                         </span></span>
-<span id="cb34-36"><a href="cap4.html#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67] &quot;data&quot;                              &quot;data.frame_AB&quot;                    </span></span>
-<span id="cb34-37"><a href="cap4.html#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [69] &quot;data.frame_PA&quot;                     &quot;dendro&quot;                           </span></span>
-<span id="cb34-38"><a href="cap4.html#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] &quot;df&quot;                                &quot;df_sem_na&quot;                        </span></span>
-<span id="cb34-39"><a href="cap4.html#cb34-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] &quot;dist_normal&quot;                       &quot;distBocaina&quot;                      </span></span>
-<span id="cb34-40"><a href="cap4.html#cb34-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [75] &quot;doubs&quot;                             &quot;dune&quot;                             </span></span>
-<span id="cb34-41"><a href="cap4.html#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] &quot;E&quot;                                 &quot;ED&quot;                               </span></span>
-<span id="cb34-42"><a href="cap4.html#cb34-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79] &quot;eigen_aranhas&quot;                     &quot;eixos&quot;                            </span></span>
-<span id="cb34-43"><a href="cap4.html#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] &quot;env&quot;                               &quot;env_cont&quot;                         </span></span>
-<span id="cb34-44"><a href="cap4.html#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] &quot;env.contin&quot;                        &quot;env.dist&quot;                         </span></span>
-<span id="cb34-45"><a href="cap4.html#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] &quot;env.mite.pco&quot;                      &quot;env.pad&quot;                          </span></span>
-<span id="cb34-46"><a href="cap4.html#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [87] &quot;env.pad.cat&quot;                       &quot;env.pca&quot;                          </span></span>
-<span id="cb34-47"><a href="cap4.html#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89] &quot;env.sel&quot;                           &quot;env2&quot;                             </span></span>
-<span id="cb34-48"><a href="cap4.html#cb34-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] &quot;EP&quot;                                &quot;EP2&quot;                              </span></span>
-<span id="cb34-49"><a href="cap4.html#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [93] &quot;especies_plantas&quot;                  &quot;espher_model&quot;                     </span></span>
-<span id="cb34-50"><a href="cap4.html#cb34-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [95] &quot;est_ace&quot;                           &quot;est_boot&quot;                         </span></span>
-<span id="cb34-51"><a href="cap4.html#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] &quot;est_chao1&quot;                         &quot;est_chao2&quot;                        </span></span>
-<span id="cb34-52"><a href="cap4.html#cb34-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [99] &quot;est_jack1&quot;                         &quot;est_jack2&quot;                        </span></span>
-<span id="cb34-53"><a href="cap4.html#cb34-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [101] &quot;expon_model&quot;                       &quot;fator&quot;                            </span></span>
-<span id="cb34-54"><a href="cap4.html#cb34-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [103] &quot;fator_nominal&quot;                     &quot;fator_ordinal&quot;                    </span></span>
-<span id="cb34-55"><a href="cap4.html#cb34-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [105] &quot;filho_intervalo&quot;                   &quot;filho_nascimento&quot;                 </span></span>
-<span id="cb34-56"><a href="cap4.html#cb34-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [107] &quot;filogenia_aves&quot;                    &quot;filogenia_cortada&quot;                </span></span>
-<span id="cb34-57"><a href="cap4.html#cb34-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [109] &quot;filogenia_nova&quot;                    &quot;fish&quot;                             </span></span>
-<span id="cb34-58"><a href="cap4.html#cb34-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [111] &quot;fitofis&quot;                           &quot;flo&quot;                              </span></span>
-<span id="cb34-59"><a href="cap4.html#cb34-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [113] &quot;g_acari_axi1&quot;                      &quot;g_acari_axi2&quot;                     </span></span>
-<span id="cb34-60"><a href="cap4.html#cb34-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [115] &quot;g_bar_h&quot;                           &quot;g_bar_v&quot;                          </span></span>
-<span id="cb34-61"><a href="cap4.html#cb34-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [117] &quot;g_donut&quot;                           &quot;g_pie&quot;                            </span></span>
-<span id="cb34-62"><a href="cap4.html#cb34-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [119] &quot;g1&quot;                                &quot;gauss_model&quot;                      </span></span>
-<span id="cb34-63"><a href="cap4.html#cb34-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [121] &quot;grp.int&quot;                           &quot;grp.mon&quot;                          </span></span>
-<span id="cb34-64"><a href="cap4.html#cb34-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [123] &quot;grp.pla&quot;                           &quot;hill_res_q_0&quot;                     </span></span>
-<span id="cb34-65"><a href="cap4.html#cb34-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [125] &quot;hill_res_q_1&quot;                      &quot;hill_res_q_2&quot;                     </span></span>
-<span id="cb34-66"><a href="cap4.html#cb34-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [127] &quot;hull.data&quot;                         &quot;hur_NB&quot;                           </span></span>
-<span id="cb34-67"><a href="cap4.html#cb34-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [129] &quot;i&quot;                                 &quot;ind_env&quot;                          </span></span>
-<span id="cb34-68"><a href="cap4.html#cb34-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [131] &quot;intror_anfibios_locais&quot;            &quot;k&quot;                                </span></span>
-<span id="cb34-69"><a href="cap4.html#cb34-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [133] &quot;li&quot;                                &quot;lista&quot;                            </span></span>
-<span id="cb34-70"><a href="cap4.html#cb34-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [135] &quot;lista_nome&quot;                        &quot;lista_rarefacao&quot;                  </span></span>
-<span id="cb34-71"><a href="cap4.html#cb34-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [137] &quot;ma&quot;                                &quot;ma_cbind&quot;                         </span></span>
-<span id="cb34-72"><a href="cap4.html#cb34-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [139] &quot;ma_col&quot;                            &quot;ma_rbind&quot;                         </span></span>
-<span id="cb34-73"><a href="cap4.html#cb34-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [141] &quot;ma_row&quot;                            &quot;Margalef&quot;                         </span></span>
-<span id="cb34-74"><a href="cap4.html#cb34-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [143] &quot;mat_knn&quot;                           &quot;mat_listw&quot;                        </span></span>
-<span id="cb34-75"><a href="cap4.html#cb34-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [145] &quot;mat_nb&quot;                            &quot;matriz_cov&quot;                       </span></span>
-<span id="cb34-76"><a href="cap4.html#cb34-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [147] &quot;matriz_F&quot;                          &quot;Megascops&quot;                        </span></span>
-<span id="cb34-77"><a href="cap4.html#cb34-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [149] &quot;MEM_mat&quot;                           &quot;Menhinick&quot;                        </span></span>
-<span id="cb34-78"><a href="cap4.html#cb34-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [151] &quot;metricas_divergencia&quot;              &quot;metricas_riqueza&quot;                 </span></span>
-<span id="cb34-79"><a href="cap4.html#cb34-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [153] &quot;MidPoint&quot;                          &quot;minha_arvore&quot;                     </span></span>
-<span id="cb34-80"><a href="cap4.html#cb34-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [155] &quot;mite&quot;                              &quot;mite.env&quot;                         </span></span>
-<span id="cb34-81"><a href="cap4.html#cb34-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [157] &quot;mite.hel&quot;                          &quot;mite.riqueza&quot;                     </span></span>
-<span id="cb34-82"><a href="cap4.html#cb34-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [159] &quot;mite.xy&quot;                           &quot;mod_log&quot;                          </span></span>
-<span id="cb34-83"><a href="cap4.html#cb34-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [161] &quot;mod_nb&quot;                            &quot;mod_pois&quot;                         </span></span>
-<span id="cb34-84"><a href="cap4.html#cb34-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [163] &quot;mod_pro&quot;                           &quot;mod_quasipois&quot;                    </span></span>
-<span id="cb34-85"><a href="cap4.html#cb34-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [165] &quot;mod.mite&quot;                          &quot;mod1&quot;                             </span></span>
-<span id="cb34-86"><a href="cap4.html#cb34-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [167] &quot;mod2&quot;                              &quot;mod3&quot;                             </span></span>
-<span id="cb34-87"><a href="cap4.html#cb34-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [169] &quot;model_bloco1&quot;                      &quot;model_bloco2&quot;                     </span></span>
-<span id="cb34-88"><a href="cap4.html#cb34-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [171] &quot;modelo_ancova&quot;                     &quot;modelo_ancova2&quot;                   </span></span>
-<span id="cb34-89"><a href="cap4.html#cb34-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [173] &quot;Modelo_anova&quot;                      &quot;modelo_errado&quot;                    </span></span>
-<span id="cb34-90"><a href="cap4.html#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [175] &quot;Modelo_interacao1&quot;                 &quot;Modelo_interacao2&quot;                </span></span>
-<span id="cb34-91"><a href="cap4.html#cb34-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [177] &quot;modelo_intercepto&quot;                 &quot;modelo_regressao&quot;                 </span></span>
-<span id="cb34-92"><a href="cap4.html#cb34-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [179] &quot;modelo_regressao_mul&quot;              &quot;Modelo1&quot;                          </span></span>
-<span id="cb34-93"><a href="cap4.html#cb34-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [181] &quot;Modelo2&quot;                           &quot;moran.comp&quot;                       </span></span>
-<span id="cb34-94"><a href="cap4.html#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [183] &quot;moran.env&quot;                         &quot;mu&quot;                               </span></span>
-<span id="cb34-95"><a href="cap4.html#cb34-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [185] &quot;multi&quot;                             &quot;n&quot;                                </span></span>
-<span id="cb34-96"><a href="cap4.html#cb34-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [187] &quot;nmds.beta&quot;                         &quot;no_spat_gls&quot;                      </span></span>
-<span id="cb34-97"><a href="cap4.html#cb34-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [189] &quot;novas_filogenias&quot;                  &quot;nulo&quot;                             </span></span>
-<span id="cb34-98"><a href="cap4.html#cb34-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [191] &quot;obj&quot;                               &quot;obj_10&quot;                           </span></span>
-<span id="cb34-99"><a href="cap4.html#cb34-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [193] &quot;obj_caracter&quot;                      &quot;obj_complexo&quot;                     </span></span>
-<span id="cb34-100"><a href="cap4.html#cb34-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [195] &quot;obj_logico&quot;                        &quot;obj_numerico_double&quot;              </span></span>
-<span id="cb34-101"><a href="cap4.html#cb34-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [197] &quot;obj_numerico_inteiro&quot;              &quot;op&quot;                               </span></span>
-<span id="cb34-102"><a href="cap4.html#cb34-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [199] &quot;parasitas&quot;                         &quot;Pareado&quot;                          </span></span>
-<span id="cb34-103"><a href="cap4.html#cb34-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [201] &quot;pca.comp&quot;                          &quot;pca.p&quot;                            </span></span>
-<span id="cb34-104"><a href="cap4.html#cb34-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [203] &quot;pcoa.dat&quot;                          &quot;pcoa.sps&quot;                         </span></span>
-<span id="cb34-105"><a href="cap4.html#cb34-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [205] &quot;penguin_islands&quot;                   &quot;penguins&quot;                         </span></span>
-<span id="cb34-106"><a href="cap4.html#cb34-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [207] &quot;penguins_01&quot;                       &quot;penguins_02&quot;                      </span></span>
-<span id="cb34-107"><a href="cap4.html#cb34-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [209] &quot;penguins_arrange&quot;                  &quot;penguins_arrange_across&quot;          </span></span>
-<span id="cb34-108"><a href="cap4.html#cb34-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [211] &quot;penguins_arrange_desc&quot;             &quot;penguins_arrange_desc_m&quot;          </span></span>
-<span id="cb34-109"><a href="cap4.html#cb34-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [213] &quot;penguins_bind_cols&quot;                &quot;penguins_bind_rows&quot;               </span></span>
-<span id="cb34-110"><a href="cap4.html#cb34-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [215] &quot;penguins_count&quot;                    &quot;penguins_count_two&quot;               </span></span>
-<span id="cb34-111"><a href="cap4.html#cb34-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [217] &quot;penguins_distinct&quot;                 &quot;penguins_distinct_keep_all&quot;       </span></span>
-<span id="cb34-112"><a href="cap4.html#cb34-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [219] &quot;penguins_distinct_keep_all_across&quot; &quot;penguins_filter&quot;                  </span></span>
-<span id="cb34-113"><a href="cap4.html#cb34-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [221] &quot;penguins_filter_between&quot;           &quot;penguins_filter_if&quot;               </span></span>
-<span id="cb34-114"><a href="cap4.html#cb34-114" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [223] &quot;penguins_filter_in&quot;                &quot;penguins_filter_na&quot;               </span></span>
-<span id="cb34-115"><a href="cap4.html#cb34-115" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [225] &quot;penguins_filter_two&quot;               &quot;penguins_group_by&quot;                </span></span>
-<span id="cb34-116"><a href="cap4.html#cb34-116" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [227] &quot;penguins_group_by_across&quot;          &quot;penguins_left_join&quot;               </span></span>
-<span id="cb34-117"><a href="cap4.html#cb34-117" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [229] &quot;penguins_mean&quot;                     &quot;penguins_mutate&quot;                  </span></span>
-<span id="cb34-118"><a href="cap4.html#cb34-118" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [231] &quot;penguins_mutate_across&quot;            &quot;penguins_pad&quot;                     </span></span>
-<span id="cb34-119"><a href="cap4.html#cb34-119" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [233] &quot;penguins_prop&quot;                     &quot;penguins_raw_colunas_na&quot;          </span></span>
-<span id="cb34-120"><a href="cap4.html#cb34-120" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [235] &quot;penguins_raw_multi_factor&quot;         &quot;penguins_raw_pivot_longer&quot;        </span></span>
-<span id="cb34-121"><a href="cap4.html#cb34-121" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [237] &quot;penguins_raw_pivot_wider&quot;          &quot;penguins_raw_sel_col&quot;             </span></span>
-<span id="cb34-122"><a href="cap4.html#cb34-122" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [239] &quot;penguins_raw_separar&quot;              &quot;penguins_raw_separar_linhas&quot;      </span></span>
-<span id="cb34-123"><a href="cap4.html#cb34-123" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [241] &quot;penguins_raw_subs_na&quot;              &quot;penguins_raw_todas_na&quot;            </span></span>
-<span id="cb34-124"><a href="cap4.html#cb34-124" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [243] &quot;penguins_raw_unir&quot;                 &quot;penguins_relocate_col&quot;            </span></span>
-<span id="cb34-125"><a href="cap4.html#cb34-125" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [245] &quot;penguins_relocate_ncol&quot;            &quot;penguins_rename&quot;                  </span></span>
-<span id="cb34-126"><a href="cap4.html#cb34-126" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [247] &quot;penguins_rename_with&quot;              &quot;penguins_select_contains&quot;         </span></span>
-<span id="cb34-127"><a href="cap4.html#cb34-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [249] &quot;penguins_select_names&quot;             &quot;penguins_select_position&quot;         </span></span>
-<span id="cb34-128"><a href="cap4.html#cb34-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [251] &quot;penguins_select_pull&quot;              &quot;penguins_slice&quot;                   </span></span>
-<span id="cb34-129"><a href="cap4.html#cb34-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [253] &quot;penguins_slice_head&quot;               &quot;penguins_slice_max&quot;               </span></span>
-<span id="cb34-130"><a href="cap4.html#cb34-130" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [255] &quot;penguins_slice_sample&quot;             &quot;penguins_stringr_nomes&quot;           </span></span>
-<span id="cb34-131"><a href="cap4.html#cb34-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [257] &quot;penguins_stringr_valores&quot;          &quot;penguins_summarise&quot;               </span></span>
-<span id="cb34-132"><a href="cap4.html#cb34-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [259] &quot;penguins_summarise_across&quot;         &quot;penguins_trait&quot;                   </span></span>
-<span id="cb34-133"><a href="cap4.html#cb34-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [261] &quot;penguins2&quot;                         &quot;perm.aves&quot;                        </span></span>
-<span id="cb34-134"><a href="cap4.html#cb34-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [263] &quot;Pielou&quot;                            &quot;pois_plain&quot;                       </span></span>
-<span id="cb34-135"><a href="cap4.html#cb34-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [265] &quot;prec_dis&quot;                          &quot;precipitacao&quot;                     </span></span>
-<span id="cb34-136"><a href="cap4.html#cb34-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [267] &quot;pred.env&quot;                          &quot;pred.scores.mite&quot;                 </span></span>
-<span id="cb34-137"><a href="cap4.html#cb34-137" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [269] &quot;pred.vars&quot;                         &quot;predito&quot;                          </span></span>
-<span id="cb34-138"><a href="cap4.html#cb34-138" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [271] &quot;predito_ext&quot;                       &quot;pv.birds&quot;                         </span></span>
-<span id="cb34-139"><a href="cap4.html#cb34-139" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [273] &quot;r_hoje&quot;                            &quot;r_inicio&quot;                         </span></span>
-<span id="cb34-140"><a href="cap4.html#cb34-140" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [275] &quot;r_intervalo&quot;                       &quot;r_quadr&quot;                          </span></span>
-<span id="cb34-141"><a href="cap4.html#cb34-141" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [277] &quot;rank_com2&quot;                         &quot;rank_com3&quot;                        </span></span>
-<span id="cb34-142"><a href="cap4.html#cb34-142" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [279] &quot;rarefacao_anuros&quot;                  &quot;rarefacao_repteis&quot;                </span></span>
-<span id="cb34-143"><a href="cap4.html#cb34-143" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [281] &quot;ratio_model&quot;                       &quot;rda.bird&quot;                         </span></span>
-<span id="cb34-144"><a href="cap4.html#cb34-144" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [283] &quot;rda.p&quot;                             &quot;redmale&quot;                          </span></span>
-<span id="cb34-145"><a href="cap4.html#cb34-145" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [285] &quot;rep_times&quot;                         &quot;rep_times_soma&quot;                   </span></span>
-<span id="cb34-146"><a href="cap4.html#cb34-146" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [287] &quot;rep_times_soma_raiz&quot;               &quot;repeticao&quot;                        </span></span>
-<span id="cb34-147"><a href="cap4.html#cb34-147" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [289] &quot;res_ace&quot;                           &quot;res_boot&quot;                         </span></span>
-<span id="cb34-148"><a href="cap4.html#cb34-148" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [291] &quot;res_chao&quot;                          &quot;res_chao2&quot;                        </span></span>
-<span id="cb34-149"><a href="cap4.html#cb34-149" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [293] &quot;res_hill&quot;                          &quot;res_indval&quot;                       </span></span>
-<span id="cb34-150"><a href="cap4.html#cb34-150" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [295] &quot;res_jack1&quot;                         &quot;res_jack2&quot;                        </span></span>
-<span id="cb34-151"><a href="cap4.html#cb34-151" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [297] &quot;res_rarefacao_amostras&quot;            &quot;res.axis&quot;                         </span></span>
-<span id="cb34-152"><a href="cap4.html#cb34-152" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [299] &quot;res.p.axis&quot;                        &quot;res.p.var&quot;                        </span></span>
-<span id="cb34-153"><a href="cap4.html#cb34-153" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [301] &quot;res.var&quot;                           &quot;residuos&quot;                         </span></span>
-<span id="cb34-154"><a href="cap4.html#cb34-154" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [303] &quot;residuos_LP&quot;                       &quot;resultado_AB&quot;                     </span></span>
-<span id="cb34-155"><a href="cap4.html#cb34-155" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [305] &quot;resultado_PA&quot;                      &quot;resultados&quot;                       </span></span>
-<span id="cb34-156"><a href="cap4.html#cb34-156" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [307] &quot;resultados_abundancia&quot;             &quot;resultados_ace&quot;                   </span></span>
-<span id="cb34-157"><a href="cap4.html#cb34-157" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [309] &quot;resultados_anuros&quot;                 &quot;resultados_boot&quot;                  </span></span>
-<span id="cb34-158"><a href="cap4.html#cb34-158" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [311] &quot;resultados_chao2&quot;                  &quot;resultados_comunidades&quot;           </span></span>
-<span id="cb34-159"><a href="cap4.html#cb34-159" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [313] &quot;resultados_comunidades_ext&quot;        &quot;resultados_ED&quot;                    </span></span>
-<span id="cb34-160"><a href="cap4.html#cb34-160" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [315] &quot;resultados_extrapolacao&quot;           &quot;resultados_incidencia&quot;            </span></span>
-<span id="cb34-161"><a href="cap4.html#cb34-161" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [317] &quot;resultados_jack1&quot;                  &quot;resultados_jack2&quot;                 </span></span>
-<span id="cb34-162"><a href="cap4.html#cb34-162" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [319] &quot;resultados_MNTD_AB&quot;                &quot;resultados_MNTD_PA&quot;               </span></span>
-<span id="cb34-163"><a href="cap4.html#cb34-163" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [321] &quot;resultados_morcegos&quot;               &quot;resultados_MPD_AB&quot;                </span></span>
-<span id="cb34-164"><a href="cap4.html#cb34-164" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [323] &quot;resultados_MPD_PA&quot;                 &quot;resultados_PD&quot;                    </span></span>
-<span id="cb34-165"><a href="cap4.html#cb34-165" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [325] &quot;resultados_PE&quot;                     &quot;resultados_PSR&quot;                   </span></span>
-<span id="cb34-166"><a href="cap4.html#cb34-166" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [327] &quot;resultados_PSV&quot;                    &quot;resultados_rarefacao&quot;             </span></span>
-<span id="cb34-167"><a href="cap4.html#cb34-167" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [329] &quot;resultados_repteis&quot;                &quot;resultados_VPD&quot;                   </span></span>
-<span id="cb34-168"><a href="cap4.html#cb34-168" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [331] &quot;riqueza&quot;                           &quot;riqueza_extrapolada&quot;              </span></span>
-<span id="cb34-169"><a href="cap4.html#cb34-169" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [333] &quot;riqueza_rarefeita&quot;                 &quot;riqueza_sp&quot;                       </span></span>
-<span id="cb34-170"><a href="cap4.html#cb34-170" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [335] &quot;sel.vars&quot;                          &quot;sequencia&quot;                        </span></span>
-<span id="cb34-171"><a href="cap4.html#cb34-171" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [337] &quot;sequencia_esp&quot;                     &quot;shannon_res&quot;                      </span></span>
-<span id="cb34-172"><a href="cap4.html#cb34-172" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [339] &quot;simpson_res&quot;                       &quot;simulationBion&quot;                   </span></span>
-<span id="cb34-173"><a href="cap4.html#cb34-173" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [341] &quot;simulationOutput&quot;                  &quot;sol1&quot;                             </span></span>
-<span id="cb34-174"><a href="cap4.html#cb34-174" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [343] &quot;sp&quot;                                &quot;sp_compos&quot;                        </span></span>
-<span id="cb34-175"><a href="cap4.html#cb34-175" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [345] &quot;spatial.pred&quot;                      &quot;spe&quot;                              </span></span>
-<span id="cb34-176"><a href="cap4.html#cb34-176" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [347] &quot;spe.KM.cascade&quot;                    &quot;spe.kmeans&quot;                       </span></span>
-<span id="cb34-177"><a href="cap4.html#cb34-177" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [349] &quot;spe.norm&quot;                          &quot;species&quot;                          </span></span>
-<span id="cb34-178"><a href="cap4.html#cb34-178" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [351] &quot;species.hel&quot;                       &quot;sps.dis&quot;                          </span></span>
-<span id="cb34-179"><a href="cap4.html#cb34-179" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [353] &quot;Strix&quot;                             &quot;tab_indval&quot;                       </span></span>
-<span id="cb34-180"><a href="cap4.html#cb34-180" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [355] &quot;tempo_estudando_r&quot;                 &quot;tempo_estudando_r_dur&quot;            </span></span>
-<span id="cb34-181"><a href="cap4.html#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [357] &quot;theme_book&quot;                        &quot;tidy_anfibios_locais&quot;             </span></span>
-<span id="cb34-182"><a href="cap4.html#cb34-182" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [359] &quot;va1&quot;                               &quot;va2&quot;                              </span></span>
-<span id="cb34-183"><a href="cap4.html#cb34-183" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [361] &quot;var_env&quot;                           &quot;ve&quot;                               </span></span>
-<span id="cb34-184"><a href="cap4.html#cb34-184" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [363] &quot;vec_1&quot;                             &quot;vec_2&quot;                            </span></span>
-<span id="cb34-185"><a href="cap4.html#cb34-185" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [365] &quot;vec_ch&quot;                            &quot;vec_fa&quot;                           </span></span>
-<span id="cb34-186"><a href="cap4.html#cb34-186" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [367] &quot;vec_nu&quot;                            &quot;W_sel_mat&quot;                        </span></span>
-<span id="cb34-187"><a href="cap4.html#cb34-187" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [369] &quot;x&quot;                                 &quot;xy&quot;                               </span></span>
-<span id="cb34-188"><a href="cap4.html#cb34-188" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [371] &quot;y&quot;                                 &quot;z&quot;                                </span></span>
-<span id="cb34-189"><a href="cap4.html#cb34-189" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [373] &quot;ziNB_mod2&quot;                         &quot;ziP_mod2&quot;</span></span></code></pre></div>
+<span id="cb34-6"><a href="cap4.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [7] &quot;aic_fit_ext&quot;                       &quot;ambie_dat&quot;                        </span></span>
+<span id="cb34-7"><a href="cap4.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [9] &quot;ambie_fren_dat&quot;                    &quot;amostragem&quot;                       </span></span>
+<span id="cb34-8"><a href="cap4.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11] &quot;analise&quot;                           &quot;analise2&quot;                         </span></span>
+<span id="cb34-9"><a href="cap4.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13] &quot;aninha_plot&quot;                       &quot;anuros_ab&quot;                        </span></span>
+<span id="cb34-10"><a href="cap4.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [15] &quot;anuros_comm&quot;                       &quot;anuros_comm_rel&quot;                  </span></span>
+<span id="cb34-11"><a href="cap4.html#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [17] &quot;anuros_IC&quot;                         &quot;ar&quot;                               </span></span>
+<span id="cb34-12"><a href="cap4.html#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19] &quot;aranha.cent&quot;                       &quot;aranhas&quot;                          </span></span>
+<span id="cb34-13"><a href="cap4.html#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21] &quot;assumption3&quot;                       &quot;autovalores&quot;                      </span></span>
+<span id="cb34-14"><a href="cap4.html#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [23] &quot;autovetores&quot;                       &quot;betad_fren&quot;                       </span></span>
+<span id="cb34-15"><a href="cap4.html#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25] &quot;betad.aves&quot;                        &quot;bird.rda&quot;                         </span></span>
+<span id="cb34-16"><a href="cap4.html#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [27] &quot;bocaina_transf&quot;                    &quot;bocaina_transf2&quot;                  </span></span>
+<span id="cb34-17"><a href="cap4.html#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29] &quot;ca.env&quot;                            &quot;candidates&quot;                       </span></span>
+<span id="cb34-18"><a href="cap4.html#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] &quot;Carpornis&quot;                         &quot;chat&quot;                             </span></span>
+<span id="cb34-19"><a href="cap4.html#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [33] &quot;cofresult&quot;                         &quot;colar&quot;                            </span></span>
+<span id="cb34-20"><a href="cap4.html#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [35] &quot;COMDIST_AB_plot&quot;                   &quot;COMDIST_PA_plot&quot;                  </span></span>
+<span id="cb34-21"><a href="cap4.html#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37] &quot;COMDISTNT_AB_plot&quot;                 &quot;COMDISTNT_PA_plot&quot;                </span></span>
+<span id="cb34-22"><a href="cap4.html#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [39] &quot;comm_baselga&quot;                      &quot;commAux&quot;                          </span></span>
+<span id="cb34-23"><a href="cap4.html#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] &quot;composicao_acaros&quot;                 &quot;composicao_especies&quot;              </span></span>
+<span id="cb34-24"><a href="cap4.html#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] &quot;composicao_PA&quot;                     &quot;comun_dat&quot;                        </span></span>
+<span id="cb34-25"><a href="cap4.html#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [45] &quot;comun_fren_dat&quot;                    &quot;comunidade&quot;                       </span></span>
+<span id="cb34-26"><a href="cap4.html#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [47] &quot;concatenar&quot;                        &quot;coord&quot;                            </span></span>
+<span id="cb34-27"><a href="cap4.html#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49] &quot;cor_linear_model&quot;                  &quot;cores&quot;                            </span></span>
+<span id="cb34-28"><a href="cap4.html#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51] &quot;correlacao_arbustos&quot;               &quot;CRC_LP_femea&quot;                     </span></span>
+<span id="cb34-29"><a href="cap4.html#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [53] &quot;CRC_PN_macho&quot;                      &quot;curvas_dominancia_com2&quot;           </span></span>
+<span id="cb34-30"><a href="cap4.html#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55] &quot;curvas_dominancia_todas&quot;           &quot;cwm_dis&quot;                          </span></span>
+<span id="cb34-31"><a href="cap4.html#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] &quot;cwm_ex&quot;                            &quot;cwm_fren&quot;                         </span></span>
+<span id="cb34-32"><a href="cap4.html#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [59] &quot;dados&quot;                             &quot;dados_amostras&quot;                   </span></span>
+<span id="cb34-33"><a href="cap4.html#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] &quot;dados_ancova&quot;                      &quot;dados_anova_simples&quot;              </span></span>
+<span id="cb34-34"><a href="cap4.html#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [63] &quot;dados_bloco&quot;                       &quot;dados_coleta&quot;                     </span></span>
+<span id="cb34-35"><a href="cap4.html#cb34-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [65] &quot;dados_combinado&quot;                   &quot;dados_combinado_ext&quot;              </span></span>
+<span id="cb34-36"><a href="cap4.html#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [67] &quot;dados_dis&quot;                         &quot;dados_dis_AB&quot;                     </span></span>
+<span id="cb34-37"><a href="cap4.html#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [69] &quot;dados_div&quot;                         &quot;dados_dois_fatores&quot;               </span></span>
+<span id="cb34-38"><a href="cap4.html#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] &quot;dados_dois_fatores_interacao&quot;      &quot;dados_dois_fatores_interacao2&quot;    </span></span>
+<span id="cb34-39"><a href="cap4.html#cb34-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73] &quot;dados_inext&quot;                       &quot;dados_inext_abu&quot;                  </span></span>
+<span id="cb34-40"><a href="cap4.html#cb34-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [75] &quot;dados_matriz&quot;                      &quot;dados_PA&quot;                         </span></span>
+<span id="cb34-41"><a href="cap4.html#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [77] &quot;dados_prec&quot;                        &quot;dados_rarefacao&quot;                  </span></span>
+<span id="cb34-42"><a href="cap4.html#cb34-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [79] &quot;dados_regressao&quot;                   &quot;dados_regressao_mul&quot;              </span></span>
+<span id="cb34-43"><a href="cap4.html#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] &quot;dados_semNA&quot;                       &quot;darknessmale&quot;                     </span></span>
+<span id="cb34-44"><a href="cap4.html#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [83] &quot;dat&quot;                               &quot;dat_betapart&quot;                     </span></span>
+<span id="cb34-45"><a href="cap4.html#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] &quot;dat.graf&quot;                          &quot;data&quot;                             </span></span>
+<span id="cb34-46"><a href="cap4.html#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [87] &quot;data.frame_AB&quot;                     &quot;data.frame_PA&quot;                    </span></span>
+<span id="cb34-47"><a href="cap4.html#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [89] &quot;dend&quot;                              &quot;dendro&quot;                           </span></span>
+<span id="cb34-48"><a href="cap4.html#cb34-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] &quot;df&quot;                                &quot;df_sem_na&quot;                        </span></span>
+<span id="cb34-49"><a href="cap4.html#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [93] &quot;dis_prec&quot;                          &quot;dist_categ&quot;                       </span></span>
+<span id="cb34-50"><a href="cap4.html#cb34-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [95] &quot;dist_mist&quot;                         &quot;dist_normal&quot;                      </span></span>
+<span id="cb34-51"><a href="cap4.html#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97] &quot;distBocaina&quot;                       &quot;doubs&quot;                            </span></span>
+<span id="cb34-52"><a href="cap4.html#cb34-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [99] &quot;dune&quot;                              &quot;E&quot;                                </span></span>
+<span id="cb34-53"><a href="cap4.html#cb34-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [101] &quot;ED&quot;                                &quot;eigen_aranhas&quot;                    </span></span>
+<span id="cb34-54"><a href="cap4.html#cb34-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [103] &quot;eixos&quot;                             &quot;eixos_cat&quot;                        </span></span>
+<span id="cb34-55"><a href="cap4.html#cb34-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [105] &quot;eixos_cont&quot;                        &quot;eixos_mist&quot;                       </span></span>
+<span id="cb34-56"><a href="cap4.html#cb34-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [107] &quot;env&quot;                               &quot;env_cont&quot;                         </span></span>
+<span id="cb34-57"><a href="cap4.html#cb34-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [109] &quot;env.contin&quot;                        &quot;env.dist&quot;                         </span></span>
+<span id="cb34-58"><a href="cap4.html#cb34-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [111] &quot;env.mite.pco&quot;                      &quot;env.pad&quot;                          </span></span>
+<span id="cb34-59"><a href="cap4.html#cb34-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [113] &quot;env.pad.cat&quot;                       &quot;env.pca&quot;                          </span></span>
+<span id="cb34-60"><a href="cap4.html#cb34-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [115] &quot;env.sel&quot;                           &quot;env2&quot;                             </span></span>
+<span id="cb34-61"><a href="cap4.html#cb34-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [117] &quot;EP&quot;                                &quot;EP2&quot;                              </span></span>
+<span id="cb34-62"><a href="cap4.html#cb34-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [119] &quot;especies_plantas&quot;                  &quot;espher_model&quot;                     </span></span>
+<span id="cb34-63"><a href="cap4.html#cb34-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [121] &quot;est_ace&quot;                           &quot;est_boot&quot;                         </span></span>
+<span id="cb34-64"><a href="cap4.html#cb34-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [123] &quot;est_chao1&quot;                         &quot;est_chao2&quot;                        </span></span>
+<span id="cb34-65"><a href="cap4.html#cb34-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [125] &quot;est_jack1&quot;                         &quot;est_jack2&quot;                        </span></span>
+<span id="cb34-66"><a href="cap4.html#cb34-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [127] &quot;euclid_dis&quot;                        &quot;expon_model&quot;                      </span></span>
+<span id="cb34-67"><a href="cap4.html#cb34-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [129] &quot;fator&quot;                             &quot;fator_nominal&quot;                    </span></span>
+<span id="cb34-68"><a href="cap4.html#cb34-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [131] &quot;fator_ordinal&quot;                     &quot;FD&quot;                               </span></span>
+<span id="cb34-69"><a href="cap4.html#cb34-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [133] &quot;fdis&quot;                              &quot;fdiv&quot;                             </span></span>
+<span id="cb34-70"><a href="cap4.html#cb34-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [135] &quot;feve&quot;                              &quot;filho_intervalo&quot;                  </span></span>
+<span id="cb34-71"><a href="cap4.html#cb34-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [137] &quot;filho_nascimento&quot;                  &quot;filogenia_aves&quot;                   </span></span>
+<span id="cb34-72"><a href="cap4.html#cb34-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [139] &quot;filogenia_cortada&quot;                 &quot;filogenia_nova&quot;                   </span></span>
+<span id="cb34-73"><a href="cap4.html#cb34-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [141] &quot;fish&quot;                              &quot;fitofis&quot;                          </span></span>
+<span id="cb34-74"><a href="cap4.html#cb34-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [143] &quot;flo&quot;                               &quot;fric&quot;                             </span></span>
+<span id="cb34-75"><a href="cap4.html#cb34-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [145] &quot;fun_beta&quot;                          &quot;fun_beta_multi&quot;                   </span></span>
+<span id="cb34-76"><a href="cap4.html#cb34-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [147] &quot;fun_jaccard&quot;                       &quot;fun_nestedness&quot;                   </span></span>
+<span id="cb34-77"><a href="cap4.html#cb34-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [149] &quot;fun_turnover&quot;                      &quot;g_acari_axi1&quot;                     </span></span>
+<span id="cb34-78"><a href="cap4.html#cb34-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [151] &quot;g_acari_axi2&quot;                      &quot;g_bar_h&quot;                          </span></span>
+<span id="cb34-79"><a href="cap4.html#cb34-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [153] &quot;g_bar_v&quot;                           &quot;g_donut&quot;                          </span></span>
+<span id="cb34-80"><a href="cap4.html#cb34-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [155] &quot;g_pie&quot;                             &quot;g1&quot;                               </span></span>
+<span id="cb34-81"><a href="cap4.html#cb34-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [157] &quot;gauss_model&quot;                       &quot;grp.int&quot;                          </span></span>
+<span id="cb34-82"><a href="cap4.html#cb34-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [159] &quot;grp.mon&quot;                           &quot;grp.pla&quot;                          </span></span>
+<span id="cb34-83"><a href="cap4.html#cb34-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [161] &quot;hill_res_q_0&quot;                      &quot;hill_res_q_1&quot;                     </span></span>
+<span id="cb34-84"><a href="cap4.html#cb34-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [163] &quot;hill_res_q_2&quot;                      &quot;hull.data&quot;                        </span></span>
+<span id="cb34-85"><a href="cap4.html#cb34-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [165] &quot;hur_NB&quot;                            &quot;i&quot;                                </span></span>
+<span id="cb34-86"><a href="cap4.html#cb34-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [167] &quot;ind_env&quot;                           &quot;intror_anfibios_locais&quot;           </span></span>
+<span id="cb34-87"><a href="cap4.html#cb34-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [169] &quot;itv_biomass&quot;                       &quot;itv_BS&quot;                           </span></span>
+<span id="cb34-88"><a href="cap4.html#cb34-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [171] &quot;itv_eye_size&quot;                      &quot;itv_flatness&quot;                     </span></span>
+<span id="cb34-89"><a href="cap4.html#cb34-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [173] &quot;itv_results&quot;                       &quot;k&quot;                                </span></span>
+<span id="cb34-90"><a href="cap4.html#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [175] &quot;ktab_list&quot;                         &quot;li&quot;                               </span></span>
+<span id="cb34-91"><a href="cap4.html#cb34-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [177] &quot;lista&quot;                             &quot;lista_nome&quot;                       </span></span>
+<span id="cb34-92"><a href="cap4.html#cb34-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [179] &quot;lista_rarefacao&quot;                   &quot;lm_dat&quot;                           </span></span>
+<span id="cb34-93"><a href="cap4.html#cb34-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [181] &quot;ma&quot;                                &quot;ma_cbind&quot;                         </span></span>
+<span id="cb34-94"><a href="cap4.html#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [183] &quot;ma_col&quot;                            &quot;ma_rbind&quot;                         </span></span>
+<span id="cb34-95"><a href="cap4.html#cb34-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [185] &quot;ma_row&quot;                            &quot;Margalef&quot;                         </span></span>
+<span id="cb34-96"><a href="cap4.html#cb34-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [187] &quot;mat_knn&quot;                           &quot;mat_listw&quot;                        </span></span>
+<span id="cb34-97"><a href="cap4.html#cb34-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [189] &quot;mat_nb&quot;                            &quot;matriz_cov&quot;                       </span></span>
+<span id="cb34-98"><a href="cap4.html#cb34-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [191] &quot;matriz_F&quot;                          &quot;Megascops&quot;                        </span></span>
+<span id="cb34-99"><a href="cap4.html#cb34-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [193] &quot;MEM_mat&quot;                           &quot;Menhinick&quot;                        </span></span>
+<span id="cb34-100"><a href="cap4.html#cb34-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [195] &quot;metricas&quot;                          &quot;metricas_divergencia&quot;             </span></span>
+<span id="cb34-101"><a href="cap4.html#cb34-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [197] &quot;metricas_divergencia_beta&quot;         &quot;metricas_riqueza&quot;                 </span></span>
+<span id="cb34-102"><a href="cap4.html#cb34-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [199] &quot;metricas_riqueza_beta&quot;             &quot;MidPoint&quot;                         </span></span>
+<span id="cb34-103"><a href="cap4.html#cb34-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [201] &quot;minha_arvore&quot;                      &quot;mite&quot;                             </span></span>
+<span id="cb34-104"><a href="cap4.html#cb34-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [203] &quot;mite.env&quot;                          &quot;mite.hel&quot;                         </span></span>
+<span id="cb34-105"><a href="cap4.html#cb34-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [205] &quot;mite.riqueza&quot;                      &quot;mite.xy&quot;                          </span></span>
+<span id="cb34-106"><a href="cap4.html#cb34-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [207] &quot;MNTD_AB_plot&quot;                      &quot;MNTD_AP_plot&quot;                     </span></span>
+<span id="cb34-107"><a href="cap4.html#cb34-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [209] &quot;mod_biomass&quot;                       &quot;mod_body_size&quot;                    </span></span>
+<span id="cb34-108"><a href="cap4.html#cb34-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [211] &quot;mod_eye_size&quot;                      &quot;mod_flatness&quot;                     </span></span>
+<span id="cb34-109"><a href="cap4.html#cb34-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [213] &quot;mod_itv&quot;                           &quot;mod_log&quot;                          </span></span>
+<span id="cb34-110"><a href="cap4.html#cb34-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [215] &quot;mod_nb&quot;                            &quot;mod_pois&quot;                         </span></span>
+<span id="cb34-111"><a href="cap4.html#cb34-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [217] &quot;mod_pro&quot;                           &quot;mod_quasipois&quot;                    </span></span>
+<span id="cb34-112"><a href="cap4.html#cb34-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [219] &quot;mod.mite&quot;                          &quot;mod1&quot;                             </span></span>
+<span id="cb34-113"><a href="cap4.html#cb34-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [221] &quot;mod2&quot;                              &quot;mod3&quot;                             </span></span>
+<span id="cb34-114"><a href="cap4.html#cb34-114" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [223] &quot;model_bloco1&quot;                      &quot;model_bloco2&quot;                     </span></span>
+<span id="cb34-115"><a href="cap4.html#cb34-115" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [225] &quot;modelo_ancova&quot;                     &quot;modelo_ancova2&quot;                   </span></span>
+<span id="cb34-116"><a href="cap4.html#cb34-116" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [227] &quot;Modelo_anova&quot;                      &quot;modelo_errado&quot;                    </span></span>
+<span id="cb34-117"><a href="cap4.html#cb34-117" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [229] &quot;Modelo_interacao1&quot;                 &quot;Modelo_interacao2&quot;                </span></span>
+<span id="cb34-118"><a href="cap4.html#cb34-118" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [231] &quot;modelo_intercepto&quot;                 &quot;modelo_regressao&quot;                 </span></span>
+<span id="cb34-119"><a href="cap4.html#cb34-119" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [233] &quot;modelo_regressao_mul&quot;              &quot;Modelo1&quot;                          </span></span>
+<span id="cb34-120"><a href="cap4.html#cb34-120" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [235] &quot;Modelo2&quot;                           &quot;modelos_nulo&quot;                     </span></span>
+<span id="cb34-121"><a href="cap4.html#cb34-121" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [237] &quot;moran.comp&quot;                        &quot;moran.env&quot;                        </span></span>
+<span id="cb34-122"><a href="cap4.html#cb34-122" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [239] &quot;MPD_AB_plot&quot;                       &quot;MPD_PA_plot&quot;                      </span></span>
+<span id="cb34-123"><a href="cap4.html#cb34-123" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [241] &quot;mu&quot;                                &quot;multi&quot;                            </span></span>
+<span id="cb34-124"><a href="cap4.html#cb34-124" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [243] &quot;n&quot;                                 &quot;nmds.beta&quot;                        </span></span>
+<span id="cb34-125"><a href="cap4.html#cb34-125" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [245] &quot;no_spat_gls&quot;                       &quot;novas_filogenias&quot;                 </span></span>
+<span id="cb34-126"><a href="cap4.html#cb34-126" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [247] &quot;nulo&quot;                              &quot;obj&quot;                              </span></span>
+<span id="cb34-127"><a href="cap4.html#cb34-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [249] &quot;obj_10&quot;                            &quot;obj_caracter&quot;                     </span></span>
+<span id="cb34-128"><a href="cap4.html#cb34-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [251] &quot;obj_complexo&quot;                      &quot;obj_logico&quot;                       </span></span>
+<span id="cb34-129"><a href="cap4.html#cb34-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [253] &quot;obj_numerico_double&quot;               &quot;obj_numerico_inteiro&quot;             </span></span>
+<span id="cb34-130"><a href="cap4.html#cb34-130" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [255] &quot;op&quot;                                &quot;parasitas&quot;                        </span></span>
+<span id="cb34-131"><a href="cap4.html#cb34-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [257] &quot;Pareado&quot;                           &quot;particao_phylosor&quot;                </span></span>
+<span id="cb34-132"><a href="cap4.html#cb34-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [259] &quot;pca.comp&quot;                          &quot;pca.p&quot;                            </span></span>
+<span id="cb34-133"><a href="cap4.html#cb34-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [261] &quot;pcoa_traits_cat&quot;                   &quot;pcoa_traits_cont&quot;                 </span></span>
+<span id="cb34-134"><a href="cap4.html#cb34-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [263] &quot;pcoa_traits_mist&quot;                  &quot;pcoa.dat&quot;                         </span></span>
+<span id="cb34-135"><a href="cap4.html#cb34-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [265] &quot;pcoa.sps&quot;                          &quot;PD_plot&quot;                          </span></span>
+<span id="cb34-136"><a href="cap4.html#cb34-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [267] &quot;PE_plot&quot;                           &quot;penguin_islands&quot;                  </span></span>
+<span id="cb34-137"><a href="cap4.html#cb34-137" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [269] &quot;penguins&quot;                          &quot;penguins_01&quot;                      </span></span>
+<span id="cb34-138"><a href="cap4.html#cb34-138" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [271] &quot;penguins_02&quot;                       &quot;penguins_arrange&quot;                 </span></span>
+<span id="cb34-139"><a href="cap4.html#cb34-139" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [273] &quot;penguins_arrange_across&quot;           &quot;penguins_arrange_desc&quot;            </span></span>
+<span id="cb34-140"><a href="cap4.html#cb34-140" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [275] &quot;penguins_arrange_desc_m&quot;           &quot;penguins_bind_cols&quot;               </span></span>
+<span id="cb34-141"><a href="cap4.html#cb34-141" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [277] &quot;penguins_bind_rows&quot;                &quot;penguins_count&quot;                   </span></span>
+<span id="cb34-142"><a href="cap4.html#cb34-142" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [279] &quot;penguins_count_two&quot;                &quot;penguins_distinct&quot;                </span></span>
+<span id="cb34-143"><a href="cap4.html#cb34-143" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [281] &quot;penguins_distinct_keep_all&quot;        &quot;penguins_distinct_keep_all_across&quot;</span></span>
+<span id="cb34-144"><a href="cap4.html#cb34-144" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [283] &quot;penguins_filter&quot;                   &quot;penguins_filter_between&quot;          </span></span>
+<span id="cb34-145"><a href="cap4.html#cb34-145" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [285] &quot;penguins_filter_if&quot;                &quot;penguins_filter_in&quot;               </span></span>
+<span id="cb34-146"><a href="cap4.html#cb34-146" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [287] &quot;penguins_filter_na&quot;                &quot;penguins_filter_two&quot;              </span></span>
+<span id="cb34-147"><a href="cap4.html#cb34-147" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [289] &quot;penguins_group_by&quot;                 &quot;penguins_group_by_across&quot;         </span></span>
+<span id="cb34-148"><a href="cap4.html#cb34-148" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [291] &quot;penguins_left_join&quot;                &quot;penguins_mean&quot;                    </span></span>
+<span id="cb34-149"><a href="cap4.html#cb34-149" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [293] &quot;penguins_mutate&quot;                   &quot;penguins_mutate_across&quot;           </span></span>
+<span id="cb34-150"><a href="cap4.html#cb34-150" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [295] &quot;penguins_pad&quot;                      &quot;penguins_prop&quot;                    </span></span>
+<span id="cb34-151"><a href="cap4.html#cb34-151" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [297] &quot;penguins_raw_colunas_na&quot;           &quot;penguins_raw_multi_factor&quot;        </span></span>
+<span id="cb34-152"><a href="cap4.html#cb34-152" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [299] &quot;penguins_raw_pivot_longer&quot;         &quot;penguins_raw_pivot_wider&quot;         </span></span>
+<span id="cb34-153"><a href="cap4.html#cb34-153" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [301] &quot;penguins_raw_sel_col&quot;              &quot;penguins_raw_separar&quot;             </span></span>
+<span id="cb34-154"><a href="cap4.html#cb34-154" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [303] &quot;penguins_raw_separar_linhas&quot;       &quot;penguins_raw_subs_na&quot;             </span></span>
+<span id="cb34-155"><a href="cap4.html#cb34-155" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [305] &quot;penguins_raw_todas_na&quot;             &quot;penguins_raw_unir&quot;                </span></span>
+<span id="cb34-156"><a href="cap4.html#cb34-156" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [307] &quot;penguins_relocate_col&quot;             &quot;penguins_relocate_ncol&quot;           </span></span>
+<span id="cb34-157"><a href="cap4.html#cb34-157" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [309] &quot;penguins_rename&quot;                   &quot;penguins_rename_with&quot;             </span></span>
+<span id="cb34-158"><a href="cap4.html#cb34-158" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [311] &quot;penguins_select_contains&quot;          &quot;penguins_select_names&quot;            </span></span>
+<span id="cb34-159"><a href="cap4.html#cb34-159" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [313] &quot;penguins_select_position&quot;          &quot;penguins_select_pull&quot;             </span></span>
+<span id="cb34-160"><a href="cap4.html#cb34-160" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [315] &quot;penguins_slice&quot;                    &quot;penguins_slice_head&quot;              </span></span>
+<span id="cb34-161"><a href="cap4.html#cb34-161" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [317] &quot;penguins_slice_max&quot;                &quot;penguins_slice_sample&quot;            </span></span>
+<span id="cb34-162"><a href="cap4.html#cb34-162" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [319] &quot;penguins_stringr_nomes&quot;            &quot;penguins_stringr_valores&quot;         </span></span>
+<span id="cb34-163"><a href="cap4.html#cb34-163" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [321] &quot;penguins_summarise&quot;                &quot;penguins_summarise_across&quot;        </span></span>
+<span id="cb34-164"><a href="cap4.html#cb34-164" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [323] &quot;penguins_trait&quot;                    &quot;penguins2&quot;                        </span></span>
+<span id="cb34-165"><a href="cap4.html#cb34-165" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [325] &quot;perm.aves&quot;                         &quot;perman_fren&quot;                      </span></span>
+<span id="cb34-166"><a href="cap4.html#cb34-166" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [327] &quot;Pielou&quot;                            &quot;plot_betapart&quot;                    </span></span>
+<span id="cb34-167"><a href="cap4.html#cb34-167" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [329] &quot;plot_phylosor&quot;                     &quot;plot_pred1&quot;                       </span></span>
+<span id="cb34-168"><a href="cap4.html#cb34-168" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [331] &quot;plot_pred2&quot;                        &quot;plot_trait_cat&quot;                   </span></span>
+<span id="cb34-169"><a href="cap4.html#cb34-169" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [333] &quot;plot_trait_cont&quot;                   &quot;plot_trait_mist&quot;                  </span></span>
+<span id="cb34-170"><a href="cap4.html#cb34-170" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [335] &quot;plot_unifrac&quot;                      &quot;pois_plain&quot;                       </span></span>
+<span id="cb34-171"><a href="cap4.html#cb34-171" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [337] &quot;prec_dis&quot;                          &quot;precipitacao&quot;                     </span></span>
+<span id="cb34-172"><a href="cap4.html#cb34-172" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [339] &quot;pred.env&quot;                          &quot;pred.scores.mite&quot;                 </span></span>
+<span id="cb34-173"><a href="cap4.html#cb34-173" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [341] &quot;pred.vars&quot;                         &quot;predito&quot;                          </span></span>
+<span id="cb34-174"><a href="cap4.html#cb34-174" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [343] &quot;predito_ext&quot;                       &quot;PSR_plot&quot;                         </span></span>
+<span id="cb34-175"><a href="cap4.html#cb34-175" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [345] &quot;pv.birds&quot;                          &quot;r_hoje&quot;                           </span></span>
+<span id="cb34-176"><a href="cap4.html#cb34-176" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [347] &quot;r_inicio&quot;                          &quot;r_intervalo&quot;                      </span></span>
+<span id="cb34-177"><a href="cap4.html#cb34-177" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [349] &quot;r_quadr&quot;                           &quot;rank_com2&quot;                        </span></span>
+<span id="cb34-178"><a href="cap4.html#cb34-178" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [351] &quot;rank_com3&quot;                         &quot;rarefacao_anuros&quot;                 </span></span>
+<span id="cb34-179"><a href="cap4.html#cb34-179" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [353] &quot;rarefacao_repteis&quot;                 &quot;ratio_model&quot;                      </span></span>
+<span id="cb34-180"><a href="cap4.html#cb34-180" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [355] &quot;rda.bird&quot;                          &quot;rda.p&quot;                            </span></span>
+<span id="cb34-181"><a href="cap4.html#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [357] &quot;redmale&quot;                           &quot;relAbund&quot;                         </span></span>
+<span id="cb34-182"><a href="cap4.html#cb34-182" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [359] &quot;rep_times&quot;                         &quot;rep_times_soma&quot;                   </span></span>
+<span id="cb34-183"><a href="cap4.html#cb34-183" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [361] &quot;rep_times_soma_raiz&quot;               &quot;repeticao&quot;                        </span></span>
+<span id="cb34-184"><a href="cap4.html#cb34-184" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [363] &quot;res_ace&quot;                           &quot;res_boot&quot;                         </span></span>
+<span id="cb34-185"><a href="cap4.html#cb34-185" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [365] &quot;res_chao&quot;                          &quot;res_chao2&quot;                        </span></span>
+<span id="cb34-186"><a href="cap4.html#cb34-186" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [367] &quot;res_hill&quot;                          &quot;res_indval&quot;                       </span></span>
+<span id="cb34-187"><a href="cap4.html#cb34-187" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [369] &quot;res_jack1&quot;                         &quot;res_jack2&quot;                        </span></span>
+<span id="cb34-188"><a href="cap4.html#cb34-188" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [371] &quot;res_rarefacao_amostras&quot;            &quot;res.axis&quot;                         </span></span>
+<span id="cb34-189"><a href="cap4.html#cb34-189" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [373] &quot;res.p.axis&quot;                        &quot;res.p.var&quot;                        </span></span>
+<span id="cb34-190"><a href="cap4.html#cb34-190" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [375] &quot;res.var&quot;                           &quot;residuos&quot;                         </span></span>
+<span id="cb34-191"><a href="cap4.html#cb34-191" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [377] &quot;residuos_LP&quot;                       &quot;resultado_AB&quot;                     </span></span>
+<span id="cb34-192"><a href="cap4.html#cb34-192" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [379] &quot;resultado_PA&quot;                      &quot;resultados&quot;                       </span></span>
+<span id="cb34-193"><a href="cap4.html#cb34-193" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [381] &quot;resultados_abundancia&quot;             &quot;resultados_ace&quot;                   </span></span>
+<span id="cb34-194"><a href="cap4.html#cb34-194" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [383] &quot;resultados_anuros&quot;                 &quot;resultados_boot&quot;                  </span></span>
+<span id="cb34-195"><a href="cap4.html#cb34-195" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [385] &quot;resultados_chao2&quot;                  &quot;resultados_Comdist_AB&quot;            </span></span>
+<span id="cb34-196"><a href="cap4.html#cb34-196" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [387] &quot;resultados_Comdist_PA&quot;             &quot;resultados_Comdistnt_AB&quot;          </span></span>
+<span id="cb34-197"><a href="cap4.html#cb34-197" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [389] &quot;resultados_Comdistnt_PA&quot;           &quot;resultados_comunidades&quot;           </span></span>
+<span id="cb34-198"><a href="cap4.html#cb34-198" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [391] &quot;resultados_comunidades_ext&quot;        &quot;resultados_ED&quot;                    </span></span>
+<span id="cb34-199"><a href="cap4.html#cb34-199" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [393] &quot;resultados_extrapolacao&quot;           &quot;resultados_incidencia&quot;            </span></span>
+<span id="cb34-200"><a href="cap4.html#cb34-200" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [395] &quot;resultados_jack1&quot;                  &quot;resultados_jack2&quot;                 </span></span>
+<span id="cb34-201"><a href="cap4.html#cb34-201" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [397] &quot;resultados_MNTD_AB&quot;                &quot;resultados_MNTD_PA&quot;               </span></span>
+<span id="cb34-202"><a href="cap4.html#cb34-202" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [399] &quot;resultados_morcegos&quot;               &quot;resultados_MPD_AB&quot;                </span></span>
+<span id="cb34-203"><a href="cap4.html#cb34-203" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [401] &quot;resultados_MPD_PA&quot;                 &quot;resultados_PD&quot;                    </span></span>
+<span id="cb34-204"><a href="cap4.html#cb34-204" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [403] &quot;resultados_PE&quot;                     &quot;resultados_Phylosor&quot;              </span></span>
+<span id="cb34-205"><a href="cap4.html#cb34-205" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [405] &quot;resultados_Phylosor_particao&quot;      &quot;resultados_PSR&quot;                   </span></span>
+<span id="cb34-206"><a href="cap4.html#cb34-206" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [407] &quot;resultados_PSV&quot;                    &quot;resultados_rarefacao&quot;             </span></span>
+<span id="cb34-207"><a href="cap4.html#cb34-207" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [409] &quot;resultados_repteis&quot;                &quot;resultados_SES_MNTD&quot;              </span></span>
+<span id="cb34-208"><a href="cap4.html#cb34-208" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [411] &quot;resultados_SES_MPD&quot;                &quot;resultados_SES_PD&quot;                </span></span>
+<span id="cb34-209"><a href="cap4.html#cb34-209" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [413] &quot;resultados_UniFrac&quot;                &quot;resultados_UniFrac_particao&quot;      </span></span>
+<span id="cb34-210"><a href="cap4.html#cb34-210" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [415] &quot;resultados_VPD&quot;                    &quot;richness&quot;                         </span></span>
+<span id="cb34-211"><a href="cap4.html#cb34-211" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [417] &quot;riqueza&quot;                           &quot;riqueza_extrapolada&quot;              </span></span>
+<span id="cb34-212"><a href="cap4.html#cb34-212" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [419] &quot;Riqueza_plot&quot;                      &quot;riqueza_rarefeita&quot;                </span></span>
+<span id="cb34-213"><a href="cap4.html#cb34-213" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [421] &quot;riqueza_sp&quot;                        &quot;sel.vars&quot;                         </span></span>
+<span id="cb34-214"><a href="cap4.html#cb34-214" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [423] &quot;sequencia&quot;                         &quot;sequencia_esp&quot;                    </span></span>
+<span id="cb34-215"><a href="cap4.html#cb34-215" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [425] &quot;ses.physo&quot;                         &quot;shannon_res&quot;                      </span></span>
+<span id="cb34-216"><a href="cap4.html#cb34-216" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [427] &quot;simpson_res&quot;                       &quot;simulationBion&quot;                   </span></span>
+<span id="cb34-217"><a href="cap4.html#cb34-217" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [429] &quot;simulationOutput&quot;                  &quot;sol1&quot;                             </span></span>
+<span id="cb34-218"><a href="cap4.html#cb34-218" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [431] &quot;sorensen_plot&quot;                     &quot;sp&quot;                               </span></span>
+<span id="cb34-219"><a href="cap4.html#cb34-219" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [433] &quot;sp_compos&quot;                         &quot;spatial.pred&quot;                     </span></span>
+<span id="cb34-220"><a href="cap4.html#cb34-220" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [435] &quot;spe&quot;                               &quot;spe.KM.cascade&quot;                   </span></span>
+<span id="cb34-221"><a href="cap4.html#cb34-221" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [437] &quot;spe.kmeans&quot;                        &quot;spe.norm&quot;                         </span></span>
+<span id="cb34-222"><a href="cap4.html#cb34-222" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [439] &quot;species&quot;                           &quot;species.hel&quot;                      </span></span>
+<span id="cb34-223"><a href="cap4.html#cb34-223" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [441] &quot;spNames&quot;                           &quot;sps.dis&quot;                          </span></span>
+<span id="cb34-224"><a href="cap4.html#cb34-224" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [443] &quot;spVector&quot;                          &quot;Strix&quot;                            </span></span>
+<span id="cb34-225"><a href="cap4.html#cb34-225" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [445] &quot;subst_plot&quot;                        &quot;tab_indval&quot;                       </span></span>
+<span id="cb34-226"><a href="cap4.html#cb34-226" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [447] &quot;tempo_estudando_r&quot;                 &quot;tempo_estudando_r_dur&quot;            </span></span>
+<span id="cb34-227"><a href="cap4.html#cb34-227" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [449] &quot;theme_book&quot;                        &quot;tidy_anfibios_locais&quot;             </span></span>
+<span id="cb34-228"><a href="cap4.html#cb34-228" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [451] &quot;trait_baselga&quot;                     &quot;trait_cat&quot;                        </span></span>
+<span id="cb34-229"><a href="cap4.html#cb34-229" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [453] &quot;trait_categ&quot;                       &quot;trait_dat&quot;                        </span></span>
+<span id="cb34-230"><a href="cap4.html#cb34-230" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [455] &quot;trait_decomp&quot;                      &quot;trait_fren_dat&quot;                   </span></span>
+<span id="cb34-231"><a href="cap4.html#cb34-231" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [457] &quot;trait_m&quot;                           &quot;trait_ord&quot;                        </span></span>
+<span id="cb34-232"><a href="cap4.html#cb34-232" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [459] &quot;trait_pad&quot;                         &quot;traits&quot;                           </span></span>
+<span id="cb34-233"><a href="cap4.html#cb34-233" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [461] &quot;traitsVector&quot;                      &quot;tree_dend&quot;                        </span></span>
+<span id="cb34-234"><a href="cap4.html#cb34-234" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [463] &quot;va1&quot;                               &quot;va2&quot;                              </span></span>
+<span id="cb34-235"><a href="cap4.html#cb34-235" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [465] &quot;valores&quot;                           &quot;var_env&quot;                          </span></span>
+<span id="cb34-236"><a href="cap4.html#cb34-236" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [467] &quot;ve&quot;                                &quot;vec_1&quot;                            </span></span>
+<span id="cb34-237"><a href="cap4.html#cb34-237" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [469] &quot;vec_2&quot;                             &quot;vec_ch&quot;                           </span></span>
+<span id="cb34-238"><a href="cap4.html#cb34-238" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [471] &quot;vec_fa&quot;                            &quot;vec_nu&quot;                           </span></span>
+<span id="cb34-239"><a href="cap4.html#cb34-239" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [473] &quot;W_sel_mat&quot;                         &quot;wITVResults&quot;                      </span></span>
+<span id="cb34-240"><a href="cap4.html#cb34-240" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [475] &quot;x&quot;                                 &quot;xy&quot;                               </span></span>
+<span id="cb34-241"><a href="cap4.html#cb34-241" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [477] &quot;y&quot;                                 &quot;z&quot;                                </span></span>
+<span id="cb34-242"><a href="cap4.html#cb34-242" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [479] &quot;ziNB_mod2&quot;                         &quot;ziP_mod2&quot;</span></span></code></pre></div>
 <p>Podemos ainda remover objetos criados com a função <code>rm()</code> ou <code>remove()</code>. Ou ainda fazer uma função composta para remover todos os objetos do <em>Environment</em>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="cap4.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Remover um objeto</span></span>
 <span id="cb35-2"><a href="cap4.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(adi)</span>
@@ -1843,165 +2092,323 @@ Figura 4.3: Estruturas de dados mais comuns de R: vetores, matrizes, arrays, lis
 <span id="cb69-7"><a href="cap4.html#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.80 1.20 1.75 1.15 1.90</span></span></code></pre></div>
 <p>Além da indexação, temos algumas funções que nos auxiliam em algumas operações com objetos unidimensionais, listadas na Tabela <a href="cap4.html#tab:tab-tab-funcoes-conf-uni">4.2</a>.</p>
 <table>
-<caption><span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.</caption>
+<caption>
+<span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.
+</caption>
 <thead>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
+<tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center"><code>max()</code></td>
-<td align="center">Valor máximo</td>
+<tr>
+<td style="text-align:center;">
+<code>max()</code>
+</td>
+<td style="text-align:center;">
+Valor máximo
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>min()</code></td>
-<td align="center">Valor mínimo</td>
+<tr>
+<td style="text-align:center;">
+<code>min()</code>
+</td>
+<td style="text-align:center;">
+Valor mínimo
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>range()</code></td>
-<td align="center">Amplitude</td>
+<tr>
+<td style="text-align:center;">
+<code>range()</code>
+</td>
+<td style="text-align:center;">
+Amplitude
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>length()</code></td>
-<td align="center">Comprimento</td>
+<tr>
+<td style="text-align:center;">
+<code>length()</code>
+</td>
+<td style="text-align:center;">
+Comprimento
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>sum()</code></td>
-<td align="center">Soma</td>
+<tr>
+<td style="text-align:center;">
+<code>sum()</code>
+</td>
+<td style="text-align:center;">
+Soma
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>cumsum()</code></td>
-<td align="center">Soma cumulativa</td>
+<tr>
+<td style="text-align:center;">
+<code>cumsum()</code>
+</td>
+<td style="text-align:center;">
+Soma cumulativa
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>prod()</code></td>
-<td align="center">Produto</td>
+<tr>
+<td style="text-align:center;">
+<code>prod()</code>
+</td>
+<td style="text-align:center;">
+Produto
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sqrt()</code></td>
-<td align="center">Raiz quadrada</td>
+<tr>
+<td style="text-align:center;">
+<code>sqrt()</code>
+</td>
+<td style="text-align:center;">
+Raiz quadrada
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>abs()</code></td>
-<td align="center">Valor absoluto</td>
+<tr>
+<td style="text-align:center;">
+<code>abs()</code>
+</td>
+<td style="text-align:center;">
+Valor absoluto
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>exp()</code></td>
-<td align="center">Expoente</td>
+<tr>
+<td style="text-align:center;">
+<code>exp()</code>
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>log()</code></td>
-<td align="center">Logaritmo natural</td>
+<tr>
+<td style="text-align:center;">
+<code>log()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>log1p()</code></td>
-<td align="center">Logaritmo natural mais 1 <em>log(x + 1)</em></td>
+<tr>
+<td style="text-align:center;">
+<code>log1p()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural mais 1 <em>log(x + 1)</em>
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>log2()</code></td>
-<td align="center">Logaritmo base 2</td>
+<tr>
+<td style="text-align:center;">
+<code>log2()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 2
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>log10()</code></td>
-<td align="center">Logaritmo base 10</td>
+<tr>
+<td style="text-align:center;">
+<code>log10()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 10
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>mean()</code></td>
-<td align="center">Média</td>
+<tr>
+<td style="text-align:center;">
+<code>mean()</code>
+</td>
+<td style="text-align:center;">
+Média
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>mean.weighted()</code></td>
-<td align="center">Média ponderada</td>
+<tr>
+<td style="text-align:center;">
+<code>mean.weighted()</code>
+</td>
+<td style="text-align:center;">
+Média ponderada
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>var()</code></td>
-<td align="center">Variância</td>
+<tr>
+<td style="text-align:center;">
+<code>var()</code>
+</td>
+<td style="text-align:center;">
+Variância
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sd()</code></td>
-<td align="center">Desvio Padrão</td>
+<tr>
+<td style="text-align:center;">
+<code>sd()</code>
+</td>
+<td style="text-align:center;">
+Desvio Padrão
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>mediam()</code></td>
-<td align="center">Mediana</td>
+<tr>
+<td style="text-align:center;">
+<code>mediam()</code>
+</td>
+<td style="text-align:center;">
+Mediana
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>quantile()</code></td>
-<td align="center">Quantil</td>
+<tr>
+<td style="text-align:center;">
+<code>quantile()</code>
+</td>
+<td style="text-align:center;">
+Quantil
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>quarters()</code></td>
-<td align="center">Quartil</td>
+<tr>
+<td style="text-align:center;">
+<code>quarters()</code>
+</td>
+<td style="text-align:center;">
+Quartil
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>IQR()</code></td>
-<td align="center">Amplitude interquartil</td>
+<tr>
+<td style="text-align:center;">
+<code>IQR()</code>
+</td>
+<td style="text-align:center;">
+Amplitude interquartil
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>round()</code></td>
-<td align="center">Arredondamento</td>
+<tr>
+<td style="text-align:center;">
+<code>round()</code>
+</td>
+<td style="text-align:center;">
+Arredondamento
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sort()</code></td>
-<td align="center">Ordenação</td>
+<tr>
+<td style="text-align:center;">
+<code>sort()</code>
+</td>
+<td style="text-align:center;">
+Ordenação
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>order()</code></td>
-<td align="center">Posição ordenada</td>
+<tr>
+<td style="text-align:center;">
+<code>order()</code>
+</td>
+<td style="text-align:center;">
+Posição ordenada
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rev()</code></td>
-<td align="center">Reverso</td>
+<tr>
+<td style="text-align:center;">
+<code>rev()</code>
+</td>
+<td style="text-align:center;">
+Reverso
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>unique()</code></td>
-<td align="center">Únicos</td>
+<tr>
+<td style="text-align:center;">
+<code>unique()</code>
+</td>
+<td style="text-align:center;">
+Únicos
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>summary()</code></td>
-<td align="center">Resumo estatístico</td>
+<tr>
+<td style="text-align:center;">
+<code>summary()</code>
+</td>
+<td style="text-align:center;">
+Resumo estatístico
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>cut()</code></td>
-<td align="center">Divide variável contínua em fator</td>
+<tr>
+<td style="text-align:center;">
+<code>cut()</code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em fator
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>pretty()</code></td>
-<td align="center">Divide variável contínua em intervalos</td>
+<tr>
+<td style="text-align:center;">
+<code>pretty()</code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em intervalos
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>scale()</code></td>
-<td align="center">Padronização e centralização</td>
+<tr>
+<td style="text-align:center;">
+<code>scale()</code>
+</td>
+<td style="text-align:center;">
+Padronização e centralização
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sub()</code></td>
-<td align="center">Substitui caracteres</td>
+<tr>
+<td style="text-align:center;">
+<code>sub()</code>
+</td>
+<td style="text-align:center;">
+Substitui caracteres
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>grep()</code></td>
-<td align="center">Posição de caracteres</td>
+<tr>
+<td style="text-align:center;">
+<code>grep()</code>
+</td>
+<td style="text-align:center;">
+Posição de caracteres
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>any()</code></td>
-<td align="center">Algum valor?</td>
+<tr>
+<td style="text-align:center;">
+<code>any()</code>
+</td>
+<td style="text-align:center;">
+Algum valor?
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>all()</code></td>
-<td align="center">Todos os valores?</td>
+<tr>
+<td style="text-align:center;">
+<code>all()</code>
+</td>
+<td style="text-align:center;">
+Todos os valores?
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>which()</code></td>
-<td align="center">Quais valores?</td>
+<tr>
+<td style="text-align:center;">
+<code>which()</code>
+</td>
+<td style="text-align:center;">
+Quais valores?
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>subset()</code></td>
-<td align="center">Subconjunto</td>
+<tr>
+<td style="text-align:center;">
+<code>subset()</code>
+</td>
+<td style="text-align:center;">
+Subconjunto
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>ifelse()</code></td>
-<td align="center">Operação condicional</td>
+<tr>
+<td style="text-align:center;">
+<code>ifelse()</code>
+</td>
+<td style="text-align:center;">
+Operação condicional
+</td>
 </tr>
 </tbody>
 </table>
@@ -2181,77 +2588,147 @@ Figura 4.3: Estruturas de dados mais comuns de R: vetores, matrizes, arrays, lis
 <span id="cb76-16"><a href="cap4.html#cb76-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 sp10  10 floresta    1</span></span></code></pre></div>
 <p>Além disso, há uma série de funções para conferência e manipulação de dados que listamos na Tabela <a href="cap4.html#tab:tab-funcoes-conf-multi">4.3</a>.</p>
 <table>
-<caption><span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.</caption>
+<caption>
+<span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.
+</caption>
 <thead>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
+<tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center"><code>head()</code></td>
-<td align="center">Mostra as primeiras 6 linhas</td>
+<tr>
+<td style="text-align:center;">
+<code>head()</code>
+</td>
+<td style="text-align:center;">
+Mostra as primeiras 6 linhas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>tail()</code></td>
-<td align="center">Mostra as últimas 6 linhas</td>
+<tr>
+<td style="text-align:center;">
+<code>tail()</code>
+</td>
+<td style="text-align:center;">
+Mostra as últimas 6 linhas
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>nrow()</code></td>
-<td align="center">Mostra o número de linhas</td>
+<tr>
+<td style="text-align:center;">
+<code>nrow()</code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>ncol()</code></td>
-<td align="center">Mostra o número de colunas</td>
+<tr>
+<td style="text-align:center;">
+<code>ncol()</code>
+</td>
+<td style="text-align:center;">
+Mostra o número de colunas
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>dim()</code></td>
-<td align="center">Mostra o número de linhas e de colunas</td>
+<tr>
+<td style="text-align:center;">
+<code>dim()</code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas e de colunas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rownames()</code></td>
-<td align="center">Mostra os nomes das linhas (locais)</td>
+<tr>
+<td style="text-align:center;">
+<code>rownames()</code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das linhas (locais)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>colnames()</code></td>
-<td align="center">Mostra os nomes das colunas (variáveis)</td>
+<tr>
+<td style="text-align:center;">
+<code>colnames()</code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das colunas (variáveis)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>str()</code></td>
-<td align="center">Mostra as classes de cada coluna (estrutura)</td>
+<tr>
+<td style="text-align:center;">
+<code>str()</code>
+</td>
+<td style="text-align:center;">
+Mostra as classes de cada coluna (estrutura)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>summary()</code></td>
-<td align="center">Mostra um resumo dos valores de cada coluna</td>
+<tr>
+<td style="text-align:center;">
+<code>summary()</code>
+</td>
+<td style="text-align:center;">
+Mostra um resumo dos valores de cada coluna
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rowSums()</code></td>
-<td align="center">Calcula a soma das linhas (horizontal)</td>
+<tr>
+<td style="text-align:center;">
+<code>rowSums()</code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das linhas (horizontal)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>colSums()</code></td>
-<td align="center">Calcula a soma das colunas (vertical)</td>
+<tr>
+<td style="text-align:center;">
+<code>colSums()</code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das colunas (vertical)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rowMeans()</code></td>
-<td align="center">Calcula a média das linhas (horizontal)</td>
+<tr>
+<td style="text-align:center;">
+<code>rowMeans()</code>
+</td>
+<td style="text-align:center;">
+Calcula a média das linhas (horizontal)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>colMeans()</code></td>
-<td align="center">Calcula a média das colunas (vertical)</td>
+<tr>
+<td style="text-align:center;">
+<code>colMeans()</code>
+</td>
+<td style="text-align:center;">
+Calcula a média das colunas (vertical)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>str()</code></td>
-<td align="center">Mostra a estrutura dos dados</td>
+<tr>
+<td style="text-align:center;">
+<code>str()</code>
+</td>
+<td style="text-align:center;">
+Mostra a estrutura dos dados
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>table()</code></td>
-<td align="center">Tabulação cruzada</td>
+<tr>
+<td style="text-align:center;">
+<code>table()</code>
+</td>
+<td style="text-align:center;">
+Tabulação cruzada
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>t()</code></td>
-<td align="center">Matriz ou data frame transposto</td>
+<tr>
+<td style="text-align:center;">
+<code>t()</code>
+</td>
+<td style="text-align:center;">
+Matriz ou data frame transposto
+</td>
 </tr>
 </tbody>
 </table>

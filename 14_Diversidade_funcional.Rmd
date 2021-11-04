@@ -1,16 +1,4 @@
----
-bibliography: Collection.bib
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE
-)
-```
-
-# Cap. 14 - Diversidade Funcional {#cap14}
+# Diversidade Funcional {#cap14}
 
 ### Pré-requisitos do capítulo {-}
 
@@ -43,30 +31,12 @@ trait_fren_dat <- ecodados::fundiv_frenette2012a_trait
 trait_dat      <- ecodados::fundiv_barbaro2009a_trait
 comun_dat      <- ecodados::fundiv_barbaro2009a_comu
 ambie_dat      <- ecodados::fundiv_barbaro2009a_amb
-trait_baselga <- read.csv("trait_baselga.csv", row.names = "X")
-comm_baselga <- read.csv("comm_baselga.csv", row.names = "X")
-anuros_comm <- read.csv("itv_comm.csv", sep=";", row.names = "X")
-traits <- read.csv("itv_traits.csv", sep=";")
-env <- read.csv("itv_env.csv", sep=";", row.names = "X")
-source("wITV.R")
-
-## Tema para gráficos
-tema_livro <- theme(panel.border =element_rect(colour = "black",
-                                               fill = NA, size = .5),
-                    axis.text.x = element_text(colour = "black",
-                                               size = 10),
-                    axis.text.y = element_text(colour = "black",
-                                               size = 10),
-                    legend.key = element_rect(fill = "white",
-                                              colour = "white"),
-                    legend.position = "top",
-                    legend.direction = "horizontal",
-                    legend.title = element_blank(),
-                    panel.grid.major = element_line(colour = "#d3d3d3"),
-                    panel.grid.minor = element_blank(),
-                    panel.background = element_blank(),
-                    plot.title = element_text(size = 14, face = "bold"),
-                    text = element_text())
+trait_baselga  <- ecodados::trait_baselga
+comm_baselga   <- ecodados::comm_baselga
+anuros_comm    <- ecodados::anuros_comm
+traits         <- ecodados::traits
+env            <- ecodados::env
+# ecodados::wITV # funtion: wITV
 ```
 
 
@@ -121,7 +91,7 @@ eixos_cont %>%
   geom_hline(yintercept = 0, linetype=2) + 
   geom_vline(xintercept = 0, linetype=2)+ 
   theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro-> plot_trait_cont
+  tema_livro()-> plot_trait_cont
 plot_trait_cont
 ```
 
@@ -165,7 +135,7 @@ eixos_cat %>%
   geom_hline(yintercept = 0, linetype=2) + 
   geom_vline(xintercept = 0, linetype=2)+ 
   theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro + ggtitle("Dados categóricos")-> plot_trait_cat
+  tema_livro() + ggtitle("Dados categóricos")-> plot_trait_cat
 plot_trait_cat
 ```
 
@@ -226,7 +196,7 @@ eixos_mist %>%
   geom_hline(yintercept = 0, linetype=2) + 
   geom_vline(xintercept = 0, linetype=2)+ 
   theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro + ggtitle("Dados mistos") -> plot_trait_mist
+  tema_livro() + ggtitle("Dados mistos") -> plot_trait_mist
 plot_trait_mist
 ```
 
@@ -381,7 +351,7 @@ dat_betapart %>%
   theme(axis.title.y = element_text(face="bold", size=14),
         axis.text.y = element_text(vjust=0.5, size=12)) + 
   theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro -> plot_betapart 
+  tema_livro() -> plot_betapart 
 plot_betapart
 ```
 
@@ -469,7 +439,7 @@ lm_dat %>%
   theme(axis.title.y = element_text(face="bold", size=14),
         axis.text.y = element_text(vjust=0.5, size=12)) + 
   theme(legend.position = "top", legend.title=element_blank())+
-  tema_livro -> plot_pred1
+  tema_livro() -> plot_pred1
 # Gráfico modelo 2.
 lm_dat %>% 
   ggplot(aes(x=aridez, y=feve)) + 
@@ -480,7 +450,7 @@ lm_dat %>%
   theme(axis.title.y = element_text(face="bold", size=14),
         axis.text.y = element_text(vjust=0.5, size=12)) + 
   theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro -> plot_pred2
+  tema_livro() -> plot_pred2
 
 ## Visualização dos dois gráficos em um única janela
 grid.arrange(plot_pred1, plot_pred2, ncol=2)
@@ -594,10 +564,7 @@ itv_results <- data.frame(trait = c("body_size", "biomass", "eye_size", "flatnes
 ## Tabela com resultados da explicação atribuida para a variação intraespecífica
 itv_results %>%
   mutate("explained intraspecific variance" = round(itv_explic, 2)) %>% 
-  dplyr::select(trait, "explained intraspecific variance") %>% 
-  kable("html", escape = F) %>%
-  kable_styling("striped", full_width = F) %>% 
-  scroll_box(width = "800px", height = "600px")
+  dplyr::select(trait, "explained intraspecific variance")
 ```
 
 **Pergunta 2**
@@ -688,7 +655,4 @@ summary(mod_itv)
 ```
 
 Combinando os resultados das três análises é possível compreender que existem diferenças morfológicas entre as espécies de poças diferentes (componente substituição). Porém, é evidente que a variação dentro da espécie é bastante relevante para compreender a diversidade funcional de anuros. Na primeira análise, os resultados dessas quatro análises indicam que a variação intraspecifica explica de 17% a 45% da variação morfológica nas metacomunidades de anuros. A segunda, por sua vez, demonstra que a variação morfológica entre espécies de poças diferentes representa o principal componente de variação, mas que a variação intraespecífica não pode ser ignorada. Por fim, ao combinar a métrica wITV com modelos lineares, percebe-se que as características das poças não determinam a contribuição da variação intraespecífica. Além disso, existe uma variação muito grande entre poças. Ao passo que em algumas poças a variação intraespecífica não contribui para a variação total (wITV = 0), em outras, este componente representou 100% da variação (wITV = 1). Os resultados obtidos nas análises das perguntas 1 a 3 indicam que utilizar somente a média dos atributos morfológicos pode refletir em interpretações incorretas em estudos que compararam a diversidade funcional no espaço/tempo [veja discussão em @dalmolin_turnover_2020].
-
-
-## Referências
 

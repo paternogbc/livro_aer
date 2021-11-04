@@ -492,6 +492,23 @@ div.csl-indent {
 <li class="chapter" data-level="13.31.1" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>13.31.1</b> Para se aprofundar</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -714,7 +731,7 @@ do gradiente de precipitação anual.</p>
 <span id="cb425-3"><a href="cap12.html#cb425-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb425-4"><a href="cap12.html#cb425-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb425-5"><a href="cap12.html#cb425-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-443-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-444-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Percebam que ponderar a riqueza de espécies pela abundância altera a
 interpretação dos resultados. O número de espécies é maior em comunidades com maior precipitação. Contudo, quando poderamos pela abundância (índices de Margalef ou Menhinick), a relação com a precipitação não é significativa.</p>
@@ -956,7 +973,7 @@ padrão da distribuição relativa das espécies por comunidade, a função
 <span id="cb433-10"><a href="cap12.html#cb433-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="at">addit =</span> T, <span class="at">col =</span> <span class="st">&quot;cyan4&quot;</span> , <span class="at">legend =</span> T)</span>
 <span id="cb433-11"><a href="cap12.html#cb433-11" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">5</span>, <span class="dv">40</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Comunidade 2&quot;</span>, <span class="st">&quot;Comunidade 3&quot;</span>),</span>
 <span id="cb433-12"><a href="cap12.html#cb433-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">box.lty =</span> <span class="dv">0</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-451-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-452-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Percebam que olhando os eixos do gráfico conseguimos determinar que a
 comunidade 2 (círculo laranja) abriga 10 espécies no total (i.e.
@@ -1001,7 +1018,7 @@ para todas as comunidades ao mesmo tempo.</p>
 <p>Agora vamos fazer um gráfico com as predições dos modelos</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="cap12.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(curvas_dominancia_com2, <span class="at">ylab =</span> <span class="st">&quot;Abundância&quot;</span>, </span>
 <span id="cb435-2"><a href="cap12.html#cb435-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Ranqueamento das espécies&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-453-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-454-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Os pontos brancos representam as espécies ranqueadas de acordo com a
 abundância e as linhas representam as predições dos modelos matématicos.
@@ -1029,12 +1046,12 @@ comunidade 2.</p>
 <span id="cb436-18"><a href="cap12.html#cb436-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb436-19"><a href="cap12.html#cb436-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos fazer um gráfico para cada comunidade</span></span>
 <span id="cb436-20"><a href="cap12.html#cb436-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(curvas_dominancia_todas, <span class="at">log =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-454-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-455-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>A comunidade 1 foi associada com o modelo log-normal, as comunidades 2 e
 4 com o modelo Zipf, a comunidade 3 com o modelo série geométrica e as
 outras comunidades com o modelo nulo. Para explorar a explicação
-biológica por trás destes modelos veja os artigos <span class="citation">(<a href="#ref-wilson1991" role="doc-biblioref">Wilson 1991</a>; <a href="#ref-mcgill2007" role="doc-biblioref">McGill et al. 2007</a>; <a href="#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>)</span>. Contudo, esse link entre o modelo
+biológica por trás destes modelos veja os artigos <span class="citation">(<a href="#ref-wilson1991" role="doc-biblioref">Wilson 1991</a>; <a href="#ref-mcgill2007" role="doc-biblioref">B. J. McGill et al. 2007</a>; <a href="#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>)</span>. Contudo, esse link entre o modelo
 matemático e a explicação biológica precisa ser interpretado com cuidado
 porque diferentes modelos matemáticos podem levar ao mesmo padrão de
 distribuição de abundância.</p>
@@ -1310,7 +1327,7 @@ beta.</p>
 <span id="cb448-4"><a href="cap12.html#cb448-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
 <span id="cb448-5"><a href="cap12.html#cb448-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb448-6"><a href="cap12.html#cb448-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-466-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-467-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>As comunidades com baixa precipitação anual apresentam espécies que são
 um subgrupo das espécies presentes nas comunidades com alta precipitação
@@ -1389,7 +1406,7 @@ comunidades. Contudo, não há relação entre a diversidade beta total
 <span id="cb452-4"><a href="cap12.html#cb452-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
 <span id="cb452-5"><a href="cap12.html#cb452-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb452-6"><a href="cap12.html#cb452-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-470-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-471-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Olhando o ínicio do eixo X onde as comunidades apresentam precipitação
 anual similares (i.e. baixa diferença na precipitação), o componente
@@ -1405,7 +1422,7 @@ abundância nas comunidades comparadas.</p>
 <span id="cb453-4"><a href="cap12.html#cb453-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
 <span id="cb453-5"><a href="cap12.html#cb453-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
 <span id="cb453-6"><a href="cap12.html#cb453-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-471-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-472-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Olhando o ínicio do eixo X onde as comunidades apresentam precipitação
 anual similares (i.e. baixa diferença na precipitação), o componente
