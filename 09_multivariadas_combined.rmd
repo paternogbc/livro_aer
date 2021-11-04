@@ -1145,7 +1145,7 @@ nmds.beta <- metaMDS(sps.dis, previous.best = sol1)
 nmds.beta$stress # valor ideal entre 0 e 0.2
 
 # Exportar os valores para fazer gráfico 
-dat.graf <- data.frame(scores(nmds.beta), altitude = env2$altitude)
+dat.graf <- data.frame(vegan::scores(nmds.beta), altitude = env2$altitude)
 
 # Definir os grupos ("HULL") para serem categorizados no gráfico 
 grp.mon <- dat.graf[dat.graf$altitude == "Montanhoso", ][chull(dat.graf[dat.graf$altitude == "Montanhoso", c("NMDS1", "NMDS2")]), ]
