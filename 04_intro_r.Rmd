@@ -7,31 +7,29 @@ Pacotes e dados que serão utilizados nesse capítulo.
 ```{r}
 ## Pacotes
 library(ecodados)
-library(devtools)
-library(knitr)
 ```
 
 ## Contextualização
 
-O objetivo desta seção é apresentar os aspectos básicos da linguagem R para que qualquer pessoa possa realizar os principais passos para a análise de dados utilizando essa linguagem. Abordaremos aqui as questões básicas sobre a linguagem R, como: 1) R e RStudio, 2) funcionamento da linguagem, 3) estrutura e manipulação de objetos, 4) exercícios e 5) principais livros e material para se aprofundar nos seus estudos.
+O objetivo desta seção é apresentar os aspectos básicos da linguagem R para a realização dos principais passos para a manipulação, visualização e análise de dados. Abordaremos aqui as questões básicas sobre a linguagem R, como: 1) R e RStudio, 2) funcionamento da linguagem, 3) estrutura e manipulação de objetos, 4) exercícios e 5) principais livros e material para se aprofundar nos seus estudos.
 
-Todo processo de aprendizagem torna-se mais efetivo quando a teoria é combinada com a prática, então recomendamos fortemente que você leitor(a) acompanhe os códigos e exercícios deste livro, ao mesmo tempo que os executa em seu computador e não só os leia passivamente. Além disso, se você tiver seus próprios dados é muito importante tentar executar replicar análises ou gráficos. Por motivos de espaço, não abordaremos todas as questões relacionadas ao uso da linguagem R nesta seção. Logo, aconselhamos que você consulte o material sugerido no final desta seção para se aprofundar.
+Todo processo de aprendizagem torna-se mais efetivo quando a teoria é combinada com a prática, então recomendamos fortemente que você leitor(a) acompanhe os códigos e exercícios deste livro, ao mesmo tempo que os executa em seu computador e não só os leia passivamente. Além disso, se você tiver seus próprios dados é muito importante tentar executar e replicar as análises e/ou gráficos. Por motivos de espaço, não abordaremos todas as questões relacionadas ao uso da linguagem R nesta seção. Logo, aconselhamos que você consulte o material sugerido no final desta seção para se aprofundar.
 
-Este capítulo, na maioria das vezes, pode desestimular as pessoas que estão iniciando, uma vez que ele não apresenta os códigos para realizar as análises estatísticas. Contudo, ele é essencial para o entendimento e interpretação do que está sendo informado nas linhas de código, além de facilitar a manipulação dos dados antes de realizar as análises estatísticas. A leitora ou leitor vai perceber que não usará este capítulo para fazer as análises, mas voltará neste capítulo diversas vezes para relembrar qual é o código ou que significa determinada expressão ou objeto usados nos próximos capítulos.
+Este capítulo, na maioria das vezes, pode desestimular as pessoas que estão iniciando, uma vez que o mesmo não apresenta os códigos para realizar as análises estatísticas. Contudo, ele é essencial para o entendimento e interpretação do que está sendo informado nas linhas de código, além de facilitar a manipulação dos dados antes de realizar as análises estatísticas. Você perceberá que não usará este capítulo para fazer as análises, mas voltará neste capítulo diversas vezes para relembrar qual é o código ou que significa determinada expressão ou objeto usados nos próximos capítulos.
 
 ## R e RStudio
 
-Com o R, é possível manipular, analisar e visualizar dados, além de escrever desde pequenas linhas de códigos até programas inteiros. O R é a versão em código aberto de uma linguagem de programação criada por John M. Chambers (Stanford University, CA, EUA) nos anos 1980 no Bell Labs, chamada de S, que contou com três versões: Old S (1976-1987), New S (1988-1997) e S4 (1998), utilizada na IDE S-PLUS (1988-2008). Essa linguagem tornou-se bastante popular e vários produtos comerciais que a usam estão disponíveis, como o S-PLUS, SPSS, STATA e SAS.
+Com o R, é possível manipular, analisar e visualizar dados, além de escrever desde pequenas linhas de códigos até programas inteiros. O R é a versão em código aberto de uma linguagem de programação criada por John M. Chambers (Stanford University, CA, EUA) nos anos 1980 no Bell Labs, chamada de S, que contou com três versões: Old S (1976-1987), New S (1988-1997) e S4 (1998), utilizada na IDE S-PLUS (1988-2008). Essa linguagem tornou-se bastante popular e vários produtos comerciais que a usam ainda estão disponíveis, como o S-PLUS, SPSS, STATA e SAS.
 
-No final dos anos 1990, Robert Gentleman e Ross Ihaka (ambos da Universidade de Auckland, Nova Zelândia), iniciaram o desenvolvimento da versão free da linguagem S, com o seguinte histórico: Desenvolvimento (1997-2000), Versão 1 (2000-2004), Versão 2 (2004-2013), Versão 3 (2013-2020) e Versão 4 (2020). Para mais detalhes do histórico de desenvolvimento das linguagens S e R, consultar Wickham (2013). Atualmente a linguagem R é mantida por uma rede de colaboradores denominada *R Core Team*. A origem do nome R é desconhecida, mas reza a lenda que ao lançarem o nome da linguagem os autores se valeram da letra que vinha antes do S, uma vez que a linguagem R foi baseada nela e utilizaram a letra "R". Outra história conta que pelo fato do nome dos dois autores iniciarem por "R", batizaram a linguagem com essa letra.
+No final dos anos 1990, Robert Gentleman e Ross Ihaka (ambos da Universidade de Auckland, Nova Zelândia), iniciaram o desenvolvimento da versão livre da linguagem S, com o seguinte histórico: Desenvolvimento (1997-2000), Versão 1 (2000-2004), Versão 2 (2004-2013), Versão 3 (2013-2020) e Versão 4 (2020). Para mais detalhes do histórico de desenvolvimento das linguagens S e R, consultar [@wickham2013]. Atualmente a linguagem R é mantida por uma rede de colaboradores denominada *R Core Team*. A origem do nome R é desconhecida, mas reza a lenda que ao lançarem o nome da linguagem os autores se valeram da letra que vinha antes do S, uma vez que a linguagem R foi baseada nela e utilizaram a letra "R". Outra história conta que pelo fato do nome dos dois autores iniciarem por "R", batizaram a linguagem com essa letra, vai saber...
 
-Um aspecto digno de nota é que a linguagem R é uma linguagem interpretada, ao contrário de outras linguagens como Fortran e C que são compiladas. Isso a faz ser mais fácil de programar, pois processa linhas de comando e as transforma em linguagem de máquina (código binário que o computador efetivamente lê), apesar desse fato diminuir a velocidade de processamento.
+Um aspecto digno de nota é que a linguagem R é uma linguagem de programação interpretada, ao contrário de outras linguagens como Fortran e C que são compiladas. Isso a faz ser mais fácil de ser utilizada, pois processa linhas de código e as transforma em linguagem de máquina (código binário que o computador efetivamente lê), apesar desse fato diminuir a velocidade de processamento.
 
-Para começarmos a trabalhar com o R é necessário baixá-lo na página do R Project. Então, acesse esse [site](http://www.r-project.org), e em seguida, clique no link download R, que o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Os detalhes de instalação são apresentados no \@ref[cap1]. Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
+Para começarmos a trabalhar com o R é necessário baixá-lo na página do **R Project**. Então, acesse esse [site](http://www.r-project.org), e em seguida, clique no link download R, que o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Os detalhes de instalação são apresentados no \@ref[cap1]. Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
 
 Como o R é um software livre, não existe a possibilidade de o usuário entrar em contato com um serviço de suporte de usuários, muito comuns em softwares pagos. Ao invés disso, existem várias listas de emails que fornecem suporte à [comunidade de usuários](http://www.r-project.org/mail.html). Nós, particularmente, recomendamos o ingresso nas seguintes listas: R-help, R-sig-ecology, e [R-br](http://www.leg.ufpr.br/doku.php/software:rbr). Este último reúne um grupo de pessoas usuárias brasileiras do programa R.
 
-Apesar de podemos utilizar o R com o IDE (Ambiente de Desenvolvimento Integrado - *Integrated Development Environment*) RGui que vem com a instalação da linguagem para usuários Windows (Figura \@ref(fig:fig-rgui)) ou no próprio terminal para usuários Linux e MacOS, existem alguns IDEs específicos para facilitar nosso uso dessa linguagem.
+Apesar de podermos utilizar o R com o IDE (Ambiente de Desenvolvimento Integrado - *Integrated Development Environment*) RGui que vem com a instalação da linguagem R para usuários Windows (Figura \@ref(fig:fig-rgui)) ou no próprio terminal para usuários Linux e MacOS, existem alguns IDEs específicos para facilitar nosso uso dessa linguagem.
 
 ```{r fig-rgui, echo=FALSE, fig.cap="Interface do RGui. Os números indicam: (1) R Script, (2) R Console, e (3) R Graphics."}
 knitr::include_graphics("img/cap04_fig01.png")
@@ -86,31 +84,31 @@ No RStudio, alguns atalhos são fundamentais para aumentar nossa produtividade:
 
 ### Console
 
-O console é onde a versão da linguagem R instalada é carregada para executar os códigos da linguagem R (Figura \@ref(fig:fig-rstudio) (2)). Na janela do console aparecerá o símbolo `>` seguida de uma barra vertical `|` que fica piscando, onde digitaremos ou enviaremos nossos códigos do script. Podemos fazer um pequeno exercício: vamos digitar `10 + 2`, seguido da tecla `Enter` para que essa operação seja executada.
+O console é onde a versão da linguagem R instalada é carregada para executar os códigos da linguagem R (Figura \@ref(fig:fig-rstudio) (2)). Na janela do console aparecerá o símbolo `>`, seguido de uma barra vertical `|` que fica piscando (cursor), onde digitaremos ou enviaremos nossos códigos do script. Podemos fazer um pequeno exercício: vamos digitar `10 + 2`, seguido da tecla `Enter` para que essa operação seja executada.
 
 ```{r}
 10 + 2
 ```
 
-O resultado retorna o valor `12`, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação `1:42`, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do 1 vai aparecer o `[1]`, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, `[26]`.
+O resultado retorna o valor `12`, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação `1:42`, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o `[1]`, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, `[26]`.
 
 ```{r}
 1:42
 ```
 
-Podemos ver o histórico dos códigos executados no Console na aba **History** (Figura \@ref(fig:fig-rstudio) (3)).
+Podemos ver o histórico dos códigos executados no console na aba **History** (Figura \@ref(fig:fig-rstudio) (3)).
 
 ### Scripts
 
-Scripts são rascunhos dos códigos e onde de fato os códigos são escritos e depois enviados ao console (Figura \@ref(fig:fig-rstudio) (1)). Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (ative a visualização da extensão de arquivos para ver). Para criar um script, basta ir em `File > New File > R Script`, ou clicando no ícone logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`. 
+Scripts são rascunhos dos códigos e onde de fato os códigos são escritos e depois enviados ao console (Figura \@ref(fig:fig-rstudio) (1)). Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (ative a visualização da extensão de arquivos para ver). Para criar um script, basta ir em `File > New File > R Script`, ou clicando no ícone com uma folha branca e um círculo verde com um sinal de `+`, logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`. 
 
 Também é possível usar outro editor de códigos, como o bloco de notas `.txt`, [Sublime Text](https://www.sublimetext.com), [Notepad++](https://notepad-plus-plus.org) e similares. Os códigos podem ser escritos nesses editores e depois salvos com a extensão `.R` que ao ser aberto no RStudio irão ser executados normalmente.
 
 Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: 1) todo o script de uma vez, clicando em **Source** ou usando o atalho `Ctrl + Shift + Enter`; ou 2) apenas a linha onde o cursor estiver posicionado, independente de sua posição naquela linha, clicando em **Run** ou usando o atalho `Ctrl + Enter`.
 
-Devemos sempre salvar nossos scripts, tomando por via de regra: primeiro criar o arquivo e depois ir salvando nesse mesmo arquivo a cada passo de desenvolvimento das análises (não é raro o R fechar sozinho e você perder algum tempo de trabalho...). Há diversos motivos para criar um script: continuar o desenvolvimento do mesmo em outro momento ou em outro computador, preservar trabalhos passados, ou ainda compartilhar seus códigos com outra pessoa. Para criar ou salvar um script basta ir em `File > Save`, escolher um diretório e nome para o script e salvar. Podemos ainda utilizar o atalho `Ctrl + S`.
+Devemos sempre salvar nossos scripts, tomando por via de regra: primeiro criar o arquivo e depois ir salvando nesse mesmo arquivo a cada passo de desenvolvimento das análises (não é raro o R fechar sozinho e você perder algum tempo de trabalho...). Há diversos motivos para criar um script: continuar o desenvolvimento desse script em outro momento ou em outro computador, preservar trabalhos passados, ou ainda compartilhar seus códigos com outras pessoas. Para criar ou salvar um script basta ir em `File > Save`, escolher um diretório e nome para o script e salvar. Podemos ainda utilizar o atalho `Ctrl + S`.
 
-Em relação aos scripts, ainda há os comentários, representados pelos símbolos `#` (hash) ou `#'` (hash-linha). A diferença entre eles é que para o segundo, quando precionamos a tecla `Enter` o comentário `#'` é inserido automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: 1) descrever informações sobre dados ou funções e/ou 2) suprimir linhas de código. 
+Em relação aos scripts, há ainda os comentários, representados pelos símbolos `#` (hash), `#'` (hash-linha) e `#>` (hash-maior). A diferença entre eles é que para o segundo e terceiro, quando precionamos a tecla `Enter` o comentário `#'` e `#>` são inseridos automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: 1) descrever informações sobre dados ou funções e/ou 2) suprimir linhas de código. 
 
 É interessante ter no início de cada script um cabeçalho identificando o objetivo ou análise, autor e data para facilitar o compartilhamento e reprodutibilidade. Os comentários podem ser inseridos ou retirados das linhas com o atalho: `Ctrl + Shift + C`.
 
@@ -118,7 +116,7 @@ Em relação aos scripts, ainda há os comentários, representados pelos símbol
 #' ---
 #' Título: Capítulo 04 - Introdução ao R
 #' Autor: Maurício Vancine
-#' Data: 20-05-2021
+#' Data: 11-11-2021
 #' ---
 ```
 
@@ -132,7 +130,7 @@ Além disso, podemos usar comentários para adicionar informações sobre os có
 
 Por fim, outro ponto fundamental é ter boas práticas de estilo de código. Quanto mais organizado e padronizado estiver os scripts, mais fácil de entendê-los e de procurar possíveis erros. Existem dois guias de boas práticas para adequar seus scripts: [Hadley Wickham](http://adv-r.had.co.nz/Style.html) e [Google](https://google.github.io/styleguide/Rguide.xml).
 
-Ainda temos os *Code Snippets* (Fragmentos de código), que são macros de texto usadas para inserir rapidamente fragmentos comuns de código. Por exemplo, o snippet `fun` insere uma definição de função R. Para mais detalhes, ler o artigo do RStudio: [link](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets).
+Ainda em relação aos scripts, temos os *Code Snippets* (Fragmentos de código), que são macros de texto usadas para inserir rapidamente fragmentos comuns de código. Por exemplo, o snippet `fun` insere uma definição de função R. Para mais detalhes, ler o artigo do RStudio: [link](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets).
 
 ```{r eval=FALSE}
 # fun {snippet}
@@ -146,7 +144,7 @@ Uma aplicação bem interessante dos *Code Snippets* no script é o `ts`. Basta 
 
 ```{r}
 # ts {snippet}
-# Mon Jul 26 11:25:03 2021 ------------------------------
+# Thu Nov 11 18:19:26 2021 ------------------------------
 ```
 
 ### Operadores
@@ -212,7 +210,7 @@ obj_10
 
 Todos os objetos criados numa sessão do R ficam listados na aba **Environment** (Figura \@ref(fig:fig-rstudio) (3)). Além disso, o RStudio possui a função *autocomplete*, ou seja, podemos digitar as primeiras letras de um objeto (ou função) e em seguida apertar `Tab` para que o RStudio liste tudo que começar com essas letras.
 
-Dois pontos importantes sobre atribuições: primeiro, o R sobrescreve os valores dos objetos com o mesmo nome, deixando o objeto com o valor da segunda atribuição.
+Dois pontos importantes sobre atribuições: primeiro, o R sobrescreve os valores dos objetos com o mesmo nome, deixando o objeto com o valor da última atribuição.
 
 ```{r}
 ## Sobrescreve o valor dos objetos
@@ -232,7 +230,7 @@ Segundo, o R tem limitações ao nomear objetos:
 -   devemos evitar acentos ou cedilha (`ç`) para facilitar a memorização dos objetos e também para evitar erros de encoding/codificação de caracteres
 -   nome de objetos não podem ser iguais a nomes especiais, reservados para programação (`break`, `else`, `FALSE`, `for`, `function`, `if`, `Inf`, `NA`, `NaN`, `next`, `repeat`, `return`, `TRUE`, `while`)
 
-Podemos ainda utilizar objetos para fazer operações e criar objetos. Isso pode parecer um pouco confuso para os iniciantes na linguagem, mas é fundamental aprender essa lógica para passar para os próximos passos.
+Podemos ainda utilizar objetos para fazer operações e criar objetos. Isso pode parecer um pouco confuso para os iniciantes, mas é fundamental aprender essa lógica para passar para os próximos passos.
 
 ```{r}
 ## Definir dois objetos
@@ -246,7 +244,7 @@ adi
 
 ### Funções
 
-Funções são códigos preparados para realizar uma tarefa específica de modo simples. Outra forma de entender uma função é: códigos que realizam operações em argumentos. A estrutura de uma função é muito similar à sintaxe usada em planilhas eletrônicas, sendo composta por:
+Funções são códigos preparados para realizar uma tarefa específica de modo simples. Outra forma de entender uma função é: códigos que realizam operações em argumentos. A estrutura de uma função é muito similar à sintaxe usada em planilhas eletrônicas, por exemplo, sendo composta por:
 
 > nome_da_função(argumento1, argumento2, ...)
 
@@ -270,7 +268,7 @@ sum(10, 2)
 sum(va1, va2)
 ```
 
-Alguns exemplos de argumentos como parâmetros. Note que apesar do valor do argumento ser o mesmo (10), seu efeito no resultado muda drasticamente. Aqui também é importante destacar um ponto: 1) podemos informar os argumentos sequencialmente, sem explicitar seus nomes, ou 2) independente da ordem, mas explicitando seus nomes. Entretanto, como no exemplo abaixo, devemos informar o nome do argumento (i.e., parâmetro), para que seu efeito seja o que desejamos.
+Alguns exemplos de argumentos como parâmetros. Note que apesar do valor do argumento ser o mesmo (10), seu efeito no resultado da função muda drasticamente. Aqui também é importante destacar um ponto: 1) podemos informar os argumentos sequencialmente, sem explicitar seus nomes, ou 2) independente da ordem, mas explicitando seus nomes. Entretanto, como no exemplo abaixo, devemos informar o nome do argumento (i.e., parâmetro), para que seu efeito seja o que desejamos.
 
 ```{r}
 ## Funções - argumentos como parâmetros
@@ -281,7 +279,7 @@ rep(x = 1:5, times = 10)
 rep(x = 1:5, each = 10)
 ```
 
-Um ponto fundamental, e que deve ser entendido nesse ponto, é o fluxo de atribuições do resultado da operação de funções a novos objetos. No desenvolvimento de qualquer script na linguagem R, grande parte da estrutura do mesmo será dessa forma: atribuição de dados > operações com funções > atribuição dos resultados a novos objetos > operações com funções desses novos objetos > atribuição dos resultados a novos objetos... Ao entender esse funcionamento, começamos a entender como devemos pensar na organização do nosso script para montar as análises que precisamos.
+Um ponto fundamental, e que deve ser entendido nesse ponto, é o fluxo de atribuições do resultado da operação de funções a novos objetos. No desenvolvimento de qualquer script na linguagem R, grande parte da estrutura do mesmo será dessa forma: atribuição de dados a objetos > operações com funções > atribuição dos resultados a novos objetos > operações com funções desses novos objetos > atribuição dos resultados a novos objetos... Ao entender esse funcionamento, começamos a entender como devemos pensar na organização do nosso script para montar as análises que precisamos.
 
 ```{r}
 ## Atribuicão dos resultados
@@ -305,7 +303,14 @@ Por fim, é fundamental também entender a origem das funções que usamos no R.
 
 ### Pacotes
 
-Pacotes são conjuntos extras de funções para executar tarefas específicas, além do *R Base*. Existe literalmente milhares de pacotes para as mais diversas tarefas: estatística, ecologia, geografia, sensoriamento remoto, econometria, ciências sociais, gráficos, *machine learning*, etc. Podemos verificar este vasto conjunto de pacotes pelo [link](https://cran.r-project.org/web/packages/available_packages_by_name.html) que lista por nome os pacotes oficiais, ou seja, que passaram pelo crivo do **CRAN**. Existem ainda muito mais pacotes em desenvolvimento, geralmente disponibilizados em repositórios do **GitHub** ou **GitLab**.
+Pacotes são conjuntos extras de funções para executar tarefas específicas, além dos pacotes instalados no *R Base*. Existe literalmente milhares de pacotes para as mais diversas tarefas: estatística, ecologia, geografia, sensoriamento remoto, econometria, ciências sociais, gráficos, *machine learning*, etc. Podemos verificar este vasto conjunto de pacotes pelo [link](https://cran.r-project.org/web/packages/available_packages_by_name.html) que lista por nome os pacotes oficiais, ou seja, que passaram pelo crivo do **CRAN**. Existem ainda muito mais pacotes em desenvolvimento, geralmente disponibilizados em repositórios do **GitHub** ou **GitLab**.
+
+Podemos listar esses pacotes disponíveis no **CRAN** com esse código.
+
+```{r}
+## Número atual de pacotes no CRAN
+nrow(available.packages())
+```
 
 Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos verificar pacotes carregados pelo *R Base* utilizando a função `search()`.
 
@@ -314,7 +319,7 @@ Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos ve
 search()
 ```
 
-Podemos ainda verificar todos pacotes instalados em seu computador com a função `library()`.
+Podemos ainda verificar todos pacotes instalados em nosso computador com a função `library()`.
 
 ```{r eval=FALSE}
 ## Verificar pacotes instalados
@@ -387,7 +392,14 @@ download.file(url = "https://cran.r-project.org/src/contrib/Archive/vegan/vegan_
 install.packages("vegan_2.4-0.tar.gz", repos = NULL, type = "source")
 ```
 
-A maioria dos pacotes vem com bancos de dados que podem ser acessados pela função `data()`. Esses bancos de dados podem ser usados para testar as funções do pacote. Se estiver com dúvida na maneira como você deve preparar a planilha para realizar uma análise específica, entre no help da função e veja os conjuntos de dados que estão no exemplo desta função. Como exemplo, vamos carregar os dados `dune` do pacote `vegan`.
+Podemos ver a descrição de um pacote com a função `packageDescription()`.
+
+```{r}
+## Descrição de um pacote
+packageDescription("vegan")
+```
+
+A maioria dos pacotes possui bancos de dados que pode ser acessados pela função `data()`. Esses bancos de dados podem ser usados para testar as funções do pacote. Se estiver com dúvida na maneira como você deve preparar a planilha para realizar uma análise específica, entre na Ajuda (*Help*) da função e veja os conjuntos de dados que estão no exemplo desta função. Como exemplo, vamos carregar os dados `dune` do pacote `vegan`, que são dados de observações de 30 espécies vegetais em 20 locais.
 
 ```{r}
 ## Carregar dados de um pacote
@@ -417,7 +429,7 @@ Para fazer a atualização dos pacotes instalados pelo GitHub, recomendamos o us
 dtupdate::github_update(auto.install = TRUE, ask = FALSE)
 ```
 
-Destacamos e incentivamos ainda uma prática que achamos interessante para aumentar a reprodutibilidade de nossos códigos e scripts: a de chamar as funções de pacotes carregados dessa forma `pacote::função()`. Dessa forma, deixamos claro o pacote em que a função está implementada. Destacamos aqui o exemplo de como instalar pacotes do GitHub do pacote `devtools`.
+Destacamos e incentivamos ainda uma prática que achamos interessante para aumentar a reprodutibilidade de nossos códigos e scripts: a de chamar as funções de pacotes carregados dessa forma `pacote::função()`. Com o uso dessa prática, deixamos claro o pacote em que a função está implementada. Destacamos aqui o exemplo de como instalar pacotes do GitHub do pacote `devtools`.
 
 ```{r eval=FALSE}
 ## Pacote seguido da função implementada daquele pacote
@@ -426,7 +438,7 @@ devtools::install_github()
 
 ### Ajuda (*Help*)
 
-Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) (4)) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas.
+Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) (4)) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas.
 
 -   **Description**: resumo da função
 -   **Usage**: como utilizar a função e quais os seus argumentos
