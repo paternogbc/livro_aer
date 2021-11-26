@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 10 Rarefação | Análises Ecológicas no R</title>
   <meta name="description" content="Capítulo 10 Rarefação | Análises Ecológicas no R" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 10 Rarefação | Análises Ecológicas no R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-11-04" />
+<meta name="date" content="2021-11-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="cap9.html"/>
 <link rel="next" href="cap11.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -271,52 +271,41 @@ div.csl-indent {
 <li class="chapter" data-level="5.13" data-path="cap5.html"><a href="cap5.html#exercícios-1"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
 <li class="chapter" data-level="5.14" data-path="cap5.html"><a href="cap5.html#para-se-aprofundar-1"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Guia de bolso de gráficos no R</a>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Visualização de dados</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#introdução-2"><i class="fa fa-check"></i><b>6.1</b> 1. Introdução</a></li>
-<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#pacotes-necessários"><i class="fa fa-check"></i><b>6.2</b> 2. Pacotes necessários</a></li>
-<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.3</b> Principais pacotes</a></li>
-<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.4</b> 3. Grámatica dos gráficos</a></li>
-<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.5</b> 4. Tipos de gráficos</a>
+<li class="chapter" data-level="" data-path="cap6.html"><a href="cap6.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#contextualização-2"><i class="fa fa-check"></i><b>6.1</b> Contextualização</a></li>
+<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.2</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.3</b> Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.4</b> Tipos de gráficos</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.5.1</b> 4.1. Histograma (<em>histogram</em>)</a></li>
-<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.5.2</b> 4.2 Gráfico de densidade (<em>density plot</em>)</a></li>
-<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#dot"><i class="fa fa-check"></i><b>6.5.3</b> 4.3. Diagrama de pontos (<em>dot plot</em>)</a></li>
-<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#bars"><i class="fa fa-check"></i><b>6.5.4</b> 4.4. Gráfico de barras (<em>bar plot</em>)</a></li>
-<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.5.5</b> 4.5. Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
-<li class="chapter" data-level="6.5.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.5.6</b> 4.6. Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.4.1</b> Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.4.2</b> Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cap6.html"><a href="cap6.html#diagrama-de-pontos-dot-plot"><i class="fa fa-check"></i><b>6.4.3</b> Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cap6.html"><a href="cap6.html#gráfico-de-barras-bar-plot"><i class="fa fa-check"></i><b>6.4.4</b> Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.4.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.4.5</b> Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.4.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.4.6</b> Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.7" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.4.7</b> Gráfico de dispersão (<em>scatter plot</em>)</a></li>
+<li class="chapter" data-level="6.4.8" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.4.8</b> Visualização de múltiplos gráficos pareados</a></li>
+<li class="chapter" data-level="6.4.9" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.4.9</b> Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.6</b> 4.7. Gráfico de dispersão (<em>scatter plot</em>)</a>
+<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.5</b> Finalização de gráficos para publicação</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#versão-padrão-5"><i class="fa fa-check"></i><b>6.6.1</b> 4.7.1. Versão padrão</a></li>
-<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos"><i class="fa fa-check"></i><b>6.6.2</b> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</a></li>
-<li class="chapter" data-level="6.6.3" data-path="cap6.html"><a href="cap6.html#definindo-linhas-de-ajuste"><i class="fa fa-check"></i><b>6.6.3</b> 4.7.3. Definindo linhas de ajuste</a></li>
-<li class="chapter" data-level="6.6.4" data-path="cap6.html"><a href="cap6.html#ajustes-finos-versão-personalizada-5"><i class="fa fa-check"></i><b>6.6.4</b> 4.7.4. Ajustes finos (versão personalizada)</a></li>
+<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.5.1</b> Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-gride"><i class="fa fa-check"></i><b>6.5.2</b> Elementos gráficos: eixo, fonte, gride</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.5.3</b> Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
+<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.5.4</b> Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.5.5</b> Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.7</b> 4.8. Visualização de múltiplos gráficos pareados</a>
+<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.6</b> Para se aprofundar</a>
 <ul>
-<li class="chapter" data-level="6.7.1" data-path="cap6.html"><a href="cap6.html#gráfico-pareado-com-variáveis-contínuas"><i class="fa fa-check"></i><b>6.7.1</b> 4.8.1. Gráfico pareado com variáveis contínuas</a></li>
-<li class="chapter" data-level="6.7.2" data-path="cap6.html"><a href="cap6.html#gráfico-pareado-com-vários-tipos-de-variáveis"><i class="fa fa-check"></i><b>6.7.2</b> 4.8.2. Gráfico pareado com vários tipos de variáveis</a></li>
-</ul></li>
-<li class="chapter" data-level="6.8" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.8</b> 5. Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
-<li class="chapter" data-level="6.9" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.9</b> 6. Finalização de gráficos para publicação</a>
-<ul>
-<li class="chapter" data-level="6.9.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.9.1</b> 6.1. Posição, cores e fonte da legenda</a></li>
-<li class="chapter" data-level="6.9.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-grid"><i class="fa fa-check"></i><b>6.9.2</b> 6.2. Elementos gráficos: eixo, fonte, grid</a></li>
-<li class="chapter" data-level="6.9.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.9.3</b> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
-<li class="chapter" data-level="6.9.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.9.4</b> 6.4. Criando seu próprio <code>theme_custom()</code></a></li>
-<li class="chapter" data-level="6.9.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.9.5</b> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="6.10" data-path="cap6.html"><a href="cap6.html#check-list-para-garantir-bons-gráficos"><i class="fa fa-check"></i><b>6.10</b> Check-list para garantir bons gráficos</a></li>
-<li class="chapter" data-level="6.11" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.11</b> Para se aprofundar</a>
-<ul>
-<li class="chapter" data-level="6.11.1" data-path="cap6.html"><a href="cap6.html#livros-1"><i class="fa fa-check"></i><b>6.11.1</b> Livros</a></li>
-<li class="chapter" data-level="6.11.2" data-path="cap6.html"><a href="cap6.html#links-1"><i class="fa fa-check"></i><b>6.11.2</b> Links</a></li>
+<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#livros-1"><i class="fa fa-check"></i><b>6.6.1</b> Livros</a></li>
+<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#links-1"><i class="fa fa-check"></i><b>6.6.2</b> Links</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Modelos lineares</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="7.1" data-path="cap7.html"><a href="cap7.html#teste-t-de-student-para-duas-amostras-independentes"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
 <li class="chapter" data-level="7.2" data-path="cap7.html"><a href="cap7.html#teste-t-para-amostras-pareadas"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
 <li class="chapter" data-level="7.3" data-path="cap7.html"><a href="cap7.html#correlação-de-pearson"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
@@ -340,8 +329,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Cap. 8 - Análises univariadas (modelos lineares mistos generalizados)</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
-<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-3"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
+<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
 <li class="chapter" data-level="8.2" data-path="cap8.html"><a href="cap8.html#como-um-glm-funciona"><i class="fa fa-check"></i><b>8.2</b> Como um GLM funciona?</a></li>
 <li class="chapter" data-level="8.3" data-path="cap8.html"><a href="cap8.html#como-escolher-a-distribuição-correta-para-seus-dados"><i class="fa fa-check"></i><b>8.3</b> Como escolher a distribuição correta para seus dados?</a>
 <ul>
@@ -366,7 +355,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9" data-path="cap9.html"><a href="cap9.html"><i class="fa fa-check"></i><b>9</b> Análises Multidimensionais</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="9.1" data-path="cap9.html"><a href="cap9.html#aspectos-teóricos"><i class="fa fa-check"></i><b>9.1</b> Aspectos teóricos</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="cap9.html"><a href="cap9.html#coeficientes-de-associação"><i class="fa fa-check"></i><b>9.1.1</b> Coeficientes de associação</a></li>
@@ -406,7 +395,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10" data-path="cap10.html"><a href="cap10.html"><i class="fa fa-check"></i><b>10</b> Rarefação</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="10.1" data-path="cap10.html"><a href="cap10.html#aspectos-teóricos-1"><i class="fa fa-check"></i><b>10.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="10.2" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-no-indivíduo-individual-based"><i class="fa fa-check"></i><b>10.2</b> Curva de rarefação baseada no indivíduo (<em>individual-based</em>)</a></li>
 <li class="chapter" data-level="10.3" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-em-amostras-sample-based"><i class="fa fa-check"></i><b>10.3</b> Curva de rarefação baseada em amostras (<em>sample-based</em>)</a></li>
@@ -417,7 +406,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="11" data-path="cap11.html"><a href="cap11.html"><i class="fa fa-check"></i><b>11</b> Estimadores de riqueza</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="11.1" data-path="cap11.html"><a href="cap11.html#aspectos-teóricos-2"><i class="fa fa-check"></i><b>11.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="11.2" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-abundância-das-espécies"><i class="fa fa-check"></i><b>11.2</b> Estimadores baseados na abundância das espécies</a>
 <ul>
@@ -436,7 +425,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="12" data-path="cap12.html"><a href="cap12.html"><i class="fa fa-check"></i><b>12</b> Diversidade Taxonômica</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="12.1" data-path="cap12.html"><a href="cap12.html#aspectos-teóricos-3"><i class="fa fa-check"></i><b>12.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="12.2" data-path="cap12.html"><a href="cap12.html#diversidade-alfa"><i class="fa fa-check"></i><b>12.2</b> Diversidade alfa</a>
 <ul>
@@ -453,7 +442,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13" data-path="cap13.html"><a href="cap13.html"><i class="fa fa-check"></i><b>13</b> Diversidade Filogenética</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="13.1" data-path="cap13.html"><a href="cap13.html#aspectos-teóricos-4"><i class="fa fa-check"></i><b>13.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="13.2" data-path="cap13.html"><a href="cap13.html#manipulação-de-filogenias"><i class="fa fa-check"></i><b>13.2</b> Manipulação de filogenias</a></li>
 <li class="chapter" data-level="13.3" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3</b> Métricas de diversidade alfa filogenética</a></li>
@@ -494,7 +483,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-10"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
 <li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
@@ -508,6 +497,70 @@ div.csl-indent {
 <li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
 </ul></li>
 <li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cap15.html"><a href="cap15.html"><i class="fa fa-check"></i><b>15</b> Dados geoespaciais no R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap15.html"><a href="cap15.html#pré-requisitos-do-capítulo-11"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="15.1" data-path="cap15.html"><a href="cap15.html#introdução-3"><i class="fa fa-check"></i><b>15.1</b> Introdução</a></li>
+<li class="chapter" data-level="15.2" data-path="cap15.html"><a href="cap15.html#vetor-1"><i class="fa fa-check"></i><b>15.2</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cap15.html"><a href="cap15.html#sf-principal-pacote-no-r-para-dados-vetoriais"><i class="fa fa-check"></i><b>15.2.1</b> sf: principal pacote no R para dados vetoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="cap15.html"><a href="cap15.html#raster"><i class="fa fa-check"></i><b>15.3</b> Raster</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="cap15.html"><a href="cap15.html#raster-principal-pacote-no-r-para-dados-raster"><i class="fa fa-check"></i><b>15.3.1</b> raster: principal pacote no R para dados raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-e-unidades"><i class="fa fa-check"></i><b>15.4</b> Sistema de Referência de Coordenadas e Unidades</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-geográficas"><i class="fa fa-check"></i><b>15.4.1</b> Sistema de Coordenadas Geográficas</a></li>
+<li class="chapter" data-level="15.4.2" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-projetadas"><i class="fa fa-check"></i><b>15.4.2</b> Sistema de Coordenadas Projetadas</a></li>
+<li class="chapter" data-level="15.4.3" data-path="cap15.html"><a href="cap15.html#datum"><i class="fa fa-check"></i><b>15.4.3</b> Datum</a></li>
+<li class="chapter" data-level="15.4.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-crs-no-r"><i class="fa fa-check"></i><b>15.4.4</b> Sistema de Referência de Coordenadas (CRS) no R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="cap15.html"><a href="cap15.html#principais-fontes-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.5</b> Principais fontes de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="cap15.html"><a href="cap15.html#vetor-2"><i class="fa fa-check"></i><b>15.5.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.5.2" data-path="cap15.html"><a href="cap15.html#raster-1"><i class="fa fa-check"></i><b>15.5.2</b> Raster</a></li>
+<li class="chapter" data-level="15.5.3" data-path="cap15.html"><a href="cap15.html#pacotes-do-r"><i class="fa fa-check"></i><b>15.5.3</b> Pacotes do R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="cap15.html"><a href="cap15.html#importar-e-exportar-dados-geoespaciais"><i class="fa fa-check"></i><b>15.6</b> Importar e exportar dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="cap15.html"><a href="cap15.html#principais-formatos-de-arquivos-geográficos"><i class="fa fa-check"></i><b>15.6.1</b> Principais formatos de arquivos geográficos</a></li>
+<li class="chapter" data-level="15.6.2" data-path="cap15.html"><a href="cap15.html#importar-dados-1"><i class="fa fa-check"></i><b>15.6.2</b> Importar dados</a></li>
+<li class="chapter" data-level="15.6.3" data-path="cap15.html"><a href="cap15.html#exportar-dados-1"><i class="fa fa-check"></i><b>15.6.3</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="cap15.html"><a href="cap15.html#descrição-de-objetos-espaciais"><i class="fa fa-check"></i><b>15.7</b> Descrição de objetos espaciais</a>
+<ul>
+<li class="chapter" data-level="15.7.1" data-path="cap15.html"><a href="cap15.html#vetor-5"><i class="fa fa-check"></i><b>15.7.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.7.2" data-path="cap15.html"><a href="cap15.html#raster-4"><i class="fa fa-check"></i><b>15.7.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="cap15.html"><a href="cap15.html#reprojeção-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.8</b> Reprojeção de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="cap15.html"><a href="cap15.html#vetor-6"><i class="fa fa-check"></i><b>15.8.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.8.2" data-path="cap15.html"><a href="cap15.html#raster-5"><i class="fa fa-check"></i><b>15.8.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="cap15.html"><a href="cap15.html#principais-operações-com-dados-geoespaciais"><i class="fa fa-check"></i><b>15.9</b> Principais operações com dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="cap15.html"><a href="cap15.html#operações-de-atributos"><i class="fa fa-check"></i><b>15.9.1</b> Operações de atributos</a></li>
+<li class="chapter" data-level="15.9.2" data-path="cap15.html"><a href="cap15.html#operações-espaciais"><i class="fa fa-check"></i><b>15.9.2</b> Operações espaciais</a></li>
+<li class="chapter" data-level="15.9.3" data-path="cap15.html"><a href="cap15.html#operações-geométricas"><i class="fa fa-check"></i><b>15.9.3</b> Operações geométricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="cap15.html"><a href="cap15.html#visualização-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.10</b> Visualização de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="cap15.html"><a href="cap15.html#principais-elementos-de-um-mapa"><i class="fa fa-check"></i><b>15.10.1</b> Principais elementos de um mapa</a></li>
+<li class="chapter" data-level="15.10.2" data-path="cap15.html"><a href="cap15.html#principais-pacotes-para-a-composição-de-mapas"><i class="fa fa-check"></i><b>15.10.2</b> Principais pacotes para a composição de mapas</a></li>
+<li class="chapter" data-level="15.10.3" data-path="cap15.html"><a href="cap15.html#mapas-estáticos"><i class="fa fa-check"></i><b>15.10.3</b> Mapas estáticos</a></li>
+<li class="chapter" data-level="15.10.4" data-path="cap15.html"><a href="cap15.html#mapas-animados"><i class="fa fa-check"></i><b>15.10.4</b> Mapas animados</a></li>
+<li class="chapter" data-level="15.10.5" data-path="cap15.html"><a href="cap15.html#mapas-interativos"><i class="fa fa-check"></i><b>15.10.5</b> Mapas interativos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.11" data-path="cap15.html"><a href="cap15.html#exemplos-de-aplicações-de-análises-geoespaciais-para-dados-ecológicos"><i class="fa fa-check"></i><b>15.11</b> Exemplos de aplicações de análises geoespaciais para dados ecológicos</a>
+<ul>
+<li class="chapter" data-level="15.11.1" data-path="cap15.html"><a href="cap15.html#resumir-informações-de-biodiversidade-para-unidades-espaciais"><i class="fa fa-check"></i><b>15.11.1</b> Resumir informações de biodiversidade para unidades espaciais</a></li>
+<li class="chapter" data-level="15.11.2" data-path="cap15.html"><a href="cap15.html#extrair-dados-raster-para-pontos"><i class="fa fa-check"></i><b>15.11.2</b> Extrair dados raster para pontos</a></li>
+<li class="chapter" data-level="15.11.3" data-path="cap15.html"><a href="cap15.html#resumir-dados-de-rasters-para-buffers"><i class="fa fa-check"></i><b>15.11.3</b> Resumir dados de rasters para buffers</a></li>
+<li class="chapter" data-level="15.11.4" data-path="cap15.html"><a href="cap15.html#predições-espaciais-de-objetos-raster"><i class="fa fa-check"></i><b>15.11.4</b> Predições espaciais de objetos raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.12" data-path="cap15.html"><a href="cap15.html#para-se-aprofundar-9"><i class="fa fa-check"></i><b>15.12</b> Para se aprofundar</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -532,29 +585,29 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="cap10" class="section level1" number="10">
 <h1><span class="header-section-number">Capítulo 10</span> Rarefação</h1>
-<div id="pré-requisitos-do-capítulo-5" class="section level3 unnumbered">
+<div id="pré-requisitos-do-capítulo-6" class="section level3 unnumbered">
 <h3>Pré-requisitos do capítulo</h3>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="cap10.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacotes</span></span>
-<span id="cb376-2"><a href="cap10.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iNEXT)</span>
-<span id="cb376-3"><a href="cap10.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb376-4"><a href="cap10.html#cb376-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecodados)</span>
-<span id="cb376-5"><a href="cap10.html#cb376-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb376-6"><a href="cap10.html#cb376-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb376-7"><a href="cap10.html#cb376-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
-<span id="cb376-8"><a href="cap10.html#cb376-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb376-9"><a href="cap10.html#cb376-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(piecewiseSEM)</span>
-<span id="cb376-10"><a href="cap10.html#cb376-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb376-11"><a href="cap10.html#cb376-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados necessários</span></span>
-<span id="cb376-12"><a href="cap10.html#cb376-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mite&quot;</span>)</span>
-<span id="cb376-13"><a href="cap10.html#cb376-13" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mite.xy&quot;</span>)</span>
-<span id="cb376-14"><a href="cap10.html#cb376-14" aria-hidden="true" tabindex="-1"></a>coord <span class="ot">&lt;-</span> mite.xy</span>
-<span id="cb376-15"><a href="cap10.html#cb376-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coord) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>)</span>
-<span id="cb376-16"><a href="cap10.html#cb376-16" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mite.env&quot;</span>)</span>
-<span id="cb376-17"><a href="cap10.html#cb376-17" aria-hidden="true" tabindex="-1"></a>agua <span class="ot">&lt;-</span> mite.env[,<span class="dv">2</span>]</span>
-<span id="cb376-18"><a href="cap10.html#cb376-18" aria-hidden="true" tabindex="-1"></a>dados_rarefacao <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>rarefacao_morcegos</span>
-<span id="cb376-19"><a href="cap10.html#cb376-19" aria-hidden="true" tabindex="-1"></a>rarefacao_repteis <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>rarefacao_repteis</span>
-<span id="cb376-20"><a href="cap10.html#cb376-20" aria-hidden="true" tabindex="-1"></a>rarefacao_anuros <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>rarefacao_anuros</span>
-<span id="cb376-21"><a href="cap10.html#cb376-21" aria-hidden="true" tabindex="-1"></a>dados_amostras <span class="ot">&lt;-</span>   ecodados<span class="sc">::</span>morcegos_rarefacao_amostras</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="cap10.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacotes</span></span>
+<span id="cb380-2"><a href="cap10.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iNEXT)</span>
+<span id="cb380-3"><a href="cap10.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb380-4"><a href="cap10.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecodados)</span>
+<span id="cb380-5"><a href="cap10.html#cb380-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb380-6"><a href="cap10.html#cb380-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb380-7"><a href="cap10.html#cb380-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
+<span id="cb380-8"><a href="cap10.html#cb380-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb380-9"><a href="cap10.html#cb380-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(piecewiseSEM)</span>
+<span id="cb380-10"><a href="cap10.html#cb380-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-11"><a href="cap10.html#cb380-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados necessários</span></span>
+<span id="cb380-12"><a href="cap10.html#cb380-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mite&quot;</span>)</span>
+<span id="cb380-13"><a href="cap10.html#cb380-13" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mite.xy&quot;</span>)</span>
+<span id="cb380-14"><a href="cap10.html#cb380-14" aria-hidden="true" tabindex="-1"></a>coord <span class="ot">&lt;-</span> mite.xy</span>
+<span id="cb380-15"><a href="cap10.html#cb380-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coord) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>)</span>
+<span id="cb380-16"><a href="cap10.html#cb380-16" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mite.env&quot;</span>)</span>
+<span id="cb380-17"><a href="cap10.html#cb380-17" aria-hidden="true" tabindex="-1"></a>agua <span class="ot">&lt;-</span> mite.env[,<span class="dv">2</span>]</span>
+<span id="cb380-18"><a href="cap10.html#cb380-18" aria-hidden="true" tabindex="-1"></a>dados_rarefacao <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>rarefacao_morcegos</span>
+<span id="cb380-19"><a href="cap10.html#cb380-19" aria-hidden="true" tabindex="-1"></a>rarefacao_repteis <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>rarefacao_repteis</span>
+<span id="cb380-20"><a href="cap10.html#cb380-20" aria-hidden="true" tabindex="-1"></a>rarefacao_anuros <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>rarefacao_anuros</span>
+<span id="cb380-21"><a href="cap10.html#cb380-21" aria-hidden="true" tabindex="-1"></a>dados_amostras <span class="ot">&lt;-</span>   ecodados<span class="sc">::</span>morcegos_rarefacao_amostras</span></code></pre></div>
 </div>
 <div id="aspectos-teóricos-1" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Aspectos teóricos</h2>
@@ -600,31 +653,31 @@ div.csl-indent {
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos olhar os dados usando a função <code>head</code></p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="cap10.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_rarefacao)</span>
-<span id="cb377-2"><a href="cap10.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       MC_Tenentes MC_Talhadinho FF_Experimental</span></span>
-<span id="cb377-3"><a href="cap10.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chrotopterus_auritus            0             1               1</span></span>
-<span id="cb377-4"><a href="cap10.html#cb377-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Phyllostomus_hastatus           0             1               0</span></span>
-<span id="cb377-5"><a href="cap10.html#cb377-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Phyllostomus_discolor           0             2               2</span></span>
-<span id="cb377-6"><a href="cap10.html#cb377-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Artibeus_lituratus             17            26              26</span></span>
-<span id="cb377-7"><a href="cap10.html#cb377-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Artibeus_obscurus               1             4               6</span></span>
-<span id="cb377-8"><a href="cap10.html#cb377-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Artibeus_planirostris          34            72              52</span></span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="cap10.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_rarefacao)</span>
+<span id="cb381-2"><a href="cap10.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       MC_Tenentes MC_Talhadinho FF_Experimental</span></span>
+<span id="cb381-3"><a href="cap10.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chrotopterus_auritus            0             1               1</span></span>
+<span id="cb381-4"><a href="cap10.html#cb381-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Phyllostomus_hastatus           0             1               0</span></span>
+<span id="cb381-5"><a href="cap10.html#cb381-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Phyllostomus_discolor           0             2               2</span></span>
+<span id="cb381-6"><a href="cap10.html#cb381-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Artibeus_lituratus             17            26              26</span></span>
+<span id="cb381-7"><a href="cap10.html#cb381-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Artibeus_obscurus               1             4               6</span></span>
+<span id="cb381-8"><a href="cap10.html#cb381-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Artibeus_planirostris          34            72              52</span></span></code></pre></div>
 <p>Usaremos as funções do pacote iNEXT (iNterpolation e EXTrapolation) para o cálculo da rarefação. Esta função permite estimar a riqueza de espécies utilizando a família <em>Hill-numbers</em> (Hill 1973; explicação dos conceitos da família <em>Hill-numbers</em> está detalhada no @[cap12]). O argumento q refere-se a família Hill-numbers onde: 0 = riqueza de espécies; 1 = diversidade de Shannon; e 2 = diversidade de Simpson.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="cap10.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datatype refere-se ao tipo de dados que você vai analisar (e.g. abundância, </span></span>
-<span id="cb378-2"><a href="cap10.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="co"># incidência).</span></span>
-<span id="cb378-3"><a href="cap10.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Endpoint refere-se ao valor máximo que você determina para a extrapolação.</span></span>
-<span id="cb378-4"><a href="cap10.html#cb378-4" aria-hidden="true" tabindex="-1"></a>resultados_morcegos <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(dados_rarefacao, <span class="at">q =</span> <span class="dv">0</span>, </span>
-<span id="cb378-5"><a href="cap10.html#cb378-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, <span class="at">endpoint =</span> <span class="dv">800</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="cap10.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datatype refere-se ao tipo de dados que você vai analisar (e.g. abundância, </span></span>
+<span id="cb382-2"><a href="cap10.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="co"># incidência).</span></span>
+<span id="cb382-3"><a href="cap10.html#cb382-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Endpoint refere-se ao valor máximo que você determina para a extrapolação.</span></span>
+<span id="cb382-4"><a href="cap10.html#cb382-4" aria-hidden="true" tabindex="-1"></a>resultados_morcegos <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(dados_rarefacao, <span class="at">q =</span> <span class="dv">0</span>, </span>
+<span id="cb382-5"><a href="cap10.html#cb382-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, <span class="at">endpoint =</span> <span class="dv">800</span>)</span></code></pre></div>
 <p>Vamos visualizar os resultados.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="cap10.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type define o tipo de curva de rarefação: </span></span>
-<span id="cb379-2"><a href="cap10.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = curva de rarefação baseada no indivíduo ou amostra; </span></span>
-<span id="cb379-3"><a href="cap10.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 = curva de representatividade da amostra; e </span></span>
-<span id="cb379-4"><a href="cap10.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 = curva de rarefação baseada na representatividade (coverage-based).</span></span>
-<span id="cb379-5"><a href="cap10.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(resultados_morcegos, <span class="at">type =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb379-6"><a href="cap10.html#cb379-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb379-7"><a href="cap10.html#cb379-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb379-8"><a href="cap10.html#cb379-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb379-9"><a href="cap10.html#cb379-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-396-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="cap10.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type define o tipo de curva de rarefação: </span></span>
+<span id="cb383-2"><a href="cap10.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = curva de rarefação baseada no indivíduo ou amostra; </span></span>
+<span id="cb383-3"><a href="cap10.html#cb383-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 = curva de representatividade da amostra; e </span></span>
+<span id="cb383-4"><a href="cap10.html#cb383-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 = curva de rarefação baseada na representatividade (coverage-based).</span></span>
+<span id="cb383-5"><a href="cap10.html#cb383-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(resultados_morcegos, <span class="at">type =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb383-6"><a href="cap10.html#cb383-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb383-7"><a href="cap10.html#cb383-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb383-8"><a href="cap10.html#cb383-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb383-9"><a href="cap10.html#cb383-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-399-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Foram registrados 166 indivíduos na MC_Tenentes, 413 na MC_Talhadinho e 223 na FF_Experimental. Lembrando, você não pode comparar a riqueza de espécies observada diretamente: 15 espécies na MC_Tenentes, 19 espécies na MC_Talhadinho, e 17 espécies no FF_Experimental. A comparação da riqueza de espécies entre as comunidades deve ser feita com base na riqueza de espécies rarefeita, que é calculada com base no número de indivíduos da comunidade com menor abundância (166 indivíduos). Olhando o gráfico é possível perceber que a riqueza de espécies de morcegos rarefeita não é diferente entre os três fragmentos florestais quando corrigimos o problema da diferença na abundância pela rarefação. A interpretação é feita com base no intervalo de confiança de 95%. As curvas serão diferentes quando os intervalos de confiança não se sobreporem <span class="citation">(<a href="#ref-chao2014" role="doc-biblioref">A. Chao et al. 2014</a>)</span>. Percebam que esta abordagem, além da interpolação (rarefação), também realiza extrapolações que podem ser usadas para estimar o número de espécies caso o esforço de coleta fosse maior. Este é o assunto do nosso próximo capítulo.</p>
 <p>
@@ -656,50 +709,50 @@ div.csl-indent {
 </ul>
 <p><strong>Análise</strong></p>
 <p>Olhando os dados dos répteis.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="cap10.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefacao_repteis)</span>
-<span id="cb380-2"><a href="cap10.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Coleta.Campo Colecoes.Cientificas</span></span>
-<span id="cb380-3"><a href="cap10.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ameiva_ameiva                      1                    0</span></span>
-<span id="cb380-4"><a href="cap10.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Amphisbaena_mertensii              1                    0</span></span>
-<span id="cb380-5"><a href="cap10.html#cb380-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Apostolepis_dimidiata              0                    1</span></span>
-<span id="cb380-6"><a href="cap10.html#cb380-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bothrops__itapetiningae            0                    2</span></span>
-<span id="cb380-7"><a href="cap10.html#cb380-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bothrops__pauloensis               0                    1</span></span>
-<span id="cb380-8"><a href="cap10.html#cb380-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bothrops_alternatus                0                    1</span></span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="cap10.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefacao_repteis)</span>
+<span id="cb384-2"><a href="cap10.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Coleta.Campo Colecoes.Cientificas</span></span>
+<span id="cb384-3"><a href="cap10.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ameiva_ameiva                      1                    0</span></span>
+<span id="cb384-4"><a href="cap10.html#cb384-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Amphisbaena_mertensii              1                    0</span></span>
+<span id="cb384-5"><a href="cap10.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Apostolepis_dimidiata              0                    1</span></span>
+<span id="cb384-6"><a href="cap10.html#cb384-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bothrops__itapetiningae            0                    2</span></span>
+<span id="cb384-7"><a href="cap10.html#cb384-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bothrops__pauloensis               0                    1</span></span>
+<span id="cb384-8"><a href="cap10.html#cb384-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bothrops_alternatus                0                    1</span></span></code></pre></div>
 <p>Análise usando o pacote iNEXT.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="cap10.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise</span></span>
-<span id="cb381-2"><a href="cap10.html#cb381-2" aria-hidden="true" tabindex="-1"></a>resultados_repteis <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(rarefacao_repteis, <span class="at">q =</span> <span class="dv">0</span>,</span>
-<span id="cb381-3"><a href="cap10.html#cb381-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, </span>
-<span id="cb381-4"><a href="cap10.html#cb381-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">endpoint =</span> <span class="dv">200</span>)</span>
-<span id="cb381-5"><a href="cap10.html#cb381-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb381-6"><a href="cap10.html#cb381-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados.</span></span>
-<span id="cb381-7"><a href="cap10.html#cb381-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(resultados_repteis, <span class="at">type =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb381-8"><a href="cap10.html#cb381-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb381-9"><a href="cap10.html#cb381-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb381-10"><a href="cap10.html#cb381-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb381-11"><a href="cap10.html#cb381-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-398-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="cap10.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise</span></span>
+<span id="cb385-2"><a href="cap10.html#cb385-2" aria-hidden="true" tabindex="-1"></a>resultados_repteis <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(rarefacao_repteis, <span class="at">q =</span> <span class="dv">0</span>,</span>
+<span id="cb385-3"><a href="cap10.html#cb385-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, </span>
+<span id="cb385-4"><a href="cap10.html#cb385-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">endpoint =</span> <span class="dv">200</span>)</span>
+<span id="cb385-5"><a href="cap10.html#cb385-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb385-6"><a href="cap10.html#cb385-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados.</span></span>
+<span id="cb385-7"><a href="cap10.html#cb385-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(resultados_repteis, <span class="at">type =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb385-8"><a href="cap10.html#cb385-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb385-9"><a href="cap10.html#cb385-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb385-10"><a href="cap10.html#cb385-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb385-11"><a href="cap10.html#cb385-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-401-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados - répteis</strong></p>
 <p>Foram registradas oito espécies de répteis nas coletas de campo (40 indivíduos) e 28 espécies nas coleções científicas (77 indivíduos). Com base na rarefação, concluímos que a riqueza de espécies de répteis obtida nas coleções científicas (20,5) é 2,9 vezes maior do que a obtida em coletas de campo (7,05).</p>
 <p>Olhando os dados dos anuros</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="cap10.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefacao_anuros)</span>
-<span id="cb382-2"><a href="cap10.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           Coleta.Campo Colecoes.Cientificas</span></span>
-<span id="cb382-3"><a href="cap10.html#cb382-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chiasmocleis_albopunctata           15                    0</span></span>
-<span id="cb382-4"><a href="cap10.html#cb382-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_elianae               11                    1</span></span>
-<span id="cb382-5"><a href="cap10.html#cb382-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_jimi                  15                    2</span></span>
-<span id="cb382-6"><a href="cap10.html#cb382-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_nanus                  0                    1</span></span>
-<span id="cb382-7"><a href="cap10.html#cb382-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_minutus               24                    0</span></span>
-<span id="cb382-8"><a href="cap10.html#cb382-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_sanborni               0                    1</span></span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="cap10.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefacao_anuros)</span>
+<span id="cb386-2"><a href="cap10.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           Coleta.Campo Colecoes.Cientificas</span></span>
+<span id="cb386-3"><a href="cap10.html#cb386-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chiasmocleis_albopunctata           15                    0</span></span>
+<span id="cb386-4"><a href="cap10.html#cb386-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_elianae               11                    1</span></span>
+<span id="cb386-5"><a href="cap10.html#cb386-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_jimi                  15                    2</span></span>
+<span id="cb386-6"><a href="cap10.html#cb386-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_nanus                  0                    1</span></span>
+<span id="cb386-7"><a href="cap10.html#cb386-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_minutus               24                    0</span></span>
+<span id="cb386-8"><a href="cap10.html#cb386-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dendropsophus_sanborni               0                    1</span></span></code></pre></div>
 <p>Análise e visualização do gráfico.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="cap10.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise</span></span>
-<span id="cb383-2"><a href="cap10.html#cb383-2" aria-hidden="true" tabindex="-1"></a>resultados_anuros <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(rarefacao_anuros, <span class="at">q =</span> <span class="dv">0</span>, </span>
-<span id="cb383-3"><a href="cap10.html#cb383-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, <span class="at">endpoint =</span> <span class="dv">800</span>)</span>
-<span id="cb383-4"><a href="cap10.html#cb383-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb383-5"><a href="cap10.html#cb383-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados.</span></span>
-<span id="cb383-6"><a href="cap10.html#cb383-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(resultados_anuros, <span class="at">type =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb383-7"><a href="cap10.html#cb383-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb383-8"><a href="cap10.html#cb383-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb383-9"><a href="cap10.html#cb383-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb383-10"><a href="cap10.html#cb383-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-400-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="cap10.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise</span></span>
+<span id="cb387-2"><a href="cap10.html#cb387-2" aria-hidden="true" tabindex="-1"></a>resultados_anuros <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(rarefacao_anuros, <span class="at">q =</span> <span class="dv">0</span>, </span>
+<span id="cb387-3"><a href="cap10.html#cb387-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, <span class="at">endpoint =</span> <span class="dv">800</span>)</span>
+<span id="cb387-4"><a href="cap10.html#cb387-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb387-5"><a href="cap10.html#cb387-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados.</span></span>
+<span id="cb387-6"><a href="cap10.html#cb387-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(resultados_anuros, <span class="at">type =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb387-7"><a href="cap10.html#cb387-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de indivíduos&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb387-8"><a href="cap10.html#cb387-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb387-9"><a href="cap10.html#cb387-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb387-10"><a href="cap10.html#cb387-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-403-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados - anuros</strong></p>
 <p>Foram registradas 21 espécies de anuros nas coletas de campo (709 indivíduos) e 12 espécies nas coleções científicas (37 indivíduos). Com base na rarefação, concluímos que não há diferença entre a riqueza de espécies de anuros obtida em coletas de campo e coleções científicas.</p>
 </div>
@@ -723,35 +776,35 @@ div.csl-indent {
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos olhar os dados.</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="cap10.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_amostras)</span>
-<span id="cb384-2"><a href="cap10.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          MC_Tenentes MC_Talhadinho FF_Experimental</span></span>
-<span id="cb384-3"><a href="cap10.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; amostras          12            20              12</span></span>
-<span id="cb384-4"><a href="cap10.html#cb384-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp1               12            20              12</span></span>
-<span id="cb384-5"><a href="cap10.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp2               12            19              10</span></span>
-<span id="cb384-6"><a href="cap10.html#cb384-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp3               10            15               8</span></span>
-<span id="cb384-7"><a href="cap10.html#cb384-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp4                8            10               8</span></span>
-<span id="cb384-8"><a href="cap10.html#cb384-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp5                6             7               7</span></span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="cap10.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_amostras)</span>
+<span id="cb388-2"><a href="cap10.html#cb388-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          MC_Tenentes MC_Talhadinho FF_Experimental</span></span>
+<span id="cb388-3"><a href="cap10.html#cb388-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; amostras          12            20              12</span></span>
+<span id="cb388-4"><a href="cap10.html#cb388-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp1               12            20              12</span></span>
+<span id="cb388-5"><a href="cap10.html#cb388-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp2               12            19              10</span></span>
+<span id="cb388-6"><a href="cap10.html#cb388-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp3               10            15               8</span></span>
+<span id="cb388-7"><a href="cap10.html#cb388-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp4                8            10               8</span></span>
+<span id="cb388-8"><a href="cap10.html#cb388-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp5                6             7               7</span></span></code></pre></div>
 <p>Vamos criar uma lista com as amostragens de cada comunidade e os comandos da análise.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="cap10.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos [,] para excluir os NAs. Lembrando que valores antes da </span></span>
-<span id="cb385-2"><a href="cap10.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vírgula representam as linhas e os posteriores representam as colunas.</span></span>
-<span id="cb385-3"><a href="cap10.html#cb385-3" aria-hidden="true" tabindex="-1"></a>lista_rarefacao <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Tenentes =</span> dados_amostras[<span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>,<span class="dv">1</span>],</span>
-<span id="cb385-4"><a href="cap10.html#cb385-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Talhadinho =</span> dados_amostras[,<span class="dv">2</span>],</span>
-<span id="cb385-5"><a href="cap10.html#cb385-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Experimental =</span> dados_amostras[<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>,<span class="dv">3</span>])</span>
-<span id="cb385-6"><a href="cap10.html#cb385-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb385-7"><a href="cap10.html#cb385-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise.</span></span>
-<span id="cb385-8"><a href="cap10.html#cb385-8" aria-hidden="true" tabindex="-1"></a>res_rarefacao_amostras <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(lista_rarefacao, <span class="at">q =</span> <span class="dv">0</span>, </span>
-<span id="cb385-9"><a href="cap10.html#cb385-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">datatype=</span><span class="st">&quot;incidence_freq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="cap10.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos [,] para excluir os NAs. Lembrando que valores antes da </span></span>
+<span id="cb389-2"><a href="cap10.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vírgula representam as linhas e os posteriores representam as colunas.</span></span>
+<span id="cb389-3"><a href="cap10.html#cb389-3" aria-hidden="true" tabindex="-1"></a>lista_rarefacao <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Tenentes =</span> dados_amostras[<span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>,<span class="dv">1</span>],</span>
+<span id="cb389-4"><a href="cap10.html#cb389-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Talhadinho =</span> dados_amostras[,<span class="dv">2</span>],</span>
+<span id="cb389-5"><a href="cap10.html#cb389-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Experimental =</span> dados_amostras[<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>,<span class="dv">3</span>])</span>
+<span id="cb389-6"><a href="cap10.html#cb389-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-7"><a href="cap10.html#cb389-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise.</span></span>
+<span id="cb389-8"><a href="cap10.html#cb389-8" aria-hidden="true" tabindex="-1"></a>res_rarefacao_amostras <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(lista_rarefacao, <span class="at">q =</span> <span class="dv">0</span>, </span>
+<span id="cb389-9"><a href="cap10.html#cb389-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">datatype=</span><span class="st">&quot;incidence_freq&quot;</span>)</span></code></pre></div>
 <p>Visualizar os resultados.</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="cap10.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
-<span id="cb386-2"><a href="cap10.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(res_rarefacao_amostras , <span class="at">type =</span> <span class="dv">1</span>, <span class="at">color.var =</span> <span class="st">&quot;site&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb386-3"><a href="cap10.html#cb386-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> </span>
-<span id="cb386-4"><a href="cap10.html#cb386-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
-<span id="cb386-5"><a href="cap10.html#cb386-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de amostras&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb386-6"><a href="cap10.html#cb386-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Método&quot;</span>, </span>
-<span id="cb386-7"><a href="cap10.html#cb386-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb386-8"><a href="cap10.html#cb386-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb386-9"><a href="cap10.html#cb386-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-403-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="cap10.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb390-2"><a href="cap10.html#cb390-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(res_rarefacao_amostras , <span class="at">type =</span> <span class="dv">1</span>, <span class="at">color.var =</span> <span class="st">&quot;site&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb390-3"><a href="cap10.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> </span>
+<span id="cb390-4"><a href="cap10.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
+<span id="cb390-5"><a href="cap10.html#cb390-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Número de amostras&quot;</span>, <span class="at">y =</span> <span class="st">&quot; Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb390-6"><a href="cap10.html#cb390-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Método&quot;</span>, </span>
+<span id="cb390-7"><a href="cap10.html#cb390-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb390-8"><a href="cap10.html#cb390-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb390-9"><a href="cap10.html#cb390-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-406-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Olhando o gráfico é possível perceber que a riqueza de espécies de morcegos rarefeita não é diferente entre os três fragmentos florestais quando corrigimos o problema da diferença no número de amostras.</p>
 </div>
@@ -764,15 +817,15 @@ div.csl-indent {
 <p>Neste exemplo, usaremos os mesmos dados de espécies de morcegos amostradas em três fragmentos florestais <span class="citation">(<a href="#ref-breviglieri2008" role="doc-biblioref">Breviglieri 2008</a>)</span>.</p>
 <p><strong>Análise</strong></p>
 <p>Os comandos para a rarefação <em>coverage-based</em> são idênticos aos utilizados para o cálculo das curvas de rarefações baseadas nas abundâncias e amostras. Portanto, não repetiremos as linhas de comando aqui e utilizaremos os resultados já calculados para a visualização dos gráficos. Para isso, digitamos <code>type</code> = 3 que representa a curva de rarefação <em>coverage-based</em>.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="cap10.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados da rarefação *coverage-based*. </span></span>
-<span id="cb387-2"><a href="cap10.html#cb387-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(res_rarefacao_amostras, <span class="at">type =</span> <span class="dv">3</span>, <span class="at">color.var =</span> <span class="st">&quot;site&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb387-3"><a href="cap10.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> </span>
-<span id="cb387-4"><a href="cap10.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
-<span id="cb387-5"><a href="cap10.html#cb387-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Representatividade nas amostras&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb387-6"><a href="cap10.html#cb387-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb387-7"><a href="cap10.html#cb387-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb387-8"><a href="cap10.html#cb387-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-404-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="cap10.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar os resultados da rarefação *coverage-based*. </span></span>
+<span id="cb391-2"><a href="cap10.html#cb391-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggiNEXT</span>(res_rarefacao_amostras, <span class="at">type =</span> <span class="dv">3</span>, <span class="at">color.var =</span> <span class="st">&quot;site&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb391-3"><a href="cap10.html#cb391-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> </span>
+<span id="cb391-4"><a href="cap10.html#cb391-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
+<span id="cb391-5"><a href="cap10.html#cb391-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Representatividade nas amostras&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb391-6"><a href="cap10.html#cb391-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Interpolado&quot;</span>, <span class="st">&quot;Extrapolado&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb391-7"><a href="cap10.html#cb391-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb391-8"><a href="cap10.html#cb391-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-407-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p><em>Coverage</em> é uma medida que determina a proporção de amostras (<em>sampled-based</em>) ou do número de indivíduos (<em>abundance-based</em>) da comunidade que representa as espécies presentes na amostra. Um valor de <em>coverage</em> = 0,85 representa a riqueza estimada com base em 85% das amostragens ou da abundância da comunidade. No nosso exemplo, os valores de <em>coverage</em> foram acima de 0,93 indicando que precisamos de praticamente todas as amostras para estimar a riqueza observada em cada comunidade. Comparando as comunidades considerando o mesmo valor de <em>coverage,</em> 0,937 na comunidade Tenentes, identificamos que a riqueza de espécies de morcegos estimada na comunidade Experimental é menor do que a estimada para a comunidade de Talhadinho (não há sobreposição do intervalo de confiança). Percebam que usando a curva de rarefação <em>coverage-based</em>, a interpretação dos resultados foi diferente das observadas usando as curvas baseadas nos indivíduos ou amostras. Veja Chao &amp; Jost <span class="citation">(<a href="#ref-chao2012" role="doc-biblioref">2012</a>)</span> e Roswell et al. <span class="citation">(<a href="#ref-roswell2021" role="doc-biblioref">2021</a>)</span> para explicações mais detalhadas sobre esta metodologia.</p>
 <p>
@@ -804,88 +857,88 @@ div.csl-indent {
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos calcular a riqueza rarefeita com base na comunidade com menor abundância.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="cap10.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span></span>
-<span id="cb388-2"><a href="cap10.html#cb388-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para as análises teremos que transpor a planilha.</span></span>
-<span id="cb388-3"><a href="cap10.html#cb388-3" aria-hidden="true" tabindex="-1"></a>composicao_acaros <span class="ot">&lt;-</span> <span class="fu">t</span>(mite)</span>
-<span id="cb388-4"><a href="cap10.html#cb388-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb388-5"><a href="cap10.html#cb388-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar qual é a menor abundância registrada nas comunidades. </span></span>
-<span id="cb388-6"><a href="cap10.html#cb388-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(<span class="fu">colSums</span>(composicao_acaros))</span>
-<span id="cb388-7"><a href="cap10.html#cb388-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="cap10.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span></span>
+<span id="cb392-2"><a href="cap10.html#cb392-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para as análises teremos que transpor a planilha.</span></span>
+<span id="cb392-3"><a href="cap10.html#cb392-3" aria-hidden="true" tabindex="-1"></a>composicao_acaros <span class="ot">&lt;-</span> <span class="fu">t</span>(mite)</span>
+<span id="cb392-4"><a href="cap10.html#cb392-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb392-5"><a href="cap10.html#cb392-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar qual é a menor abundância registrada nas comunidades. </span></span>
+<span id="cb392-6"><a href="cap10.html#cb392-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(<span class="fu">colSums</span>(composicao_acaros))</span>
+<span id="cb392-7"><a href="cap10.html#cb392-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span></code></pre></div>
 <p>Vamos calcular a riqueza rarefeita de espécies para todas as comunidades considerando a menor abundância.</p>
 <p>Para padronizar e facilitar a extração dos resultados, definimos os argumentos <code>knots</code> (i.e. representa o intervalo igualmente espaçado que a função irá utilizar para determinar a riqueza estimada) e <code>endpoint</code> (i.e. o valor final de amostras ou abundância extrapolados) com o valor de abundância = 8.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="cap10.html#cb389-1" aria-hidden="true" tabindex="-1"></a>resultados_rarefacao <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(composicao_acaros, <span class="at">q =</span> <span class="dv">0</span>, </span>
-<span id="cb389-2"><a href="cap10.html#cb389-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, </span>
-<span id="cb389-3"><a href="cap10.html#cb389-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">knots =</span> <span class="dv">8</span>, <span class="at">endpoint =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="cap10.html#cb393-1" aria-hidden="true" tabindex="-1"></a>resultados_rarefacao <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(composicao_acaros, <span class="at">q =</span> <span class="dv">0</span>, </span>
+<span id="cb393-2"><a href="cap10.html#cb393-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>, </span>
+<span id="cb393-3"><a href="cap10.html#cb393-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">knots =</span> <span class="dv">8</span>, <span class="at">endpoint =</span> <span class="dv">8</span>)</span></code></pre></div>
 <p>Vamos criar um loop para facilitar a extração da riqueza rarefeita para as 70 comunidades.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="cap10.html#cb390-1" aria-hidden="true" tabindex="-1"></a>resultados_comunidades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb390-2"><a href="cap10.html#cb390-2" aria-hidden="true" tabindex="-1"></a>riqueza_rarefeita <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb390-3"><a href="cap10.html#cb390-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">70</span>){</span>
-<span id="cb390-4"><a href="cap10.html#cb390-4" aria-hidden="true" tabindex="-1"></a>resultados_comunidades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(resultados_rarefacao<span class="sc">$</span>iNextEst[i])</span>
-<span id="cb390-5"><a href="cap10.html#cb390-5" aria-hidden="true" tabindex="-1"></a>riqueza_rarefeita[i] <span class="ot">&lt;-</span> resultados_comunidades[<span class="dv">8</span>,<span class="dv">4</span>]</span>
-<span id="cb390-6"><a href="cap10.html#cb390-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="cap10.html#cb394-1" aria-hidden="true" tabindex="-1"></a>resultados_comunidades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb394-2"><a href="cap10.html#cb394-2" aria-hidden="true" tabindex="-1"></a>riqueza_rarefeita <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb394-3"><a href="cap10.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">70</span>){</span>
+<span id="cb394-4"><a href="cap10.html#cb394-4" aria-hidden="true" tabindex="-1"></a>resultados_comunidades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(resultados_rarefacao<span class="sc">$</span>iNextEst[i])</span>
+<span id="cb394-5"><a href="cap10.html#cb394-5" aria-hidden="true" tabindex="-1"></a>riqueza_rarefeita[i] <span class="ot">&lt;-</span> resultados_comunidades[<span class="dv">8</span>,<span class="dv">4</span>]</span>
+<span id="cb394-6"><a href="cap10.html#cb394-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Vamos juntar esses resultados com os dados geográficos e ambientais.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="cap10.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupando os dados em um dataframe final.</span></span>
-<span id="cb391-2"><a href="cap10.html#cb391-2" aria-hidden="true" tabindex="-1"></a>dados_combinado <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(riqueza_rarefeita, agua, coord)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="cap10.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupando os dados em um dataframe final.</span></span>
+<span id="cb395-2"><a href="cap10.html#cb395-2" aria-hidden="true" tabindex="-1"></a>dados_combinado <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(riqueza_rarefeita, agua, coord)</span></code></pre></div>
 <p>Agora, seguindo os passos descritos no @[cap8], vamos identificar o melhor modelo que representa a estrutura espacial dos dados da riqueza rarefeita.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="cap10.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando diferentes modelos usando a função gls. </span></span>
-<span id="cb392-2"><a href="cap10.html#cb392-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sem estrutura espacial</span></span>
-<span id="cb392-3"><a href="cap10.html#cb392-3" aria-hidden="true" tabindex="-1"></a>no_spat_gls <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
-<span id="cb392-4"><a href="cap10.html#cb392-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">&quot;REML&quot;</span>)</span>
-<span id="cb392-5"><a href="cap10.html#cb392-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-6"><a href="cap10.html#cb392-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância esférica </span></span>
-<span id="cb392-7"><a href="cap10.html#cb392-7" aria-hidden="true" tabindex="-1"></a>espher_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
-<span id="cb392-8"><a href="cap10.html#cb392-8" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">corSpher</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb392-9"><a href="cap10.html#cb392-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-10"><a href="cap10.html#cb392-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância exponencial </span></span>
-<span id="cb392-11"><a href="cap10.html#cb392-11" aria-hidden="true" tabindex="-1"></a>expon_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
-<span id="cb392-12"><a href="cap10.html#cb392-12" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">corExp</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb392-13"><a href="cap10.html#cb392-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-14"><a href="cap10.html#cb392-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância Gaussiana </span></span>
-<span id="cb392-15"><a href="cap10.html#cb392-15" aria-hidden="true" tabindex="-1"></a>gauss_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
-<span id="cb392-16"><a href="cap10.html#cb392-16" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">corGaus</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb392-17"><a href="cap10.html#cb392-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-18"><a href="cap10.html#cb392-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância razão quadrática </span></span>
-<span id="cb392-19"><a href="cap10.html#cb392-19" aria-hidden="true" tabindex="-1"></a>ratio_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
-<span id="cb392-20"><a href="cap10.html#cb392-20" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">corRatio</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="cap10.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando diferentes modelos usando a função gls. </span></span>
+<span id="cb396-2"><a href="cap10.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sem estrutura espacial</span></span>
+<span id="cb396-3"><a href="cap10.html#cb396-3" aria-hidden="true" tabindex="-1"></a>no_spat_gls <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
+<span id="cb396-4"><a href="cap10.html#cb396-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">&quot;REML&quot;</span>)</span>
+<span id="cb396-5"><a href="cap10.html#cb396-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-6"><a href="cap10.html#cb396-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância esférica </span></span>
+<span id="cb396-7"><a href="cap10.html#cb396-7" aria-hidden="true" tabindex="-1"></a>espher_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
+<span id="cb396-8"><a href="cap10.html#cb396-8" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">corSpher</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb396-9"><a href="cap10.html#cb396-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-10"><a href="cap10.html#cb396-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância exponencial </span></span>
+<span id="cb396-11"><a href="cap10.html#cb396-11" aria-hidden="true" tabindex="-1"></a>expon_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
+<span id="cb396-12"><a href="cap10.html#cb396-12" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">corExp</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb396-13"><a href="cap10.html#cb396-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-14"><a href="cap10.html#cb396-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância Gaussiana </span></span>
+<span id="cb396-15"><a href="cap10.html#cb396-15" aria-hidden="true" tabindex="-1"></a>gauss_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
+<span id="cb396-16"><a href="cap10.html#cb396-16" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">corGaus</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb396-17"><a href="cap10.html#cb396-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-18"><a href="cap10.html#cb396-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariância razão quadrática </span></span>
+<span id="cb396-19"><a href="cap10.html#cb396-19" aria-hidden="true" tabindex="-1"></a>ratio_model <span class="ot">&lt;-</span> <span class="fu">gls</span>(riqueza_rarefeita <span class="sc">~</span> agua, <span class="at">data =</span> dados_combinado, </span>
+<span id="cb396-20"><a href="cap10.html#cb396-20" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">corRatio</span>(<span class="at">form =</span> <span class="sc">~</span>lat <span class="sc">+</span> long, <span class="at">nugget =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <p>Agora vamos usar o AIC para selecionar o modelo mais “provável” explicando a distribuição da riqueza rarefeita das espécies de ácaros.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="cap10.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleção dos modelos.</span></span>
-<span id="cb393-2"><a href="cap10.html#cb393-2" aria-hidden="true" tabindex="-1"></a>aic_fit <span class="ot">&lt;-</span> <span class="fu">AIC</span>(no_spat_gls, espher_model, expon_model, </span>
-<span id="cb393-3"><a href="cap10.html#cb393-3" aria-hidden="true" tabindex="-1"></a>               gauss_model, ratio_model)</span>
-<span id="cb393-4"><a href="cap10.html#cb393-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-5"><a href="cap10.html#cb393-5" aria-hidden="true" tabindex="-1"></a>aic_fit <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(AIC)</span>
-<span id="cb393-6"><a href="cap10.html#cb393-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   df      AIC</span></span>
-<span id="cb393-7"><a href="cap10.html#cb393-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  5 164.5840</span></span>
-<span id="cb393-8"><a href="cap10.html#cb393-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  5 165.7649</span></span>
-<span id="cb393-9"><a href="cap10.html#cb393-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  5 165.8698</span></span>
-<span id="cb393-10"><a href="cap10.html#cb393-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  3 166.7530</span></span>
-<span id="cb393-11"><a href="cap10.html#cb393-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  5 169.0242</span></span>
-<span id="cb393-12"><a href="cap10.html#cb393-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-13"><a href="cap10.html#cb393-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os resíduos do modelo selecionado.</span></span>
-<span id="cb393-14"><a href="cap10.html#cb393-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gauss_model)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-410-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="cap10.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleção dos modelos.</span></span>
+<span id="cb397-2"><a href="cap10.html#cb397-2" aria-hidden="true" tabindex="-1"></a>aic_fit <span class="ot">&lt;-</span> <span class="fu">AIC</span>(no_spat_gls, espher_model, expon_model, </span>
+<span id="cb397-3"><a href="cap10.html#cb397-3" aria-hidden="true" tabindex="-1"></a>               gauss_model, ratio_model)</span>
+<span id="cb397-4"><a href="cap10.html#cb397-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb397-5"><a href="cap10.html#cb397-5" aria-hidden="true" tabindex="-1"></a>aic_fit <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(AIC)</span>
+<span id="cb397-6"><a href="cap10.html#cb397-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              df      AIC</span></span>
+<span id="cb397-7"><a href="cap10.html#cb397-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; gauss_model   5 164.5840</span></span>
+<span id="cb397-8"><a href="cap10.html#cb397-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ratio_model   5 165.7649</span></span>
+<span id="cb397-9"><a href="cap10.html#cb397-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; expon_model   5 165.8698</span></span>
+<span id="cb397-10"><a href="cap10.html#cb397-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; no_spat_gls   3 166.7530</span></span>
+<span id="cb397-11"><a href="cap10.html#cb397-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; espher_model  5 169.0242</span></span>
+<span id="cb397-12"><a href="cap10.html#cb397-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb397-13"><a href="cap10.html#cb397-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os resíduos do modelo selecionado.</span></span>
+<span id="cb397-14"><a href="cap10.html#cb397-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gauss_model)</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-413-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>Percebam que os pontos estão dispersos no gráfico e não apresentam padrões que indiquem heterogeneidade de variância.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="cap10.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os resultados.</span></span>
-<span id="cb394-2"><a href="cap10.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gauss_model)<span class="sc">$</span>tTable </span>
-<span id="cb394-3"><a href="cap10.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Value    Std.Error   t-value      p-value</span></span>
-<span id="cb394-4"><a href="cap10.html#cb394-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  6.086125990 0.2927633293 20.788553 3.550849e-31</span></span>
-<span id="cb394-5"><a href="cap10.html#cb394-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; agua        -0.003142615 0.0006670097 -4.711498 1.258304e-05</span></span>
-<span id="cb394-6"><a href="cap10.html#cb394-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb394-7"><a href="cap10.html#cb394-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando o R-squared.</span></span>
-<span id="cb394-8"><a href="cap10.html#cb394-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rsquared</span>(gauss_model)</span>
-<span id="cb394-9"><a href="cap10.html#cb394-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Response   family     link method R.squared</span></span>
-<span id="cb394-10"><a href="cap10.html#cb394-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 riqueza_rarefeita gaussian identity   none 0.2991059</span></span>
-<span id="cb394-11"><a href="cap10.html#cb394-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb394-12"><a href="cap10.html#cb394-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtendo os valores preditos pelo modelo.</span></span>
-<span id="cb394-13"><a href="cap10.html#cb394-13" aria-hidden="true" tabindex="-1"></a>predito <span class="ot">&lt;-</span>  <span class="fu">predict</span>(gauss_model) </span>
-<span id="cb394-14"><a href="cap10.html#cb394-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb394-15"><a href="cap10.html#cb394-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotando os resultados no gráfico. </span></span>
-<span id="cb394-16"><a href="cap10.html#cb394-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_combinado, <span class="fu">aes</span>(<span class="at">x=</span> agua, <span class="at">y=</span> riqueza_rarefeita)) <span class="sc">+</span> </span>
-<span id="cb394-17"><a href="cap10.html#cb394-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Concentração de água no substrato&quot;</span>, </span>
-<span id="cb394-18"><a href="cap10.html#cb394-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Riqueza rarefeita </span><span class="sc">\n</span><span class="st">das espécies de ácaros&quot;</span>, <span class="at">size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb394-19"><a href="cap10.html#cb394-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb394-20"><a href="cap10.html#cb394-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
-<span id="cb394-21"><a href="cap10.html#cb394-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predito), <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-411-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="cap10.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os resultados.</span></span>
+<span id="cb398-2"><a href="cap10.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gauss_model)<span class="sc">$</span>tTable </span>
+<span id="cb398-3"><a href="cap10.html#cb398-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Value    Std.Error   t-value      p-value</span></span>
+<span id="cb398-4"><a href="cap10.html#cb398-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  6.086125990 0.2927633293 20.788553 3.550849e-31</span></span>
+<span id="cb398-5"><a href="cap10.html#cb398-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; agua        -0.003142615 0.0006670097 -4.711498 1.258304e-05</span></span>
+<span id="cb398-6"><a href="cap10.html#cb398-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-7"><a href="cap10.html#cb398-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando o R-squared.</span></span>
+<span id="cb398-8"><a href="cap10.html#cb398-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rsquared</span>(gauss_model)</span>
+<span id="cb398-9"><a href="cap10.html#cb398-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Response   family     link method R.squared</span></span>
+<span id="cb398-10"><a href="cap10.html#cb398-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 riqueza_rarefeita gaussian identity   none 0.2991059</span></span>
+<span id="cb398-11"><a href="cap10.html#cb398-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-12"><a href="cap10.html#cb398-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtendo os valores preditos pelo modelo.</span></span>
+<span id="cb398-13"><a href="cap10.html#cb398-13" aria-hidden="true" tabindex="-1"></a>predito <span class="ot">&lt;-</span>  <span class="fu">predict</span>(gauss_model) </span>
+<span id="cb398-14"><a href="cap10.html#cb398-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-15"><a href="cap10.html#cb398-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotando os resultados no gráfico. </span></span>
+<span id="cb398-16"><a href="cap10.html#cb398-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_combinado, <span class="fu">aes</span>(<span class="at">x=</span> agua, <span class="at">y=</span> riqueza_rarefeita)) <span class="sc">+</span> </span>
+<span id="cb398-17"><a href="cap10.html#cb398-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Concentração de água no substrato&quot;</span>, </span>
+<span id="cb398-18"><a href="cap10.html#cb398-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Riqueza rarefeita </span><span class="sc">\n</span><span class="st">das espécies de ácaros&quot;</span>, <span class="at">size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb398-19"><a href="cap10.html#cb398-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb398-20"><a href="cap10.html#cb398-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>() <span class="sc">+</span></span>
+<span id="cb398-21"><a href="cap10.html#cb398-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predito), <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="livro_files/figure-html/unnamed-chunk-414-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>A concentração de água no substrato explica 29,9% da variação na riqueza rarefeita das espécies de ácaros. Como predito, a riqueza de espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos (t = -4.71, df = 68, P &lt; 0.01).</p>
 </div>
@@ -940,7 +993,6 @@ Roswell, M., J. Dushoff, and R. Winfree. 2021. <span>“A Conceptual Guide to Me
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -981,7 +1033,7 @@ gitbook.start({
 },
 "download": ["livro.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
