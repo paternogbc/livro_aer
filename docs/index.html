@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Análises Ecológicas no R</title>
   <meta name="description" content="Análises Ecológicas no R" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Análises Ecológicas no R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-11-04" />
+<meta name="date" content="2021-11-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,9 @@
   
 
 <link rel="next" href="prefácio.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -271,52 +271,41 @@ div.csl-indent {
 <li class="chapter" data-level="5.13" data-path="cap5.html"><a href="cap5.html#exercícios-1"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
 <li class="chapter" data-level="5.14" data-path="cap5.html"><a href="cap5.html#para-se-aprofundar-1"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Guia de bolso de gráficos no R</a>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Visualização de dados</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#introdução-2"><i class="fa fa-check"></i><b>6.1</b> 1. Introdução</a></li>
-<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#pacotes-necessários"><i class="fa fa-check"></i><b>6.2</b> 2. Pacotes necessários</a></li>
-<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.3</b> Principais pacotes</a></li>
-<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.4</b> 3. Grámatica dos gráficos</a></li>
-<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.5</b> 4. Tipos de gráficos</a>
+<li class="chapter" data-level="" data-path="cap6.html"><a href="cap6.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#contextualização-2"><i class="fa fa-check"></i><b>6.1</b> Contextualização</a></li>
+<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.2</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.3</b> Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.4</b> Tipos de gráficos</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.5.1</b> 4.1. Histograma (<em>histogram</em>)</a></li>
-<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.5.2</b> 4.2 Gráfico de densidade (<em>density plot</em>)</a></li>
-<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#dot"><i class="fa fa-check"></i><b>6.5.3</b> 4.3. Diagrama de pontos (<em>dot plot</em>)</a></li>
-<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#bars"><i class="fa fa-check"></i><b>6.5.4</b> 4.4. Gráfico de barras (<em>bar plot</em>)</a></li>
-<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.5.5</b> 4.5. Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
-<li class="chapter" data-level="6.5.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.5.6</b> 4.6. Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.4.1</b> Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.4.2</b> Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cap6.html"><a href="cap6.html#diagrama-de-pontos-dot-plot"><i class="fa fa-check"></i><b>6.4.3</b> Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cap6.html"><a href="cap6.html#gráfico-de-barras-bar-plot"><i class="fa fa-check"></i><b>6.4.4</b> Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.4.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.4.5</b> Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.4.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.4.6</b> Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.7" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.4.7</b> Gráfico de dispersão (<em>scatter plot</em>)</a></li>
+<li class="chapter" data-level="6.4.8" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.4.8</b> Visualização de múltiplos gráficos pareados</a></li>
+<li class="chapter" data-level="6.4.9" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.4.9</b> Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.6</b> 4.7. Gráfico de dispersão (<em>scatter plot</em>)</a>
+<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.5</b> Finalização de gráficos para publicação</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#versão-padrão-5"><i class="fa fa-check"></i><b>6.6.1</b> 4.7.1. Versão padrão</a></li>
-<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#definindo-a-cor-tamanho-forma-e-preenchimento-dos-pontos"><i class="fa fa-check"></i><b>6.6.2</b> 4.7.2. Definindo a cor, tamanho, forma e preenchimento dos pontos</a></li>
-<li class="chapter" data-level="6.6.3" data-path="cap6.html"><a href="cap6.html#definindo-linhas-de-ajuste"><i class="fa fa-check"></i><b>6.6.3</b> 4.7.3. Definindo linhas de ajuste</a></li>
-<li class="chapter" data-level="6.6.4" data-path="cap6.html"><a href="cap6.html#ajustes-finos-versão-personalizada-5"><i class="fa fa-check"></i><b>6.6.4</b> 4.7.4. Ajustes finos (versão personalizada)</a></li>
+<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.5.1</b> Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-gride"><i class="fa fa-check"></i><b>6.5.2</b> Elementos gráficos: eixo, fonte, gride</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.5.3</b> Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
+<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.5.4</b> Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.5.5</b> Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.7</b> 4.8. Visualização de múltiplos gráficos pareados</a>
+<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.6</b> Para se aprofundar</a>
 <ul>
-<li class="chapter" data-level="6.7.1" data-path="cap6.html"><a href="cap6.html#gráfico-pareado-com-variáveis-contínuas"><i class="fa fa-check"></i><b>6.7.1</b> 4.8.1. Gráfico pareado com variáveis contínuas</a></li>
-<li class="chapter" data-level="6.7.2" data-path="cap6.html"><a href="cap6.html#gráfico-pareado-com-vários-tipos-de-variáveis"><i class="fa fa-check"></i><b>6.7.2</b> 4.8.2. Gráfico pareado com vários tipos de variáveis</a></li>
-</ul></li>
-<li class="chapter" data-level="6.8" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.8</b> 5. Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
-<li class="chapter" data-level="6.9" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.9</b> 6. Finalização de gráficos para publicação</a>
-<ul>
-<li class="chapter" data-level="6.9.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.9.1</b> 6.1. Posição, cores e fonte da legenda</a></li>
-<li class="chapter" data-level="6.9.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-grid"><i class="fa fa-check"></i><b>6.9.2</b> 6.2. Elementos gráficos: eixo, fonte, grid</a></li>
-<li class="chapter" data-level="6.9.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme-existem-vários-temas-criados-dentro-do-universo-ggtheme-que-podem-facilitar"><i class="fa fa-check"></i><b>6.9.3</b> 6.3. Temas personalizados <code>ggtheme()</code> Existem vários temas criados dentro do universo ggtheme() que podem facilitar</a></li>
-<li class="chapter" data-level="6.9.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.9.4</b> 6.4. Criando seu próprio <code>theme_custom()</code></a></li>
-<li class="chapter" data-level="6.9.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.9.5</b> 6.5. Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="6.10" data-path="cap6.html"><a href="cap6.html#check-list-para-garantir-bons-gráficos"><i class="fa fa-check"></i><b>6.10</b> Check-list para garantir bons gráficos</a></li>
-<li class="chapter" data-level="6.11" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.11</b> Para se aprofundar</a>
-<ul>
-<li class="chapter" data-level="6.11.1" data-path="cap6.html"><a href="cap6.html#livros-1"><i class="fa fa-check"></i><b>6.11.1</b> Livros</a></li>
-<li class="chapter" data-level="6.11.2" data-path="cap6.html"><a href="cap6.html#links-1"><i class="fa fa-check"></i><b>6.11.2</b> Links</a></li>
+<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#livros-1"><i class="fa fa-check"></i><b>6.6.1</b> Livros</a></li>
+<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#links-1"><i class="fa fa-check"></i><b>6.6.2</b> Links</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Modelos lineares</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="7.1" data-path="cap7.html"><a href="cap7.html#teste-t-de-student-para-duas-amostras-independentes"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
 <li class="chapter" data-level="7.2" data-path="cap7.html"><a href="cap7.html#teste-t-para-amostras-pareadas"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
 <li class="chapter" data-level="7.3" data-path="cap7.html"><a href="cap7.html#correlação-de-pearson"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
@@ -340,8 +329,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Cap. 8 - Análises univariadas (modelos lineares mistos generalizados)</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
-<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-3"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
+<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
 <li class="chapter" data-level="8.2" data-path="cap8.html"><a href="cap8.html#como-um-glm-funciona"><i class="fa fa-check"></i><b>8.2</b> Como um GLM funciona?</a></li>
 <li class="chapter" data-level="8.3" data-path="cap8.html"><a href="cap8.html#como-escolher-a-distribuição-correta-para-seus-dados"><i class="fa fa-check"></i><b>8.3</b> Como escolher a distribuição correta para seus dados?</a>
 <ul>
@@ -366,7 +355,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9" data-path="cap9.html"><a href="cap9.html"><i class="fa fa-check"></i><b>9</b> Análises Multidimensionais</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="9.1" data-path="cap9.html"><a href="cap9.html#aspectos-teóricos"><i class="fa fa-check"></i><b>9.1</b> Aspectos teóricos</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="cap9.html"><a href="cap9.html#coeficientes-de-associação"><i class="fa fa-check"></i><b>9.1.1</b> Coeficientes de associação</a></li>
@@ -406,7 +395,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10" data-path="cap10.html"><a href="cap10.html"><i class="fa fa-check"></i><b>10</b> Rarefação</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="10.1" data-path="cap10.html"><a href="cap10.html#aspectos-teóricos-1"><i class="fa fa-check"></i><b>10.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="10.2" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-no-indivíduo-individual-based"><i class="fa fa-check"></i><b>10.2</b> Curva de rarefação baseada no indivíduo (<em>individual-based</em>)</a></li>
 <li class="chapter" data-level="10.3" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-em-amostras-sample-based"><i class="fa fa-check"></i><b>10.3</b> Curva de rarefação baseada em amostras (<em>sample-based</em>)</a></li>
@@ -417,7 +406,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="11" data-path="cap11.html"><a href="cap11.html"><i class="fa fa-check"></i><b>11</b> Estimadores de riqueza</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="11.1" data-path="cap11.html"><a href="cap11.html#aspectos-teóricos-2"><i class="fa fa-check"></i><b>11.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="11.2" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-abundância-das-espécies"><i class="fa fa-check"></i><b>11.2</b> Estimadores baseados na abundância das espécies</a>
 <ul>
@@ -436,7 +425,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="12" data-path="cap12.html"><a href="cap12.html"><i class="fa fa-check"></i><b>12</b> Diversidade Taxonômica</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="12.1" data-path="cap12.html"><a href="cap12.html#aspectos-teóricos-3"><i class="fa fa-check"></i><b>12.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="12.2" data-path="cap12.html"><a href="cap12.html#diversidade-alfa"><i class="fa fa-check"></i><b>12.2</b> Diversidade alfa</a>
 <ul>
@@ -453,7 +442,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13" data-path="cap13.html"><a href="cap13.html"><i class="fa fa-check"></i><b>13</b> Diversidade Filogenética</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="13.1" data-path="cap13.html"><a href="cap13.html#aspectos-teóricos-4"><i class="fa fa-check"></i><b>13.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="13.2" data-path="cap13.html"><a href="cap13.html#manipulação-de-filogenias"><i class="fa fa-check"></i><b>13.2</b> Manipulação de filogenias</a></li>
 <li class="chapter" data-level="13.3" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3</b> Métricas de diversidade alfa filogenética</a></li>
@@ -494,7 +483,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
 <ul>
-<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-10"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
 <li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
 <li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alpha"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alpha)</a>
@@ -508,6 +497,70 @@ div.csl-indent {
 <li class="chapter" data-level="14.4.1" data-path="cap14.html"><a href="cap14.html#composição-funcional"><i class="fa fa-check"></i><b>14.4.1</b> Composição Funcional</a></li>
 </ul></li>
 <li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.5</b> Variação Intraspecífica</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cap15.html"><a href="cap15.html"><i class="fa fa-check"></i><b>15</b> Dados geoespaciais no R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap15.html"><a href="cap15.html#pré-requisitos-do-capítulo-11"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="15.1" data-path="cap15.html"><a href="cap15.html#introdução-3"><i class="fa fa-check"></i><b>15.1</b> Introdução</a></li>
+<li class="chapter" data-level="15.2" data-path="cap15.html"><a href="cap15.html#vetor-1"><i class="fa fa-check"></i><b>15.2</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cap15.html"><a href="cap15.html#sf-principal-pacote-no-r-para-dados-vetoriais"><i class="fa fa-check"></i><b>15.2.1</b> sf: principal pacote no R para dados vetoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="cap15.html"><a href="cap15.html#raster"><i class="fa fa-check"></i><b>15.3</b> Raster</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="cap15.html"><a href="cap15.html#raster-principal-pacote-no-r-para-dados-raster"><i class="fa fa-check"></i><b>15.3.1</b> raster: principal pacote no R para dados raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-e-unidades"><i class="fa fa-check"></i><b>15.4</b> Sistema de Referência de Coordenadas e Unidades</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-geográficas"><i class="fa fa-check"></i><b>15.4.1</b> Sistema de Coordenadas Geográficas</a></li>
+<li class="chapter" data-level="15.4.2" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-projetadas"><i class="fa fa-check"></i><b>15.4.2</b> Sistema de Coordenadas Projetadas</a></li>
+<li class="chapter" data-level="15.4.3" data-path="cap15.html"><a href="cap15.html#datum"><i class="fa fa-check"></i><b>15.4.3</b> Datum</a></li>
+<li class="chapter" data-level="15.4.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-crs-no-r"><i class="fa fa-check"></i><b>15.4.4</b> Sistema de Referência de Coordenadas (CRS) no R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="cap15.html"><a href="cap15.html#principais-fontes-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.5</b> Principais fontes de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="cap15.html"><a href="cap15.html#vetor-2"><i class="fa fa-check"></i><b>15.5.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.5.2" data-path="cap15.html"><a href="cap15.html#raster-1"><i class="fa fa-check"></i><b>15.5.2</b> Raster</a></li>
+<li class="chapter" data-level="15.5.3" data-path="cap15.html"><a href="cap15.html#pacotes-do-r"><i class="fa fa-check"></i><b>15.5.3</b> Pacotes do R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="cap15.html"><a href="cap15.html#importar-e-exportar-dados-geoespaciais"><i class="fa fa-check"></i><b>15.6</b> Importar e exportar dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="cap15.html"><a href="cap15.html#principais-formatos-de-arquivos-geográficos"><i class="fa fa-check"></i><b>15.6.1</b> Principais formatos de arquivos geográficos</a></li>
+<li class="chapter" data-level="15.6.2" data-path="cap15.html"><a href="cap15.html#importar-dados-1"><i class="fa fa-check"></i><b>15.6.2</b> Importar dados</a></li>
+<li class="chapter" data-level="15.6.3" data-path="cap15.html"><a href="cap15.html#exportar-dados-1"><i class="fa fa-check"></i><b>15.6.3</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="cap15.html"><a href="cap15.html#descrição-de-objetos-espaciais"><i class="fa fa-check"></i><b>15.7</b> Descrição de objetos espaciais</a>
+<ul>
+<li class="chapter" data-level="15.7.1" data-path="cap15.html"><a href="cap15.html#vetor-5"><i class="fa fa-check"></i><b>15.7.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.7.2" data-path="cap15.html"><a href="cap15.html#raster-4"><i class="fa fa-check"></i><b>15.7.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="cap15.html"><a href="cap15.html#reprojeção-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.8</b> Reprojeção de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="cap15.html"><a href="cap15.html#vetor-6"><i class="fa fa-check"></i><b>15.8.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.8.2" data-path="cap15.html"><a href="cap15.html#raster-5"><i class="fa fa-check"></i><b>15.8.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="cap15.html"><a href="cap15.html#principais-operações-com-dados-geoespaciais"><i class="fa fa-check"></i><b>15.9</b> Principais operações com dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="cap15.html"><a href="cap15.html#operações-de-atributos"><i class="fa fa-check"></i><b>15.9.1</b> Operações de atributos</a></li>
+<li class="chapter" data-level="15.9.2" data-path="cap15.html"><a href="cap15.html#operações-espaciais"><i class="fa fa-check"></i><b>15.9.2</b> Operações espaciais</a></li>
+<li class="chapter" data-level="15.9.3" data-path="cap15.html"><a href="cap15.html#operações-geométricas"><i class="fa fa-check"></i><b>15.9.3</b> Operações geométricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="cap15.html"><a href="cap15.html#visualização-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.10</b> Visualização de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="cap15.html"><a href="cap15.html#principais-elementos-de-um-mapa"><i class="fa fa-check"></i><b>15.10.1</b> Principais elementos de um mapa</a></li>
+<li class="chapter" data-level="15.10.2" data-path="cap15.html"><a href="cap15.html#principais-pacotes-para-a-composição-de-mapas"><i class="fa fa-check"></i><b>15.10.2</b> Principais pacotes para a composição de mapas</a></li>
+<li class="chapter" data-level="15.10.3" data-path="cap15.html"><a href="cap15.html#mapas-estáticos"><i class="fa fa-check"></i><b>15.10.3</b> Mapas estáticos</a></li>
+<li class="chapter" data-level="15.10.4" data-path="cap15.html"><a href="cap15.html#mapas-animados"><i class="fa fa-check"></i><b>15.10.4</b> Mapas animados</a></li>
+<li class="chapter" data-level="15.10.5" data-path="cap15.html"><a href="cap15.html#mapas-interativos"><i class="fa fa-check"></i><b>15.10.5</b> Mapas interativos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.11" data-path="cap15.html"><a href="cap15.html#exemplos-de-aplicações-de-análises-geoespaciais-para-dados-ecológicos"><i class="fa fa-check"></i><b>15.11</b> Exemplos de aplicações de análises geoespaciais para dados ecológicos</a>
+<ul>
+<li class="chapter" data-level="15.11.1" data-path="cap15.html"><a href="cap15.html#resumir-informações-de-biodiversidade-para-unidades-espaciais"><i class="fa fa-check"></i><b>15.11.1</b> Resumir informações de biodiversidade para unidades espaciais</a></li>
+<li class="chapter" data-level="15.11.2" data-path="cap15.html"><a href="cap15.html#extrair-dados-raster-para-pontos"><i class="fa fa-check"></i><b>15.11.2</b> Extrair dados raster para pontos</a></li>
+<li class="chapter" data-level="15.11.3" data-path="cap15.html"><a href="cap15.html#resumir-dados-de-rasters-para-buffers"><i class="fa fa-check"></i><b>15.11.3</b> Resumir dados de rasters para buffers</a></li>
+<li class="chapter" data-level="15.11.4" data-path="cap15.html"><a href="cap15.html#predições-espaciais-de-objetos-raster"><i class="fa fa-check"></i><b>15.11.4</b> Predições espaciais de objetos raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.12" data-path="cap15.html"><a href="cap15.html#para-se-aprofundar-9"><i class="fa fa-check"></i><b>15.12</b> Para se aprofundar</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -533,7 +586,7 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Análises Ecológicas no R</h1>
 <p class="author"><em></em></p>
-<p class="date"><em>2021-11-04</em></p>
+<p class="date"><em>2021-11-26</em></p>
 </div>
 <div id="capa" class="section level1 unnumbered">
 <h1>Capa</h1>
@@ -549,7 +602,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -590,7 +642,7 @@ gitbook.start({
 },
 "download": ["livro.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
