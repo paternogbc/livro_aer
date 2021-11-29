@@ -179,7 +179,7 @@ library(writexl)
 
 Se o arquivo .csv foi criado com separador de decimais sendo `.` e separador de colunas sendo `,`, usamos as funções normalmente. Caso seja criado com separador de decimais sendo `,` e separador de colunas sendo `;`, usaríamos a função `readr::read_csv2()` para importar e `readr::write_csv2()` para exportar nesse formato, que é mais comum no Brasil.
 
-Para exemplificar como essas funções funcionam, vamos importar novamente os dados de comunidades de anfíbios da Mata Atlântica (Atlantic Amphibians, @vancine2018), que fizemos o download no Capítulo \@ref(cap4). Estamos usando a função `readr::read_csv()`, indicando os diretórios com a função `here::here()`, e a classe do arquivo é `tibble`. Devemos atentar para o argumento `locale = readr::locale(encoding = "latin1"`, que selecionamos aqui como `latin1` para corrigir um erro do autor dos dados que publicou esse data paper com erros...
+Para exemplificar como essas funções funcionam, vamos importar novamente os dados de comunidades de anfíbios da Mata Atlântica [@vancine2018], que fizemos o download no Capítulo \@ref(cap4). Estamos usando a função `readr::read_csv()`, indicando os diretórios com a função `here::here()`, e a classe do arquivo é `tibble`. Devemos atentar para o argumento `locale = readr::locale(encoding = "latin1"`, que selecionamos aqui como `latin1` para corrigir um erro do autor dos dados que publicou esse data paper com erros...
 
 ```{r message=TRUE}
 ## Importar locais
