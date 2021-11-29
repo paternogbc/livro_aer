@@ -15,7 +15,7 @@ O objetivo desta seção é apresentar os aspectos básicos da linguagem R para 
 
 Todo processo de aprendizagem torna-se mais efetivo quando a teoria é combinada com a prática, então recomendamos fortemente que você leitor(a) acompanhe os códigos e exercícios deste livro, ao mesmo tempo que os executa em seu computador e não só os leia passivamente. Além disso, se você tiver seus próprios dados é muito importante tentar executar e replicar as análises e/ou gráficos. Por motivos de espaço, não abordaremos todas as questões relacionadas ao uso da linguagem R nesta seção. Logo, aconselhamos que você consulte o material sugerido no final desta seção para se aprofundar.
 
-Este capítulo, na maioria das vezes, pode desestimular as pessoas que estão iniciando, uma vez que o mesmo não apresenta os códigos para realizar as análises estatísticas. Contudo, ele é essencial para o entendimento e interpretação do que está sendo informado nas linhas de código, além de facilitar a manipulação dos dados antes de realizar as análises estatísticas. Você perceberá que não usará este capítulo para fazer as análises, mas voltará neste capítulo diversas vezes para relembrar qual é o código ou que significa determinada expressão ou objeto usados nos próximos capítulos.
+Este capítulo, na maioria das vezes, pode desestimular as pessoas que estão iniciando, uma vez que o mesmo não apresenta os códigos para realizar as análises estatísticas. Contudo, ele é essencial para o entendimento e interpretação do que está sendo informado nas linhas de código, além de facilitar a manipulação dos dados antes de realizar as análises estatísticas. Você perceberá que não usará este capítulo para fazer as análises, mas voltará neste capítulo diversas vezes para relembrar qual é o código ou o que significa determinada expressão ou objeto usados nos próximos capítulos.
 
 ## R e RStudio
 
@@ -25,7 +25,7 @@ No final dos anos 1990, Robert Gentleman e Ross Ihaka (ambos da Universidade de 
 
 Um aspecto digno de nota é que a linguagem R é uma linguagem de programação interpretada, ao contrário de outras linguagens como Fortran e C que são compiladas. Isso a faz ser mais fácil de ser utilizada, pois processa linhas de código e as transforma em linguagem de máquina (código binário que o computador efetivamente lê), apesar desse fato diminuir a velocidade de processamento.
 
-Para começarmos a trabalhar com o R é necessário baixá-lo na página do **R Project**. Então, acesse esse [site](http://www.r-project.org), e em seguida, clique no link download R, que o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Os detalhes de instalação são apresentados no \@ref[cap1]. Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
+Para começarmos a trabalhar com o R é necessário baixá-lo na página do **R Project**. Então, acesse esse [site](http://www.r-project.org), e em seguida, clique no link download R, que o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Os detalhes de instalação são apresentados no \@ref(cap2). Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
 
 Como o R é um software livre, não existe a possibilidade de o usuário entrar em contato com um serviço de suporte de usuários, muito comuns em softwares pagos. Ao invés disso, existem várias listas de emails que fornecem suporte à [comunidade de usuários](http://www.r-project.org/mail.html). Nós, particularmente, recomendamos o ingresso nas seguintes listas: R-help, R-sig-ecology, e [R-br](http://www.leg.ufpr.br/doku.php/software:rbr). Este último reúne um grupo de pessoas usuárias brasileiras do programa R.
 
@@ -629,7 +629,7 @@ decostand(dune[1:6, 1:6], "hell")
 
 **5. Usar o nome da função de forma errônea**
 
-Esse erro não é tão comum, mas pode ser incômodo às vezes. Algumas funções possuem nomes no padrão "Camel Case", i.e., com letras maiúsculas no meio do nome da função. Isso às vezes pode confundir, ou ainda, as funções podem ou não ser separadas com `.`, como `row.names()` e `rownames()`. No Capítulo de *tidyverse* \@ref(cap5), veremos que houve uma tentativa de padronização nos nomes das funções para "Snake Case", i.e, todas as funções possuem letras minúsculas, com palavras separadas por *underscore* `_`.
+Esse erro não é tão comum, mas pode ser incômodo às vezes. Algumas funções possuem nomes no padrão "Camel Case", i.e., com letras maiúsculas no meio do nome da função. Isso às vezes pode confundir, ou ainda, as funções podem ou não ser separadas com `.`, como `row.names()` e `rownames()`. No Capítulo \@ref(cap5) sobre *tidyverse*, veremos que houve uma tentativa de padronização nos nomes das funções para "Snake Case", i.e, todas as funções possuem letras minúsculas, com palavras separadas por *underscore* `_`.
 
 ```{r error=TRUE}
 ## Soma das colunas
@@ -827,7 +827,7 @@ as.numeric(repeticao)
 
 O fator representa medidas de uma variável categórica, podendo ser nominal ou ordinal. É fundamental destacar que fatores no R devem ser entendidos como um vetor de **integer**, i.e., ele é composto por números inteiros representando os níveis da variável categórica.
 
-Para criar um fator no R usamos uma função específica `factor()`, na qual podemos especificar os **níveis** com o argumento `level`, ou fazemos uma conversão usando a função `as.factor()`. Trabalhar com fatores no *R Base* não é das tarefas mais agradáveis, sendo assim, no Capítulo \@ref(cap05) usamos a versão *tidyverse* usando o pacote `forcats`.
+Para criar um fator no R usamos uma função específica `factor()`, na qual podemos especificar os **níveis** com o argumento `level`, ou fazemos uma conversão usando a função `as.factor()`. Trabalhar com fatores no *R Base* não é das tarefas mais agradáveis, sendo assim, no Capítulo \@ref(cap5) usamos a versão *tidyverse* usando o pacote `forcats`.
 
 ```{r}
 ## Fator nominal
@@ -1331,7 +1331,7 @@ install.packages("openxlsx")
 library(openxlsx)
 ```
 
-Para exemplificar como importar dados vamos usar os dados de comunidades de anfíbios da Mata Atlântica (Atlantic Amphibians, @vancine2018). Faremos o download diretamente do site da fonte dos dados.
+Para exemplificar como importar dados vamos usar os dados de comunidades de anfíbios da Mata Atlântica [@vancine2018]. Faremos o download diretamente do site da fonte dos dados.
 
 Vamos antes escolher um diretório de trabalho com a função `setwd()`, e em seguida criar um diretório com a função `dir.create()` chamado "dados". Em seguida, vamos mudar nosso diretório para essa pasta e criar mais um diretório chamado "tabelas", e por fim, definir esse diretório para que o conteúdo do download seja armazenado ali.
 
