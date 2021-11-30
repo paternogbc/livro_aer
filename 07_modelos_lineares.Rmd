@@ -897,34 +897,8 @@ anova(Modelo2)
 
 Percebam que o resultado da ANOVA (Pr(\>F) \< 0.001) indica que devemos rejeitar a hipótese nula de que não há diferença entre as médias dos sistema XY e idade dos pacientes. Neste caso, não precisamos realizar testes de comparações múltiplas *post-hoc* porque os fatores apresentam apenas dois níveis. Contudo, se no seu delineamento experimental um dos fatores apresentar três ou mais níveis, você deverá utilizar os testes de comparações *post-hoc* para determinar as diferenças entre os grupos.
 
-**Interpretação dos resultados**
 
-Neste exemplo, o sistema XY de determinação do sexo e a idade dos pacientes têm um efeito no tempo de eliminação da droga do organismo. Os pacientes XX e jovens apresentaram eliminação mais rápida da droga do que pacientes XY e idosos.
-
-<p>
-
- 
-
-</p>
-
-#### Exemplo prático 2 - ANOVA com dois fatores com efeito da interação
-
-**Explicação dos dados**
-
-Neste exemplo, usaremos os mesmos dados do exemplo anterior. Neste caso, alteramos os dados para que a interação seja significativa.
-
-```{r}
-head(dados_dois_fatores_interacao)
-
-## Análise ANOVA com dois fatores 
-Modelo_interacao1 <- aov(Tempo ~ Pessoas * Idade, 
-                         data = dados_dois_fatores_interacao) 
-
-## Olhando os resultados
-anova(Modelo_interacao1)
-```
-
-Percebam que a interação é significativa (P \< 0.05). Agora nossa interpretação precisa ser baseada na interação entre os fatores. Vamos visualizar os resultados em gráfico.
+Vamos visualizar os resultados em gráfico.
 
 ```{r}
 ## Gráfico
@@ -949,7 +923,7 @@ ggplot(data = dados_dois_fatores_interacao, aes(y = Tempo, x = Pessoas,
 
 **Interpretação dos resultados**
 
-Percebam que para saber a resposta do fator idade (jovem ou idoso) na eliminação da droga, você precisa saber com qual pessoa (XX ou XY) ele está associado. Isso porque a resposta de um fator, depende do outro fator. Jovens eliminam a droga do corpo mais rápido nas pessoas XY, enquanto os idosos eliminam a droga mais rápido nas pessoas XX.
+Neste exemplo, o sistema XY de determinação do sexo e a idade dos pacientes têm um efeito no tempo de eliminação da droga do organismo. Os pacientes XX e jovens apresentaram eliminação mais rápida da droga do que pacientes XY e idosos.
 
 <p>
 
@@ -957,7 +931,8 @@ Percebam que para saber a resposta do fator idade (jovem ou idoso) na eliminaç�
 
 </p>
 
-#### Exemplo prático 3 - ANOVA com dois fatores com efeito da interação
+
+#### Exemplo prático 2 - ANOVA com dois fatores com efeito da interação
 
 **Explicação dos dados**
 
@@ -1009,7 +984,7 @@ Percebam que as linhas se cruzam. Esse é um exemplo clássico de interação. N
 
 ## ANOVA em blocos aleatorizados
 
-No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco [@gotelli_primer_2012]. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse. Importante, os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.
+No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco [@gotelli_primer_2013]. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse. Importante, os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.
 
 <p>
 
@@ -1021,7 +996,7 @@ No delineamento experimental com blocos aleatorizados, cada fator é agrupado em
 
 **Explicação dos dados**
 
-Neste exemplo, avaliaremos a riqueza de espécies de anuros amostradas em poças artificiais instaladas a diferentes distâncias de seis fragmentos florestais no sudeste do Brasil [@daSilva2011]. Os fragmentos florestais apresentam diferenças entre si que não são do interesse do pesquisador. Por isso, eles foram incluídos como blocos nas análises. As poças artificiais foram instaladas em todos os fragmentos florestais com base no seguinte delineamento experimental [@daSilva2011]: i) quatro poças no interior do fragmento a 100 m de distância da borda do fragmento; ii) quatro poças no interior no fragmento a 50 m de distância da borda do fragmento; iii) quatro poças na borda do fragmento; iv) quatro poças na matriz de pastagem a 50 m de distância da borda do fragmento; e v) quatro poças na matriz de pastagem a 100 m de distância da borda do fragmento. Percebam que todos os tratamentos foram instalados em todos os blocos.
+Neste exemplo, avaliaremos a riqueza de espécies de anuros amostradas em poças artificiais instaladas a diferentes distâncias de seis fragmentos florestais no sudeste do Brasil [@daSilva2011]. Os fragmentos florestais apresentam diferenças entre si que não são do interesse do pesquisador. Por isso, eles foram incluídos como blocos nas análises. As poças artificiais foram instaladas em todos os fragmentos florestais com base no seguinte delineamento experimental [@daSilva2011]: i) quatro poças no interior do fragmento a 100 m de distância da borda do fragmento; ii) quatro poças no interior no fragmento a 50 m de distância da borda do fragmento; iii) quatro poças na borda do fragmento; iv) quatro poças na matriz de pastagem a 50 m de distância da borda do fragmento; e v) quatro poças na matriz de pastagem a 100 m de distância da borda do fragmento. Percebam que todos os tratamentos foram instalados em todos os blocos. **Obs.** Os valores da riqueza de espécies foram alterados em relação a publicação original [@daSilva2011] para deixar o exemplo mais didático.  
 
 **Pergunta:**
 
@@ -1060,7 +1035,7 @@ model_bloco2 <- aov(Riqueza ~ Pocas + Error(Blocos), data = dados_bloco)
 summary(model_bloco2)
 ```
 
-Percebam que as duas formas apresentam os mesmos resultados para o efeito \#' da distância das poças que é o fator de interesse no estudo. Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
+Percebam que as duas formas apresentam os mesmos resultados para o efeito da distância das poças que é o fator de interesse no estudo. Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
 
 O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a forma errada de analisar delineamento experimental com blocos.
 
@@ -1108,7 +1083,7 @@ Neste exemplo, rejeitamos a hipótese nula de que a distância das poças artifi
 
 ## Análise de covariância (ANCOVA)
 
-A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de variável contínua (covariável) medida em todas as unidades amostrais [@gotelli_primer_2012]. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo concentre-se nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor, e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.
+A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de variável contínua (covariável) medida em todas as unidades amostrais [@gotelli_primer_2013]. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo concentre-se nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor, e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.
 
 <p>
 
@@ -1204,5 +1179,5 @@ Neste exemplo, o tamanho da raiz (covariável) tem uma relação positiva com a 
 
 ### Para se aprofundar
 
--   Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis; ii) Gotelli & Ellison [-@gotelli_primer_2012] A primer of ecological statistics; e iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists.
+-   Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis; ii) Gotelli & Ellison [-@gotelli_primer_2013] A primer of ecological statistics; e iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists.
 
