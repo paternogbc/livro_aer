@@ -32,7 +32,7 @@ dados_ancova <- ecodados::ancova
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-Estatísticas frequentistas como as que serão abordadas neste capítulo são baseadas em testes estatísticos (e.g. F, t, 𝛘^2^, etc...), que são resultados númericos do teste, e um valor de probabilidade (valor de P) que é associado com o teste estatístico [@gotelli_primer_2013]. **O valor de P** mede a probabilidade que os valores observados ou mais extremos seriam encontrados caso a hipótese nula seja verdadeira (veja \@ref(cap3)). Ao longo do livro usaremos o critério convencional de rejeitar a hipótese nula quando P \< 0.05. Contudo, sugerimos a leitura destes artigos [@white2013; @barber2014; @burnham2014; @murtaugh2014; @halsey2019a] que discutemas limitações e problemas associados ao valor de P .
+Estatísticas frequentistas como as que serão abordadas neste capítulo são baseadas em testes estatísticos (e.g. F, t, 𝛘^2^, etc...), que são resultados númericos do teste, e um valor de probabilidade (valor de P) que é associado com o teste estatístico [@gotelli_primer_2013]. **O valor de P** mede a probabilidade que os valores observados ou mais extremos seriam encontrados caso a hipótese nula seja verdadeira (veja \@ref(cap3)). Ao longo do livro usaremos o critério convencional de rejeitar a hipótese nula quando P \< 0.05. Contudo, sugerimos a leitura destes artigos [@white2013; @barber2014; @burnham_pvalues_2014; @murtaugh2014; @halsey_reign_2019; @MUFF2021] que discutem as limitações e problemas associados ao valor de P .
 :::
 
 ## Teste T (de Student) para duas amostras independentes
@@ -58,7 +58,7 @@ Onde:
 
 > #### Avaliação das premissas:
 >
-> Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura 1) [@zuur_protocol_2009]. A homegeneidade da variância utiliza um gráfico dos resíduos pelos valores preditos (Figura 1A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figure 1B).
+> Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura 1) [@zuur_protocol_2009]. A homegeneidade da variância utiliza um gráfico dos resíduos pelos valores preditos (Figura 1A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura 1B).
 
 ![Inspeção gráfica da homogeneidade da variância (A) e normalidade (B) dos resíduos. Os símbolos verdes indicam que os gráficos em que os resíduos apresentam distribuição homogênea e normal, enquanto os símbolos vermelhos indicam os gráficos em que os resíduos violam as premissas do teste.](QQ-plot.jpg)
 
@@ -136,9 +136,9 @@ Teste de Levene para homogeneidade de variância.
 leveneTest(CRC ~ Estacao, data = CRC_PN_macho)
 ```
 
-Percebam que a distribuição dos resíduos foi normal e homogênea na inspeção gráfica, assim como nos testes de Shapiro e Levene, respectivamente. Agora podemos realizar a análise sabendo que os dados seguem as premissas requeridas pelo test T.
+Percebam que a distribuição dos resíduos foi normal e homogênea na inspeção gráfica, assim como nos testes de Shapiro e Levene, respectivamente. Agora podemos realizar a análise sabendo que os dados seguem as premissas requeridas pelo Teste T.
 
-Vamos para os comandos da análise do Teste T amostrans indenpendentes e variâncias iguais.
+Vamos para os comandos da análise do Teste T amostragens indenpendentes e variâncias iguais.
 
 ```{r}
 ## Análise Teste T 
@@ -219,7 +219,7 @@ Os resíduos apresentam distribuição normal. Agora vamos avaliar a homogeneida
 leveneTest(CRC ~ Estacao, data = CRC_LP_femea)
 ```
 
-Os resíduos não apresentam distribuição homogênea. Portanto, vamos realizazr o teste T com variâncias diferentes. Para isso, use o argumento `var.equal = FALSE`
+Os resíduos não apresentam distribuição homogênea. Portanto, vamos realizar o Teste T com variâncias diferentes. Para isso, use o argumento `var.equal = FALSE`
 
 ```{r}
 t.test(CRC ~ Estacao, data = CRC_LP_femea, var.equal = FALSE)
@@ -278,7 +278,7 @@ Onde:
 
 **Explicação dos dados**
 
-Neste exemplo avaliaremos a diferença na riqueza de espécies de artrópodes registradas em 27 localidades. Todas as localidades foram amostradas duas vezes. A primeira amostragem foi realizada na localidade antes da pertubação e a segunda amostragem foi realizada após a localidade ter sofrido uma queimada. Portanto, existe uma dependência temporal uma vez que amostramos a mesma localidade antes e depois da queimada.
+Neste exemplo avaliaremos a diferença na riqueza de espécies de artrópodes registradas em 27 localidades. Todas as localidades foram amostradas duas vezes. A primeira amostragem foi realizada na localidade antes da perturbação e a segunda amostragem foi realizada após a localidade ter sofrido uma queimada. Portanto, existe uma dependência temporal uma vez que amostramos a mesma localidade antes e depois da queimada.
 
 **Pergunta:**
 
@@ -392,18 +392,16 @@ Neste exemplo, avaliaremos a correlação entre a altura do tronco e o tamanho d
 
 **Análise**
 
-Vamos plhar os dados com a função `head.`
+Vamos olhar os dados com a função `head.`
 
 ```{r}
 head(correlacao_arbustos) 
 ```
 
-Cálculo do Teste de Correlação de Pearson. Para outros testes de correlação como Kendall ou Spearman é só alterar na
-
-\# linha de comando a opção \*method\* e inserir o teste desejado.
+Cálculo do Teste de Correlação de Pearson. Para outros testes de correlação como Kendall ou Spearman é só alterar na linha de comando a opção `method` e inserir o teste desejado.
 
 ```{r}
-## Correção de Person
+## Correlação de Pearson
 cor.test(correlacao_arbustos$Tamanho_raiz, correlacao_arbustos$Tamanho_tronco,
          method = "pearson")
 ```
@@ -698,11 +696,11 @@ Neste exemplo, a precipitação não está associada com a variação no tamanho
 
 ## Análises de Variância (ANOVA)
 
-ANOVA refere-se a uma variedade de delineamentos experimentais nos quais a variável preditora é categórica e a variável resposta é contínua [@gotelli_primer_2012]. Exemplos desses delineamentos experimentais são: ANOVA de um fator, ANOVA de dois fatores, ANOVA em blocos aleatorizados, ANOVA de medidas repetidas e ANOVA *split-splot*. De forma geral, a ANOVA é um teste estatístico usado para comparar a média entre grupos amostrados independentemente. Para isso, o teste leva em conta, além das médias dos grupos, a variação dos dados dentro e entre os grupos. Neste capítulo, iremos demonstrar as linhas de comandos para alguns dos principais delineamentos experimentais.
+ANOVA refere-se a uma variedade de delineamentos experimentais nos quais a variável preditora é categórica e a variável resposta é contínua [@gotelli_primer_2013]. Exemplos desses delineamentos experimentais são: ANOVA de um fator, ANOVA de dois fatores, ANOVA em blocos aleatorizados, ANOVA de medidas repetidas e ANOVA *split-splot*. De forma geral, a ANOVA é um teste estatístico usado para comparar a média entre grupos amostrados independentemente. Para isso, o teste leva em conta, além das médias dos grupos, a variação dos dados dentro e entre os grupos. Neste capítulo, iremos demonstrar as linhas de comandos para alguns dos principais delineamentos experimentais.
 
 > #### Premissas da ANOVA:
 >
-> -   As amostras devem ser independentes. **Observação:** ANOVA de medidas repetidas e ANOVA *split-plot* são designs experimentais que apresentam dependência entre as amostras, mas controlam esse depedência nas suas formulações matemátcas;
+> -   As amostras devem ser independentes. **Observação:** ANOVA de medidas repetidas e ANOVA *split-plot* são designs experimentais que apresentam dependência entre as amostras, mas controlam esse depedência nas suas formulações matemáticas;
 > -   As unidades amostrais são selecionadas aleatoriamente;
 > -   Distribuição normal (gaussiana) dos resíduos;
 > -   Homogeneidade da variância.
@@ -890,7 +888,7 @@ plot(Modelo2)
 dev.off()
 ```
 
-Dois pontos estão fugindo da reta e chamam atenção sobre a normalidade da distribuição dos resíduos. A homogeneidade da variância está adequada. Por enquanto, vamos seguir a análise, mas veja o \@ref(Cap8) para entender como lidar como modelos que os resíduos não apresentam distribuição normal.
+Dois pontos estão fugindo da reta e chamam atenção sobre a normalidade da distribuição dos resíduos. A homogeneidade da variância está adequada. Por enquanto, vamos seguir a análise, mas veja o Capítulo \@ref(cap8) para entender como lidar com modelos que os resíduos não apresentam distribuição normal.
 
 ```{r}
 # Resultados do modelo
@@ -898,8 +896,6 @@ anova(Modelo2)
 ```
 
 Percebam que o resultado da ANOVA (Pr(\>F) \< 0.001) indica que devemos rejeitar a hipótese nula de que não há diferença entre as médias dos sistema XY e idade dos pacientes. Neste caso, não precisamos realizar testes de comparações múltiplas *post-hoc* porque os fatores apresentam apenas dois níveis. Contudo, se no seu delineamento experimental um dos fatores apresentar três ou mais níveis, você deverá utilizar os testes de comparações *post-hoc* para determinar as diferenças entre os grupos.
-
-Visualizar os resultados em gráfico.
 
 **Interpretação dos resultados**
 
@@ -940,7 +936,7 @@ ggplot(data = dados_dois_fatores_interacao, aes(y = Tempo, x = Pessoas,
                position = position_dodge(0.7), size  = 4) +
   geom_link(aes(x = 0.8, y = 31, xend = 1.8, yend = 40), color = "darkorange", 
             lwd  = 1.3, linetype = 2) + 
-  geom_link(aes(x = 1.2, y = 28.5, xend = 2.2, yend = 26.5), 
+  geom_link(aes(x = 1.2, y = 19, xend = 2.2, yend = 26.5), 
             color = "cyan4", 
             lwd  = 1.3, linetype = 2) + 
   labs(x = "Sistema XY de determinação do sexo", 
