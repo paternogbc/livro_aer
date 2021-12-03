@@ -131,7 +131,7 @@ As opções são:
 -  **random** que insere a espécie aleatoriamente dentro do clado do MRCA contendo todos as espécies do gênero.
 :::
 
-```{r}
+```{r message = FALSE}
 # Vamos inserir as espécies Megascops_sp1, Carponis_sp, Strix_sp1, Strix_sp2 e
 # Strix_sp3 na filogenia
 Megascops <- c("Megascops_sp1")
@@ -142,12 +142,11 @@ Strix <- c("Strix_sp1", "Strix_sp2", "Strix_sp3")
 filogenia_nova <- add.species.to.genus(force.ultrametric(minha_arvore), Megascops)
 filogenia_nova <- add.species.to.genus(force.ultrametric(filogenia_nova), 
                                        Carpornis)
-
 ```
 
 Agora vamos inserir várias espécies dentro do mesmo gênero.
 
-```{r}
+```{r message = FALSE}
 # Para inserir mais de uma espécie dentro do gênero, vamos utilizar um loop.  
 for(i in 1:length(Strix)) 
 filogenia_nova <- add.species.to.genus(force.ultrametric(filogenia_nova),
