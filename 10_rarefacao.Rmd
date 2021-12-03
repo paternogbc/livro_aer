@@ -28,7 +28,7 @@ dados_amostras <-   ecodados::morcegos_rarefacao_amostras
 
 ## Aspectos teóricos
 
-Uma das grandes dificuldades na comparação da riqueza de espécies entre comunidades é decorrente da diferença no esforço amostral (e.g. diferença no número de indivíduos, discrepância na quantidade de unidades amostrais ou área amostrada) que inevitavelmente influenciará no número de espécies observadas [@gotelli2013; @roswell2021]. O método de rarefação nos permite comparar o número de espécies entre comunidades quando o tamanho da amostra (e.g. número de unidades amostrais), o esforço amostral (e.g. tempo de amostragem) ou a abundância de indivíduos não são iguais. A rarefação calcula o número esperado de espécies em cada comunidade tendo como base comparativa um valor em que todas as amostras atinjam um tamanho padrão. Gotelli & Colwell [-@gotelli2001] descrevem dois tipos de curvas de rarefação: i) baseada em indivíduos (*individual-based*) - as comparações são feitas considerando a abundância da comunidade padronizada pelo menor número de indivíduos; e ii) baseada na amostra (*sampled-based*) - as comparações são padronizadas pela comunidade com menor número de amostragens.
+Uma das grandes dificuldades na comparação da riqueza de espécies entre comunidades é decorrente da diferença no esforço amostral (e.g. diferença no número de indivíduos, discrepância na quantidade de unidades amostrais ou área amostrada) que inevitavelmente influenciará no número de espécies observadas [@gotelli_primer_2013; @roswell2021]. O método de rarefação nos permite comparar o número de espécies entre comunidades quando o tamanho da amostra (e.g. número de unidades amostrais), o esforço amostral (e.g. tempo de amostragem) ou a abundância de indivíduos não são iguais. A rarefação calcula o número esperado de espécies em cada comunidade tendo como base comparativa um valor em que todas as amostras atinjam um tamanho padrão. Gotelli & Colwell [-@gotelli2001] descrevem dois tipos de curvas de rarefação: i) baseada em indivíduos (*individual-based*) - as comparações são feitas considerando a abundância da comunidade padronizada pelo menor número de indivíduos; e ii) baseada na amostra (*sampled-based*) - as comparações são padronizadas pela comunidade com menor número de amostragens.
 
 O método foi formulado considerando a seguinte pergunta: Se considerarmos *n* indivíduos ou amostras (*n* \< N) para cada comunidade, quantas espécies registraríamos nas comunidades considerando o mesmo número de indivíduos ou amostras?
 
@@ -77,7 +77,7 @@ Vamos olhar os dados usando a função `head`
 head(dados_rarefacao)
 ```
 
-Usaremos as funções do pacote iNEXT (iNterpolation e EXTrapolation) para o cálculo da rarefação. Esta função permite estimar a riqueza de espécies utilizando a família *Hill-numbers* (Hill 1973; explicação dos conceitos da família *Hill-numbers* está detalhada no \@[cap12]). O argumento q refere-se a família Hill-numbers onde: 0 = riqueza de espécies; 1 = diversidade de Shannon; e 2 = diversidade de Simpson.
+Usaremos as funções do pacote `iNEXT` (iNterpolation e EXTrapolation) para o cálculo da rarefação. Esta função permite estimar a riqueza de espécies utilizando a família *Hill-numbers* (Hill 1973; explicação dos conceitos da família *Hill-numbers* está detalhada no Capítulo \@ref(cap12). O argumento `q` refere-se a família Hill-numbers onde: 0 = riqueza de espécies; 1 = diversidade de Shannon; e 2 = diversidade de Simpson.
 
 ```{r}
 # Datatype refere-se ao tipo de dados que você vai analisar (e.g. abundância, 
