@@ -57,7 +57,7 @@ Se Y é uma variável contínua, a sua distribuição de probabilidade deve ser 
 
 Se Y é binário (e.g., vivo ou morto), a distribuição de probabilidade deve ser **binomial**.
 
-Se Y é uma contagem (e.g., abundância ou riqueza de espécies), então a distribuição de probabilidade deve ser **Poisson ou Binomial Negativa**. Existem também correções dessas distribuições quando apresentam sobredispersão, tais como quasi-Poisson ou quasi-Negative binomial. Falaremos delas no momento certo.
+Se Y é uma contagem (e.g., abundância ou riqueza de espécies), então a distribuição de probabilidade deve ser **Poisson ou Binomial Negativa**. Existem também correções dessas distribuições quando apresentam sobredispersão (*overdispersion*), tais como quasi-Poisson ou quasi-Negative binomial. Falaremos delas no momento certo.
 
 Para distribuições tais como binomial e Poisson, a variância deve ser igual à media e o parâmetro de dispersão é sempre 1. Na maioria dos dados ecológicos esse pressuposto não é cumprido, veremos estratégias para lidar com isso logo à frente.
 
@@ -131,9 +131,9 @@ Iremos realizar três diagnoses básicas dos GLMs, avaliando diferentes aspectos
 
 1.  Heterogeneidade da variância e normalidade dos resíduos
 
-2.  Overdispersion
+2.  Sobredispersão (*Overdispersion*)
 
-3.  Zero-inflation
+3.  Inflação de zeros (*Zero-inflation*)
 
 Vamos começar avaliando as heterogeneidade da variância e normalidade dos resíduos:
 
@@ -148,7 +148,7 @@ Aqui vemos quatro gráficos. Na primeira coluna temos dois gráficos dos valores
 
 ##### Diagnose avançada
 
-Alguns pacotes permitem calcular outros aspectos do modelo que facilitam a diagnose, ou seja, se podemos de fato confiar nos parâmetros estimados por eles, incluindo valores de significância. Um pressuposto importante dos modelos de contagem (incluindo Poisson) é a overdispersion (sobredispersão).
+Alguns pacotes permitem calcular outros aspectos do modelo que facilitam a diagnose, ou seja, se podemos de fato confiar nos parâmetros estimados por eles, incluindo valores de significância. Um pressuposto importante dos modelos de contagem (incluindo Poisson) é a *overdispersion*.
 
 Vejamos como o pacote `DHARMa` funciona:
 
@@ -156,45 +156,45 @@ Vejamos como o pacote `DHARMa` funciona:
 simulationOutput <- simulateResiduals(fittedModel = mod_pois, plot = TRUE)
 ```
 
-O plot claramente indica que há problema com overdispersion, mas não em termos de desvios de normalidade (KS test) ou outlier, já que apenas o primeiro foi significativo (aparece em vermelho).
+O plot claramente indica que há problema com *overdispersion*, mas não em termos de desvios de normalidade (KS test) ou outlier, já que apenas o primeiro foi significativo (aparece em vermelho).
 
 ##### Detectando e lidando com overdispersion
 
-O que é sobredispersão (ou overdispersion)? Ela ocorre quando a variância observada é muito maior do que aquela predita pelo modelo. Para modelos que utilizam a distribuição de Poisson, isso ocorre quando a variância aumenta com a média. Lembre-se de que esta distribuição tem apenas um único parâmetro para descrever tanto a média quanto a variância ($\lambda$). Portanto, a variância tem de ser igual à média. No entanto, se a variância nos dados observados for muito maior do que a média, dizemos que há sobredispersão nos dados.
+O que é sobredispersão (*overdispersion*)? Ela ocorre quando a variância observada é muito maior do que aquela predita pelo modelo. Para modelos que utilizam a distribuição de Poisson, isso ocorre quando a variância aumenta com a média. Lembre-se de que esta distribuição tem apenas um único parâmetro para descrever tanto a média quanto a variância ($\lambda$). Portanto, a variância tem de ser igual à média. No entanto, se a variância nos dados observados for muito maior do que a média, dizemos que há sobredispersão nos dados.
 
-Existem duas formas de diagnosticar overdispersion que estão implementadas na maioria dos pacotes. Aqui vamos demonstrá-las usando as funções `check_overdispersion` e `testDispersion` disponíveis nos pacotes `performance` e `DHARMa`, respectivamente.
+Existem duas formas de diagnosticar *overdispersion* que estão implementadas na maioria dos pacotes. Aqui vamos demonstrá-las usando as funções `check_overdispersion` e `testDispersion` disponíveis nos pacotes `performance` e `DHARMa`, respectivamente.
 
-A função `testDispersion` do `DHARMa` utiliza um método de aleatorização dos resíduos para determinar se há overdispersion nos dados, cuja vantagem é que aborda diretamente a variação nos dados, ao invés de medir o ajuste do modelo em si, com outros testes.
+A função `testDispersion` do `DHARMa` utiliza um método de aleatorização dos resíduos para determinar se há *overdispersion* nos dados, cuja vantagem é que aborda diretamente a variação nos dados, ao invés de medir o ajuste do modelo em si, com outros testes.
 
 ```{r}
 par(mfrow=c(1,1))
 testDispersion(mod_pois)#modelo tem overdispersion
 ```
 
-Aqui temos um gráfico e o resultado novamente do teste de overdispersion (que já aparecia no gráfico anterior) mostrando que de fato há overdispersion: perceba que o valor de *P* é significativo. O gráfico nos motra em preto a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica overdispersion, se estivese à esquerda seria o caso de underdispersion.
+Aqui temos um gráfico e o resultado novamente do teste de *overdispersion* (que já aparecia no gráfico anterior) mostrando que de fato há *overdispersion*: perceba que o valor de *P* é significativo. O gráfico nos mostra em preto a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica *overdispersion*, se estivese à esquerda seria o caso de *underdispersion*.
 
-Agora vamos utilizar a função `check_overdisperion` que utiliza uma distribuição qui-quadradado e o valor de *dispersion ratio* para testar a presença de overdispersion no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento `type="PearsonChisq"`
+Agora vamos utilizar a função `check_overdisperion` que utiliza uma distribuição qui-quadradado e o valor de *dispersion ratio* para testar a presença de *overdispersion* no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento `type="PearsonChisq"`
 
 ```{r}
 check_overdispersion(mod_pois)#modelo tem overdispersion
 ```
 
-Quando este resultado é significativo, como vimos na última linha acima, isso indica overdispersion.
+Quando este resultado é significativo, como vimos na última linha acima, isso indica *overdispersion*.
 
 ```{r}
 summary(mod_pois)
 ```
 
-Na parte de baixo do output da função `summary` também podemos calcular o *dispersion parameter* dividindo o *residual deviance* pelos graus de liberdade dos resíduos. Esta é outra maneira fácil e rápida de detectar overdispersion. Neste exemplo temos que Dispersion parameter = `r (chat <- deviance(mod_pois) / df.residual(mod_pois))`. Quando esse valor é próximo de 1 isso sugere que não há overdispersion. No entanto, se ele for maior que 1.5 isso sugere que o modelo sofre de overdispersion e que devemos usar outra distribuição, tal como a distribuição binomial negativa.
+Na parte de baixo do output da função `summary` também podemos calcular o *dispersion parameter* dividindo o *residual deviance* pelos graus de liberdade dos resíduos. Esta é outra maneira fácil e rápida de detectar *overdispersion*. Neste exemplo temos que *Dispersion parameter* = `r (chat <- deviance(mod_pois) / df.residual(mod_pois))`. Quando esse valor é próximo de 1 isso sugere que não há *overdispersion*. No entanto, se ele for maior que 1.5 isso sugere que o modelo sofre de *overdispersion* e que devemos usar outra distribuição, tal como a distribuição binomial negativa.
 
-Além disso, uma outra forma de diagnosticar o modelo podemos é calcular os resíduos de Pearson (resíduos normalizados), que é basicamente a raiz quadrada da variância da variável resposta.
+Além disso, uma outra forma de diagnosticar o modelo é calcular os resíduos de Pearson (resíduos normalizados), que é basicamente a raiz quadrada da variância da variável resposta.
 
 ##### Inflação de zeros
 
 Qualquer das formas mostradas acima de diagnosticar overdispersion pode ser usada na maioria das vezes, com exceção de dados com muitos zeros (pouca variância). Por isso devemos também testar se o nosso modelo sofre de inflação de zeros. Vejamos como isso funciona usando as funções `check_zeroinflation` no pacote `performanace` e `testZeroInflation` no pacote `DHARMa`:
 
 ```{r}
-check_zeroinflation(mod_pois)#para diagnosticar se o modelo sofre de zero inflation
+check_zeroinflation(mod_pois) # para diagnosticar se o modelo sofre de zero inflation
 ```
 
 e no `DHARMa`
@@ -203,13 +203,13 @@ e no `DHARMa`
 testZeroInflation(mod_pois) # para testar se existe zero inflation
 ```
 
-Tanto a função do `DHARMa` quanto do `performance` conseguiram detectar que o modelo tem problemas com overdispersion, ou sobre dispersão, mas isso não é causado pelo excesso de zeros. Como já dissemos acima, no caso da distribuição Poisson, tanto a média quanto a variância são modeladas pelo mesmo parâmetro ($\lambda$). Isso faz com que esta distribuição não seja muito útil para modelar dados de contagem em que haja muita variância em torno da média. Esse infelizmente é o caso da grande maioria dos dados ecológicos.
+Tanto a função do `DHARMa` quanto do `performance` conseguiram detectar que o modelo tem problemas com *overdispersion*, mas isso não é causado pelo excesso de zeros. Como já dissemos acima, no caso da distribuição Poisson, tanto a média quanto a variância são modeladas pelo mesmo parâmetro ($\lambda$). Isso faz com que esta distribuição não seja muito útil para modelar dados de contagem em que haja muita variância em torno da média. Esse infelizmente é o caso da grande maioria dos dados ecológicos.
 
 Por estes motivos não podemos fazer inferência com este modelo porque os parâmetros estimados não são confiáveis. Mas vejamos como seria feita essa inferência *caso este modelo fosse adequado*.
 
 ##### Inferência
 
-Aqui iremos apresentar várias funções para calcular o coeficiente de determinação (R^2^). No caso de GLM(M)s, não há um consenso sobre como se calcula este coeficiente, havendo várias propostas que utilizam maneiras diferentes de estimar a heterogeneidade de variância e covariância entre observações dos resíduos, veja [@nakagawa2017] e [@ives2015] para maiores detalhes, assim como o help das respectivas funções.
+Aqui iremos apresentar várias funções para calcular o coeficiente de determinação (R^2^). No caso de GLM(M)s, não há um consenso sobre como se calcula este coeficiente, havendo várias propostas que utilizam maneiras diferentes de estimar a heterogeneidade de variância e covariância entre observações dos resíduos, veja [@nakagawa2017] e [@ives2015] para maiores detalhes, assim como o *help* das respectivas funções.
 
 ```{r}
 ## Coeficientes estimados pelo modelo
@@ -240,39 +240,40 @@ Aqui vemos que há uma leve tendência na relação positiva entre distância pa
 Caso pudéssemos confiar nos parâmetros deste modelo poderíamos dizer que existe uma leve tendência a um aumento da riqueza observada de anfíbios anuros à medida que aumenta a distância da poça para o fragmento mais próximo. 
 :::
 
-### O que causa a overdispersion?
+### O que causa a *overdispersion*?
 
-Existem dois conjuntos de causas: aparente ou real. As causas aparentes são geradas pela *má especificação do modelo*, tais como:
+Existem dois conjuntos de causas: aparente ou real. 
 
-1\. não inclusão de covariáveis ou interações no modelo;
+> As causas aparentes são geradas pela *má especificação do modelo*, tais como:
+>
+> - 1. não inclusão de covariáveis ou interações no modelo;
 
-2.  presença de outliers na variável resposta, efeitos não lineares da covariável (X2, X3...);
+> - 2.  presença de outliers na variável resposta, efeitos não lineares da covariável (X2, X3...);
 
-3.  escolha errada da função de ligação (link function).
+> - 3.  escolha errada da função de ligação (link function).
 
-As causas reais incluem:
 
-1.  variância maior que a média;
+> As causas reais incluem:
+>
+> - 1.  variância maior que a média;
 
-2.  muitos zeros;
+> - 2.  muitos zeros;
 
-3.  agregação de observações;
+> - 3.  agregação de observações;
 
-4.  correlação entre observações (não independência).
+> - 4.  correlação entre observações (não independência).
 
-### O que fazer se seu modelo tiver overdispersion?
+### O que fazer se seu modelo tiver *overdispersion*?
 
 Depois de tentar corrigir possíveis más especificações, como as listadas acima, existem duas alternativas:
 
-1.  usar outra distribuição, tal como Binomial negativa caso o dispersion parameter seja maior que 15 ou 20; ou
+1.  usar outra distribuição, tal como Binomial negativa caso o *dispersion parameter* seja maior que 15 ou 20; ou
 
-2.  Usar um modelo com correção de erro da sobredispersão, caso 1.5 \< dispersion \> 15.
-
-Vejamos agora as características da distribuição Binomial negativa.
+2.  Usar um modelo com correção de erro da sobredispersão, caso 1.5 \< *dispersion* \> 15.
 
 Geralmente, dados de contagem em estudos ecológicos não seguem uma distribuição Poisson, pois há muita dispersão (variância) nos dados. Logo, o pressuposto da distribuição Poisson, i.e., de que a média e variância são descritas por um mesmo parâmetro ($\lambda$) é quebrado.
 
-Como vimos, overdispersion (ou sobredispersão) é um problema comum ao analisar dados ecológicos e deve necessariamente ser diagnosticado no modelo. Uma maneira de lidar com esse tipo de problema é utilizar uma outra distribuição diferente da Poisson. A binomial negativa pode ser entendida como uma mistura da distibuição Poisson e Gamma, ou seja, ela aceita dados de contagem que sejam positivos, mas sem zero. A grande vantagem desta distribuição é que, diferentemente da Poisson, ela tem um parâmetro para modelar a média ($\lambda$) e outro para modelar a variância (*k*). Logo, ela permite modelar dados em que a média é diferente da variância. Vejamos um exemplo.
+Como vimos, *overdispersion* é um problema comum ao analisar dados ecológicos e deve necessariamente ser diagnosticado no modelo. Uma maneira de lidar com esse tipo de problema é utilizar uma outra distribuição diferente da Poisson. A binomial negativa pode ser entendida como uma mistura da distibuição Poisson e Gamma, ou seja, ela aceita dados de contagem que sejam positivos, mas sem zero. A grande vantagem desta distribuição é que, diferentemente da Poisson, ela tem um parâmetro para modelar a média ($\lambda$) e outro para modelar a variância (*k*). Logo, ela permite modelar dados em que a média é diferente da variância. Vejamos um exemplo.
 
 Aqui vamos continuar com estes dados para ver como o modelo se comporta com essa nova distribuição especificada. Para isso vamos utilizar a função `glm.nb` do pacote `MASS`:
 
@@ -293,13 +294,13 @@ par(mfrow=c(1,1))
 (chat <- deviance(mod_nb) / df.residual(mod_nb))#DISPERSION PARAMETER
 ```
 
-Compare estes gráficos com os do modelo anterior com distribuição Poisson. Eles são praticamente idênticos, ou seja, o modelo com Poisson já não tinha heterogeneidade de variância nem problemas com normalidade dos resíduos. Agora vejamos se o problema com overdispersion foi resolvido:
+Compare estes gráficos com os do modelo anterior com distribuição Poisson. Eles são praticamente idênticos, ou seja, o modelo com Poisson já não tinha heterogeneidade de variância nem problemas com normalidade dos resíduos. Agora vejamos se o problema com *overdispersion* foi resolvido:
 
 ```{r}
 simulationOutput <- simulateResiduals(fittedModel = mod_nb, plot = TRUE)
 ```
 
-Na diagnose do modelo pelo `DHARMa` vemos que bastou mudar a distribuição de probabilidade que o problema de overdispersion foi resolvido (nenhum teste foi significativo no quadro da esquerda), e como já sabíamos, não há problemas com heterogeneidade de variância (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de outliers. O dispersion parameter é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R^2^ ...
+Na diagnose do modelo pelo `DHARMa` vemos que bastou mudar a distribuição de probabilidade que o problema de *overdispersion* foi resolvido (nenhum teste foi significativo no quadro da esquerda), e como já sabíamos, não há problemas com heterogeneidade de variância (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de outliers. O *dispersion parameter* é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R^2^ ...
 
 ##### Inferência
 
@@ -333,7 +334,7 @@ Aqui vemos que a reta predita pelo modelo é muito similar ao que tivemos com o 
 
 ## Dados de contagem: modelos quasi-likelihood
 
-Como dissemos acima, uma outra alternativa para ajustar modelos GLM a dados de contagem são os chamados "quasi-likelihood", tais como quasi-Poisson e quasi-binomial. Dependendo do valor do dispersion parameter, pode ser útil escolher este tipo de modelo. No entanto, eles vêm com uma desvantagem: não é possível calcular o valor de Akaike Information Criterion (AIC) porque estes modelos não retornam um valor de likelihood (verosimilhança). Este parâmetro é comumente utilizado em abordagens estatísticas de teoria da informação para selecionar o melhor modelo que se ajusta aos dados. Neste caso, precisamos utilizar outras funções disponíveis nos pacotes `MuMIn`, `AICcmodavg`, e `bbmle` para calcular o QAIC. Para mais detalhes sobre esses modelos, veja o vignette sobre o assunto do pacote `bbmle`.
+Como dissemos acima, uma outra alternativa para ajustar modelos GLM a dados de contagem são os chamados "quasi-likelihood", tais como quasi-Poisson e quasi-binomial. Dependendo do valor do dispersion parameter, pode ser útil escolher este tipo de modelo. No entanto, eles vêm com uma desvantagem: não é possível calcular o valor de *Akaike Information Criterion* (AIC) porque estes modelos não retornam um valor de *likelihood* (verosimilhança). Este parâmetro é comumente utilizado em abordagens estatísticas de teoria da informação para selecionar o melhor modelo que se ajusta aos dados. Neste caso, precisamos utilizar outras funções disponíveis nos pacotes `MuMIn`, `AICcmodavg`, e `bbmle` para calcular o QAIC. Para mais detalhes sobre esses modelos, veja o vignette sobre o assunto do pacote `bbmle`.
 
 #### Análise
 
@@ -425,7 +426,7 @@ simulationBion <- simulateResiduals(fittedModel = mod1, plot = TRUE)
 binned_residuals(mod1)
 ```
 
-Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com heterogeneidade de variância, quanto overdispersion e problemas com outliers. Provavelmente o problema com outliers ocorreu por conta do pequeno tamanho amostral.
+Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com heterogeneidade de variância, quanto *overdispersion* e problemas com outliers. Provavelmente o problema com outliers ocorreu por conta do pequeno tamanho amostral.
 
 #### Inferência
 
