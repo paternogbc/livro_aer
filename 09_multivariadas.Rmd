@@ -220,7 +220,7 @@ Neste sentido, os dados não suportam a nossa hipótese inicial da formação de
 
 ## K-means e agrupamentos não-hierárquicos
 
-Ao contrário do dendrograma, o K-means é um agrupamento não-hierárquico e, desse modo, não é otimizado para busca grupos menores aninhados em grupos grupos maiores. Resumidamente, podemos calcular o K-means apartir de uma matriz quadrada ou de distância. Essa técnica procura particionar os objetos em *k* grupos de maneira a minimizar a soma de quadrados entre grupos e maximizá-la dentro dos grupos. Um critério similar ao de uma ANOVA @(cap7). Um diferencial do K-means em relação aos agrupamentos hierárquicos é que o usuário pode escolher antecipadamente o número de grupos que deseja formar.
+Ao contrário do dendrograma, o K-means é um agrupamento não-hierárquico e, desse modo, não é otimizado para busca grupos menores aninhados em grupos grupos maiores. Resumidamente, podemos calcular o K-means apartir de uma matriz quadrada ou de distância. Essa técnica procura particionar os objetos em *k* grupos de maneira a minimizar a soma de quadrados entre grupos e maximizá-la dentro dos grupos. Um critério similar ao de uma ANOVA \@ref(cap7). Um diferencial do K-means em relação aos agrupamentos hierárquicos é que o usuário pode escolher antecipadamente o número de grupos que deseja formar.
 
 #### Exemplo 1
 
@@ -228,7 +228,11 @@ Para este exemplo iremos utilizar um conjunto de dados disponível no pacote `ad
 
 **Pergunta**
 
--   Qual é o número de grupos que melhor sumariza o padrão de ocorrência de espécies de peixes ao longo de um riacho? (*neste caso, estamos realizando uma análise exploratória e não temos uma predição*)
+-   Qual é o número de grupos que melhor sumariza o padrão de ocorrência de espécies de peixes ao longo de um riacho? 
+
+::: {.alert .alert-info}
+<strong> 📝 Importante: </strong> Neste caso, estamos realizando uma análise exploratória e não temos uma predição.
+:::
 
 **Variáveis**
 
@@ -261,7 +265,7 @@ spe.kmeans
 
 O objeto que fornece o resultado contém: 1) o tamanho (número de objetos) em cada um dos 4 grupos; 2) o centroide de cada grupo e o pertencimento de cada espécie a cada grupo; e 3) o quanto da Soma de Quadrados dos dados é explicada por esta conformação de grupos.
 
-No entanto, não é possível saber a priori qual o número *ideal* de grupos. Para descobrir isso repetimos o k-means com uma série de valores de **K**. Isso pode ser feito na função `cascadeKM`.
+No entanto, não é possível saber a priori qual o número "ideal" de grupos. Para descobrir isso repetimos o k-means com uma série de valores de **K**. Isso pode ser feito na função `cascadeKM`.
 
 ```{r}
 spe.KM.cascade <- cascadeKM(spe.norm, inf.gr=2, sup.gr=10, iter=100, criterion="ssi") 
@@ -302,9 +306,11 @@ A análise procede da seguinte forma:
 
 4.  Por fim, o conjunto de dados originais é comparado para ver se análise faz sentido.
 
-O cálculo da significância do índice de IndVal é feito por aleatorização de Monte Carlo. Os métodos de Monte Carlo utilizam números aleatórios de dados reais para simular certos padrões esperados na ausência de um processo ecológico específico [numerica2012]. Assim, o valor do índice é aleatorizado 999 vezes (ou o número de vezes que você optar) dentro dos tratamentos e o valor de *P* é dado pelo número de vezes em que o índice observado foi igual ou maior que os valores aleatorizados.
+O cálculo da significância do índice de IndVal é feito por aleatorização de Monte Carlo. Os métodos de Monte Carlo utilizam números aleatórios de dados reais para simular certos padrões esperados na ausência de um processo ecológico específico [@legendre_numerical_2012]. Assim, o valor do índice é aleatorizado 999 vezes (ou o número de vezes que você optar) dentro dos tratamentos e o valor de *P* é dado pelo número de vezes em que o índice observado foi igual ou maior que os valores aleatorizados.
 
 #### Exemplo 1
+
+Para este exemplo vamos utilizado o mesmo conjunto de dados utilizado acima com abundância de 16 espécies de girinos coletados em 14 poças com diferentes graus de cobertura de dossel na Serra da Bocaina.
 
 **Pergunta**
 
@@ -320,9 +326,7 @@ O cálculo da significância do índice de IndVal é feito por aleatorização d
 
 ### Análise no R
 
-Para este exemplo vamos utilizado o mesmo conjunto de dados utilizado acima com abundância de 16 espécies de girinos coletados em 14 poças com diferentes graus de cobertura de dossel na Serra da Bocaina.
-
-O IndVal está disponível tanto no pacote `indicspecies` quando no `labdsv`. Para este exemplo iremos usar o labdsv. Primeiro vamos agrupar as unidades amostrais (poças) que informa os grupos de fitofisionomias onde as poças se localizam e para os quais deseja-se encontrar espécies indicadoras:
+O IndVal está disponível tanto no pacote `indicspecies` quando no `labdsv`. Para este exemplo iremos usar o `labdsv`. Primeiro vamos agrupar as unidades amostrais (poças) que informa os grupos de fitofisionomias onde as poças se localizam e para os quais deseja-se encontrar espécies indicadoras:
 
 ```{r}
 ## Dados
@@ -462,7 +466,7 @@ matriz_F %>%
 
 -   Verifique se todas as variáveis utilizadas são contínuas. Caso contrário, considere utilizar PCoA.
 
--   Apesar do exemplo acima ter apresentado a ocorrência de espécies de aranhas em diferentes cidades, é fundamental saber que utilizar PCA com esses dados pode ser problemático. Assim, tenha cuidado em usar de composição de espécies (especialmente abundância) com PCA, uma vez que 'duplos zeros' podem gerar distorções na ordenação [@numerica2012]. Como alternativa, é possível utilizar PCA com dados padronizados com o método de Hellinger [@legendre2001].
+-   Apesar do exemplo acima ter apresentado a ocorrência de espécies de aranhas em diferentes cidades, é fundamental saber que utilizar PCA com esses dados pode ser problemático. Assim, tenha cuidado em usar de composição de espécies (especialmente abundância) com PCA, uma vez que 'duplos zeros' podem gerar distorções na ordenação [@legendre_numerical_2012]. Como alternativa, é possível utilizar PCA com dados padronizados com o método de Hellinger [@legendre2001].
 
 #### Exemplo 1
 
@@ -548,7 +552,7 @@ var_env$cos2
 ind_env <- get_pca_ind(pca.p)
 ```
 
-O pacote FactoMineR criou uma função (dimdesc) que seleciona as melhores variáveis (aquelas mais explicativas) para cada eixo através de uma análise fatorial. No exemplo com pinguins, o primeiro eixo (objeto `pca.p$eig`) explica \~69% da variação morfológica. A função dimdesc mostra que as quatro variáveis morfológicas estão fortemente associadas com o eixo 1. Porém, enquanto comprimento da nadadeira, massa corporal e comprimento do bico estão positivamente associados com o eixo 1 (correlação positiva), a largura do bico tem relação negativa. O eixo 2, por sua vez, explica \~20% da variação, sendo relacionado somente com largura e comprimento do bico.
+O pacote `FactoMineR` criou uma função (`dimdesc`) que seleciona as melhores variáveis (aquelas mais explicativas) para cada eixo através de uma análise fatorial. No exemplo com pinguins, o primeiro eixo (objeto `pca.p$eig`) explica \~69% da variação morfológica. A função dimdesc mostra que as quatro variáveis morfológicas estão fortemente associadas com o eixo 1. Porém, enquanto comprimento da nadadeira, massa corporal e comprimento do bico estão positivamente associados com o eixo 1 (correlação positiva), a largura do bico tem relação negativa. O eixo 2, por sua vez, explica \~20% da variação, sendo relacionado somente com largura e comprimento do bico.
 
 ```{r message=FALSE, warning=FALSE}
 # Variáveis mais importantes para o Eixo 1
