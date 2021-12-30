@@ -29,12 +29,12 @@ agua <- mite.env[,2] # seleciona a variável de interesse
 
 Uma vez que determinar o número total de espécies numa área é praticamente impossível, principalmente em regiões com alta riqueza de espécies, os estimadores são úteis para extrapolar a riqueza observada e tentar estimar a riqueza total através de uma amostra incompleta de uma comunidade biológica [@walther2005]. Neste capítulo, serão considerados os estimadores não paramétricos que usam informações da frequência de espécies raras na comunidade [@gotelli2013]. Isto porque tanto os testes paramétricos que tentam determinar os parâmetros de uma curva usando o formato da curva de acumulação de espécies (e.g. equação logística, Michaelis-Menten), quanto os testes que usam a frequência do número de indivíduos para enquadrá-las em uma das distribuições de abundância das espécies (e.g. distribuições log-séries, log-normal) não funcionam muito bem com dados empíricos [@gotelli2013]. Para mais detalhes sobre os testes paramétricos veja [@magurran_biological_2011] e Colwell & Coddington [-@colwell1994].
 
-> ### Quatro características para um bom estimador de riqueza [@chazdon1998; @hortal2006]:
->
-> -   Independência do tamanho da amostra (quantidade de esforço amostral realizado);
-> -   Insensibilidade a diferentes padrões de distribuições (e.g. agrupado, disperso ou aleatório);
-> -   Insensibilidade em relação à ordem das amostragens;
-> -   Insensibilidade à heterogeneidade entre as amostras usadas entre os estudos.
+### Quatro características para um bom estimador de riqueza [@chazdon1998; @hortal2006]:
+
+ -   Independência do tamanho da amostra (quantidade de esforço amostral realizado);
+ -   Insensibilidade a diferentes padrões de distribuições (e.g. agrupado, disperso ou aleatório);
+ -   Insensibilidade em relação à ordem das amostragens;
+ -   Insensibilidade à heterogeneidade entre as amostras usadas entre os estudos.
 
 ## Estimadores baseados na abundância das espécies
 
@@ -550,7 +550,7 @@ Veja que o ponto no final da linha contínua representa as 17 espécies de anuro
 
 **Explicação dos dados**
 
-Neste exemplo, iremos refazer o exemplo do \@[Cap8] que usa Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza extrapolada. Os dados que usaremos estão disponíveis no pacote *vegan* e representa a composição de espécies de ácaros amostradas em 70 comunidades/amostras.
+Neste exemplo, iremos refazer o exemplo do Capítulo \@ref(cap8) que usa Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza extrapolada. Os dados que usaremos estão disponíveis no pacote *vegan* e representa a composição de espécies de ácaros amostradas em 70 comunidades/amostras.
 
 **Pergunta:**
 
@@ -607,7 +607,7 @@ riqueza_extrapolada[i] <- resultados_comunidades_ext[40,4]
 }
 ```
 
-Agora, seguindo os passos descritos no \@[Cap8], vamos identificar o melhor modelo que representa a estrutura espacial dos dados extrapolados.
+Agora, seguindo os passos descritos no Capítulo \@ref(cap8), vamos identificar o melhor modelo que representa a estrutura espacial dos dados extrapolados.
 
 ```{r}
 # Criando data frame com todas as variáveis
@@ -678,7 +678,7 @@ ggplot(data = dados_combinado_ext, aes(x= agua, y= riqueza_extrapolada)) +
 
 **Interpretação dos resultados**
 
-A riqueza extrapolada das espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos. Contudo, apesar do modelo apresentar um relação significativa entre as variáveis, a concentração de água explica apenas 5,9% da variação da riqueza extrapolada das espécies de ácaros. O padrão observado, valor de P \< 0.05 e o baixo valor de R^2^, provavelmente está relacionado com as duas comunidades com altos valores de riqueza extapolada (e.g. **outilers**). Refaça as análises sem os dois pontos e vejam o padrão dos novos resultados.
+A riqueza extrapolada das espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos. Contudo, apesar do modelo apresentar um relação significativa entre as variáveis, a concentração de água explica apenas 5,9% da variação da riqueza extrapolada das espécies de ácaros. O padrão observado, valor de P \< 0.05 e o baixo valor de R^2^, provavelmente está relacionado com as duas comunidades com altos valores de riqueza extapolada (e.g. *outilers*). Refaça as análises sem os dois pontos e vejam o padrão dos novos resultados.
 
 ### Para se aprofundar
 
