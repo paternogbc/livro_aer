@@ -32,7 +32,7 @@ dados_ancova <- ecodados::ancova
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-Estatísticas frequentistas como as que serão abordadas neste capítulo são baseadas em testes estatísticos (e.g. F, t, 𝛘^2^, etc...), que são resultados númericos do teste, e um valor de probabilidade (valor de P) que é associado com o teste estatístico [@gotelli_primer_2013]. **O valor de P** mede a probabilidade que os valores observados ou mais extremos seriam encontrados caso a hipótese nula seja verdadeira (veja \@ref(cap3)). Ao longo do livro usaremos o critério convencional de rejeitar a hipótese nula quando P \< 0.05. Contudo, sugerimos a leitura destes artigos [@white2013; @barber2014; @burnham_pvalues_2014; @murtaugh2014; @halsey_reign_2019; @MUFF2021] que discutem as limitações e problemas associados ao valor de P .
+Estatísticas frequentistas como as que serão abordadas neste capítulo são baseadas em testes estatísticos (e.g. F, t, 𝛘^2^, etc...), que são resultados númericos do teste, e um valor de probabilidade (valor de P) que é associado com o teste estatístico [@gotelli_primer_2012]. **O valor de P** mede a probabilidade que os valores observados ou mais extremos seriam encontrados caso a hipótese nula seja verdadeira (veja Capítulo \@ref(cap2)). Ao longo do livro usaremos o critério convencional de rejeitar a hipótese nula quando P \< 0.05. Contudo, sugerimos a leitura destes artigos [@white2013; @barber2014; @burnham_pvalues_2014; @murtaugh2014; @Halsey2019; @MUFF2021] que discutem as limitações e problemas associados ao valor de P .
 :::
 
 ## Teste T (de Student) para duas amostras independentes
@@ -696,7 +696,7 @@ Neste exemplo, a precipitação não está associada com a variação no tamanho
 
 ## Análises de Variância (ANOVA)
 
-ANOVA refere-se a uma variedade de delineamentos experimentais nos quais a variável preditora é categórica e a variável resposta é contínua [@gotelli_primer_2013]. Exemplos desses delineamentos experimentais são: ANOVA de um fator, ANOVA de dois fatores, ANOVA em blocos aleatorizados, ANOVA de medidas repetidas e ANOVA *split-splot*. De forma geral, a ANOVA é um teste estatístico usado para comparar a média entre grupos amostrados independentemente. Para isso, o teste leva em conta, além das médias dos grupos, a variação dos dados dentro e entre os grupos. Neste capítulo, iremos demonstrar as linhas de comandos para alguns dos principais delineamentos experimentais.
+ANOVA refere-se a uma variedade de delineamentos experimentais nos quais a variável preditora é categórica e a variável resposta é contínua [@gotelli_primer_2012]. Exemplos desses delineamentos experimentais são: ANOVA de um fator, ANOVA de dois fatores, ANOVA em blocos aleatorizados, ANOVA de medidas repetidas e ANOVA *split-splot*. De forma geral, a ANOVA é um teste estatístico usado para comparar a média entre grupos amostrados independentemente. Para isso, o teste leva em conta, além das médias dos grupos, a variação dos dados dentro e entre os grupos. Neste capítulo, iremos demonstrar as linhas de comandos para alguns dos principais delineamentos experimentais.
 
 > #### Premissas da ANOVA:
 >
@@ -984,7 +984,7 @@ Percebam que as linhas se cruzam. Esse é um exemplo clássico de interação. N
 
 ## ANOVA em blocos aleatorizados
 
-No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco [@gotelli_primer_2013]. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse. Importante, os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.
+No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco [@gotelli_primer_2012]. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse. Importante, os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.
 
 <p>
 
@@ -1083,7 +1083,7 @@ Neste exemplo, rejeitamos a hipótese nula de que a distância das poças artifi
 
 ## Análise de covariância (ANCOVA)
 
-A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de variável contínua (covariável) medida em todas as unidades amostrais [@gotelli_primer_2013]. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo concentre-se nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor, e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.
+A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de variável contínua (covariável) medida em todas as unidades amostrais [@gotelli_primer_2012]. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo concentre-se nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor, e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.
 
 <p>
 
@@ -1179,5 +1179,5 @@ Neste exemplo, o tamanho da raiz (covariável) tem uma relação positiva com a 
 
 ### Para se aprofundar
 
--   Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis; ii) Gotelli & Ellison [-@gotelli_primer_2013] A primer of ecological statistics; e iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists.
+-   Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis; ii) Gotelli & Ellison [-@gotelli_primer_2012] A primer of ecological statistics; e iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists.
 
