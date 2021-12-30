@@ -55,7 +55,7 @@ do método de distância só será possível após o reconhecimento dos tipos de
 
 **Exemplo1: variáveis contínuas**
 
-Vamos utilizar um conjunto de dados com atributos contínuos (e.g., área foliar específica, massa foliar seca) de 34 espécies de plantas em um gradiente de aridez [@frenette-dussault_functional_2012]. Diversas análises funcionais podem ser afetadas por valores extremos ou pela diferença de unidade/escala entre as variáveis utilizadas. Por este motivo, é importante padronizar a matriz de atributos com média 0 e desvio padrão 1. Esta padronização é necessária tanto para fazer uma PCA como para PCoA \@ref(cap9).
+Vamos utilizar um conjunto de dados com atributos contínuos (e.g., área foliar específica, massa foliar seca) de 34 espécies de plantas em um gradiente de aridez [@frenette-dussault_functional_2012]. Diversas análises funcionais podem ser afetadas por valores extremos ou pela diferença de unidade/escala entre as variáveis utilizadas. Por este motivo, é importante padronizar a matriz de atributos com média 0 e desvio padrão 1. Esta padronização é necessária tanto para fazer uma PCA como para PCoA (veja Capítulo \@ref(cap9)).
 
 **Pergunta**
 
@@ -305,11 +305,11 @@ ggpairs(metricas)
 
 > Os resultados indicam que a Diversidade Funcional de Petchey & Gaston (*r* = 0.985) e a riqueza funcional (*r* = 0.813) são altamente correlacionadas com a riqueza de espécies. Porém, a divergência funcional, regularidade funcional e dispersão funcional não estão correlacionadas com a riqueza de espécies.
 
-> A figura obtida com o comando `ggpairs(metricas)` representa uma matriz de correlação comparando cada par de variáveis (neste caso, os índices de diversidade). No lado esquerdo da figura (abaixo da diagonal) são representados *scatterplots* \@ref(cap6), a no lado direito (acima da diagonal) pode-se encontrar os valores das correlações (*r*) entre os pares comparados. No caso das correlações, quanto mais próximo de +1 ou -1, mais forte é a relação entre essas variáveis do par comparado. O gráfico de linhas na diagonal demonstra a densidade de cada variáveis individualmente \@ref(cap6).  
+> A figura obtida com o comando `ggpairs(metricas)` representa uma matriz de correlação comparando cada par de variáveis (neste caso, os índices de diversidade). No lado esquerdo da figura (abaixo da diagonal) são representados *scatterplots* (veja Capítulo \@ref(cap6)), a no lado direito (acima da diagonal) pode-se encontrar os valores das correlações (*r*) entre os pares comparados. No caso das correlações, quanto mais próximo de +1 ou -1, mais forte é a relação entre essas variáveis do par comparado. O gráfico de linhas na diagonal demonstra a densidade de cada variáveis individualmente (veja Capítulo \@ref(cap6)).  
 
 ## Métricas de diversidade funcional (beta)
 
-Assim como na diversidade beta taxonômica \@ref(cap12), a diversidade beta funcional é uma medida que compara a composição (e a variação na composição) de atributos funcionais das espécies entre duas ou mais localidades. Porém, assim como na medida tradicional taxonômica (como Jaccard ou Sorensen), diferenças na diversidade beta podem ser geradas pela **mudança na identidade das espécies (ou do atributo)** ou na **riqueza de espécies (ou de atributos)** entre duas localidades (**Figura 1**). Desse modo, é possível particionar a diversidade beta funcional em aninhamento e substituição (do inglês *turnover*) \@ref(cap12). Além disso, os cálculos da diversidade beta funcional podem ser realizados par-a-par (`functional.beta.pair`) ou para a comparações de múltiplas localidades (`funcional.beta.multi`).
+Assim como na diversidade beta taxonômica \@ref(cap12), a diversidade beta funcional é uma medida que compara a composição (e a variação na composição) de atributos funcionais das espécies entre duas ou mais localidades. Porém, assim como na medida tradicional taxonômica (como Jaccard ou Sorensen), diferenças na diversidade beta podem ser geradas pela **mudança na identidade das espécies (ou do atributo)** ou na **riqueza de espécies (ou de atributos)** entre duas localidades (**Figura 1**). Desse modo, é possível particionar a diversidade beta funcional em aninhamento e substituição (do inglês *turnover*) (veja \@ref(cap12)). Além disso, os cálculos da diversidade beta funcional podem ser realizados par-a-par (`functional.beta.pair`) ou para a comparações de múltiplas localidades (`funcional.beta.multi`).
 
 ![**Figura 1**. Partição da diversidade beta taxonômica (A) e funcional (B). Os três cenários apresentados tanto para a diversidade beta taxonômica como funcional representam, respectivamente, diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.](Fig_BetaDiversity_Balsega.svg){width=59%} 
 
@@ -373,7 +373,7 @@ cwm_ex <- functcomp(trait_baselga, as.matrix(comm_baselga))
 cwm_ex
 ```
 
-A matriz resultante `cwm_es` é formada pelas localidades (linhas) e os atributos "médios" (colunas) nestas localidades. Essa matriz pode ser utilizada em diversas análises como dbRDA, RDA ou RDA parcial \@ref(cap9). Na sequência, vamos utilizar testes de hipóteses para entender como podemos calcular as diversidades funcional alfa e beta com outros testes estatísticos apresentados neste livro.
+A matriz resultante `cwm_es` é formada pelas localidades (linhas) e os atributos "médios" (colunas) nestas localidades. Essa matriz pode ser utilizada em diversas análises como dbRDA, RDA ou RDA parcial (veja Capítulo \@ref(cap9)). Na sequência, vamos utilizar testes de hipóteses para entender como podemos calcular as diversidades funcional alfa e beta com outros testes estatísticos apresentados neste livro.
 
 **Exemplo 5**
 
@@ -456,7 +456,7 @@ lm_dat %>%
 grid.arrange(plot_pred1, plot_pred2, ncol=2)
 ```
 
-> Os resultados dos modelos `anova(mod1)` e `anova(mod2)`indicam que o gradiente de aridez não afeta a dispersão e regularidade funcional. Os detalhes para conferir os pressupostos das análise foram descritos no \@ref(cap7).
+> Os resultados dos modelos `anova(mod1)` e `anova(mod2)`indicam que o gradiente de aridez não afeta a dispersão e regularidade funcional. Os detalhes para conferir os pressupostos das análise foram descritos no Capítulo \@ref(cap7).
 
 **Exemplo 6**
 
