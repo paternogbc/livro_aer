@@ -29,7 +29,7 @@ No capítulo anterior descrevemos sobre os modelos lineares (também chamados de
 
 > $$ Y = \beta_0 + \beta_{1}X_i + \epsilon_i $$
 
-no qual o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para regressão, variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de (@ecologic2015). Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por log ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja (@ohara2010), (@ives2015) e (@warton2018) para mais detalhes.
+no qual o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para regressão, variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de (@ecologic2015). Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por log ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
 
 Nestes casos devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, Binomial, Binomial Negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar Cumulative Link Models para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.
 
@@ -532,7 +532,7 @@ A interpretação dos resultados é que o tamanho de corpo (SVL) afeta negativam
 
 ## Dados de contagem com excesso de zeros
 
-Quando se analisa abundância ou riqueza de espécies é comum que tenhamos dados com muitos zeros. Esse fenômeno pode ser causado por vários processos ecológicos, tais como locais fora do nicho da espécie, falha na detecção, amostras feitas fora do hábitat ou em locais onde não se espera encontrar a espécie ([@blascomoreno2019]). Esse tipo de dado é problemático porque rompe com os pressupostos da distribuição Poisson e binomial negativa, podendo inclusive ser uma das causas da overdispersion.
+Quando se analisa abundância ou riqueza de espécies é comum que tenhamos dados com muitos zeros. Esse fenômeno pode ser causado por vários processos ecológicos, tais como locais fora do nicho da espécie, falha na detecção, amostras feitas fora do hábitat ou em locais onde não se espera encontrar a espécie [@blascomoreno2019]. Esse tipo de dado é problemático porque rompe com os pressupostos da distribuição Poisson e binomial negativa, podendo inclusive ser uma das causas da overdispersion.
 
 Nesses casos, temos de ajustar modelos que levam em conta esse excesso de zeros nos dados. Esses modelos são chamados de **zero-inflated** e **hurdle models** (também chamados de zero-altered models), dependendo de como o processo que causou os zeros é modelado.
 
@@ -540,7 +540,7 @@ Hurdle models (ou zero-altered models) modelam os dados dividindo-os em dois sub
 
 Modelos com zero inflados funcionam de maneira similar, mas permitem que a distribuição Poisson contenha zeros, ou seja, *não é utilizada uma distribuição truncada*. Ao fazer isso, esta distribuição de Poisson pressupõe que os zeros foram gerados por um processo ecológico real, tal como, ausência de hábitat adequado.
 
-Para ilustrar como podemos lidar com conjuntos de dados complexos vamos utilizar os dados coletados por [@lima2018].
+Para ilustrar como podemos lidar com conjuntos de dados complexos vamos utilizar os dados do parasita *Raillietiella mottae* infectando duas espécies de lagartos que ocorrem no nordeste Brasileiro [@lima2018]. Ao todo, 63 indivíduos de *Hemidactylus agrius* e 132 de *Phyllopezus pollicaris* foram amostrados.
 
 **Pergunta**
 
@@ -553,8 +553,6 @@ Quanto maior o lagarto, maior o número de parasitas encontrados, esta resposta 
 **Variáveis**
 
 • Variável resposta: Número do parasita *Raillietiella mottae*, que é um crustáceo parasita, infectando o aparelho respiratório e intestinal de lagartos. 
-
-– Os autores registraram essa espécie infectando duas espécies de lagartos que ocorrem no nordeste Brasileiro. Ao todo, 63 indivíduos de *Hemidactylus agrius* e 132 de *Phyllopezus pollicaris* foram amostrados. 
 
 ```{r}
 head(parasitas)
@@ -781,21 +779,15 @@ Agora que podemos interpretar o output com confiança, vamos obter a tabela de a
 Anova(mod2)
 ```
 
-::: {.alert .alert-info}
-<strong> 📝 Importante </strong>\
-aqui vemos que a interação é significativa. Portanto, temos de interpretar os níveis do fator da combinação, fazemos isso no pacote `emmeans` colocando a barra \| :
-:::
+Aqui vemos que a interação é significativa. Portanto, temos de interpretar os níveis do fator da combinação, fazemos isso no pacote `emmeans` colocando a barra \| :
 
 ```{r}
 pairs(emmeans(mod2, ~ Treatment|Time))
 ```
 
-::: {.alert .alert-info}
-<strong> 📝 Importante </strong>\
-e então podemos perceber que a diferença entre o controle e o tratado só passa a ser significativa depois de 1 h de exposição.
+Agora podemos perceber que a diferença entre o controle e o tratado só passa a ser significativa depois de 1 h de exposição.
 
-Isso fica mais evidente quando plotamos os dados
-:::
+Isso fica mais evidente quando plotamos os dados.
 
 ```{r}
 lineplot.CI(Time, Darkness, Treatment, data=darknessmale, cex = 1, xlab = "Tempo experimental (horas)", ylab = "Escuridão do corpo de machos (%)", cex.lab = 1, x.leg = 1, col = c("#EE6363","#79CDCD"), pch = c(12,12), lwd = 1.5)
@@ -803,4 +795,4 @@ lineplot.CI(Time, Darkness, Treatment, data=darknessmale, cex = 1, xlab = "Tempo
 
 ## Leituras recomendadas
 
-Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes recomendamos a consulta dos livros [@zuur_protocol_2009] e [@mixed-ef2000] que são as referências clássicas sobre GLM com aplicações em ecologia. Para dados ordinais, sugerimos os livros do Alan Agresti, tais como [@agresti2010] e Categorical Data Analysis, 3rd Edition, do mesmo autor.
+Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes recomendamos a consulta dos livros [@zuur_protocol_2009] e [@pinheiro_mixed-effects_2000] que são as referências clássicas sobre GLM com aplicações em ecologia. Para dados ordinais, sugerimos os livros do Alan Agresti, tais como [@agresti2010] e Categorical Data Analysis, 3rd Edition, do mesmo autor.
