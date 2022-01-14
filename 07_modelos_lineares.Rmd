@@ -511,7 +511,7 @@ plot(modelo_regressao)
 dev.off() # volta a configuração dos gráficos para o formato padrão 
 ```
 
-Os gráficos *Residuals vs Fitted*, *Scale-Location*, e *Residual vs Leverage* estão relacionados com a homogeneidade da variância. Nestes gráficos, esperamos ver os pontos dispersos no espaço sem padrões com formatos em *U* ou funil. Podemos observar que tanto a normalidade como a homogeneidade do resíduos estão dentro dos padrões esperados.
+Os gráficos *Residuals vs Fitted*, *Scale-Location*, e *Residual vs Leverage* estão relacionados com a homogeneidade da variância. Nestes gráficos, esperamos ver os pontos dispersos no espaço sem padrões com formatos em *U* ou funil. Neste caso, vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que não exista heterogeneidade de variância dos resíduos. O gráfico *Residual vs Leverage*, identifica os valores extremos que estejam a mais de uma unidade da distância de Cook (linha pontilhada vermelha). Quando muito discrepantes, esses valores podem influenciar os resultados dos testes estatísticos. Também não temos problemas com esse pressuposto do modelo aqui. O gráfico *Normal Q-Q (qunatile-quantile plot)* mede desvios da normalidade. Neste caso, esperamos que os pontos sigam uma linha reta (i.e. fiquem muito próximos da linha pontilhada) e não apresentem padrões com formatos de *S* ou arco. Podemos observar que tanto a normalidade como a homogeneidade do resíduos estão dentro dos padrões esperados.
 
 Vamos ver os resultados da regressão simples usando as funções `anova` e `summary`. A função `anova` retorna uma tabela contendo o grau de liberdade (df), soma dos quadrados, valor de F e o valor de P.
 
