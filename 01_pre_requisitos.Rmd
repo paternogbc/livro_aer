@@ -6,55 +6,39 @@ O objetivo desta seção é informar como fazer a instalação dos Programas R e
 
 ## Instalação do R
 
-Para começarmos a trabalhar com o R é necessário baixá-lo na página do R Project. Então, acesse esse [site](http://www.r-project.org) e em seguida, clique no link **download R**.
+Abaixo descrevemos os sete passos necessários para a instalação do programa R no seu computador (Figura 1):
 
-```{r, echo=FALSE, fig.cap="Página do R project indicando o link para download do programa"}
+1.  Para começarmos a trabalhar com o R é necessário baixá-lo na página do R Project. Então, acesse esse [site](http://www.r-project.org) 
+2.  Clique no link **download R**.
+3.  Na página *CRAN Mirros (Comprehensive R Archive Network)*, escolha uma das páginas espelho do Brasil mais próxima de você para baixar o programa.
+4.  Escolha agora o sistema operacional do seu computador (passos adicionais existem para diferentes distribuições Linux). Aqui faremos o exemplo com o Windows.
+5.  Clique em **base** para finalmente chegar à página de download com a versão mais recente do R.
+6.  Clique no arquivo **Download R (versão mais recente) for Windows** que será instalado no seu computador.
+7.  Abra o arquivo que foi baixado no seu computador e siga os passos indicados para finalizar a instalação do programa R.
+
+```{r, echo=FALSE, fig.cap="Esquema ilustrativo demonstrando os passos necessários para instalação do programa R no computador."}
 knitr::include_graphics(path = "img/cap01_fig01.jpg")
-```
-
-
-Esse link o levará à página do CRAN Mirrors (*Comprehensive R Archive Network*). Escolha a página espelho do Brasil mais próxima de você para baixar o programa.
-
-```{r, echo=FALSE, fig.cap="Página do R project mostrando os espelhos distribuídos em diferentes países"}
-knitr::include_graphics(path = "img/cap01_fig02.jpg")
-```
-
-Escolha agora o sistema operacional do seu computador (passos adicionais existem para diferentes distribuições Linux).
-
-```{r, echo=FALSE, fig.cap="Página do R project indiciando os sistemas operacionais disponíveis."}
-knitr::include_graphics(path = "img/cap01_fig03.jpg")
-```
-
-Selecionamos a opção do Windows. Agora clique em **base** para finalmente chegar à página de download com a versão mais recente do R.
-
-```{r, echo=FALSE, fig.cap="Página do R project indicando os passos para instalação do programa."}
-knitr::include_graphics(path = "img/cap01_fig04.jpg")
 ```
 
 ## Instalação do RStudio
 
-O RStudio possui algumas características que o tornam popular: várias janelas de visualização, marcação e preenchimento automático do script, integração com controle de versão, dentre outras funcionalidades. Para fazer o download do RStudio, acessamos o [site](https://rstudio.com/products/rstudio/download/#download), e clique em download.
+O RStudio possui algumas características que o tornam popular: várias janelas de visualização, marcação e preenchimento automático do script, integração com controle de versão, dentre outras funcionalidades. 
 
-```{r, echo=FALSE, fig.cap="Página inicial do R Studio indicando o local de download."}
-knitr::include_graphics(path = "img/cap01_fig05.jpg")
+Abaixo descrevemos os cinco passos necessários para a instalação do RStudio no seu computador (Figura 2):
+
+1. Para fazer o download do RStudio, acessamos o [site](https://www.rstudio.com/).
+2. Clique em **download**.
+3. Escolha a versão gratuita.
+4. Escolha o instalador com base no seu sistema operacional.
+5. Abra o arquivo que foi baixado no seu computador e siga os passos indicados para finalizar a instalação do programa RStudio.
+
+```{r, echo=FALSE, fig.cap="Esquema ilustrativo demonstrando os passos necessários para instalação do programa RStudio no computador"}
+knitr::include_graphics(path = "img/cap01_fig02.jpg")
 ```
-
-Escolhemos a versão gratuita.
-
-```{r, echo=FALSE, fig.cap="Página do R Studio para download do programa."}
-knitr::include_graphics(path = "img/cap01_fig06.jpg")
-```
-
-Escolhemos o instalador com base em nosso sistema operacional.
-
-```{r, echo=FALSE, fig.cap="Página do R Studio para instalação do programa."}
-knitr::include_graphics(path = "img/cap01_fig07.jpg")
-```
-
 
 ## Versão do R
 
-Todas os comandos, pacotes e análises disponibilizados no livro foram realizos no Programa R versão 4.1.1 (10-08-2021).
+Todas os comandos, pacotes e análises disponibilizados no livro foram realizos no Programa R versão 4.1.2 (10-12-2021).
 
 ## Pacotes
 
@@ -67,7 +51,7 @@ Descrevemos no Capítulo \@ref(cap4) o que são e como instalar os pacotes para 
 Abaixo, listamos todos os pacotes que foram utilizados em alguma das análises descritas no livro. Você pode instalar os pacotes agora ou esperar para instalá-los quando ler o \@ref(cap4) e entender o que são as funções `install.packages()`, `library()` e `install_github()`.
 
 ```{r eval=FALSE}
-install.packages(c("ade4", "adespatial", "ape", "bbmle", "betapart", "BiodiversityR", "car", "cati", "datasauRus", "devtools", "DHARMa", "dplyr", "emmeans", "factoextra", "FactoMineR", "fasterize", "FD", "forcats", "geobr", "GGally", "ggExtra", "ggforce", "ggord", "ggplot2", "ggpubr", "ggrepel", "ggspatial", "glmmTMB", "grid", "gridExtra", "here", "hillR", "iNEXT", "janitor", "kableExtra", "knitr", "labdsv", "lattice", "leaflet", "lmtest", "lsmeans", "lubridate", "mapview", "MASS", "MuMIn", "nlme", "ordinal", "palmerpenguins", "performance", "pez", "phyloregion", "phytools", "picante", "piecewiseSEM", "purrr", "pvclust", "raster", "readr", "reshape2", "rgdal" , "rnaturalearth", "RVAideMemoire", "sciplot", "sf", "sidrar", "sjPlot", "spData", "spdep", "stringr", "SYNCSA", "tibble", "tidyr", "tidyverse", "tmap", "tmaptools", "TPD", "vegan", "viridis", "visdat"), dependencies = TRUE)
+install.packages(c("ade4", "adespatial", "ape", "bbmle", "betapart", "BiodiversityR", "car", "cati", "datasauRus", "devtools", "DHARMa", "dplyr", "emmeans", "factoextra", "FactoMineR", "fasterize", "FD", "forcats", "geobr", "GGally", "ggExtra", "ggforce", "ggplot2", "ggpubr", "ggrepel", "ggspatial", "glmmTMB", "grid", "gridExtra", "here", "hillR", "iNEXT", "janitor", "kableExtra", "knitr", "labdsv", "lattice", "leaflet", "lmtest", "lsmeans", "lubridate", "mapview", "MASS", "MuMIn", "nlme", "ordinal", "palmerpenguins", "performance", "pez", "phyloregion", "phytools", "picante", "piecewiseSEM", "purrr", "pvclust", "raster", "readr", "reshape2", "rgdal" , "rnaturalearth", "RVAideMemoire", "sciplot", "sf", "sidrar", "sjPlot", "spData", "spdep", "stringr", "SYNCSA", "tibble", "tidyr", "tidyverse", "tmap", "tmaptools", "TPD", "vegan", "viridis", "visdat"), dependencies = TRUE)
 ```
 
 Diferente dos pacotes anteriores que são baixados do CRAN, alguns pacotes são baixados do github dos pesquisadores responsáveis pelos pacotes. Nestes casos, precisamos carregar o pacote `devtools` para acessar a função `install_github`. Durante as instalações deste pacotes, o R irá pedir para você digitar um número indicando os pacotes que você deseja fazer update. Neste caso, digite 1 que irá indicar para o programa que ele deve instalar todos os pacotes atualizados.
