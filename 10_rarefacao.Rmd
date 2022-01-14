@@ -28,16 +28,16 @@ dados_amostras <-   ecodados::morcegos_rarefacao_amostras
 
 ## Aspectos teóricos
 
-Uma das grandes dificuldades na comparação da riqueza de espécies entre comunidades é decorrente da diferença no esforço amostral (e.g. diferença no número de indivíduos, discrepância na quantidade de unidades amostrais ou área amostrada) que inevitavelmente influenciará no número de espécies observadas [@gotelli_primer_2013; @roswell2021]. O método de rarefação nos permite comparar o número de espécies entre comunidades quando o tamanho da amostra (e.g. número de unidades amostrais), o esforço amostral (e.g. tempo de amostragem) ou a abundância de indivíduos não são iguais. A rarefação calcula o número esperado de espécies em cada comunidade tendo como base comparativa um valor em que todas as amostras atinjam um tamanho padrão. Gotelli & Colwell [-@gotelli2001] descrevem dois tipos de curvas de rarefação: i) baseada em indivíduos (*individual-based*) - as comparações são feitas considerando a abundância da comunidade padronizada pelo menor número de indivíduos; e ii) baseada na amostra (*sampled-based*) - as comparações são padronizadas pela comunidade com menor número de amostragens.
+Uma das grandes dificuldades na comparação da riqueza de espécies entre comunidades é decorrente da diferença no esforço amostral (e.g. diferença no número de indivíduos, discrepância na quantidade de unidades amostrais ou área amostrada) que inevitavelmente influenciará no número de espécies observadas [@gotelli_primer_2012; @roswell2021]. O método de rarefação nos permite comparar o número de espécies entre comunidades quando o tamanho da amostra (e.g. número de unidades amostrais), o esforço amostral (e.g. tempo de amostragem) ou a abundância de indivíduos não são iguais. A rarefação calcula o número esperado de espécies em cada comunidade tendo como base comparativa um valor em que todas as amostras atinjam um tamanho padrão. Gotelli & Colwell [-@gotelli2001] descrevem dois tipos de curvas de rarefação: i) baseada em indivíduos (*individual-based*) - as comparações são feitas considerando a abundância da comunidade padronizada pelo menor número de indivíduos; e ii) baseada na amostra (*sampled-based*) - as comparações são padronizadas pela comunidade com menor número de amostragens.
 
 O método foi formulado considerando a seguinte pergunta: Se considerarmos *n* indivíduos ou amostras (*n* \< N) para cada comunidade, quantas espécies registraríamos nas comunidades considerando o mesmo número de indivíduos ou amostras?
 
-> #### Gotelli & Colwell [-@gotelli2001] descrevem este método e discutem em detalhes as restrições sobre seu uso na ecologia:
->
-> -   As amostras a serem comparadas devem ser consistentes do ponto de vista taxonômico, ou seja, todos os indivíduos devem pertencer ao mesmo grupo taxonômico;
-> -   As comparações devem ser realizadas somente entre amostras com as mesmas técnicas de coleta. Por exemplo, não é recomendado comparar amostras onde a riqueza de espécies de anuros de uma amostra foi estimada utilizando armadilhas de interceptação e queda e a outra foi estimada por vocalizações em sítios de reprodução;
-> -   Os tipos de hábitat onde as amostras são obtidas devem ser semelhantes;
-> -   É um método para estimar a riqueza de espécies em uma amostra menor -- não pode ser usado para extrapolar a riqueza para amostras maiores.
+#### Gotelli & Colwell [-@gotelli2001] descrevem este método e discutem em detalhes as restrições sobre seu uso na ecologia:
+
+-   As amostras a serem comparadas devem ser consistentes do ponto de vista taxonômico, ou seja, todos os indivíduos devem pertencer ao mesmo grupo taxonômico;
+-   As comparações devem ser realizadas somente entre amostras com as mesmas técnicas de coleta. Por exemplo, não é recomendado comparar amostras onde a riqueza de espécies de anuros de uma amostra foi estimada utilizando armadilhas de interceptação e queda e a outra foi estimada por vocalizações em sítios de reprodução;
+-   Os tipos de hábitat onde as amostras são obtidas devem ser semelhantes;
+-   É um método para estimar a riqueza de espécies em uma amostra menor -- não pode ser usado para extrapolar a riqueza para amostras maiores.
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante: </strong> Esta última restrição foi superada por Colwell et al. [-@colwell2012] e Chao & Jost [-@chao2012] que desenvolveram uma nova abordagem onde os dados podem ser interpolados (rarefeito) para amostras menores e extrapolados para amostras maiores. Além disso, Chao & Jost [-@chao2012] propõem a curva de rarefação *coverage-based* que padroniza as amostras pela cobertura ou totalidade (*completeness*) da amostra ao invés do tamanho. As rarefações tradicionais apresentam limitações matemáticas que são superadas por essa nova abordagem [@chao2012].
@@ -284,7 +284,7 @@ ggiNEXT(res_rarefacao_amostras, type = 3, color.var = "site") +
 
 **Explicação dos dados**
 
-Neste exemplo, iremos refazer o exercício do \@{cap8} onde usamos Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza rarefeita para controlar o efeito da amostragem (i.e. diferentes abundâncias entre as comunidades). Os dados que usaremos estão disponíveis no pacote `vegan` e representam a composição de espécies de ácaros amostradas em 70 amostras.
+Neste exemplo, iremos refazer o exercício do Capítulo \@ref(cap8) onde usamos Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza rarefeita para controlar o efeito da amostragem (i.e. diferentes abundâncias entre as comunidades). Os dados que usaremos estão disponíveis no pacote `vegan` e representam a composição de espécies de ácaros amostradas em 70 amostras.
 
 **Pergunta:**
 
