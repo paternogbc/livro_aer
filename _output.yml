@@ -1,4 +1,5 @@
 bookdown::gitbook:
+  pandoc_args: [ "--csl", "journal-of-ecology.csl"]
   config:
     toc:
       collapse: subsection
@@ -11,8 +12,12 @@ bookdown::gitbook:
       facebook: yes
   params:
     run_page_ind: FALSE
+  self_contained: no
     
-bookdown::word_document2: default
+bookdown::word_document2: 
+  pandoc_args: [ "--csl", "journal-of-ecology.csl" ]
 
-bookdown::epub_book: default
+bookdown::epub_book: 
+  pandoc_args: [ "--csl", "journal-of-ecology.csl" ]
+
 
