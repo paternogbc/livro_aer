@@ -144,7 +144,7 @@ plot(mod_pois)#TODOS OS 4 PLOTS
 par(mfrow=c(1,1))
 ```
 
-Aqui vemos quatro gráficos. Na primeira coluna temos dois gráficos dos valores preditos (brutos ou padronizados pela raiz quadrada) contra os resíduos. Eles medem desvio em relação à homogeneidade de variância. Os quatro gráficos não devem ter nenhum padrão aparente, ou seja, os pontos devem cair em cima da linha pontilhada. Neste caso, vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que não exista heterogeneidade de variância dos resíduos. O gráfico superior direito é o plot de quantis que mede desvios da normalidade. No gráfico inferior direito, os valores extremos são todos aqueles que estejam a mais de uma unidade da distância de Cook (linha pontilhada vermelha). Também não temos problemas com esse pressuposto do modelo aqui. Vemos que nos quatro plots alguns dados, 1, 7 e 30 (referem-se às linhas do data.frame) aparecem identificados, pois apresentam ligeiro desvio da normalidade e estão distantes da média. No entanto, não é algo para nos preocuparmos pois não são valores muito extremos. Portanto, a diagnose indicou que o modelo com Poisson parece ser adequado para modelar estes dados, ao menos em termos de homogeneidade de variância.
+Vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que não exista heterogeneidade de variância dos resíduos. Vemos também que nos quatro plots alguns dados, 1, 7 e 30 (referem-se às linhas do data.frame) aparecem identificados, pois apresentam ligeiro desvio da normalidade e estão distantes da média. No entanto, não é algo para nos preocuparmos pois não são valores muito extremos. Portanto, a diagnose indicou que o modelo com Poisson parece ser adequado para modelar estes dados, ao menos em termos de homogeneidade de variância.
 
 ##### Diagnose avançada
 
@@ -459,7 +459,7 @@ Usando o `geom_violin` podemos perceber que existe uma dispersão maior nos trat
 
 Uma outra aplicação da distribuição binomial é quando temos dados de incidência, ou seja, presença ou ausência, de alguma variável. Por exemplo, presença ou ausência de uma espécie ou indivíduo num local. Neste caso a `formula` é diferente e o modelo é similar a uma regressão logística, vejamos.
 
-Aqui vamos utilizar os dados do trabalho de [@oliveira2020].
+Aqui vamos utilizar os dados sobre autotomia da cauda de lagartos da espécie *Coleodactylus meridionalis* observados em fragmentos florestais da Mata Atlântica no estado de Pernambuco [@oliveira2020].
 
 **Pergunta**
 
