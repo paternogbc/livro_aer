@@ -1,9 +1,10 @@
 # Análises Multidimensionais {#cap9}
 
-## Pré-requisitos do capítulo {.unnumbered}
+## Pré-requisitos do capítulo {-}
+
+Pacotes e dados que serão utilizados neste capítulo.
 
 ```{r message=FALSE, warning=FALSE}
-
 ## Pacotes 
 library(ade4)
 library(ecodados)
@@ -20,109 +21,127 @@ library(factoextra)
 library(FD)
 library(palmerpenguins)
 library(GGally)
+library(fields)
 library(ade4)
 library(ggord)
+library(udunits2)
 library(adespatial)
 library(spdep)
+library(mvabund)
 
-## Dados necessários
+## Dados
 sp_compos <- ecodados::bocaina
 species <-  ecodados::com_birds
 env <- ecodados::env_birds
 xy <- ecodados::birds.xy
+bocaina.env <- read.csv("dados/bocaina_env.csv", sep=";", row.names = "X")
+bocaina.xy <- read.table("dados/bocaina_xy.txt", h=T)
+anuros_permanova <- read.csv("dados/anuros_permanova.csv", sep=",", row.names = "X")
+macroinv <- read.csv("dados/macroinv.csv", row.names = "X")
+fish <- read.csv("dados/fish.csv",  row.names = "X")
 data(mite)
 data(doubs)
 data(mite.env)
-data(package = 'palmerpenguins')
 ```
 
 ## Aspectos teóricos
 
-Em geral, análises multivariadas têm três principais utilidades: reduzir a dimensionalidade dos dados e encontrar a principal direção de variação dos dados, testar relações entre matrizes, ou ainda encontrar diferenças entre grupos. Apesar dessas análises também serem utilizadas como análises exploratórias e para descrever padrões em estudos ecológicos, a necessidade de se ter hipóteses, ou ao menos expectativas a priori, não pode ser ignorada. Antes de entrar de cabeça nas análises multivariadas, também sugerimos fortemente o estudo de métodos de amostragem e como fazer boas perguntas.
+Análises multivariadas avaliam hipóteses cuja variável resposta é definida por múltiplas variáveis ao mesmo tempo, comumente expressa na forma de uma matriz quadrada ou de distância (dissimilaridade).
 
-Análises multivariadas podem ser divididas, grosseiramente, em dois tipos: agrupamento e ordenação. Análises de agrupamento em geral tentam agrupar objetos (observações) ou descritores em grupos de maneira que objetos do mesmo grupo sejam mais semelhantes entre si do que objetos de outros grupos [@legendre_numerical_2012]. Por exemplo, os objetos podem ser localidades como "parcelas", "riachos" ou "florestas", enquanto os descritores são as difentes variáveis coletadas nesses objetos (e.g., espécies, variáveis ambientais). A análise de ordenação, por sua vez, é uma operação pela qual os objetos (ou descritores) são posicionados num espaço que contém menos dimensões que o conjunto de dados original; a posição dos objetos ou descritores em relação aos outros também podem ser usadas para agrupá-los.
+Em geral, análises multivariadas têm três principais utilidades: i) reduzir a dimensionalidade dos dados e encontrar a principal direção de variação dos dados, ii) testar relações entre matrizes, ou ainda, iii) encontrar diferenças entre grupos. Análises multivariadas podem ser utilizadas como análises exploratórias e/ou para descrever padrões em estudos ecológicos. No entanto, mesmo quando se deseja apenas explorar o conjunto de dados para encontrar possíveis padrões, a necessidade de se ter hipóteses, ou ao menos expectativas *a priori*, não pode ser ignorada. Antes de entrar de cabeça nas análises multivariadas, também sugerimos fortemente o estudo de métodos de amostragem e como fazer boas perguntas (Capítulo \@ref(cap2)).
 
-Vamos começar com análises de agrupamento. Aqui vamos exemplificar dois métodos: uma técnica de agrupamento hierarquica (dendrograma) e outra não-hierarquica (k-means).
+Análises multivariadas podem ser divididas, grosseiramente, em dois tipos: agrupamento e ordenação. Análises de agrupamento, em geral, tentam agrupar objetos (observações) ou descritores em grupos de maneira que objetos do mesmo grupo sejam mais semelhantes entre si do que objetos de outros grupos [@legendre_numerical_2012]. Por exemplo, os objetos podem ser localidades como "parcelas", "riachos" ou "florestas", enquanto os descritores são as difentes variáveis coletadas para esses objetos (e.g., espécies, variáveis ambientais). A análise de ordenação, por sua vez, é uma operação pela qual os objetos (ou descritores) são posicionados num espaço que contém menos dimensões que o conjunto de dados original; a posição dos objetos ou descritores em relação aos outros também pode ser usada para agrupá-los.
+
+Vamos começar com análises de agrupamento. Aqui vamos exemplificar dois métodos: uma técnica de agrupamento hierárquica (dendrograma) e outra não-hierárquica (k-means).
 
 ### Coeficientes de associação
 
-Assim chamados genericamente, os coeficientes de associação medem o quão parecidos objetos ou descritores são entre si. Quando analisamos a relação entre objetos fazemos uma análise no modo Q, ao passo que o modo R é quando analisamos a relação entre descritores. Coeficientes de associação do modo Q são medidas de (dis)similaridade ou distância, enquanto para o modo R utilizamos covariância ou correlação. Como já tratamos neste livro sobre covariância e correlação, neste tópico vamos falar sobre índices de distância e similaridade. Mas qual a definição destas duas quantitades?
+Assim chamados genericamente, os coeficientes de associação medem o quão parecidos objetos ou descritores são entre si. Objetos estão nas linhas da matriz, enquanto descritores estão nas colunas. Geralmente objetos são as nossas unidades amostrais, enquanto os descritores são as variáveis preditoras e resposta. Quando analisamos a relação entre objetos fazemos uma análise no modo Q, ao passo que o modo R é quando analisamos a relação entre descritores. Coeficientes de associação do modo Q são medidas de (dis)similaridade ou distância, enquanto para o modo R utilizamos covariância ou correlação. Como já tratamos neste livro sobre covariância e correlação (ver \@ref(cap7)), neste tópico vamos falar sobre índices de distância e similaridade. Mas qual a definição destas duas quantitades?
 
-> Similaridade são máximas (*S=1*) quando dois objetos são idênticos
->
-> Distâncias são o contrário da similaridade (*D=1-S*) e não têm limites superiores (dependem da unidade de medida)
+- Similaridade são máximas (*S=1*) quando dois objetos são idênticos
+- Distâncias são o contrário da similaridade (*D=1-S*) e não têm limites superiores (dependem da unidade de medida)
 
-Existem ao menos 26 índices de similaridade que podem ser agrupados de acordo com o tipo de dado (qualitativos ou quantitativos), a maneira com que lidam com duplos zeros (simétricos ou assimétricos). Do seu lado, as distâncias só se aplicam a dados quantitativos e têm como características serem métricas, semi-métricas ou não-métricas. Vejamos agora os principais índices de similaridade e distância de cada tipo.
+Existem ao menos 26 índices de similaridade que podem ser agrupados de acordo com o tipo de dado (qualitativos ou quantitativos) ou a maneira com que lidam com duplos zeros (simétricos ou assimétricos) [@legendre_numerical_2012]. Do seu lado, as distâncias só se aplicam a dados quantitativos e têm como características serem métricas, semi-métricas ou não-métricas. Vejamos agora os principais índices de similaridade e distância de cada tipo.
 
 ### Métricas de distância
 
-O principal coeficiente de distância usado em ecologia é a distância euclidiana. Além disso temos ainda Canberra, Mahalanobis (calcula a distância entre dois pontos num espaço não ortogonal, levando em consideração a covariância entre descritores), Manhattan, Chord (elimina diferenças entre abundância total de espécies), 𝜒2 (dá peso maior para espécies raras), Hellinger (não dá peso para espécies raras). Essas distâncias são recomendada nos casos em que as variáveis de estudo forem contínuas, como por exemplo **variáveis morfométricas ou descritores ambientais**.
+O principal coeficiente de distância usado em ecologia é a distância euclidiana. Além disso, temos ainda Canberra, Mahalanobis (calcula a distância entre dois pontos num espaço não ortogonal, levando em consideração a covariância entre descritores), Manhattan, Chord (elimina diferenças entre abundância total de espécies), 𝜒2 (dá peso maior para espécies raras), Hellinger (não dá peso para espécies raras). Essas distâncias são recomendadas nos casos em que as variáveis de estudo forem contínuas, como por exemplo, **variáveis morfométricas ou descritores ambientais**.
 
-Uma característica comum de conjuntos de dados ecológicos são os vários zeros encontrados em matrizes de composição. Eles surgem porque não encontramos nenhum indivíduo de uma determinada espécie num local, seja porque aquele local não tem as condições ambientais adequadas a ela, falha na detectabilidade, ou dinâmicas demográficas estocásticas de colonização-extinção. Logo, quando dois locais compartilham ausência de espécies, não é possível atribuir uma única razão da dupla ausência. Como essas medidas de distância apresentadas acima assumem que os dados são quantitativos e não de contagem, elas não são adequadas para lidar com dados de abundância ou incidência de espécies, porque atribuem um grau de parecênça a pares de locais que compartilham zeros [@legendre_numerical_2012]. Por esse motivo precisamos de coeficientes que desconsiderem os duplos zeros. Eles são chamados de *assimétricos.*
+Uma característica comum de conjuntos de dados ecológicos são os vários zeros encontrados em matrizes de composição. Eles surgem porque não encontramos nenhum indivíduo de uma determinada espécie num local, seja porque aquele local não tem as condições ambientais adequadas a ela, falha na detectabilidade, ou dinâmicas demográficas estocásticas de colonização-extinção [@blascomoreno2019]. Logo, quando dois locais compartilham ausência de espécies, não é possível atribuir uma única razão da dupla ausência. Como essas medidas de distância apresentadas acima assumem que os dados são quantitativos e não de contagem, elas não são adequadas para lidar com dados de abundância ou incidência de espécies, porque atribuem um grau de parecênça a pares de locais que compartilham zeros [@legendre_numerical_2012]. Por esse motivo, precisamos de coeficientes que desconsiderem os duplos zeros. Eles são chamados de *assimétricos*.
 
-#### Coeficientes assimétricos binários para objetos
+**Coeficientes assimétricos binários para objetos**
 
-Esses coeficientes (ou índices) são apropriados para dados de incidência de espécies (presença-ausência) e desconsideram as duplas ausências. Os índices deste tipo mais comuns utilizados em ecologia são Sørensen, Jaccard, e Ochiai.
+Esses coeficientes (ou índices) são apropriados para dados de incidência de espécies (presença-ausência) e desconsideram as duplas ausências. Os índices deste tipo mais comuns utilizados em ecologia são Sørensen, Jaccard e Ochiai.
 
-$$
-\beta j= a/a+b+c
-$$
+$$\beta_j = a/(a+b+c)$$
+onde 
 
-, onde *a* = número de espécies compartilhadas, *b* = número de espécies exclusivas da comunidade 1, *c* = número de espécies exclusivas da comunidade 2. A diferença entre Jaccard e Sørensen é o Sørensen dá peso dobrado para duplas presenças. Por conta dessas características estes índices são adequados para quantificar diversidade beta [@anderson2010; @legendre2013]. Esses índices variam entre 0 (nenhuma espécie é compartilhada entre o par de locais) a 1 (todas as espécies são compartilhadas entre o par de locais).
+- *a* = número de espécies compartilhadas
+- *b* = número de espécies exclusivas da comunidade 1
+- *c* = número de espécies exclusivas da comunidade 2
 
-#### Coeficientes binários para descritores (R mode)
+A diferença entre os índices de Jaccard e Sørensen é que o índice de Sørensen dá peso dobrado para duplas presenças. Por conta dessas características, estes índices são adequados para quantificar diversidade beta [@anderson2010; @legendre2013]. Esses índices variam entre 0 (nenhuma espécie é compartilhada entre o par de locais) a 1 (todas as espécies são compartilhadas entre o par de locais).
 
-Se o objetivo for calcular a similaridade entre descritores binários (e.g., presença ou ausência de características ambientais) de pares de locais, geralmente o coeficiente recomendado é o de Sokal & Michener. Este índice está implementado em `ade4::dist.binary`.
+$$\beta_s = 2a/(2a+b+c)$$
+onde 
 
-#### Coeficientes quantitativos para objetos
+- *a* = número de espécies compartilhadas
+- *b* = número de espécies exclusivas da comunidade 1
+- *c* = número de espécies exclusivas da comunidade 2
 
-Estes são os coeficientes utilizados para dados de contagem (e.g., abundância), quantitativos (e.g., frequência, biomassa, porcentagem cobertura). Diferentemente das distâncias, estes coeficientes são assimétricos, ou seja, não consideram duplas ausências, e portanto são adequados para analisar dados de composição de espécies. Além disso, uma outra característica deles é serem semi-métricos. Os índices mais comuns deste tipo são Bray-Curtis (conhecido como *percentage difference* em inglês), Chord, log-Chord, Hellinger, chi-quadrado, e Morisita-Horn.
+**Coeficientes binários para descritores (R mode)**
 
-Todos os índices discutidos até aqui estão implementados nas funções `ade4::dist.ktab`, `adespatial::dist.ldc`, e `vegan::vegdist`.
+Se o objetivo for calcular a similaridade entre descritores binários (e.g., presença ou ausência de características ambientais) de pares de locais, geralmente o coeficiente recomendado é o de Sokal & Michener. Este índice está implementado na `ade4::dist.binary()`.
 
-#### Coeficientes para descritores (R mode) que incluem mistura de tipos de dados
+**Coeficientes quantitativos para objetos**
 
-É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (traits) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença ausência de uma dada característica), fuzzy (um atributo multiestado descrito codificado em várias colunas com porcentagem), ordinais, e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função `ade4::dist.ktab.`
+Estes são os coeficientes utilizados para dados de contagem (e.g., abundância) e quantitativos (e.g., frequência, biomassa, porcentagem cobertura). Diferentemente das distâncias, estes coeficientes são assimétricos, ou seja, não consideram duplas ausências, e portanto, são adequados para analisar dados de composição de espécies. Além disso, uma outra característica deles é serem semi-métricos. Os índices mais comuns deste tipo são Bray-Curtis (conhecido como *percentage difference*, em inglês), Chord, log-Chord, Hellinger, chi-quadrado e Morisita-Horn.
+
+Todos os índices discutidos até aqui estão implementados nas funções `ade4::dist.ktab()`, `adespatial::dist.ldc()` e `vegan::vegdist()`.
+
+**Coeficientes para descritores (R mode) que incluem mistura de tipos de dados**
+
+É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (*traits*) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença/ausência de uma dada característica), fuzzy (um atributo multiestado descrito codificado em várias colunas com porcentagem), ordinais e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função `ade4::dist.ktab().`
 
 O capítulo 7 de [@legendre_numerical_2012] fornece uma chave dicotômica para escolha do índice mais adequado.
 
-#### Padronizações e transformações
+**Padronizações e transformações**
 
-É comum coletarmos múltiplas variáveis ambientais cujas unidades sejam diferentes. Por exemplo, temperatura (ºC), distância da margem (m), área (m^2^). Para diminuir a taxa de Erro Tipo I das análises é recomendado que ***padronizemos*** os dados utilizando distribuição *Z*, assim todas as variáveis passam a ter média 0 e desvio padrão 1. Essa padronização pode ser implementada na função `vegan::decostand`.
+É comum coletarmos múltiplas variáveis ambientais cujas unidades sejam diferentes. Por exemplo, temperatura (ºC), distância da margem (m), área (m^2^), etc. Para diminuir a taxa de Erro do Tipo I das análises (rejeitar a hipótese nula quando ela é verdadeira), é recomendado que ***padronizemos*** os dados utilizando distribuição *Z*, assim todas as variáveis passam a ter média 0 e desvio padrão 1. Essa operação garante que todas as variáveis tenham o mesmo peso nas análises que avaliam o padrão dos objetos considerando os múltiplos descritores. Essa padronização pode ser implementada na função `vegan::decostand()`.
 
-Um outro problema comum de matrizes de dados de composição de espécies é o alto número de zeros, enquanto outras espécies podem ter altas abundâncias. Isso gera problemas em ordenações. Para diminuir esta discrepância podemos ***transformar*** os dados, por exemplo, utilizando a distância de Hellinger ou Chord. Isso pode ser feito na função `vegan::decostand`.
+Um outro problema comum de matrizes de dados de composição de espécies é o alto número de zeros, enquanto outras espécies podem ter altas abundâncias. Isso gera problemas em ordenações. Para diminuir essa discrepância, podemos **transformar** os dados, por exemplo, utilizando a distância de Hellinger ou Chord. Para dados contínuos pode ser que transformação log ou raiz quadrada ajude quando há valores muito discrepantes (*leverages*) que podem influenciar em demasiado a relação entre objetos ou descritores. Isso pode ser feito na função `vegan::decostand()`.
 
-## Análise de agrupamento hierárquico
+## Análises de agrupamento
 
 O objetivo da análise de agrupamento é agrupar objetos admitindo que haja um grau de similaridade entre eles. Esta análise pode ser utilizada ainda para classificar uma população em grupos homogêneos de acordo com uma característica de interesse. A grosso modo, uma análise de agrupamento tenta resumir uma grande quantidade de dados e apresentá-la de maneira fácil de visualizar e entender (em geral, na forma de um dendrograma). No entanto, os resultados da análise podem não refletir necessariamente toda a informação originalmente contida na matriz de dados. Para avaliar o quão bem uma análise de agrupamento representa os dados originais existe uma métrica --- o coeficiente de correlação cofenético --- o qual discutiremos em detalhes mais adiante.
 
 Antes de considerar algum método de agrupamento, pense porque você esperaria que houvesse uma descontinuidade nos dados; ou ainda, considere se existe algum ganho prático em dividir uma nuvem de objetos contínuos em grupos. O padrão apresentado pelo dendograma depende do protocolo utilizado (método de agrupamento e índice de dissimilaridade); os grupos formados dependem do nível de corte escolhido.
 
-A matriz deve conter os objetos a serem agrupados (e.g., espécies) nas linhas e as variáveis (e.g., locais de coleta ou medidas morfológicas) nas colunas. A escolha do método de agrupamento é crítico para a escolha de um coeficiente de associação. É importante compreender as propriedades dos métodos de agrupamento para interpretar corretamente a estrutura ecológica que eles evidenciam [@legendre_numerical_2012]. De acordo com a classificação de Sneath & Sokal [-@sneath_numerical_1973] existem cinco tipos de métodos: 1) seqüenciais ou simultâneos; 2) aglomerativo ou divisivo; 3) monotéticos ou politéticos; 4) hierárquico ou não hierárquicos e 5) probabilístico. Sugerimos a leitura do artigo citado para aprofundar seus conhecimentos sobre os diferentes métodos.
+A matriz deve conter os objetos a serem agrupados (e.g., espécies) nas linhas e as variáveis (e.g., locais de coleta ou medidas morfológicas) nas colunas. A escolha do método de agrupamento é crítico para a escolha de um coeficiente de associação. É importante compreender as propriedades dos métodos de agrupamento para interpretar corretamente a estrutura ecológica que eles evidenciam [@legendre_numerical_2012]. De acordo com a classificação de Sneath & Sokal [-@sneath_numerical_1973], existem cinco tipos de métodos: i) sequenciais ou simultâneos, ii) aglomerativo ou divisivo, iii) monotéticos ou politéticos, iv) hierárquico ou não hierárquicos e v) probabilístico. Sugerimos a leitura do artigo citado anteriormente para aprofundar seus conhecimentos sobre os diferentes métodos.
+
+### Agrupamento hierárquico
 
 Métodos hierárquicos podem ser divididos naqueles que consideram o centróide ou a média aritmética entre os grupos. O principal método hierárquico que utiliza a média aritmética é o UPGMA (Agrupamento pelas médias aritméticas não ponderadas), e o principal método que utiliza centróides é a Distância mínima de Ward.
 
 O UPGMA funciona da seguinte forma: a maior similaridade (ou menor distância) identifica os próximos agrupamentos a serem formados. Após esse evento, o método calcula a média aritmética das similaridades ou distâncias entre um objeto e cada um dos membros do grupo ou, no caso de um grupo previamente formado, entre todos os membros dos dois grupos. Todos os objetos recebem pesos iguais no cálculo.
 
-O método de Ward é baseado no critério de quadrados mínimos (OLS), o mesmo utilizado para ajustar um modelo linear. O objetivo é definir os grupos de maneira que a soma de quadrados (i.e. similar ao erro quadrado da ANOVA) dentro dos grupos seja minimizada [@borcard2018].
+O método de Ward é baseado no critério de quadrados mínimos (OLS), o mesmo utilizado para ajustar um modelo linear (Capítulo \@ref(cap7)). O objetivo é definir os grupos de maneira que a soma de quadrados (i.e. similar ao erro quadrado da ANOVA) dentro dos grupos seja minimizada [@borcard2018].
 
-No entanto, para interpretar os resultados precisamos antes definir um nível de corte, que vai nos dizer quantos grupos existem. Há vários métodos para definir grupos, desde os heurísticos aos que utilizam bootstrap. Se quisermos interpretar este dendrograma, podemos por exemplo estabelecer um nível de corte de 50% de distância (ou seja, grupos cujos objetos tenham ao menos 50% de similaridade entre si).
+No entanto, para interpretar os resultados precisamos antes definir um nível de corte, que vai nos dizer quantos grupos existem. Há vários métodos para definir grupos, desde os heurísticos aos que utilizam reamostragem (*bootstrap*). Se quisermos interpretar este dendrograma, podemos, por exemplo, estabelecer um nível de corte de 50% de distância (ou seja, grupos cujos objetos tenham ao menos 50% de similaridade entre si).
 
 **Checklist**
 
--   Verifique se não há espaço nos nomes das colunas e linhas
+- Verifique se não há espaço nos nomes das colunas e linhas
 
--   
+- Se os dados forem de abundância, recomenda-se realizar a transformação de Hellinger [@legendre2001]. Esta transformação é necessária porque a matriz de comunidades (em especial, com a presença de muitas espécies raras) pode causar distorções nos métodos de ordenação baseados em distância Euclidiana [@legendre2001]  
 
-        Se os dados forem de abundância, recomenda-se realizar a transformação de Hellinger [@legendre2001]. Esta transformação é necessária porque a matriz de comunidades (em especial, com a presença de muitas espécies raras) pode causar distorções nos métodos de ordenação baseados em distância Euclidiana [@legendre2001].    
+-   Se a matriz original contiver muitos valores discrepantes (e.g., uma espécie muito mais ou muito menos abundante que outras) é necessário transformar os dados usando `log1p()`. No entanto, deve-se fazer ou a transformação de Hellinger ou log e nunca as duas ao mesmo tempo
 
--   Se a matriz original contiver muitos valores discrepantes (e.g., uma espécie muito mais ou muito menos abundante que outras) é necessário transformar os dados usando `log1p`.
+-   Se as variáveis forem medidas tomadas em diferentes escalas (metros, graus celsius etc.), é necessário padronizar cada variável para ter a média 0 e desvio padrão 1. Isso pode ser feito utulizando a função `decostand()` do pacote `vegan`
 
--   Se as variáveis forem medidas tomadas em diferentes escalas (metros, graus celcius etc), é necessário padronizar cada variável para ter a média 0 e desvio padrão 1. Isso pode ser feito utulizando a função `decostand` do pacote `vegan`.
+**Exemplo 1**
 
-#### Exemplo 1
-
-Neste exemplo vamos utilizar um conjunto de dados que contém larvas de espécies de anfíbios anuros coletados em 14 poças com diferentes coberturas de dossel.
+Neste exemplo, vamos utilizar um conjunto de dados que contém girinos de espécies de anuros coletados em 14 poças com diferentes coberturas de dossel [@provete_broad-scale_2014].
 
 **Pergunta**
 
@@ -130,42 +149,44 @@ Neste exemplo vamos utilizar um conjunto de dados que contém larvas de espécie
 
 **Predições**
 
--   Iremos encontrar ao menos dois grupos de espécies: aquelas que ocorrem em poças dentro de floresta (i.e., maior cobertura de dossel) vs. aquelas que ocorrem em poças de áreas abertas (menor cobertura de dossel).
+-   Iremos encontrar ao menos dois grupos de espécies: aquelas que ocorrem em poças dentro de floresta (i.e., maior cobertura de dossel) *vesus* aquelas que ocorrem em poças de áreas abertas (menor cobertura de dossel)
 
 **Variáveis**
 
--   Variáveis preditoras: a matriz de dados contém a abundância das espécies nas linhas e locais (poças) nas colunas.
+-   Variáveis preditoras: a matriz de dados contém a abundância das espécies nas linhas e locais (poças) nas colunas
 
-### Análise no R
+**Análises**
 
-Para começar, vamos primeiro importar os dados e depois calcular a matriz de distância que seja adequada para o tipo de dado que temos (abundância de espécies - dados de contagem)
+Para começar, vamos primeiro importar os dados e depois calcular a matriz de distância que seja adequada para o tipo de dado que temos (abundância de espécies - dados de contagem) (Figura \@ref(fig:fig-dend)).
 
-```{r message=FALSE, warning=FALSE}
+```{r fig-dend, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros.", message=FALSE, warning=FALSE}
 ## Composição de espécies (seis primeiras localidades)
 head(sp_compos)
 
 ## Matriz de similaridade com o coeficiente de Morisita-Horn
-distBocaina <- vegdist(sp_compos, method="horn")
+distBocaina <- vegdist(x = sp_compos, method = "horn")
 
-# Agrupamento com a função hclust e o método UPGMA
-dendro <- hclust(distBocaina, method="average")
+## Agrupamento com a função hclust e o método UPGMA
+dendro <- hclust(d = distBocaina, method = "average")
 
-# Visualizar os resultados
+## Visualizar os resultados
 plot(dendro)
 ```
 
-### Assessando a qualidade do dendrograma
+**Assessando a qualidade do dendrograma**
 
-Precisamos verificar que o agrupamento reduziu a dimensionalidade da matiz de forma eficiente, de maneira a não distorcer a informação. Fazemos isso calculando o **Coeficiente de correlação cofenética (CCC)**
+Precisamos verificar se o agrupamento reduziu a dimensionalidade da matiz de forma eficiente, de maneira a não distorcer a informação. Fazemos isso calculando o **Coeficiente de Correlação Cofenética (CCC)**.
 
 ```{r}
+## Coeficiente de correlação cofenética (CCC)
 cofresult <- cophenetic(dendro)
 cor(cofresult, distBocaina)
 ```
 
-Um CCC \> .7 indica uma boa representação. Portanto, o nosso resultado de `r cor(cofresult, distBocaina)` é alto, garantindo que o dendrograma é adequado.
+Um CCC \> .7 indica uma boa representação. Portanto, o nosso resultado de `r cor(cofresult, distBocaina)` é alto, garantindo que o dendrograma é adequado (Figura \@ref(fig:fig-dend-group)). Note que testar a "significância" deste coeficiente não é adequado, já que seria algo tautológico (circular). Claro que definir o que seria um valor "alto" ou "baixo" da correlação é um pouco arbritrário, mas pode-se usar como "regra de dedão".
 
-```{r}
+```{r fig-dend-group, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte formando cinco grupos.", message=FALSE, warning=FALSE}
+## Gráfico
 plot(dendro)
 k <- 4
 n <- ncol(sp_compos)
@@ -175,63 +196,63 @@ abline(h = MidPoint, lty=2)
 
 Nesse caso teremos a formação de cinco grupos, representados pelos nós que estão abaixo da linha de corte. Portanto, o resultado não suporta a nossa hipótese *a priori* que predizia a formação de apenas dois grupos de espécies.
 
-#### Exemplo 2
+**Exemplo 2**
 
-No exemplo anterior vimos que é difícil interpretar os grupos baseado num nível de corte. A seguir, vamos utilizar o pacote `pvclust` que calcula automaticamente o nível de corte de similaridade baseado no Bootstrap de cada nó. Uma desvantagem deste método é que ele somente aceita índices de similaridade da função `dist` que possui apenas a distância Euclidiana, Manhattan e Canberra. Uma maneira de contornarmos essa limitação é utilizar transformações dos dados disponíveis na função `disttransform` no pacote `BiodiversityR` ou o `decostand` do pacote `vegan`. Também é possível utilizar a transformação de Box-Cox para dados multivariados, disponível no [material suplementar] (http://www.ecography.org/appendix/ecog-03498) de [@legendre2018]. Esta transformação é geralmente utilizada para tornar a distribuição dos dados mais simétrica (menos enviesada para valores extremos: reduzir o *skewness* dos dados).
+No exemplo anterior, vimos que é difícil interpretar os grupos baseado num nível de corte. A seguir, vamos utilizar o pacote `pvclust` que . Uma desvantagem deste método é que ele somente aceita índices de similaridade da função `dist()`, que possui apenas a distância Euclidiana, Manhattan e Canberra. Uma maneira de contornarmos essa limitação é utilizar transformações dos dados disponíveis na função `disttransform()` no pacote `BiodiversityR` ou a função `decostand()` do pacote `vegan`. Também é possível utilizar a transformação de Box-Cox para dados multivariados, disponível no [material suplementar](http://www.ecography.org/appendix/ecog-03498) de [@legendre2018]. Esta transformação é geralmente utilizada para tornar a distribuição dos dados mais simétrica (menos enviesada para valores extremos: reduzir o *skewness* dos dados).
 
-### Análise no R
+**Análises**
 
-Vamos utilizar o mesmo conjunto de dados acima pra responder à mesma pergunta. Aqui vamos utilizar a distância de Chord (que é indicada para dados de composição de espécies) para calcular a matriz de distância. Se transformarmos uma matriz usando a transformação Chord e depois calcularmos a distância Euclidiana, isso equivale à calcular diretamente a distância de Chord:
+Vamos utilizar o mesmo conjunto de dados do Exemplo 1 para responder à mesma pergunta. Aqui vamos utilizar a distância de Chord (que é indicada para dados de composição de espécies) para calcular a matriz de distância. Se transformarmos uma matriz usando a transformação Chord e depois calcularmos a distância Euclidiana, isso equivale à calcular diretamente a distância de Chord (Figura \@ref(fig:fig-dend-boot-chor)).
 
-```{r}
-# Dados
+```{r fig-dend-boot-chor, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte criada por bootstrap e usando distância de Chord.", message=FALSE, warning=FALSE}
+## Dados
 head(sp_compos)
 
-# Passo 1: transformar para distância de Chord
+## Passo 1: transformar para distância de Chord
 bocaina_transf <- disttransform(sp_compos, "chord")
 
-# Passo 2: realizar pvclust com método average e distância euclidiana
-analise <- pvclust(bocaina_transf, method.hclust="average", method.dist="euclidean") 
-
-# Passo 3: dendrograma
-plot(analise, hang=-1)
+## Passo 2: realizar pvclust com método average e distância euclidiana
+analise <- pvclust(bocaina_transf, method.hclust = "average", method.dist = "euclidean") 
+## Passo 3: dendrograma
+plot(analise, hang = -1)
 pvrect(analise)
 ```
 
-É possível notar que existe um único grupo com BS \> 95%. Agora vamos tentar usar a distância de Hellinger, que é recomendada (junto com a distância de Chord) para transformar dados de composição de espécies e, desse modo, reduzem distorções nas ordenações como PCA e CA [@legendre2001].
+É possível notar que existe um único grupo com BS \> 95%. Agora vamos tentar usar a distância de Hellinger, que é recomendada (junto com a distância de Chord) para transformar dados de composição de espécies e, desse modo, reduzem distorções nas ordenações como Análise de Componentes Principais (*Principal Component Analysis* - PCA) e Análise de Correspondência (*Correspondence Analysis* - CA) [@legendre2001] (Figura \@ref(fig:fig-dend-boot-hell)).
 
-```{r}
-# Passo 1: transformar dados com Hellinger
+```{r fig-dend-boot-hell, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte criada por bootstrap e usando distância de Hellinger.", message=FALSE, warning=FALSE}
+## Passo 1: transformar dados com Hellinger
 bocaina_transf2 <- disttransform(bocaina, "hellinger")
 
-# Passo 2: realizar pvclust com método average e distância euclidiana
+## Passo 2: realizar pvclust com método average e distância euclidiana
 analise2 <- pvclust(bocaina_transf2, method.hclust="average", method.dist="euclidean") 
 
-# Passo 3: dendrograma
+## Passo 3: dendrograma
 plot(analise2, hang=-1)
 pvrect(analise2)
 ```
 
-#### Interpretação dos resultados
+**Interpretação dos resultados**
 
-Notem que se mudarmos o coeficiente de associação, o resultado também muda. Agora temos 1 grupo a mais, composto por *Dendropsophus minutus* e *Scinax duartei* que não apareciam antes. Isso se deve ao fato de que a distância de Hellinger dá menos peso para espécies raras do que a Chord.
+Notem que se mudarmos o coeficiente de associação, o resultado também muda. Agora temos um grupo a mais, composto por *Dendropsophus minutus* e *Scinax duartei* que não apareciam antes. Isso se deve ao fato de que a distância de Hellinger dá menos peso para espécies raras do que a Chord.
 
-Neste sentido, os dados não suportam a nossa hipótese inicial da formação de dois grupos, independentemente do coeficiente de associação utilizado.
+Neste sentido, os dados não suportam a nossa hipótese inicial da formação de dois grupos, independentemente do coeficiente de associação utilizado e do cálculo automatico do nível de corte baseado na reamostragem.
 
-## K-means e agrupamentos não-hierárquicos
+### Agrupamento não-hierárquico (*K-means*)
 
-Ao contrário do dendrograma, o K-means é um agrupamento não-hierárquico e, desse modo, não é otimizado para busca grupos menores aninhados em grupos grupos maiores. Resumidamente, podemos calcular o K-means apartir de uma matriz quadrada ou de distância. Essa técnica procura particionar os objetos em *k* grupos de maneira a minimizar a soma de quadrados entre grupos e maximizá-la dentro dos grupos. Um critério similar ao de uma ANOVA \@ref(cap7). Um diferencial do K-means em relação aos agrupamentos hierárquicos é que o usuário pode escolher antecipadamente o número de grupos que deseja formar.
+Ao contrário do dendrograma, o K-means é um agrupamento não-hierárquico e, desse modo, não é otimizado para busca grupos menores aninhados em grupos maiores. Resumidamente, podemos calcular o K-means a partir de uma matriz quadrada ou de distância. Essa técnica procura particionar os objetos em *k* grupos de maneira a minimizar a soma de quadrados entre grupos e maximizá-la dentro dos grupos. Um critério similar ao de uma ANOVA (Capítulo \@ref(cap7)). Um diferencial do K-means em relação aos agrupamentos hierárquicos é que o usuário pode escolher antecipadamente o número de grupos que deseja formar.
 
-#### Exemplo 1
+**Exemplo 1**
 
-Para este exemplo iremos utilizar um conjunto de dados disponível no pacote `ade4` que contém dados de 27 espécies de peixes coletados em 30 pontos ao longo do Rio Doubs, na fronteira entre a França e Suiça.
+Para este exemplo, iremos utilizar um conjunto de dados disponível no pacote `ade4` que contém dados de 27 espécies de peixes coletados em 30 pontos ao longo do Rio Doubs, na fronteira entre a França e Suíça.
 
 **Pergunta**
 
--   Qual é o número de grupos que melhor sumariza o padrão de ocorrência de espécies de peixes ao longo de um riacho? 
+-   Qual é o número de grupos que melhor sumariza o padrão de ocorrência de espécies de peixes ao longo de um riacho?
 
 ::: {.alert .alert-info}
-<strong> 📝 Importante: </strong> Neste caso, estamos realizando uma análise exploratória e não temos uma predição.
+<strong> 📝 Importante </strong>\
+Neste caso, estamos realizando uma análise exploratória e não temos uma predição.
 :::
 
 **Variáveis**
@@ -240,77 +261,77 @@ Para este exemplo iremos utilizar um conjunto de dados disponível no pacote `ad
 
 **Checklist**
 
--   Vamos normalizar os dados de abundância antes de entrar na análise propriamente, já que existem muitos zeros na matriz.
+-   Vamos normalizar os dados de abundância antes de entrar na análise propriamente, já que existem muitos zeros na matriz
 
-### Análise
+**Análises**
+
+Vamos iniciar selecionando e padronizando os dados.
 
 ```{r message=FALSE, warning=FALSE}
-
-# mostrar somente seis primeiras espécies de seis localidades
+## Mostrar somente seis primeiras espécies de seis localidades
 head(doubs$fish)[,1:6]
 
-# retirar a linha 8 (rio sem nenhuma ocorrência de peixe)
+## Retirar a linha 8 (rio sem nenhuma ocorrência de peixe)
 spe <- doubs$fish[-8,]
 
-# Função do pacote vegan para normalizar os dados
-spe.norm <- decostand(spe, "normalize") 
+## Função do pacote vegan para normalizar os dados
+spe.norm <- decostand(x = spe, method = "normalize") 
 ```
 
-O argumento `centers` na função abaixo indica o número de grupos que se quer formar. Neste exemplo estamos utilizando `centers = 4`.
+O argumento `centers` na função `kmeans()` indica o número de grupos que se quer formar. Neste exemplo, estamos utilizando `centers = 4`.
 
 ```{r}
-spe.kmeans <- kmeans(spe.norm, centers = 4, nstart = 100)
+## K-Means
+spe.kmeans <- kmeans(x = spe.norm, centers = 4, nstart = 100)
 spe.kmeans
 ```
 
-O objeto que fornece o resultado contém: 1) o tamanho (número de objetos) em cada um dos 4 grupos; 2) o centroide de cada grupo e o pertencimento de cada espécie a cada grupo; e 3) o quanto da Soma de Quadrados dos dados é explicada por esta conformação de grupos.
+O objeto que fornece o resultado contém: i) o tamanho (número de objetos) em cada um dos 4 grupos, ii) o centroide de cada grupo e o pertencimento de cada espécie a cada grupo, e iii) o quanto da Soma de Quadrados dos dados é explicada por esta conformação de grupos.
 
-No entanto, não é possível saber a priori qual o número "ideal" de grupos. Para descobrir isso repetimos o k-means com uma série de valores de **K**. Isso pode ser feito na função `cascadeKM`.
+No entanto, não é possível saber *a priori* qual o número "ideal" de grupos. Para descobrir isso, repetimos o k-means com uma série de valores de **K**. Isso pode ser feito na função `cascadeKM()`.
 
 ```{r}
-spe.KM.cascade <- cascadeKM(spe.norm, inf.gr=2, sup.gr=10, iter=100, criterion="ssi") 
+## Repetindo o K-Means
+spe.KM.cascade <- cascadeKM(spe.norm, inf.gr = 2, sup.gr = 10, iter = 100, criterion = "ssi") 
 ```
 
-Tanto **calinski** quando **ssi** são bons critérios para encontrar o número ideal de grupos. Quanto maior o valor de **ssi**, melhor (veja `?cascadeKM` mais detalhes).
+Tanto **calinski** quando **ssi** são bons critérios para encontrar o número ideal de grupos. Quanto maior o valor de **ssi**, melhor (veja `?cascadeKM()` mais detalhes). Os valores de ssi é o critério utilizado pelo algorítimo para achar o agrupamento ótimo dos objetos (Figura \@ref(fig:fig-kmeans)).
 
-```{r}
-# Resumo dos resultados
+```{r fig-kmeans, fig.cap="Gráficos mostrando os resultados da análise de K-Means.", message=FALSE, warning=FALSE}
+## Resumo dos resultados
 spe.KM.cascade$results
+
+## Gráfico
+plot(spe.KM.cascade, sortg = TRUE)
 ```
 
-SSE: critério utilizado pelo algorítimo para achar o agrupamento ótimo dos objetos.
+**Interpretação dos resultados**
 
-```{r}
-plot(spe.KM.cascade, sortg=TRUE)
-```
+Diferentemente da nossa predição inicial, o resultado da análise mostra que o número ideal de grupos para explicar a variância no padrão de ocorrência de espécies é 3. Notem que o SSI máximo é alcançado neste número de grupos `r spe.KM.cascade$results[2, 2]` (também indicado pela bola vermelha no plot).
 
-### Interpretação dos resultados
-
-Diferentemente da nossa predição inicial, o resultado da análise mostra que o número ideal de grupos para explicar a variância no padrão de ocorrência de espécies é 3. Notem que o SSI máximo é alcançado neste número de grupos `r spe.KM.cascade$results[2,2]` (também indicado pela bola vermelha no plot).
-
-## Espécies indicadoras
+### Espécies indicadoras
 
 Uma pergunta normalmente feita por ecólogos é: qual espécie pode ser indicadora de uma determinada condição ambiental (e.g., poluição)?
 
-O índice IndVal mede dois aspectos das espécies: Especificidade e fidelidade. Uma alta fidelidade significa que espécies ocorrem em todos os locais do grupo e uma alta especificidade significa que as espécies ocorrem somente naquele grupo. Uma boa espécie indicadora é aquela na qual todos os indivíduos ocorrem em todas a amostras referentes a um grupo específico. A Especificidade é dada pela divisão da abundancia média da espécie no grupo pela somatória das abundancias médias dos grupos. Fidelidade é igual ao número de lugares no grupo onde a espécie está presente dividido pelo número total de lugares do grupo [@dufrene_species_1997].
+O índice IndVal mede dois aspectos das espécies: fidelidade e especificidade. Uma alta fidelidade significa que espécies ocorrem em todos os locais do grupo, e uma alta especificidade significa que as espécies ocorrem somente naquele grupo. Uma boa espécie indicadora é aquela na qual todos os indivíduos ocorrem em todas a amostras referentes a um grupo específico. A especificidade é dada pela divisão da abundância média da espécie no grupo pela somatório das abundâncias médias dos grupos. Fidelidade é igual ao número de lugares no grupo onde a espécie está presente dividido pelo número total de lugares do grupo [@dufrene_species_1997].
 
-Espécies raras podem receber o mesmo valor de IndVal das espécies indicadoras, porém são chamadas de indicadoras assimétricas, uma vez que contribuem com a especificidade do habitat mas não servem para predizer grupos. Ao contrário, as espécies indicadoras são verdadeiros indicadores simétricos e podem ser usadas para predizer grupos.
+Espécies raras podem receber o mesmo valor de IndVal das espécies indicadoras, porém são chamadas de indicadoras assimétricas, uma vez que contribuem com a especificidade do habitat, mas não servem para predizer grupos. Ao contrário, as espécies indicadoras são verdadeiros indicadores simétricos e podem ser usadas para predizer grupos.
 
 A análise procede da seguinte forma:
 
-1.  Uma matriz de distância é construída e as unidades amostrais são classificadas com alguma análise de agrupamento, hierárquico ou não;
+1.  Uma matriz de distância é construída e as unidades amostrais são classificadas com alguma análise de agrupamento, hierárquico ou não
 
-2.  A variável ambiental para a qual se deseja classificar os grupos é inserida;
+2.  A variável ambiental para a qual se deseja classificar os grupos é inserida
 
-3.  As espécies indicadoreas de cada grupo são formadas através do cálculo da especificidade e fidelidade, obtendo-se o valor de IndVal para cada espécie;
+3.  As espécies indicadoreas de cada grupo são formadas através do cálculo da especificidade e fidelidade, obtendo-se o valor de IndVal para cada espécie
 
-4.  Por fim, o conjunto de dados originais é comparado para ver se análise faz sentido.
+4.  Por fim, o conjunto de dados originais é comparado para ver se a análise faz sentido
 
-O cálculo da significância do índice de IndVal é feito por aleatorização de Monte Carlo. Os métodos de Monte Carlo utilizam números aleatórios de dados reais para simular certos padrões esperados na ausência de um processo ecológico específico [@legendre_numerical_2012]. Assim, o valor do índice é aleatorizado 999 vezes (ou o número de vezes que você optar) dentro dos tratamentos e o valor de *P* é dado pelo número de vezes em que o índice observado foi igual ou maior que os valores aleatorizados.
+O cálculo da significância do índice de IndVal é feito por aleatorização de Monte Carlo. Os métodos de Monte Carlo utilizam números aleatórios de dados reais para simular certos padrões esperados na ausência de um processo ecológico específico [@legendre_numerical_2012]. Assim, o valor do índice é aleatorizado 999 vezes (ou o número de vezes que você optar) dentro dos tratamentos e o valor de *P* é dado pelo número de vezes em que o índice observado foi igual ou maior que os valores aleatorizados. Portanto, o IndVal fornece um conjunto de espécies que são indicadoras de um grupo de locais (e.g., muito poluídos), que por sua vez precisam ser definidos utilizando alguma técnica de agrupamento, como as que vimos anteriormente.
 
-#### Exemplo 1
+**Exemplo 1**
 
-Para este exemplo vamos utilizado o mesmo conjunto de dados utilizado acima com abundância de 16 espécies de girinos coletados em 14 poças com diferentes graus de cobertura de dossel na Serra da Bocaina.
+Para este exemplo, vamos usar o mesmo conjunto de dados utilizado acima com abundância de 16 espécies de girinos coletados em 14 poças com diferentes graus de cobertura de dossel na Serra da Bocaina [@provete_broad-scale_2014].
 
 **Pergunta**
 
@@ -318,111 +339,123 @@ Para este exemplo vamos utilizado o mesmo conjunto de dados utilizado acima com 
 
 **Predições**
 
--   Espécies terrestres serão indicadoras de área aberta, enquanto espécies arborícolas serão indicadoras de áreas florestais.
+-   Espécies terrestres serão indicadoras de área aberta, enquanto espécies arborícolas serão indicadoras de áreas florestais
 
 **Variáveis**
 
--   Variáveis resposta: mesma matriz já utilizada contendo a abundância de girinos ao longo de poças na Serra da Bocaina.
+-   Variáveis resposta: mesma matriz já utilizada contendo a abundância de girinos ao longo de poças na Serra da Bocaina
 
-### Análise no R
+**Análises**
 
-O IndVal está disponível tanto no pacote `indicspecies` quando no `labdsv`. Para este exemplo iremos usar o `labdsv`. Primeiro vamos agrupar as unidades amostrais (poças) que informa os grupos de fitofisionomias onde as poças se localizam e para os quais deseja-se encontrar espécies indicadoras:
+O IndVal está disponível tanto no pacote `indicspecies`, quando no `labdsv`. Para este exemplo, iremos usar o `labdsv`. Primeiro, vamos agrupar as unidades amostrais (poças) que informa os grupos de fitofisionomias onde as poças se localizam e para os quais deseja-se encontrar espécies indicadoras.
 
 ```{r}
 ## Dados
 head(bocaina)
-fitofis <- c(rep(1,4), rep(2,4), rep(3,4), rep(4,4), rep(5,4))
+fitofis <- c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4), rep(5, 4))
 
 ## Análise de espécies indicadoras
-res_indval <- indval(bocaina, fitofis)
+res_indval <- indval(t(sp_compos), fitofis)
 
 # A função summary só exibe o resultado para as espécies indicadoras
 summary(res_indval)
 ```
 
-Para apresentar uma tabela dos resultados para todas as espécies temos de processar os dados:
+Para apresentar uma tabela dos resultados para todas as espécies temos de processar os dados.
 
 ```{r}
-res_indval$maxcls # classe de maior valor indicador / espécie 
+## Resultados
+res_indval$maxcls # classe de maior valor indicador/espécie 
 res_indval$indcls # valor indicador (indval)
 res_indval$pval # significância do indval
 tab_indval <- cbind.data.frame(maxcls = res_indval$maxcls,
                                ind.value = res_indval$indcls,
                                P = res_indval$pval)
 tab_indval
+
+## Espécies
+tab_indval[tab_indval$P < 0.05, ]
 ```
 
-### Interpretação dos resultados
+**Interpretação dos resultados**
 
-No resultado podemos ver que temos duas espécies indicadoras da fitofisionimia 1: *Rhinella icterica* (Rict) e *Scinax duartei* (Sduar). Nenhuma espécie foi indicadora dos outros grupos neste exemplo.
+No resultado apresentado, podemos ver que temos duas espécies indicadoras da fitofisionimia 1: *Rhinella icterica* (Rict) e *Scinax duartei* (Sduar). Nenhuma espécie foi indicadora dos outros grupos neste exemplo.
 
 ## Análises de Ordenação
 
-Os análises de ordenação representam um conjunto de métodos e técnicas multivariadas que buscam organizar objetos (e.g., localidades, indivíduos, espécies) em alguma ordem. Por exemplo, tais métodos permitem identificar se existem grupo de espécies que ocorrem exclusivamente em um determinado hábitat. Ao buscar esta *ordem* as técnicas de ordenação possuem três principais utilidades: **(1)** reduzir a dimensionalidade e revelar padrões, **(2)** separar variáveis mais e menos importantes em combinações complexas, e **(3)** separar relações mais e menos fortes ao comparar variáveis preditoras e dependentes. Em geral, os métodos são dividídos em ordenações irrestritas (ou análise de gradiente indireto) e restritas (ou análise de gradiente direto). As ordenações irrestritas organizam os objetos (e.g., espécies) de acordo com sua estrutura de covariância (ou correlação), o que demonstra que a proximidade (ou distância) dentro do espaço multidimensional representa semelhança (ou diferença) dos objetos. Por outro lado, as ordenações restritras posiciona os objetos (e.g., espécies) de acordo com sua relação linear com outras variáveis coletadas nas mesmas unidades amostraits (e.g., temperatura e precipitação). Ao passo que as ordenações irrestritas dependem somente de uma matriz (e.g., espécies por localidades), as ordenações restritas utilizam no mínimo duas matrizes (e.g., espécies por localidades e variáveis climáticas por localidade). Desse modo, fica claro por esta diferença entre os dados utilizados que as análises irrestritas são mais exploratórias, enquanto análises restritas são ideias para testar hipóteses com dados multidimensionais. A tabela a seguir apresenta as principais análises utilizadas em ecologia.
+As análises de ordenação representam um conjunto de métodos e técnicas multivariadas que organizam objetos (e.g., localidades, indivíduos) em alguma ordem considerando o conjunto de descritores que podem estar mais ou menos relacionados entre si. Se os descritores estiverem bem relacionados, eles são redundantes e organizam os objetos de forma similar. Esse fenômeno é observado, por exemplo, quando queremos organizar um conjunto de unidades amostrais baseado em variáveis que indicam um mesmo processo: ver o padrão de similaridade geral de lagos usando várias variáveis relacionada com a produtividade do sistema: clorofila-a, concentração de fósforo, nitrogênio, entre outros. Por exemplo, tais métodos permitem identificar se existem grupo de espécies que ocorrem exclusivamente em um determinado hábitat. Ao buscar esta *ordem*, as técnicas de ordenação possuem três principais utilidades: i) reduzir a dimensionalidade e revelar padrões, ii) separar as variáveis mais e menos importantes em combinações complexas e iii) separar relações mais e menos fortes ao comparar variáveis preditoras e dependentes. 
+
+Em geral, os métodos são dividídos em ordenações irrestritas (ou análise de gradiente indireto) e restritas (ou análise de gradiente direto). As ordenações irrestritas organizam os objetos (e.g., espécies) de acordo com sua estrutura de covariância (ou correlação), o que demonstra que a proximidade (ou distância) dentro do espaço multidimensional representa semelhança (ou diferença) dos objetos. Por outro lado, as ordenações restritras posicionam os objetos (e.g., espécies) de acordo com sua relação linear com outras variáveis coletadas nas mesmas unidades amostraits (e.g., temperatura e precipitação). Ao passo que as ordenações irrestritas dependem somente de uma matriz (e.g., espécies por localidades), as ordenações restritas utilizam no mínimo duas matrizes (e.g., espécies por localidades e variáveis climáticas por localidade). Desse modo, fica claro esta diferença entre os dados utilizados que as análises irrestritas são mais exploratórias, enquanto análises restritas são ideias para testar hipóteses com dados multidimensionais. A tabela a seguir apresenta as principais análises utilizadas em ecologia.
 
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
 | Método                   | Tipo de variável                                                                                                    | Função R           |
 +==========================+=====================================================================================================================+====================+
 | **Ordenação irrestrita** |                                                                                                                     |                    |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| PCA                      | Variáveis contínuas (distância euclidiana)                                                                          | PCA, rda, dudi.pca |
+| PCA                      | Variáveis contínuas (distância euclidiana)                                                                          | `PCA()`, `rda()`, `dudi.pca()` |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| PCoA                     | Aceita qualquer tipo de variável, mas depende da escolha apropriada de uma medida de distância                      | pcoa, dudi.pco     |
+| PCoA                     | Aceita qualquer tipo de variável, mas depende da escolha apropriada de uma medida de distância                      | `pcoa()`, `dudi.pco()`     |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| nMDS                     | Aceita qualquer tipo de variável, mas depende da escolha apropriada de uma medida de distância                      | metaMDS, nmds      |
+| nMDS                     | Aceita qualquer tipo de variável, mas depende da escolha apropriada de uma medida de distância                      | `metaMDS()`, `nmds()`      |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| CA                       |                                                                                                                     | dudi.coa           |
+| CA                       |                                                                                                                     | `dudi.coa()`           |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| Hill-Smith               | Aceita qualquer tipo de variável                                                                                    | dudi.hillsmith     |
+| Hill-Smith               | Aceita qualquer tipo de variável                                                                                    | `dudi.hillsmith()`     |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
 | **Ordenação restrita**   |                                                                                                                     |                    |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| RDA                      | Variáveis preditoras de qualquer tipo e variáveis dependentes contínuas (ou presença e ausência)                    | rda                |
+| RDA                      | Variáveis preditoras de qualquer tipo e variáveis dependentes contínuas (ou presença e ausência)                    | `rda()`                |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| RDA parcial              | Variáveis preditoras de qualquer tipo e variáveis dependentes contínuas (ou presença e ausência)                    | rda                |
+| RDA parcial              | Variáveis preditoras de qualquer tipo e variáveis dependentes contínuas (ou presença e ausência)                    | `rda()`                |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| dbRDA                    | Variáveis preditoras de qualquer tipo e matriz de distância obtida a partir das variáveis dependentes               | capscale, dbrda    |
+| dbRDA                    | Variáveis preditoras de qualquer tipo e matriz de distância obtida a partir das variáveis dependentes               | `capscale()`, `dbrda()`   |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| CCA                      | Variáveis preditoras de qualquer tipo e variáveis dependentes contínuas (ou presença e ausência)                    | rda                |
+| CCA                      | Variáveis preditoras de qualquer tipo e variáveis dependentes contínuas (ou presença e ausência)                    | `rda()`               |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| PERMANOVA                | Variáveis preditoras de qualquer tipo e matriz de distância obtida a partir das variáveis dependentes               | adonis, adonis2    |
+| PERMANOVA                | Variáveis preditoras de qualquer tipo e matriz de distância obtida a partir das variáveis dependentes               | `adonis()`, `adonis2()`    |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
-| PCR                      | Variável dependente necessariamente representada por escores da PCA ou PCoA e variáveis preditoras de qualquer tipo | pca, pcoa, lm, glm |
+| PCR                      | Variável dependente necessariamente representada por escores da PCA ou PCoA e variáveis preditoras de qualquer tipo | `pca()`, `pcoa()`, `lm()`, `glm()` |
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
 
-### Ordenações irrestritas
+## Ordenação irrestrira
 
-#### Análise de Componentes Principais - PCA
+A ordenação irrestrita ou análise de gradiente indireto, organiza os objetos de acordo 
 
-A PCA é uma das ordenações mais utilizadas em diversas áreas do conhecimento. Em ecologia, ela se popularizou por facilitar a visualização de dados complexos como de distribuição de espécies em diferentes localidades e de potenciais variáveis explicativas. Ao mesmo tempo que ganhou tamanha popularidade, a PCA tem sido empregada de maneira incorreta, uma vez que muitos estudos utilizam a visualização gráfica da ordenação (o biplot) para intepretar "relações" entre variáveis preditoras (ambientais) e dependentes (espécies). Porém, como informado anteriormente, as ordenações irrestritas utilizam a estrutura de covariância dos objetos para organizar suas relações de similaridade.
+### Análise de Componentes Principais (PCA)
 
-Antes de explicar a análise, imagine que vamos usar uma matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes. A quantidade de indivíduos de cada espécie coletada em cada cidade será o valor de preenchimento desta matriz. Sendo assim, a matriz possui oito objetos (cidades, representando unidades amostrais) e cinco descritores (espécies), como na tabela abaixo:
+A Análise de Componentes Principais (*Principal Component Analysis* - PCA) é uma das ordenações mais utilizadas em diversas áreas do conhecimento. Em Ecologia, ela se popularizou por facilitar a visualização de dados complexos como de distribuição de espécies em diferentes localidades e de potenciais variáveis explicativas. Ao mesmo tempo que ganhou tamanha popularidade, a PCA tem sido empregada de maneira incorreta, uma vez que muitos estudos utilizam a visualização gráfica da ordenação (o biplot) para intepretar "relações" entre variáveis preditoras (ambientais) e dependentes (espécies). Porém, como informado anteriormente, as ordenações irrestritas utilizam a estrutura de covariância dos objetos para organizar suas relações de similaridade.
 
-| Cidade   | sp1 | sp2 | sp3 | sp4 | sp5 |
-|----------|-----|-----|-----|-----|-----|
-| Cidade 1 | 5   | 0   | 0   | 0   | 0   |
-| Cidade 2 | 7   | 6   | 0   | 0   | 0   |
-| Cidade 3 | 2   | 3   | 0   | 0   | 0   |
-| Cidade 4 | 0   | 4   | 9   | 0   | 0   |
-| Cidade 5 | 0   | 0   | 12  | 4   | 0   |
-| Cidade 6 | 0   | 0   | 3   | 10  | 6   |
-| Cidade 7 | 0   | 0   | 0   | 8   | 9   |
-| Cidade 8 | 0   | 0   | 0   | 0   | 12  |
+Antes de explicar a análise, imagine que vamos usar uma matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes. A quantidade de indivíduos de cada espécie coletada em cada cidade será o valor de preenchimento desta matriz. Sendo assim, a matriz possui oito objetos (cidades, representando unidades amostrais) e cinco descritores (espécies), como na Tabela \@ref(tab:tab-pca-dados).
 
-O primeiro passo da PCA é obter uma matriz centralizada onde cada valor é subtraído da média da coluna que aquele valor pertence. Esta centralização pode ser calculada com a função scale.
+```{r tab-pca-dados, echo=FALSE}
+knitr::kable(data.frame(
+    Cidade = paste("Cidade", 1:8),
+    `Espécie 1` = c(5, 7, 2, 0, 0, 0, 0, 0),
+    `Espécie 2` = c(0, 6, 3, 4, 0, 0, 0, 0),
+    `Espécie 3` = c(0, 0, 0, 9, 12, 3, 0, 0),
+    `Espécie 4` = c(0, 0, 0, 0, 4, 10, 8, 0),
+    `Espécie 5` = c(0, 0, 0, 0, 0, 6, 9, 12)),
+    align = "c",
+    caption = "Matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes.")
+```
+
+O primeiro passo da PCA é obter uma matriz centralizada, onde cada valor é subtraído da média da coluna que aquele valor pertence. Esta centralização pode ser calculada com a função `scale()`.
 
 ```{r}
-aranhas <- data.frame(sp1 = c(5, 7, 2, 0, 0, 0, 0, 0),
-           sp2 = c(0, 6, 3, 4, 0, 0, 0, 0),
-           sp3 = c(0, 0, 0, 9, 12, 3, 0, 0),
-           sp4 = c(0, 0, 0, 0, 4, 10, 8, 0),
-           sp5 = c(0, 0, 0, 0, 0, 6, 9, 12),
-           row.names = paste("cidade", 1:8, sep=""))
+## Dados
+aranhas <- data.frame(
+    sp1 = c(5, 7, 2, 0, 0, 0, 0, 0),
+    sp2 = c(0, 6, 3, 4, 0, 0, 0, 0),
+    sp3 = c(0, 0, 0, 9, 12, 3, 0, 0),
+    sp4 = c(0, 0, 0, 0, 4, 10, 8, 0),
+    sp5 = c(0, 0, 0, 0, 0, 6, 9, 12),
+    row.names = paste0("cidade", 1:8))
 
+## Centralização
 aranha.cent <- as.data.frame(base::scale(aranhas, center = TRUE, scale=FALSE))
 ```
 
-O segundo passo é calcular uma matriz de covariância (ou matriz de dispersão) e, a partir desta matriz, obter os autovalores e autovetores. Os autovalores representam a porcentagem de explicação de cada eixo e podem ser calculados dividindo a soma do autovalor de cada eixo pela soma de todos os autovalores. No exemplo que apresentamos, os dois primeiros eixos representam 47,20% e 35,01%, respectivamente, de toda variação. Os autovetores, por sua vez, representam os valores que multiplicam as variáveis originais e, desse modo, indicam a direção desses valores. Por fim, os componentes principais (Matriz F) são obtidos multiplicando os autovetores com os valores da matriz centralizada.
+O segundo passo é calcular uma matriz de covariância (ou matriz de dispersão) e, a partir desta matriz, obter os autovalores e autovetores. Os autovalores representam a porcentagem de explicação de cada eixo e podem ser calculados dividindo a soma do autovalor de cada eixo pela soma de todos os autovalores. No exemplo que apresentamos, os dois primeiros eixos representam 47,20% e 35,01% de toda variação, respectivamente. Os autovetores, por sua vez, representam os valores que multiplicam as variáveis originais e, desse modo, indicam a direção desses valores. Por fim, os componentes principais (Matriz F) são obtidos multiplicando os autovetores com os valores da matriz centralizada.
 
 ```{r}
 ## Matriz de covaiância
@@ -430,47 +463,41 @@ matriz_cov <- cov(aranha.cent)
 
 ## Autovalores e autovetores
 eigen_aranhas <- eigen(matriz_cov)
-autovalores<- eigen_aranhas$values
+autovalores <- eigen_aranhas$values
 autovetores <- as.data.frame(eigen_aranhas$vectors)
 autovalores # eigenvalue
 colnames(autovetores) <- paste("PC", 1:5, sep="")
 rownames(autovetores) <- colnames(aranhas)
 autovetores
 
-matriz_F <- as.data.frame(as.matrix(aranha.cent)%*%as.matrix(autovetores))
+## Componentes principais
+matriz_F <- as.data.frame(as.matrix(aranha.cent) %*% as.matrix(autovetores))
 matriz_F
+
 ## Porcentagem de explicação de cada eixo
-100* (autovalores / sum(autovalores))
+100 * (autovalores/sum(autovalores))
 ```
 
-Agora, é possível visualizar a relação entre as cidades e similaridade na espécies de aranhas que vivem em cada uma delas.
+Agora, é possível visualizar a relação entre as cidades e similaridade na espécies de aranhas que vivem em cada uma delas (Figura \@ref(fig:fig-pca)).
 
-```{r}
-matriz_F %>% 
-  ggplot(aes(x = PC1, 
-             y = PC2, 
-             label = rownames(matriz_F))) +
-  theme_bw() + 
-  geom_label() + 
-  geom_hline(yintercept = 0, linetype=2) +
-  geom_vline(xintercept = 0, linetype=2) + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5, 
-                                   size=12), 
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5, 
-                                   size=12))
+```{r fig-pca, fig.cap="Biplot da PCA ordenando as cidades pela composição das espécies de aranhas.", message=FALSE, warning=FALSE}
+## Gráfico
+ggplot(matriz_F, aes(x = PC1, y = PC2, label = rownames(matriz_F))) +
+    geom_label() + 
+    geom_hline(yintercept = 0, linetype=2) +
+    geom_vline(xintercept = 0, linetype=2) +
+    tema_livro()
 ```
 
 **Checklist**
 
--   Verifique se todas as variáveis utilizadas são contínuas. Caso contrário, considere utilizar PCoA.
+-   Verifique se todas as variáveis utilizadas são contínuas. Caso contrário, considere utilizar PCoA (veja mais no próximo tópico)
 
--   Apesar do exemplo acima ter apresentado a ocorrência de espécies de aranhas em diferentes cidades, é fundamental saber que utilizar PCA com esses dados pode ser problemático. Assim, tenha cuidado em usar de composição de espécies (especialmente abundância) com PCA, uma vez que 'duplos zeros' podem gerar distorções na ordenação [@legendre_numerical_2012]. Como alternativa, é possível utilizar PCA com dados padronizados com o método de Hellinger [@legendre2001].
+-   Apesar do exemplo acima ter apresentado a ocorrência de espécies de aranhas em diferentes cidades, é fundamental saber que utilizar a PCA com esses dados pode ser problemático. Assim, tenha cuidado em usar dados de composição de espécies, especialmente abundância, com PCA, uma vez que 'duplos zeros' podem gerar distorções na ordenação [@legendre_numerical_2012]. Como alternativa, é possível utilizar PCA com dados padronizados com o método de Hellinger [@legendre2001].
 
-#### Exemplo 1
+**Exemplo 1**
 
-Neste exemplo vamos utilizar um conjunto de dados morfológicos de pinguins do arquipélago Palmer (Península Antártica) disponíveis no pacote 'palmerpenguins'. Os dados representam medidas do comprimento e largura do bico (mm), comprimento da nadadeira (mm) e massa corporal (gramas) de três espécies: Adélie, Chinstrap e Gentoo. Como descrito acima, a PCA deve ser utilizada para exploração de dados ou para testes a posteriori (p. ex., PCR). Neste exemplo, iremos usar a estrutura de perguntas e predições para manter a proposta do livro.
+Neste exemplo vamos utilizar um conjunto de dados morfológicos de pinguins do arquipélago Palmer (Península Antártica) disponíveis no pacote 'palmerpenguins'. Os dados representam medidas do comprimento e largura do bico (mm), comprimento da nadadeira (mm) e massa corporal (gramas) de três espécies: Adélie, Chinstrap e Gentoo. Como descrito acima, a PCA deve ser utilizada para exploração de dados ou para testes *a posteriori* (e.g., Regressão de Componentes Principais - PCR, tópico explorado mais a frente nesse capítulo). Neste exemplo, iremos usar a estrutura de perguntas e predições para manter a proposta do livro.
 
 **Pergunta**
 
@@ -478,139 +505,125 @@ Neste exemplo vamos utilizar um conjunto de dados morfológicos de pinguins do a
 
 **Predições**
 
--   Pinguins com dieta diferente possuem differentes características morfológicas.
+-   Pinguins com dieta diferente possuem diferentes características morfológicas
 
 **Variáveis**
 
 -   Preditora: espécie (categórica com três níveis)
-
 -   Dependentes: variáveis morfológicas (contínua)
 
-#### Análise no R
+**Análises**
 
 Antes de começar, é necessário remover dados ausentes (se houver) e editar nomes das variáveis (ponto importante para determinar como devem aparecer no gráfico).
 
 ```{r message=FALSE, warning=FALSE}
-## Verificar se existem NAs nos dados.
+## Verificar se existem NAs nos dados
 sum(is.na(penguins))
 
-## Remover dados ausentes (NA), quando houver.
+## Remover dados ausentes (NA), quando houver
 penguins <- na.omit(penguins)
 
-## Editar nomes para aparecer nos gráficos.
+## Editar nomes para aparecer nos gráficos
 names(penguins) <- c("species", "island", "Bill length", "Bill depth", "Flipper length", "Body mass", "Sex", "Year")
 
-## Manter somentes dados contínuos que pretende aplicar a PCA.
-
-penguins_trait <- penguins[,3:6]
+## Manter somentes dados contínuos que pretende aplicar a PCA
+penguins_trait <- penguins[, 3:6]
 ```
 
-Agora sim os dados estão prontos para fazer a PCA. Um argumento é essencial na análise, o "scale.unit". Se você utiliar dentro deste argumento o seleção 'TRUE', a função padroniza automaticamente as variáveis para terem a média 0 e variância 1. Esta padronização é essencial quando as variáveis estão em escalas muito diferentes. No exemplo selecionado, temos variáveis como comprimento do bico (em milímetros) e massa corporal (em gramas).
+Agora sim, os dados estão prontos para fazer a PCA. Um argumento é essencial na análise, o `scale.unit`. Se você utilizar dentro deste argumento o seleção `TRUE`, a função padroniza automaticamente as variáveis para terem a média 0 e variância 1. Esta padronização é essencial quando as variáveis estão em escalas muito diferentes. No exemplo selecionado, temos variáveis como comprimento do bico (em milímetros) e massa corporal (em gramas).
 
 ```{r message=FALSE, warning=FALSE}
-# Compare com este código a variância das variáveis
+## Compare com este código a variância das variáveis
 penguins_trait %>% 
-  dplyr::summarise(across(where(is.numeric), 
-                   ~var(.x, na.rm=TRUE)))
+    dplyr::summarise(across(where(is.numeric), 
+                            ~var(.x, na.rm = TRUE)))
 
-# Agora, veja o mesmo cálculo se fizer a padronização (scale.unit da função PCA)
-penguins_pad <- decostand(penguins_trait, "standardize")
+## Agora, veja o mesmo cálculo se fizer a padronização (scale.unit da função PCA)
+penguins_pad <- decostand(x = penguins_trait, method = "standardize")
 penguins_pad %>% 
-  dplyr::summarise(across(where(is.numeric), 
-                   ~var(.x, na.rm=TRUE)))
+    dplyr::summarise(across(where(is.numeric), 
+                            ~var(.x, na.rm = TRUE)))
 
-# PCA
-pca.p <- PCA(penguins_trait, scale.unit = TRUE, graph = FALSE)
+## PCA
+pca.p <- PCA(X = penguins_trait, scale.unit = TRUE, graph = FALSE)
 ```
 
-Apesar da simplicidade do comando para executar a PCA, o objeto resultante da análise possui diversas informações que são essenciais para sua plena interpretação. Dentre elas, se destacam os autovalores, escores e *loadings*. Os autovalores representam a porcentagem de explicação de cada eixo. O escores representam as coordenadas (posições no espaço multidimensional) representando os objetos (geralmente localidades ou indivíduos) e descritores (geralmente espécies ou variáveis ambientais e espaciais). Os *loadings*, por sua vez, representam a combinação linear entre os escores (nova posição do valor do descritor no espaço ordenado) e os valores originais dos descritores.
+Apesar da simplicidade do código para executar a PCA, o objeto resultante da análise possui diversas informações que são essenciais para sua plena interpretação. Dentre elas, se destacam os autovalores, escores e cargas (*loadings*). Os autovalores representam a porcentagem de explicação de cada eixo. Os escores representam as coordenadas (posições no espaço multidimensional) representando os objetos (geralmente localidades ou indivíduos) e descritores (geralmente espécies ou variáveis ambientais e espaciais). Os *loadings*, por sua vez, representam a combinação linear entre os escores (nova posição do valor do descritor no espaço ordenado) e os valores originais dos descritores (Figura \@ref(fig:fig-pca-scree)).
 
-```{r message=FALSE,warning=FALSE}
+```{r fig-pca-scree, fig.cap="Scree plot mostrando a porcentagem de contribuição de cada eixo para a ordenação dos dados de penguins.", message=FALSE, warning=FALSE}
 ## Autovalores: porcentagem de explicação para usar no gráfico
 pca.p$eig 
 
 ## Visualização da porcentagem de explicação de cada eixo
-# nota: é necessário ficar atento ao valor máximo do eixo 1 da análise para determinar o valor do ylim (neste caso, colocamos que o eixo varia de 0 a 70)
+# nota: é necessário ficar atento ao valor máximo do eixo 1 da análise para determinar o valor do ylim (neste caso, colocamos que o eixo varia de 0 a 70).
 fviz_screeplot(pca.p, addlabels = TRUE, ylim = c(0, 70)) 
 
 ## Outros valores importantes
 var_env <- get_pca_var(pca.p)
 
-# Escores (posição) das variáveis em cada eixo
+## Escores (posição) das variáveis em cada eixo
 var_env$coord 
 
-# Contribuição (%) das variáveis para cada eixo
+## Contribuição (%) das variáveis para cada eixo
 var_env$contrib 
 
-# loadings - correlação das variáveis com os eixos
+## Loadings - correlação das variáveis com os eixos
 var_env$cor 
 
-# Qualidade da representação da variável. Esse valor é obtido multiplicado var_env$coord por var_env$coord
+## Qualidade da representação da variável. Esse valor é obtido multiplicado var_env$coord por var_env$coord
 var_env$cos2
 
-# Escores (posição) das localidades ("site scores") em cada eixo 
+## Escores (posição) das localidades ("site scores") em cada eixo 
 ind_env <- get_pca_ind(pca.p)
 ```
 
-O pacote `FactoMineR` criou uma função (`dimdesc`) que seleciona as melhores variáveis (aquelas mais explicativas) para cada eixo através de uma análise fatorial. No exemplo com pinguins, o primeiro eixo (objeto `pca.p$eig`) explica \~69% da variação morfológica. A função dimdesc mostra que as quatro variáveis morfológicas estão fortemente associadas com o eixo 1. Porém, enquanto comprimento da nadadeira, massa corporal e comprimento do bico estão positivamente associados com o eixo 1 (correlação positiva), a largura do bico tem relação negativa. O eixo 2, por sua vez, explica \~20% da variação, sendo relacionado somente com largura e comprimento do bico.
+O pacote `FactoMineR` criou uma função (`dimdesc()`) que seleciona as melhores variáveis (aquelas mais explicativas) para cada eixo através de uma análise fatorial. No exemplo com pinguins, o primeiro eixo (objeto `pca.p$eig`) explica \~69% da variação morfológica. A função `dimdesc()` mostra que as quatro variáveis morfológicas estão fortemente associadas com o eixo 1. Porém, enquanto comprimento da nadadeira, massa corporal e comprimento do bico estão positivamente associados com o eixo 1 (correlação positiva), a largura do bico tem relação negativa. O eixo 2, por sua vez, explica \~20% da variação, sendo relacionado somente com largura e comprimento do bico.
 
 ```{r message=FALSE, warning=FALSE}
-# Variáveis mais importantes para o Eixo 1
+## Variáveis mais importantes para o Eixo 1
 dimdesc(pca.p)$Dim.1 
 
-# Variáveis mais importantes para o Eixo 2
+## Variáveis mais importantes para o Eixo 2
 dimdesc(pca.p)$Dim.2 
 ```
 
-Agora podemos utilizar o famoso "biplot" para representar a comparação morfológica dos pinguins dentro e entre espécies
+Agora podemos utilizar o famoso **biplot** para representar a comparação morfológica dos pinguins dentro e entre espécies (Figura \@ref(fig:fig-pca-biplot)).
 
-```{r message=FALSE, warning=FALSE}
-fviz_pca_biplot(pca.p,
-                geom.ind = "point",                                                         fill.ind = penguins$species, 
+```{r fig-pca-biplot, fig.cap="Biplot da PCA ordenando os dados morfológicos de penguins.", message=FALSE, warning=FALSE}
+fviz_pca_biplot(X = pca.p, 
+                geom.ind = "point", 
+                fill.ind = penguins$species, 
                 col.ind = "black",
-                alpha.ind=0.7,
+                alpha.ind = 0.7,
                 pointshape = 21, 
                 pointsize = 4,
                 palette = c("darkorange", "darkorchid", "cyan4"),
-                addEllipses = FALSE,
-                alpha.var = 1,
                 col.var = "black",
-                gradient.cols = "RdBu",
                 invisible = "quali",
                 title = NULL) +
-  theme_bw() + 
-  xlab("PC 1 (68.63%)") + 
-  ylab("PC 2 (19.45%)") + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5, 
-                                   size=12),
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5, 
-                                   size=12),
-        legend.position = "top",
-        legend.title = element_blank())+
-  tema_livro()
+    labs(x = "PC1 (68.63%)", y = "PC2 (19.45%)") + 
+    tema_livro()
 ```
 
-### Análise de Coordenadas Principais - PCoA
+### Análises de Coordenadas Principais (PCoA)
 
-Diferentemente da PCA, a PCoA é uma análise de ordenação irrestrita que aceita dados de diferentes tipos, como contínuos, categóricos, ordinais, binários, entre outros. Assim, a PCoA é aplicada para casos em que a distância euclidiana não é aplicada (como na PCA). Desse modo, o primeiro passo da análise é calcular uma matriz de similaridade ou de distância (discutido acima). Depois, os passos para obter autovalores e autovetores são bastante parecidos com a PCA. Da mesma forma, os eixos da PCoA e os valores ou posições dos objetos nesses eixos representam a relação de semelhança (ou diferença) baseada nos descritores desses objetos. A diferença, neste caso, é que a PCoA representa um espaço não-euclidiano, que irá ser afetado pela escolha do método de similaridade.
+Diferentemente da PCA, a Análises de Coordenadas Principais (*Principal Coordinate Analysis* - PCoA) é uma análise de ordenação irrestrita que aceita dados de diferentes tipos, como contínuos, categóricos, ordinais, binários, entre outros. Assim, a PCoA é aplicada para casos em que a distância euclidiana não é aplicada (como na PCA). Desse modo, o primeiro passo da análise é calcular uma matriz de similaridade ou de distância (discutido acima). Depois, os passos para obter autovalores e autovetores são bastante parecidos com a PCA. Da mesma forma, os eixos da PCoA e os valores ou posições dos objetos nesses eixos representam a relação de semelhança (ou diferença) baseada nos descritores desses objetos. A diferença, neste caso, é que a PCoA representa um espaço não-euclidiano, que irá ser afetado pela escolha do método de similaridade.
 
-As utilizações mais comuns da PCoA são a ordenação (1) da matriz de composição de espécies usando a distância apropriada (Jaccard, Sorensen, Bray Curits), (2) da matriz de variáveis ambientais com mistos (contínuos, categóricos, circulares, etc...), e (3) da matriz filogenética [método PVR @diniz-filho_eigenvector_1998]. Abaixo, exemplificamos a ordenação da matriz de composição de espécies.
+As utilizações mais comuns da PCoA são a ordenação: i) da matriz de composição de espécies usando a distância apropriada (Jaccard, Sorensen, Bray-Curtis), ii) da matriz de variáveis ambientais com mistos (contínuos, categóricos, circulares, etc.), e iii) da matriz filogenética [método PVR @diniz-filho_eigenvector_1998]. Abaixo, exemplificamos a ordenação da matriz de composição de espécies.
 
 **Checklist**
 
--   Compare as dimensões das matrizes utilizadas para a PCoA. Com bastante frequência, a tentativa de combinar dados categóricos (algum descritor dos objetos) com os valores obtidos com a PCoA gera erros para plotar a figura ou para executar a análise. Verifique, então, se as linhas são as mesmas (nome das localidades ou indivíduos e quantidade).
+-   Compare as dimensões das matrizes utilizadas para a PCoA. Com bastante frequência, a tentativa de combinar dados categóricos (algum descritor dos objetos) com os valores obtidos com a PCoA gera erros para plotar a figura ou para executar a análise. Verifique, então, se as linhas são as mesmas (nome das localidades ou indivíduos e quantidade)
 
--   É fundamental conhecer o tipo de dados que está usando para selecionar a medida de distância apropriada. Essa escolha vai afetar a qualidade da ordenação e sua habilidade para interpretar a relação de semelhança entre os objetos comparados.
+-   É fundamental conhecer o tipo de dados que está usando para selecionar a medida de distância apropriada. Essa escolha vai afetar a qualidade da ordenação e sua habilidade para interpretar a relação de semelhança entre os objetos comparados
 
--   Diferente da PCA, a PCoA aceita dados ausentes se a medida de distância escolhida também não tiver esta limitação. Por exemplo, a distância de Gower produz matrizes de similaridade mesmo com dados ausentes em determinados objetos.
+-   Diferente da PCA, a PCoA aceita dados ausentes se a medida de distância escolhida também não tiver esta limitação. Por exemplo, a distância de Gower produz matrizes de similaridade mesmo com dados ausentes em determinados objetos
 
--   Em alguns casos, a autovalores negativos são produzidos na ordenação com PCoA. Veja as principais causas desses valores em Legendre & Legendre [-@legendre_numerical_2012]. Apesar deste problema, os autovalores mais importantes (eixos iniciais) não são afetados e, deste modo, a qualidade da representação dos objetos no espaço multidimensional não é afetada. Alguns autores sugerem utilizar correções métodos de correção, como Lingoes ou Cailliez [@legendre_numerical_2012].
+-   Em alguns casos, autovalores negativos são produzidos na ordenação com PCoA. Veja as principais causas desses valores em Legendre & Legendre [-@legendre_numerical_2012]. Apesar deste problema, os autovalores mais importantes (eixos iniciais) não são afetados e, deste modo, a qualidade da representação dos objetos no espaço multidimensional não é afetada. Alguns autores sugerem utilizar correções métodos de correção, como Lingoes ou Cailliez [@legendre_numerical_2012].
 
-#### Exemplo 1
+**Exemplo 1**
 
-Neste exemplo vamos utilizar a composição de ácaros Oribatidae em 70 manchas de musgo coletados por Borcard et al. [-@borcard_partialling_1992].
+Neste exemplo, vamos utilizar a composição de ácaros Oribatidae em 70 manchas de musgo coletados por Borcard et al. [-@borcard_partialling_1992].
 
 **Pergunta**
 
@@ -618,92 +631,86 @@ Neste exemplo vamos utilizar a composição de ácaros Oribatidae em 70 manchas 
 
 **Predições**
 
--   Iremos encontrar ao menos dois grupos de espécies: aquelas que ocorrem em poças dentro de floresta vs. aquelas que ocorrem em poças de áreas abertas.
+-   Iremos encontrar ao menos dois grupos de espécies: aquelas que ocorrem em poças dentro de floresta *versus* aquelas que ocorrem em poças de áreas abertas
 
 **Variáveis**
 
 -   Preditora: topografia (categórica com dois níveis)
-
 -   Dependentes: composição de espécies de ácaro
 
-#### Análise no R
+**Análises**
+
+Vamos primeramente padronizar dos dados, calcular uma matriz de distância com método Bray-Curtis e depois calcular a PCoA.
 
 ```{r message=FALSE, warning=FALSE}
-# Padronização dos dados com Hellinger
-mite.hel <- decostand(mite, "hellinger") 
+## Padronização dos dados com Hellinger
+mite.hel <- decostand(x = mite, method = "hellinger") 
 
-# Cálculo da matriz de distância com método Bray Curtos
-sps.dis <- vegdist(mite.hel, "bray") 
+## Cálculo da matriz de distância com método Bray-Curtis
+sps.dis <- vegdist(x = mite.hel, method = "bray") 
 
-# PCoA
-pcoa.sps <- pcoa(sps.dis, correction="cailliez")
+## PCoA
+pcoa.sps <- pcoa(D = sps.dis, correction = "cailliez")
 ```
 
 Assim como na PCA, a porcentagem de explicação dos eixos é uma das informações mais importantes pois descrevem a efetividade da redução da dimensionalidade dos dados.
 
 ```{r message=FALSE, warning=FALSE}
 ## Porcentagem de explicação do Eixo 1
-100*(pcoa.sps$values[,1] / pcoa.sps$trace)[1]
+100 * (pcoa.sps$values[, 1]/pcoa.sps$trace)[1]
 
 ## Porcentagem de explicação dos Eixo 2
-100*(pcoa.sps$values[,1] / pcoa.sps$trace)[2]
+100 * (pcoa.sps$values[, 1]/pcoa.sps$trace)[2]
 
 ## Porcentagem de explicação acumulada dos dois primeiros eixos 
-sum(100*(pcoa.sps$values[,1] / pcoa.sps$trace)[1:2])
+sum(100 * (pcoa.sps$values[, 1]/pcoa.sps$trace)[1:2])
 
-# Selecionar os dois primeiros eixos
-eixos <- pcoa.sps$vectors[,1:2]
+## Selecionar os dois primeiros eixos
+eixos <- pcoa.sps$vectors[, 1:2]
 
 ## Juntar com algum dado categórico de interesse para fazer a figura
-pcoa.dat <- data.frame(topografia=mite.env$Topo, eixos)
+pcoa.dat <- data.frame(topografia = mite.env$Topo, eixos)
 ```
 
-Para visualizar os resultados da PCoA, vamos exportar os escores dos eixos para usar no ggplot2.
+Para visualizar os resultados da PCoA, vamos exportar os escores dos eixos para usar no pacote `ggplot2` (Figura \@ref(fig:fig-pcoa-biplot)).
 
-```{r message=FALSE, warning=FALSE}
+```{r fig-pcoa-biplot, fig.cap="Biplot da PCoA ordenando as espécies de ácaros entre diferentes topografias.", message=FALSE, warning=FALSE}
 ## Escores dos dois primeiros eixos
-eixos <- pcoa.sps$vectors[,1:2] 
+eixos <- pcoa.sps$vectors[, 1:2] 
 
 ## Combinar dados dos escores com um dado categórico de interesse para nossa pergunta
-pcoa.dat <- data.frame(topografia=mite.env$Topo, eixos)
+pcoa.dat <- data.frame(topografia = mite.env$Topo, eixos)
 
 ### Gráfico biplot da PCoA
-pcoa.dat %>%
-  ggplot(aes(x = Axis.1, 
-             y = Axis.2, 
-             fill = topografia, 
-             color = topografia, 
-             shape = topografia)) +
-  theme_bw() +
-  geom_point(size=4, alpha = 0.7) + 
-  scale_shape_manual(values=c(21, 22)) + 
-  scale_color_manual(values=c("black", "black")) + 
-  scale_fill_manual(values=c("darkorange", "cyan4")) + 
-  xlab("PCO 1 (49.11%)") + ylab("PCO 2 (14.30%)") + 
-  theme(legend.position = "top", 
-        legend.title=element_blank()) + 
-  geom_hline(yintercept = 0, linetype=2) + 
-  geom_vline(xintercept = 0, linetype=2)+
-  tema_livro()
+ggplot(pcoa.dat, aes(x = Axis.1, y = Axis.2, fill = topografia, 
+                     color = topografia, shape = topografia)) +
+    geom_point(size = 4, alpha = 0.7) + 
+    scale_shape_manual(values = c(21, 22)) + 
+    scale_color_manual(values = c("black", "black")) + 
+    scale_fill_manual(values = c("darkorange", "cyan4")) + 
+    labs(x = "PCO 1 (49.11%)", y = "PCO 2 (14.30%)") + 
+    geom_hline(yintercept = 0, linetype = 2) + 
+    geom_vline(xintercept = 0, linetype = 2) +
+    tema_livro()
 ```
 
-#### Limitações importantes das ordenações irrestritas
+**Limitações importantes das ordenações irrestritas**
 
-Com frequência, pesquisadores utilizam análises como PCA e PCoA para "testar" diferenças na composição de espécies entre determinados fatores relevantes (altitude, clima, etc...). Porém, como falado acima, as análises de ordenação irrestritas não são utilizadas para testar qualquer hipótese. Ao invés disso, essas análises representam uma poderosa ferramente para explorar padrões em variáveis dependentes ou independentes para ajudar na interpretação ou mesmo para testar hipóteses em análises combinadas com as ordenações irrestritas.
+Com frequência, pesquisadores utilizam análises como PCA e PCoA para "testar" diferenças na composição de espécies entre determinados fatores relevantes (altitude, clima, etc.). Porém, como falado acima, as análises de ordenação irrestritas não são utilizadas para testar qualquer hipótese. Ao invés disso, essas análises representam uma poderosa ferramente para explorar padrões em variáveis dependentes ou independentes para ajudar na interpretação ou mesmo para testar hipóteses em análises combinadas com as ordenações restritas.
 
-## PCR - Regressão de Componentes Principais
+### Regressão de Componentes Principais (PCR)
 
-Uma maneira de testar hipóteses utilizando ordenações irrestritas é utilizando os resultados da ordenação (escores) como variáveis preditoras ou dependentes como, por exemplo, em modelos lineares (e.g., regressão múltipla). O primeiro passo é utilizar uma ordenação, como a PCA, para gerar os "novos" dados que serão usados na análise. A utilização desses novos dados (que representam as coordenadas principais ou escores da PCA) vai depender da pergunta em questão. Por exemplo, pode ser que esses valores representem gradientes climáticos e, por este motivo, serão utilizados como variáveis preditoras em um modelo linear (e.g., regressão múltipla). Por outro lado, esses valores podem representar o espaço morfológicos de espécies de peixe e, como consequência, serão utilizados como variáveis dependentes para entender o efeito da presença de predador sobre a morfologia.
+Uma maneira de testar hipóteses utilizando ordenações irrestritas é utilizando os resultados da ordenação (escores) como variáveis preditoras ou dependentes como, por exemplo, em modelos lineares (e.g., regressão múltipla Capítulo \@ref(cap7)). O primeiro passo é utilizar uma ordenação, como a PCA, para gerar os "novos" dados que serão usados na análise. A utilização desses novos dados (que representam as coordenadas principais ou escores da PCA) vai depender da pergunta em questão. Por exemplo, pode ser que esses valores representem gradientes climáticos e, por este motivo, serão utilizados como variáveis preditoras em um modelo linear (e.g., regressão múltipla). Por outro lado, esses valores podem representar o espaço morfológicos de espécies de peixes e, como consequência, serão utilizados como variáveis dependentes para entender o efeito da presença de predador sobre a morfologia.
 
 **Checklist**
 
--   Compare as dimensões das matrizes utilizadas para a PCR. Com bastante frequência, a tentativa de combinar dados categóricos (algum descritor dos objetos) com os valores obtidos com a PCoA gera erros para plotar a figura ou para executar a análise. Verifique, então, se as linhas são as mesmas (nome das localidades ou indivíduos e quantidade).
+-   Compare as dimensões das matrizes utilizadas para a PCR. Com bastante frequência, a tentativa de combinar dados categóricos (algum descritor dos objetos) com os valores obtidos com a PCoA gera erros para plotar a figura ou para executar a análise. Verifique, então, se as linhas são as mesmas (nome das localidades ou indivíduos e quantidade)
 
--   Estudos recentes têm criticado a utilização de PCR para testar hipóteses ecológicas pelo fato dos escores não representarem, necessariamente, a variação total das variáveis originais, bem como a relação entre a variável preditora e a dependente.
+-   Estudos recentes têm criticado a utilização de PCR para testar hipóteses ecológicas pelo fato dos escores não representarem, necessariamente, a variação total das variáveis originais, bem como a relação entre a variável preditora e a dependente
 
-#### Exemplo 1
+**Exemplo 1**
 
-Neste exemplo vamos utilizar a composição de espécies de aves em 23 regiões dos alpes franceses. Os dados ambientais (env) representam variáveis climáticas (temperatura e chuva) e altitude.
+Neste exemplo, vamos utilizar a composição de espécies de aves em 23 regiões dos alpes franceses. Os dados ambientais (env) representam variáveis climáticas (temperatura e chuva) e altitude.
 
 **Pergunta**
 
@@ -711,94 +718,77 @@ Neste exemplo vamos utilizar a composição de espécies de aves em 23 regiões 
 
 **Predições**
 
--   O aumento da umidade e redução da temperatura aumentam o número de espécies de aves.
+-   O aumento da umidade e redução da temperatura aumentam o número de espécies de aves
 
 **Variáveis**
 
 -   Preditora: temperatura e chuva (contínuas) e altitude (categórica com três níveis)
-
 -   Dependentes: riqueza de espécies de aves
 
 ```{r message=FALSE, warning=FALSE}
-# Dados
+## Dados
 env_cont <- env[,-8]
 env.pca <- PCA(env_cont, scale.unit = TRUE, graph = FALSE)
 var_env <- get_pca_var(env.pca) 
 
-# Contribuição (%) das variáveis para cada eixo
+## Contribuição (%) das variáveis para cada eixo
 var_env$contrib 
 
-# Loadings - correlação das variáveis com os eixos
+## Loadings - correlação das variáveis com os eixos
 var_env$cor 
 ind_env <- get_pca_ind(env.pca)
 env.pca$eig 
 ```
 
-O objeto `env.pca$eig` demonstra que os três primeiros eixos explicam 94.54% da variação total dos dados climáticos. Como o intuito da PCR é reduzir a dimensionalidade (ou seja, o número de variáveis preditoras ou depedentes) para facilitar a interpretação e garantir que as variáveis não sejam correlacionadas. O próximo passo então é obter os valores dos escores que representam os valores convertidos para serem usados em uma determinada análise, como a regressão múltipla.
+O objeto `env.pca$eig` demonstra que os três primeiros eixos explicam 94.54% da variação total dos dados climáticos. O intuito da PCR é reduzir a dimensionalidade, ou seja, o número de variáveis preditoras ou depedentes para facilitar a interpretação e garantir que as variáveis não sejam correlacionadas. O próximo passo então é obter os valores dos escores que representam os valores convertidos para serem usados em uma determinada análise, como a regressão múltipla.
 
 ```{r}
-# Passo 1: obter os primeiros eixos 
-pred.env <- ind_env$coord[,1:3] 
+## Passo 1: obter os primeiros eixos 
+pred.env <- ind_env$coord[, 1:3] 
 
-# Passo 2: calcular a riqueza de espécies
+## Passo 2: calcular a riqueza de espécies
 riqueza <- specnumber(species)
 
-# Passo 3: combinar os dois valores em um único data.frame
+## Passo 3: combinar os dois valores em um único data.frame
 dat <- data.frame(pred.env, riqueza) 
 ```
 
-Agora que os dados foram combinados em uma única matriz, podemos utilizar os comandos aprendidos no Capítulo \@ref(cap7) para testar nossa hipótese.
+Agora que os dados foram combinados em uma único data frame, podemos utilizar os códigos apresentados no Capítulo \@ref(cap7) para testar nossa hipótese (Figura \@ref(fig:fig-pcr-aves-diag)).
 
-```{r}
-# Regressão múltipla
-mod1 <- lm(riqueza~Dim.1+Dim.2+Dim.3, data = dat)
-par(mfrow=c(2,2))
+```{r fig-pcr-aves-diag, fig.cap="Diagnósticos dos modelo PCR para aves.", message=FALSE, warning=FALSE}
+## Regressão múltipla
+mod1 <- lm(riqueza ~ Dim.1 + Dim.2 + Dim.3, data = dat)
+par(mfrow = c(2, 2))
 plot(mod1) # verificar pressupostos dos modelos lineares
 summary(mod1) # resultados do  teste
 dimdesc(env.pca)$Dim.1 
 ```
 
-Como percebemos, a Dim.1 foi o único gradiente ambiental que afetou a riqueza de espécies. Para interpretar esta dimensão (e outras importantes), podemos usar a função dimdesc para verificar as variáveis mais importantes. Neste caso, os valores mais extremos de correlação (maior que 0.8) indicam que a temperatura do mês de janeiro e julho bem como a chuva do mês de julho foram as variáveis mais importantes para determinar o gradiente ambiental expresso na dimensão 1. Assim, podemos fazer um gráfico para representar a relação entre Eixo 1 (gradiente chuva-temperatura) e a riqueza de espécies de aves. Valores negativos do eixo 1 (Gradiente ambiental - PC1) representam localidades com mais chuva, ao passo que valores positivos indicam localidades com temperaturas maiores.
+Como percebemos, a Dim.1 foi o único gradiente ambiental que afetou a riqueza de espécies. Para interpretar esta dimensão (e outras importantes), podemos usar a função `dimdesc()` para verificar as variáveis mais importantes. Neste caso, os valores mais extremos de correlação (maior que 0.8) indicam que a temperatura do mês de janeiro e julho bem como a chuva do mês de julho foram as variáveis mais importantes para determinar o gradiente ambiental expresso na dimensão 1. Assim, podemos fazer um gráfico para representar a relação entre Eixo 1 (gradiente chuva-temperatura) e a riqueza de espécies de aves. Valores negativos do eixo 1 (Gradiente ambiental - PC1) representam localidades com mais chuva, ao passo que valores positivos indicam localidades com temperaturas maiores (Figura \@ref(fig:fig-pcr-aves-model)).
 
-```{r message=FALSE, warning=FALSE}
-dat %>% 
-  ggplot(aes(x = Dim.1, y = riqueza)) + 
-  theme_bw() +
-  geom_smooth(method = lm, 
-              fill = "#525252",
-              color = "black") + 
-  geom_point(size=4, 
-             shape=21,
-             alpha = 0.7,
-             color="#1a1a1a",
-             fill="cyan4") +
-  xlab("Gradiente ambiental (PC1)") + 
-  ylab("Riqueza de aves") + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5, 
-                                   size=12),
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5, 
-                                   size=12))+
-  tema_livro()
+```{r fig-pcr-aves-model, fig.cap="Modelo linear representando a relação entre Eixo 1 (gradiente chuva-temperatura) e a riqueza de espécies de aves.", message=FALSE, warning=FALSE}
+ggplot(dat, aes(x = Dim.1, y = riqueza)) + 
+    geom_smooth(method = lm, fill = "#525252", color = "black") + 
+    geom_point(size = 4, shape = 21, alpha = 0.7, color = "#1a1a1a", fill = "cyan4") +
+    labs(x = "Gradiente ambiental (PC1)", y = "Riqueza de aves") + 
+    tema_livro()
 ```
 
-#### Exemplo 2
+**Exemplo 2**
 
-É possível que os dados utilizados em seu estudo sejam mistos, ou seja, incluem tanto variáveis categóricas quanto contínuas. Como falado acima, nesses casos a análise indicada é a PCoA. Assim como na PCA, podemos extrair os escores da PCoA para utilizar a posteriori em análises univariadas e multivariadas.
+É possível que os dados utilizados em seu estudo sejam mistos, ou seja, incluem tanto variáveis categóricas quanto contínuas. Como falado acima, nesses casos a análise indicada é a PCoA. Assim como na PCA, podemos extrair os escores da PCoA para utilizar em análises univariadas e multivariadas.
 
-**Pergunta:**
+**Pergunta**
 
 -   Variáveis climáticas, vegetacionais e topográficas afetam a riqueza de ácaros?
 
 **Predições**
 
--   A densidade da vegetação e disponibilidade de água aumentam a riqueza de espécies de ácaros.
+-   A densidade da vegetação e disponibilidade de água aumentam a riqueza de espécies de ácaros
 
 **Variáveis**
 
 -   Preditoras: densidade de substrado e disponibilidade de água (contínuas), tipo de substrado (categórica com 7 níveis), densidade arbusto (ordinal com 3 níveis), e topografia (categórica com 2 níveis)
-
 -   Dependentes: riqueza de espécies de ácaros
 
 O primeiro passo então é utilizar um método de distância apropriado para o seu conjunto de dados. Em nosso exemplo, utilizaremos a distância de Gower, que é usada para dados mistos (veja Capítulo \@ref(cap14)).
@@ -808,124 +798,94 @@ O primeiro passo então é utilizar um método de distância apropriado para o s
 env.dist <- gowdis(mite.env)
 
 ## PCoA
-env.mite.pco <- pcoa(env.dist, correction="cailliez")
+env.mite.pco <- pcoa(env.dist, correction = "cailliez")
 
 ## Porcentagem de explicação do Eixo 1
-100*(env.mite.pco$values[,1] / env.mite.pco$trace)[1]
+100 * (env.mite.pco$values[, 1]/env.mite.pco$trace)[1]
 
 ## Porcentagem de explicação dos Eixo 2
-100*(env.mite.pco$values[,1] / env.mite.pco$trace)[2]
+100 * (env.mite.pco$values[, 1]/env.mite.pco$trace)[2]
 ```
 
-O próximo passo é exportar os escores para as análises a posteriori.
+O próximo passo é exportar os escores para as análises *a posteriori* (Figura \@ref(fig:fig-pcr-acaros-diag)).
 
-```{r message=FALSE, warning=FALSE}
+```{r fig-pcr-acaros-diag, fig.cap="Diagnósticos dos modelo PCR para ácaros.", message=FALSE, warning=FALSE}
 ## Selecionar os dois primeiros eixos
-pred.scores.mite <- env.mite.pco$vectors[,1:2] 
+pred.scores.mite <- env.mite.pco$vectors[, 1:2] 
 
 ## Juntar com os dados da área para fazer a figura 
 mite.riqueza <- specnumber(mite)
-pred.vars <- data.frame(riqueza=mite.riqueza, pred.scores.mite)
+pred.vars <- data.frame(riqueza = mite.riqueza, pred.scores.mite)
 
 ### Regressão múltipla 
-mod.mite <- lm(riqueza~Axis.1+Axis.2, data=pred.vars)
-par(mfrow=c(2,2))
+mod.mite <- lm(riqueza ~ Axis.1 + Axis.2, data = pred.vars)
+par(mfrow = c(2, 2))
 plot(mod.mite)
 summary(mod.mite)
 ```
 
-Finalmente, após interpretar os resultados do modelo, podemos fazer a figura com as variáveis (eixos) importantes
+Finalmente, após interpretar os resultados do modelo, podemos fazer a figura com as variáveis (eixos) importantes (Figura \@ref(fig:fig-pcr-acaros-model)).
 
-```{r message=FALSE, warning=FALSE}
-g_acari_axi1 <- pred.vars %>% 
-  ggplot(aes(x = Axis.1, y = riqueza)) + 
-  theme_bw() + 
-  geom_smooth(method = lm, 
-              fill = "#525252",
-              color = "black") + 
-  geom_point(size=4, 
-             shape=21,
-             alpha = 0.7,
-             color="#1a1a1a",
-             fill="cyan4") + 
-  xlab("Gradiente ambiental (PC1)") +
-  ylab("Riqueza de ácaros") + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5, 
-                                   size=12), 
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5,
-                                   size=12))+
-  tema_livro()
+```{r fig-pcr-acaros-model, fig.cap="Modelo linear representando a relação entre Eixo 1 e Eixo 2 e a riqueza de espécies de ácaros.", message=FALSE, warning=FALSE}
+g_acari_axi1 <- ggplot(pred.vars, aes(x = Axis.1, y = riqueza)) + 
+    geom_smooth(method = lm, fill = "#525252", color = "black") + 
+    geom_point(size = 4, shape = 21, alpha = 0.7, color = "#1a1a1a", fill="cyan4") + 
+    labs(x = "Gradiente ambiental (PC1)", y = "Riqueza de ácaros") + 
+    tema_livro()
 
-g_acari_axi2 <-pred.vars %>% 
-  ggplot(aes(x = Axis.2, y = riqueza)) + 
-  theme_bw() + 
-  geom_smooth(method = lm, 
-              fill = "#525252",
-              color = "black") + 
-  geom_point(size=4, 
-             shape=21,
-             alpha = 0.7,
-             color="#1a1a1a",
-             fill="darkorange") + 
-  xlab("Gradiente ambiental (PC2)") + 
-  ylab("Riqueza de ácaros") + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5,
-                                   size=12), 
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5, 
-                                   size=12))+
-  tema_livro()
+g_acari_axi2 <- ggplot(pred.vars, aes(x = Axis.2, y = riqueza)) + 
+    geom_smooth(method = lm, fill = "#525252", color = "black") + 
+    geom_point(size = 4, shape = 21, alpha = 0.7, color = "#1a1a1a", fill = "darkorange") + 
+    labs(x = "Gradiente ambiental (PC2)", y = "Riqueza de ácaros") + 
+    tema_livro()
 
 ## Função para combinar os dois plots em uma única janela
-grid.arrange(g_acari_axi1, g_acari_axi2, nrow=1)
+grid.arrange(g_acari_axi1, g_acari_axi2, nrow = 1)
 ```
 
 ## Ordenação restrita
 
-A ordenação restrita, ou análise de gradiente direto organiza os objetos de acordo com suas relações com outras variáveis (preditoras) coletadas nas mesmas unidades amostrais. O exemplo mais comum na ecologia é de investigar a relação entre diversas variáveis ambientais (matriz **X**) coletadas em *n* localidades e a abundância (ou presença ausência) de *y* espécies coletadas nas mesmas localidades (matrix **Y**). Com frequência, outras dados são utilizados como as coordenadas geográficas das unidades amostrais (matriz **W**), os atributos funcionais das espécies coletadas (matriz **T**) e a relação filogenética dessas espécies (matriz **P**). Diversos métodos são utilizados para combinar duas ou mais matrizes, mas neste capítulo iremos apresentar a RDA, RDAp e métodos espaciais para incluir a matriz W nas análises de gradiente direto.
+A ordenação restrita ou análise de gradiente direto, organiza os objetos de acordo com suas relações com outras variáveis (preditoras) coletadas nas mesmas unidades amostrais. O exemplo mais comum na ecologia é de investigar a relação entre diversas variáveis ambientais (matriz **X**) coletadas em *n* localidades e a abundância (ou presença ausência) de *y* espécies coletadas nas mesmas localidades (matrix **Y**). Com frequência, outras dados são utilizados como as coordenadas geográficas das unidades amostrais (matriz **W**), os atributos funcionais das espécies coletadas (matriz **T**) e a relação filogenética dessas espécies (matriz **P**). Diversos métodos são utilizados para combinar duas ou mais matrizes, mas neste capítulo iremos apresentar a Análise de Redundância (RDA), Análise de Redundância parcial (RDAp) e métodos espaciais para incluir a matriz W nas análises de gradiente direto.
 
-### RDA: Análise de Redundância
+### Análise de Redundância (RDA)
 
-A RDA é uma análise semelhante a regressão múltipla (Capítulo \@ref(cap7)) mas que usa dados multivariados como variável dependente. As duas matrizes comuns, matriz X (*n* unidades amostraits e *m* variáveis) e matriz Y (*n* unidades amostrais e *p* descritores - geralmente, espécies). O primeiro passo da RDA é centralizar (assim como na PCA, exemplo acima) as matrizes X e Y. Após a centralização, realiza-se regressões lineares entre X e Y para obter os valores preditos de Y (ou seja, os valores de Y que representação uma combinação linear com X). O passo seguinte é realizar uma PCA dos valores preditos de Y. Este último procedimento gera os autovalores, autovetores e os eixos canônicos que correspondem às coordenadas dos objetos (unidades amostrais), variáveis preditoras e das variáveis resposta. A diferença da ordenação do valor de Y predito e da ordenação somente de Y (como na PCA implementada acima) é que a segunda mostra a posição prevista pela relação linear entre X e Y. Logo, essa é exatamente o motivo da ordenação ser conhecida como restrita, pois a variação em Y é restrita (linearmente) pela variação de X. Assim como na regressão múltipla, a estatística da RDA é representada pelo valor de *R^2^* e *F*. O valor de *R^2^* indica a força da relação linear entre X e Y e o valor do *F* representa o teste global de significância. Além disso, é possível testar a significância de cada um dos eixos da ordenação (e a presença de pelo menos um eixo significativo é pré-requisito para que exista a relação linear entre X e Y) e de cada uma das variáveis preditoras da matriz X.
+A RDA é uma análise semelhante à regressão múltipla (Capítulo \@ref(cap7)), mas que usa dados multivariados como variável dependente. As duas matrizes comuns, matriz X (*n* unidades amostraits e *m* variáveis) e matriz Y (*n* unidades amostrais e *p* descritores - geralmente, espécies). O primeiro passo da RDA é centralizar (assim como na PCA, exemplo acima) as matrizes X e Y. Após a centralização, realiza-se regressões lineares entre X e Y para obter os valores preditos de Y (ou seja, os valores de Y que representação uma combinação linear com X). O passo seguinte é realizar uma PCA dos valores preditos de Y. Este último procedimento gera os autovalores, autovetores e os eixos canônicos que correspondem às coordenadas dos objetos (unidades amostrais), variáveis preditoras e das variáveis resposta. A diferença da ordenação do valor de Y predito e da ordenação somente de Y (como na PCA implementada acima) é que a segunda mostra a posição prevista pela relação linear entre X e Y. Logo, essa é exatamente o motivo da ordenação ser conhecida como restrita, pois a variação em Y é restrita (linearmente) pela variação de X. Assim como na regressão múltipla, a estatística da RDA é representada pelo valor de *R^2^* e *F*. O valor de *R^2^* indica a força da relação linear entre X e Y e o valor do *F* representa o teste global de significância. Além disso, é possível testar a significância de cada um dos eixos da ordenação (e a presença de pelo menos um eixo significativo é pré-requisito para que exista a relação linear entre X e Y) e de cada uma das variáveis preditoras da matriz X.
 
 **Checklist**
 
--   Variáveis preditoras: importante verificar (1) a estrutura de correlação das variáveis ambientais, e a (2) presença de autocorrelação espacial.
+-   Variáveis preditoras: importante verificar se: i) a estrutura de correlação das variáveis ambientais, e a ii) presença de autocorrelação espacial
 
--   Composição de espécies como matriz Y: fundamental observar se os valores utilizados representam abundância ou presença-ausência e qual a necessidade de padronização (e.g., Hellinger).
+-   Composição de espécies como matriz Y: fundamental observar se os valores utilizados representam abundância ou presença-ausência e qual a necessidade de padronização (e.g., Hellinger)
 
--   Assim como em modelos de regressão linear e múltipla, os valores de *R^2^* ajustado devem ser selecionados ao invés do valor de *R^2^*.
+-   Assim como em modelos de regressão linear simples e múltipla, os valores de *R^2^* ajustado devem ser selecionados ao invés do valor de *R^2^*
 
-#### Exemplo 1
+**Exemplo 1**
 
 Espécies de aves que ocorrem em localidades com diferentes altitudes.
 
-**Pergunta:**
+**Pergunta**
 
 -   O clima e a altitude modificam a composição de espécies de aves?
 
 **Predições**
 
--   Diferenças climáticas (temperatura e chuva) e altitudinais alteram a composição de espécies de aves.
+-   Diferenças climáticas (temperatura e chuva) e altitudinais alteram a composição de espécies de aves
 
-**Variáveis** (mesmo conjunto de dados usados na PERMANOVA)
+**Variáveis**
 
--   Preditoras: Temperatura e chuva (contínuas) e altitude (categórica com três níveis)
-
+-   Preditoras: Temperatura e precipitação (contínuas) e altitude (categórica com três níveis)
 -   Dependente: composição de espécies de aves
 
-```{r message=FALSE, warning=FALSE}
+**Análises**
 
+```{r message=FALSE, warning=FALSE}
 ## Passo 1: transformação de hellinger da matriz de espécies
 # caso tenha dados de abundância.
-species.hel <- decostand(species, "hellinger")
+species.hel <- decostand(x = species, method = "hellinger")
 
-## Passo 2: selecionar variáveis importantes.
+## Passo 2: selecionar variáveis importantes
 # Para isso, é necessário remover a variável categórica.
-env.contin <- env[,-8]
+env.contin <- env[, -8]
 
 ## Evite usar variáveis muito correlacionadas
 sel.vars <- forward.sel(species.hel, env.contin)
@@ -933,97 +893,91 @@ sel.vars$variables
 env.sel <- env[,sel.vars$variables]
 
 ## Passo 3: padronizar matriz ambiental (somente variáveis contínuas)
-env.pad <- decostand(env.sel, "standardize")
+env.pad <- decostand(x = env.sel, method = "standardize")
 
 ## Matriz final com variáveis preditoras
 env.pad.cat <- data.frame(env.pad, altitude = env$altitude)
 ```
 
-Depois de selecionar um subconjunto dos dados com o método Forward Selection e padronizá-los (média 0 e desvio padrão 1), o modelo da RDA é construído como modelos lineares e PERMANOVA.
+Depois de selecionar um subconjunto dos dados com o método Forward Selection e padronizá-los (média 0 e desvio padrão 1), o modelo da RDA é construído como modelos lineares (Figura \@ref(fig:fig-rda)). A Ordenação Multi-Escala (MSO) também é ajustada para analisar a autocorrelação espacial.
 
-```{r}
+```{r fig-rda, fig.cap="Ordenação multi-escala (MSO) para entender os resultados da ordenação em relação à distância geográfica.", message=FALSE, warning=FALSE}
 ## RDA com dados selecionados e padronizados
-rda.bird <- rda(species.hel~rain.jul+maxi.jul+altitude, data=env.pad.cat)
+rda.bird <- rda(species.hel ~ rain.jul + maxi.jul + altitude, data = env.pad.cat)
 
-# Para interpretar, é necessário saber a significância dos eixos para representar a relação entre as variáveis preditoras e a composição de espécies
-res.axis <- anova.cca(rda.bird, by="axis") 
+## Para interpretar, é necessário saber a significância dos eixos para representar a relação entre as variáveis preditoras e a composição de espécies
+res.axis <- anova.cca(rda.bird, by = "axis") 
 res.axis
 
-# Em seguida, é possível identificar quais são as variáveis que contribuem ou que mais contribuem para a variação na composição de espécies 
-res.var <- anova.cca(rda.bird, by="term") ## Qual variável?
+## Em seguida, é possível identificar quais são as variáveis que contribuem ou que mais contribuem para a variação na composição de espécies 
+res.var <- anova.cca(rda.bird, by = "term") ## Qual variável?
 res.var
 
-# Além disso, é possível obter o valor do R2 do modelo
+## Além disso, é possível obter o valor do R2 do modelo
 r_quadr <- RsquareAdj(rda.bird)
 r_quadr
 
-# Ordenação multi-escala (MSO) para entender os resultados da ordenação em relação à distância geográfica
-
-bird.rda <- mso(rda.bird, xy, grain =  1, permutations = 99)
+## Ordenação multi-escala (MSO) para entender os resultados da ordenação em relação à distância geográfica
+bird.rda <- mso(rda.bird, xy, grain = 1, permutations = 99)
 msoplot(bird.rda)
-
-## Triplot da RDA
-
-ggord(rda.bird, 
-      ptslab = TRUE, 
-      size = 1, 
-      addsize = 3, 
-      parse = TRUE) +
-  theme_bw() + 
-  geom_hline(yintercept = 0, linetype=2) +
-  geom_vline(xintercept = 0, linetype=2) + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5, 
-                                   size=12), 
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5, 
-                                   size=12))+
-  tema_livro()
 ```
 
-#### Interpretação dos resultados
+Da mesma forma que nas ordenações irrestritas, podemos fazer um gráfico para visualizar as ordenações, mas agora esse gráfico é denominado "triplot", pois possui os dados das duas ordenações (Figura \@ref(fig:fig-rda-triplot)).
 
-Os objetos `res.axis`, `res.var` e `r_quadr` mostram, respectivamente, (i) as dimensões (RDA1, RDA2, etc.) que possuem variação na composição de espécies, (ii) as variáveis preditoras que explicam esta variação, e (iii) o valor do *R^2^* ajustado. Neste exemplo, podemos observar que somente a dimensão 1 (RDA1) representa uma variação significativa da composição de espécies (**P** = 0,001). As variáveis *rain.jul*, *maxi.jul* e *altitude* foram todas preditoras importantes da composição de espécies, mas *rain.jul* se destacada com maior valor de **F**. Além disso, o valor do *R^2^* ajustado de 0.381 indica forte contribuição dessas variáveis preditoras. Porém, uma das limitações desta análise é não considerar que tanto espécies quanto variáveis preditoras podem estar estruturadas espacialmente. Como resultado, os resíduos da análises podem apresentar autocorrelação espacial que, por sua vez, aumenta o erro do tipo I [@numerica2012]. A figura obtida com o comando `msoplot(bird.rda)` demonstra que existe autocorrelação espacial em algumas distâncias da análise. Veja abaixo algumas alternativas para resíduos com autocorrelação espacial.
+```{r fig-rda-triplot, fig.cap="Triplot da RDA.", message=FALSE, warning=FALSE}
+## Triplot da RDA
+ggord(rda.bird, ptslab = TRUE, size = 1, addsize = 3, repel = TRUE) +
+    geom_hline(yintercept = 0, linetype = 2) +
+    geom_vline(xintercept = 0, linetype = 2) + 
+    tema_livro()
+```
 
-### RDAp: Análise de Redundância parcial
+**Interpretação dos resultados**
 
-Um dos problemas da abordagem anterior é que tanto a composição de espécies como as variáveis ambientais estão estruturadas espacialmente. Talvez mais importantes, para que os valores de probabilidade da RDA sejam interpretados corretamente (e para evitar erro do tipo I), os resíduos do modelo não devem estar correlacionados espacialmente, como demonstrado com a análise MSO. Uma alternativa é de incluir a matriz de dados espaciais (matrix W) como valor condicional dentro da RDA. Esta análise é conhecida como RDA parcial.
+Os objetos `res.axis`, `res.var` e `r_quadr` mostram, respectivamente, i) as dimensões (RDA1, RDA2, etc.) que possuem variação na composição de espécies, ii) as variáveis preditoras que explicam esta variação, e iii) o valor do *R^2^* ajustado. Neste exemplo, podemos observar que somente a dimensão 1 (RDA1) representa uma variação significativa da composição de espécies (**P** = 0,001). As variáveis *rain.jul*, *maxi.jul* e *altitude* foram todas preditoras importantes da composição de espécies, mas *rain.jul* se destacada com maior valor de **F**. Além disso, o valor do *R^2^* ajustado de 0.381 indica forte contribuição dessas variáveis preditoras. Porém, uma das limitações desta análise é não considerar que tanto espécies quanto variáveis preditoras podem estar estruturadas espacialmente. Como resultado, os resíduos da análises podem apresentar autocorrelação espacial que, por sua vez, aumenta o Erro do Tipo I [@legendre_numerical_2012]. A figura obtida com o código `msoplot(bird.rda)` demonstra que existe autocorrelação espacial em algumas distâncias da análise. Veja abaixo algumas alternativas para resíduos com autocorrelação espacial.
 
-Porém, a obtenção dos dados espaciais da matriz W é mais complexo do que simplesmente incluir dados de localização geográfica (latitude e longitude), como feito em alguns modelos lineares (e.g., gls, Capítulo \@ref(cap7)). Existem diversas ferramentas que descrevem e incorporam o componente espacial em métodos mulitidimensionais, mas os Mapas de autovetores de Moran (MEM) são certamente os mais utilizados [@dray_community_2012]. A análise MEM consiste na ordenação (PCoA) de uma matriz truncada obtida através da localização geográfica das localidades utilizando distância euclidiana, matriz de conectividade e matriz espacial ponderada. Os autovalores obtidos no MEM são idênticos aos coeficientes de correlação espacial de Moran *I*. Um procedimento chave desta análise é a definição de um limiar de trucamento (do inglês *truncate threshold*). Este limiar é calculado a partir de uma "árvore de espaço mínimo" (MST, do inglês *minimum spanning tree*) que conecta todos os pontos de coleta. Na prática, os valores menores do que o limiar definido pela MST indicam que os pontos com aqueles valores estão conectados e, assim possuem correlação positiva. Outro ponto importante desta análise é a obtenção da matriz espacial ponderada (SWM, do inglês *spatial weighthing matrix*). A seleção da matriz SWM é parte essencial do cálculo dos MEM e não deve ser feita arbitratiamente [@bauman_optimizing_2018]. Por este motivo a análise recebe este nome [@legendre_numerical_2012]. Finalmente, o método produz autovetores que representam preditores espaciais que podem ser utilizados na RDA parcial (e outras análises). É importante ressaltar que o critério de seleção do número de autovetores é bastante debatido na literatura e, para isso, sugerimos a leitura dos seguintes artigos [@diniz-filho_spatial_2012, @bauman_optimizing_2018, @bauman_disentangling_2018].
+### Análise de Redundância parcial (RDAp)
+
+Um dos problemas da abordagem anterior é que tanto a composição de espécies como as variáveis ambientais estão estruturadas espacialmente. Talvez mais importantes, para que os valores de probabilidade da RDA sejam interpretados corretamente (e para evitar Erro do Tipo I), os resíduos do modelo não devem estar correlacionados espacialmente, como demonstrado com a análise MSO. Uma alternativa é incluir a matriz de dados espaciais (matrix W) como valor condicional dentro da RDA. Esta análise é conhecida como RDA parcial.
+
+Porém, a obtenção dos dados espaciais da matriz W é mais complexo do que simplesmente incluir dados de localização geográfica (latitude e longitude), como feito em alguns modelos lineares (e.g., *Generalized Least Squares* - GLS Capítulos \@ref(cap7) e \@ref(cap10)). Existem diversas ferramentas que descrevem e incorporam o componente espacial em métodos mulitidimensionais, mas os Mapas de Autovetores de Moran (MEM) são certamente os mais utilizados [@dray_community_2012]. A análise MEM consiste na ordenação (PCoA) de uma matriz truncada obtida através da localização geográfica das localidades utilizando distância euclidiana, matriz de conectividade e matriz espacial ponderada. Os autovalores obtidos no MEM são idênticos aos coeficientes de correlação espacial de Moran *I*. Um procedimento chave desta análise é a definição de um limiar de trucamento (do inglês *truncate threshold*). Este limiar é calculado a partir de uma "árvore de espaço mínimo" (*Minimum Spanning Tree* - MST) que conecta todos os pontos de coleta. Na prática, os valores menores do que o limiar definido pela MST indicam que os pontos com aqueles valores estão conectados e, assim possuem correlação positiva. Outro ponto importante desta análise é a obtenção da matriz espacial ponderada (*Spatial Weighting Matrix* - SWM). A seleção da matriz SWM é parte essencial do cálculo dos MEM e não deve ser feita arbitratiamente [@bauman_optimizing_2018]. Por este motivo, a análise recebe este nome [@legendre_numerical_2012]. Finalmente, o método produz autovetores que representam preditores espaciais que podem ser utilizados na RDA parcial (e em outras análises). É importante ressaltar que o critério de seleção do número de autovetores é bastante debatido na literatura e, para isso, sugerimos a leitura dos seguintes artigos: [@diniz-filho_spatial_2012, @bauman_optimizing_2018, @bauman_disentangling_2018].
 
 Então, o primeiro passo para realizar uma RDA parcial é de gerar os autovetores espaciais (MEMs).
 
 ```{r message=FALSE, warning=FALSE}
 ## Dados
-# matriz padronizada de composição de espécies. 
-head(species.hel)[,1:6] 
+# Matriz padronizada de composição de espécies. 
+head(species.hel)[, 1:6] 
 
-# latitude e longitude.
+## Latitude e longitude
 head(xy)
 
-# dados ambientais padronizados e altitude
+## dados ambientais padronizados e altitude
 head(env.pad.cat)
 
-# Passo 1: Gerar um arquivo LIST W: list binária de vizinhança
-mat_knn <- knearneigh(as.matrix(xy), k=2, longlat = FALSE)
-mat_nb <- knn2nb(mat_knn, sym=TRUE)
+## Passo 1: Gerar um arquivo LIST W: list binária de vizinhança
+mat_knn <- knearneigh(as.matrix(xy), k = 2, longlat = FALSE)
+mat_nb <- knn2nb(mat_knn, sym = TRUE)
 mat_listw <- nb2listw(mat_nb, style = "W")
 mat_listw
 
-# Passo 2: Listar os métodos "candidatos" para obter a matriz SWM
+## Passo 2: Listar os métodos "candidatos" para obter a matriz SWM
 MEM_mat <- scores.listw(mat_listw, MEM.autocor = "positive")
-candidates <- listw.candidates(xy, nb = c("gab", "mst", "dnear"), weights = c("binary", "flin"))
+candidates <- listw.candidates(xy, nb = c("gab", "mst", "dnear"), 
+                               weights = c("binary", "flin"))
 
-# Passo 3: Selecionar a melhor matriz SWM e executar o MEM
-W_sel_mat <- listw.select(species.hel, candidates, MEM.autocor = "positive", p.adjust = TRUE, method = "FWD")
+## Passo 3: Selecionar a melhor matriz SWM e executar o MEM
+W_sel_mat <- listw.select(species.hel, candidates, MEM.autocor = "positive",
+                          p.adjust = TRUE, method = "FWD")
 
-# Passo 4: Matriz dos preditores espaciais escolhidos (MEMs)
+## Passo 4: Matriz dos preditores espaciais escolhidos (MEMs)
 spatial.pred <- as.data.frame(W_sel_mat$best$MEM.select)
-# necessário atribuir os nomes das linhas
+
+## É necessário atribuir os nomes das linhas
 rownames(spatial.pred) <- rownames(xy) 
 ```
 
-Depois de gerar os valores dos autovetores espaciais (MEM), é possível executar a a RDA parcial utilizando esses valores no argumento 'Conditional'.
+Depois de gerar os valores dos autovetores espaciais (MEM), é possível executar a RDA parcial utilizando esses valores no argumento `Conditional`.
 
 ```{r message=FALSE, warning=FALSE}
 ## Combinar variáveis ambientais e espaciais em um único data.frame
@@ -1031,21 +985,23 @@ pred.vars <- data.frame(env.pad.cat, spatial.pred)
 
 ## RDA parcial
 rda.p <- rda(species.hel ~
-             rain.jul + maxi.jul + altitude + # Preditores ambientais
-             Condition(MEM1+MEM2+MEM4+MEM5), # Preditores espaciais
+                 rain.jul + maxi.jul + altitude + # Preditores ambientais
+                 Condition(MEM1 + MEM2 + MEM4 + MEM5), # Preditores espaciais
              data = pred.vars)
 
-# Para interpretar, é necessário saber a significância dos eixos para representar a relação entre as variáveis preditoras e a composição de espécies
-res.p.axis <- anova.cca(rda.p, by="axis") 
+## Interpretação
+# Para interpretar, é necessário saber a significância dos eixos para representar a relação entre as variáveis preditoras e a composição de espécies.
+res.p.axis <- anova.cca(rda.p, by = "axis") 
 res.p.axis
 
-# Em seguida, é possível identificar quais são as variáveis que contribuem ou que mais contribuem para a variação na composição de espécies 
-res.p.var <- anova.cca(rda.p, by="term") ## Qual variável?
+## Contribuição
+# Em seguida, é possível identificar quais são as variáveis que contribuem ou que mais contribuem para a variação na composição de espécies.
+res.p.var <- anova.cca(rda.p, by = "term") ## Qual variável?
 res.p.var
 RsquareAdj(rda.p)
 ```
 
-Se você comparar os resultados do objeto res.p.var (RDA parcial) com res.var (RDA simples) é possível perceber como a estrutura espacial nos resíduos aumenta a probabilidade de cometer erro do tipo 1. O modelo da RDA parcial mostra que não existem qualquer efeito direto das variáveis ambientais sobre a composição de espécies (conclusão com a RDA simples). Na verdade, tanto a composição de espécies quanto as variáveis climáticas estão fortemente estruturadas no espaço, como demonstramos a seguir:
+Se você comparar os resultados do objeto res.p.var (RDA parcial) com res.var (RDA simples) é possível perceber como a estrutura espacial nos resíduos aumenta a probabilidade de cometer Erro do Tipo I. O modelo da RDA parcial mostra que não existem qualquer efeito direto das variáveis ambientais sobre a composição de espécies (conclusão com a RDA simples). Na verdade, tanto a composição de espécies quanto as variáveis climáticas estão fortemente estruturadas no espaço, como demonstramos a seguir.
 
 ```{r, tinytex.verbose = TRUE, cache = FALSE}
 ## Padrão espacial na composição de espécies
@@ -1059,31 +1015,73 @@ moran.env <- moran.mc(ca.env$li[, 1], mat_listw, 999)
 
 ## Estrutura espacial na composição de espécies?
 moran.comp
+
 ## Estrutura espacial na variação ambiental?
 moran.env
 ```
 
-Como resultado, é possível que a variação ambiental espacialmente estruturada é o principal efeito sobre a composição de espécies. Uma maneira de visualizar a contribuição relativa de diferentes matrizes (ambiental e espacial, por exemplo) é utilizar o método de partição de variância. O resultado deste modelo indica que, de fato, não existe efeito direto das variáveis ambientais e sim do componente representado pela autocorrelação espacial dessas variáveis.
+Como resultado, é possível que a variação ambiental espacialmente estruturada é o principal efeito sobre a composição de espécies. Uma maneira de visualizar a contribuição relativa de diferentes matrizes (ambiental e espacial, por exemplo) é utilizar o método de partição de variância. O resultado deste modelo indica que, de fato, não existe efeito direto das variáveis ambientais e sim do componente representado pela autocorrelação espacial dessas variáveis (Figura \@ref(fig:fig-rda-parcial)).
 
-```{r}
-### Partição de variância
+```{r fig-rda-parcial, fig.cap="Diagrama de Venn mostrando a partição de variância da RDA.", message=FALSE, warning=FALSE}
+## Triplot da RDA
+# Partição de variância.
 pv.birds <- varpart(species.hel, env.pad.cat, spatial.pred)
 plot(pv.birds)
 ```
 
-## PERMANOVA
+### Análise de Redundância baseada em distância (db-RDA)
 
-A PERMANOVA é um acrônimo, em inglês, de *permutational multivariate analysis of variance*, análise proposta por Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Esta análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
+Acima, apresentamos a análise RDA que permite comparar, por exemplo, se variáveis ambientais determinam a variação na composição de espécies. A RDA utiliza os dados brutos de composição de espécies e é baseada em uma PCA (i.e., requer distância euclidiana). Porém, em algumas situações é necessário utilizar outras medidas de distância tais como Bray-Curtis ou Gower. Esta analise é bastante útil também quando a matriz resposta já é uma matriz de distância, tais como as que são geradas por decomposição da diversidade beta. Neste caso, Legendre & Anderson [-@legendre_distance-based_1999] propuseram a análise db-RDA (RDA baseada em distância). O primeiro passo da análise é gerar uma matriz de distância a partir da matriz bruta (e.g., composição de espécies). Depois, a técnica executa uma PCoA (corrigindo potenciais autovetores com autovalores negativos; ver discussão acima) para comparar com os termos do modelo (matriz **X**, como na RDA). 
+Para exemplificar como esta análise pode ser implementada no R, vamos usar o mesmo exemplo demontrado na análise RDA (ver acima). Porém, vamos fazer um ajuste sutil na pergunta "o clima e a altitude modificam a dissimilaridade (diversidade beta) de espécies de aves?". Veja que neste caso, estamos perguntando diretamente sobre uma medida de diversidade beta, que será calculada com o método Bray-Curtis. As variáveis preditoras serão as mesmas obtidas no exemplo da RDA: `env.pad.cat`.   
 
-O primeiro passo da PERMANOVA é selecionar uma medida de distância apropriada aos dados e, além disso, verificar a necessidade de padronização ou transformação dos dados. Em seguida, as distâncias são comparadas entre os grupos de interesse (por exemplo, tratamento vs. controle) usando a estatística *F* de maneira muito parecida com uma ANOVA (Capítulo \@ref(cap7)), chamada de *pseudo-F*:
+**Análise**
 
-$$
-F = (SSa / SSr)*[(N-g) / (g-1)]
-$$
+```{r message=FALSE, warning=FALSE}
+## Passo 1: transformação de hellinger da matriz de espécies
+# caso tenha dados de abundância.
+species.hel <- decostand(species, "hellinger")
 
-onde *SSa* representa a soma dos quadrados entre grupos, *SSr* a soma de quadrados dentro do grupo (residual), *N* o número de unidades amostrais e *g* os grupos (ou níveis da variável categórica). Esta fórmula do *pseudo-F* é específica para desenho experimental com um fator. Outros desenhos mais complexos são apresetandos em Anderson [[-@anderson_new_2001]; [-@anderson_permutational_2017]. O cálculo do valor de probilidade é realizado por métodos de permutação que são discutidos em Anderson & Ter Braak [-@anderson_permutation_2003].
+## Passo 2: gerar matriz de distância (Diversidade beta: Bray-Curtis)
+dbeta <- vegdist(species.hel, "bray")
 
-#### Exemplo 1
+## Passo 2: dbRDA 
+dbrda.bird <- capscale (dbeta~rain.jul+maxi.jul+altitude, data=env.pad.cat)
+
+# Para interpretar, é necessário saber a significância dos eixos para representar a relação entre as variáveis preditoras e a composição de espécies
+db.res.axis <- anova.cca(dbrda.bird, by = "axis") 
+db.res.axis
+
+# Em seguida, é possível identificar quais são as variáveis que contribuem ou que mais contribuem para a variação na composição de espécies 
+db.res.var <- anova.cca(rda.bird, by = "term") ## Qual variável?
+db.res.var
+
+# Além disso, é possível obter o valor do R2 do modelo
+db_r_quadr <- RsquareAdj(dbrda.bird)
+db_r_quadr
+```
+
+**Interpretação dos resultados**
+
+Assim como apresentado na RDA, os resultados obtidos em `db.res.var` sugerem que as variáveis `rain.jul`, `maxi.jul` e `altitude` afetam a diversidade beta de aves. O valor do *R^2^* ajustado (0.495) sugere forte relação entre o gradiente ambiental e a diversidade beta. A comparação entre o valor do `db_r_quadr` e `r_quadr` indica que a db-RDA teve melhor ajuste para comparar o mesmo conjunto de dados.
+
+### PERMANOVA
+
+A PERMANOVA é um acrônimo, em inglês, de *Permutational Multivariate Analysis of Variance*, análise proposta por Marti Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Essa análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
+
+O primeiro passo da PERMANOVA é selecionar uma medida de distância apropriada aos dados e, além disso, verificar a necessidade de padronização ou transformação dos dados. Em seguida, as distâncias são comparadas entre os grupos de interesse (por exemplo, tratamento versus controle) usando a estatística *F* de maneira muito parecida com uma ANOVA (Capítulo \@ref(cap7)), chamada de *pseudo-F*:
+
+$$F_pseudo = (SSa / SSr)*[(N-g) / (g-1)]$$
+
+Nessa equação 
+
+- *SSa* representa a soma dos quadrados entre grupos
+- *SSr* a soma de quadrados dentro do grupo (residual) 
+- *N* o número de unidades amostrais
+- *g* os grupos (ou níveis da variável categórica)
+
+Esta fórmula do *pseudo-F* é específica para desenho experimental com um fator. Outros desenhos mais complexos são apresetandos em Anderson [-@anderson_new_2001]; [-@anderson_permutational_2017]. O cálculo do valor de probilidade é realizado por métodos de permutação que são discutidos em Anderson & Ter Braak [-@anderson_permutation_2003].
+
+**Exemplo 1**
 
 Espécies de aves que ocorrem em localidades com diferentes altitudes.
 
@@ -1093,107 +1091,324 @@ Espécies de aves que ocorrem em localidades com diferentes altitudes.
 
 **Predições**
 
--   Diferenças climáticas (temperatura e chuva) e altitudinais alteram a composição de espécies de aves.
+-   Diferenças climáticas (temperatura e chuva) e altitudinais alteram a composição de espécies de aves
 
 **Variáveis**
 
 -   Preditoras: Temperatura e chuva (contínuas) e altitude (categórica com três níveis)
-
 -   Dependente: composição de espécies de aves
 
 ```{r message=FALSE, warning=FALSE}
-# Composição de espécies padronizar com método de Hellinger
-species.hel <- decostand(species, "hellinger")
+## Composição de espécies padronizar com método de Hellinger
+species.hel <- decostand(x = species, method = "hellinger")
 
-# Matriz de distância com método Bray Curtis
-sps.dis <- vegdist(species.hel, "bray")
+## Matriz de distância com método Bray-Curtis
+sps.dis <- vegdist(x = species.hel, method = "bray")
 ```
 
-Para reduzir o número de variáveis no modelo, você pode considerar duas abordangens. A primeira, e mais importante delas, é manter somente variáveis preditoras que você tenha razão biológica para mantê-la e, além disso, que esteja relacionada com suas hipóteses. Assim, uma vez que você já removeu variáveis que não tem relevância biológica, você deve usar diferentes métodos para remover as variáveis muito correlacionadas (*forward selection*, *Variance Inflation Factor (VIF)*, entre outros). Neste exemplo, vamos simplesmente fazer uma correlação múltipla e remover as variáveis com correlação maior do que 0.9 ou -0.9. A função ggpairs mostra um gráfico bem didático para representa a relação entre todas as variáveis e o valor (r) desta correlação.
+Para reduzir o número de variáveis no modelo, você pode considerar duas abordangens. A primeira, e mais importante delas, é manter somente variáveis preditoras que você tenha razão biológica para mantê-la e, além disso, que esteja relacionada com suas hipóteses. Assim, uma vez que você já removeu variáveis que não possuem relevância biológica, você deve usar diferentes métodos para remover as variáveis muito correlacionadas (*forward selection*, *Variance Inflation Factor (VIF)*, entre outros). Neste exemplo, vamos simplesmente fazer uma correlação múltipla e remover as variáveis com correlação maior do que 0.9 ou -0.9. A função `ggpairs()` mostra um gráfico bem didático para representar a relação entre todas as variáveis e o valor (r) desta correlação (mais em Capítulo \@ref(cap7)) (Figura \@ref(fig:fig-permanova-prev)).
 
-```{r message=FALSE, warning=FALSE}
-
+```{r fig-permanova-prev, fig.cap="Correlograma mostrando a correlação entre as variáveis.", message=FALSE, warning=FALSE}
 ## Verifica correlação entre as variáveis
-ggpairs(env) 
+ggpairs(env) +
+    tema_livro()
 
-# Após verificar a estrutura de correlação, vamos manter somente três #variáveis
-env2 <- env[,c("mini.jan", "rain.tot", "altitude")]
+## Após verificar a estrutura de correlação, vamos manter somente três variáveis
+env2 <- env[, c("mini.jan", "rain.tot", "altitude")]
 ```
 
-Após selecionar as variáveis do modelo, vamos executar a PERMANOVA e entender as principais etapas para interpretar corretamente o teste. A função adonis do pacote vegan é a melhor opção no vegan. Porém, é importante referir o programa PRIMER e PERMANOVA+ como ótima opção para implementar a PERMANOVA e ter maior controle em desenhos complexos [@anderson_permanova+_2008]. Assim como nos modelos lineares apresentados no Capítulo \@ref(cap7), os argumento seguem o mesmo formato, com variável dependente separada por um "\~" das variáveis preditoras. Porém, alguns autores demonstraram que a PERMANOVA (assim como Mantel e ANOSIM) não pode identificar se diferenças significativas do teste (usando a estatística *pseudo-F*) se devem a diferenças no posição, na dispersão ou ambos. Ou seja, ao comparar grupos não é possível identificar se existe mudanças de composição (posição) ou a variação da composição de espécies dentro de um grupo (dispersão) é maior do que a variação dentro do outro grupo [@anderson_permanova_2013]. Para solucionar este problema, é possível combinar a PERMANOVA com a análise PERMDISP (ou BETADISPER, como chamado no pacote vegan). Esta análise permite comparar se existe heterogeneidade nas variâncias entre grupos. Deste modo, a presença de heterogeneidade de variâncias (valor do BETADISPER significativo), é possível saber que as diferenças entre os grupos ocorre principalmente por diferenças na dispersão e não, necessariamente, de posição. Mais detalhes sobre a relevância de combinar essas duas análises estão disponíveis em Anderson & Walsh [-@anderson_permanova_2013].
+Após selecionar as variáveis do modelo, vamos executar a PERMANOVA e entender as principais etapas para interpretar corretamente o teste. A função `adonis()` do pacote `vegan` é uma boa opção. Porém, é importante referir o programa PRIMER e PERMANOVA+ como ótima opção para implementar a PERMANOVA e ter maior controle em desenhos complexos [@anderson_permanova+_2008]. Assim como nos modelos lineares apresentados no Capítulo \@ref(cap7), os argumento seguem o mesmo formato, com variável dependente separada por um "~" das variáveis preditoras. Porém, alguns autores demonstraram que a PERMANOVA (assim como Mantel e ANOSIM) não pode identificar se diferenças significativas do teste (usando a estatística *pseudo-F*) se devem a diferenças no posição, na dispersão ou ambos. Ou seja, ao comparar grupos não é possível identificar se existe mudanças de composição (posição) ou a variação da composição de espécies dentro de um grupo (dispersão) é maior do que a variação dentro do outro grupo [@anderson_permanova_2013]. Para solucionar este problema, é possível combinar a PERMANOVA com a análise PERMDISP (ou BETADISPER, como chamado no pacote `vegan` implementado através da função `betadisper()`). Esta análise permite comparar se existe heterogeneidade nas variâncias entre grupos. Deste modo, com a presença de heterogeneidade de variâncias (valor do BETADISPER significativo), é possível saber que as diferenças entre os grupos ocorre principalmente por diferenças na dispersão e não, necessariamente, de posição. Mais detalhes sobre a relevância de combinar essas duas análises estão disponíveis em Anderson & Walsh [-@anderson_permanova_2013].
 
 ```{r message=FALSE, warning=FALSE}
-
+## PERMANOVA
 perm.aves <- adonis2(sps.dis ~ mini.jan + rain.tot + altitude, data = env2)
 perm.aves ### Diferenças entre os tratamentos?
 
-betad.aves <-betadisper(sps.dis, env2$altitude)
+## BETADISPER
+betad.aves <- betadisper(sps.dis, env2$altitude)
 permutest(betad.aves)
 ```
 
-Em nosso exemplo, temperatura, chuva e altitude afetaram a variação na composição de espécies. Porém, para identificar se as diferenças de composição entre os níveis da variável altitude, é necessário interpretar os resultados da análise BETADISPER. O comando permutest(betad.aves) mostra que o valor de probabilidade da análise foi de 0.253, ou seja, a hipótese nula de que a variância entre grupos é homogênea é aceita. Assim, não existe diferenças na dispersão entre grupo, sugerindo que a diferença encontrada na PERMANOVA (objeto perm.aves) se deve, em parte, a mudança na composição de espécies de aves entre diferentes altitudes (R^2^ = 0.135). Além disso, a chuva (R^2^ = 0.183) e temperatura (R^2^ = 0.127) foram fatores importantes na variação da composição de espécies.
+Em nosso exemplo, a temperatura, precipitação e altitude afetaram a variação na composição de espécies. Porém, para identificar se as diferenças de composição entre os níveis da variável altitude, é necessário interpretar os resultados da análise BETADISPER. O código `permutest(betad.aves)` mostra que o valor de probabilidade da análise foi de 0.253, ou seja, a hipótese nula de que a variância entre grupos é homogênea é aceita. Assim, não existe diferenças na dispersão entre grupos, sugerindo que a diferença encontrada na PERMANOVA (objeto `perm.aves`) se deve, em parte, à mudança na composição de espécies de aves entre diferentes altitudes (R^2^ = 0.135). Além disso, a precipitação (R^2^ = 0.183) e temperatura (R^2^ = 0.127) foram fatores importantes na variação da composição de espécies.
 
-Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA (abaixo). A literatura ecológica tem usado a análise de escalonamento não métrico (nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros.
+### Análise de Escalonamento não-Métrico (nMDS)
 
-```{r message=FALSE, warning=FALSE}
-# Matriz de distância representando a variação na composição de espécies (método Bray-Curtis)
+Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA (abaixo). A literatura ecológica tem usado a Análise de Escalonamento não-Métrico (*non-Metric Multidimensional Scaling* - nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros (Figura \@ref(fig:fig-nmds)).
+
+```{r fig-nmds, fig.cap="Biplot mostrando o resultado do nMDS.", message=FALSE, warning=FALSE}
+## Matriz de distância representando a variação na composição de espécies (método Bray-Curtis)
 as.matrix(sps.dis)[1:6, 1:6]
 
-# É preciso calcular uma primeira "melhor" solução do nMDS
+## É preciso calcular uma primeira "melhor" solução do nMDS
 sol1 <- metaMDS(sps.dis)
 
-# Depois, executar a mesma função, mas utilizando uma "melhor solução inicial" para evitar resultdos subótimos no nMDS 
+## Melhor solução
+# Depois, executar a mesma função, mas utilizando uma "melhor solução inicial" para evitar resultdos subótimos no nMDS .
 nmds.beta <- metaMDS(sps.dis, previous.best = sol1)
 
-# O stress é o valor mais importante para interpretar a qualidade da ordenação ()
+## Stress
+# O stress é o valor mais importante para interpretar a qualidade da ordenação.
 nmds.beta$stress # valor ideal entre 0 e 0.2
 
-# Exportar os valores para fazer gráfico 
+## Exportar os valores para fazer gráfico 
 dat.graf <- data.frame(vegan::scores(nmds.beta), altitude = env2$altitude)
 
-# Definir os grupos ("HULL") para serem categorizados no gráfico 
+## Definir os grupos ("HULL") para serem categorizados no gráfico 
 grp.mon <- dat.graf[dat.graf$altitude == "Montanhoso", ][chull(dat.graf[dat.graf$altitude == "Montanhoso", c("NMDS1", "NMDS2")]), ]
+
 grp.int <- dat.graf[dat.graf$altitude == "Intermediário", ][chull(dat.graf[dat.graf$altitude == "Intermediário", c("NMDS1", "NMDS2")]), ]
+
 grp.pla <- dat.graf[dat.graf$altitude == "Plano", ][chull(dat.graf[dat.graf$altitude == "Plano", c("NMDS1", "NMDS2")]), ]
 
 ## Combinar dados dos grupos para cada Convex Hull
 hull.data <- rbind(grp.mon, grp.int, grp.pla) 
 head(hull.data)
 
-# Gráfico combinado os escores do nMDS com polígonos dos valores por cada cota altitudinal
-dat.graf %>% 
-  ggplot(aes(x = NMDS1, 
-             y = NMDS2, 
-             color = altitude, 
-             shape = altitude)) + 
-  theme_bw() + 
-  geom_point(size=4, alpha=0.7) + 
-  geom_polygon(data = hull.data, 
-               aes(fill = altitude, 
-                   group = altitude), 
-               alpha=0.3) + 
-  scale_color_manual(values=c("darkorange", "darkorchid", "cyan4")) +
-  scale_fill_manual(values=c("darkorange", "darkorchid", "cyan4")) +
-  xlab("NMDS1") + 
-  ylab("NMDS2") + 
-  theme(axis.title.x = element_text(size=14),
-        axis.text.x = element_text(vjust=0.5, 
-                                   size=12), 
-        axis.title.y = element_text(size=14),
-        axis.text.y = element_text(vjust=0.5, 
-                                   size=12), 
-        legend.position = "top",
-        legend.title = element_blank())+
-  tema_livro()
+## Gráfico
+ggplot(dat.graf, aes(x = NMDS1, y = NMDS2, color = altitude, shape = altitude)) + 
+    geom_point(size = 4, alpha = 0.7) + 
+    geom_polygon(data = hull.data, aes(fill = altitude, group = altitude), alpha = 0.3) + 
+    scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+    scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+    labs(x = "NMDS1", y = "NMDS2") + 
+    tema_livro()
 ```
 
-### Para se aprofundar
+## Mantel e Mantel parcial
 
--   [Agrupamento de espécies e locais baseado em modelos](https://www.sciencedirect.com/science/article/pii/S0304380010006393?casa_token=0YLFbVbGj1IAAAAA:RFcrLHBDdt-NY5gpxCEAqlc8LMG0ayzChpMvaOFQkE10ftg2Us6PafgMQCSmCZZ21eb430e_lWo)
+O teste de Mantel se aplica quando temos duas ou mais matrizes de distância (triangulares). Em estudos ecológicos, essas matrizes normalmente descrevem dados de distância ou (dis)similaridade na composição de espécies, distância geográfica, e similaridade ambiental. Mas este teste também é amplamente aplicado na área de genética de paisagem para testar hipóteses sobre como a composição genética de uma população varia em função do ambiente e/ou espaço geográfico. O teste nada mais é do que uma generalização do coeficiente de correlação de Pearson (Capítulo \@ref(cap7)) para lidar com matrizes de distância. Como essas matrizes descrevem a relação entre vários pares de locais, temos a repetição do mesmo local em outros pares. Neste caso é preciso um procedimento semelhante ao de correção para múltiplos testes. 
 
--   [Numerical Ecology with R](http://adn.biol.umontreal.ca/~numericalecology/numecolR/)
+Já o Mantel parcial pretende testar a correlação entre duas matrizes controlando para o efeito de uma terceira. Por exemplo, testar a associação entre a dissimilaridade na composição de espécies e dissimilaridade ambiental, controlando para a distância geográfica entre os locais. Isso nos permite levar em conta a possível autocorrelação espacial nas variáveis ambientais, ou seja, estaríamos testando de fato o efeito da dissimilaridade ambiental "pura" na dissimilaridae na composição de espécies, evitando o efeito do espaço em si. Portanto, note que sempre estamos raciocinando em termos de (dis)similaridade e não dos dados brutos em si, seja composição de espécies ou variáveis ambientais. É importante ter isto em mente na hora de interpretar os resultados.
 
--   [James & McCulloch (1990)](https://www.annualreviews.org/doi/pdf/10.1146/annurev.es.21.110190.001021)
+**Exemplo 1**
 
--   [Legendre & Legendre (2012)](https://www.sciencedirect.com/bookseries/developments-in-environmental-modelling/vol/24)
+Neste exemplo, vamos utilizar um conjunto de dados que contém girinos de espécies de anfíbios anuros coletados em 14 poças d'água e os respectivos dados de variáveis ambientais destas mesmas poças [@provete_broad-scale_2014].
 
+**Pergunta**
+
+-   Existe correlação entre a dissimilaridade na composição de espécies de girinos e a dissimilaridade ambiental?
+
+**Predições**
+
+-   Assumindo que processos baseados no nicho sejam predominantes, quanto mais diferentes as poças forem maior será a diferença na composição de espécies
+
+**Variáveis**
+
+-   Variáveis: a matriz de distância (Bray-Curtis) da composição das espécies e outra matriz de distância (Euclideana) das variáveis ambientais
+
+**Análises**
+
+Aqui vamos utilizar além do conjunto de dados `bocaina` já conhecido, outras duas matrizes disponíveis no pacote `ecodados`: `bocaina.xy` e `bocaina.env`, que contêm as coordenadas geográficas e variáveis ambientais das poças, respectivamente.
+
+```{r}
+## Dados
+head(bocaina.env)
+head(bocaina.xy)
+
+## Matriz de distância geográfica
+Dist.km <- as.dist(rdist.earth(bocaina.xy, miles=F)) # matriz de distância geográfica (geodésica) considerando a curvatura da Terra
+
+## Padronizações
+comp.bo.pad <- decostand(t(bocaina), "hellinger")
+env.bocaina <- decostand(bocaina.env[,-9], "standardize")
+
+## Similaridades
+simil.bocaina <- vegdist(comp.bo.pad, "bray")
+simil.env <- vegdist(env.bocaina, "euclidian")
+```
+
+```{r}
+## Mantel
+# Espaço vs. ambiente
+mantel(Dist.km, simil.env) 
+
+# Espaço vs. composição
+mantel(Dist.km, simil.bocaina) 
+
+# Ambiente vs. composição
+mantel(simil.env, simil.bocaina) 
+```
+
+Vamos agora fazer os gráficos relacionando as matrizes de similaridade dos dados (Figura \@ref(fig:fig-mantel)).
+
+```{r fig-mantel, fig.cap="Relação das matrizes de (dis)similaridade dos dados."}
+## Gráficos
+plot(simil.bocaina, simil.env)
+plot(Dist.km, simil.env)
+plot(log(Dist.km), log(1-simil.bocaina), 
+     xlab ="Geographic distance (Km)", 
+     ylab ="Similarity (Bray-Curtis)")
+```
+
+**Interpretação dos resultados**
+
+Os resultados mostraram que existe uma relação positiva, embora fraca, entre a dissimilaridade ambiental e a dissimilaridade na composição de espécies. Este resultado está de acordo com a nossa hipótese inicial. No entanto, vimos também que existe uma relação positiva e significativa entre a distância em linha reta entre as poças e a dissimilaridade ambiental. Logo, para de fato testar a relação entre o ambiente e a composição de espécies temos de levar em conta o espaço.
+
+Para isto temos de realizar um teste de Mantel Parcial.
+
+```{r}
+## Mantel Parcial
+mantel.partial(simil.bocaina, simil.env, Dist.km) #comp. vs. ambiente controlando o espaço
+```
+
+Agora sim, vimos que a relação entre ambiente e espécies se mantém, mas que a força dessa relação diminuiu bastante (veja o valor de r) quando controlamos o espaço.
+
+## Mantel espacial com modelo nulo restrito considerando autocorrelação espacial
+
+Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: [@legendre2015], [@legendre2010], [@legendre2000].
+
+No entanto, recentemente um artigo ([@crabot2019]) propos uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado *Moran Spectral Randomization* porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos *Moran Eigenvector Maps* (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.
+
+Primeiro precisamos construir um objeto com as duas matrizes que desejamos testar, no nosso caso composição de espécies e espaço. Depois precisamos construir explicitamente a nossa hipótese de relação espacial entre os locais por meio de uma rede de vizinhança. Esta rede é uma estrutura que nos dirá como (e eventualmente com qual intensidade) se há relação entre os locais. Aqui, entende-se que nos referimos à probabilidade de fluxo de indivíduos entre os locais.
+
+```{r}
+## Mantel
+compos_espac <- mantel.randtest(sqrt(simil.bocaina), Dist.km)
+compos_espac
+```
+
+Note que até aqui não há nada de novo, apenas utilizamos uma função diferente para realizar o teste de Mantel, agora no pacote `ade4` ao invés do `vegan`. Agora temos de construir a nossa rede de vizinhança. Optamos neste exemplo por uma rede bastante simples, que é a *Minimum Spanning Tree*. Essa é a rede espacial mínima que mantém todos os pontos ligados entre si (Figura \@ref(fig:fig-mantel-espacial)).
+
+```{r fig-mantel-espacial, fig.cap="Rede de vizinhança com a *Minimum Spanning Tree*"}
+## Minimum Spanning Tree
+nb.boc <- mst.nb(Dist.km) # calcula uma Minimum Spanning Tree
+plot(nb.boc, bocaina.xy)
+```
+
+No gráfico, podemos ver a "cara" da rede. Cada ponto representa um local (poça) e as linhas representam a ligação hipótetica entre eles, plotamos no espaço geográfico, ou seja, o Norte aponta pra cima. Agora temos apenas que converter o formato `nb` para `listw` e finalmente entrar com esses objetos na função que realizará a análise.
+
+```{r}
+## Conversão
+lw <- nb2listw(nb.boc)
+
+## Mantel espacial
+msr(compos_espac, lw, method = "pair")
+```
+
+**Interpretação dos resultados**
+
+Vamos comparar com o Mantel comum.
+
+```{r}
+## Mantel comum
+compos_espac
+```
+
+Note que o valor da estatística do teste, ou seja, o r de Mantel é exatamente o mesmo. No entanto, o valor de *P* que indicava que o teste havia sido significativo anteriormente mudou e passou a ser não significativo. Isso ocorreu porque, embora a maneira de calcular a estatística do teste seja a mesma, a forma de construir a distribuição nula, a partir da qual será calculado o valor de *P* mudou drasticamente, resultando num teste não significativo.
+
+## PROCRUSTES e PROTEST
+
+Uma alternativa ao Mantel para comparar o grau de associação entre conjuntos multidimensionais de dados (e.g., matriz de espécies e matriz ambiental) é a análise conhecida como Procrustes [@gower_statistical_1971; @jackson_protest_1995]. Esta análise compara duas matrizes (objetos nas linhas e variáveis nas colunas) minimizando a soma dos desvios quadrados entre os valores através das seguintes técnicas: translação, escalonamento e rotação. É importante notar que os objetos devem ser os mesmos e, desse modo, o número de linhas é obrigatoriamente igual, ao passo que o número de colunas pode variar. A posição do objeto X~i~ (i = 1, ...n)  é comparada com o objeto Y~i~ da matriz correspondente, movimentando os pontos via translação, reflexão, rotação e dilatação. Assim, os objetos da matriz X resultam na matrix X' que é representada pelo melhor ajuste (menor valor residual da soma dos quadrados: estatística m~12~) entre a matriz X e Y. A estatística m~12~ mede, então, o grau de concordância entre as duas matrizes. Os valores de m~12~ variam de 1 (sem concordância) a 0 (máxima concordância) [@peres-neto_how_2001, @lisboa_much_2014]. Para testar a significância do valor observado de m~12~, Jackson [-@jackson_protest_1995] sugeriu um teste de aleatorização chamado PROTEST. 
+
+As possibilidades de aplicação do Procrustes para ecologia são diversas. Dentre elas, se destacam a: i) morfometria geométrica e ii) ecologia de comunidades (concordância de comunidades). Uma característica interessante do Procrustes é a possibilidade de usar matriz bruta (e.g., variáveis ambientais) ou matriz de distância, o que amplia as possibilidades analíticas. Para comparações com matrizes brutas, análises de ordenação irrestrita (PCA, CA) devem ser realizadas antes do Procrustes. Por outro lado, para comparações com matrizes de distância (e.g., Euclidiana, Jaccard, Bray-Curtis), análises como PCoA e nMDS devem preceder à análise de Procrustes [veja Figura 4 em @peres-neto_how_2001]. Nos dois casos, a ordenação é importante para gerar matrizes com a mesma dimensionalidade o que, por sua vez, permite comparar matrizes com número de colunas diferentes.
+
+**Exemplo 1**
+
+Neste exemplo, vamos utilizar dois conjuntos de dados simulados de peixes e macroinvertebrados aquáticos coletados em riachos. Neste exemplo hipotético, existe uma rede de 12 riachos com diferentes graus de poluição. Em cada riacho, foi produzida uma lista de espécies de peixes e de macroinvertebrados (com dados de abundância).
+
+**Pergunta**
+
+-   Existe concordância na distribuição na composição de espécies de peixes e macroinvertebrados?
+
+**Predições**
+
+-   Assumindo que alguns poluentes, tais como metais pesados, podem atuar como filtro ambiental e limitar a ocorrência de determinados organismos aquáticos, espera-se encontrar alta concordância entre as duas matrizes (peixes e macroinvertebrados). Ou seja, a comunidade tanto de peixes quanto de macroinvertebrados responderão de forma similar ao gradiente ambiental
+
+**Variáveis**
+
+-   Variáveis: composição das espécies de peixes e macroinverebrados aquáticos
+
+**Análises**
+
+No exemplo escolhido, as duas matrizes representam a composição de espécies em diferentes riachos. Desse modo, o ideal é transformar esta matriz bruta em matriz de distância com o método Bray-Curtis (`vegdist()`). O próximo passo, então, é realizar uma `Análise de Coordenadas Principais (PCoA)` (veja abaixo) para gerar duas matrizes de ordenação que serão comparadas com a função `procrustes()`. Por fim, utilizamos a função `protest()` para testar a significância da concordância entre as matrizes (Figura \@ref(fig:fig-procrustes)).
+
+```{r fig-procrustes, fig.cap="Biplot mostrando o resultado da análise de PROCRUSTES."}
+## Dados
+head(fish)
+head(macroinv)
+
+## Fixar a amostragem
+set.seed(1001) 
+
+## Matrizes de distância de PCoA 
+d_macro <- vegdist(macroinv, "bray")
+pcoa_macro <- cmdscale(d_macro)
+
+d_fish <- vegdist(fish, "bray")
+pcoa_fish <- cmdscale(d_fish)
+
+## PROCRUSTES
+concord <- procrustes(pcoa_macro, pcoa_fish)
+protest(pcoa_macro, pcoa_fish)
+
+## Gráfico
+plot(concord)
+```
+
+**Interpretação dos resultados**
+
+A função `protest()` apresenta dois resultados importantes: i) a estatística m~12~ e ii) o valor de significância (p). No exemplo, o valor de m~12~ é igual a `0.6185` e o valor de p é `0,019`. Desse modo, podemos concluir que existe concordância entre a composição de espécies de peixes e macroinvertebrados aquáticos, sugerindo que o nível de poluição pode gerar padrões previsíveis de distribuição de diferentes organismos aquáticos. A figura produzida pelo código `plot(concord)` mostra um gráfico típico do Procrustes, onde a base da seta representa a matriz **X** e a ponta da seta a matriz alvo (**Y**) após a rotação para comparar o grau de concordância entre **X** e **Y**. Cada ponto representa um objeto (linha) das matrizes **X** e **Y**. Quanto menor for o tamanho das setas, mais concordantes são as observações em cada objeto.
+
+## Métodos multivariados baseados em modelos
+
+Mais recentemente, alguns autores têm proposto métodos multivariados baseados em modelos. Estes métodos têm se diversificado hoje em dia e existem pacotes que realizam praticamente todas as análises que vimos acima, com a diferença que utilizam distribuições de probabilidade dado um modelo (e.g., Poisson) ao invés de coeficientes de dissimilaridades. Vamos exemplificar o uso de um desses métodos, mas não vamos fazer uma revisão extensiva. Caso o(a) leitor(a) deseje conhecer mais, recomendamos consultar principalmente os pacotes `gllvm`, `ecoCopula` e `Hmsc`.
+
+Um dos primeiros métodos foi proposto em 2012 pelo grupo de David Warton [@warton2012], implementado no pacote `mvabund`. Anteriormente neste mesmo ano foi publicado um artigo pelo mesmo grupo [@wang2012] em que os autores demonstraram que métodos baseados em dissimilaridade, especialmente PERMANOVA, não conseguem modelar adequadamente dados multivariados de contagem (e.g., abundância) por não levarem em conta a relação monotônica entre média e variância. Vejamos o que isso quer dizer utilizando os dados do artigo de [-@dasilva2017] (Figura \@ref(fig:fig-media-var)).
+
+```{r fig-media-var, fig.cap="Gráfico mostrando a média-variância para dados de abundância multivariada."}
+## Dados
+head(anuros_permanova)
+anuros_abund <- as.data.frame(anuros_permanova[,-28])
+grupos <- factor(anuros_permanova[,28])
+
+## Média-variância
+abund_tr <- mvabund(anuros_abund) # criando um objeto da classe mvabund com os dados de abundância
+meanvar.plot(abund_tr)
+```
+
+Este conjunto de dados contém abundâncias de anfíbios coletados num conjunto de cidades do interior de São Paulo e também sua presença em museus. Aqui, vemos que há uma clara relação monotônica entre a média e a variância da abundância das espécies na matriz. Ou seja, à medida que espécies aumentam sua média de abundância, elas também aumentam quase que proporcionalmente a sua variância. Esta é uma propriedade bastante comum de dados multivariados de contagem, mas que não é muito bem modelada por métodos baseados em dissimilaridade, já que nesse caso apenas as espécies mais abundantes têm de fato um peso na análise.
+
+A proposta implementada no pacote `mvabund` é baseada em Modelos Lineares Generalizados (GLMs) que você já conhece do Capítulo \@ref(cap8). Ou seja, este método permite que sejam modeladas as abundâncias das espécies num contexto multivariado utilizando explicitamente distribuições de probabilidade, tais como aquelas que utilizamos (e.g., Poisson, Binomial negativa, etc.). Isso faz com que demos peso semelhante às espécies. Vejamos um exemplo de como o modelo é ajustado e como é feito teste de hipótese.
+
+**Exemplo 1**
+
+A principal pergunta do artigo citado acima foi testar se a composição de espécies que obtemos em campo e de coleção científicas é diferente. Isso tem implicações para levantamentos de fauna, já que podemos complementar um tipo de dado com outro ou saber se eles são redundantes. Aqui, `grupos` é apenas um fator que indica se aquela linha da matriz apresenta dados obtidos em campo ou coleção. Vamos testar a hipótese nula de que não há diferença na composição entre as duas fontes de dados ajustando um modelo com Binomial negativa (Figura \@ref(fig:fig-mvabund)).
+
+```{r fig-mvabund, fig.cap="Gráfico mostrando as abundâncias para os dois grupos."}
+## Gráfico
+plot(abund_tr ~ grupos, cex.axis = 0.8, cex = 0.8)
+
+## Modelo
+modelo1 <- manyglm(abund_tr ~ grupos, family = "negative.binomial")
+```
+
+O gráfico mostrando os dados possui log da abundância das espécies e o fator (campo vs. coleção). Com essa análise exploratória de dados já podemos identificar se há diferença ou não na abundância das espécies em cada local. Vemos que algumas espécies são bem mais abundantes no campo do que em coleções, tais como *Leptodactylus mystacinus* e *Rhinella ornata*.
+
+Uma grande vantagem desse tipo de método baseado em modelos é que, assim como um GLM típico, também podemos realizar diagnose dos resíduos utilizando plots de resíduos versus predito. Vejamos como isso funciona (Figura \@ref(fig:fig-mvabund-diag)).
+
+```{r fig-mvabund-diag, fig.cap="Diagnose dos resíduos do modelo ajustado."}
+## Diagnose
+plot(modelo1)
+```
+
+Aqui vemos que os dados se distribuem de maneira mais ou menos homogênea e sem um padrão claro ao redor do zero. Isso indica que a distribuição Binomial negativa foi adequada para modelar estes dados. E agora sim podemos interpretar os resultados com mais segurança.
+
+**Interpretação dos resultados**
+
+```{r}
+## Resultados
+summary(modelo1)
+```
+
+Aqui vemos que há sim uma diferença significativa na abundância relativa das espécies entre o campo e coleção. Mas até então estamos levando em conta toda a matriz numa abordagem multivariada. No entanto, não sabemos qual(is) espécie(s) são responsáveis por este padrão. Para investigar isso, podemos realizar uma Análise de Deviance separada para cada espécie, isso é o que a linha abaixo faz.
+
+```{r}
+## ANOVA
+anova(modelo1, p.uni = "adjusted")
+```
+
+Aqui vemos que algumas espécies já identificadas no plot exploratório de fato são importantes para determinar o padrão, tais como: *Leptodactylus mystacinus*, *Physalaemus nattereri* e *Rhinella ornata*. Essas foram espécies cuja Deviance foi significativa.
+
+## Para se aprofundar
+
+Listamos a seguir livros e artigos com material que recomendamos para seguir com sua aprendizagem em análises multivariadas em R: i) Legendre & Legendre [-@] Numerical Ecology, ii) Borcard e colaboradores [-@borcard2018] Numerical Ecology with R, iii) Thioulouse e colaboradores [-@thioulouse_multivariate_2018] Multivariate Analysis of Ecological Data with ade4, iv) Ovaskainen & Abrego [-@ovaskainen_joint_2020] Joint Species Distribution Modelling, v) James & McCulloch [-@james_multivariate_1990] Multivariate Analysis in Ecology and Systematics: Panacea or Pandora's Box? e vi) Dunstan e colaboradores [-@dunstan_model_2011] Model based grouping of species across environmental gradients.

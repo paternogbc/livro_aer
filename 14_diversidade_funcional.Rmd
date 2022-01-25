@@ -1,9 +1,10 @@
 # Diversidade Funcional {#cap14}
 
-### Pré-requisitos do capítulo {-}
+## Pré-requisitos do capítulo {-}
+
+Pacotes, dados e funções que serão utilizados nesse capítulo.
 
 ```{r message=FALSE, warning=FALSE}
-
 ## Pacotes 
 library(FD)
 library(ade4)
@@ -24,7 +25,7 @@ library(TPD)
 library(cati)
 library(kableExtra)
 
-## Dados e funções necessárias
+## Dados e funções
 comun_fren_dat <- ecodados::fundiv_frenette2012a_comu
 ambie_fren_dat <- ecodados::fundiv_frenette2012a_amb
 trait_fren_dat <- ecodados::fundiv_frenette2012a_trait
@@ -39,109 +40,106 @@ env            <- ecodados::env
 # ecodados::wITV # funtion: wITV
 ```
 
-
 ## Aspectos teóricos
 
-Até a década de 1990, a teoria ecológica investigava basicamente quais processos determinavam a abundância e riqueza de espécies no espaço e tempo. As décadas de 1980 e 1990 foram marcadas por intensos debates sobre as regras de montagem de comunidades e como interações e filtros ambientais determinavam a coexistência de espécies [@strong_ecological_1984]. Porém, a década 2000 foi marcada pelo uso mais explícito da características das espécies como uma variável fundamental tanto para explicar como a distribuição dos organismos seria afetada pelo ambiente, quanto para entender como tais espécies afetariam o ecossistema [@diaz_vive_2001; @mcgill_rebuilding_2006]. O primeiro estudo que utilizou o termo Diversidade Funcional foi publicado por Williams [-@anderson1967], que comparou espécies de naúplios filogenéticamente relacionadas e demonstrou que elas possuem alta plasticidade funcional que favorecem ampla variação de comportamentos e, desse modo, permitem que sejam espécies generalistas em ambientes em contante mudança. A unidade básica desses estudos, o atributo funcional (do inglês "*functional trait*"), é definido como uma propriedade mensurável dos organismos (geralmente em nível individual) que represente características morfológicas, fisiológicas ou fenológicas que afetam a aptidão alterando aspectos do crescimento, reprodução e sobrevivência [@violle_let_2007]. Mais especificamente, o atributo funcional pode ser divido em atributo efeito (i.e., atributos do organismo que afetam condições ambientais ou propriedades do ecossistema) e resposta (i.e., atributos do organismo que variam em resposta a condições ambientais) [@violle_let_2007].
+Até a década de 1990, a teoria ecológica investigava basicamente quais processos determinavam a abundância e riqueza de espécies no espaço e tempo. As décadas de 1980 e 1990 foram marcadas por intensos debates sobre as regras de montagem de comunidades e como interações e filtros ambientais determinavam a coexistência de espécies [@strong_ecological_1984]. Porém, a década de 2000 foi marcada pelo uso mais explícito da características das espécies como uma variável fundamental tanto para explicar como a distribuição dos organismos seria afetada pelo ambiente, quanto para entender como tais espécies afetariam o ecossistema [@diaz_vive_2001; @mcgill_rebuilding_2006]. O primeiro estudo que utilizou o termo *Diversidade Funcional* foi publicado por Williams [-@anderson1967], que comparou espécies de naúplios filogenéticamente relacionadas e demonstrou que elas possuem alta plasticidade funcional que favorecem ampla variação de comportamentos e, desse modo, permitem que sejam espécies generalistas em ambientes em contante mudança. A unidade básica desses estudos, o atributo funcional (do inglês "*functional trait*"), é definido como uma propriedade mensurável dos organismos (geralmente em nível individual) que represente características morfológicas, fisiológicas ou fenológicas que afetam a aptidão alterando aspectos do crescimento, reprodução e sobrevivência [@violle_let_2007]. Mais especificamente, o atributo funcional pode ser divido em atributo efeito (i.e., atributos do organismo que afetam condições ambientais ou propriedades do ecossistema) e resposta (i.e., atributos do organismo que variam em resposta a condições ambientais) [@violle_let_2007].
 
-Dessa forma, as medidas de diversidade passam a ser representadas não somente por diferenças no número e na quantidade de espécies, mas pelas diferenças e/ou semelhanças dos atributos funcionais das espécies dentro e entre localidades. Assim, a variação no grau de expressão de diferentes atributos funcionais entre diferentes populações, comunidades ou ecossistemas é definida como *Diversidade Funcional* [*sensu* @garnier_plant_2015]. Porém, a diversidade funcional não deve ser usada como medida única, uma vez que tais diferenças entre os atributos funcionais pode ser medida a partir da abundância relativa, riqueza e variação dos atributos funcionais. Desse modo, podemos dividir a diversidade funcional em três diferentes medidas: *(1)* riqueza funcional, *(2)* divergência funcional, e *(3)* regularidade funcional [@villeger_new_2008]. Existem dezenas de métricas que calculam cada uma dessas *dimensões* da diversidadade funcional, mas se destacam aquelas baseadas em dendrograma [e.g., FD: @petchey_functional_2002] ou em medidas de distância [e.g., @villeger_new_2008]. Assim como a diversidade taxonômica \@ref(cap12), a diversidade funcional pode ser medida em componentes alfa e beta. A seguir, apresentamos diferentes maneiras de calcular a distância entre localidades tendo como base os atributos funcionais das espécies e, além disso, demonstramos como calcular algumas das métricas de diversidade (alfa e beta) funcional mais usadas em ecologia. A parte final deste capítulo apresenta dois exemplos de como podemos testar hipóteses ecológicas comparando a diversidade funcional alfa e beta.
+Dessa forma, as medidas de diversidade passaram a ser representadas não somente por diferenças no número e na quantidade de espécies, mas pelas diferenças e/ou semelhanças dos atributos funcionais das espécies dentro e entre localidades. Assim, a variação no grau de expressão de diferentes atributos funcionais entre diferentes populações, comunidades ou ecossistemas é definida como *Diversidade Funcional* [*sensu* @garnier_plant_2015]. Porém, a diversidade funcional não deve ser usada como medida única, uma vez que tais diferenças entre os atributos funcionais pode ser medida a partir da abundância relativa, riqueza e variação dos atributos funcionais. Desse modo, podemos dividir a diversidade funcional em três diferentes medidas: i) riqueza funcional, ii) divergência funcional, e iii) regularidade funcional [@villeger_new_2008]. Existem dezenas de métricas que calculam cada uma dessas *dimensões* da diversidadade funcional, mas se destacam aquelas baseadas em dendrograma [e.g., FD: @petchey_functional_2002] ou em medidas de distância [e.g., @villeger_new_2008]. Assim como a diversidade taxonômica (Capítulo \@ref(cap12)), a diversidade funcional pode ser medida em componentes alfa e beta. A seguir, apresentamos diferentes maneiras de calcular a distância entre localidades tendo como base os atributos funcionais das espécies e, além disso, demonstramos como calcular algumas das métricas de diversidade (alfa e beta) funcional mais usadas em Ecologia. A parte final deste capítulo apresenta dois exemplos de como podemos testar hipóteses ecológicas comparando a diversidade funcional alfa e beta.
 
 ## Definindo a dis(similaridade) entre espécies
 
-Definir o quão diferente ou semelhante são duas espécies que ocorrem em uma determinada localidade é a base para calcular a diversidade alfa e beta funcional. Para isso, é fundamental ter em mente que os atributos funcionais podem ser de vários tipos como, por exemplo, contínuo (e.g., tamanho corporal em centímetro), categórico (e.g., guilda: frugívoro, detritívoro, etc.), ordinal (e.g., 1 para organismo até 5 cm, 2 para organismos entre 5 e 30 cm, e 3 para organismos maiores do que 30 cm), binários (e.g., presença ou ausência de espinho), entre outros [veja Tabela 1 em @albuquerque_going_2019]. Por este motivo, a decisão
-do método de distância só será possível após o reconhecimento dos tipos de atributos funcionais escolhidos. Em linhas gerais, para variáveis contínuas a distância euclideana é a melhor opção, enquanto para os outros tipos de variáveis ou para conjuntos de atributos com mais de um tipo de variável, a distância de Gower geralmente deve ser a melhor opção  [@pavoine_challenge_2009].
+Definir o quão diferente ou semelhante são duas espécies que ocorrem em uma determinada localidade é a base para calcular a diversidade alfa e beta funcional. Para isso, é fundamental ter em mente que os atributos funcionais podem ser de vários tipos como, por exemplo, contínuos (e.g., tamanho corporal em centímetro), categóricos (e.g., guilda: frugívoro, detritívoro, etc.), ordinais (e.g., 1 para organismo até 5 cm, 2 para organismos entre 5 e 30 cm, e 3 para organismos maiores do que 30 cm), binários (e.g., presença ou ausência de espinho), entre outros [veja a Figura \@ref(fig:fig-statistical-thinking) no Capítulo \@ref(cap2)]. Por este motivo, a decisão do método de distância só será possível após o reconhecimento dos tipos de atributos funcionais escolhidos. Em linhas gerais, para variáveis contínuas a distância euclideana é a melhor opção, enquanto para os outros tipos de variáveis ou para conjuntos de atributos com mais de um tipo de variável, a distância de Gower geralmente deve ser a melhor opção  [@pavoine_challenge_2009].
 
-#### Exemplo prático
+**Exemplo prático**
 
 **Exemplo1: variáveis contínuas**
 
-Vamos utilizar um conjunto de dados com atributos contínuos (e.g., área foliar específica, massa foliar seca) de 34 espécies de plantas em um gradiente de aridez [@frenette-dussault_functional_2012]. Diversas análises funcionais podem ser afetadas por valores extremos ou pela diferença de unidade/escala entre as variáveis utilizadas. Por este motivo, é importante padronizar a matriz de atributos com média 0 e desvio padrão 1. Esta padronização é necessária tanto para fazer uma PCA como para PCoA (veja Capítulo \@ref(cap9)).
+Vamos utilizar um conjunto de dados com atributos contínuos (e.g., área foliar específica e massa foliar seca) de 34 espécies de plantas em um gradiente de aridez [@frenette-dussault_functional_2012]. Diversas análises funcionais podem ser afetadas por valores extremos ou pela diferença de unidade/escala entre as variáveis utilizadas. Por este motivo, é importante padronizar a matriz de atributos com média 0 e desvio padrão 1. Esta padronização é necessária tanto para fazer uma PCA como para PCoA (veja Capítulo \@ref(cap9)).
 
 **Pergunta**
 
-Quais são as espécies de plantas mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies)
+Quais são as espécies de plantas mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies).
 
 **Variáveis**
 
-* Dependentes: atributos funcionais (matriz de atributos contínuos por espécie: `trait_fren_dat`)
+- Dependentes: atributos funcionais (matriz de atributos contínuos por espécie: `trait_fren_dat`)
 
-```{r}
-## 1. Padronização dos dados
+**Análises**
+
+Aqui realizamos os passos para uma ordenação usando os atributos funcionais contínuos (Figura \@ref(fig:fig-func-pcoa-cont)).
+
+```{r fig-func-pcoa-cont, fig.cap="Ordenação usando os atributos funcionais contínuos."}
+## PCoA dos atributos contínuos
+
+# 1. Padronização dos dados
 trait_pad <- decostand(trait_fren_dat, "standardize")
 euclid_dis <- vegdist(trait_pad, "euclidean")
 
-## 2. PCoA
+# 2. PCoA
 # Resultados são idênticos aos resultados de uma PCA.
-pcoa_traits_cont <- pcoa(euclid_dis, correction="cailliez") 
+pcoa_traits_cont <- pcoa(euclid_dis, correction = "cailliez") 
 
-## 3. Exportandos dados para gráfico
+# 3. Exportandos dados para gráfico
 # Ao usar '[,1:2]' você irá selecionar os dois primeiros eixos.
-eixos_cont <- as.data.frame(pcoa_traits_cont$vectors[,1:2]) 
+eixos_cont <- as.data.frame(pcoa_traits_cont$vectors[, 1:2]) 
 
-## 4. Gráfico de ordenação 
-eixos_cont %>% 
-  ggplot(aes(x=Axis.1, y=Axis.2)) + 
-  geom_point(pch=21, size=4, color = "black", alpha = 0.7, fill="#525252") + 
-   geom_text_repel(aes(Axis.1, Axis.2, label = rownames(eixos_cont))) +
-  xlab("PCO 1") + ylab("PCO 2") + 
-  theme(axis.title.x = element_text(face="bold", size=14),
-        axis.text.x = element_text(vjust=0.5, size=12)) + 
-  theme(axis.title.y = element_text(face="bold", size=14),
-        axis.text.y = element_text(vjust=0.5, size=12)) + 
-  geom_hline(yintercept = 0, linetype=2) + 
-  geom_vline(xintercept = 0, linetype=2)+ 
-  theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro()-> plot_trait_cont
+# 4. Gráfico de ordenação 
+plot_trait_cont <- ggplot(eixos_cont, aes(x = Axis.1, y = Axis.2)) + 
+    geom_point(pch = 21, size = 4, color = "black", alpha = 0.7, fill = "red2") + 
+    geom_text_repel(aes(Axis.1, Axis.2, label = rownames(eixos_cont))) +
+    geom_hline(yintercept = 0, linetype = 2) + 
+    geom_vline(xintercept = 0, linetype = 2) +
+    labs(x = "PCO 1", y = "PCO 2", title = "Dados contínuos") + 
+    tema_livro()
 plot_trait_cont
 ```
 
 **Exemplo 2: variáveis categóricas**
 
-Ao contrário dos dados contínuos, para dados categóricos não é possível utilizar PCA. No próximo exemplo, utilizamos atributos funcionais de besouros distribuídos na Europa [@barbaro_linking_2009]. Esses dados são categóricos e incluem atributos como período de atividade (noturno, diurno, dioturno), tendência da população na europa (estável, aumentando, diminuíndo), entre outros.
+Ao contrário dos dados contínuos, para dados categóricos não é possível utilizar PCA. No próximo exemplo, utilizamos atributos funcionais de besouros distribuídos na Europa [@barbaro_linking_2009]. Esses dados são categóricos e incluem atributos como período de atividade (noturno, diurno, dioturno), tendência da população na europa (estável, aumentando, diminuíndo) entre outros.
 
-**Pergunta:**
+**Pergunta**
 
-Quais são as espécies de besouros mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies)
+Quais são as espécies de besouros mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies).
 
 **Variáveis**
 
-* Dependentes: atributos funcionais (matriz de atributos categóricos por espécie: `trait_dat`)
+- Dependentes: atributos funcionais (matriz de atributos categóricos por espécie: `trait_dat`)
 
-```{r}
+**Análises**
+
+Aqui realizamos os passos para uma ordenação usando os atributos funcionais categóricos (Figura \@ref(fig:fig-func-pcoa-cat)).
+
+```{r fig-func-pcoa-cat, fig.cap="Ordenação usando os atributos funcionais categóricos."}
+## PCoA dos atributos categóricos
 
 # 1. Selecionar somente os atributos categóricos
-trait_dat %>% 
-  dplyr::select_if(is.character) -> trait_cat 
+trait_cat <- trait_dat %>% 
+    dplyr::select_if(is.character)
 
 # 2. Calcular a distância de Gower
 dist_categ <- gowdis(trait_cat)
 
 # 3. PCoA da matriz de distância funcional (Gower)
-pcoa_traits_cat <- pcoa(dist_categ, correction="cailliez")
+pcoa_traits_cat <- pcoa(dist_categ, correction = "cailliez")
 
-# 4. Exportar dados (escores) para ggiplot
+# 4. Exportar dados (escores) para ggplot
 eixos_cat <- as.data.frame(pcoa_traits_cat$vectors[,1:2]) # Selecionar os dois primeiros eixos
 
 # 5. Gráfico de ordenação
-eixos_cat %>% 
-  ggplot(aes(x=Axis.1, y=Axis.2)) + 
-  geom_point(pch=21, size=4, alpha = 0.7, color = "black", fill="cyan4") + 
-   geom_text_repel(aes(Axis.1, Axis.2, label = rownames(eixos_cat))) +
-  xlab("PCO 1") + ylab("PCO 2") + 
-  theme(axis.title.x = element_text(face="bold", size=14),
-        axis.text.x = element_text(vjust=0.5, size=12)) + 
-  theme(axis.title.y = element_text(face="bold", size=14),
-        axis.text.y = element_text(vjust=0.5, size=12)) + 
-  geom_hline(yintercept = 0, linetype=2) + 
-  geom_vline(xintercept = 0, linetype=2)+ 
-  theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro() + ggtitle("Dados categóricos")-> plot_trait_cat
+plot_trait_cat <- ggplot(eixos_cat, aes(x = Axis.1, y = Axis.2)) + 
+    geom_point(pch = 21, size = 4, alpha = 0.7, color = "black", fill = "cyan4") + 
+    geom_text_repel(aes(Axis.1, Axis.2, label = rownames(eixos_cat))) +
+    geom_hline(yintercept = 0, linetype = 2) + 
+    geom_vline(xintercept = 0, linetype = 2) +
+    labs(x = "PCO 1", y = "PCO 2", title = "Dados categóricos") + 
+    tema_livro()
 plot_trait_cat
 ```
 
 **Exemplo 3: variáveis mistas**
 
-Em casos mais complexos, a pesquisa inclui diversos atributos funcionais com natureza diferente, como atributos contínuos, categóricos, ordinais, circulares, entre outros. Desse modo, é possível utilizar medidas como Gower (`FD::gowdis`). Porém, existe uma alternativa mais apropriada que generalizou coeficiente de Gower para tratar cada conjunto de variáveis de acordo com sua natureza [@pavoine_challenge_2009]. Vamos usar o mesmo conjunto de dados que foram considerados no exemplo anterior. Porém, ao invés de utilizar somente as variáveis categóricas, usaremos todas elas. O primeiro passo é identificar para o programa as classes apropriadas para cada tipo de variável e, além disso, preparar os dados para a função `ade4::dist.ktab`.
+Em casos mais complexos, a pesquisa inclui diversos atributos funcionais com naturezas diferentes, como atributos contínuos, categóricos, ordinais, circulares, entre outros. Desse modo, é possível utilizar medidas como Gower (`gowdis()`). Porém, existe uma alternativa mais apropriada que generalizou o coeficiente de Gower para tratar cada conjunto de variáveis de acordo com sua natureza [@pavoine_challenge_2009]. Vamos usar o mesmo conjunto de dados que foram considerados no exemplo anterior. Porém, ao invés de utilizar somente as variáveis categóricas, usaremos todas elas. O primeiro passo é identificar para o programa as classes apropriadas para cada tipo de variável e, além disso, preparar os dados para a função `dist.ktab()`.
 
 **Pergunta**
 
@@ -149,13 +147,19 @@ Quais são as espécies de besouros mais semelhantes? (Neste caso, sem prediçã
 
 **Variáveis**
 
-* Dependentes: atributos funcionais (matriz de atributos contínuos e categóricos por espécie: `trait_dat`)
+- Dependentes: atributos funcionais (matriz de atributos contínuos e categóricos por espécie: `trait_dat`)
 
-```{r}
+**Análises**
+
+Aqui realizamos os passos para uma ordenação usando os atributos funcionais de diversas naturezas (Figura \@ref(fig:fig-func-pcoa-mistos)).
+
+```{r fig-func-pcoa-mistos, fig.cap="Ordenação usando os atributos funcionais de dados mistos."}
+## PCoA dos atributos mistos
+
 ## 1. Verifique a classe de todos os traits e veja se estão de acordo com sua expectativa
 trait_dat %>% 
-  dplyr::summarise_all(class) %>% 
-  tidyr::gather(variable, class)
+    dplyr::summarise_all(class) %>% 
+    tidyr::gather(variable, class)
 
 ## 2. Neste exemplo, algumas variáveis que são ordinais (regio e body) 
 # foram reconhecidas como numéricas ou categóricas. 
@@ -165,10 +169,21 @@ trait_dat$body <- as.ordered(trait_dat$body)
 ## 3. Combinar cada conjunto de atributos de acordo com sua natureza em um 
 # data.frame separado.
 # 3.1. Categóricos.
-trait_categ <- cbind.data.frame(trend=trait_dat$trend, redlist=trait_dat$redlist, biog=trait_dat$biog, activ=trait_dat$activ,  diet=trait_dat$diet, winter=trait_dat$winter,color=trait_dat$color, breed=trait_dat$breed,wing=trait_dat$wing, period=trait_dat$period)
+trait_categ <- cbind.data.frame(
+    trend = trait_dat$trend, 
+    redlist = trait_dat$redlist, 
+    biog = trait_dat$biog, 
+    activ = trait_dat$activ,  
+    diet = trait_dat$diet, 
+    winter = trait_dat$winter,
+    color = trait_dat$color, 
+    breed = trait_dat$breed,
+    wing = trait_dat$wing, 
+    period = trait_dat$period)
 
 # 3.2 Ordinais.
-trait_ord <- cbind.data.frame(regio=trait_dat$regio, body=trait_dat$body)
+trait_ord <- cbind.data.frame(regio = trait_dat$regio, 
+                              body = trait_dat$body)
 rownames(trait_categ) <- rownames(trait_dat)
 rownames(trait_ord) <- rownames(trait_dat)
 
@@ -178,45 +193,41 @@ ktab_list <- ktab.list.df(list(trait_categ, trait_ord))
 # Por fim, calcular a distância funcional entre as espécies.
 # Em "type", a letra "N" indica variável categórica (ou nominal), 
 # enquanto a letra "O" indica variável ordinal.
-dist_mist <- dist.ktab(ktab_list, type= c("N", "O"))
+dist_mist <- dist.ktab(ktab_list, type = c("N", "O"))
 
-## Visualize os dados com uma PCoA (\@ref(cap9))
-pcoa_traits_mist <- pcoa(dist_mist, correction="cailliez")
+## Visualize os dados com uma PCoA
+pcoa_traits_mist <- pcoa(dist_mist, correction = "cailliez")
 eixos_mist <- as.data.frame(pcoa_traits_mist$vectors[,1:2]) 
 
-eixos_mist %>% 
-  ggplot(aes(x=Axis.1, y=Axis.2)) + 
-  geom_point(pch=21, size=4, alpha = 0.7, color = "black", fill="darkorange") + 
-  geom_text_repel(aes(Axis.1, Axis.2, label = rownames(eixos_mist)))+
-  xlab("PCO 1") + ylab("PCO 2") + 
-  theme(axis.title.x = element_text(face="bold", size=14),
-        axis.text.x = element_text(vjust=0.5, size=12)) + 
-  theme(axis.title.y = element_text(face="bold", size=14),
-        axis.text.y = element_text(vjust=0.5, size=12)) + 
-  geom_hline(yintercept = 0, linetype=2) + 
-  geom_vline(xintercept = 0, linetype=2)+ 
-  theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro() + ggtitle("Dados mistos") -> plot_trait_mist
+plot_trait_mist <- ggplot(eixos_mist, aes(x = Axis.1, y = Axis.2)) + 
+    geom_point(pch = 21, size = 4, alpha = 0.7, 
+               color = "black", fill = "darkorange") + 
+    geom_text_repel(aes(Axis.1, Axis.2, label = rownames(eixos_mist)))+
+    geom_hline(yintercept = 0, linetype = 2) + 
+    geom_vline(xintercept = 0, linetype = 2) + 
+    labs(x = "PCO 1", y = "PCO 2", title = "Dados mistos") + 
+    tema_livro()
 plot_trait_mist
 ```
 
-Podemos combinar os dois gráficos (baseado em variáveis categóricas e em variáveis mistas) para comparar as duas medidas de distância, uma somente com dados categóricos (`FD::gower`) e uma com dados categóricos e ordinais (`ade4::dist.ktab`).
+Podemos combinar os dois gráficos (baseado em variáveis categóricas e em variáveis mistas) para comparar as duas medidas de distância, uma somente com dados categóricos (`gower()`) e uma com dados categóricos e ordinais (`dist.ktab()`) (Figura \@ref(fig:fig-func-pcoa-cat-mistos)).
 
-```{r}
-grid.arrange(plot_trait_cat, plot_trait_mist, ncol=2)
+```{r fig-func-pcoa-cat-mistos, fig.cap="Ordenações usando os atributos funcionais categóricos e de dados mistos."}
+## Gráficos
+grid.arrange(plot_trait_cat, plot_trait_mist, ncol = 2)
 ```
 
-## Métricas de diversidade funcional (alpha)
+## Métricas de diversidade funcional (alfa)
 
 ### Riqueza funcional
 
-A riqueza funcional mede a quantidade de espaço funcional preenchido pela espécies de uma comunidade [@mason_functional_2013]. A estimativa desse espaço pode ser calculada usando dengrogramas [@petchey_functional_2002] ou através do método **Convex Hull** [@cornwell_trait-based_2006] que dão origem, respectivamente, as duas métricas mais usadas: (1) Diversidade Funcional (FD) e (2) Riqueza Funcional (FRic). Os índices de riqueza funcional geralmente são usados como indicadores do espaço de nicho que é potencialmente usado ou não [@schleuter_users_2010].
+A riqueza funcional mede a quantidade de espaço funcional preenchido pela espécies de uma comunidade [@mason_functional_2013]. A estimativa desse espaço pode ser calculada usando dengrogramas [@petchey_functional_2002] ou através do método **Convex Hull** [@cornwell_trait-based_2006] que dão origem, respectivamente, às duas métricas mais usadas: i) Diversidade Funcional (FD) e ii) Riqueza Funcional (FRic). Os índices de riqueza funcional geralmente são usados como indicadores do espaço de nicho que é potencialmente usado ou não [@schleuter_users_2010].
 
-#### Exemplo prático
+**Exemplo prático**
 
 **Explicação dos dados**
-Os dados utilizados neste exemplo são os mesmos do exemplo com dados mistos, i.e., categóricos e contínuos (objeto `dist_mist`). 
 
+Os dados utilizados neste exemplo são os mesmos do exemplo com dados mistos, i.e., categóricos e contínuos (objeto `dist_mist`). 
 
 **Pergunta**
 
@@ -224,8 +235,9 @@ Qual a relação entre riqueza de espécies e diversidade funcional? Todos os í
 
 **Variáveis**
 
-* Dependentes: atributos funcionais e composição de espécies para cálculo da diversidade funcional e riqueza em cada parcela.
+- Dependentes: atributos funcionais e composição de espécies para cálculo da diversidade funcional e riqueza em cada parcela
 
+**Análises**
 
 ```{r message=FALSE, warning=FALSE}
 ## Estrutura dos dados
@@ -239,25 +251,27 @@ head(comun_dat)[1:6, 1:6]
 # a riqueza de espécies com intuito de comparação entre métricas.
 richness <- dbFD(dist_mist, comun_dat)$nbsp 
 head(richness)
-## É preciso definir uma distância apropriada (veja descrição anterior) para os cálculos
-# abaixo
+
+## É preciso definir uma distância apropriada (veja descrição anterior) para os cálculos abaixo
 
 # O índice "Functional Richness" só funciona para comunidades com 3 ou mais espécies.
 # Caso você tenha comunidades com 1 ou 2 espécies, o valor será NA.
-
 fric <- dbFD(dist_mist, comun_dat)$FRic
 head(fric)
+
 ## Functional Diversity 
 # Passo 1: análise de agrupamento para criar o dendrograma. 
 dend <- hclust(dist_mist, "average")
 
 # Passo 2: transformar o dengrograma em um arquivo da classe phylo.
-tree_dend <-as.phylo(dend)
+tree_dend <- as.phylo(dend)
 
 # Passo 3: calcular o valor da diversidade funcional. 
 FD <- pd(comun_dat, tree_dend)$PD
 head(FD)
 ```
+
+Os valores da Riqueza Funcional (FRic) variam entre 0 e +∞, sendo o valor máximo limitado pelo número de espécies em uma comunidade. Desse modo, os valores de FRic basicamente são uma representação da riqueza de espécies (e seus atributos funcionais) de uma comunidade [@villeger_new_2008]. Ou seja, quanto maior o número de espécies, maior será o espaço funcional ocupado por essas espécies. No pacote ‘dbFD’ o valor de FRic é dividido pelo valor de FRic global (ou seja, pela riqueza funcional de todas as comunidades combinadas). Como resultado, ele limita a variação entre 0 e 1, onde valores próximos a 1 indicam que uma determinada comunidade tem riqueza funcional tão alta quanto a riqueza funcional de todas as comunidades juntas. Neste exemplo, as localidades 21 e 89 possuem, respectivamente, a maior e menor Riqueza Funcional. 
 
 ### Divergência funcional
 
@@ -278,9 +292,11 @@ fdis <- dbFD(dist_mist, comun_dat)$FDis
 head(fdis)
 ```
 
+Os valores da Divergência Funcional (FDiv) variam entre 0 e 1. Valores que se aproximam de zero indicam que a espécie mais abundante está muito próxima do valor do atributo médio da comunidade, ao passo que valores próximos a 1 indicam que a espécie mais abundante está muito distante (ou seja, é muito diferente) do valor médio da comunidade [@villeger_new_2008]. Neste exemplo, as localidades 159 e 6 possuem, respectivamente, a maior e menor Divergência Funcional.
+
 ### Regularidade funcional
 
-A regularidade funcional (do inglês *Functional Evenness*) mede o quão regular é a distribuição da abundância dos valores dos atributos funcionais no espaço funcional. Diferente dos outros métodos, a versão multidimensional deste índice utiliza um método chamado *Minimum Spanning Tree* (MST) para conectar todas espécies no espaço funcional. A distância par-a-par das espécies na MST é ponderada pela abundância relativa das espécies e, desse modo, o valor final da regularidade funcional (FEve) vai variar de 0 (máxima irregularidade da distribuição da abundância ou distância funcional das espécies) a 1 (máxima regularidade).
+A regularidade funcional (do inglês *Functional Evenness*) mede o quão regular é a distribuição da abundância dos valores dos atributos funcionais no espaço funcional. Diferente dos outros métodos, a versão multidimensional deste índice utiliza um método chamado *Minimum Spanning Tree* (MST) para conectar todas espécies no espaço funcional. A distância par apar das espécies na MST é ponderada pela abundância relativa das espécies e, desse modo, o valor final da regularidade funcional (FEve) vai variar de 0 (máxima irregularidade da distribuição da abundância ou distância funcional das espécies) a 1 (máxima regularidade).
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -290,32 +306,44 @@ A regularidade funcional (do inglês *Functional Evenness*) mede o quão regular
 # Caso você tenha comunidades com 1 ou 2 espécies, a análise irá retornar o valor NA
 feve <- dbFD(dist_mist, comun_dat)$FEve
 head(feve)
+```
 
+Os valores da Regularidade Funcional (FEve) variam entre 0 e 1 (máxima regularidade ou regularidade perfeita). A diminuição do valor de FEve em direção a zero indica que uma redução da regularidade da distribuição da abundância ou distância funcional entre as espécies [@villeger_new_2008]. Neste exemplo, as localidades 197 e 175 possuem, respectivamente, a maior e menor Regularidade Funcional. 
+
+### Correlação entre as métricas de diversidade funcional (alfa)
+
+Aqui vamos fazer a correlação entre as métricas de diversidade funcional (alfa) (Figura \@ref(fig:fig-func-alfa-cor)).
+
+```{r fig-func-alfa-cor, fig.cap="Correlação entre as métricas de diversidade funcional (alfa)."}
+## Gráficos
 ## Você pode criar uma tabela com os resultados de todas as métricas
-metricas <- data.frame(richness=richness,
+metricas <- data.frame(richness = richness,
                        FD_gp = FD,
                        fric = fric,
                        fdiv = fdiv,
                        fdis = fdis,
                        feve = feve)
 head(metricas)
-### Gráfico para comparar o comportamento das métricas
-ggpairs(metricas)
+
+## Gráfico para comparar o comportamento das métricas
+ggpairs(metricas) + tema_livro()
 ```
 
-> Os resultados indicam que a Diversidade Funcional de Petchey & Gaston (*r* = 0.985) e a riqueza funcional (*r* = 0.813) são altamente correlacionadas com a riqueza de espécies. Porém, a divergência funcional, regularidade funcional e dispersão funcional não estão correlacionadas com a riqueza de espécies.
+Os resultados indicam que a Diversidade Funcional de -@petchey_functional_2002 (*r* = 0.985) e a riqueza funcional (*r* = 0.813) são altamente correlacionadas com a riqueza de espécies. Porém, a divergência funcional, regularidade funcional e dispersão funcional não estão correlacionadas com a riqueza de espécies.
 
-> A figura obtida com o comando `ggpairs(metricas)` representa uma matriz de correlação comparando cada par de variáveis (neste caso, os índices de diversidade). No lado esquerdo da figura (abaixo da diagonal) são representados *scatterplots* (veja Capítulo \@ref(cap6)), a no lado direito (acima da diagonal) pode-se encontrar os valores das correlações (*r*) entre os pares comparados. No caso das correlações, quanto mais próximo de +1 ou -1, mais forte é a relação entre essas variáveis do par comparado. O gráfico de linhas na diagonal demonstra a densidade de cada variáveis individualmente (veja Capítulo \@ref(cap6)).  
+A figura obtida com o código `ggpairs(metricas)` representa uma matriz de correlação comparando cada par de variáveis (neste caso, os índices de diversidade). No lado esquerdo da figura (abaixo da diagonal) são representados *scatter plots* (veja Capítulo \@ref(cap6)), a no lado direito (acima da diagonal) pode-se encontrar os valores das correlações (*r*) entre os pares comparados. No caso das correlações, quanto mais próximo de +1 ou -1, mais forte é a relação entre essas variáveis do par comparado. O gráfico de linhas na diagonal demonstra a densidade de cada variáveis individualmente (veja Capítulo \@ref(cap7)).  
 
 ## Métricas de diversidade funcional (beta)
 
-Assim como na diversidade beta taxonômica \@ref(cap12), a diversidade beta funcional é uma medida que compara a composição (e a variação na composição) de atributos funcionais das espécies entre duas ou mais localidades. Porém, assim como na medida tradicional taxonômica (como Jaccard ou Sorensen), diferenças na diversidade beta podem ser geradas pela **mudança na identidade das espécies (ou do atributo)** ou na **riqueza de espécies (ou de atributos)** entre duas localidades (**Figura 1**). Desse modo, é possível particionar a diversidade beta funcional em aninhamento e substituição (do inglês *turnover*) (veja \@ref(cap12)). Além disso, os cálculos da diversidade beta funcional podem ser realizados par-a-par (`functional.beta.pair`) ou para a comparações de múltiplas localidades (`funcional.beta.multi`).
+Assim como na diversidade beta taxonômica \@ref(cap12) e na diversidade beta filogenética \@ref(cap13), a diversidade beta funcional é uma medida que compara a composição (e a variação na composição) de atributos funcionais das espécies entre duas ou mais localidades. Porém, assim como na medida tradicional taxonômica (como Jaccard ou Sørensen), diferenças na diversidade beta podem ser geradas pela **mudança na identidade das espécies (ou do atributo)** ou na **riqueza de espécies (ou de atributos)** entre duas localidades (Figura \@ref(fig:fig-func)). Desse modo, é possível particionar a diversidade beta funcional em aninhamento (do inglês *nestedness*) e substituição (do inglês *turnover*) (veja \@ref(cap12)). Além disso, os cálculos da diversidade beta funcional podem ser realizados par a par (`functional.beta.pair()`) ou para a comparações de múltiplas localidades (`funcional.beta.multi()`).
 
-![**Figura 1**. Partição da diversidade beta taxonômica (A) e funcional (B). Os três cenários apresentados tanto para a diversidade beta taxonômica como funcional representam, respectivamente, diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.](Fig_BetaDiversity_Balsega.svg){width=59%} 
+```{r fig-func, fig.cap="Partição da diversidade beta taxonômica (A) e funcional (B). Os três cenários apresentados tanto para a diversidade beta taxonômica como funcional representam, respectivamente, diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois."}
+knitr::include_graphics(path = "img/cap14_fig01.svg")
+```
 
 **Exemplo 4**
 
-Os dados no exemplo a seguir utilizam somente a informação de presença (1) ou ausência (0) das espécies nas localidades. Neste exemplo hipotético criado por Baselga et al. (2021), foram amostradas 11 espécies (sp1-sp11) em quatro localidades (A-D). Para cada espécie, criamos dois atributos contínuos hipotéticos (trait1 e trait2).
+Os dados no exemplo a seguir utilizam somente a informação de presença (1) ou ausência (0) das espécies nas localidades. Neste exemplo hipotético criado por [-@baselga_2021], foram amostradas 11 espécies (sp1-sp11) em quatro localidades (A-D). Para cada espécie, criamos dois atributos contínuos hipotéticos (trait1 e trait2).
 
 **Pergunta**
 
@@ -323,43 +351,44 @@ Qual a contribuição relativa do aninhamento e substituição para a diversidad
 
 **Variáveis**
 
-* Dependentes: atributos funcionais e composição de espécies.
+- Dependentes: atributos funcionais e composição de espécies.
 
-```{r message=FALSE, warning=FALSE}
+**Análises**
+
+Vamos fazer a análise da partição da diversidade beta funcional e comparar seus componentes (Figura \@ref(fig:fig-func-beta-comp)).
+
+```{r fig-func-beta-comp, fig.cap="Relação entre os componentes partição da diversidade funcional (beta)."}
 ## Partição da Diversidade beta (Método Baselga)
-fun_beta_multi <- functional.beta.multi(x = comm_baselga, trait=trait_baselga, index="jaccard") 
+fun_beta_multi <- functional.beta.multi(x = comm_baselga,
+                                        trait = trait_baselga, index = "jaccard") 
 fun_beta_multi
 
 ## Partição da Diversidade beta (Método Baselga)
-fun_beta <- functional.beta.pair(x = comm_baselga, trait=trait_baselga, index="jaccard") 
+fun_beta <- functional.beta.pair(x = comm_baselga, 
+                                 trait = trait_baselga, index = "jaccard") 
 
-# Os comandos abaixo permitem extrair a matriz de distância (par-a-par) com a partição em substituição e nestedness
+# Os códigos abaixo permitem extrair a matriz de distância (par a par) com a partição em substituição e nestedness
 fun_turnover <- fun_beta$funct.beta.jne
 fun_nestedness <- fun_beta$funct.beta.jtu
 fun_jaccard <- fun_beta$funct.beta.jac
 
-# Gráfico de comparação do substituição e aninhamento
-dat_betapart <- data.frame(turnover=as.numeric(fun_turnover), nested = as.numeric(fun_nestedness))
+## Gráfico de comparação do substituição e aninhamento
+dat_betapart <- data.frame(turnover = as.numeric(fun_turnover), 
+                           nested = as.numeric(fun_nestedness))
 
-dat_betapart %>% 
-  ggplot(aes(x=turnover, y=nested)) + 
-  geom_point(pch=21, size=4, alpha = 0.7, color = "black", fill="#525252") + 
-  xlab("Beta Diveristy (Substituição)") + 
-  ylab("Beta Diveristy (Aninhamento)") +
-  theme(axis.title.x = element_text(face="bold", size=14),
-        axis.text.x = element_text(vjust=0.5, size=12)) + 
-  theme(axis.title.y = element_text(face="bold", size=14),
-        axis.text.y = element_text(vjust=0.5, size=12)) + 
-  theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro() -> plot_betapart 
+## Gráfico
+plot_betapart <- ggplot(dat_betapart, aes(x = turnover, y = nested)) + 
+    geom_point(pch = 21, size = 4, alpha = 0.7, color = "black", fill = "#525252") + 
+    labs(x = "Beta Diveristy (Substituição)", y = "Beta Diveristy (Aninhamento)") +
+    tema_livro()
 plot_betapart
 ```
 
-> Os resultados da análise de partição (`fun_beta_multi`) indicam que 82,5% (0,710 / 0,861) da variação na diversidade beta é explicada pelo componente substituição, enquanto 17,5% (0,151 / 0,861) pelo componente aninhamento. As matrizes de distância obtidas na análise par a par pode ser utilizadas para testar, a posteriori, a relação entre gradientes ambientais e diversidade beta funcional (mais detalhes abaixo).
+Os resultados da análise de partição (`fun_beta_multi()`) indicam que 82,5% (0,710/0,861) da variação na diversidade beta é explicada pelo componente substituição, enquanto 17,5% (0,151/0,861) pelo componente aninhamento. As matrizes de distância obtidas na análise par a par pode ser utilizadas para testar, *a posteriori*, a relação entre gradientes ambientais e diversidade beta funcional (mais detalhes abaixo).
 
-### Composição Funcional
+## Composição Funcional (*Community Wegihed Means* - CWM)
 
-As medidas de diversidade beta funcional apresentadas acima fornecem matrizes de distância com comparações par-a-par de localidades em termos da composição de atributos funcionais. Porém, muitas vezes o pesquisador quer medir o "atributo médio" da comunidade para investigar, por exemplo, se um determinado gradiente ambiental afeta a expressão (em termos de abundância ou densidade) de dado atributo funcional. Em geral, a medida utilizada é o CWM (do inglês *Community Wegihed Means*). O CWM é basicamente uma média ponderada de um determinado atributo (coluna *m* na matriz T) em relação a abundância de todas as espécies que ocorrem na localidade *n* (matrix X). Para calcular no R a função `FD::functcomp` usa somente as duas matrizes (T e X). Os leitores que pretendem usar essas métricas devem ler críticas em Peres-Neto et al. [-@peres-neto_linking_2017].
+As medidas de diversidade beta funcional apresentadas acima fornecem matrizes de distância com comparações par a par de localidades em termos da composição de atributos funcionais. Porém, muitas vezes o pesquisador quer medir o "atributo médio" da comunidade para investigar, por exemplo, se um determinado gradiente ambiental afeta a expressão (em termos de abundância ou densidade) de dado atributo funcional. Em geral, a medida utilizada é o CWM (do inglês *Community Wegihed Means*). O CWM é basicamente uma média ponderada de um determinado atributo (coluna *m* na matriz T) em relação a abundância de todas as espécies que ocorrem na localidade (linha  *n* na matrix X). O cálculo no R é feito pela função `functcomp()` e usa somente as duas matrizes (T e X). Os leitores que pretendem usar essas métricas devem ler críticas em Peres-Neto et al. [-@peres-neto_linking_2017].
 
 ```{r}
 ## Matriz T
@@ -377,7 +406,7 @@ A matriz resultante `cwm_es` é formada pelas localidades (linhas) e os atributo
 
 **Exemplo 5**
 
-Neste exemplo, usaremos novamente os dados de 34 espécies de plantas [@frenette-dussault_functional_2012], mas agora vamos testar o efeito de um gradiente de aridez sobre a diversidade alfa funcional.
+Neste exemplo, usaremos novamente os dados de 34 espécies de plantas [@frenette-dussault_functional_2012], mas agora vamos testar o efeito de um gradiente de aridez sobre a diversidade alfa funcional.
 
 **Pergunta**
 
@@ -385,23 +414,27 @@ O gradiente de aridez influencia a divergência e regularidade funcional de plan
 
 **Predições**
 
-* *Predição 1*: locais mais áridos possuem menor divergência funcional de plantas (métrica escolhida: FDis)
+- *Predição 1*: locais mais áridos possuem menor divergência funcional de plantas (métrica escolhida: FDis)
 
-* *Predição 2*: locais mais úmidos possuem menor regularidade funcional de plantas (métrica escolhida: FEve)
+- *Predição 2*: locais mais úmidos possuem menor regularidade funcional de plantas (métrica escolhida: FEve)
 
 **Variáveis**
 
-* Preditora: gradiente de aridez (matriz de variáveis ambientais por localidade: `ambie_fren_dat`)
+- Preditora: gradiente de aridez (matriz de variáveis ambientais por localidade: `ambie_fren_dat`)
 
-* Dependentes: composição de espécies (matriz de espécies por localidade: `comun_fren_dat`) e atributos funcionais (matriz de atributos contínuos por espécie: `trait_fren_dat`)
+- Dependentes: composição de espécies (matriz de espécies por localidade: `comun_fren_dat`) e atributos funcionais (matriz de atributos contínuos por espécie: `trait_fren_dat`)
 
-```{r}
+**Análises**
+
+Vamos calcular primeiramente as matrizes de Divergência funcional (FDis) e Regularidade Funcional (FEve), depois ajustar modelos lineares, fazer o diagnóstico dos mesmo e por fim plotar os resultados (Figura \@ref(fig:fig-func-comp-model)).
+
+```{r fig-func-comp-model, fig.cap="Relação entre a composição funcional e o gradiente de aridez, ajustado por modelos lineares com seus diagnósticos."}
 ## Passo 1: calcular a distância funcional
 trait_pad <- decostand(trait_fren_dat, "standardize")
 euclid_dis <- vegdist(trait_pad, "euclidean")
 
 ## Passo 2: calcular a Divergência funcional (FDis) e Regularidade Funcional (FEve)
-fdis <- dbFD(euclid_dis, comun_fren_dat)$FDis# Fdis=0 em locais com somente uma espécie
+fdis <- dbFD(euclid_dis, comun_fren_dat)$FDis # Fdis=0 em locais com somente uma espécie
 feve <- dbFD(euclid_dis, comun_fren_dat)$FEve
 
 ## Passo 3: Utilizar um modelo linear para comparar o efeito da aridez sobre FDis (predição 1) e FEve (predição 2)
@@ -411,8 +444,8 @@ lm_dat <- data.frame(aridez = ambie_fren_dat$Aridity, fdis = fdis, feve = feve)
 # Modelo 1
 mod1 <- lm(fdis ~ aridez, data = lm_dat)
 
-# conferir os pressupostos da análise
-par(mfrow=c(2,2))
+# Conferir os pressupostos da análise
+par(mfrow = c(2, 2))
 plot(mod1) 
 
 # Conclusão: a aridez não tem efeito sobre a divergência funcional
@@ -422,7 +455,7 @@ anova(mod1)
 mod2 <- lm(feve ~ aridez, data = lm_dat)
 
 # conferir os pressupostos da análise
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(mod2) 
 
 # Conclusão: a aridez não tem efeito sobre a regularidade funcional
@@ -430,50 +463,46 @@ anova(mod2)
 
 ## Passo 4: gráfico para visualizar os dois resultados  
 # Gráfico modelo 1.
-lm_dat %>% 
-  ggplot(aes(x=aridez, y=fdis)) + 
-  geom_point(pch=21, size=4, alpha = 0.7, color = "black", fill="darkorange") + 
-  xlab("Aridez") + ylab("Divergência Funcional (FDis)") + 
-  theme(axis.title.x = element_text(face="bold", size=14),
-        axis.text.x = element_text(vjust=0.5, size=12)) + 
-  theme(axis.title.y = element_text(face="bold", size=14),
-        axis.text.y = element_text(vjust=0.5, size=12)) + 
-  theme(legend.position = "top", legend.title=element_blank())+
-  tema_livro() -> plot_pred1
+plot_pred1 <- ggplot(lm_dat, aes(x = aridez, y = fdis)) + 
+    geom_point(pch = 21, size = 4, alpha = 0.7, color = "black", fill="darkorange") +
+    labs(x = "Aridez", y = "Divergência Funcional (FDis)") +
+    tema_livro()
+
 # Gráfico modelo 2.
-lm_dat %>% 
-  ggplot(aes(x=aridez, y=feve)) + 
-  geom_point(pch=21, size=4, alpha = 0.7, color = "black", fill="cyan4") + 
-  xlab("Aridez") + ylab("Regularidade Funcional (FEve)") + 
-  theme(axis.title.x = element_text(face="bold", size=14),
-        axis.text.x = element_text(vjust=0.5, size=12)) + 
-  theme(axis.title.y = element_text(face="bold", size=14),
-        axis.text.y = element_text(vjust=0.5, size=12)) + 
-  theme(legend.position = "top", legend.title=element_blank()) +
-  tema_livro() -> plot_pred2
+plot_pred2 <- ggplot(lm_dat, aes(x = aridez, y = feve)) + 
+    geom_point(pch=21, size=4, alpha = 0.7, color = "black", fill="cyan4") + 
+    labs(x = "Aridez", y = "Regularidade Funcional (FEve)") + 
+    tema_livro()
 
 ## Visualização dos dois gráficos em um única janela
-grid.arrange(plot_pred1, plot_pred2, ncol=2)
+grid.arrange(plot_pred1, plot_pred2, ncol = 2)
 ```
 
-> Os resultados dos modelos `anova(mod1)` e `anova(mod2)`indicam que o gradiente de aridez não afeta a dispersão e regularidade funcional. Os detalhes para conferir os pressupostos das análise foram descritos no Capítulo \@ref(cap7).
+Os resultados dos modelos `anova(mod1)` e `anova(mod2)` indicam que o gradiente de aridez não afeta a dispersão e regularidade funcional. Os detalhes para conferir os pressupostos das análise foram descritos no Capítulo \@ref(cap7).
 
 **Exemplo 6**
 
-Agora, vamos utilizar novamente os dados de 34 espécies de plantas (Frenette-Dussault et al. 2012), mas agora para testar o efeito do pastejo sobre a diversidade beta funcional.
+Agora, vamos utilizar novamente os dados de 34 espécies de plantas [@frenette-dussault_functional_2012], mas agora para testar o efeito do pastejo sobre a diversidade beta funcional.
 
-**Pergunta:**
-O pastejo determina a ocorrência de espécies de plantas com diferentes atributos funcionais ?
+**Pergunta**
+
+O pastejo determina a ocorrência de espécies de plantas com diferentes atributos funcionais?
 
 **Predição** 
-* A composição funcional de plantas é diferente entre áreas com e sem pastejo?
+
+- A composição funcional de plantas é diferente entre áreas com e sem pastejo?
 
 **Variáveis**
-* Preditora: áreas com e sem pastejo de gado (variável categórica com dois níveis: *grazed* e *ungrazed*: `ambie_fren_dat`)
 
-* Dependentes: composição de espécies (matriz de espécies por localidade: `comun_fren_dat`) e atributos funcionais (matriz de atributos contínuos por espécie: `trait_fren_dat`)
+- Preditora: áreas com e sem pastejo de gado (variável categórica com dois níveis: *grazed* e *ungrazed*: `ambie_fren_dat`)
 
-```{r}
+- Dependentes: composição de espécies (matriz de espécies por localidade: `comun_fren_dat`) e atributos funcionais (matriz de atributos contínuos por espécie: `trait_fren_dat`)
+
+**Análises**
+
+Nesse exemplo vamos calcular a CWM e depois usar uma PERMANOVA (\@ref(cap9)) para comparar o efeito da áreas com e sem pastejo sobre a diversidade funcional (Figura \@ref(fig:fig-func-cwm-model)).
+
+```{r fig-func-cwm-model, fig.cap="Relação do pastejo sobre a composição funcional."}
 ## Passo 1: CWM
 cwm_fren <- functcomp(trait_pad, as.matrix(comun_fren_dat))
 head(cwm_fren)
@@ -493,15 +522,17 @@ permutest(betad_fren)
 plot(betad_fren)
 ```
 
-Neste exemplo, os resultados `perman_fren` demonstram que a composição funcional de plantas não é afetada pelo pastejo (P \> 0,05) e que a dispersão da composição [uma medida potencial de diversidade beta: @anderson_multivariate_2006] de espécies também não muda entre áreas com ou sem pastejo (`permutest(betad_fren)`). A função `betadisper` deve ser sempre utilizada em conjunto com a PERMANOVA (`adonis`) para poder interpretar quais as fontes de variação na composição de espécies. Sendo assim, esta análise representa um método fundamental para comparar se o potencial efeito (quando houver) é fruto de diferença na composição de espécies (i.e., diferença na posição dos centróides entre dois ou mais grupos) ou na variação da composição de espécies entre os grupos (i.e., diferença na dispersão dos dados em relação aos centróides)\@ref(cap9). Esta última informação, dispersão, é geralmente interpretada como uma analogia a homogeneidade de variâncias de uma ANOVA (i.e., teste de Levene). A hipótese nula do `betadisper` é que a dispersão dos grupos é homogênea (ou seja, o valor de probabilidade nos casos que existem dispersões homogêneas será maior do que 0,05). Porém, se esse valor for menor do que 0,05, você deve rejeitar a hipótese nula e concluir que as dispersões são heterogêneas. Os gráficos de PCoA são uma ferramenta poderosa para interpretar os resultados da PERMANOVA + Betadisper. Quanto mais diferente a composição de espécies entre dois ou mais grupos, mais distante devem ser os centroides desse grupo. Além disso, se as áreas dos polígonos que conectam todas as réplicas de cada grupo forem diferentes em tamanho (hipótese que será testada com o Betadisper), é possível também visualizar esta diferença. Em conclusão, para testar se diferenças de composição funcional existem entre dois ou mais grupos, será fundamental (1) comparar a variação da posição dos centróides (função `adonis`) e (2) a variação da dispersão da composição funcional entre os grupos (função `betadisper`).
+Neste exemplo, os resultados `perman_fren` demonstram que a composição funcional de plantas não é afetada pelo pastejo (P \> 0,05) e que a dispersão da composição [uma medida potencial de diversidade beta: @anderson_multivariate_2006] de espécies também não muda entre áreas com ou sem pastejo (`permutest(betad_fren)`). A função `betadisper()` deve ser sempre utilizada em conjunto com a PERMANOVA (`adonis()`) para poder interpretar quais as fontes de variação na composição de espécies. Sendo assim, esta análise representa um método fundamental para comparar se o potencial efeito (quando houver) é fruto de diferença na composição de espécies (i.e., diferença na posição dos centróides entre dois ou mais grupos) ou na variação da composição de espécies entre os grupos (i.e., diferença na dispersão dos dados em relação aos centróides, ver mais no Capítulo \@ref(cap9)). Esta última informação, a dispersão, é geralmente interpretada como uma analogia a homogeneidade de variâncias de uma ANOVA (i.e., Teste de Levene). A hipótese nula do `betadisper()` é que a dispersão dos grupos é homogênea (ou seja, o valor de probabilidade nos casos que existem dispersões homogêneas será maior do que 0,05). Porém, se esse valor de p for menor do que 0,05, você deve rejeitar a hipótese nula e concluir que as dispersões são heterogêneas. 
+
+Os gráficos de PCoA são uma ferramenta poderosa para interpretar os resultados da PERMANOVA + Betadisper. Quanto mais diferente a composição de espécies entre dois ou mais grupos, mais distante devem ser os centroides desses grupos. Além disso, se as áreas dos polígonos que conectam todas as réplicas de cada grupo forem diferentes em tamanho (hipótese que será testada com o Betadisper), é possível também visualizar esta diferença. Em conclusão, para testar se diferenças de composição funcional existem entre dois ou mais grupos, será fundamental: i) comparar a variação da posição dos centróides (função `adonis()`) e ii) a variação da dispersão da composição funcional entre os grupos (função `betadisper()`).
 
 ##  Variação Intraspecífica
 
-Os métodos discutidos anteriormente utilizam valores médios dos atributos das espécies para descrever a estrutura funcional da comunidade e interpretar as relações entre determinadas variáveis preditoras (como clima, por exemplo) com a diverisdade funcional. Porém, ao utilizar atributos médios estamos desconsiderando que a variação deste atributo dentro da espécie seja determinante para a resposta da espécie ao ambiente ou seu efeito sobre o ecossistema [@bolnick_why_2011 ; @violle_return_2012]. Os estudos que usam dados médios para testar hipóteses em ecologia funcional argumentam que a variação dentro da espécie é menor do que a variação entre espécies e, desse modo, o ruído causado ao desconsiderar a variância do atributo dentro da espécies é desprezível. Porém, diversos estudos têm mostrado que esse argumento é frágil e que a inclusão da variação intraespecífica melhora nossa capacidade preditiva em ecologia funcional [@violle_return_2012; @siefert_global_2015]. Um abordagem geralmente utilizada é a decomposição da variância do atributo em diferentes níveis de organização: (1) variação dentro da população da mesma espécie em uma mesma unidade amostral, (2) variação dentro das populações (independente da espécie) de uma comunidade em uma mesma unidade amostral, e (3) variação entre populações. Conhecida como estatística T, esta abordagem permite entender as fontes (intra ou interespecífica) de variação no atributos em diferentes escalas [@violle_return_2012]. Outro método que quantifica a variância explicada pela variabilidade intraespecífica, interespecífica e a covariância entre elas foi proposto por Leps et al. [-@leps_community_2011]. Este método permite calcular a contribuição da variação intraespecífica dentro e entre comunidades. Agora, vamos entender a contribuição da variação de um atributo dentro da espécie comparada à variação entre espécies.
+Os métodos discutidos anteriormente utilizam valores médios dos atributos das espécies para descrever a estrutura funcional da comunidade e interpretar as relações entre determinadas variáveis preditoras (como clima, por exemplo) com a diverisdade funcional. Porém, ao utilizar atributos médios estamos desconsiderando que a variação deste atributo dentro da espécie seja determinante para a resposta da espécie ao ambiente ou seu efeito sobre o ecossistema [@bolnick_why_2011 ; @violle_return_2012]. Os estudos que usam dados médios para testar hipóteses em ecologia funcional argumentam que a variação dentro da espécie é menor do que a variação entre espécies e, desse modo, o ruído causado ao desconsiderar a variância do atributo dentro da espécies é desprezível [@siefert_global_2015]. Porém, diversos estudos têm mostrado que esse argumento é frágil e que a inclusão da variação intraespecífica melhora nossa capacidade preditiva em ecologia funcional [@violle_return_2012; @siefert_global_2015]. Um abordagem geralmente utilizada é a decomposição da variância do atributo em diferentes níveis de organização: i) variação dentro da população da mesma espécie em uma mesma unidade amostral, ii) variação dentro das populações (independente da espécie) de uma comunidade em uma mesma unidade amostral, e iii) variação entre populações. Conhecida como estatística T, esta abordagem permite entender as fontes (intra ou interespecífica) de variação no atributos em diferentes escalas [@violle_return_2012]. Outro método que quantifica a variância explicada pela variabilidade intraespecífica, interespecífica e a covariância entre elas foi proposto por Leps et al. [-@leps_community_2011]. Este método permite calcular a contribuição da variação intraespecífica dentro e entre comunidades. Agora, vamos entender a contribuição da variação de um atributo dentro da espécie comparada à variação entre espécies.
 
 **Exemplo 7**
 
-Vamos utilizar os dados de 11 espécies de anuros associados com 26 poças no Parque Nacional Lagoa do Peixe [@dalmolin_turnover_2020]. Atributos morfológicos foram coletados em todos os indivíduos coletados em cada poça. Desse modo, é possível comparar a variação morfológica entre indivíduos da mesma espécie e entre espécies diferentes. Além disso, é possível quantificar a contribuição da variação dentro e entre diferentes poças. No exemplo abaixo, criamos cinco atributos com nomes diferentes daqueles usados no artigo de Dalmolin et al. [-@dalmolin_turnover_2020]. Em cada poça, os autores coletaram os seguintes dados das poças: (1) profundidade, (2) area, (3) distância entre poças, e (4) distância da poça para a floresta mais próxima.
+Vamos utilizar os dados de 11 espécies de anuros associados com 26 poças no Parque Nacional Lagoa do Peixe [@dalmolin_turnover_2020]. Atributos morfológicos foram coletados em todos os indivíduos coletados em cada poça. Desse modo, é possível comparar a variação morfológica entre indivíduos da mesma espécie e entre espécies diferentes. Além disso, é possível quantificar a contribuição da variação dentro e entre diferentes poças. No exemplo abaixo, criamos cinco atributos com nomes diferentes daqueles usados no artigo de Dalmolin et al. [-@dalmolin_turnover_2020]. Em cada poça, os autores coletaram os seguintes dados das poças: i) profundidade, ii) area, iii) distância entre poças, e iv) distância da poça para a floresta mais próxima.
 
 **Pergunta 1**
 
@@ -509,13 +540,16 @@ Qual a contribuição da variação intraespecífica para a variação total dos
 
 **Predição** 
 
-* A alta plasticidade fenotípica de anuros indica alta contribuição da variação intraespecífica comparada a interespecífica.
+- A alta plasticidade fenotípica de anuros indica alta contribuição da variação intraespecífica comparada a interespecífica
 
 **Variáveis**
 
-* Preditora: espécies (categórica).
+- Preditora: espécies (categórica)
+- Dependente: variação dos atributos morfológicos
 
-* Dependente: variação dos atributos morfológicos.
+**Análises**
+
+Aqui vamos realizar o passo a passo das análises para comparar a contribuição da variação intraespecífica para a variação total dos atributos morfológicos.
 
 ```{r}
 ## Dados necessários
@@ -528,7 +562,7 @@ mod_body_size <- aov(body_size~Species, data = traits)
 summary(mod_body_size)
 
 # Contribuição da variação intra-específica para o tamanho corporal.
-itv_BS <- 100*(73.35 / (95.92+73.35))
+itv_BS <- 100 * (73.35/(95.92 + 73.35))
 itv_BS
 
 ## Passo 2: Biomassa
@@ -536,15 +570,15 @@ mod_biomass <- aov(biomass~Species, data = traits)
 summary(mod_biomass)
 
 # Contribuição da variação intra-específica para a biomassa.
-itv_biomass <- 100*(96.22 / (118.17+96.22))
+itv_biomass <- 100 * (96.22/(118.17 + 96.22))
 itv_biomass
 
 ## Passo 3: Tamanho do olho
-mod_eye_size <- aov(eye_size~Species, data = traits)
+mod_eye_size <- aov(eye_size ~ Species, data = traits)
 summary(mod_eye_size)
 
 # Contribuição da variação intra-específica para o tamanho do olho.
-itv_eye_size <- 100*(78.39 / (203.09+78.39))
+itv_eye_size <- 100 * (78.39/(203.09 + 78.39))
 itv_eye_size
 
 ## Passo 4: Achatamento dorso-ventral
@@ -552,19 +586,20 @@ mod_flatness <- aov(flatness~Species, data = traits)
 summary(mod_flatness)
 
 # Contribuição da variação intra-específica para o achatamento dorso-ventral.
-itv_flatness <- 100*(22.13 / (104.48+22.13))
+itv_flatness <- 100 * (22.13/(104.48 + 22.13))
 itv_flatness
 
 ## Passo 5: Combinar os valores de cada trait em um vetor
 valores <- c(itv_BS, itv_biomass, itv_eye_size, itv_flatness)
 
 # Passo 6: Combinar valores e traits em um data.frame.
-itv_results <- data.frame(trait = c("body_size", "biomass", "eye_size", "flatness"),  itv_explic = valores)
+itv_results <- data.frame(trait = c("body_size", "biomass", "eye_size", "flatness"),
+                          itv_explic = valores)
 
 ## Tabela com resultados da explicação atribuida para a variação intraespecífica
 itv_results %>%
-  mutate("explained intraspecific variance" = round(itv_explic, 2)) %>% 
-  dplyr::select(trait, "explained intraspecific variance")
+    mutate("explained intraspecific variance" = round(itv_explic, 2)) %>% 
+    dplyr::select(trait, "explained intraspecific variance")
 ```
 
 **Pergunta 2**
@@ -573,22 +608,24 @@ Qual a contribuição da variação entre poças para a variação total dos atr
 
 **Predição**
 
-* A variação morfológica de anuros é afetada por mudanças dentro das espécies e entre diferentes espécies de poças distintas.
+- A variação morfológica de anuros é afetada por mudanças dentro das espécies e entre diferentes espécies de poças distintas
 
 **Variáveis**
 
-* Preditoras: poças e espécies (ambas categóricas).
+- Preditoras: poças e espécies (ambas categóricas)
+- Dependente: variação dos atributos morfológicos
 
-* Dependente: variação dos atributos morfológicos.
+**Análises**
 
-```{r}
+Aqui vamos realizar o teste para comparar a contribuição da variação entre poças para a variação total dos atributos morfológicos (Figura \@ref(fig:fig-func-intra)).
 
+```{r fig-func-intra, fig.cap="Gráfico de barras mostrando a contribuição da variação entre poças para a variação total dos atributos morfológicos."}
 ## Dados necessários
 # Matriz de traits sem nomes de espécies ou localidades
-trait_m <- traits[,c("body_size", "biomass", "eye_size", "leg_size", "flatness")]
+trait_m <- traits[, c("body_size", "biomass", "eye_size", "leg_size", "flatness")]
 head(trait_m)
 trait_decomp <- decompCTRE(traits = trait_m, sp = traits$Species, 
-                         ind.plot = traits$pond, print = FALSE)
+                           ind.plot = traits$pond, print = FALSE)
 barplot.decompCTRE(trait_decomp)
 ```
 
@@ -598,19 +635,18 @@ Características ambientais das poças afetam a variação intraespecífica?
 
 **Predição** 
 
-* A profunidade e área da poça aumentam a contribuição da variação intraespecífica em relação a variação interespecífica.
+- A profunidade e área da poça aumentam a contribuição da variação intraespecífica em relação a variação interespecífica.
 
 **Variáveis**
 
-* Preditora: características das poças.
+- Preditora: características das poças
+- Dependentes: variação dos atributos morfológicos e contribuição da variação intraespecífica
 
-* Dependentes: variação dos atributos morfológicos e contribuição da variação intraespecífica.
+**Análises**
 
-Para calcular a contribuição relativa da variação intraespecífica em relação a variação interespecífica dentro de uma comunidade, por exemplo, Siefert et al. [-@siefert_global_2015] sugeriram uma métrica chamada de wITV ("within-community Intraspecific Trait Variation"). A wITV representa a razão da variação intraespecífica em relação a variação total dentro de uma comunidade (e.g., parcela, poça) que inclui: (i) a abundância relativa de cada espécie *j* ocorrendo na comunidade *i*, (ii) o valor médio do atributo da espécie *j* na comunidade *i*, e (iii) o valor do atributo *k* de cada indivíduo da espécie *j* que ocorre na comunidade *i*. Como esta medida é feita por unidade amostral (ou seja, sua comunidade de interesse), é possível testar hipóteses ecológicas que tentem explicar processos que aumentem ou diminuam a variação de um determinado atributo dentro ou entre espécies diferentes. A função wITV foi adaptada para a linguagem R por de Bello et al. [-@de_bello_handbook_2021]. Para facilitar o cálculo do wITV para cada comunidade, de Bello et al. [-@de_bello_handbook_2021] executaram os comandos com a função `for` que repete iterativamente a análise para gerar os valores de todas as comunidades em uma forma dinâmica. Após executar as análises com o `for`, a função salva os resultados dentro do objeto \`wITVResults\`. Após obter esses resultados, é possível utilizar modelos lineares para testar quais variáveis preditoras (em nosso exemplo, características das poças) afetam o aumento ou diminuição da contribuição relativa da variação intraespecífica.
+Para calcular a contribuição relativa da variação intraespecífica em relação à variação interespecífica dentro de uma comunidade, por exemplo, Siefert et al. [-@siefert_global_2015] sugeriram uma métrica chamada de wITV (*within-community Intraspecific Trait Variation*). A wITV representa a razão da variação intraespecífica em relação a variação total dentro de uma comunidade (e.g., parcela, poça) que inclui: i) a abundância relativa de cada espécie *j* ocorrendo na comunidade *i*, ii) o valor médio do atributo da espécie *j* na comunidade *i*, e iii) o valor do atributo *k* de cada indivíduo da espécie *j* que ocorre na comunidade *i*. Como esta medida é feita por unidade amostral (ou seja, sua comunidade de interesse), é possível testar hipóteses ecológicas que tentem explicar processos que aumentem ou diminuam a variação de um determinado atributo dentro ou entre espécies diferentes. A função wITV foi adaptada para a linguagem R por de Bello et al. [-@de_bello_handbook_2021]. Para facilitar o cálculo do wITV para cada comunidade, de Bello et al. [-@de_bello_handbook_2021] executaram os códigos com a função `for()` que repete iterativamente a análise para gerar os valores de todas as comunidades em uma forma dinâmica. Após executar as análises com o `for()`, a função salva os resultados dentro do objeto `wITVResults`. Após obter esses resultados, é possível utilizar modelos lineares para testar quais variáveis preditoras (em nosso exemplo, características das poças) afetam o aumento ou diminuição da contribuição relativa da variação intraespecífica (Figura \@ref(fig:fig-func-intra)).
 
-
-```{r}
-
+```{r fig-func-witv, fig.cap="Gráficos diagnósticos do modelo linear ajusta do iWTV em função de características das poças."}
 ## Dados necessários
 # Matriz de traits.
 head(traits)
@@ -623,19 +659,19 @@ anuros_comm_rel <- decostand(anuros_comm, "total")
 head(env)
 
 ## Prearação da matriz para receber os resultados do `for`
-
-wITVResults <- data.frame(ITV = matrix(ncol=1, nrow=length(unique(traits$pond))))
+wITVResults <- data.frame(ITV = matrix(ncol = 1, nrow = length(unique(traits$pond))))
 rownames(wITVResults) <- unique(traits$pond)
-  
+
 for(i in 1:length(unique(traits$pond))){
-  commAux<-subset(traits, traits$pond==unique(traits$pond)[i])
-  commAux$Species<-droplevels(factor(commAux$Species))
-  spNames <- unique(commAux$Species)
-  relAbund<- anuros_comm_rel[i ,as.character(spNames)] 
-  traitsVector <- commAux$body_size
-  spVector <- commAux$Species
-  wITVResults[i,1] <-  wITV(spIDs = spVector, traitVals = traitsVector, relAbund = relAbund)
+    commAux <- subset(traits, traits$pond == unique(traits$pond)[i])
+    commAux$Species <- droplevels(factor(commAux$Species))
+    spNames <- unique(commAux$Species)
+    relAbund <- anuros_comm_rel[i, as.character(spNames)] 
+    traitsVector <- commAux$body_size
+    spVector <- commAux$Species
+    wITVResults[i, 1] <-  wITV(spIDs = spVector, traitVals = traitsVector, relAbund = relAbund)
 }
+
 wITVResults$ITV
 env$wITV <- wITVResults$ITV # NaN = locais com uma única espécie
 
@@ -644,15 +680,20 @@ env2 <- na.omit(env)
 head(env2)  
 
 ## Modelo linear 
-mod_itv <- lm(wITV~depth+area+dits_bt_pond+dist_for, data = env)
+mod_itv <- lm(wITV ~ depth + area + dits_bt_pond + dist_for, data = env)
 
 ## Testar pressuposto da análise
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(mod_itv)
 
 ## Resultado
 summary(mod_itv)
 ```
 
-Combinando os resultados das três análises é possível compreender que existem diferenças morfológicas entre as espécies de poças diferentes (componente substituição). Porém, é evidente que a variação dentro da espécie é bastante relevante para compreender a diversidade funcional de anuros. Na primeira análise, os resultados dessas quatro análises indicam que a variação intraspecifica explica de 17% a 45% da variação morfológica nas metacomunidades de anuros. A segunda, por sua vez, demonstra que a variação morfológica entre espécies de poças diferentes representa o principal componente de variação, mas que a variação intraespecífica não pode ser ignorada. Por fim, ao combinar a métrica wITV com modelos lineares, percebe-se que as características das poças não determinam a contribuição da variação intraespecífica. Além disso, existe uma variação muito grande entre poças. Ao passo que em algumas poças a variação intraespecífica não contribui para a variação total (wITV = 0), em outras, este componente representou 100% da variação (wITV = 1). Os resultados obtidos nas análises das perguntas 1 a 3 indicam que utilizar somente a média dos atributos morfológicos pode refletir em interpretações incorretas em estudos que compararam a diversidade funcional no espaço/tempo [veja discussão em @dalmolin_turnover_2020].
+Combinando os resultados das três análises é possível compreender que existem diferenças morfológicas entre as espécies de poças diferentes (componente substituição). Porém, é evidente que a variação dentro da espécie é bastante relevante para compreender a diversidade funcional de anuros. Na primeira análise, os resultados dessas quatro análises indicaram que a variação intraspecifica explica de 17% a 45% da variação morfológica nas metacomunidades de anuros. A segunda, por sua vez, demonstra que a variação morfológica entre espécies de poças diferentes representa o principal componente de variação, mas que a variação intraespecífica não pode ser ignorada. Por fim, ao combinar a métrica wITV com modelos lineares, percebe-se que as características das poças não determinam a contribuição da variação intraespecífica. Além disso, existe uma variação muito grande entre poças. Ao passo que em algumas poças a variação intraespecífica não contribui para a variação total (wITV = 0), em outras, este componente representou 100% da variação (wITV = 1). Os resultados obtidos nas análises das perguntas 1 a 3 indicam que utilizar somente a média dos atributos morfológicos pode refletir em interpretações incorretas em estudos que compararam a diversidade funcional no espaço/tempo [veja discussão em @dalmolin_turnover_2020].
 
+## Para se aprofundar 
+
+Recomendamos a leitura de dois livros: [-@garnier_plant_2016] e de [-@bello_handbook_2021]. Os dois livros oferecem excelente oportunidade para se aprofundar no campo teórico da diversidade funcional e, além disso, o livro liderado pelo pesquisador Francesco de Bello fornece diversas aplicações analíticas na linguagem R. 
+
+Outro recurso excelente foi publicado por [-@mammola_concepts_2021] e serve para se aprofundar nas diferentes medidas da diversidade funcional.
