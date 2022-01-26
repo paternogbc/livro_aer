@@ -206,10 +206,10 @@ Vamos utilizar o mesmo conjunto de dados do Exemplo 1 para responder à mesma pe
 
 ```{r fig-dend-boot-chor, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte criada por bootstrap e usando distância de Chord.", message=FALSE, warning=FALSE}
 ## Dados
-head(sp_compos)
+head(t(sp_compos))
 
 ## Passo 1: transformar para distância de Chord
-bocaina_transf <- disttransform(sp_compos, "chord")
+bocaina_transf <- disttransform(t(sp_compos), "chord")
 
 ## Passo 2: realizar pvclust com método average e distância euclidiana
 analise <- pvclust(bocaina_transf, method.hclust = "average", method.dist = "euclidean") 
@@ -222,7 +222,7 @@ pvrect(analise)
 
 ```{r fig-dend-boot-hell, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte criada por bootstrap e usando distância de Hellinger.", message=FALSE, warning=FALSE}
 ## Passo 1: transformar dados com Hellinger
-bocaina_transf2 <- disttransform(bocaina, "hellinger")
+bocaina_transf2 <- disttransform(t(bocaina), "hellinger")
 
 ## Passo 2: realizar pvclust com método average e distância euclidiana
 analise2 <- pvclust(bocaina_transf2, method.hclust="average", method.dist="euclidean") 
@@ -385,7 +385,7 @@ No resultado apresentado, podemos ver que temos duas espécies indicadoras da fi
 
 As análises de ordenação representam um conjunto de métodos e técnicas multivariadas que organizam objetos (e.g., localidades, indivíduos) em alguma ordem considerando o conjunto de descritores que podem estar mais ou menos relacionados entre si. Se os descritores estiverem bem relacionados, eles são redundantes e organizam os objetos de forma similar. Esse fenômeno é observado, por exemplo, quando queremos organizar um conjunto de unidades amostrais baseado em variáveis que indicam um mesmo processo: ver o padrão de similaridade geral de lagos usando várias variáveis relacionada com a produtividade do sistema: clorofila-a, concentração de fósforo, nitrogênio, entre outros. Por exemplo, tais métodos permitem identificar se existem grupo de espécies que ocorrem exclusivamente em um determinado hábitat. Ao buscar esta *ordem*, as técnicas de ordenação possuem três principais utilidades: i) reduzir a dimensionalidade e revelar padrões, ii) separar as variáveis mais e menos importantes em combinações complexas e iii) separar relações mais e menos fortes ao comparar variáveis preditoras e dependentes. 
 
-Em geral, os métodos são dividídos em ordenações irrestritas (ou análise de gradiente indireto) e restritas (ou análise de gradiente direto). As ordenações irrestritas organizam os objetos (e.g., espécies) de acordo com sua estrutura de covariância (ou correlação), o que demonstra que a proximidade (ou distância) dentro do espaço multidimensional representa semelhança (ou diferença) dos objetos. Por outro lado, as ordenações restritras posicionam os objetos (e.g., espécies) de acordo com sua relação linear com outras variáveis coletadas nas mesmas unidades amostraits (e.g., temperatura e precipitação). Ao passo que as ordenações irrestritas dependem somente de uma matriz (e.g., espécies por localidades), as ordenações restritas utilizam no mínimo duas matrizes (e.g., espécies por localidades e variáveis climáticas por localidade). Desse modo, fica claro esta diferença entre os dados utilizados que as análises irrestritas são mais exploratórias, enquanto análises restritas são ideias para testar hipóteses com dados multidimensionais. A tabela a seguir apresenta as principais análises utilizadas em ecologia.
+Em geral, os métodos são dividídos em ordenações irrestritas (ou análise de gradiente indireto) e restritas (ou análise de gradiente direto). As ordenações irrestritas organizam os objetos (e.g., espécies) de acordo com sua estrutura de covariância (ou correlação), o que demonstra que a proximidade (ou distância) dentro do espaço multidimensional representa semelhança (ou diferença) dos objetos. Por outro lado, as ordenações restritras posicionam os objetos (e.g., espécies) de acordo com sua relação linear com outras variáveis coletadas nas mesmas unidades amostraits (e.g., temperatura e precipitação). Ao passo que as ordenações irrestritas dependem somente de uma matriz (e.g., espécies por localidades), as ordenações restritas utilizam no mínimo duas matrizes (e.g., espécies por localidades e variáveis climáticas por localidade). Desse modo, fica claro esta diferença entre os dados utilizados que as análises irrestritas são mais exploratórias, enquanto análises restritas são ideais para testar hipóteses com dados multidimensionais. A tabela a seguir apresenta as principais análises utilizadas em ecologia.
 
 +--------------------------+---------------------------------------------------------------------------------------------------------------------+--------------------+
 | Método                   | Tipo de variável                                                                                                    | Função R           |
@@ -419,7 +419,7 @@ Em geral, os métodos são dividídos em ordenações irrestritas (ou análise d
 
 ## Ordenação irrestrira
 
-A ordenação irrestrita ou análise de gradiente indireto, organiza os objetos de acordo 
+Ordenações irrestritas, ou análise de gradiente indireto ou ainda análises de fator, são um conjunto de métodos multivariados que lidam com uma única matriz quadrada. Esta matriz pode ou não ter pesos nas linhas ou colunas. Geralmente, o objetivo deste tipo de análise é resumir a informação contida na matriz de maneira gráfica, por meio de um diagrama de ordenação. Quanto maior e mais complexa for a matriz, mais eficiente é este tipo de análise. Os tipos de análise irão diferir de acordo com o tipo de dado contido nesta matriz, se contínuo ou contagem, etc. De maneira geral, essas ordenações irrestritas calculam combinações lineares, cuja formulação irá diferir ligeiramente entre os métodos. Da mesma forma, essas combinações lineares irão preservar um tipo de distância. Por exemplo, a Análise de Componentes Principais (PCA) preserva a distância Euclidiana, enquanto a Análise de Correspondência (CA) preserva a distância de chi-quadrado.
 
 ### Análise de Componentes Principais (PCA)
 
@@ -845,7 +845,7 @@ grid.arrange(g_acari_axi1, g_acari_axi2, nrow = 1)
 
 ## Ordenação restrita
 
-A ordenação restrita ou análise de gradiente direto, organiza os objetos de acordo com suas relações com outras variáveis (preditoras) coletadas nas mesmas unidades amostrais. O exemplo mais comum na ecologia é de investigar a relação entre diversas variáveis ambientais (matriz **X**) coletadas em *n* localidades e a abundância (ou presença ausência) de *y* espécies coletadas nas mesmas localidades (matrix **Y**). Com frequência, outras dados são utilizados como as coordenadas geográficas das unidades amostrais (matriz **W**), os atributos funcionais das espécies coletadas (matriz **T**) e a relação filogenética dessas espécies (matriz **P**). Diversos métodos são utilizados para combinar duas ou mais matrizes, mas neste capítulo iremos apresentar a Análise de Redundância (RDA), Análise de Redundância parcial (RDAp) e métodos espaciais para incluir a matriz W nas análises de gradiente direto.
+A ordenação restrita ou análise de gradiente direto, organiza os objetos de acordo com suas relações com outras variáveis (preditoras) coletadas nas mesmas unidades amostrais. O exemplo mais comum na ecologia é de investigar a relação entre diversas variáveis ambientais (matriz **X**) coletadas em *n* localidades e a abundância (ou presença ausência) de *y* espécies coletadas nas mesmas localidades (matrix **Y**). Com frequência, outras dados são utilizados como as coordenadas geográficas das unidades amostrais (matriz **W**), os atributos funcionais das espécies coletadas (matriz **T**) e a relação filogenética dessas espécies (matriz **P**). Diversos métodos são utilizados para combinar duas ou mais matrizes, mas neste capítulo iremos apresentar a Análise de Redundância (RDA), Análise de Redundância parcial (RDAp) e métodos espaciais para incluir a matriz **W** nas análises de gradiente direto.
 
 ### Análise de Redundância (RDA)
 
@@ -1176,7 +1176,7 @@ ggplot(dat.graf, aes(x = NMDS1, y = NMDS2, color = altitude, shape = altitude)) 
 
 ## Mantel e Mantel parcial
 
-O teste de Mantel se aplica quando temos duas ou mais matrizes de distância (triangulares). Em estudos ecológicos, essas matrizes normalmente descrevem dados de distância ou (dis)similaridade na composição de espécies, distância geográfica, e similaridade ambiental. Mas este teste também é amplamente aplicado na área de genética de paisagem para testar hipóteses sobre como a composição genética de uma população varia em função do ambiente e/ou espaço geográfico. O teste nada mais é do que uma generalização do coeficiente de correlação de Pearson (Capítulo \@ref(cap7)) para lidar com matrizes de distância. Como essas matrizes descrevem a relação entre vários pares de locais, temos a repetição do mesmo local em outros pares. Neste caso é preciso um procedimento semelhante ao de correção para múltiplos testes. 
+O teste de Mantel se aplica quando temos duas ou mais matrizes de distância (triangulares). Em estudos ecológicos, essas matrizes normalmente descrevem dados de distância ou (dis)similaridade na composição de espécies, distância geográfica, e similaridade ambiental. Mas este teste também é amplamente aplicado na área de genética de paisagem para testar hipóteses sobre como a composição genética de uma população varia em função do ambiente e/ou espaço geográfico [@legendre2010]. O teste nada mais é do que uma generalização do coeficiente de correlação de Pearson (Capítulo \@ref(cap7)) para lidar com matrizes de distância. Como essas matrizes descrevem a relação entre vários pares de locais, temos a repetição do mesmo local em outros pares. Neste caso é preciso um procedimento semelhante ao de correção para múltiplos testes. 
 
 Já o Mantel parcial pretende testar a correlação entre duas matrizes controlando para o efeito de uma terceira. Por exemplo, testar a associação entre a dissimilaridade na composição de espécies e dissimilaridade ambiental, controlando para a distância geográfica entre os locais. Isso nos permite levar em conta a possível autocorrelação espacial nas variáveis ambientais, ou seja, estaríamos testando de fato o efeito da dissimilaridade ambiental "pura" na dissimilaridae na composição de espécies, evitando o efeito do espaço em si. Portanto, note que sempre estamos raciocinando em termos de (dis)similaridade e não dos dados brutos em si, seja composição de espécies ou variáveis ambientais. É importante ter isto em mente na hora de interpretar os resultados.
 
@@ -1232,12 +1232,34 @@ mantel(simil.env, simil.bocaina)
 Vamos agora fazer os gráficos relacionando as matrizes de similaridade dos dados (Figura \@ref(fig:fig-mantel)).
 
 ```{r fig-mantel, fig.cap="Relação das matrizes de (dis)similaridade dos dados."}
+## Dados
+matrix.bocaina.env <- data.frame(x = melt(as.matrix(simil.bocaina))$value, 
+                                 y = melt(as.matrix(simil.env))$value)
+
+matrix.dist.env <- data.frame(x = melt(as.matrix(Dist.km))$value, 
+                              y = melt(as.matrix(simil.env))$value)
+
+matrix.dist.bocaina <- data.frame(x = melt(as.matrix(log(Dist.km)))$value, 
+                              y = melt(as.matrix(log(1-simil.bocaina)))$value)
+
 ## Gráficos
-plot(simil.bocaina, simil.env)
-plot(Dist.km, simil.env)
-plot(log(Dist.km), log(1-simil.bocaina), 
-     xlab ="Geographic distance (Km)", 
-     ylab ="Similarity (Bray-Curtis)")
+ggplot(matrix.bocaina.env, aes(x, y)) +
+    geom_point() +
+    labs(x = "Similaridade Bocaina", 
+         y = "Similaridade Ambiental") +
+    tema_livro()
+
+ggplot(matrix.dist.env , aes(x, y)) +
+    geom_point() +
+    labs(x = "Distância geográfica (km)", 
+         y = "Similaridade Ambiental") +
+    tema_livro()
+
+ggplot(matrix.dist.bocaina , aes(x, y)) +
+    geom_point() +
+    labs(x = "Distância geográfica (km)", 
+         y = "Similaridade (Bray-Curtis)") +
+    tema_livro()
 ```
 
 **Interpretação dos resultados**

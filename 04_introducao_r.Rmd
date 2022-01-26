@@ -591,7 +591,7 @@ knitr::write_bib("vegan", file = "vegan_ex.bib")
 
 Errar quando está começando a usar o R é muito comum e faz parte do aprendizado. Entretanto, os erros nunca devem ser encarados como uma forma de desestímulo, mas sim como um desafio para continuar tentando. Todos nós, autores desse livro, e provavelmente usuários mais ou menos experientes, já passaram por um momento em que se quer desistir de tudo. Jovem aprendiz de R, a única diferença entre você que está iniciando agora e nós que usamos há mais tempo são as horas a mais de uso (e ódio). O que temos a mais é experiência para olhar o erro, lê-lo e conseguir interpretar o que está errado e saber buscar ajuda.
 
-Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descance, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como [Debug_com_Pato_de_Borracha](https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha)), logo a solução deve aparecer.
+Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descance, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como [Debug com Pato de Borracha](https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha)), logo a solução deve aparecer.
 
 Listaremos aqui o que consideramos os principais erros dos iniciantes no R.
 
@@ -626,7 +626,7 @@ OBJ
 Esse também é um erro recorrente, mesmo para usuários mais experientes. Em scripts de análises complexas, que requerem vários pacotes, geralmente esquecemos de um ou outro pacote. A melhor forma de evitar esse tipo de erro é listar os pacotes que vamos precisar usar logo no início do script.
 
 ```{r echo=FALSE}
-# detach("package:vegan", unload = TRUE)
+detach("package:vegan", unload = TRUE, force = TRUE)
 ```
 
 ```{r error=TRUE}
@@ -634,7 +634,7 @@ Esse também é um erro recorrente, mesmo para usuários mais experientes. Em sc
 data(dune)
 
 ## Função do pacote vegan
-decostand(dune, "hell")
+decostand(dune[1:6, 1:6], "hell")
 ```
 
 Geralmente a mensagem de erro será de que a função não foi encontrada ou algo nesse sentido. Carregando o pacote, esse erro é contornado.
