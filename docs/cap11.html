@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-01-26" />
+<meta name="date" content="2022-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,6 +159,7 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
 <li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
 <li class="chapter" data-level="" data-path="revisores-e-colaboradores.html"><a href="revisores-e-colaboradores.html"><i class="fa fa-check"></i>Revisores e colaboradores</a></li>
 <li class="chapter" data-level="1" data-path="cap1.html"><a href="cap1.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
 <ul>
@@ -329,7 +330,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.7" data-path="cap7.html"><a href="cap7.html#generalized-least-squares-gls"><i class="fa fa-check"></i><b>7.7</b> Generalized Least Squares (GLS)</a></li>
 <li class="chapter" data-level="7.8" data-path="cap7.html"><a href="cap7.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.8</b> Para se aprofundar</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Análises univariadas (modelos lineares mistos generalizados)</a>
+<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Modelos Lineares Generalizados</a>
 <ul>
 <li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
@@ -636,34 +637,34 @@ div.csl-indent {
 <p>Vamos olhar os dados.</p>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="cap11.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cabeçalho</span></span>
 <span id="cb416-2"><a href="cap11.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(poca_anuros)</span>
-<span id="cb416-3"><a href="cap11.html#cb416-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Boana_albopunctata Boana_faber Boana_raniceps Dendropsophus_eliane Dendropsophus_melanargyrius Dendropsophus_minutus</span></span>
-<span id="cb416-4"><a href="cap11.html#cb416-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                  5           0              2                    0                           0                     0</span></span>
-<span id="cb416-5"><a href="cap11.html#cb416-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                  0           0              0                    0                           0                     2</span></span>
-<span id="cb416-6"><a href="cap11.html#cb416-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                  0           0              0                    6                           0                     1</span></span>
-<span id="cb416-7"><a href="cap11.html#cb416-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                  0           0              0                   15                           0                    15</span></span>
-<span id="cb416-8"><a href="cap11.html#cb416-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                  0           0              0                    2                           1                     8</span></span>
-<span id="cb416-9"><a href="cap11.html#cb416-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                  1           0              0                    2                           0                     2</span></span>
-<span id="cb416-10"><a href="cap11.html#cb416-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Dendropsophus_nanus Dermatonotus_muelleri Elachistocleis_bicolor Elachistocleis_sp Leptodactylus_chaquensis</span></span>
-<span id="cb416-11"><a href="cap11.html#cb416-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                   4                     0                      0                 0                        0</span></span>
-<span id="cb416-12"><a href="cap11.html#cb416-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                   0                     0                      0                 0                        0</span></span>
-<span id="cb416-13"><a href="cap11.html#cb416-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                   3                     0                      0                 0                        0</span></span>
-<span id="cb416-14"><a href="cap11.html#cb416-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                  15                     3                      0                 0                        0</span></span>
-<span id="cb416-15"><a href="cap11.html#cb416-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                   2                    12                      0                 0                       11</span></span>
-<span id="cb416-16"><a href="cap11.html#cb416-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                   2                     0                      0                 0                        0</span></span>
-<span id="cb416-17"><a href="cap11.html#cb416-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Leptodactylus_fuscus Leptodactylus_labyrinthicus Physalameus_cuvieri Physalaemus_nattereri Rhinella_schneideri</span></span>
-<span id="cb416-18"><a href="cap11.html#cb416-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                    8                           0                   5                     0                   2</span></span>
-<span id="cb416-19"><a href="cap11.html#cb416-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                    3                           0                   3                     4                   1</span></span>
-<span id="cb416-20"><a href="cap11.html#cb416-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                    2                           0                   4                     1                   2</span></span>
-<span id="cb416-21"><a href="cap11.html#cb416-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                    5                           0                   2                     0                   2</span></span>
-<span id="cb416-22"><a href="cap11.html#cb416-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                    4                           0                   2                    17                   1</span></span>
-<span id="cb416-23"><a href="cap11.html#cb416-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                    2                           0                   2                     0                   1</span></span>
-<span id="cb416-24"><a href="cap11.html#cb416-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Scinax_fuscovarius</span></span>
-<span id="cb416-25"><a href="cap11.html#cb416-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                  0</span></span>
-<span id="cb416-26"><a href="cap11.html#cb416-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                  0</span></span>
-<span id="cb416-27"><a href="cap11.html#cb416-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                  0</span></span>
-<span id="cb416-28"><a href="cap11.html#cb416-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                  0</span></span>
-<span id="cb416-29"><a href="cap11.html#cb416-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                  0</span></span>
-<span id="cb416-30"><a href="cap11.html#cb416-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                  0</span></span></code></pre></div>
+<span id="cb416-3"><a href="cap11.html#cb416-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Boana_albopunctata Boana_faber Boana_raniceps Dendropsophus_eliane Dendropsophus_melanargyrius</span></span>
+<span id="cb416-4"><a href="cap11.html#cb416-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                  5           0              2                    0                           0</span></span>
+<span id="cb416-5"><a href="cap11.html#cb416-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                  0           0              0                    0                           0</span></span>
+<span id="cb416-6"><a href="cap11.html#cb416-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                  0           0              0                    6                           0</span></span>
+<span id="cb416-7"><a href="cap11.html#cb416-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                  0           0              0                   15                           0</span></span>
+<span id="cb416-8"><a href="cap11.html#cb416-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                  0           0              0                    2                           1</span></span>
+<span id="cb416-9"><a href="cap11.html#cb416-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                  1           0              0                    2                           0</span></span>
+<span id="cb416-10"><a href="cap11.html#cb416-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Dendropsophus_minutus Dendropsophus_nanus Dermatonotus_muelleri Elachistocleis_bicolor Elachistocleis_sp</span></span>
+<span id="cb416-11"><a href="cap11.html#cb416-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                     0                   4                     0                      0                 0</span></span>
+<span id="cb416-12"><a href="cap11.html#cb416-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                     2                   0                     0                      0                 0</span></span>
+<span id="cb416-13"><a href="cap11.html#cb416-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                     1                   3                     0                      0                 0</span></span>
+<span id="cb416-14"><a href="cap11.html#cb416-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                    15                  15                     3                      0                 0</span></span>
+<span id="cb416-15"><a href="cap11.html#cb416-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                     8                   2                    12                      0                 0</span></span>
+<span id="cb416-16"><a href="cap11.html#cb416-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                     2                   2                     0                      0                 0</span></span>
+<span id="cb416-17"><a href="cap11.html#cb416-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Leptodactylus_chaquensis Leptodactylus_fuscus Leptodactylus_labyrinthicus Physalameus_cuvieri</span></span>
+<span id="cb416-18"><a href="cap11.html#cb416-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                        0                    8                           0                   5</span></span>
+<span id="cb416-19"><a href="cap11.html#cb416-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                        0                    3                           0                   3</span></span>
+<span id="cb416-20"><a href="cap11.html#cb416-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                        0                    2                           0                   4</span></span>
+<span id="cb416-21"><a href="cap11.html#cb416-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                        0                    5                           0                   2</span></span>
+<span id="cb416-22"><a href="cap11.html#cb416-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                       11                    4                           0                   2</span></span>
+<span id="cb416-23"><a href="cap11.html#cb416-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                        0                    2                           0                   2</span></span>
+<span id="cb416-24"><a href="cap11.html#cb416-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Physalaemus_nattereri Rhinella_schneideri Scinax_fuscovarius</span></span>
+<span id="cb416-25"><a href="cap11.html#cb416-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_1                     0                   2                  0</span></span>
+<span id="cb416-26"><a href="cap11.html#cb416-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_2                     4                   1                  0</span></span>
+<span id="cb416-27"><a href="cap11.html#cb416-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_3                     1                   2                  0</span></span>
+<span id="cb416-28"><a href="cap11.html#cb416-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_4                     0                   2                  0</span></span>
+<span id="cb416-29"><a href="cap11.html#cb416-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_5                    17                   1                  0</span></span>
+<span id="cb416-30"><a href="cap11.html#cb416-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dia_6                     0                   1                  0</span></span></code></pre></div>
 <p>Cálculo do estimador de riqueza - Chao 1.</p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="cap11.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Análise</span></span>
 <span id="cb417-2"><a href="cap11.html#cb417-2" aria-hidden="true" tabindex="-1"></a>est_chao1 <span class="ot">&lt;-</span> <span class="fu">estaccumR</span>(dados_coleta, <span class="at">permutations =</span> <span class="dv">100</span>)</span>

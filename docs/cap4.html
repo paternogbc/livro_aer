@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-01-26" />
+<meta name="date" content="2022-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,6 +159,7 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
 <li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
 <li class="chapter" data-level="" data-path="revisores-e-colaboradores.html"><a href="revisores-e-colaboradores.html"><i class="fa fa-check"></i>Revisores e colaboradores</a></li>
 <li class="chapter" data-level="1" data-path="cap1.html"><a href="cap1.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
 <ul>
@@ -329,7 +330,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.7" data-path="cap7.html"><a href="cap7.html#generalized-least-squares-gls"><i class="fa fa-check"></i><b>7.7</b> Generalized Least Squares (GLS)</a></li>
 <li class="chapter" data-level="7.8" data-path="cap7.html"><a href="cap7.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.8</b> Para se aprofundar</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Análises univariadas (modelos lineares mistos generalizados)</a>
+<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Modelos Lineares Generalizados</a>
 <ul>
 <li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
 <li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
@@ -651,8 +652,8 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <span id="cb4-2"><a href="cap4.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span></code></pre></div>
 <p>O resultado retorna o valor <code>12</code>, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação <code>1:42</code>, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o <code>[1]</code>, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, <code>[34]</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="cap4.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">42</span></span>
-<span id="cb5-2"><a href="cap4.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</span></span>
-<span id="cb5-3"><a href="cap4.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [41] 41 42</span></span></code></pre></div>
+<span id="cb5-2"><a href="cap4.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36</span></span>
+<span id="cb5-3"><a href="cap4.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [37] 37 38 39 40 41 42</span></span></code></pre></div>
 <p>Podemos ver o histórico dos códigos executados no console na aba <strong>History</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> (3)).</p>
 </div>
 <div id="scripts" class="section level3" number="4.3.2">
@@ -685,157 +686,329 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <h3><span class="header-section-number">4.3.3</span> Operadores</h3>
 <p>No R, podemos agrupar os operadores em cinco tipos: aritméticos, relacionais, lógicos, atribuição e diversos. Grande parte deles são descritos na Tabela <a href="cap4.html#tab:tab-operadores">4.1</a>.</p>
 <table>
-<caption><span id="tab:tab-operadores">Tabela 4.1: </span>Principais operadores no R.</caption>
+<caption>
+<span id="tab:tab-operadores">Tabela 4.1: </span>Principais operadores no R.
+</caption>
 <thead>
-<tr class="header">
-<th align="center">Operador</th>
-<th align="center">Tipo</th>
-<th align="center">Descrição</th>
+<tr>
+<th style="text-align:center;">
+Operador
+</th>
+<th style="text-align:center;">
+Tipo
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">+</td>
-<td align="center">Aritmético</td>
-<td align="center">Adição</td>
+<tr>
+<td style="text-align:center;">
+<ul>
+<li></td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Adição
+</td>
 </tr>
-<tr class="even">
-<td align="center">-</td>
-<td align="center">Aritmético</td>
-<td align="center">Subtração</td>
+<tr>
+<td style="text-align:center;">
+<ul>
+<li></td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Subtração
+</td>
 </tr>
-<tr class="odd">
-<td align="center">*</td>
-<td align="center">Aritmético</td>
-<td align="center">Multiplicação</td>
+<tr>
+<td style="text-align:center;">
+<ul>
+<li></td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Multiplicação
+</td>
 </tr>
-<tr class="even">
-<td align="center">/</td>
-<td align="center">Aritmético</td>
-<td align="center">Divisão</td>
+<tr>
+<td style="text-align:center;">
+/
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão
+</td>
 </tr>
-<tr class="odd">
-<td align="center">%%</td>
-<td align="center">Aritmético</td>
-<td align="center">Resto da divisão</td>
+<tr>
+<td style="text-align:center;">
+%%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Resto da divisão
+</td>
 </tr>
-<tr class="even">
-<td align="center">%/%</td>
-<td align="center">Aritmético</td>
-<td align="center">Divisão inteira</td>
+<tr>
+<td style="text-align:center;">
+%/%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão inteira
+</td>
 </tr>
-<tr class="odd">
-<td align="center">^ ou **</td>
-<td align="center">Aritmético</td>
-<td align="center">Expoente</td>
+<tr>
+<td style="text-align:center;">
+^ ou **
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
 </tr>
-<tr class="even">
-<td align="center">&gt;</td>
-<td align="center">Relacional</td>
-<td align="center">Maior</td>
+<tr>
+<td style="text-align:center;">
+&gt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;</td>
-<td align="center">Relacional</td>
-<td align="center">Menor</td>
+<tr>
+<td style="text-align:center;">
+&lt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor
+</td>
 </tr>
-<tr class="even">
-<td align="center">&gt;=</td>
-<td align="center">Relacional</td>
-<td align="center">Maior ou igual</td>
+<tr>
+<td style="text-align:center;">
+&gt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior ou igual
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;=</td>
-<td align="center">Relacional</td>
-<td align="center">Menor ou igual</td>
+<tr>
+<td style="text-align:center;">
+&lt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor ou igual
+</td>
 </tr>
-<tr class="even">
-<td align="center">==</td>
-<td align="center">Relacional</td>
-<td align="center">Igualdade</td>
+<tr>
+<td style="text-align:center;">
+==
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Igualdade
+</td>
 </tr>
-<tr class="odd">
-<td align="center">!=</td>
-<td align="center">Relacional</td>
-<td align="center">Diferença</td>
+<tr>
+<td style="text-align:center;">
+!=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Diferença
+</td>
 </tr>
-<tr class="even">
-<td align="center">!</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico NÃO</td>
+<tr>
+<td style="text-align:center;">
+!
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico NÃO
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&amp;</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico elementar E</td>
+<tr>
+<td style="text-align:center;">
+&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico elementar E
+</td>
 </tr>
-<tr class="even">
-<td align="center">|</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico elementar OU</td>
+<tr>
+<td style="text-align:center;">
+<div class="line-block"></div>
 </tr>
-<tr class="odd">
-<td align="center">&amp;&amp;</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico E</td>
+<tr>
+<td style="text-align:center;">
+&amp;&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico E
+</td>
 </tr>
-<tr class="even">
-<td align="center">||</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico OU</td>
+<tr>
+<td style="text-align:center;">
+||
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico OU
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;- ou =</td>
-<td align="center">Atribuição</td>
-<td align="center">Atribuição à esquerda</td>
+<tr>
+<td style="text-align:center;">
+&lt;- ou =
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à esquerda
+</td>
 </tr>
-<tr class="even">
-<td align="center">&lt;&lt;-</td>
-<td align="center">Atribuição</td>
-<td align="center">Super atribuição à esquerda</td>
+<tr>
+<td style="text-align:center;">
+&lt;&lt;-
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à esquerda
+</td>
 </tr>
-<tr class="odd">
-<td align="center">-&gt;</td>
-<td align="center">Atribuição</td>
-<td align="center">Atribuição à direita</td>
+<tr>
+<td style="text-align:center;">
+-&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à direita
+</td>
 </tr>
-<tr class="even">
-<td align="center">-&gt;&gt;</td>
-<td align="center">Atribuição</td>
-<td align="center">Super atribuição à direita</td>
+<tr>
+<td style="text-align:center;">
+-&gt;&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à direita
+</td>
 </tr>
-<tr class="odd">
-<td align="center">:</td>
-<td align="center">Diversos</td>
-<td align="center">Sequência unitária</td>
+<tr>
+<td style="text-align:center;">
+:
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Sequência unitária
+</td>
 </tr>
-<tr class="even">
-<td align="center">%in%</td>
-<td align="center">Diversos</td>
-<td align="center">Elementos que pertencem a um vetor</td>
+<tr>
+<td style="text-align:center;">
+%in%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Elementos que pertencem a um vetor
+</td>
 </tr>
-<tr class="odd">
-<td align="center">%*%</td>
-<td align="center">Diversos</td>
-<td align="center">Multiplicar matriz com sua transposta</td>
+<tr>
+<td style="text-align:center;">
+%*%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Multiplicar matriz com sua transposta
+</td>
 </tr>
-<tr class="even">
-<td align="center">%&gt;%</td>
-<td align="center">Diversos</td>
-<td align="center">Pipe (pacote magrittr)</td>
+<tr>
+<td style="text-align:center;">
+%&gt;%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (pacote magrittr)
+</td>
 </tr>
-<tr class="odd">
-<td align="center">|&gt;</td>
-<td align="center">Diversos</td>
-<td align="center">Pipe (R base nativo)</td>
+<tr>
+<td style="text-align:center;">
+|&gt;
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (R base nativo)
+</td>
 </tr>
-<tr class="even">
-<td align="center">%–%</td>
-<td align="center">Diversos</td>
-<td align="center">Intervalo de datas (pacote lubridate)</td>
+<tr>
+<td style="text-align:center;">
+%–%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Intervalo de datas (pacote lubridate)
+</td>
 </tr>
 </tbody>
-</table>
+</table></li>
+</ul></li>
+</ul></li>
+</ul>
 <p>Como exemplo, podemos fazer operações simples usando os operadores aritméticos.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="cap4.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Operações aritméticas</span></span>
 <span id="cb10-2"><a href="cap4.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span>  <span class="co"># adição</span></span>
@@ -955,7 +1128,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <p>Podemos listar esses pacotes disponíveis no <strong>CRAN</strong> com esse código.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="cap4.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Número atual de pacotes no CRAN</span></span>
 <span id="cb18-2"><a href="cap4.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">available.packages</span>())</span>
-<span id="cb18-3"><a href="cap4.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18785</span></span></code></pre></div>
+<span id="cb18-3"><a href="cap4.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18812</span></span></code></pre></div>
 <p>Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos verificar pacotes carregados pelo <em>R Base</em> utilizando a função <code>search()</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="cap4.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verificar pacotes carregados</span></span>
 <span id="cb19-2"><a href="cap4.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code></pre></div>
@@ -990,10 +1163,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 </ul>
 <p>Vamos carregar o pacote <code>vegan</code> que instalamos anteriormente. Podemos ir na aba <strong>Packages</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> (4)) e assinalar o pacote que queremos carregar ou utilizar a função <code>library()</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="cap4.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Carregar pacotes</span></span>
-<span id="cb23-2"><a href="cap4.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb23-3"><a href="cap4.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: permute</span></span>
-<span id="cb23-4"><a href="cap4.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: lattice</span></span>
-<span id="cb23-5"><a href="cap4.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; This is vegan 2.5-7</span></span></code></pre></div>
+<span id="cb23-2"><a href="cap4.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span></code></pre></div>
 <p>Como dissemos, alguns pacotes em desenvolvimento encontram-se disponíveis em repositórios do GitHub ou GitLab. Para instalar pacotes do GitHub, por exemplo, precisamos instalar e carregar o pacote <code>devtools</code>.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="cap4.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Instalar pacote devtools</span></span>
 <span id="cb24-2"><a href="cap4.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
@@ -1019,16 +1189,16 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span id="cb27-3"><a href="cap4.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package: vegan</span></span>
 <span id="cb27-4"><a href="cap4.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: Community Ecology Package</span></span>
 <span id="cb27-5"><a href="cap4.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 2.5-7</span></span>
-<span id="cb27-6"><a href="cap4.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Author: Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn,</span></span>
-<span id="cb27-7"><a href="cap4.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Peter R. Minchin, R. B. O&#39;Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard</span></span>
-<span id="cb27-8"><a href="cap4.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Szoecs, Helene Wagner</span></span>
+<span id="cb27-6"><a href="cap4.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Author: Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan</span></span>
+<span id="cb27-7"><a href="cap4.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            McGlinn, Peter R. Minchin, R. B. O&#39;Hara, Gavin L. Simpson, Peter Solymos, M. Henry H.</span></span>
+<span id="cb27-8"><a href="cap4.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Stevens, Eduard Szoecs, Helene Wagner</span></span>
 <span id="cb27-9"><a href="cap4.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Maintainer: Jari Oksanen &lt;jhoksane@gmail.com&gt;</span></span>
 <span id="cb27-10"><a href="cap4.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Depends: permute (&gt;= 0.9-0), lattice, R (&gt;= 3.4.0)</span></span>
 <span id="cb27-11"><a href="cap4.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Suggests: parallel, tcltk, knitr, markdown</span></span>
 <span id="cb27-12"><a href="cap4.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Imports: MASS, cluster, mgcv</span></span>
 <span id="cb27-13"><a href="cap4.html#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; VignetteBuilder: utils, knitr</span></span>
 <span id="cb27-14"><a href="cap4.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Description: Ordination methods, diversity analysis and other functions for community and vegetation</span></span>
-<span id="cb27-15"><a href="cap4.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             ecologists.</span></span>
+<span id="cb27-15"><a href="cap4.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            ecologists.</span></span>
 <span id="cb27-16"><a href="cap4.html#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; License: GPL-2</span></span>
 <span id="cb27-17"><a href="cap4.html#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BugReports: https://github.com/vegandevs/vegan/issues</span></span>
 <span id="cb27-18"><a href="cap4.html#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URL: https://cran.r-project.org, https://github.com/vegandevs/vegan</span></span>
@@ -1145,8 +1315,8 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span id="cb43-3"><a href="cap4.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb43-4"><a href="cap4.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; To cite R in publications use:</span></span>
 <span id="cb43-5"><a href="cap4.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb43-6"><a href="cap4.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical</span></span>
-<span id="cb43-7"><a href="cap4.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Computing, Vienna, Austria. URL https://www.R-project.org/.</span></span>
+<span id="cb43-6"><a href="cap4.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   R Core Team (2021). R: A language and environment for statistical computing. R Foundation for</span></span>
+<span id="cb43-7"><a href="cap4.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</span></span>
 <span id="cb43-8"><a href="cap4.html#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb43-9"><a href="cap4.html#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span id="cb43-10"><a href="cap4.html#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -1159,30 +1329,31 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span id="cb43-17"><a href="cap4.html#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     url = {https://www.R-project.org/},</span></span>
 <span id="cb43-18"><a href="cap4.html#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   }</span></span>
 <span id="cb43-19"><a href="cap4.html#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb43-20"><a href="cap4.html#cb43-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; We have invested a lot of time and effort in creating R, please cite it when using it for data analysis. See</span></span>
-<span id="cb43-21"><a href="cap4.html#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; also &#39;citation(&quot;pkgname&quot;)&#39; for citing R packages.</span></span></code></pre></div>
+<span id="cb43-20"><a href="cap4.html#cb43-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; We have invested a lot of time and effort in creating R, please cite it when using it for data</span></span>
+<span id="cb43-21"><a href="cap4.html#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; analysis. See also &#39;citation(&quot;pkgname&quot;)&#39; for citing R packages.</span></span></code></pre></div>
 <p>No resultado dessa função, há uma mensagem muito interessante: “See also ‘citation(“pkgname”)’ for citing R packages.” Dessa forma, aconselhamos, sempre que possível, claro, citar também os pacotes utilizados nas análises para dar os devidos créditos aos desenvolvedores e desenvolvedoras das funções implementadas nos pacotes. Como exemplo, vamos ver como fica a citação do pacote <code>vegan</code>.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="cap4.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Citação do pacote vegan</span></span>
 <span id="cb44-2"><a href="cap4.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;vegan&quot;</span>)</span>
 <span id="cb44-3"><a href="cap4.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb44-4"><a href="cap4.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; To cite package &#39;vegan&#39; in publications use:</span></span>
 <span id="cb44-5"><a href="cap4.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb44-6"><a href="cap4.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn, Peter R.</span></span>
-<span id="cb44-7"><a href="cap4.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Minchin, R. B. O&#39;Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs and Helene Wagner</span></span>
-<span id="cb44-8"><a href="cap4.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (2020). vegan: Community Ecology Package. R package version 2.5-7. https://CRAN.R-project.org/package=vegan</span></span>
-<span id="cb44-9"><a href="cap4.html#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb44-10"><a href="cap4.html#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
-<span id="cb44-11"><a href="cap4.html#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb44-12"><a href="cap4.html#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   @Manual{,</span></span>
-<span id="cb44-13"><a href="cap4.html#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     title = {vegan: Community Ecology Package},</span></span>
-<span id="cb44-14"><a href="cap4.html#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     author = {Jari Oksanen and F. Guillaume Blanchet and Michael Friendly and Roeland Kindt and Pierre Legendre and Dan McGlinn and Peter R. Minchin and R. B. O&#39;Hara and Gavin L. Simpson and Peter Solymos and M. Henry H. Stevens and Eduard Szoecs and Helene Wagner},</span></span>
-<span id="cb44-15"><a href="cap4.html#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     year = {2020},</span></span>
-<span id="cb44-16"><a href="cap4.html#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     note = {R package version 2.5-7},</span></span>
-<span id="cb44-17"><a href="cap4.html#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     url = {https://CRAN.R-project.org/package=vegan},</span></span>
-<span id="cb44-18"><a href="cap4.html#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   }</span></span>
-<span id="cb44-19"><a href="cap4.html#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb44-20"><a href="cap4.html#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">ATTENTION</span><span class="co">: This citation information has been auto-generated from the package DESCRIPTION file and may need</span></span>
-<span id="cb44-21"><a href="cap4.html#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; manual editing, see &#39;help(&quot;citation&quot;)&#39;.</span></span></code></pre></div>
+<span id="cb44-6"><a href="cap4.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn,</span></span>
+<span id="cb44-7"><a href="cap4.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Peter R. Minchin, R. B. O&#39;Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs</span></span>
+<span id="cb44-8"><a href="cap4.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   and Helene Wagner (2020). vegan: Community Ecology Package. R package version 2.5-7.</span></span>
+<span id="cb44-9"><a href="cap4.html#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   https://CRAN.R-project.org/package=vegan</span></span>
+<span id="cb44-10"><a href="cap4.html#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb44-11"><a href="cap4.html#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
+<span id="cb44-12"><a href="cap4.html#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb44-13"><a href="cap4.html#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   @Manual{,</span></span>
+<span id="cb44-14"><a href="cap4.html#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     title = {vegan: Community Ecology Package},</span></span>
+<span id="cb44-15"><a href="cap4.html#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     author = {Jari Oksanen and F. Guillaume Blanchet and Michael Friendly and Roeland Kindt and Pierre Legendre and Dan McGlinn and Peter R. Minchin and R. B. O&#39;Hara and Gavin L. Simpson and Peter Solymos and M. Henry H. Stevens and Eduard Szoecs and Helene Wagner},</span></span>
+<span id="cb44-16"><a href="cap4.html#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     year = {2020},</span></span>
+<span id="cb44-17"><a href="cap4.html#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     note = {R package version 2.5-7},</span></span>
+<span id="cb44-18"><a href="cap4.html#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     url = {https://CRAN.R-project.org/package=vegan},</span></span>
+<span id="cb44-19"><a href="cap4.html#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   }</span></span>
+<span id="cb44-20"><a href="cap4.html#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb44-21"><a href="cap4.html#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">ATTENTION</span><span class="co">: This citation information has been auto-generated from the package DESCRIPTION file and</span></span>
+<span id="cb44-22"><a href="cap4.html#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; may need manual editing, see &#39;help(&quot;citation&quot;)&#39;.</span></span></code></pre></div>
 <p>Podemos ainda utilizar a função <code>write_bib()</code> do pacote <code>knitr</code> para exportar a citação do pacote no formato <code>.bib</code>.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="cap4.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exportar uma citação em formato .bib</span></span>
 <span id="cb45-2"><a href="cap4.html#cb45-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(<span class="st">&quot;vegan&quot;</span>, <span class="at">file =</span> <span class="st">&quot;vegan_ex.bib&quot;</span>)</span></code></pre></div>
@@ -1242,12 +1413,12 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span id="cb51-3"><a href="cap4.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in colsums(dune): could not find function &quot;colsums&quot;</span></span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="cap4.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Soma das colunas</span></span>
 <span id="cb52-2"><a href="cap4.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(dune)</span>
-<span id="cb52-3"><a href="cap4.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere Bromhord Chenalbu Cirsarve Comapalu Eleopalu Elymrepe Empenigr </span></span>
-<span id="cb52-4"><a href="cap4.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       16       48        5       36       21       13       15        1        2        4       25       26        2 </span></span>
-<span id="cb52-5"><a href="cap4.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hyporadi Juncarti Juncbufo Lolipere Planlanc  Poaprat  Poatriv Ranuflam Rumeacet Sagiproc Salirepe Scorautu Trifprat </span></span>
-<span id="cb52-6"><a href="cap4.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        9       18       13       58       26       48       63       14       18       20       11       54        9 </span></span>
-<span id="cb52-7"><a href="cap4.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Trifrepe Vicilath Bracruta Callcusp </span></span>
-<span id="cb52-8"><a href="cap4.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       47        4       49       10</span></span></code></pre></div>
+<span id="cb52-3"><a href="cap4.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere Bromhord Chenalbu Cirsarve Comapalu Eleopalu Elymrepe </span></span>
+<span id="cb52-4"><a href="cap4.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       16       48        5       36       21       13       15        1        2        4       25       26 </span></span>
+<span id="cb52-5"><a href="cap4.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Empenigr Hyporadi Juncarti Juncbufo Lolipere Planlanc  Poaprat  Poatriv Ranuflam Rumeacet Sagiproc Salirepe </span></span>
+<span id="cb52-6"><a href="cap4.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        2        9       18       13       58       26       48       63       14       18       20       11 </span></span>
+<span id="cb52-7"><a href="cap4.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Scorautu Trifprat Trifrepe Vicilath Bracruta Callcusp </span></span>
+<span id="cb52-8"><a href="cap4.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       54        9       47        4       49       10</span></span></code></pre></div>
 <p><strong>6. Atentar para o diretório correto</strong></p>
 <p>Muitas vezes o erro é simplesmente porque o usuário(a) não definiu o diretório correto onde está o arquivo a ser importado ou exportado. Por isso é fundamental sempre verificar se o diretório foi definido corretamente, geralmente usando as funções <code>dir()</code> ou <code>list.files()</code> para listar no console a lista de arquivos no diretório. Podemos ainda usar o argumento <code>pattern</code> para listar arquivos por um padrão textual.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="cap4.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Listar os arquivos do diretório definido</span></span>
@@ -1414,8 +1585,8 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <p>Além disso, podemos utilizar as conversões listadas anteriormente para alterar os modos. Vamos exemplificar combinando os vetores criados anteriormente e convertendo-os.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="cap4.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Coerção</span></span>
 <span id="cb62-2"><a href="cap4.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(colar, amostragem)</span>
-<span id="cb62-3"><a href="cap4.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;amostra 1&quot; &quot;amostra 2&quot; &quot;amostra 3&quot; &quot;amostra 4&quot; &quot;amostra 5&quot; &quot;45&quot;        &quot;23&quot;        &quot;76&quot;        &quot;63&quot;        &quot;47&quot;       </span></span>
-<span id="cb62-4"><a href="cap4.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;31&quot;        &quot;68&quot;        &quot;73&quot;        &quot;69&quot;        &quot;5&quot;</span></span>
+<span id="cb62-3"><a href="cap4.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;amostra 1&quot; &quot;amostra 2&quot; &quot;amostra 3&quot; &quot;amostra 4&quot; &quot;amostra 5&quot; &quot;45&quot;        &quot;23&quot;        &quot;76&quot;        &quot;63&quot;       </span></span>
+<span id="cb62-4"><a href="cap4.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;47&quot;        &quot;31&quot;        &quot;68&quot;        &quot;73&quot;        &quot;69&quot;        &quot;5&quot;</span></span>
 <span id="cb62-5"><a href="cap4.html#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-6"><a href="cap4.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Conversão</span></span>
 <span id="cb62-7"><a href="cap4.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(repeticao)</span>
@@ -1427,24 +1598,25 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span id="cb63-2"><a href="cap4.html#cb63-2" aria-hidden="true" tabindex="-1"></a>fator_nominal <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;floresta&quot;</span>, <span class="st">&quot;pastagem&quot;</span>, <span class="st">&quot;cerrado&quot;</span>), <span class="at">size =</span> <span class="dv">20</span>,</span>
 <span id="cb63-3"><a href="cap4.html#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;floresta&quot;</span>, <span class="st">&quot;pastagem&quot;</span>, <span class="st">&quot;cerrado&quot;</span>))</span>
 <span id="cb63-4"><a href="cap4.html#cb63-4" aria-hidden="true" tabindex="-1"></a>fator_nominal</span>
-<span id="cb63-5"><a href="cap4.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta pastagem</span></span>
-<span id="cb63-6"><a href="cap4.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [14] pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span></span>
+<span id="cb63-5"><a href="cap4.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta</span></span>
+<span id="cb63-6"><a href="cap4.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span></span>
 <span id="cb63-7"><a href="cap4.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: floresta pastagem cerrado</span></span>
 <span id="cb63-8"><a href="cap4.html#cb63-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-9"><a href="cap4.html#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Fator ordinal</span></span>
 <span id="cb63-10"><a href="cap4.html#cb63-10" aria-hidden="true" tabindex="-1"></a>fator_ordinal <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;media&quot;</span>, <span class="st">&quot;alta&quot;</span>), <span class="at">size =</span> <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb63-11"><a href="cap4.html#cb63-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;media&quot;</span>, <span class="st">&quot;alta&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb63-12"><a href="cap4.html#cb63-12" aria-hidden="true" tabindex="-1"></a>fator_ordinal</span>
-<span id="cb63-13"><a href="cap4.html#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media baixa baixa</span></span>
-<span id="cb63-14"><a href="cap4.html#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: baixa &lt; media &lt; alta</span></span>
-<span id="cb63-15"><a href="cap4.html#cb63-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-16"><a href="cap4.html#cb63-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Conversão</span></span>
-<span id="cb63-17"><a href="cap4.html#cb63-17" aria-hidden="true" tabindex="-1"></a>fator <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="at">x =</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;floresta&quot;</span>, <span class="st">&quot;pastagem&quot;</span>, <span class="st">&quot;cerrado&quot;</span>), <span class="at">size =</span> <span class="dv">20</span>,</span>
-<span id="cb63-18"><a href="cap4.html#cb63-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb63-19"><a href="cap4.html#cb63-19" aria-hidden="true" tabindex="-1"></a>fator</span>
-<span id="cb63-20"><a href="cap4.html#cb63-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado  pastagem</span></span>
-<span id="cb63-21"><a href="cap4.html#cb63-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [14] pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span></span>
-<span id="cb63-22"><a href="cap4.html#cb63-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: cerrado floresta pastagem</span></span></code></pre></div>
+<span id="cb63-13"><a href="cap4.html#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media</span></span>
+<span id="cb63-14"><a href="cap4.html#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] baixa baixa</span></span>
+<span id="cb63-15"><a href="cap4.html#cb63-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: baixa &lt; media &lt; alta</span></span>
+<span id="cb63-16"><a href="cap4.html#cb63-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-17"><a href="cap4.html#cb63-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Conversão</span></span>
+<span id="cb63-18"><a href="cap4.html#cb63-18" aria-hidden="true" tabindex="-1"></a>fator <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="at">x =</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;floresta&quot;</span>, <span class="st">&quot;pastagem&quot;</span>, <span class="st">&quot;cerrado&quot;</span>), <span class="at">size =</span> <span class="dv">20</span>,</span>
+<span id="cb63-19"><a href="cap4.html#cb63-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb63-20"><a href="cap4.html#cb63-20" aria-hidden="true" tabindex="-1"></a>fator</span>
+<span id="cb63-21"><a href="cap4.html#cb63-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado </span></span>
+<span id="cb63-22"><a href="cap4.html#cb63-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] pastagem pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span></span>
+<span id="cb63-23"><a href="cap4.html#cb63-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: cerrado floresta pastagem</span></span></code></pre></div>
 <p><strong>Matriz</strong></p>
 <p>A matriz representa dados no formato de tabela, com linhas e colunas. As linhas geralmente representam unidades amostrais (locais, transectos, parcelas) e as colunas representam variáveis numéricas (discretas ou contínuas), variáveis binárias (TRUE ou FALSE) ou descrições (informações em texto).</p>
 <p>Podemos criar matrizes no R de duas formas. A primeira delas dispondo elementos de um vetor em um certo número de linhas e colunas com a função <code>matrix()</code>, podendo preencher essa matriz com os elementos do vetor por linhas ou por colunas alterando o argumento <code>byrow</code>.</p>
@@ -1657,165 +1829,323 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span id="cb71-7"><a href="cap4.html#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.80 1.20 1.75 1.15 1.90</span></span></code></pre></div>
 <p>Além da indexação, temos algumas funções que nos auxiliam em algumas operações com objetos unidimensionais, listadas na Tabela <a href="cap4.html#tab:tab-tab-funcoes-conf-uni">4.2</a>.</p>
 <table>
-<caption><span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.</caption>
+<caption>
+<span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.
+</caption>
 <thead>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
+<tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center"><code>max()</code></td>
-<td align="center">Valor máximo</td>
+<tr>
+<td style="text-align:center;">
+<code>max()</code>
+</td>
+<td style="text-align:center;">
+Valor máximo
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>min()</code></td>
-<td align="center">Valor mínimo</td>
+<tr>
+<td style="text-align:center;">
+<code>min()</code>
+</td>
+<td style="text-align:center;">
+Valor mínimo
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>range()</code></td>
-<td align="center">Amplitude</td>
+<tr>
+<td style="text-align:center;">
+<code>range()</code>
+</td>
+<td style="text-align:center;">
+Amplitude
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>length()</code></td>
-<td align="center">Comprimento</td>
+<tr>
+<td style="text-align:center;">
+<code>length()</code>
+</td>
+<td style="text-align:center;">
+Comprimento
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>sum()</code></td>
-<td align="center">Soma</td>
+<tr>
+<td style="text-align:center;">
+<code>sum()</code>
+</td>
+<td style="text-align:center;">
+Soma
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>cumsum()</code></td>
-<td align="center">Soma cumulativa</td>
+<tr>
+<td style="text-align:center;">
+<code>cumsum()</code>
+</td>
+<td style="text-align:center;">
+Soma cumulativa
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>prod()</code></td>
-<td align="center">Produto</td>
+<tr>
+<td style="text-align:center;">
+<code>prod()</code>
+</td>
+<td style="text-align:center;">
+Produto
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sqrt()</code></td>
-<td align="center">Raiz quadrada</td>
+<tr>
+<td style="text-align:center;">
+<code>sqrt()</code>
+</td>
+<td style="text-align:center;">
+Raiz quadrada
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>abs()</code></td>
-<td align="center">Valor absoluto</td>
+<tr>
+<td style="text-align:center;">
+<code>abs()</code>
+</td>
+<td style="text-align:center;">
+Valor absoluto
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>exp()</code></td>
-<td align="center">Expoente</td>
+<tr>
+<td style="text-align:center;">
+<code>exp()</code>
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>log()</code></td>
-<td align="center">Logaritmo natural</td>
+<tr>
+<td style="text-align:center;">
+<code>log()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>log1p()</code></td>
-<td align="center">Logaritmo natural mais 1 <em>log(x + 1)</em></td>
+<tr>
+<td style="text-align:center;">
+<code>log1p()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural mais 1 <em>log(x + 1)</em>
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>log2()</code></td>
-<td align="center">Logaritmo base 2</td>
+<tr>
+<td style="text-align:center;">
+<code>log2()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 2
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>log10()</code></td>
-<td align="center">Logaritmo base 10</td>
+<tr>
+<td style="text-align:center;">
+<code>log10()</code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 10
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>mean()</code></td>
-<td align="center">Média</td>
+<tr>
+<td style="text-align:center;">
+<code>mean()</code>
+</td>
+<td style="text-align:center;">
+Média
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>mean.weighted()</code></td>
-<td align="center">Média ponderada</td>
+<tr>
+<td style="text-align:center;">
+<code>mean.weighted()</code>
+</td>
+<td style="text-align:center;">
+Média ponderada
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>var()</code></td>
-<td align="center">Variância</td>
+<tr>
+<td style="text-align:center;">
+<code>var()</code>
+</td>
+<td style="text-align:center;">
+Variância
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sd()</code></td>
-<td align="center">Desvio Padrão</td>
+<tr>
+<td style="text-align:center;">
+<code>sd()</code>
+</td>
+<td style="text-align:center;">
+Desvio Padrão
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>mediam()</code></td>
-<td align="center">Mediana</td>
+<tr>
+<td style="text-align:center;">
+<code>mediam()</code>
+</td>
+<td style="text-align:center;">
+Mediana
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>quantile()</code></td>
-<td align="center">Quantil</td>
+<tr>
+<td style="text-align:center;">
+<code>quantile()</code>
+</td>
+<td style="text-align:center;">
+Quantil
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>quarters()</code></td>
-<td align="center">Quartil</td>
+<tr>
+<td style="text-align:center;">
+<code>quarters()</code>
+</td>
+<td style="text-align:center;">
+Quartil
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>IQR()</code></td>
-<td align="center">Amplitude interquartil</td>
+<tr>
+<td style="text-align:center;">
+<code>IQR()</code>
+</td>
+<td style="text-align:center;">
+Amplitude interquartil
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>round()</code></td>
-<td align="center">Arredondamento</td>
+<tr>
+<td style="text-align:center;">
+<code>round()</code>
+</td>
+<td style="text-align:center;">
+Arredondamento
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sort()</code></td>
-<td align="center">Ordenação</td>
+<tr>
+<td style="text-align:center;">
+<code>sort()</code>
+</td>
+<td style="text-align:center;">
+Ordenação
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>order()</code></td>
-<td align="center">Posição ordenada</td>
+<tr>
+<td style="text-align:center;">
+<code>order()</code>
+</td>
+<td style="text-align:center;">
+Posição ordenada
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rev()</code></td>
-<td align="center">Reverso</td>
+<tr>
+<td style="text-align:center;">
+<code>rev()</code>
+</td>
+<td style="text-align:center;">
+Reverso
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>unique()</code></td>
-<td align="center">Únicos</td>
+<tr>
+<td style="text-align:center;">
+<code>unique()</code>
+</td>
+<td style="text-align:center;">
+Únicos
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>summary()</code></td>
-<td align="center">Resumo estatístico</td>
+<tr>
+<td style="text-align:center;">
+<code>summary()</code>
+</td>
+<td style="text-align:center;">
+Resumo estatístico
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>cut()</code></td>
-<td align="center">Divide variável contínua em fator</td>
+<tr>
+<td style="text-align:center;">
+<code>cut()</code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em fator
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>pretty()</code></td>
-<td align="center">Divide variável contínua em intervalos</td>
+<tr>
+<td style="text-align:center;">
+<code>pretty()</code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em intervalos
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>scale()</code></td>
-<td align="center">Padronização e centralização</td>
+<tr>
+<td style="text-align:center;">
+<code>scale()</code>
+</td>
+<td style="text-align:center;">
+Padronização e centralização
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>sub()</code></td>
-<td align="center">Substitui caracteres</td>
+<tr>
+<td style="text-align:center;">
+<code>sub()</code>
+</td>
+<td style="text-align:center;">
+Substitui caracteres
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>grep()</code></td>
-<td align="center">Posição de caracteres</td>
+<tr>
+<td style="text-align:center;">
+<code>grep()</code>
+</td>
+<td style="text-align:center;">
+Posição de caracteres
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>any()</code></td>
-<td align="center">Algum valor?</td>
+<tr>
+<td style="text-align:center;">
+<code>any()</code>
+</td>
+<td style="text-align:center;">
+Algum valor?
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>all()</code></td>
-<td align="center">Todos os valores?</td>
+<tr>
+<td style="text-align:center;">
+<code>all()</code>
+</td>
+<td style="text-align:center;">
+Todos os valores?
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>which()</code></td>
-<td align="center">Quais valores?</td>
+<tr>
+<td style="text-align:center;">
+<code>which()</code>
+</td>
+<td style="text-align:center;">
+Quais valores?
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>subset()</code></td>
-<td align="center">Subconjunto</td>
+<tr>
+<td style="text-align:center;">
+<code>subset()</code>
+</td>
+<td style="text-align:center;">
+Subconjunto
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>ifelse()</code></td>
-<td align="center">Operação condicional</td>
+<tr>
+<td style="text-align:center;">
+<code>ifelse()</code>
+</td>
+<td style="text-align:center;">
+Operação condicional
+</td>
 </tr>
 </tbody>
 </table>
@@ -1995,77 +2325,147 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span id="cb78-16"><a href="cap4.html#cb78-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 sp10  10 floresta    1</span></span></code></pre></div>
 <p>Além disso, há uma série de funções para conferência e manipulação de dados que listamos na Tabela <a href="cap4.html#tab:tab-funcoes-conf-multi">4.3</a>.</p>
 <table>
-<caption><span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.</caption>
+<caption>
+<span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.
+</caption>
 <thead>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
+<tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center"><code>head()</code></td>
-<td align="center">Mostra as primeiras 6 linhas</td>
+<tr>
+<td style="text-align:center;">
+<code>head()</code>
+</td>
+<td style="text-align:center;">
+Mostra as primeiras 6 linhas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>tail()</code></td>
-<td align="center">Mostra as últimas 6 linhas</td>
+<tr>
+<td style="text-align:center;">
+<code>tail()</code>
+</td>
+<td style="text-align:center;">
+Mostra as últimas 6 linhas
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>nrow()</code></td>
-<td align="center">Mostra o número de linhas</td>
+<tr>
+<td style="text-align:center;">
+<code>nrow()</code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>ncol()</code></td>
-<td align="center">Mostra o número de colunas</td>
+<tr>
+<td style="text-align:center;">
+<code>ncol()</code>
+</td>
+<td style="text-align:center;">
+Mostra o número de colunas
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>dim()</code></td>
-<td align="center">Mostra o número de linhas e de colunas</td>
+<tr>
+<td style="text-align:center;">
+<code>dim()</code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas e de colunas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rownames()</code></td>
-<td align="center">Mostra os nomes das linhas (locais)</td>
+<tr>
+<td style="text-align:center;">
+<code>rownames()</code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das linhas (locais)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>colnames()</code></td>
-<td align="center">Mostra os nomes das colunas (variáveis)</td>
+<tr>
+<td style="text-align:center;">
+<code>colnames()</code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das colunas (variáveis)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>str()</code></td>
-<td align="center">Mostra as classes de cada coluna (estrutura)</td>
+<tr>
+<td style="text-align:center;">
+<code>str()</code>
+</td>
+<td style="text-align:center;">
+Mostra as classes de cada coluna (estrutura)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>summary()</code></td>
-<td align="center">Mostra um resumo dos valores de cada coluna</td>
+<tr>
+<td style="text-align:center;">
+<code>summary()</code>
+</td>
+<td style="text-align:center;">
+Mostra um resumo dos valores de cada coluna
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rowSums()</code></td>
-<td align="center">Calcula a soma das linhas (horizontal)</td>
+<tr>
+<td style="text-align:center;">
+<code>rowSums()</code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das linhas (horizontal)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>colSums()</code></td>
-<td align="center">Calcula a soma das colunas (vertical)</td>
+<tr>
+<td style="text-align:center;">
+<code>colSums()</code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das colunas (vertical)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>rowMeans()</code></td>
-<td align="center">Calcula a média das linhas (horizontal)</td>
+<tr>
+<td style="text-align:center;">
+<code>rowMeans()</code>
+</td>
+<td style="text-align:center;">
+Calcula a média das linhas (horizontal)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>colMeans()</code></td>
-<td align="center">Calcula a média das colunas (vertical)</td>
+<tr>
+<td style="text-align:center;">
+<code>colMeans()</code>
+</td>
+<td style="text-align:center;">
+Calcula a média das colunas (vertical)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>str()</code></td>
-<td align="center">Mostra a estrutura dos dados</td>
+<tr>
+<td style="text-align:center;">
+<code>str()</code>
+</td>
+<td style="text-align:center;">
+Mostra a estrutura dos dados
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>table()</code></td>
-<td align="center">Tabulação cruzada</td>
+<tr>
+<td style="text-align:center;">
+<code>table()</code>
+</td>
+<td style="text-align:center;">
+Tabulação cruzada
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>t()</code></td>
-<td align="center">Matriz ou data frame transposto</td>
+<tr>
+<td style="text-align:center;">
+<code>t()</code>
+</td>
+<td style="text-align:center;">
+Matriz ou data frame transposto
+</td>
 </tr>
 </tbody>
 </table>
@@ -2201,34 +2601,34 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="cap4.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Importar os dados pelo pacote ecodados</span></span>
 <span id="cb86-2"><a href="cap4.html#cb86-2" aria-hidden="true" tabindex="-1"></a>intror_anfibios_locais <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>intror_anfibios_locais</span>
 <span id="cb86-3"><a href="cap4.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(intror_anfibios_locais)</span>
-<span id="cb86-4"><a href="cap4.html#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span></span>
-<span id="cb86-5"><a href="cap4.html#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb86-6"><a href="cap4.html#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb86-7"><a href="cap4.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb86-8"><a href="cap4.html#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb86-9"><a href="cap4.html#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb86-10"><a href="cap4.html#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb86-11"><a href="cap4.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span></span>
-<span id="cb86-12"><a href="cap4.html#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span></span>
-<span id="cb86-13"><a href="cap4.html#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span></span>
-<span id="cb86-14"><a href="cap4.html#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span></span>
-<span id="cb86-15"><a href="cap4.html#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span></span>
-<span id="cb86-16"><a href="cap4.html#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span></span>
-<span id="cb86-17"><a href="cap4.html#cb86-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span></span>
-<span id="cb86-18"><a href="cap4.html#cb86-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span></span>
-<span id="cb86-19"><a href="cap4.html#cb86-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span></span>
-<span id="cb86-20"><a href="cap4.html#cb86-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span></span>
-<span id="cb86-21"><a href="cap4.html#cb86-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span></span>
-<span id="cb86-22"><a href="cap4.html#cb86-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span></span>
-<span id="cb86-23"><a href="cap4.html#cb86-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span></span>
-<span id="cb86-24"><a href="cap4.html#cb86-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span></span>
-<span id="cb86-25"><a href="cap4.html#cb86-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   precipitation</span></span>
-<span id="cb86-26"><a href="cap4.html#cb86-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1           853</span></span>
-<span id="cb86-27"><a href="cap4.html#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2          1318</span></span>
-<span id="cb86-28"><a href="cap4.html#cb86-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3          1248</span></span>
-<span id="cb86-29"><a href="cap4.html#cb86-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4          1376</span></span>
-<span id="cb86-30"><a href="cap4.html#cb86-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5          1689</span></span>
-<span id="cb86-31"><a href="cap4.html#cb86-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6          1249</span></span></code></pre></div>
+<span id="cb86-4"><a href="cap4.html#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods</span></span>
+<span id="cb86-5"><a href="cap4.html#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt</span></span>
+<span id="cb86-6"><a href="cap4.html#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt</span></span>
+<span id="cb86-7"><a href="cap4.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt</span></span>
+<span id="cb86-8"><a href="cap4.html#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt</span></span>
+<span id="cb86-9"><a href="cap4.html#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;</span></span>
+<span id="cb86-10"><a href="cap4.html#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb86-11"><a href="cap4.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   complementary_methods      period month_start year_start month_finish year_finish effort_months country state</span></span>
+<span id="cb86-12"><a href="cap4.html#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1                  &lt;NA&gt; mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí</span></span>
+<span id="cb86-13"><a href="cap4.html#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span></span>
+<span id="cb86-14"><a href="cap4.html#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span></span>
+<span id="cb86-15"><a href="cap4.html#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span></span>
+<span id="cb86-16"><a href="cap4.html#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5                  &lt;NA&gt;    mo,da,ni           7       1988            8        2001           157  Brazil Ceará</span></span>
+<span id="cb86-17"><a href="cap4.html#cb86-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6                  &lt;NA&gt;        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará</span></span>
+<span id="cb86-18"><a href="cap4.html#cb86-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   state_abbreviation            municipality                                site  latitude longitude</span></span>
+<span id="cb86-19"><a href="cap4.html#cb86-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1              BR-PI         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194</span></span>
+<span id="cb86-20"><a href="cap4.html#cb86-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2              BR-CE São Gonçalo do Amarante                               Dunas -3.545527 -38.85783</span></span>
+<span id="cb86-21"><a href="cap4.html#cb86-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3              BR-CE São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869</span></span>
+<span id="cb86-22"><a href="cap4.html#cb86-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4              BR-CE São Gonçalo do Amarante                               Taíba -3.515250 -38.91880</span></span>
+<span id="cb86-23"><a href="cap4.html#cb86-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5              BR-CE                Baturité                   Serra de Baturité -4.280556 -38.91083</span></span>
+<span id="cb86-24"><a href="cap4.html#cb86-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6              BR-CE             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806</span></span>
+<span id="cb86-25"><a href="cap4.html#cb86-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   coordinate_precision altitude temperature precipitation</span></span>
+<span id="cb86-26"><a href="cap4.html#cb86-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1                   gm      543       24.98           853</span></span>
+<span id="cb86-27"><a href="cap4.html#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2                   dd       15       26.53          1318</span></span>
+<span id="cb86-28"><a href="cap4.html#cb86-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3                   dd       29       26.45          1248</span></span>
+<span id="cb86-29"><a href="cap4.html#cb86-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4                   dd       25       26.55          1376</span></span>
+<span id="cb86-30"><a href="cap4.html#cb86-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5                   gm      750       21.35          1689</span></span>
+<span id="cb86-31"><a href="cap4.html#cb86-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6                 &lt;NA&gt;      745       20.45          1249</span></span></code></pre></div>
 </div>
 <div id="conferência-dos-dados-importados" class="section level3" number="4.4.7">
 <h3><span class="header-section-number">4.4.7</span> Conferência dos dados importados</h3>
@@ -2236,65 +2636,65 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <p>Dentre todas essas funções de verificação, destacamos a importância destas funções apresentadas abaixo para saber se as variáveis foram importadas e interpretadas corretamente e reconhecer erros de digitação, por exemplo.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="cap4.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Primeiras linhas</span></span>
 <span id="cb87-2"><a href="cap4.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(intror_anfibios_locais)</span>
-<span id="cb87-3"><a href="cap4.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span></span>
-<span id="cb87-4"><a href="cap4.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb87-5"><a href="cap4.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb87-6"><a href="cap4.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb87-7"><a href="cap4.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span></span>
-<span id="cb87-8"><a href="cap4.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-9"><a href="cap4.html#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-10"><a href="cap4.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span></span>
-<span id="cb87-11"><a href="cap4.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span></span>
-<span id="cb87-12"><a href="cap4.html#cb87-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span></span>
-<span id="cb87-13"><a href="cap4.html#cb87-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span></span>
-<span id="cb87-14"><a href="cap4.html#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span></span>
-<span id="cb87-15"><a href="cap4.html#cb87-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span></span>
-<span id="cb87-16"><a href="cap4.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span></span>
-<span id="cb87-17"><a href="cap4.html#cb87-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span></span>
-<span id="cb87-18"><a href="cap4.html#cb87-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span></span>
-<span id="cb87-19"><a href="cap4.html#cb87-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span></span>
-<span id="cb87-20"><a href="cap4.html#cb87-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span></span>
-<span id="cb87-21"><a href="cap4.html#cb87-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span></span>
-<span id="cb87-22"><a href="cap4.html#cb87-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span></span>
-<span id="cb87-23"><a href="cap4.html#cb87-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span></span>
-<span id="cb87-24"><a href="cap4.html#cb87-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   precipitation</span></span>
-<span id="cb87-25"><a href="cap4.html#cb87-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1           853</span></span>
-<span id="cb87-26"><a href="cap4.html#cb87-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2          1318</span></span>
-<span id="cb87-27"><a href="cap4.html#cb87-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3          1248</span></span>
-<span id="cb87-28"><a href="cap4.html#cb87-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4          1376</span></span>
-<span id="cb87-29"><a href="cap4.html#cb87-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5          1689</span></span>
-<span id="cb87-30"><a href="cap4.html#cb87-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6          1249</span></span>
+<span id="cb87-3"><a href="cap4.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods</span></span>
+<span id="cb87-4"><a href="cap4.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt</span></span>
+<span id="cb87-5"><a href="cap4.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt</span></span>
+<span id="cb87-6"><a href="cap4.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt</span></span>
+<span id="cb87-7"><a href="cap4.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt</span></span>
+<span id="cb87-8"><a href="cap4.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;</span></span>
+<span id="cb87-9"><a href="cap4.html#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-10"><a href="cap4.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   complementary_methods      period month_start year_start month_finish year_finish effort_months country state</span></span>
+<span id="cb87-11"><a href="cap4.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1                  &lt;NA&gt; mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí</span></span>
+<span id="cb87-12"><a href="cap4.html#cb87-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span></span>
+<span id="cb87-13"><a href="cap4.html#cb87-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span></span>
+<span id="cb87-14"><a href="cap4.html#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span></span>
+<span id="cb87-15"><a href="cap4.html#cb87-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5                  &lt;NA&gt;    mo,da,ni           7       1988            8        2001           157  Brazil Ceará</span></span>
+<span id="cb87-16"><a href="cap4.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6                  &lt;NA&gt;        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará</span></span>
+<span id="cb87-17"><a href="cap4.html#cb87-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   state_abbreviation            municipality                                site  latitude longitude</span></span>
+<span id="cb87-18"><a href="cap4.html#cb87-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1              BR-PI         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194</span></span>
+<span id="cb87-19"><a href="cap4.html#cb87-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2              BR-CE São Gonçalo do Amarante                               Dunas -3.545527 -38.85783</span></span>
+<span id="cb87-20"><a href="cap4.html#cb87-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3              BR-CE São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869</span></span>
+<span id="cb87-21"><a href="cap4.html#cb87-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4              BR-CE São Gonçalo do Amarante                               Taíba -3.515250 -38.91880</span></span>
+<span id="cb87-22"><a href="cap4.html#cb87-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5              BR-CE                Baturité                   Serra de Baturité -4.280556 -38.91083</span></span>
+<span id="cb87-23"><a href="cap4.html#cb87-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6              BR-CE             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806</span></span>
+<span id="cb87-24"><a href="cap4.html#cb87-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   coordinate_precision altitude temperature precipitation</span></span>
+<span id="cb87-25"><a href="cap4.html#cb87-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1                   gm      543       24.98           853</span></span>
+<span id="cb87-26"><a href="cap4.html#cb87-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2                   dd       15       26.53          1318</span></span>
+<span id="cb87-27"><a href="cap4.html#cb87-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3                   dd       29       26.45          1248</span></span>
+<span id="cb87-28"><a href="cap4.html#cb87-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4                   dd       25       26.55          1376</span></span>
+<span id="cb87-29"><a href="cap4.html#cb87-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5                   gm      750       21.35          1689</span></span>
+<span id="cb87-30"><a href="cap4.html#cb87-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6                 &lt;NA&gt;      745       20.45          1249</span></span>
 <span id="cb87-31"><a href="cap4.html#cb87-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-32"><a href="cap4.html#cb87-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Últimas linhas</span></span>
 <span id="cb87-33"><a href="cap4.html#cb87-33" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(intror_anfibios_locais)</span>
-<span id="cb87-34"><a href="cap4.html#cb87-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span></span>
-<span id="cb87-35"><a href="cap4.html#cb87-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158 amp2158             1389              3     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-36"><a href="cap4.html#cb87-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159 amp2159             1389              9     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-37"><a href="cap4.html#cb87-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160 amp2160             1389              6     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-38"><a href="cap4.html#cb87-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161 amp2161             1389              1     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-39"><a href="cap4.html#cb87-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162 amp2162             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-40"><a href="cap4.html#cb87-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163 amp2163             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span></span>
-<span id="cb87-41"><a href="cap4.html#cb87-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      period month_start year_start month_finish year_finish effort_months   country    state state_abbreviation</span></span>
-<span id="cb87-42"><a href="cap4.html#cb87-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span></span>
-<span id="cb87-43"><a href="cap4.html#cb87-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span></span>
-<span id="cb87-44"><a href="cap4.html#cb87-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span></span>
-<span id="cb87-45"><a href="cap4.html#cb87-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span></span>
-<span id="cb87-46"><a href="cap4.html#cb87-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span></span>
-<span id="cb87-47"><a href="cap4.html#cb87-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span></span>
-<span id="cb87-48"><a href="cap4.html#cb87-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         municipality                          site  latitude longitude coordinate_precision altitude temperature</span></span>
-<span id="cb87-49"><a href="cap4.html#cb87-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158 Manuel Belgrano          Comandante Andresito -25.66944 -54.04556                  gms      251       19.94</span></span>
-<span id="cb87-50"><a href="cap4.html#cb87-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159         Posadas                       Posadas -27.45333 -55.89250                  gms      105       21.30</span></span>
-<span id="cb87-51"><a href="cap4.html#cb87-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160      Montecarlo                    Montecarlo -26.56889 -53.60889                  gms      597       18.35</span></span>
-<span id="cb87-52"><a href="cap4.html#cb87-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161       San Pedro                Refugio Moconá -27.14083 -53.92611                  gms      202       19.92</span></span>
-<span id="cb87-53"><a href="cap4.html#cb87-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162        Cainguás Balneario Municipal Cuñá Pirú -27.08722 -54.95278                  gms      213       21.04</span></span>
-<span id="cb87-54"><a href="cap4.html#cb87-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163           Oberá       Chacra San Juan de Dios -27.47333 -55.17194                  gms      254       20.67</span></span>
-<span id="cb87-55"><a href="cap4.html#cb87-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      precipitation</span></span>
-<span id="cb87-56"><a href="cap4.html#cb87-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158          1780</span></span>
-<span id="cb87-57"><a href="cap4.html#cb87-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159          1768</span></span>
-<span id="cb87-58"><a href="cap4.html#cb87-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160          1954</span></span>
-<span id="cb87-59"><a href="cap4.html#cb87-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161          1850</span></span>
-<span id="cb87-60"><a href="cap4.html#cb87-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162          1553</span></span>
-<span id="cb87-61"><a href="cap4.html#cb87-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163          1683</span></span>
+<span id="cb87-34"><a href="cap4.html#cb87-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           id reference_number species_number record sampled_habitat active_methods passive_methods</span></span>
+<span id="cb87-35"><a href="cap4.html#cb87-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158 amp2158             1389              3     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-36"><a href="cap4.html#cb87-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159 amp2159             1389              9     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-37"><a href="cap4.html#cb87-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160 amp2160             1389              6     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-38"><a href="cap4.html#cb87-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161 amp2161             1389              1     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-39"><a href="cap4.html#cb87-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162 amp2162             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-40"><a href="cap4.html#cb87-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163 amp2163             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span></span>
+<span id="cb87-41"><a href="cap4.html#cb87-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      complementary_methods period month_start year_start month_finish year_finish effort_months   country</span></span>
+<span id="cb87-42"><a href="cap4.html#cb87-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina</span></span>
+<span id="cb87-43"><a href="cap4.html#cb87-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina</span></span>
+<span id="cb87-44"><a href="cap4.html#cb87-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina</span></span>
+<span id="cb87-45"><a href="cap4.html#cb87-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina</span></span>
+<span id="cb87-46"><a href="cap4.html#cb87-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina</span></span>
+<span id="cb87-47"><a href="cap4.html#cb87-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina</span></span>
+<span id="cb87-48"><a href="cap4.html#cb87-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         state state_abbreviation    municipality                          site  latitude longitude</span></span>
+<span id="cb87-49"><a href="cap4.html#cb87-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158 Misiones               AR-N Manuel Belgrano          Comandante Andresito -25.66944 -54.04556</span></span>
+<span id="cb87-50"><a href="cap4.html#cb87-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159 Misiones               AR-N         Posadas                       Posadas -27.45333 -55.89250</span></span>
+<span id="cb87-51"><a href="cap4.html#cb87-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160 Misiones               AR-N      Montecarlo                    Montecarlo -26.56889 -53.60889</span></span>
+<span id="cb87-52"><a href="cap4.html#cb87-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161 Misiones               AR-N       San Pedro                Refugio Moconá -27.14083 -53.92611</span></span>
+<span id="cb87-53"><a href="cap4.html#cb87-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162 Misiones               AR-N        Cainguás Balneario Municipal Cuñá Pirú -27.08722 -54.95278</span></span>
+<span id="cb87-54"><a href="cap4.html#cb87-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163 Misiones               AR-N           Oberá       Chacra San Juan de Dios -27.47333 -55.17194</span></span>
+<span id="cb87-55"><a href="cap4.html#cb87-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      coordinate_precision altitude temperature precipitation</span></span>
+<span id="cb87-56"><a href="cap4.html#cb87-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1158                  gms      251       19.94          1780</span></span>
+<span id="cb87-57"><a href="cap4.html#cb87-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1159                  gms      105       21.30          1768</span></span>
+<span id="cb87-58"><a href="cap4.html#cb87-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1160                  gms      597       18.35          1954</span></span>
+<span id="cb87-59"><a href="cap4.html#cb87-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1161                  gms      202       19.92          1850</span></span>
+<span id="cb87-60"><a href="cap4.html#cb87-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1162                  gms      213       21.04          1553</span></span>
+<span id="cb87-61"><a href="cap4.html#cb87-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1163                  gms      254       20.67          1683</span></span>
 <span id="cb87-62"><a href="cap4.html#cb87-62" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-63"><a href="cap4.html#cb87-63" aria-hidden="true" tabindex="-1"></a><span class="do">## Número de linhas e colunas</span></span>
 <span id="cb87-64"><a href="cap4.html#cb87-64" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(intror_anfibios_locais)</span>
