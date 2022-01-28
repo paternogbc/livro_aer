@@ -31,7 +31,7 @@ No capítulo \@ref(cap7), descrevemos sobre os modelos lineares (também chamado
 
 $$Y = \beta_0 + \beta_{1}X_i + \epsilon_i$$
 
-Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para a regressão lineare e variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de (@fox_ecological_2015). Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logarítmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
+Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para a regressão lineare e variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de [@fox_ecological_2015]. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logarítmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
 
 Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar Cumulative Link Models para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.
 
@@ -129,13 +129,13 @@ O primeiro argumento da função `glm()` é uma fórmula, em que na parte esquer
 mod_pois <- glm(Riqueza_obs ~ dfrag, family = poisson(link = "log"), data = fragmentos)
 ```
 
-Assim como modelos lineares que vimos no Capítulo \@ref(cap7), GLMs com distribuição de Poisson requerem que se realizem testes de pressupostos de normalidade dos resíduos e homogeneiradade de variância, assim como sobredispersão e inflação de zeros.
+Assim como modelos lineares que vimos no Capítulo \@ref(cap7), GLMs com distribuição de Poisson requerem que se realizem testes de pressupostos de normalidade e homogeneidade de variância dos resíduos, assim como sobredispersão e inflação de zeros.
 
 **Diagnose básica dos resíduos do modelo**
 
 Iremos realizar três diagnoses básicas dos GLMs, avaliando diferentes aspectos do modelo:
 
-1.  Homogeneiradade da variância e normalidade dos resíduos
+1.  Homogeneidade da variância e normalidade dos resíduos
 2.  Sobredispersão (*Overdispersion*)
 3.  Inflação de zeros (*Zero-inflation*)
 
@@ -149,13 +149,13 @@ plot(mod_pois) #TODOS OS 4 PLOTS
 par(mfrow = c(1, 1))
 ```
 
-Vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que existe homogeneidade de variância dos resíduos. Vemos também que nos quatro plots alguns dados, 1, 7 e 30 (referem-se às linhas do data.frame) aparecem identificados, pois apresentam ligeiro desvio da normalidade e estão distantes da média. No entanto, não é algo para nos preocuparmos, pois não são valores muito extremos. Portanto, a diagnose básica indicou que o modelo com Poisson parece ser adequado para modelar estes dados, ao menos em termos de homogeneidade de variância.
+Vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que existe homogeneidade de variância dos resíduos. Vemos também que nos quatro plots alguns dados, 1, 7 e 30 (referem-se às linhas do data frame) aparecem identificados, pois apresentam ligeiro desvio da normalidade e estão distantes da média. No entanto, não é algo para nos preocuparmos, pois não são valores muito extremos. Portanto, a diagnose básica indicou que o modelo com Poisson parece ser adequado para modelar estes dados, ao menos em termos de homogeneidade de variância.
 
 **Diagnose avançada dos resíduos do modelo**
 
 Alguns pacotes permitem calcular outros aspectos do modelo que facilitam a diagnose, ou seja, se podemos de fato confiar nos parâmetros estimados por eles, incluindo valores de significância. Um pressuposto importante dos modelos de contagem (incluindo Poisson) é a sobredispersão (*overdispersion*).
 
-Vejamos como o pacote `DHARMa` funciona \@ref(fig:fig-mod-poi-diag-avan)).
+Vejamos como o pacote `DHARMa` funciona (Figura \@ref(fig:fig-mod-poi-diag-avan)).
 
 ```{r fig-mod-poi-diag-avan, fig.cap="Diagnose avançada dos resíduos do modelo GLM Poisson."}
 ## Diagnose avançada
@@ -307,14 +307,14 @@ par(mfrow = c(1, 1))
 (chat <- deviance(mod_nb) / df.residual(mod_nb)) # DISPERSION PARAMETER
 ```
 
-Compare estes gráficos (Figura \@ref(fig:fig-mod-nb-diag)) com os do modelo anterior com distribuição Poisson (Figura \@ref(fig:fig-mod-poi-diag-bas)). Eles são praticamente idênticos, ou seja, o modelo com Poisson já não tinha homogeneidade de variância nem problemas com normalidade dos resíduos. Agora vejamos se o problema com *overdispersion* foi resolvido (Figura \@ref(fig:fig-mod-bn-diag-avan)).
+Compare estes gráficos (Figura \@ref(fig:fig-mod-nb-diag)) com os do modelo anterior com distribuição Poisson (Figura \@ref(fig:fig-mod-poi-diag-bas)). Eles são praticamente idênticos, ou seja, o modelo com Poisson já tinha homogeneidade de variância e não tinha problemas com normalidade dos resíduos. Agora vejamos se o problema com *overdispersion* foi resolvido (Figura \@ref(fig:fig-mod-bn-diag-avan)).
 
 ```{r fig-mod-bn-diag-avan, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial Negativo."}
 ## Diagnose avançada
 simulationOutput <- simulateResiduals(fittedModel = mod_nb, plot = TRUE)
 ```
 
-Na diagnose do modelo pelo `DHARMa`, vemos que bastou mudar a distribuição de probabilidade que o problema de *overdispersion* foi resolvido (nenhum teste foi significativo no quadro da esquerda), e como já sabíamos, não há problemas com homogeneidade de variância  (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de *outliers*. O *dispersion parameter* é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R^2^.
+Na diagnose do modelo pelo `DHARMa`, vemos que bastou mudar a distribuição de probabilidade que o problema de *overdispersion* foi resolvido (nenhum teste foi significativo no quadro da esquerda), e como já sabíamos, não há problemas com homogeneidade de variância (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de *outliers*. O *dispersion parameter* é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R^2^.
 
 **Inferência**
 
@@ -449,7 +449,7 @@ plot(mod1)
 par(mfrow = c(1, 1))
 ```
 
-Parece que os resíduos não sofrem de homogeneidade de variância  (linha vermelha está reta), mas parece haver um pequeno desvio da normalidade (veja pontos 19, 29 e 32 destacados no plot de quantis e no de outliers). Vejamos o que o `DHARMa` nos diz (Figura \@ref(fig:fig-mod-quasi-bin-diag-avan)).
+Parece que os resíduos não sofrem de heterogeneidade de variância  (linha vermelha está reta), mas parece haver um pequeno desvio da normalidade (veja pontos 19, 29 e 32 destacados no plot de quantis e no de outliers). Vejamos o que o `DHARMa` nos diz (Figura \@ref(fig:fig-mod-quasi-bin-diag-avan)).
 
 ```{r fig-mod-quasi-bin-diag-avan, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial."}
 ## Diagnose avançada
@@ -457,7 +457,7 @@ simulationBion <- simulateResiduals(fittedModel = mod1, plot = TRUE)
 binned_residuals(mod1)
 ```
 
-Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com homogeneidade de variância, quanto *overdispersion* e problemas com *outliers*. Provavelmente o problema com *outliers* ocorreu por conta do pequeno tamanho amostral.
+Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com heterogeneidade de variância, quanto *overdispersion* e problemas com *outliers*. Provavelmente o problema com *outliers* ocorreu por conta do pequeno tamanho amostral.
 
 **Inferência**
 
@@ -889,4 +889,4 @@ lineplot.CI(Time, Darkness, Treatment, data = darknessmale,
 
 ## Para se aprofundar
 
-Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros [@zuur_protocol_2009] e [@pinheiro_mixed-effects_2000] que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros do Alan Agresti, tais como [@agresti2010] e Categorical Data Analysis, 3rd Edition, do mesmo autor.
+Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros [@zuur_protocol_2009] e [@pinheiro_mixed-effects_2000] que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros do Alan Agresti, tais como [@agresti2010] e Categorical Data Analysis, 3rd Edition, do mesmo autor. 

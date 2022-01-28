@@ -639,7 +639,7 @@ plot(geo_vetor_brasil[1], col = "gray", main = NA, axes = TRUE, graticule = TRUE
 
 É muito comum em coletas de campo ou bases de dados, ter coordenadas de locais de estudo ou de ocorrências de espécies organizadas em tabelas. Essas tabelas devem possuir duas colunas: longitude e latitude, ou X e Y para dados UTM, por exemplo. Ao importá-las para o R, o formato que assumem pode ser de uma das classes: `matrix`, `data frame` ou `tibble`, ou seja, ainda não são da classe vetorial `sf`. Nesta seção iremos ver como fazer essa conversão.
 
-Para tanto, vamos usar os dados de comunidades de anfíbios da Mata Atlântica (Atlantic Amphibians, @vancine2018). Faremos o download diretamente do site da fonte dos dados. Antes vamos criar um diretório.
+Para tanto, vamos usar os dados de comunidades de anfíbios da Mata Atlântica (Atlantic Amphibians, Vancine et al. [-@vancine2018]). Faremos o download diretamente do site da fonte dos dados. Antes vamos criar um diretório.
 
 ```{r eval=TRUE}
 ## Criar diretório
@@ -687,7 +687,7 @@ geo_anfibios_locais_vetor <- geo_anfibios_locais %>%
 geo_anfibios_locais_vetor
 ```
 
-```{r fig-vetor-pontos-atlantic-amphibians, fig.cap="Coordenadas das comunidades do Atlantic Amphinians (@vancine2018)."}
+```{r fig-vetor-pontos-atlantic-amphibians, fig.cap="Coordenadas das comunidades do Atlantic Amphibians [@vancine2018]."}
 ## Plot
 plot(geo_anfibios_locais_vetor[1], pch = 20, col = "black", 
      main = NA, axes = TRUE, graticule = TRUE)
@@ -1685,7 +1685,7 @@ plot(geo_vetor_rio_claro$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 **Operações focais**
 
-As operações focais levam em consideração uma célula central e seus vizinhos. A vizinhança (também chamada de janela móvel - *moving window*) tipicamente é composta de células de 3 por 3 (célula central e seus oito vizinhos), mas pode assumir outra forma. A operação focal aplica uma função de agregação a todas as células dentro da vizinhança especificada, e usa a saída correspondente como o novo valor para a célula central, e segue para a próxima célula central e seus vizinhos. Essa operação é realizada através da função `raster::focal()`. O parâmetro `x` especifica o raster de entrada, o parâmetro `w` define a janela móvel por uma matriz cujos valores correspondem a pesos, e por fim, o parâmetro `fun` especifica a função que desejamos aplicar às células, como `min()`, `max()`, `sum()`, `mean()`, `sd()` ou `var()`. Existem diversas aplicações dessa operação para dados raster, como no processamento de imagens de satélite (ver mais em @wegmann2016). Outra utilidade é para o cálculo de características topográficas, como declividade, aspecto e direções de fluxo. Para calcular essas métricas específicas, podemos utilizar a função `raster::terrain()`.
+As operações focais levam em consideração uma célula central e seus vizinhos. A vizinhança (também chamada de janela móvel - *moving window*) tipicamente é composta de células de 3 por 3 (célula central e seus oito vizinhos), mas pode assumir outra forma. A operação focal aplica uma função de agregação a todas as células dentro da vizinhança especificada, e usa a saída correspondente como o novo valor para a célula central, e segue para a próxima célula central e seus vizinhos. Essa operação é realizada através da função `raster::focal()`. O parâmetro `x` especifica o raster de entrada, o parâmetro `w` define a janela móvel por uma matriz cujos valores correspondem a pesos, e por fim, o parâmetro `fun` especifica a função que desejamos aplicar às células, como `min()`, `max()`, `sum()`, `mean()`, `sd()` ou `var()`. Existem diversas aplicações dessa operação para dados raster, como no processamento de imagens de satélite (ver mais em Wegmann et al. [-@wegmann2016]). Outra utilidade é para o cálculo de características topográficas, como declividade, aspecto e direções de fluxo. Para calcular essas métricas específicas, podemos utilizar a função `raster::terrain()`.
 
 Para nosso exemplo, vamos realizar o cálculo do desvio padrão da elevação e a métrica de aspecto (orientação da vertente) para o raster de elevação em Rio Claro/SP (Figura \@ref(fig:fig-raster-focal)).
 
@@ -1859,7 +1859,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1,
 
 **Polígonos de Voronoi**
 
-Uma outra forma de criar polígonos para resumir dados espaciais é através dos Polígonos de Voronoi ou Diagrama de Voronoi. Nele, polígonos irregulares são criados a partir da proximidade de pontos, de modo a estimar uma área de abrangência no entorno dos mesmos (@okabe_spatial_2000). Esses polígonos podem ser criados com a função `sf::st_voronoi()`, mas precisamos novamente utilizar a função `sf::st_union()` para unir todos os pontos e criar um objeto `sf` do tipo `MULTIPOINT`. Vamos utilizar os pontos aleatórios que criamos anteriormente para criar o polígono de Voronoi (Figura \@ref(fig:fig-vetor-voronoi)).
+Uma outra forma de criar polígonos para resumir dados espaciais é através dos Polígonos de Voronoi ou Diagrama de Voronoi. Nele, polígonos irregulares são criados a partir da proximidade de pontos, de modo a estimar uma área de abrangência no entorno dos mesmos [@okabe_spatial_2000]. Esses polígonos podem ser criados com a função `sf::st_voronoi()`, mas precisamos novamente utilizar a função `sf::st_union()` para unir todos os pontos e criar um objeto `sf` do tipo `MULTIPOINT`. Vamos utilizar os pontos aleatórios que criamos anteriormente para criar o polígono de Voronoi (Figura \@ref(fig:fig-vetor-voronoi)).
 
 ```{r}
 ## Polígonos de Voronoi
@@ -1877,7 +1877,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1,
 
 **Quadrículas e hexágonos**
 
-Muitas vezes precisamos criar unidades espaciais idênticas e igualmente espaçadas para resumir informações dispersas por toda a nossa área de estudo. Uma prática muito comum é a criação de um gride de pontos ou quadrículas em toda a área de estudo, e depois utilizar essas geometrias para associar ou resumir informações espacializadas, como a IUCN utiliza para a análise de área de ocupação (*Are of occupancy* - AOO). Além das quadrículas, uma outra geometria que se tornou bastante comum para as finalidades descritas, é a criação de hexágonos, que além de serem mais esteticamente atraentes, possuem uma explicação matemática de sua melhor funcionalidade para análises espaciais em Ecologia (@birch_rectangular_2007).
+Muitas vezes precisamos criar unidades espaciais idênticas e igualmente espaçadas para resumir informações dispersas por toda a nossa área de estudo. Uma prática muito comum é a criação de um gride de pontos ou quadrículas em toda a área de estudo, e depois utilizar essas geometrias para associar ou resumir informações espacializadas, como a IUCN utiliza para a análise de área de ocupação (*Are of occupancy* - AOO). Além das quadrículas, uma outra geometria que se tornou bastante comum para as finalidades descritas, é a criação de hexágonos, que além de serem mais esteticamente atraentes, possuem uma explicação matemática de sua melhor funcionalidade para análises espaciais em Ecologia [@birch_rectangular_2007].
 
 A função utilizada para criar esses grides é a `sf::st_make_grid()`, que requer pelo menos dois argumentos: `x` uma geometria de entrada e o `cellsize` indicando o tamanho do gride a ser criado, fornecido nas unidades do CRS da geometria de entrada. Há diversos outros argumentos, mas os mais importantes são o `square` que definirá se o gride será de quadriculas ou de hexágonos, e o `what` que definirá se geraremos polígonos, cantos ou centroides.
 
@@ -3118,13 +3118,6 @@ unzip(zipfile = here::here("dados", "raster", "Globcover2009_V2.3_Global.zip"),
       exdir = here::here("dados", "raster"))
 ```
 
-Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote `ecodados`.
-
-```{r eval=FALSE}
-## Importar os dados pelo pacote ecodados
-ecodados::geo_raster_globcover
-```
-
 Depois de fazer o download, vamos importar e ajustar esse raster para o limite da Mata Atlântica (Figura \@ref(fig:fig-raster-globcover)).
 
 ```{r}
@@ -3137,6 +3130,14 @@ geo_raster_globcover_mata_atlantica <- geo_raster_globcover %>%
     raster::crop(geo_vetor_mata_atlantica) %>% 
     raster::mask(geo_vetor_mata_atlantica)
 geo_raster_globcover_mata_atlantica
+```
+
+
+Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote `ecodados`.
+
+```{r eval=FALSE}
+## Importar os dados pelo pacote ecodados
+ecodados::geo_raster_globcover_mata_atlantica
 ```
 
 ```{r fig-raster-globcover, fig.cap="Camada raster do GlobCover 2.3 para o Bioma da Mata Atlântica."}

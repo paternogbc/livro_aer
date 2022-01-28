@@ -173,7 +173,7 @@ Diferente dos índices de riqueza de espécies que não levam em consideração 
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-Ressaltamos que há várias críticas em relação ao uso dos índices de diversidade que são abstratos e difíceis de se interpretar [@hurlbert1971]. Por exemplo, dizer que o valor X estimado por índices de diversidade é alto ou baixo é irrelevante se não tivermos uma base comparativa (para mais detalhes veja @melo2008).
+Ressaltamos que há várias críticas em relação ao uso dos índices de diversidade que são abstratos e difíceis de se interpretar [@hurlbert1971]. Por exemplo, dizer que o valor X estimado por índices de diversidade é alto ou baixo é irrelevante se não tivermos uma base comparativa (para mais detalhes veja Melo [-@melo2008]).
 :::
 
 Os dois índices de diversidade mais usados em Ecologia são:
@@ -292,7 +292,7 @@ anova(lm(dados_div$Pielou ~ dados_div$Precipitacao))
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-As análises acima são apenas ilustrativas. Não estamos avaliando as premissas de normalidade e homogeneidade da variância dos resíduos (veja Capítulo \@ref(cap7)). Além disso, é importante estar ciente das críticas e limitações de usar índices de Shannon e Simpson como nesses dois exemplos (@jost_partitioning_2007).
+As análises acima são apenas ilustrativas. Não estamos avaliando as premissas de normalidade e homogeneidade da variância dos resíduos (veja Capítulo \@ref(cap7)). Além disso, é importante estar ciente das críticas e limitações de usar índices de Shannon e Simpson como nesses dois exemplos Jost [-@jost_partitioning_2007].
 :::
 
 **Interpretação dos resultados**
@@ -433,7 +433,7 @@ O termo diversidade beta foi proposto por Whittker [-@whittaker1960] e foi defin
 
 A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de Jaccard e Sørensen) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância [@legendre_numerical_2012] e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (*turnover*) entre comunidades. Contudo, índices de (dis)similaridade como Jaccard e Sørensen geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga [-@baselga2009, [-@baselga2012]] propôs uma abordagem que particiona a diversidade beta total em dois componentes: o componente resultante da substituição de espécies (*turnover*) e o componente resultante do aninhamento (*nestedness*, i.e. diferença na riqueza de espécies). Baselga [-@baselga2013] propôs a a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento) (Figura \@ref(fig:fig-div-beta)). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies *versus* perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes [@baselga2009, @baselga2012; @baselga2013].
 
-```{r fig-div-beta, fig.cap="Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois."}
+```{r fig-div-beta, fig.cap="Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.", echo=FALSE}
 knitr::include_graphics(path = "img/cap12_fig01.svg")
 ```
 

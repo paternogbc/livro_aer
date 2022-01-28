@@ -57,7 +57,7 @@ Vamos começar com análises de agrupamento. Aqui vamos exemplificar dois métod
 
 ### Coeficientes de associação
 
-Assim chamados genericamente, os coeficientes de associação medem o quão parecidos objetos ou descritores são entre si. Objetos estão nas linhas da matriz, enquanto descritores estão nas colunas. Geralmente objetos são as nossas unidades amostrais, enquanto os descritores são as variáveis preditoras e resposta. Quando analisamos a relação entre objetos fazemos uma análise no modo Q, ao passo que o modo R é quando analisamos a relação entre descritores. Coeficientes de associação do modo Q são medidas de (dis)similaridade ou distância, enquanto para o modo R utilizamos covariância ou correlação. Como já tratamos neste livro sobre covariância e correlação (ver \@ref(cap7)), neste tópico vamos falar sobre índices de distância e similaridade. Mas qual a definição destas duas quantitades?
+Assim chamados genericamente, os coeficientes de associação medem o quão parecidos objetos ou descritores são entre si. Objetos estão nas linhas da matriz, enquanto descritores estão nas colunas. Geralmente objetos são as nossas unidades amostrais, enquanto os descritores são as variáveis. Quando analisamos a relação entre objetos fazemos uma análise no modo Q, ao passo que o modo R é quando analisamos a relação entre descritores. Coeficientes de associação do modo Q são medidas de (dis)similaridade ou distância, enquanto para o modo R utilizamos covariância ou correlação. Como já tratamos neste livro sobre covariância e correlação (ver \@ref(cap7)), neste tópico vamos falar sobre índices de distância e similaridade. Mas qual a definição destas duas quantitades?
 
 - Similaridade são máximas (*S=1*) quando dois objetos são idênticos
 - Distâncias são o contrário da similaridade (*D=1-S*) e não têm limites superiores (dependem da unidade de medida)
@@ -66,7 +66,7 @@ Existem ao menos 26 índices de similaridade que podem ser agrupados de acordo c
 
 ### Métricas de distância
 
-O principal coeficiente de distância usado em ecologia é a distância euclidiana. Além disso, temos ainda Canberra, Mahalanobis (calcula a distância entre dois pontos num espaço não ortogonal, levando em consideração a covariância entre descritores), Manhattan, Chord (elimina diferenças entre abundância total de espécies), 𝜒2 (dá peso maior para espécies raras), Hellinger (não dá peso para espécies raras). Essas distâncias são recomendadas nos casos em que as variáveis de estudo forem contínuas, como por exemplo, **variáveis morfométricas ou descritores ambientais**.
+O principal coeficiente de distância usado em ecologia é a distância euclidiana. Além disso, temos ainda Canberra (variação da Distância Euclidiana), Mahalanobis (calcula a distância entre dois pontos num espaço não ortogonal, levando em consideração a covariância entre descritores), Manhattan (variação da Distância Euclidiana), Chord (elimina diferenças entre abundância total de espécies), 𝜒2 (dá peso maior para espécies raras), Hellinger (não dá peso para espécies raras). Essas distâncias são recomendadas nos casos em que as variáveis de estudo forem contínuas, como por exemplo, **variáveis morfométricas ou descritores ambientais**.
 
 Uma característica comum de conjuntos de dados ecológicos são os vários zeros encontrados em matrizes de composição. Eles surgem porque não encontramos nenhum indivíduo de uma determinada espécie num local, seja porque aquele local não tem as condições ambientais adequadas a ela, falha na detectabilidade, ou dinâmicas demográficas estocásticas de colonização-extinção [@blascomoreno2019]. Logo, quando dois locais compartilham ausência de espécies, não é possível atribuir uma única razão da dupla ausência. Como essas medidas de distância apresentadas acima assumem que os dados são quantitativos e não de contagem, elas não são adequadas para lidar com dados de abundância ou incidência de espécies, porque atribuem um grau de parecênça a pares de locais que compartilham zeros [@legendre_numerical_2012]. Por esse motivo, precisamos de coeficientes que desconsiderem os duplos zeros. Eles são chamados de *assimétricos*.
 
@@ -102,7 +102,7 @@ Todos os índices discutidos até aqui estão implementados nas funções `ade4:
 
 **Coeficientes para descritores (R mode) que incluem mistura de tipos de dados**
 
-É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (*traits*) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença/ausência de uma dada característica), fuzzy (um atributo multiestado descrito codificado em várias colunas com porcentagem), ordinais e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função `ade4::dist.ktab().`
+É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (*traits*) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença/ausência de uma dada característica), fuzzy (um atributo multiestado codificado em várias colunas), ordinais e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função `ade4::dist.ktab().`
 
 O capítulo 7 de [@legendre_numerical_2012] fornece uma chave dicotômica para escolha do índice mais adequado.
 
@@ -420,7 +420,7 @@ Em geral, os métodos são dividídos em ordenações irrestritas (ou análise d
 
 ## Ordenação irrestrira
 
-Ordenações irrestritas, ou análise de gradiente indireto ou ainda análises de fator, são um conjunto de métodos multivariados que lidam com uma única matriz quadrada. Esta matriz pode ou não ter pesos nas linhas ou colunas. Geralmente, o objetivo deste tipo de análise é resumir a informação contida na matriz de maneira gráfica, por meio de um diagrama de ordenação. Quanto maior e mais complexa for a matriz, mais eficiente é este tipo de análise. Os tipos de análise irão diferir de acordo com o tipo de dado contido nesta matriz, se contínuo ou contagem, etc. De maneira geral, essas ordenações irrestritas calculam combinações lineares, cuja formulação irá diferir ligeiramente entre os métodos. Da mesma forma, essas combinações lineares irão preservar um tipo de distância. Por exemplo, a Análise de Componentes Principais (PCA) preserva a distância Euclidiana, enquanto a Análise de Correspondência (CA) preserva a distância de chi-quadrado.
+Ordenações irrestritas, ou análise de gradiente indireto ou ainda análises de fator, são um conjunto de métodos multivariados que lidam com uma única matriz quadrada. Esta matriz pode ou não ter pesos nas linhas ou colunas. Geralmente, o objetivo deste tipo de análise é resumir a informação contida na matriz de maneira gráfica, por meio de um diagrama de ordenação. Quanto maior e mais complexa for a matriz, mais eficiente é este tipo de análise. Os tipos de análise irão diferir de acordo com o tipo de dado contido nesta matriz, se contínuo ou contagem, etc. De maneira geral, essas ordenações irrestritas calculam combinações lineares, cuja formulação irá diferir ligeiramente entre os métodos. Da mesma forma, essas combinações lineares irão preservar um tipo de distância. Por exemplo, a Análise de Componentes Principais preserva a distância Euclidiana, enquanto a Análise de Correspondência preserva a distância de chi-quadrado.
 
 ### Análise de Componentes Principais (PCA)
 
@@ -603,6 +603,8 @@ fviz_pca_biplot(X = pca.p,
                 invisible = "quali",
                 title = NULL) +
     labs(x = "PC1 (68.63%)", y = "PC2 (19.45%)") + 
+    xlim(c(-3, 4)) +
+    ylim(c(-3, 3)) +
     tema_livro()
 ```
 
@@ -1065,7 +1067,7 @@ db_r_quadr
 
 Assim como apresentado na RDA, os resultados obtidos em `db.res.var` sugerem que as variáveis `rain.jul`, `maxi.jul` e `altitude` afetam a diversidade beta de aves. O valor do *R^2^* ajustado (0.495) sugere forte relação entre o gradiente ambiental e a diversidade beta. A comparação entre o valor do `db_r_quadr` e `r_quadr` indica que a db-RDA teve melhor ajuste para comparar o mesmo conjunto de dados.
 
-### PERMANOVA
+## PERMANOVA
 
 A PERMANOVA é um acrônimo, em inglês, de *Permutational Multivariate Analysis of Variance*, análise proposta por Marti Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Essa análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
 
@@ -1080,7 +1082,7 @@ Nessa equação
 - *N* o número de unidades amostrais
 - *g* os grupos (ou níveis da variável categórica)
 
-Esta fórmula do *pseudo-F* é específica para desenho experimental com um fator. Outros desenhos mais complexos são apresetandos em Anderson [-@anderson_new_2001]; [-@anderson_permutational_2017]. O cálculo do valor de probilidade é realizado por métodos de permutação que são discutidos em Anderson & Ter Braak [-@anderson_permutation_2003].
+Esta fórmula do *pseudo-F* é específica para desenho experimental com um fator. Outros desenhos mais complexos são apresetandos em Anderson [-@anderson_new_2001, -@anderson_permutational_2017]. O cálculo do valor de probilidade é realizado por métodos de permutação que são discutidos em Anderson & Ter Braak [-@anderson_permutation_2003].
 
 **Exemplo 1**
 
@@ -1132,11 +1134,9 @@ permutest(betad.aves)
 
 Em nosso exemplo, a temperatura, precipitação e altitude afetaram a variação na composição de espécies. Porém, para identificar se as diferenças de composição entre os níveis da variável altitude, é necessário interpretar os resultados da análise BETADISPER. O código `permutest(betad.aves)` mostra que o valor de probabilidade da análise foi de 0.253, ou seja, a hipótese nula de que a variância entre grupos é homogênea é aceita. Assim, não existe diferenças na dispersão entre grupos, sugerindo que a diferença encontrada na PERMANOVA (objeto `perm.aves`) se deve, em parte, à mudança na composição de espécies de aves entre diferentes altitudes (R^2^ = 0.135). Além disso, a precipitação (R^2^ = 0.183) e temperatura (R^2^ = 0.127) foram fatores importantes na variação da composição de espécies.
 
-### Análise de Escalonamento não-Métrico (nMDS)
-
 Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA (abaixo). A literatura ecológica tem usado a Análise de Escalonamento não-Métrico (*non-Metric Multidimensional Scaling* - nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros (Figura \@ref(fig:fig-nmds)).
 
-```{r fig-nmds, fig.cap="Biplot mostrando o resultado do nMDS.", message=FALSE, warning=FALSE}
+```{r fig-nmds, fig.cap="Biplot mostrando o resultado do nMDS.", message=FALSE, warning=FALSE, }
 ## Matriz de distância representando a variação na composição de espécies (método Bray-Curtis)
 as.matrix(sps.dis)[1:6, 1:6]
 
@@ -1280,7 +1280,7 @@ Agora sim, vimos que a relação entre ambiente e espécies se mantém, mas que 
 
 Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: [@legendre2015], [@legendre2010], [@legendre2000].
 
-No entanto, recentemente um artigo ([@crabot2019]) propos uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado *Moran Spectral Randomization* porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos *Moran Eigenvector Maps* (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.
+No entanto, recentemente um artigo [@crabot2019] propos uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado *Moran Spectral Randomization* porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos *Moran Eigenvector Maps* (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.
 
 Primeiro precisamos construir um objeto com as duas matrizes que desejamos testar, no nosso caso composição de espécies e espaço. Depois precisamos construir explicitamente a nossa hipótese de relação espacial entre os locais por meio de uma rede de vizinhança. Esta rede é uma estrutura que nos dirá como (e eventualmente com qual intensidade) se há relação entre os locais. Aqui, entende-se que nos referimos à probabilidade de fluxo de indivíduos entre os locais.
 
@@ -1376,7 +1376,7 @@ A função `protest()` apresenta dois resultados importantes: i) a estatística 
 
 Mais recentemente, alguns autores têm proposto métodos multivariados baseados em modelos. Estes métodos têm se diversificado hoje em dia e existem pacotes que realizam praticamente todas as análises que vimos acima, com a diferença que utilizam distribuições de probabilidade dado um modelo (e.g., Poisson) ao invés de coeficientes de dissimilaridades. Vamos exemplificar o uso de um desses métodos, mas não vamos fazer uma revisão extensiva. Caso o(a) leitor(a) deseje conhecer mais, recomendamos consultar principalmente os pacotes `gllvm`, `ecoCopula` e `Hmsc`.
 
-Um dos primeiros métodos foi proposto em 2012 pelo grupo de David Warton [@warton2012], implementado no pacote `mvabund`. Anteriormente neste mesmo ano foi publicado um artigo pelo mesmo grupo [@wang2012] em que os autores demonstraram que métodos baseados em dissimilaridade, especialmente PERMANOVA, não conseguem modelar adequadamente dados multivariados de contagem (e.g., abundância) por não levarem em conta a relação monotônica entre média e variância. Vejamos o que isso quer dizer utilizando os dados do artigo de [-@dasilva2017] (Figura \@ref(fig:fig-media-var)).
+Um dos primeiros métodos foi proposto em 2012 pelo grupo de David Warton [@warton2012], implementado no pacote `mvabund`. Anteriormente neste mesmo ano foi publicado um artigo pelo mesmo grupo [@wang2012] em que os autores demonstraram que métodos baseados em dissimilaridade, especialmente PERMANOVA, não conseguem modelar adequadamente dados multivariados de contagem (e.g., abundância) por não levarem em conta a relação monotônica entre média e variância. Vejamos o que isso quer dizer utilizando os dados do artigo de  da Silva et al. [-@dasilva2017] (Figura \@ref(fig:fig-media-var)).
 
 ```{r fig-media-var, fig.cap="Gráfico mostrando a média-variância para dados de abundância multivariada."}
 ## Dados

@@ -61,7 +61,7 @@ Onde:
 
 Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura \@ref(fig:fig-homo-norm)) [@zuur_protocol_2009]. A homegeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura \@ref(fig:fig-homo-norm)A). A distribuição dos resíduos será homogênea senão observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura \@ref(fig:fig-homo-norm)B).
 
-```{r fig-homo-norm, echo=FALSE, fig.cap="Inspeção gráfica da homogeneidade da variância (A) e normalidade (B) dos resíduos. Os símbolos verdes indicam que os gráficos em que os resíduos apresentam distribuição homogênea e normal, enquanto os símbolos vermelhos indicam os gráficos em que os resíduos violam as premissas do teste."}
+```{r fig-homo-norm, echo=FALSE, fig.cap="Inspeção gráfica da homogeneidade da variância (A) e normalidade dos resíduos (B). Os símbolos verdes indicam que os gráficos em que os resíduos apresentam distribuição homogênea e normal, enquanto os símbolos vermelhos indicam os gráficos em que os resíduos violam as premissas do teste."}
 knitr::include_graphics(path = "img/cap07_fig01.jpg")
 ```
 
@@ -239,9 +239,9 @@ Vamos visualizar os resultados em um gráfico (Figura \@ref(fig:fig-test-t-ind-v
 ```{r fig-test-t-ind-var-dif, fig.cap="Boxplot da análise do Teste T para duas amostras independentes com variâncias diferentes."}
 ## Gráfico
 ggplot(data = CRC_LP_femea, aes(x = Estacao, y = CRC, color = Estacao)) + 
-    geom_boxplot(fill = c("darkorange", "cyan4"), 
-                 color = "black", outlier.shape = NA) +
-    geom_jitter(shape = 16, position=position_jitter(0.2), cex = 5, alpha = 0.7) +
+    geom_boxplot(fill = c("darkorange", "cyan4"), width = 0.5, 
+                 color = "black", outlier.shape = NA, alpha = 0.7) +
+    geom_jitter(shape = 20, position = position_jitter(0.2), color = "black", cex = 5) +
     scale_color_manual(values = c("darkorange", "cyan4")) +
     labs(x = "Estações", 
          y = expression(paste("CRC (mm) - ", italic("L. podicipinus"))), size = 15) +
@@ -323,7 +323,7 @@ Podemos visualizar os resultados em gráfico (Figura \@ref(fig:fig-test-t-par)).
 ## Gráfico
 ggpaired(Pareado, x = "Estado", y = "Riqueza",
          color = "Estado", line.color = "gray", line.size = 0.8, 
-         palette = c("darkorange", "cyan4"), width = 0.8, 
+         palette = c("darkorange", "cyan4"), width = 0.5, 
          point.size = 4, xlab = "Estado das localidades", 
          ylab = "Riqueza de Espécies") +
     expand_limits(y = c(0, 150)) +
@@ -344,15 +344,15 @@ Onde:
 
 -   r = coeficiente de correlação que indica a força da relação linear entre as duas variáveis. Seu limite de valores está entre -1 $\leq$ r $\le$ 1. A correlação positiva indica que o aumento no valor de uma das variáveis é acompanhado pelo aumento no valor da outra variável. A correlação negativa indica que o aumento no valor de uma das variáveis é acompanhado pela diminuição no valor da outra variável. Se *r* é igual a zero, não existe correlação entre as variáveis (Figura \@ref(fig:fig-cor)).
 
+```{r fig-cor, echo=FALSE, fig.cap="Exemplo de correlações negativa (A), positiva (B) e nula (C) e variáveis que não apresentam relações lineares entre si (D-E)."}
+knitr::include_graphics(path = "img/cap07_fig02.jpg")
+```
+
 **Premissas da Correlação de Person**
 
 -   As amostras devem ser independentes e pareadas (i.e. as duas variáveis devem ser medidas na mesma unidade amostral)
 -   As unidades amostrais são selecionadas aleatoriamente
 -   A relação entre as variáveis tem que ser linear
-
-```{r fig-cor, echo=FALSE, fig.cap="Exemplo de correlações negativa (A), positiva (B) e nula (C) e variáveis que não apresentam relações lineares entre si (D-E)."}
-knitr::include_graphics(path = "img/cap07_fig02.jpg")
-```
 
 **Exemplo prático 1 - Correlação de Pearson**
 
@@ -391,6 +391,9 @@ Cálculo do Teste da Correlação de Pearson. Para outros testes de correlação
 ```{r}
 ## Correlação de Pearson
 cor.test(correlacao_arbustos$Tamanho_raiz, correlacao_arbustos$Tamanho_tronco, method = "pearson")
+
+## Alternativamente
+cor.test(~ Tamanho_tronco + Tamanho_raiz, data = correlacao_arbustos, method = "pearson")
 ```
 
 Neste exemplo, rejeitamos a hipótese nula de que as variáveis não são correlacionadas (r = 0.89, P \< 0,001).
@@ -430,14 +433,14 @@ Onde:
 -   $\beta_{1}$ = inclinação (*slope*) que mede a mudança na variável Y para cada mudança de unidade da variável X
 -   $\epsilon_{1}$ = erro aleatório referente à variável Y que não pode ser explicado pela variável X
 
-**Premissas da regressão Linear Simples**
+**Premissas da Regressão Linear Simples**
 
 -   As amostras devem ser independentes
 -   As unidades amostrais são selecionadas aleatoriamente
 -   Distribuição normal (gaussiana) dos resíduos
--   Homogeneidade da variância
+-   Homogeneidade da variância dos resíduos
 
-**Exemplo prático 1 - regressão linear simples**
+**Exemplo prático 1 - Regressão Linear Simples**
 
 **Explicação dos dados**
 
@@ -531,14 +534,14 @@ Onde:
 -   $\beta_{n}$ = inclinação (*slope*) que mede a mudança na variável Y para cada mudança de unidade das variáveis X~n~
 -   $\epsilon_{1}$ = erro aleatório referente a variável Y que não pode ser explicado pelas variáveis preditoras
 
-**Premissas da regressão Linear Múltipla**
+**Premissas da Regressão Linear Múltipla**
 
 -   As amostras devem ser independentes
 -   As unidades amostrais são selecionadas aleatoriamente
 -   Distribuição normal (gaussiana) dos resíduos
--   Homogeneidade da variância
+-   Homogeneidade da variância dos resíduos
 
-**Exemplo prático 1 - regressão linear múltipla**
+**Exemplo prático 1 - Regressão Linear Múltipla**
 
 **Explicação dos dados**
 
@@ -627,7 +630,7 @@ lrtest(modelo_regressao_mul, modelo_regressao)
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-A Hipótese Nula ((H<sub>0</sub>)) do teste *Likelihood-ratio test (LRT)* é de que o modelo mais simples é o melhor.
+A Hipótese Nula (H<sub>0</sub>) do teste *Likelihood-ratio test (LRT)* é de que o modelo mais simples é o melhor.
 
 -   Valor de p \< 0.05 rejeita a hipótese nula e o modelo mais complexo é o melhor
 -   Valor de p \> 0.05 não rejeita a hipótese nula e o modelo mais simples é o melhor
@@ -657,7 +660,7 @@ ANOVA refere-se a uma variedade de delineamentos experimentais nos quais a vari�
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-ANOVA de medidas repetidas e ANOVA *split-plot* são designs experimentais que apresentam dependência entre as amostras, mas controlam esse depedência nas suas formulações matemáticas.
+ANOVA de medidas repetidas e ANOVA *split-plot* são análises com desenhos experimentais que apresentam dependência entre as amostras, mas controlam esse depedência nas suas formulações matemáticas.
 :::
 
 ### ANOVA de um fator
@@ -1033,9 +1036,10 @@ Olhando os dados usando a função `head()`.
 head(dados_ancova) 
 ```
 
-Códigos para o cálculo da ANCOVA.
+Códigos para o cálculo da ANCOVA (Figura \@ref(fig:fig-ancova-diag)).
 
-```{r}
+```{r fig-ancova-diag, fig.cap="Gráficos de diagnóstico dos resíduos da ANCOVA."}
+## Gráfico
 ## Ancova
 modelo_ancova <- lm(Biomassa ~ Herbivoria * Raiz, data = dados_ancova)
 
@@ -1179,7 +1183,7 @@ ratio_model <- gls(riqueza ~ agua, mite_dat,
                    corRatio(form = ~lat+long, nugget = TRUE))
 ```
 
-Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessário comparar os modelos para escolher o mais "provável", utilizando a seleção de modelos pelo Critério de Seleção de Akaike (AIC) (@chiles_1999; @fortin_dale_2005) (Figura \@ref(fig:fig-diag-ratio)).
+Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessário comparar os modelos para escolher o mais "provável", utilizando a seleção de modelos pelo Critério de Seleção de Akaike (AIC) [@chiles_1999; @fortin_dale_2005] (Figura \@ref(fig:fig-diag-ratio)).
 
 ```{r fig-diag-ratio, fig.cap="Gráfico dos resíduos em relação aos dodos ajustados do modelo GLS Ratio."}
 ## Seleção de modelos

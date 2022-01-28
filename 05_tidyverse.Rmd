@@ -102,24 +102,6 @@ Também podemos verificar se os pacotes estão atualizados, senão, podemos atua
 tidyverse::tidyverse_update(repos = "http://cran.us.r-project.org")
 ```
 
-Apesar de podermos fazer a instalação e carregamento de todos os pacotes juntos, usando o pacote `tidyverse`, podemos instalar e carregar os pacotes individualmente.
-
-```{r eval=FALSE}
-## Instalar os pacotes do tidyverse individualmente
-install.packages(c("ggplot2", "purrr", "tibble", "dplyr", "tidyr", "stringr", 
-                   "readr", "forcats"), dependencies = TRUE)
-
-## Carregar os pacotes do tidyverse individualmente
-library(ggplot2)
-library(purrr)
-library(tibble)
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(readr)
-library(forcats)
-```
-
 Todas as funções dos pacotes tidyverse usam **fonte minúscula** e **`_` (*underscore*)** para separar os nomes internos das funções, seguindo a mesma sintaxe do Python ("Snake Case"). Neste sentido de padronização, é importante destacar ainda que existe um guia próprio para que os scripts sigam a recomendação de padronização, o [The tidyverse style guide](https://style.tidyverse.org/), criado pelo próprio Hadley Wickham. Para pessoas que desenvolvem funções e pacotes existe o [Tidyverse design guide](https://design.tidyverse.org/) criado pelo *Tidyverse team*.
 
 ```{r eval=FALSE}
@@ -432,7 +414,7 @@ penguins_raw_pivot_longer <- tidyr::pivot_longer(data = penguins_raw_sel_col,
 head(penguins_raw_pivot_longer)
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [12 Tidy data](https://r4ds.had.co.nz/tidy-data.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo 12 [Tidy data](https://r4ds.had.co.nz/tidy-data.html) de Wickham & Grolemund [-@wickham2017].
 
 ## dplyr
 

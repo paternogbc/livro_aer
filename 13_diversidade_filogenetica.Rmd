@@ -137,8 +137,8 @@ Carpornis <- c("Carpornis_sp1")
 Strix <- c("Strix_sp1", "Strix_sp2", "Strix_sp3")
 
 # Inserindo espécies como politomias
-filogenia_nova <- add.species.to.genus(force.ultrametric(minha_arvore), Megascops)
-filogenia_nova <- add.species.to.genus(force.ultrametric(filogenia_nova), Carpornis)
+filogenia_nova <- add.species.to.genus(force.ultrametric(minha_arvore, message = FALSE), Megascops)
+filogenia_nova <- add.species.to.genus(force.ultrametric(filogenia_nova, message = FALSE), Carpornis)
 ```
 
 Agora vamos inserir várias espécies dentro do mesmo gênero.
@@ -147,7 +147,7 @@ Agora vamos inserir várias espécies dentro do mesmo gênero.
 ## Adicionar várias espécies à filogenia
 # Para inserir mais de uma espécie dentro do gênero, vamos utilizar um loop.  
 for(i in 1:length(Strix)) 
-    filogenia_nova <- add.species.to.genus(force.ultrametric(filogenia_nova),
+    filogenia_nova <- add.species.to.genus(force.ultrametric(filogenia_nova, message = FALSE),
                                            Strix[i], where = "root")
 ```
 
@@ -307,7 +307,7 @@ resultados_ED <- evol.distinct(filogenia_aves)
 head(resultados_ED)
 ```
 
-Com base na filogenia estudada, Tinamus solitarius (112,58 milhões de anos), Ortalis guttata (108,39 m.a.) e Aramides saracura (96,86 m.a.) são as espécies com maior distinção evolutiva devido a elevada fração dos ramos não compartilhado com as outras espécies. 
+Com base na filogenia estudada, *Tinamus solitarius* (112,58 milhões de anos), *Ortalis guttata* (108,39 m.a.) e *Aramides saracura* (96,86 m.a.) são as espécies com maior distinção evolutiva devido a elevada fração dos ramos não compartilhado com as outras espécies. 
 
 ### Divergência da diversidade alfa filogenética
 

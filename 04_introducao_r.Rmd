@@ -93,23 +93,23 @@ No RStudio, alguns atalhos são fundamentais para aumentar nossa produtividade:
 
 ### Console
 
-O console é onde a versão da linguagem R instalada é carregada para executar os códigos da linguagem R (Figura \@ref(fig:fig-rstudio) (2)). Na janela do console aparecerá o símbolo `>`, seguido de uma barra vertical `|` que fica piscando (cursor), onde digitaremos ou enviaremos nossos códigos do script. Podemos fazer um pequeno exercício: vamos digitar `10 + 2`, seguido da tecla `Enter` para que essa operação seja executada.
+O console é onde a versão da linguagem R instalada é carregada para executar os códigos da linguagem R (Figura \@ref(fig:fig-rstudio) janela 2). Na janela do console aparecerá o símbolo `>`, seguido de uma barra vertical `|` que fica piscando (cursor), onde digitaremos ou enviaremos nossos códigos do script. Podemos fazer um pequeno exercício: vamos digitar `10 + 2`, seguido da tecla `Enter` para que essa operação seja executada.
 
 ```{r}
 10 + 2
 ```
 
-O resultado retorna o valor `12`, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação `1:42`, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o `[1]`, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, `[34]`.
+O resultado retorna o valor `12`, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação `1:42`, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o `[1]`, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, `[37]`.
 
 ```{r}
 1:42
 ```
 
-Podemos ver o histórico dos códigos executados no console na aba **History** (Figura \@ref(fig:fig-rstudio) (3)).
+Podemos ver o histórico dos códigos executados no console na aba **History** (Figura \@ref(fig:fig-rstudio) janela 3).
 
 ### Scripts
 
-Scripts são rascunhos dos códigos e onde de fato os códigos são escritos e depois enviados ao console (Figura \@ref(fig:fig-rstudio) (1)). Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (caso ele aparecer, ative a visualização da extensão de arquivos para ver). Para criar um script, basta ir em `File > New File > R Script`, ou clicando no ícone com uma folha branca e um círculo verde com um sinal de `+`, logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`. 
+Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (Figura \@ref(fig:fig-rstudio) janela 1). Para criar um script, basta ir em `File > New File > R Script`, ou clicando no ícone com uma folha branca e um círculo verde com um sinal de `+`, logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`.
 
 Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em **Source** ou usando o atalho `Ctrl + Shift + Enter`; ou ii) apenas a linha onde o cursor estiver posicionado, independente de sua posição naquela linha, clicando em **Run** ou usando o atalho `Ctrl + Enter`.
 
@@ -159,12 +159,7 @@ Uma aplicação bem interessante dos *Code Snippets* no script é o `ts`. Basta 
 No R, podemos agrupar os operadores em cinco tipos: aritméticos, relacionais, lógicos, atribuição e diversos. Grande parte deles são descritos na Tabela \@ref(tab:tab-operadores).
 
 ```{r tab-operadores, echo=FALSE}
-knitr::kable(data.frame(Operador = c(
- "+", "-", "*", "/", "%%", "%/%", "^ ou **",
- ">", "<", ">=", "<=", "==", "!=",
- "!", "&", "|", "&&", "||",
- "<- ou =", "<<-", "->", "->>",
- ":", "%in%", "%*%", "%>%", "|>", "%--%"),
+knitr::kable(data.frame(Operador = c("+", "-", "*", "/", "%%", "%/%", "^ ou **", ">", "<", ">=", "<=", "==", "!=", "!", "&", "|", "&&", "||", "<- ou =", "<<-", "->", "->>", ":", "%in%", "%*%", "%>%", "|>", "%--%"),
  Tipo = c(
   rep("Aritmético", 7),
   rep("Relacional", 6),
@@ -220,7 +215,7 @@ obj_10
 Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para confirmar se a atribuição foi realizada corretamente e se o conteúdo corresponde à operação realizada.
 :::
 
-Todos os objetos criados numa sessão do R ficam listados na aba **Environment** (Figura \@ref(fig:fig-rstudio) (3)). Além disso, o RStudio possui a função *autocomplete*, ou seja, podemos digitar as primeiras letras de um objeto (ou função) e em seguida apertar `Tab` para que o RStudio liste tudo que começar com essas letras.
+Todos os objetos criados numa sessão do R ficam listados na aba **Environment** (Figura \@ref(fig:fig-rstudio) janela 3). Além disso, o RStudio possui a função *autocomplete*, ou seja, podemos digitar as primeiras letras de um objeto (ou função) e em seguida apertar `Tab` para que o RStudio liste tudo que começar com essas letras.
 
 Dois pontos importantes sobre atribuições: primeiro, o R sobrescreve os valores dos objetos com o mesmo nome, deixando o objeto com o valor da última atribuição.
 
@@ -345,7 +340,7 @@ No R, quando tratamos de pacotes, devemos destacar a diferença de dois conceito
 -   O nome do pacote precisa estar entre aspas na função de instalação
 -   Função (CRAN): `install.packages()`
 
-Vamos instalar o pacote `vegan` diretamente do CRAN, que possui funções para realizar uma série de análise em ecologia (veja mais no Capítulo \@ref(cap10)). Para isso, podemos ir em `Tools > Install Packages...`, ou ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) (4)), procurar o pacote e simplesmente clicar em "Install". Podemos ainda utilizar a função `install.packages()`.
+Vamos instalar o pacote `vegan` diretamente do CRAN, que possui funções para realizar uma série de análise em ecologia (veja mais no Capítulo \@ref(cap10)). Para isso, podemos ir em `Tools > Install Packages...`, ou ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) janela 4), procurar o pacote e simplesmente clicar em "Install". Podemos ainda utilizar a função `install.packages()`.
 
 ```{r eval=FALSE}
 ## Instalar pacotes
@@ -371,14 +366,14 @@ O carregamento de pacotes possui algumas características:
 -   O nome do pacote não precisa estar entre aspas na função de carregamento
 -   Funções: `library()` ou `require()`
 
-Vamos carregar o pacote `vegan` que instalamos anteriormente. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) (4)) e assinalar o pacote que queremos carregar ou utilizar a função `library()`.
+Vamos carregar o pacote `vegan` que instalamos anteriormente. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) 4) e assinalar o pacote que queremos carregar ou utilizar a função `library()`.
 
 ```{r message=TRUE}
 ## Carregar pacotes
 library(vegan)
 ```
 
-Como dissemos, alguns pacotes em desenvolvimento encontram-se disponíveis em repositórios do GitHub ou GitLab. Para instalar pacotes do GitHub, por exemplo, precisamos instalar e carregar o pacote `devtools`.
+Como dissemos, alguns pacotes em desenvolvimento encontram-se disponíveis em repositórios do [GitHub](https://github.com/), [GitLab](https://gitlab.com) e [Bioconductor](https://www.bioconductor.org/). Para instalar pacotes do GitHub, por exemplo, precisamos instalar e carregar o pacote `devtools`.
 
 ```{r eval=FALSE}
 ## Instalar pacote devtools
@@ -435,7 +430,7 @@ remove.packages("vegan")
 detach("package:vegan", unload = TRUE)
 ```
 
-E um último ponto fundamental sobre pacotes, diz respeito à atualização dos mesmos. Os pacotes são atualizados com frequência, e infelizmente (ou felizmente, pois as atualizações podem oferecer algumas quebras entre pacotes), não se atualizam sozinhos. Muitas vezes, a instalação de um pacote pode depender da versão dos pacotes dependentes, e geralmente uma janela com diversas opções numéricas se abre perguntando se você quer que todos os pacotes dependentes sejam atualizados. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) (4)) e clicar em "Update" ou usar a função `update.packages(checkBuilt = TRUE, ask = FALSE)` para atualizá-los, entretanto, essa é uma função que costuma demorar muito para terminar de ser executada.
+E um último ponto fundamental sobre pacotes, diz respeito à atualização dos mesmos. Os pacotes são atualizados com frequência, e infelizmente (ou felizmente, pois as atualizações podem oferecer algumas quebras entre pacotes), não se atualizam sozinhos. Muitas vezes, a instalação de um pacote pode depender da versão dos pacotes dependentes, e geralmente uma janela com diversas opções numéricas se abre perguntando se você quer que todos os pacotes dependentes sejam atualizados. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) 4) e clicar em "Update" ou usar a função `update.packages(checkBuilt = TRUE, ask = FALSE)` para atualizá-los, entretanto, essa é uma função que costuma demorar muito para terminar de ser executada.
 
 ```{r eval=FALSE}
 ## Atualização dos pacotes
@@ -458,7 +453,7 @@ devtools::install_github()
 
 ### Ajuda (*Help*)
 
-Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) (4)) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas. Abaixo descrever esses tópicos:
+Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) 4) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas. Abaixo descrever esses tópicos:
 
 -   **Description**: resumo da função
 -   **Usage**: como utilizar a função e quais os seus argumentos
@@ -805,7 +800,7 @@ knitr::include_graphics("img/cap04_fig03.png")
 
 **Vetor**
 
-Vetores representam o encadeamento de elementos numa sequência unidimensional. No Capítulo \@ref(cap2) na Figura \@(fig:fig-box), vimos o conceito de variável aleatória e seus tipos. No R, essas variáveis podem ser operacionalizadas como vetores. Dessa forma, essa estrutura de dados pode ser traduzida como medidas de uma variável numérica (discretas ou contínuas), variável binária (booleana - TRUE e FALSE) ou descrição (informações em texto).
+Vetores representam o encadeamento de elementos numa sequência unidimensional. No Capítulo \@ref(cap2) na Figura \@ref(fig:fig-box), vimos o conceito de variável aleatória e seus tipos. No R, essas variáveis podem ser operacionalizadas como vetores. Dessa forma, essa estrutura de dados pode ser traduzida como medidas de uma variável numérica (discretas ou contínuas), variável binária (booleana - TRUE e FALSE) ou descrição (informações em texto).
 
 Há diversas formas de se criar um vetor no R:
 
@@ -1257,7 +1252,6 @@ knitr::kable(data.frame(
   "`colSums()`", 
   "`rowMeans()`", 
   "`colMeans()`", 
-  "`str()`", 
   "`table()`",
   "`t()`"),
  Descrição = c(
@@ -1274,7 +1268,6 @@ knitr::kable(data.frame(
    "Calcula a soma das colunas (vertical)", 
    "Calcula a média das linhas (horizontal)",
    "Calcula a média das colunas (vertical)",
-   "Mostra a estrutura dos dados",
    "Tabulação cruzada",
    "Matriz ou data frame transposto")),
  align = "c",
@@ -1360,7 +1353,7 @@ setwd("`tab`")
 
 Uma das operações mais corriqueiras do R, antes de realizar alguma análise ou plotar um gráfico, é a de importar dados que foram tabulados numa planilha eletrônica e salvos no formato .csv, .txt ou .xlsx. Ao importar esse tipo de dado para o R, o formato que o mesmo assume, se nenhum parâmetro for especificado, é o da classe `data frame`, prevendo que a planilha de dados possua colunas com diferentes modos.
 
-Existem diversas formas de importar dados para o R. Podemos importar utilizando o RStudio, indo na janela **Environment** (Figura \@ref(fig:fig-rstudio) (3)) e clicar em "Importar Dataset".
+Existem diversas formas de importar dados para o R. Podemos importar utilizando o RStudio, indo na janela **Environment** (Figura \@ref(fig:fig-rstudio) janela 3) e clicar em "Importar Dataset".
 
 Entretanto, aconselhamos o uso de funções que fiquem salvas em um script para aumentar a reprodutibilidade do mesmo. Dessa forma, as três principais funções para importar os arquivos nos três principais extensões (.csv, .txt ou .xlsx) são, respectivamente: `read.csv()`, `read.table()` e `openxlsx::read.xlsx()`, sendo o último do pacote `openxlsx`.
 
@@ -1461,6 +1454,13 @@ which(is.na(intror_anfibios_locais))
 intror_anfibios_locais_na <- na.omit(intror_anfibios_locais)
 ```
 
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+A função `na.omit()` retira a **linha inteira** que possui algum `NA`, inclusive as colunas que possuem dados que você não tem interesse em excluir. Dessa forma, tenha em mente quais dados você realmente quer remover da sua tabela.
+:::
+
+Além das funções apresentadas, recomendamos olhar os seguintes pacotes que ajudam na conferência dos dados importados: [`Hmisc`](https://cran.r-project.org/web/packages/Hmisc/index.html), [`skimr`](https://cran.r-project.org/web/packages/skimr.html) e [`inspectDF`](https://alastairrushworth.github.io/inspectdf).
+
 ### Exportar dados
 
 Uma vez realizado as operações de manipulação ou tendo dados que foram analisados e armazenados num objeto no formato de data frame ou matriz, podemos exportar esses dados do R para o diretório que definimos anteriormente.
@@ -1499,19 +1499,19 @@ openxlsx::write.xlsx(intror_anfibios_locais_na, "ATLANTIC_AMPHIBIAN_sites_na.xls
 
 8. Crie uma matriz chamada **ma**, resultante da disposição de um vetor composto por 10000 valores aleatórios entre 0 e 10. A matriz deve conter 100 linhas e ser disposta por colunas.
 
-9. Crie um data frame chamado **df**, resultante da composição desses vetores:
+9. Crie um data frame chamado **dat**, resultante da composição desses vetores:
 
 -   `id: 1:50`
 -   `sp: sp01, sp02, ..., sp49, sp50`
 -   `ab: 50 valores aleatórios entre 0 a 5`
 
-10. Crie uma lista com os objetos criados anteriormente: **mega**, **tr**, **ma** e **df**.
+10. Crie uma lista com os objetos criados anteriormente: **mega**, **tr**, **ma** e **dat**.
 
 11. Selecione os elementos ímpares do objeto **tr**, e atribua ao objeto **tr_impar**.
 
-12. Selecione as linhas com ids pares do objeto **df**, e atribua ao objeto **df_ids_par**.
+12. Selecione as linhas com ids pares do objeto **dat**, e atribua ao objeto **dat_ids_par**.
 
-13. Faça uma amostragem de 10 linhas do objeto **df**, e atribua ao objeto **df_amos10**.
+13. Faça uma amostragem de 10 linhas do objeto **dat**, e atribua ao objeto **dat_amos10**.
 
 ## Para se aprofundar
 

@@ -20,15 +20,15 @@ Existem vários tipos de gráficos para representar os padrões em seus dados pa
 
 Comumente nos gráficos são representados uma ou duas colunas, quando muito três, em gráficos de três dimensões. Para mais colunas, partimos para dados agregados que podem ser vistos no Capítulo \@ref(cap9) de análises multivariadas. Além disso, a utilização de mais de duas colunas pode estar relacionado com outras partes estéticas (e.g. `aes()` no pacote `ggplot2`) do gráfico como cor, forma ou tamanho de pontos, linhas ou outras feições.
 
-Dessa forma, dedicamos esse capítulo inteiramente a apresentar os principais conceitos, como a gramática de gráficos, e uma apresentação geral que pode funcionar como "um guia de bolso" de gráficos, uma vez que apresentamos os principais tipos de gráficos para análises ecológicas e estatísticas. Além disso, no último tópico focamos na finalização (ajustes finos) de gráficos para publicações. Este capítulo fornece a base conceitual necessária para entender a visualização gráfica de dados apresentada nos Capítulos 7 a 15.
+Dessa forma, dedicamos esse capítulo inteiramente a apresentar os principais conceitos, como a gramática de gráficos, e uma apresentação geral que pode funcionar como "um guia de bolso" de gráficos, uma vez que apresentamos os principais tipos de gráficos para análises ecológicas e estatísticas. Além disso, no último tópico focamos na finalização (ajustes finos) de gráficos para publicações. Este capítulo fornece a base conceitual necessária para entender a visualização gráfica de dados apresentada ao longo do livro.
 
 Existe uma ampla gama de pacotes para fazer gráficos no R, sendo esse um ponto muito forte dessa linguagem. Além disso, essa grande disponibilidade de pacotes e funções permitem a visualização dos mais diferentes tipos de dados, o que torna a linguagem R detentora de alta praticidade, uma vez que a maior parte dos pacotes possui uma sintaxe relativamente simples para a apresentação de gráficos excelentes e de ótima qualidade. Mais adiante no Capítulo \@ref(cap15), ampliamos a discussão da visualização gráfica com ferramentas para visualização de dados geoespaciais no R.
 
 Este capítulo foi organizado em quatro partes: i) principais pacotes, ii) gramática dos gráficos, iii) tipos de gráficos (um guia de bolso para visualização de vários gráficos no R), e iv) edição de gráficos com alta qualidade para publicação. Apesar de apresentarmos diferentes pacotes com grande potencial para visualização gráfica, focaremos neste capítulo no pacote `ggplot2`, talvez o pacote mais comum e com maior gama de possibilidades de criação de excelentes gráficos.
 
-Usaremos os dados disponíveis no pacote `palmerpenguins` para exemplificar as funções do `ggplot2`. Esses dados foram coletados e disponibilizados pela [Dra. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) e pela [Palmer Station, Antarctica LTER](https://pal.lternet.edu/) do Long Term Ecological Research Network. O pacote `palmerpenguins` contém dois conjuntos de dados: i) `penguins_raw` que são os dados brutos e, ii) `penguins` que é uma versão simplificada dos dados brutos. Ambos contêm dados para 344 pinguins, de três espécies diferentes, coletados em três ilhas no arquipélago de Palmer, na Antártica.
+Usaremos os dados disponíveis no pacote `palmerpenguins` para exemplificar as funções do `ggplot2`, descrito no Capítulo \@ref(cap5).
 
-## Principais pacotes
+## Principais pacotes´
 
 A seguir, apresentamos uma listagem dos principais pacotes para visualização de dados no R, além das principais funções desses pacotes.
 
@@ -69,16 +69,18 @@ knitr::include_graphics("img/cap06_fig01.png")
 
 Em resumo, o mapeamento gráfico do ggplot2 segue a seguinte estrutura [@wickham2017]:
 
+```r
 ggplot(data = <DATA>) + 
-<GEOM_FUNCTION>(
-mapping = aes(<MAPPINGS>),
-stat = <STAT>, 
-position = <POSITION>
-) +
-<COORDINATE_FUNCTION> +
-<FACET_FUNCTION> +
-<SCALE_FUNCTION> +
-<THEME_FUNCTION>
+    <GEOM_FUNCTION>(
+        mapping = aes(<MAPPINGS>),
+        stat = <STAT>, 
+        position = <POSITION>
+        ) +
+    <COORDINATE_FUNCTION> +
+    <FACET_FUNCTION> +
+    <SCALE_FUNCTION> +
+    <THEME_FUNCTION>
+```
 
 ## Tipos de gráficos
 
@@ -101,7 +103,7 @@ Nos exemplos a seguir, a *versão padrão* se refere à representação determin
 
 O [histograma](https://www.data-to-viz.com/graph/histogram.html) é um gráfico extremamente popular, sendo bastante útil para visualizar a distribuição de variáveis contínuas. É bem provável que você já tenha visto um histograma quando aprendeu pela primeira vez a famosa *distribuição normal* (Figura \@ref(fig:fig-hist-norm)).
 
-```{r fig-hist-norm, fig.cap="Histograma de uma distribuição normal."}
+```{r fig-hist-norm, fig.cap="Histograma de uma distribuição normal com 10000 observações."}
 ## Dados
 dist_normal <- data.frame(x = rnorm(10000, mean = 0, sd = 1))
 
@@ -155,8 +157,6 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 ```
 
 **Ajustes finos (versão personalizada)**
-
-Histograma exemplo com ajustes finos (Figura \@ref(fig:fig-hist-fino)).
 
 ```{r fig-hist-fino, fig.cap="Histograma da variável `flipper_length_mm` com ajustes finos."}
 ## Histograma exemplo
@@ -229,8 +229,6 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 
 **Ajustes finos (versão personalizada)**
 
-Gráfico de densidade exemplo com ajustes finos (Figura \@ref(fig:fig-dens-fino)).
-
 ```{r fig-dens-fino, fig.cap="Gráfico de densidade da variável `flipper_length_mm` com ajustes finos."}
 ## Gráfico de densidade exemplo
 ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
@@ -268,7 +266,7 @@ Vamos utilizar o conjunto de dados palmerpenguins para visualizar a distribuiç�
 ```{r fig-dot-flipper, fig.cap="Diagrama de pontos da variável `flipper_length_mm`."}
 ## Gráfico de pontos
 ggplot(data = penguins, aes(x = flipper_length_mm)) +
-    geom_dotplot()
+    geom_dotplot(dotsize = .6)
 ```
 
 **Comparando múltiplas categorias**
@@ -278,7 +276,7 @@ Assim como nas funções `geom_histogram()` e `geom_density()`, é possível com
 ```{r fig-dot-flipper-cat, fig.cap="Diagrama de pontos da variável `flipper_length_mm` para diferentes espécies com e sem transparência."}
 ## O argumento fill preenche cada nível da coluna "species" (sem transparência: alpha = 1)
 ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
-    geom_dotplot(dotsize = 1)
+    geom_dotplot(dotsize = .9)
 
 ## Diagrama de pontos com cores para diferentes categorias com sobreposição
 ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
@@ -286,8 +284,6 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 ```
 
 **Ajustes finos (versão personalizada)**
-
-Gráfico de densidade exemplo com ajustes finos (Figura \@ref(fig:fig-dot-flipper-fino)).
 
 ```{r fig-dot-flipper-fino, fig.cap="Diagrama de pontos da variável `flipper_length_mm` com ajustes finos."}
 ## Diagrama de pontos exemplo
@@ -404,8 +400,6 @@ ggplot(data = penguins_media, aes(x = species, y = media, fill = species)) +
 ```
 
 **Ajustes finos (versão personalizada)**
-
-Gráfico de barras exemplo com ajustes finos (Figura \@ref(fig:fig-bar-species-fino)).
 
 ```{r fig-bar-species-fino, fig.cap="Gráfico de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, com ajustes finos."}
 ## Gráfico de barra exemplo
@@ -622,8 +616,6 @@ ggplot(data = penguins, aes(y = flipper_length_mm, x = species, fill = species))
 
 **Ajustes finos (versão personalizada)**
 
-Gráficos de caixa, violino e combinação de caixa e violono exemplo com ajustes finos (Figura \@ref(fig:fig-boxplot-violin-fino)).
-
 ```{r fig-boxplot-violin-fino, fig.cap="Gráfico de caixa, violino, e caixa e violino para a variável `flipper_length_mm` para cada espécie de penguim, com ajustes finos."}
 ## Gráfico de caixas exemplo
 ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
@@ -632,7 +624,7 @@ ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species))
                 position = position_jitter(width = .15, seed = 0)) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     theme_bw(base_size = 16) +
-    labs(x = "Species", y = "Flipper length (mm)")
+    labs(title = "Boxplot sem pontos", x = "Espécies", y = "Comprimento da nadadeira (mm)")
 
 ## Gráfico de violino exemplo
 ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
@@ -641,7 +633,7 @@ ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species))
                 position = position_jitter(width = .15, seed = 0)) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     theme_bw(base_size = 16) +
-    labs(title = "Pontos com jitter", x = "Species", y = "Flipper length (mm)")
+    labs(title = "Gráfico de violino com jitter", x = "Espécies", y = "Comprimento da nadadeira (mm)")
 
 ## Gráfico de caixas e violino exemplo
 ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
@@ -649,7 +641,7 @@ ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species))
     geom_boxplot(width = .3, fill = "gray", show.legend = FALSE) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     theme_bw(base_size = 16) +
-    labs(title = "Pontos sem jitter", x = "Species", y = "Flipper length (mm)")
+    labs(title = "Gráfico de violino com boxplot", x = "Espécies", y = "Comprimento da nadadeira (mm)")
 ```
 
 **Principais camadas utilizadas no `geom_boxplot()`e `geom_violin()`**
@@ -725,7 +717,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, fill = sp
 
 **Definindo linhas de ajuste**
 
-Quando usamos modelos estatísticos como, por exemplo, `lm()`, `glm()`, `gam()`, entre outros (veja mais nos Capítulos \@ref(cap 7) e \@ref(cap 8)), podemos utilizar os valores preditos para demonstrar a relação entre as variáveis X e Y. No `ggplot2`, a função `geom_smooth()` faz esse ajuste com certa simplicidade (Figura \@ref(fig:fig-scatter-smooth)).
+Quando usamos modelos estatísticos como, por exemplo, `lm()`, `glm()`, `gam()`, entre outros (veja mais nos Capítulos \@ref(cap7) e \@ref(cap8)), podemos utilizar os valores preditos para demonstrar a relação entre as variáveis X e Y. No `ggplot2`, a função `geom_smooth()` faz esse ajuste com certa simplicidade (Figura \@ref(fig:fig-scatter-smooth)).
 
 ```{r fig-scatter-smooth, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com linhas de ajustes estatísticos."}
 ## Linha de ajuste
@@ -735,8 +727,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
 ```
 
 **Ajustes finos (versão personalizada)**
-
-Gráfico de dispersão exemplo com ajustes finos (Figura \@ref(fig:fig-scatter-fino)).
 
 ```{r fig-scatter-fino, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com ajustes finos."}
 ## Gráfico de dispersão exemplo
@@ -769,7 +759,7 @@ datasaurus_dozen %>%
 
 ### Visualização de múltiplos gráficos pareados
 
-Muitas vezes precisamos plotar a relação de mais de uma variável, e muitas vezes essas variáveis são de mais de um tipo (contínua, categórica, etc.). O gráfico mais indicado nesses casos é o gráfico pareado (@emerson_generalized_2013) que nos auxilia à ter uma visão geral do conjunto de dados e de suas interrelações. Esse gráfico também é chamado de *pairs plot* ou [correlograma](https://www.data-to-viz.com/graph/correlogram.html).
+Muitas vezes precisamos plotar a relação de mais de uma variável, e muitas vezes essas variáveis são de mais de um tipo (contínua, categórica, etc.). O gráfico mais indicado nesses casos é o gráfico pareado [@emerson_generalized_2013] que nos auxilia à ter uma visão geral do conjunto de dados e de suas interrelações. Esse gráfico também é chamado de *pairs plot* ou [correlograma](https://www.data-to-viz.com/graph/correlogram.html).
 
 **Gráfico pareado com variáveis contínuas**
 
