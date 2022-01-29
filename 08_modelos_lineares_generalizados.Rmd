@@ -713,6 +713,7 @@ ggplot(parasitas, aes(x = CRC, y = phat, colour = Especie,
 Uma outra maneira de codificarmos os dados é utilizando categorias ordenadas, tais como ranques. Exemplos incluem a escala de Likert, scores e intervalos (e.g., de idade).
 
 Para este exemplo, iremos utilizar um outro conjunto de dados do artigo de [@Franco-Belussi2018a] que manipulou *in vitro* a concentração do hormônio noradrenalina nos olhos de peixes esgana-gato (*Gasterosteus aculeatus*) e avaliaram a expressão de várias cores conferidas por tipos de células (cromatóforos). Aqui vamos usar os dados do efeito da noradrenalina na cor vermelha em machos.
+Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao longo do tempo (que é um dos fatores deste experimento). Portanto, para não incorrer no risco de pseudoréplicas deveríamos incluir esta informação no modelo. A maneira mais simples de fazê-lo é criar um modelo de efeito misto em que teríamos uma parte fixa (o que de fato estamos interessados em testar) e outra aleatória (variáveis que precisamos controlar). Portanto, `Animal` será incluído como um um fator aleatório, tendo um intercepto estimado separadamente para cada animal no modelo. Não iremoa entrar em detalhes sobre modelos de efeito misto porque necessitaíramos de um outro capítulo para isso, dada a complexidade do assunto. No entanto, recomendamos aos leitores dois artigos intrórodutióos muito bons [@Harrison] e [@BOLKER2009127].
 
 **Pergunta**
 
