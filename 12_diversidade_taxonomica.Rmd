@@ -134,7 +134,7 @@ anova(lm(dados$Riqueza ~ dados$Precipitacao))
 
 Há uma relação positiva entre a riqueza de espécies e a precipitação anual (F~1,8~ = 8,91, P = 0,01).
 
-Relação entre o Índice de Margalef e a precipitação anual.
+Analisr a relação entre o Índice de Margalef e a precipitação anual.
 
 ```{r}
 ## ANOVA
@@ -143,7 +143,7 @@ anova(lm(dados$Margalef ~ dados$Precipitacao))
 
 Não há uma relação positiva entre o índice de Margalef e a precipitação anual (F~1,8~ = 2,12, P = 0,18).
 
-Agora vamos analisar a relação entre a riqueza de espécies e a precipitação anual.
+Agora vamos analisar a relação entre o índice de Menhinick e a precipitação anual.
 
 ```{r}
 ## ANOVA
@@ -152,7 +152,7 @@ anova(lm(dados$Menhinick ~ dados$Precipitacao))
 
 Não há uma relação positiva entre o índice de Menhinick e a precipitação anual (F~1,8~ = 1,09, P = 0,32).
 
-Vamos plotar o gráfico com os resultados da riqueza de espécies ao longo do gradiente de precipitação anual (Figura \@ref(fig:fig-alfa-model)).
+Com base nos resultados, vamos plotar apenas o gráfico com os resultados da riqueza de espécies ao longo do gradiente de precipitação anual (Figura \@ref(fig:fig-alfa-model)).
 
 ```{r fig-alfa-model, fig.cap="Gráfico do modelo linear da relação entre riqeuza e precipitação."}
 ## Gráfico
@@ -165,7 +165,12 @@ ggplot(data = dados, aes(x= Precipitacao, y= Riqueza)) +
 
 **Interpretação dos resultados**
 
-Percebam que ponderar a riqueza de espécies pela abundância altera a interpretação dos resultados. O número de espécies é maior em comunidades com maior precipitação. Contudo, quando ponderamos pela abundância (índices de Margalef ou Menhinick), a relação com a precipitação não é significativa.
+O número de espécies é maior em comunidades com maior precipitação. Contudo, quando ponderamos pela abundância (índices de Margalef ou Menhinick), a relação com a precipitação não é significativa.
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+Percebam que ponderar a riqueza de espécies pela abundância altera a interpretação dos resultados.
+:::
 
 ### Diversidade de espécies
 
@@ -215,6 +220,7 @@ Usaremos os mesmos dados simulados do exemplo prático 1.
 - Os valores de diversidade de espécies serão maiores nas comunidades localizadas em regiões maior volume de precipitação do que em regiões mais secas
 
 **Análise**
+
 Abaixo demonstramos os códigos no R para determinar a diversidade de espécies para cada comunidade a partir da planilha de composição de espécies.
 
 ```{r}
@@ -235,12 +241,13 @@ simpson_res
 
 **Interpretação dos resultados**
 
-A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies, enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade. Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas o padrão de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade. 
+A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies (Shannon-Wiener = 2,3 e Gini-Simpson = 0.9), enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade (Shannon-Wiener = 0,5 e Gini-Simpson = 0.17). Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas o padrão de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade. 
 
 Dentro desta perspectiva, alguns índices fornecem uma estimativa sobre a equitabilidade da distribuição da abundância nas comunidades. Entre eles, o mais conhecido foi proposto por Pielou [-@pielou1966].
 
 **Índice de Equabilidade (ou Equitabilidade) de Pielou** 
-É uma métrica > derivada do índice de Shannon-Wiener que descreve o padrão de distribuição da abundância relativa das espécies na comunidade.
+
+É uma métrica derivada do índice de Shannon-Wiener que descreve o padrão de distribuição da abundância relativa das espécies na comunidade.
 
 $$J = \frac{H'}{Hmax} = \frac{H'}{ln (S)}$$
 
@@ -251,14 +258,14 @@ onde:
 -  H~max~ é calculado aplicando o logaritmo natural (ln) para a riqueza de espécies (S)
 -   Se todas as espécies apresentam a mesma abundância relativa, então J = 1. Se uma espécie apresenta forte dominância, J aproxima-se de zero
 
-Não há uma função no R que calcule o índice de Pielou, mas ele pode facilmente ser calculado usando os valores de diversidade de Shannon e o logaritmo da riqueza de espécies de cada comunidade.
+Não há uma função no R que calcule o índice de Pielou, mas ele pode facilmente ser calculado usando os valores de diversidade de Shannon-Wiener e o logaritmo da riqueza de espécies de cada comunidade.
 
 ```{r}
 ## Índice de Pielou
 (Pielou <- shannon_res/log(specnumber(composicao_especies)))
 ```
 
-Agora que temos uma ideia de como a riqueza de espécies e a distribuição da abundância relativa são importantes para quantificar os valores dos índices de diversidade, vamos testar se há relação entre os índices de diversidade e precipitação anual nas comunidades.
+Agora que temos uma ideia de como a riqueza de espécies e a distribuição da abundância relativa são importantes para quantificar os valores dos índices de diversidade, vamos testar se há alguma relação entre os índices de diversidade e precipitação anual nas comunidades.
 
 ```{r}
 ## Juntando todos os dados em um único data frame
@@ -269,7 +276,7 @@ dados_div <- data.frame(precipitacao$prec, shannon_res,
 colnames(dados_div) <- c("Precipitacao", "Shannon", "Simpson", "Pielou")
 ```
 
-Vamos realizar uma eegressão simples para verificar a relação entre o índice de Shannon-Wiener e a precipitação anual nas comunidades.
+Vamos realizar uma regressão simples para verificar a relação entre o índice de Shannon-Wiener e a precipitação anual nas comunidades.
 
 ```{r}
 ## Modelo linear
@@ -292,7 +299,7 @@ anova(lm(dados_div$Pielou ~ dados_div$Precipitacao))
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-As análises acima são apenas ilustrativas. Não estamos avaliando as premissas de normalidade e homogeneidade da variância dos resíduos (veja Capítulo \@ref(cap7)). Além disso, é importante estar ciente das críticas e limitações de usar índices de Shannon e Simpson como nesses dois exemplos Jost [-@jost_partitioning_2007].
+As análises acima são apenas ilustrativas. Não estamos avaliando as premissas de normalidade e homogeneidade da variância dos resíduos (veja Capítulo \@ref(cap7)). Além disso, é importante estar ciente das críticas e limitações de usar índices de Shannon e Simpson como nesses exemplos [@jost_partitioning_2007].
 :::
 
 **Interpretação dos resultados**
@@ -301,7 +308,7 @@ A variação espacial na diversidade de espécies, obtida através dos índices 
 
 ### Diagramas de Whittaker ou Curva de Dominância
 
-Embora os índices de diversidade de espécies englobem os componentes de riqueza e abundância relativa das espécies nas suas estimativas, não é possível conhecer o número de espécies ou quais são as espécies dominantes ou raras dentro das comunidades. Por exemplo, duas comunidades podem ter o mesmo valor de diversidade e ainda assim apresentar diferenças na riqueza e equitabilidade [@melo2008]. O **Diagrama de Whittaker** é um método que lida com essas questões utilizando informações visuais do número de espécies e abundância relativa de cada espécie nas comunidades. Este método plota as espécies ranqueadas no eixo X da mais abundante para a menos abundante, enquanto no eixo Y as abundâncias relativas das espécies são plotadas em escala logaritma (log~10~). Este gráfico permite ao leitor reconhecer: i) a riqueza de espécies observando o eixo X, ii) a equitabilidade da abundância relativa das espécies pela inclinação da reta, e iii) quais são as espécies dominantes, intermediárias e raras nas comunidades através da observação em relação ao eixo Y. A partir destas curvas, vários autores propuseram modelos matemáticos para explicar a distribuição de abundância das espécies gerando diferentes modelos teóricos (e.g. série geométrica, *broken-stick*, log-series e log-normal). Cada modelo possui predições distintas: o modelo geométrico prediz distribuição de abundâncias desiguais, *broken-stick* prediz distribuição de abundâncias uniformes, enquanto log-normal e log-series são intermediárias com predições distintas sobre as proporções de espécies raras - alta em log-series, baixa em log-normal (veja McGill et al. [-@mcgill2007] para revisão).
+Embora os índices de diversidade de espécies englobem os componentes de riqueza e abundância relativa das espécies nas suas estimativas, não é possível conhecer o número de espécies ou quais são as espécies dominantes ou raras dentro das comunidades. Por exemplo, duas comunidades podem ter o mesmo valor de diversidade e ainda assim apresentarem diferenças na riqueza e equitabilidade [@melo2008]. O **Diagrama de Whittaker** é um método que lida com essas questões utilizando informações visuais do número de espécies e abundância relativa de cada espécie nas comunidades. Este método plota as espécies ranqueadas no eixo X da mais abundante para a menos abundante, enquanto no eixo Y as abundâncias relativas das espécies são plotadas em escala logaritma (log~10~). Este gráfico permite ao leitor reconhecer: i) a riqueza de espécies observando o eixo X, ii) a equitabilidade da abundância relativa das espécies pela inclinação da reta, e iii) quais são as espécies dominantes, intermediárias e raras nas comunidades através da observação em relação ao eixo Y. A partir destas curvas, vários autores propuseram modelos matemáticos para explicar a distribuição de abundância das espécies gerando diferentes modelos teóricos (e.g. série geométrica, *broken-stick*, log-series e log-normal). Cada modelo possui predições distintas: o modelo geométrico prediz distribuição de abundâncias desiguais, *broken-stick* prediz distribuição de abundâncias uniformes, enquanto log-normal e log-series são intermediárias com predições distintas sobre as proporções de espécies raras - alta em log-series, baixa em log-normal (veja McGill et al. [-@mcgill2007] para revisão).
 
 Para análises exploratórias onde você tem interesse em visualizar o padrão da distribuição relativa das espécies por comunidade, a função `rankabundance` do pacote `BiodiversityR` é uma opção interessante (Figura \@ref(fig:fig-whittaker)).
 
@@ -358,7 +365,7 @@ plot(curvas_dominancia_com2,
 
 **Interpretação dos resultados**
 
-Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matématicos. Com base nos valores de AIC (veja \@ref(cap7)), o modelo **Zipf** é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.
+Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matématicos. Com base nos valores de AIC (veja Capítulo \@ref(cap7)), o modelo **Zipf** é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.
 
 Agora vamos analisar os dados considerando todas as comunidades (Figura \@ref(fig:fig-whittaker-testes)).
 
@@ -373,11 +380,16 @@ plot(curvas_dominancia_todas, log = "y")
 
 **Interpretação dos resultados**
 
-A Comunidade 1 foi associada com o modelo **log-normal**, as Comunidades 2 e 4 com o modelo **Zipf**, a Comunidade 3 com o modelo **série geométrica** e as outras comunidades com o **modelo nulo**. Para explorar a explicação biológica por trás destes modelos veja os artigos [@wilson1991; @mcgill2007; @magurran_biological_2011]. Contudo, essa ligação entre o modelo matemático e a explicação biológica precisa ser interpretado com cuidado porque diferentes modelos matemáticos podem levar ao mesmo padrão de distribuição de abundância.
+A Comunidade 1 foi associada com o modelo **log-normal**, as Comunidades 2 e 4 com o modelo **Zipf**, a Comunidade 3 com o modelo **série geométrica** e as outras comunidades com o **modelo nulo**. Para explorar a explicação biológica por trás destes modelos veja os artigos [@wilson1991; @mcgill2007; @magurran_biological_2011]. 
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+A ligação entre o modelo matemático e a explicação biológica precisa ser interpretada com cuidado porque diferentes modelos matemáticos podem levar ao mesmo padrão de distribuição de abundância.
+:::
 
 ### Números de Hill ou Série de Hill
 
-Embora os índices de Shannon-Wiener e Gini-Simpson sejam amplamente usados em estudos ecológicos e de conservação, eles sofrem de propriedades matemáticas e não representam a diversidade propriamente dita [@jost2006]. Portanto, quando o objetivo é avaliar a diversidade, os índices de Shannon-Wiener e Gini-Simpson não deveriam ser utilizados na sua forma padrão, mas transformados em números efetivos de espécies ou diversidade verdadeira [@jost2006]. O número efetivo de espécies é o número de espécies igualmente abundantes (i.e. todas as espécies com a mesma abundância) necessárias para produzir o valor observado para um determinado índice. Por exemplo, uma comunidade com índice de Shannon-Wiener estimado de 4,5 teria um número efetivo de 90 espécies igualmente abundantes. Jost et al. -@jost2006 usam o seguinte exemplo para explicar o conceito do número efetivo de espécies - uma comunidade com 16 espécies igualmente abundantes é duas vezes mais diversa do que uma comunidade com 8 espécies igualmente abundantes. Neste caso, a diversidade deveria ser proporcional ao número de espécies. Contudo, quando aplicamos os índices de diversidade para estas comunidades com 16 e 8 espécies (cada espécie com 5 indivíduos), o índice de Shannon-Wiener é 2,772 e 2,079, respectivamente, e o índice de Gini-Simpson é 0,937 e 0,875, respectivamente. Claramente, os valores estimados pelos índices de diversidade não representam a diferença entre as comunidades porque eles carecem de uma particularidade matemática conhecida como propriedade de duplicação. 
+Embora os índices de Shannon-Wiener e Gini-Simpson sejam amplamente usados em estudos ecológicos e de conservação, eles sofrem de propriedades matemáticas e não representam a diversidade propriamente dita [@jost2006]. Portanto, quando o objetivo é avaliar a diversidade, os índices de Shannon-Wiener e Gini-Simpson não deveriam ser utilizados na sua forma padrão, mas transformados em números efetivos de espécies ou diversidade verdadeira [@jost2006]. O número efetivo de espécies é o número de espécies igualmente abundantes (i.e. todas as espécies com a mesma abundância) necessárias para produzir o valor observado para um determinado índice. Por exemplo, uma comunidade com índice de Shannon-Wiener estimado de 4,5 teria um número efetivo de 90 espécies igualmente abundantes. Jost et al. [-@jost2006] usam o seguinte exemplo para explicar o conceito do número efetivo de espécies - uma comunidade com 16 espécies igualmente abundantes é duas vezes mais diversa do que uma comunidade com 8 espécies igualmente abundantes. Neste caso, a diversidade deveria ser proporcional ao número de espécies. Contudo, quando aplicamos os índices de diversidade para estas comunidades com 16 e 8 espécies (cada espécie com 5 indivíduos), o índice de Shannon-Wiener é 2,772 e 2,079, respectivamente, e o índice de Gini-Simpson é 0,937 e 0,875, respectivamente. Claramente, os valores estimados pelos índices de diversidade não representam a diferença entre as comunidades porque eles carecem de uma particularidade matemática conhecida como propriedade de duplicação. 
 
 O próximo exemplo (modificado do website de Lou Jost; [http://www.loujost.com/](http://www.loujost.com/Statistics%20and%20Physics/Diversity%20and%20Similarity/EffectiveNumberOfSpecies.htm)), demostra a importância da transformação dos índices de diversidade em números efetivos de espécies. Imagine que você foi contratado para avaliar a diversidade de peixes em um riacho antes e depois da instalação de uma usina hidrelétrica. Suponha que os valores estimados pelo índice de Gini-Simpson foi de 0,99 antes da instalação e de 0,97 depois da instalação. A princípio, você poderia concluir que a diversidade diminuiu somente 2% e que a instalação da hidrelétrica não afetou a diversidade de peixes no riacho. Contudo, transformando os valores do índice de diversidade em números efetivos, percebemos que antes da instalação a diversidade do riacho equivale a 100 espécies igualmente abundantes, enquanto após a instalação, a diversidade equivale a 33 espécies igualmente abundantes. Portanto, a queda da diversidade foi de 66% e não 2%. 
 
@@ -425,15 +437,20 @@ head(res_hill)
 
 **Interpretação dos resultados**
 
-Como na comunidade 1 todas as espécies são igualmente abundantes, alterar os valores de *q* não altera o número efetivo de espécies que permanece sempre 10. Contudo, na comunidade 2, que apresenta alta dominância de uma espécie, alterar os valores de q diminui consideravelmente a estimativa da diversidade. A vantagem dos Números de Hill é que eles são de fácil interpretação e comparação entre as comunidades. Fator ausente para os índices de diversidade. Neste ponto, esperamos que tenha ficado claro que mais do que a riqueza de espécies, a abundância relativa das espécies (e.g. comuns ou raras) tem um papel fundamental na estimativa da diversidade de espécies.
+Como na comunidade 1 todas as espécies são igualmente abundantes, alterar os valores de *q* não altera o número efetivo de espécies que permanece sempre 10. Contudo, na comunidade 2, que apresenta alta dominância de uma espécie, alterar os valores de q diminui consideravelmente a estimativa da diversidade. A vantagem dos Números de Hill é que eles são de fácil interpretação e comparação entre as comunidades. Fator ausente para os índices de diversidade. 
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+Neste ponto, esperamos que tenha ficado claro que mais do que a riqueza de espécies, a abundância relativa das espécies (e.g. comuns ou raras) tem um papel fundamental na estimativa da diversidade de espécies.
+:::
 
 ## Diversidade beta
 
 O termo diversidade beta foi proposto por Whittker [-@whittaker1960] e foi definido como a razão entre a diversidade gama e a diversidade alfa (i.e. diversidade beta multiplicativa), quantificando não só a relação entre a diversidade regional e local, mas também o grau de diferenciação entre as comunidades. Para demonstrar como a diversidade beta varia entre comunidades locais dentro de uma região usaremos a explicação do Baselga (<http://webspersoais.usc.es/persoais/andres.baselga/beta.html>). Imagine três comunidades, cada comunidade abrigando as mesmas cinco espécies. Neste caso, a média da diversidade alfa = 5, a diversidade gama = 5 e a razão entre elas (gama/alfa) indica uma diversidade beta = 1. Isso significa que na região existe apenas uma unidade distinta de composição. Quando a composição de espécies das três comunidades é completamente diferente (i.e. diferenciação máxima), temos que a média da diversidade alfa = 5, a diversidade gama = 15 e a razão entre elas indica uma diversidade beta = 3. Neste caso, existem três unidades distintas dentro da região. Assim, a diversidade beta multiplicativa varia de 1 até o número de comunidades dentro da região. 
 
-A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de Jaccard e Sørensen) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância [@legendre_numerical_2012] e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (*turnover*) entre comunidades. Contudo, índices de (dis)similaridade como Jaccard e Sørensen geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga [-@baselga2009, [-@baselga2012]] propôs uma abordagem que particiona a diversidade beta total em dois componentes: o componente resultante da substituição de espécies (*turnover*) e o componente resultante do aninhamento (*nestedness*, i.e. diferença na riqueza de espécies). Baselga [-@baselga2013] propôs a a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento) (Figura \@ref(fig:fig-div-beta)). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies *versus* perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes [@baselga2009, @baselga2012; @baselga2013].
+A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de Jaccard e Sørensen) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância [@legendre_numerical_2012] e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (*turnover*) entre comunidades. Contudo, índices de (dis)similaridade como Jaccard e Sørensen geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga [-@baselga2009; -@baselga2012] propôs uma abordagem que particiona a diversidade beta total ($\beta$~jac~) em dois componentes: o componente resultante da substituição de espécies (*turnover* - $\beta$~tur~) e o componente resultante do aninhamento (*nestedness*, i.e. diferença na riqueza de espécies - $\beta$~nes~). Vejam a (Figura \@ref(fig:fig-div-beta)) onde temos 3 comunidades (X, Y e Z). No primeiro exemplo, temos apenas diferença no número de espécies entre as comunidades. Neste caso, o componente subsituição de espécies ($\beta$~tur~) é zero porque as espécies na comunidade Z são um sub-grupo das espécies nas comunidades X e Y. O mesmo para as espécies na comunidade Y que são um sub-grupo das espécies da comunidade X. No segundo exemplo, temos o cenário oposto com as comunidades abrigando a mesma riqueza de espécies e assim, o componente resultante do aninhamento ($\beta$~nes~) é zero, temos um valor máximo para o $\beta$~tur~. Percebam que somando $\beta$~tur~ com $\beta$~nes~ temos o valor da diversidade beta total ($\beta$~jac~). Baselga [-@baselga2013] também propôs a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies *versus* perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes [@baselga2009; @baselga2012; @baselga2013].
 
-```{r fig-div-beta, fig.cap="Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.", echo=FALSE}
+```{r fig-div-beta, fig.cap="Partição da diversidade beta taxonômica. Os três cenários apresentados representam a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.", echo=FALSE}
 knitr::include_graphics(path = "img/cap12_fig01.svg")
 ```
 
@@ -454,11 +471,12 @@ resultado_PA <- beta.pair(composicao_PA, index.family = "sorensen")
 ```
 
 ::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
 A função `beta.pair()` gera três listas com matrizes triangulares:
 
 -   **Diversidade beta total** = índice de Sørensen (beta.sor)
 -   **Componente de substituição** = índice de Simpson (beta.sim)
--   **Componente de aninhamento** = beta.sor - beta.sim
+-   **Componente de aninhamento** = diferença na riqueza (beta.nes)
 :::
 
 Vamos olhar os resultados da diversidade beta total.
