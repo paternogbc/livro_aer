@@ -312,7 +312,7 @@ Cálculo do Teste T com amostras pareadas.
 # queimada e os últimos 27 números [28:54] que representam as mesmas 
 # localidades pós-queimada.
 
-t.test(Pareado$Riqueza[1:27], Pareado$Riqueza[28:54], paired = TRUE)
+t.test(Riqueza ~ Estado, paired = TRUE, data = Pareado)
 ```
 
 Neste exemplo, rejeitamos a hipótese nula de que a riqueza de espécies de artrópodes é igual antes e depois da queimada (t~26~ = 7,57, P \< 0,001).
@@ -738,7 +738,7 @@ TukeyHSD(Modelo_anova)
 Visualizar os resultados em gráfico (Figura \@ref(fig:fig-anova-um-fator)).
 
 ```{r fig-anova-um-fator, fig.cap="Gráfico de caixa mostrando o resultado da ANOVA de um fator."}
-## Reordenando a ordem que os grupos irão aparecer no gráfico
+## Reorganizando a ordem que os grupos irão aparecer no gráfico
 dados_anova_simples$Tratamento <- factor(dados_anova_simples$Tratamento,
                                          levels = c("Controle", "Adubo_Tradicional", "Adubo_X-2020"))
 
