@@ -1072,7 +1072,7 @@ Assim como apresentado na RDA, os resultados obtidos em `db.res.var` sugerem que
 
 ## PERMANOVA
 
-A PERMANOVA é um acrônimo, em inglês, de *Permutational Multivariate Analysis of Variance*, análise proposta por Marti Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Essa análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
+A PERMANOVA é uma sigla, em inglês, de *Permutational Multivariate Analysis of Variance*, análise proposta por Marti Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Essa análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
 
 O primeiro passo da PERMANOVA é selecionar uma medida de distância apropriada aos dados e, além disso, verificar a necessidade de padronização ou transformação dos dados. Em seguida, as distâncias são comparadas entre os grupos de interesse (por exemplo, tratamento versus controle) usando a estatística *F* de maneira muito parecida com uma ANOVA (Capítulo \@ref(cap7)), chamada de *pseudo-F*:
 
@@ -1384,8 +1384,8 @@ Um dos primeiros métodos foi proposto em 2012 pelo grupo de David Warton [@wart
 ```{r fig-media-var, fig.cap="Gráfico mostrando a média-variância para dados de abundância multivariada."}
 ## Dados com seis primeiras localidades e espécies
 head(anuros_permanova)[1:6]
-anuros_abund <- as.data.frame(anuros_permanova[,-28])
-grupos <- factor(anuros_permanova[,28])
+anuros_abund <- as.data.frame(anuros_permanova[,-28])#retirando a coluna que contém o fator e deixando apenas dados de abundância
+grupos <- factor(anuros_permanova[,28])#incluindo apenas o fator a ser testado no modelo
 
 ## Média-variância
 abund_tr <- mvabund(anuros_abund) # criando um objeto da classe mvabund com os dados de abundância
