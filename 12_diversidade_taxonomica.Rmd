@@ -21,7 +21,7 @@ precipitacao        <- ecodados::precipitacao_div_taxonomica
 
 ## Aspectos teóricos
 
-A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.)[@magurran_biological_2011; @gotelli2013]. Whittaker [-@whittaker1960; -@whittaker1972] particionou a diversidade em três componentes: i) diversidade alfa que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) diversidade beta que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) diversidade gama que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.
+A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.) [@magurran_biological_2011; @gotelli2013]. Whittaker [-@whittaker1960; -@whittaker1972] particionou a diversidade em três componentes: i) diversidade alfa que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) diversidade beta que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) diversidade gama que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.
 
 Neste capítulo, iremos abordar a diversidade taxonômica que ignora a relação de parentesco entre as espécies (e.g. diversidade filogenética - Capítulo \@ref(cap13)) e as diferentes funções que as espécies realizam no ecossistema (e.g. diversidade funcional - Capítulo \@ref(cap14)). Na diversidade taxonômica, pesquisadores estão interessados na riqueza de espécies (e.g. número de espécies), na distribuição de abundância das espécies (e.g. fato que algumas espécies são comuns e outras raras) e/ou diversidade de espécies (e.g. índices que descrevem a relação entre a riqueza e a distribuição da abundância relativa das espécies) nas localidades.
 
@@ -94,14 +94,16 @@ Vamos ver a riqueza de espécies para cada comunidade.
 
 ```{r}
 ## Calculando a riqueza observada de espécies para cada comunidade
-(riqueza_sp <- specnumber(composicao_especies))
+riqueza_sp <- specnumber(composicao_especies)
+riqueza_sp
 ```
 
 Vamos ver a abundância total de cada comunidade.
 
 ```{r}
 ## Calculamos a abundância total para cada comunidade
-(abundancia <- apply(composicao_especies, 1, sum))
+abundancia <- apply(composicao_especies, 1, sum)
+abundancia
 ```
 
 Calculando o Índice de Margalef.
@@ -109,14 +111,16 @@ Calculando o Índice de Margalef.
 ```{r}
 ## Índice de Menhinick
 # A função round é para limitar o resultado para duas casas decimais.
-(Margalef <- round((riqueza_sp - 1)/log(abundancia), 2))
+Margalef <- round((riqueza_sp - 1)/log(abundancia), 2)
+Margalef
 ```
 
 Calculando o Índice de Menhinick.
 
 ```{r}
 ## Índice de Menhinick
-(Menhinick <- round(riqueza_sp/sqrt(abundancia), 2))
+Menhinick <- round(riqueza_sp/sqrt(abundancia), 2)
+Menhinick
 ```
 
 Agora vamos analisar a relação entre a riqueza de espécies e a precipitação anual.
@@ -129,7 +133,9 @@ dados <- data.frame(precipitacao$prec, riqueza_sp, Margalef, Menhinick)
 colnames(dados) <- c("Precipitacao", "Riqueza", "Margalef", "Menhinick")
 
 ## ANOVA
-anova(lm(dados$Riqueza ~ dados$Precipitacao))
+anova_riq <- lm(Riqueza ~ Precipitacao, data = dados)
+anova(anova_riq)
+
 ```
 
 Há uma relação positiva entre a riqueza de espécies e a precipitação anual (F~1,8~ = 8,91, P = 0,01).
@@ -138,7 +144,9 @@ Analisr a relação entre o Índice de Margalef e a precipitação anual.
 
 ```{r}
 ## ANOVA
-anova(lm(dados$Margalef ~ dados$Precipitacao))
+anova_marg <- lm(Margalef ~ Precipitacao, data = dados)
+anova(anova_marg)
+
 ```
 
 Não há uma relação positiva entre o índice de Margalef e a precipitação anual (F~1,8~ = 2,12, P = 0,18).
@@ -147,7 +155,9 @@ Agora vamos analisar a relação entre o índice de Menhinick e a precipitação
 
 ```{r}
 ## ANOVA
-anova(lm(dados$Menhinick ~ dados$Precipitacao))
+anova_menh <- lm(Menhinick ~ Precipitacao, data = dados)
+anova(anova_menh)
+
 ```
 
 Não há uma relação positiva entre o índice de Menhinick e a precipitação anual (F~1,8~ = 1,09, P = 0,32).
@@ -264,7 +274,7 @@ Não há uma função no R que calcule o índice de Pielou, mas ele pode facilme
 
 ```{r}
 ## Índice de Pielou
-(Pielou <- shannon_res/log(specnumber(composicao_especies)))
+Pielou <- shannon_res/log(specnumber(composicao_especies))
 ```
 
 Agora que temos uma ideia de como a riqueza de espécies e a distribuição da abundância relativa são importantes para quantificar os valores dos índices de diversidade, vamos testar se há alguma relação entre os índices de diversidade e precipitação anual nas comunidades.
@@ -281,22 +291,28 @@ colnames(dados_div) <- c("Precipitacao", "Shannon", "Simpson", "Pielou")
 Vamos realizar uma regressão simples para verificar a relação entre o índice de Shannon-Wiener e a precipitação anual nas comunidades.
 
 ```{r}
-## Modelo linear
-anova(lm(dados_div$Shannon ~ dados_div$Precipitacao))
+## ANOVA
+anova_shan <- lm(Shannon ~ Precipitacao, data = dados_div)
+anova(anova_shan)
+
 ```
 
 Agora, vamos realizar uma regressão simples para verificar a relação entre o índice de Simpson e a precipitação anual nas comunidades.
 
 ```{r}
-## Modelo linear
-anova(lm(dados_div$Simpson ~ dados_div$Precipitacao))
+## ANOVA
+anova_simp <- lm(Simpson ~ Precipitacao, data = dados_div)
+anova(anova_simp)
+
 ```
 
 Por fim, vamos fazer regressão simples para verificar a relação entre o índice de Pielou e a precipitação anual nas comunidades.
 
 ```{r}
-## Modelo linear
-anova(lm(dados_div$Pielou ~ dados_div$Precipitacao))
+## ANOVA
+anova_piel <- lm(Pielou ~ Precipitacao, data = dados_div)
+anova(anova_piel)
+
 ```
 
 ::: {.alert .alert-info}
@@ -411,21 +427,24 @@ Calculando o Número de Hill com q = 0.
 
 ```{r}
 ## Número de Hill para q = 0
-(hill_res_q_0 <- hill_taxa(composicao_especies, q  = 0))
+hill_res_q_0 <- hill_taxa(composicao_especies, q  = 0)
+hill_res_q_0
 ```
 
 Calculando o Número de Hill com q = 1.
 
 ```{r}
 ## Número de Hill para q = 1
-(hill_res_q_1 <- hill_taxa(composicao_especies, q  = 1))
+hill_res_q_1 <- hill_taxa(composicao_especies, q  = 1)
+hill_res_q_1
 ```
 
 Calculando o Número de Hill com q = 2.
 
 ```{r}
 ## Número de Hill para q = 2
-(hill_res_q_2 <- hill_taxa(composicao_especies, q  = 2))
+hill_res_q_2 <- hill_taxa(composicao_especies, q  = 2)
+hill_res_q_2
 ```
 
 Criando um data frame com os três resultados anteriores.
@@ -495,7 +514,7 @@ Vamos montar um data.frame com os resultados
 data.frame_PA <- data.frame(round(as.numeric(resultado_PA$beta.sor), 2),
                             round(as.numeric(resultado_PA$beta.sim), 2),
                             round(as.numeric(resultado_PA$beta.sne), 2))
-colnames(data.frame_PA) <- c("sorensen", "Simpson", "Aninhamento")
+colnames(data.frame_PA) <- c("Sorensen", "Simpson", "Aninhamento")
 head(data.frame_PA)
 ```
 
@@ -531,15 +550,19 @@ Vamos testar a relação entre as diferença na composição de espécies e
 precipitação nas comunidades.
 
 ```{r}
-## Modelos lineares
+## ANOVA
 # Avaliar a relação entre os valores de diversidade beta total (Sørensen) e precipitação.
-anova(lm(dados_dis$sorensen ~ dados_dis$dados_prec))
+anova_sore <-lm(Sorensen ~ dados_prec, data = dados_dis)
+anova(anova_sore)
 
 # Avaliar a relação entre os valores do componente substituição (Simpson) e precipitação
-anova(lm(dados_dis$Simpson ~ dados_dis$dados_prec))
+anova_simp <-lm(Simpson ~ dados_prec, data = dados_dis)
+anova(anova_simp)
 
 # Avaliar a relação entre os valores do componente aninhamento e precipitação
-anova(lm(dados_dis$Aninhamento ~ dados_dis$dados_prec))
+anova_anin <-lm(Aninhamento ~ dados_prec, data = dados_dis)
+anova(anova_anin)
+
 ```
 
 **Interpretação dos resultados**
@@ -598,15 +621,19 @@ dados_dis_AB <- data.frame(dados_prec, data.frame_AB)
 Testar a relação da dissimilaridade considerando a abundância com a diferença na precipitação entre as comunidades.
 
 ```{r}
-## Modelos lineares
+## ANOVA
 # Avaliar a relação entre os valores de diversidade beta total e precipitação
-anova(lm(dados_dis_AB$Bray ~ dados_dis$dados_prec))
+anova_disAB <- lm(Bray ~ dados_prec, data = dados_dis)
+anova(anova_disAB)
 
 # Avaliar a relação entre os valores do componente balanceada e precipitação
-anova(lm(dados_dis_AB$Balanceada ~ dados_dis$dados_prec))
+anova_balan <- lm(Balanceada ~ dados_prec, data = dados_dis)
+anova(anova_balan)
 
 # Avaliar a relação entre os valores do componente gradiente e precipitação
-anova(lm(dados_dis_AB$Gradiente ~ dados_dis$dados_prec))
+anova_grad <- lm(Gradiente ~ dados_prec, data = dados_dis)
+anova(anova_grad)
+
 ```
 
 **Interpretação dos resultados**
