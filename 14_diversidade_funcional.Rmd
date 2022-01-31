@@ -329,7 +329,7 @@ head(metricas)
 ggpairs(metricas) + tema_livro()
 ```
 
-Os resultados indicam que a Diversidade Funcional de -@petchey_functional_2002 (*r* = 0.985) e a riqueza funcional (*r* = 0.813) são altamente correlacionadas com a riqueza de espécies. Porém, a divergência funcional, regularidade funcional e dispersão funcional não estão correlacionadas com a riqueza de espécies.
+Os resultados indicam que a Diversidade Funcional de Petchey & Gaston [-@petchey_functional_2002] (*r* = 0.985) e a riqueza funcional (*r* = 0.813) são altamente correlacionadas com a riqueza de espécies. Porém, a divergência funcional, regularidade funcional e dispersão funcional não estão correlacionadas com a riqueza de espécies.
 
 A figura obtida com o código `ggpairs(metricas)` representa uma matriz de correlação comparando cada par de variáveis (neste caso, os índices de diversidade). No lado esquerdo da figura (abaixo da diagonal) são representados *scatter plots* (veja Capítulo \@ref(cap6)), a no lado direito (acima da diagonal) pode-se encontrar os valores das correlações (*r*) entre os pares comparados. No caso das correlações, quanto mais próximo de +1 ou -1, mais forte é a relação entre essas variáveis do par comparado. O gráfico de linhas na diagonal demonstra a densidade de cada variáveis individualmente (veja Capítulo \@ref(cap7)).  
 
@@ -343,7 +343,7 @@ knitr::include_graphics(path = "img/cap14_fig01.svg")
 
 **Exemplo 4**
 
-Os dados no exemplo a seguir utilizam somente a informação de presença (1) ou ausência (0) das espécies nas localidades. Neste exemplo hipotético criado por [-@baselga_2021], foram amostradas 11 espécies (sp1-sp11) em quatro localidades (A-D). Para cada espécie, criamos dois atributos contínuos hipotéticos (trait1 e trait2).
+Os dados no exemplo a seguir utilizam somente a informação de presença (1) ou ausência (0) das espécies nas localidades. Neste exemplo hipotético criado por Baselga et al. [-@baselga_2021], foram amostradas 11 espécies (sp1-sp11) em quatro localidades (A-D). Para cada espécie, criamos dois atributos contínuos hipotéticos (trait1 e trait2).
 
 **Pergunta**
 
@@ -444,19 +444,11 @@ lm_dat <- data.frame(aridez = ambie_fren_dat$Aridity, fdis = fdis, feve = feve)
 # Modelo 1
 mod1 <- lm(fdis ~ aridez, data = lm_dat)
 
-# Conferir os pressupostos da análise
-par(mfrow = c(2, 2))
-plot(mod1) 
-
 # Conclusão: a aridez não tem efeito sobre a divergência funcional
 anova(mod1) 
 
 # Modelo 2
 mod2 <- lm(feve ~ aridez, data = lm_dat)
-
-# conferir os pressupostos da análise
-par(mfrow = c(2, 2))
-plot(mod2) 
 
 # Conclusão: a aridez não tem efeito sobre a regularidade funcional
 anova(mod2) 
@@ -646,7 +638,7 @@ Características ambientais das poças afetam a variação intraespecífica?
 
 Para calcular a contribuição relativa da variação intraespecífica em relação à variação interespecífica dentro de uma comunidade, por exemplo, Siefert et al. [-@siefert_global_2015] sugeriram uma métrica chamada de wITV (*within-community Intraspecific Trait Variation*). A wITV representa a razão da variação intraespecífica em relação a variação total dentro de uma comunidade (e.g., parcela, poça) que inclui: i) a abundância relativa de cada espécie *j* ocorrendo na comunidade *i*, ii) o valor médio do atributo da espécie *j* na comunidade *i*, e iii) o valor do atributo *k* de cada indivíduo da espécie *j* que ocorre na comunidade *i*. Como esta medida é feita por unidade amostral (ou seja, sua comunidade de interesse), é possível testar hipóteses ecológicas que tentem explicar processos que aumentem ou diminuam a variação de um determinado atributo dentro ou entre espécies diferentes. A função wITV foi adaptada para a linguagem R por de Bello et al. [-@de_bello_handbook_2021]. Para facilitar o cálculo do wITV para cada comunidade, de Bello et al. [-@de_bello_handbook_2021] executaram os códigos com a função `for()` que repete iterativamente a análise para gerar os valores de todas as comunidades em uma forma dinâmica. Após executar as análises com o `for()`, a função salva os resultados dentro do objeto `wITVResults`. Após obter esses resultados, é possível utilizar modelos lineares para testar quais variáveis preditoras (em nosso exemplo, características das poças) afetam o aumento ou diminuição da contribuição relativa da variação intraespecífica (Figura \@ref(fig:fig-func-intra)).
 
-```{r fig-func-witv, fig.cap="Gráficos diagnósticos do modelo linear ajusta do iWTV em função de características das poças."}
+```{r fig-func-witv, fig.cap="Gráficos diagnósticos do modelo linear ajustado para iWTV em função de características das poças."}
 ## Dados necessários
 # Matriz de traits.
 head(traits)
