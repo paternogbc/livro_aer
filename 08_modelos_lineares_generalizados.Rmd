@@ -98,7 +98,6 @@ Antes de começar com a análise, vamos primeiro explorar os dados.
 
 ```{r out.width="49%"}
 ## Explorar os dados
-head(fragmentos)
 glimpse(fragmentos)
 ```
 
@@ -636,7 +635,7 @@ pois_plain <- glm(Raillietiella_mottae ~ CRC + Sexo * Especie, data = parasitas,
 Aqui vamos utilizar as funções do pacote `performance` novamente (Figura \@ref(fig:fig-mod-pois-zero-diag)) para o GLM Poisson.
 
 ```{r fig-mod-poi-zero-diag, fig.cap="Diagnose avançada dos resíduos do modelo GLM Poisson."}
-## Diagnóse avançada
+## Diagnose avançada
 check_zeroinflation(pois_plain) # para diagnosticar se o modelo sofre de zero inflation
 check_overdispersion(pois_plain)
 ```
@@ -655,7 +654,7 @@ ziP_mod2 <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data =
 
 **Diagnose**
 
-Vamos fazer a diagnóse desses três modelos ajustados anteriormente.
+Vamos fazer a diagnose desses três modelos ajustados anteriormente.
 
 ```{r}
 ## Diagnose de inflação de zeros
@@ -713,15 +712,16 @@ ggplot(parasitas, aes(x = CRC, y = phat, colour = Especie,
 
 Uma outra maneira de codificarmos os dados é utilizando categorias ordenadas, tais como ranques. Exemplos incluem a escala de Likert, scores e intervalos (e.g., de idade).
 
-Para este exemplo, iremos utilizar um outro conjunto de dados do artigo de [@Franco-Belussi2018a] que manipulou *in vitro* a concentração do hormônio noradrenalina (NA) nos olhos de peixes esgana-gato (*Gasterosteus aculeatus*) e avaliaram a expressão de várias cores conferidas por tipos de células (cromatóforos). Aqui vamos usar os dados do efeito do NA na cor vermelha em machos.
+Para este exemplo, iremos utilizar um outro conjunto de dados do artigo de [@Franco-Belussi2018a] que manipulou *in vitro* a concentração do hormônio noradrenalina nos olhos de peixes esgana-gato (*Gasterosteus aculeatus*) e avaliaram a expressão de várias cores conferidas por tipos de células (cromatóforos). Aqui vamos usar os dados do efeito da noradrenalina na cor vermelha em machos.
+Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao longo do tempo (que é um dos fatores deste experimento). Portanto, para não incorrer no risco de pseudoréplicas deveríamos incluir esta informação no modelo. A maneira mais simples de fazê-lo é criar um modelo de efeito misto em que teríamos uma parte fixa (o que de fato estamos interessados em testar) e outra aleatória (variáveis que precisamos controlar). Portanto, `Animal` será incluído como um um fator aleatório, tendo um intercepto estimado separadamente para cada animal no modelo. Não iremos entrar em detalhes sobre modelos de efeito misto porque necessitaríamos de um outro capítulo para isso, dada a complexidade do assunto. No entanto, recomendamos aos leitores dois artigos intródutórios muito bons - Harisson [-@Harrison] e Bolker et al. [-@BOLKER2009127].
 
 **Pergunta**
 
-A NA causa uma diminuição da coloração vermelha, via agregação dos pigmentos?
+A noradrenalina causa uma diminuição da coloração vermelha, via agregação dos pigmentos?
 
 **Predições**
 
-A presença de NA causa a agregação dos pigmentos, permitindo que os hormônios reprodutivos atuem.
+A presença de noradrenalina causa a agregação dos pigmentos, permitindo que os hormônios reprodutivos atuem.
 
 **Variáveis**
 

@@ -17,6 +17,8 @@ library(nlme)
 library(ape)
 library(fields)
 library(tidyverse)
+library(vegan)
+library(rdist)
 
 ## Dados
 CRC_PN_macho <- ecodados::teste_t_var_igual
@@ -31,6 +33,11 @@ dados_dois_fatores_interacao <- ecodados::anova_dois_fatores
 dados_dois_fatores_interacao2 <- ecodados::anova_dois_fatores_interacao2
 dados_bloco <- ecodados::anova_bloco
 dados_ancova <- ecodados::ancova
+data("mite")
+data("mite.xy")
+coords <- mite.xy
+colnames(coords) <- c("long", "lat")
+data("mite.env")
 ```
 
 ::: {.alert .alert-info}
@@ -312,7 +319,7 @@ Cálculo do Teste T com amostras pareadas.
 # queimada e os últimos 27 números [28:54] que representam as mesmas 
 # localidades pós-queimada.
 
-t.test(Pareado$Riqueza[1:27], Pareado$Riqueza[28:54], paired = TRUE)
+t.test(Riqueza ~ Estado, paired = TRUE, data = Pareado)
 ```
 
 Neste exemplo, rejeitamos a hipótese nula de que a riqueza de espécies de artrópodes é igual antes e depois da queimada (t~26~ = 7,57, P \< 0,001).
@@ -738,7 +745,7 @@ TukeyHSD(Modelo_anova)
 Visualizar os resultados em gráfico (Figura \@ref(fig:fig-anova-um-fator)).
 
 ```{r fig-anova-um-fator, fig.cap="Gráfico de caixa mostrando o resultado da ANOVA de um fator."}
-## Reordenando a ordem que os grupos irão aparecer no gráfico
+## Reorganizando a ordem que os grupos irão aparecer no gráfico
 dados_anova_simples$Tratamento <- factor(dados_anova_simples$Tratamento,
                                          levels = c("Controle", "Adubo_Tradicional", "Adubo_X-2020"))
 
@@ -1102,12 +1109,14 @@ concentrar nas seguintes funções.
 Neste exemplo, utilizamos os dados de riqueza de espécies de ácaros (Oribatidae) em 70 amostras de musgo (gênero *Sphagnum*) [@borcard_partialling_1992]. Para cada amostra, além da riqueza de ácaros, os autores registraram a quantidade de água no substrato e as coordenadas geográficas. Os dados completos estão disponíveis no pacote `vegan`.
 
 ```{r}
-## Matriz de dados com Riqueza, quantidade de água, latitude e longitude
-mite_dat <- read.csv("dados/tabelas/mite_dat.csv", row.names = "X") 
+## Calcular a riqueza de espécies em cada comunidade
+riqueza <- specnumber(mite) 
 
-## Separe as coordenadas para calcular uma matriz de distâncias geográficas
-coords <- data.frame(mite_dat$lat, mite_dat$long) 
-dat_dist <- rdist(coords) # matriz de distância
+## Selecionar a variável ambiental - quantidade de água no substrato
+agua <- mite.env[,2]
+
+## Criar um data.frame com riqueza, quantidade de água no substrato e coordenadas geográficas
+mite_dat <- data.frame(riqueza, agua, coords)
 ```
 
 **Modelo linear sem incorporar a estrutura espacial**
@@ -1156,6 +1165,10 @@ variog_mod1 <- nlme::Variogram(no_spat_gls, form = ~lat+long,
 plot(variog_mod1)
 
 ## Índice I de Moran
+
+## Primeiro precisamos calcular uma matriz de distâncias geográficas entre as comunidades
+dat_dist <- pdist(coords) # matriz de distância
+
 Moran.I(x = mite_dat$riqueza, w = dat_dist)
 ```
 

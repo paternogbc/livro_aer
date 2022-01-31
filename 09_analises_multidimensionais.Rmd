@@ -31,15 +31,15 @@ library(mvabund)
 library(reshape)
 
 ## Dados
-sp_compos <- ecodados::bocaina
-species <-  ecodados::com_birds
-env <- ecodados::env_birds
-xy <- ecodados::birds.xy
-bocaina.env <- read.csv("dados/bocaina_env.csv", sep=";", row.names = "X")
-bocaina.xy <- read.table("dados/bocaina_xy.txt", h=T)
-anuros_permanova <- read.csv("dados/anuros_permanova.csv", sep=",", row.names = "X")
-macroinv <- read.csv("dados/macroinv.csv", row.names = "X")
-fish <- read.csv("dados/fish.csv",  row.names = "X")
+sp_compos        <- ecodados::bocaina
+species          <- ecodados::com_birds
+env              <- ecodados::env_birds
+xy               <- ecodados::birds.xy
+bocaina.env      <- ecodados::bocaina_env
+bocaina.xy       <- ecodados::bocaina.xy
+anuros_permanova <- ecodados::anuros_permanova
+macroinv         <- ecodados::macroinv
+fish             <- ecodados::fish
 data(mite)
 data(doubs)
 data(mite.env)
@@ -176,15 +176,15 @@ plot(dendro)
 
 **Assessando a qualidade do dendrograma**
 
-Precisamos verificar se o agrupamento reduziu a dimensionalidade da matiz de forma eficiente, de maneira a não distorcer a informação. Fazemos isso calculando o **Coeficiente de Correlação Cofenética (CCC)**.
+Precisamos verificar se o agrupamento reduziu a dimensionalidade da matiz de forma eficiente, de maneira a não distorcer a informação. Fazemos isso calculando o **Coeficiente de Correlação Cofenética**.
 
 ```{r}
-## Coeficiente de correlação cofenética (CCC)
+## Coeficiente de correlação cofenética
 cofresult <- cophenetic(dendro)
 cor(cofresult, distBocaina)
 ```
 
-Um CCC \> .7 indica uma boa representação. Portanto, o nosso resultado de `r cor(cofresult, distBocaina)` é alto, garantindo que o dendrograma é adequado (Figura \@ref(fig:fig-dend-group)). Note que testar a "significância" deste coeficiente não é adequado, já que seria algo tautológico (circular). Claro que definir o que seria um valor "alto" ou "baixo" da correlação é um pouco arbritrário, mas pode-se usar como "regra de dedão".
+Um coeficiente de correlação cofenética \> .7 indica uma boa representação. Portanto, o nosso resultado de `r cor(cofresult, distBocaina)` é alto, garantindo que o dendrograma é adequado (Figura \@ref(fig:fig-dend-group)). Note que testar a "significância" deste coeficiente não é adequado, já que seria algo tautológico (circular). Claro que definir o que seria um valor "alto" ou "baixo" da correlação é um pouco arbritrário, mas pode-se usar como "regra do polegar".
 
 ```{r fig-dend-group, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte formando cinco grupos.", message=FALSE, warning=FALSE}
 ## Gráfico
@@ -199,7 +199,7 @@ Nesse caso teremos a formação de cinco grupos, representados pelos nós que es
 
 **Exemplo 2**
 
-No exemplo anterior, vimos que é difícil interpretar os grupos baseado num nível de corte. A seguir, vamos utilizar o pacote `pvclust` que . Uma desvantagem deste método é que ele somente aceita índices de similaridade da função `dist()`, que possui apenas a distância Euclidiana, Manhattan e Canberra. Uma maneira de contornarmos essa limitação é utilizar transformações dos dados disponíveis na função `disttransform()` no pacote `BiodiversityR` ou a função `decostand()` do pacote `vegan`. Também é possível utilizar a transformação de Box-Cox para dados multivariados, disponível no [material suplementar](http://www.ecography.org/appendix/ecog-03498) de [@legendre2018]. Esta transformação é geralmente utilizada para tornar a distribuição dos dados mais simétrica (menos enviesada para valores extremos: reduzir o *skewness* dos dados).
+No exemplo anterior, vimos que é difícil interpretar os grupos baseado num nível de corte. A seguir, vamos utilizar o pacote `pvclust` que . Uma desvantagem deste método é que ele somente aceita índices de similaridade da função `dist()`, que possui apenas a distância Euclidiana, Manhattan e Canberra. Uma maneira de contornarmos essa limitação é utilizar transformações dos dados disponíveis na função `disttransform()` no pacote `BiodiversityR` ou a função `decostand()` do pacote `vegan`. Também é possível utilizar a transformação de Box-Cox para dados multivariados, disponível no [material suplementar](http://www.ecography.org/appendix/ecog-03498) de Legendre & Borcard [-@legendre2018]. Esta transformação é geralmente utilizada para tornar a distribuição dos dados mais simétrica (menos enviesada para valores extremos: reduzir o *skewness* dos dados).
 
 **Análises**
 
@@ -213,7 +213,7 @@ head(t(sp_compos))
 bocaina_transf <- disttransform(t(sp_compos), "chord")
 
 ## Passo 2: realizar pvclust com método average e distância euclidiana
-analise <- pvclust(bocaina_transf, method.hclust = "average", method.dist = "euclidean") 
+analise <- pvclust(bocaina_transf, method.hclust = "average", method.dist = "euclidean", quiet = TRUE) 
 ## Passo 3: dendrograma
 plot(analise, hang = -1)
 pvrect(analise)
@@ -226,7 +226,7 @@ pvrect(analise)
 bocaina_transf2 <- disttransform(t(bocaina), "hellinger")
 
 ## Passo 2: realizar pvclust com método average e distância euclidiana
-analise2 <- pvclust(bocaina_transf2, method.hclust="average", method.dist="euclidean") 
+analise2 <- pvclust(bocaina_transf2, method.hclust="average", method.dist="euclidean", quiet = TRUE) 
 
 ## Passo 3: dendrograma
 plot(analise2, hang=-1)
@@ -271,6 +271,9 @@ Vamos iniciar selecionando e padronizando os dados.
 ```{r message=FALSE, warning=FALSE}
 ## Mostrar somente seis primeiras espécies de seis localidades
 head(doubs$fish)[,1:6]
+
+## Verificar se existem localidades sem nenhuma ocorrência
+rowSums(doubs$fish)
 
 ## Retirar a linha 8 (rio sem nenhuma ocorrência de peixe)
 spe <- doubs$fish[-8,]
@@ -1069,7 +1072,7 @@ Assim como apresentado na RDA, os resultados obtidos em `db.res.var` sugerem que
 
 ## PERMANOVA
 
-A PERMANOVA é um acrônimo, em inglês, de *Permutational Multivariate Analysis of Variance*, análise proposta por Marti Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Essa análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
+A PERMANOVA é uma sigla, em inglês, de *Permutational Multivariate Analysis of Variance*, análise proposta por Marti Anderson [@anderson_new_2001]. A PERMANOVA é usada para testar hipóteses multivariadas que comparam a abundância de diferentes espécies em resposta a diferentes tratamentos ou gradientes ambientais. Essa análise foi desenvolvida como forma de solucionar algumas limitações da tradicional ANOVA multivariada (MANOVA). Em especial, o pressuposto da MANOVA de distribuição normal multivariada é raramente encontrado em dados ecológicos.
 
 O primeiro passo da PERMANOVA é selecionar uma medida de distância apropriada aos dados e, além disso, verificar a necessidade de padronização ou transformação dos dados. Em seguida, as distâncias são comparadas entre os grupos de interesse (por exemplo, tratamento versus controle) usando a estatística *F* de maneira muito parecida com uma ANOVA (Capítulo \@ref(cap7)), chamada de *pseudo-F*:
 
@@ -1134,7 +1137,7 @@ permutest(betad.aves)
 
 Em nosso exemplo, a temperatura, precipitação e altitude afetaram a variação na composição de espécies. Porém, para identificar se as diferenças de composição entre os níveis da variável altitude, é necessário interpretar os resultados da análise BETADISPER. O código `permutest(betad.aves)` mostra que o valor de probabilidade da análise foi de 0.253, ou seja, a hipótese nula de que a variância entre grupos é homogênea é aceita. Assim, não existe diferenças na dispersão entre grupos, sugerindo que a diferença encontrada na PERMANOVA (objeto `perm.aves`) se deve, em parte, à mudança na composição de espécies de aves entre diferentes altitudes (R^2^ = 0.135). Além disso, a precipitação (R^2^ = 0.183) e temperatura (R^2^ = 0.127) foram fatores importantes na variação da composição de espécies.
 
-Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA (abaixo). A literatura ecológica tem usado a Análise de Escalonamento não-Métrico (*non-Metric Multidimensional Scaling* - nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros (Figura \@ref(fig:fig-nmds)).
+Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA. A literatura ecológica tem usado a Análise de Escalonamento não-Métrico (*non-Metric Multidimensional Scaling* - nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros (Figura \@ref(fig:fig-nmds)).
 
 ```{r fig-nmds, fig.cap="Biplot mostrando o resultado do nMDS.", message=FALSE, warning=FALSE, }
 ## Matriz de distância representando a variação na composição de espécies (método Bray-Curtis)
@@ -1278,9 +1281,9 @@ Agora sim, vimos que a relação entre ambiente e espécies se mantém, mas que 
 
 ## Mantel espacial com modelo nulo restrito considerando autocorrelação espacial
 
-Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: [@legendre2015], [@legendre2010], [@legendre2000].
+Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: Legendre et al. 2015 [-@legendre2015], Legendre & Fortin 2010 [-@legendre2010], e Legendre [-@legendre2000].
 
-No entanto, recentemente um artigo [@crabot2019] propos uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado *Moran Spectral Randomization* porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos *Moran Eigenvector Maps* (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.
+No entanto, Crabot et al. [-@crabot2019] propuseram uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado *Moran Spectral Randomization* porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos *Moran Eigenvector Maps* (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.
 
 Primeiro precisamos construir um objeto com as duas matrizes que desejamos testar, no nosso caso composição de espécies e espaço. Depois precisamos construir explicitamente a nossa hipótese de relação espacial entre os locais por meio de uma rede de vizinhança. Esta rede é uma estrutura que nos dirá como (e eventualmente com qual intensidade) se há relação entre os locais. Aqui, entende-se que nos referimos à probabilidade de fluxo de indivíduos entre os locais.
 
@@ -1379,10 +1382,10 @@ Mais recentemente, alguns autores têm proposto métodos multivariados baseados 
 Um dos primeiros métodos foi proposto em 2012 pelo grupo de David Warton [@warton2012], implementado no pacote `mvabund`. Anteriormente neste mesmo ano foi publicado um artigo pelo mesmo grupo [@wang2012] em que os autores demonstraram que métodos baseados em dissimilaridade, especialmente PERMANOVA, não conseguem modelar adequadamente dados multivariados de contagem (e.g., abundância) por não levarem em conta a relação monotônica entre média e variância. Vejamos o que isso quer dizer utilizando os dados do artigo de  da Silva et al. [-@dasilva2017] (Figura \@ref(fig:fig-media-var)).
 
 ```{r fig-media-var, fig.cap="Gráfico mostrando a média-variância para dados de abundância multivariada."}
-## Dados
-head(anuros_permanova)
-anuros_abund <- as.data.frame(anuros_permanova[,-28])
-grupos <- factor(anuros_permanova[,28])
+## Dados com seis primeiras localidades e espécies
+head(anuros_permanova)[1:6]
+anuros_abund <- as.data.frame(anuros_permanova[,-28])#retirando a coluna que contém o fator e deixando apenas dados de abundância
+grupos <- factor(anuros_permanova[,28])#incluindo apenas o fator a ser testado no modelo
 
 ## Média-variância
 abund_tr <- mvabund(anuros_abund) # criando um objeto da classe mvabund com os dados de abundância

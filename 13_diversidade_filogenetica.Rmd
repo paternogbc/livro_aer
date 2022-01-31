@@ -232,6 +232,10 @@ Vamos conferir se os nomes das espécies de aves no data frame de composição s
 ```{r}
 ## Conferir os nomes das espécies
 name.check(filogenia_aves, t(composicao_especies))
+
+## Colocar os nomes das espécies do data frame na mesma ordem que aparecem na filogenia
+composicao_especies_P <- composicao_especies[,match(filogenia_aves$tip.label,colnames(composicao_especies))]
+head(composicao_especies_P)
 ```
 
 Os nomes das espécies que estão na planilha são iguais aos nomes das espécies que estão na filogenia. Podemos continuar as análises.
@@ -241,7 +245,7 @@ Abaixo, demonstramos os códigos no R para o cálculo de PD para as comunidades 
 ```{r}
 ## Phylogenetic diversity (PD)
 # Calculando a métrica de diversidade filogenética proposta por Faith (1992).
-resultados_PD <- pd(composicao_especies, filogenia_aves)
+resultados_PD <- pd(composicao_especies_P, filogenia_aves)
 
 # Mostra o valor de PD e riqueza de espécies para cada comunidade.
 resultados_PD
@@ -263,7 +267,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do PSR utilizando os dados
 ```{r}
 ## Phylogenetic Species Richness (PSR)
 # Análise com dados de composição das espécies nas comunidades.
-resultados_PSR <- psr(composicao_especies,filogenia_aves)
+resultados_PSR <- psr(composicao_especies_P,filogenia_aves)
 
 # Mostra os valores de PSR para cada comunidade.
 resultados_PSR 
@@ -280,7 +284,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do PE utilizando os dados 
 ```{r}
 ## Phylogenetic Endemism (PE)
 # Transformando data.frame em matriz.
-dados_matriz <- as.matrix(composicao_especies)
+dados_matriz <- as.matrix(composicao_especies_P)
 
 # Análise.
 resultados_PE <- phylo_endemism(dados_matriz, filogenia_aves, 
@@ -324,7 +328,7 @@ Vamos iniciar com dados de incidência (presença e ausência) das espécies nas
 ```{r}
 ## Mean Pairwise Distance (MPD)
 # Análise com dados de incidência das espécies nas comunidades.
-resultados_MPD_PA <- mpd(composicao_especies, cophenetic(filogenia_aves), 
+resultados_MPD_PA <- mpd(composicao_especies_P, cophenetic(filogenia_aves), 
                          abundance.weighted = FALSE)
 
 # Mostra os valores de MPD para cada comunidade.
@@ -338,7 +342,7 @@ Vamos refazer a análise do MPD, mas desta vez, considerando a abundância das e
 ```{r}
 ## Mean Pairwise Distance (MPD)
 # Análise com dados de abundância das espécies nas comunidades.
-resultados_MPD_AB <- mpd(composicao_especies, cophenetic(filogenia_aves), 
+resultados_MPD_AB <- mpd(composicao_especies_P, cophenetic(filogenia_aves), 
                          abundance.weighted = TRUE)
 
 # Mostra os valores de MPD para cada comunidade.
@@ -356,7 +360,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do MNTD utilizando os dado
 ```{r}
 ## Mean Nearest Taxon Distance (MNTD)
 # Análise com dados de presença e ausência das espécies nas comunidades.
-resultados_MNTD_PA <- mntd(composicao_especies, cophenetic(filogenia_aves), 
+resultados_MNTD_PA <- mntd(composicao_especies_P, cophenetic(filogenia_aves), 
                            abundance.weighted = FALSE)
 
 # Mostra os valores de MPD para cada comunidade.
@@ -369,7 +373,7 @@ Vamos refazer a análise do MNTD, mas desta vez, considerando a abundância das 
 
 ```{r}
 # Análise com dados de abundância das espécies nas comunidades.
-resultados_MNTD_AB <- mntd(composicao_especies, cophenetic(filogenia_aves), 
+resultados_MNTD_AB <- mntd(composicao_especies_P, cophenetic(filogenia_aves), 
                            abundance.weighted = TRUE)
 
 # Mostra os valores de MPD para cada comunidade.
@@ -397,7 +401,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do PSV utilizando os dados
 ```{r}
 ## Phylogenetic Species Variability (PSV)
 # Análise com dados de presença e ausência das espécies nas comunidades.
-resultados_PSV <- psv(composicao_especies,filogenia_aves)
+resultados_PSV <- psv(composicao_especies_P,filogenia_aves)
 
 # Mostra os valores de PSV para cada comunidade.
 resultados_PSV 
@@ -418,7 +422,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do VPD utilizando os dados
 ```{r}
 ## Variance of Pairwise Distance (VPD)
 # Transformando data frame em matriz.
-dados_matriz <- as.matrix(composicao_especies)
+dados_matriz <- as.matrix(composicao_especies_P)
 
 # Transformar os dados para o formato requerido pelo pacote pez.
 dados <- comparative.comm(filogenia_aves, dados_matriz)
@@ -574,7 +578,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do COMDIST utilizando os d
 ```{r}
 ## Community Mean Pairwise Distance (COMDIST)
 # Análise com dados de presença e ausência das espécies nas comunidades.
-resultados_Comdist_PA <- comdist(composicao_especies, 
+resultados_Comdist_PA <- comdist(composicao_especies_P, 
                                  cophenetic(filogenia_aves), 
                                  abundance.weighted = FALSE)
 resultados_Comdist_PA
@@ -587,7 +591,7 @@ Vamos refazer a análise do COMDIST, mas desta vez, considerando a abundância d
 ```{r}
 ## Community Mean Pairwise Distance (COMDIST)
 # Análise com dados de abundância das espécies nas comunidades.
-resultados_Comdist_AB <- comdist(composicao_especies, 
+resultados_Comdist_AB <- comdist(composicao_especies_P, 
                                  cophenetic(filogenia_aves), 
                                  abundance.weighted = TRUE)
 ```
@@ -603,7 +607,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do COMDISTNT utilizando os
 ```{r}
 ## Community Mean Nearest Taxon Distance (COMDISTNT)
 # Análise com dados de presença e ausência das espécies nas comunidades.
-resultados_Comdistnt_PA <- comdistnt(composicao_especies, 
+resultados_Comdistnt_PA <- comdistnt(composicao_especies_P, 
                                      cophenetic(filogenia_aves), 
                                      abundance.weighted = FALSE)
 resultados_Comdistnt_PA
@@ -616,12 +620,12 @@ Vamos refazer a análise do COMDISTNT, mas desta vez, considerando a abundância
 ```{r}
 ## Community Mean Nearest Taxon Distance (COMDISTNT)
 # Análise com dados de abundância das espécies nas comunidades.
-resultados_Comdistnt_AB <- comdistnt(composicao_especies, 
+resultados_Comdistnt_AB <- comdistnt(composicao_especies_P, 
                                      cophenetic(filogenia_aves), 
                                      abundance.weighted = TRUE)
 ```
 
-As comunidades 8 e 10 apresentaram a menor média na distância do vizinho mais próximo (5,64 m. a.) entre as espécies presente em cada comunidade, enquanto as comunidades 6 e 10 apresentaram a maior média na distância entre vizinhos (82,62 m.a.).
+As comunidades 8 e 10 apresentaram a menor média na distância do vizinho mais próximo (5,64 m.a.) entre as espécies presente em cada comunidade, enquanto as comunidades 6 e 10 apresentaram a maior média na distância entre vizinhos (82,62 m.a.).
 
 ### Correlação entre as métricas de diversidade beta filogenética
 
@@ -706,7 +710,7 @@ Abaixo, demonstramos os códigos no R para o cálculo do Phylosor utilizando os 
 ```{r}
 ## Phylogenetic index of beta diversity (Phylosor)
 # Análise com dados de presença e ausência das espécies nas comunidades.
-resultados_Phylosor <- phylosor(composicao_especies,filogenia_aves)
+resultados_Phylosor <- phylosor(composicao_especies_P, filogenia_aves)
 
 # Mostra uma matriz triangular com a similaridade entre a fração dos ramos 
 # compartilahdos entre duas comunidades
@@ -724,7 +728,7 @@ Abaixo, demonstramos os códigos no R para o cálculo da UniFrac utilizando os d
 ```{r}
 ## Unique Fraction metric (UniFrac)
 # Análise com dados de presença e ausência das espécies nas comunidades.
-resultados_UniFrac <- unifrac(composicao_especies,filogenia_aves)
+resultados_UniFrac <- unifrac(composicao_especiesP, filogenia_aves)
 ```
 
 As espécies presentes nas comunidades 6 e 10 apresentam a menor dissimilaridade  (16,4 % - maior fração única da filogenia em cada comunidade), enquanto as espécies presentes nas comunidades 8 e 10 apresentam a maior dissimilaridade (63,36 % - maior compartilhamento de ramos da filogenia entre os pares de comunidades). 
@@ -789,7 +793,7 @@ Abaixo, demonstramos os códigos no R para o cálculo da partição da diversida
 ```{r}
 ## Partição
 # Temos que transformar os dados para presença e ausência das espécies nas comunidades.
-dados_PA <- decostand(composicao_especies, "pa")
+dados_PA <- decostand(composicao_especies_P, "pa")
 
 # Partição dos componentes do Phylosor.
 resultados_Phylosor_particao <- phylo.beta.pair(dados_PA,
@@ -874,7 +878,7 @@ Veja a ajuda desta função usando `?ses.mpd()` para ver todas as possibilidades
 
 ```{r}
 ## NRI ou SES_MPD
-resultados_SES_MPD <- ses.mpd(composicao_especies, cophenetic(filogenia_aves),
+resultados_SES_MPD <- ses.mpd(composicao_especies_P, cophenetic(filogenia_aves),
                               null.model = "taxa.labels", 
                               abundance.weighted = FALSE,
                               runs = 999) 
@@ -892,7 +896,7 @@ Esta métrica calcula o tamanho do efeito padronizado para a métrica MNTD. Cont
 
 ```{r}
 ## NTI ou SES_MNTD
-resultados_SES_MNTD <- ses.mntd(composicao_especies, cophenetic(filogenia_aves),
+resultados_SES_MNTD <- ses.mntd(composicao_especies_P, cophenetic(filogenia_aves),
                                 null.model = "taxa.labels", 
                                 abundance.weighted = FALSE,
                                 runs = 999) 
@@ -910,7 +914,7 @@ Esta métrica calcula o tamanho do efeito padronizado para a métrica PD [@webb2
 
 ```{r}
 ## SES_PD
-resultados_SES_PD <- ses.pd(composicao_especies, filogenia_aves,
+resultados_SES_PD <- ses.pd(composicao_especies_P, filogenia_aves,
                             null.model = "independentswap", 
                             runs = 999) 
 
@@ -928,7 +932,7 @@ Não há pacotes que calculam o SES para a métrica Phylosor. Assim, iremos usar
 ```{r}
 ## Standardized effect size do Phylosor
 # Modelo nulo que rearranja o nome das espécies na filogenia. 
-modelos_nulo <- phylosor.rnd(composicao_especies, filogenia_aves, 
+modelos_nulo <- phylosor.rnd(composicao_especies_P, filogenia_aves, 
                              null.model = "taxa.labels", runs = 9)
 
 # Função para calcular o SES eo valor de P.

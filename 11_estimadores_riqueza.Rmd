@@ -17,17 +17,17 @@ library(piecewiseSEM)
 
 ## Dados
 dados_coleta <- poca_anuros
-data("mite")
-data("mite.xy")
+data(mite)
+data(mite.xy)
 coord <- mite.xy
 colnames(coord) <- c("long", "lat") # altera o nome das colunas
-data("mite.env")
+data(mite.env)
 agua <- mite.env[, 2] # seleciona a variável de interesse
 ```
 
 ## Aspectos teóricos
 
-Uma vez que determinar o número total de espécies numa área é praticamente impossível, principalmente em regiões com alta riqueza de espécies, os estimadores são úteis para extrapolar a riqueza observada e tentar estimar a riqueza total através de uma amostra incompleta de uma comunidade biológica [@walther2005]. Neste capítulo, serão considerados os estimadores não paramétricos que usam informações da frequência de espécies raras na comunidade [@gotelli2013]. Isto porque tanto os testes paramétricos que tentam determinar os parâmetros de uma curva usando o formato da curva de acumulação de espécies (e.g. equação logística, Michaelis-Menten), quanto os testes que usam a frequência do número de indivíduos para enquadrá-las em uma das distribuições de abundância das espécies (e.g. distribuições log-séries, log-normal) não funcionam muito bem com dados empíricos [@gotelli2013]. Para mais detalhes sobre os testes paramétricos veja [@magurran_biological_2011] e [@colwell1994].
+Uma vez que determinar o número total de espécies numa área é praticamente impossível, principalmente em regiões com alta riqueza de espécies, os estimadores são úteis para extrapolar a riqueza observada e tentar estimar a riqueza total através de uma amostra incompleta de uma comunidade biológica [@walther2005]. Neste capítulo, serão considerados os estimadores não paramétricos que usam informações da frequência de espécies raras na comunidade [@gotelli2013]. Isto porque tanto os testes paramétricos que tentam determinar os parâmetros de uma curva usando o formato da curva de acumulação de espécies (e.g. equação logística, Michaelis-Menten), quanto os testes que usam a frequência do número de indivíduos para enquadrá-las em uma das distribuições de abundância das espécies (e.g. distribuições log-séries, log-normal) não funcionam muito bem com dados empíricos [@gotelli2013]. Para mais detalhes sobre os testes paramétricos veja Magurran & McGill [-@magurran_biological_2011] e  Colwell & Coddington [-@colwell1994].
 
 Para que estimador de riqueza seja considera bom, ele precisa atender a quatro características  [@chazdon1998; @hortal2006].
 
