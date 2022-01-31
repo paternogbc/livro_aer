@@ -366,7 +366,7 @@ O carregamento de pacotes possui algumas características:
 -   O nome do pacote não precisa estar entre aspas na função de carregamento
 -   Funções: `library()` ou `require()`
 
-Vamos carregar o pacote `vegan` que instalamos anteriormente. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) 4) e assinalar o pacote que queremos carregar ou utilizar a função `library()`.
+Vamos carregar o pacote `vegan` que instalamos anteriormente. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) janela 4) e assinalar o pacote que queremos carregar ou utilizar a função `library()`.
 
 ```{r message=TRUE}
 ## Carregar pacotes
@@ -430,7 +430,7 @@ remove.packages("vegan")
 detach("package:vegan", unload = TRUE)
 ```
 
-E um último ponto fundamental sobre pacotes, diz respeito à atualização dos mesmos. Os pacotes são atualizados com frequência, e infelizmente (ou felizmente, pois as atualizações podem oferecer algumas quebras entre pacotes), não se atualizam sozinhos. Muitas vezes, a instalação de um pacote pode depender da versão dos pacotes dependentes, e geralmente uma janela com diversas opções numéricas se abre perguntando se você quer que todos os pacotes dependentes sejam atualizados. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) 4) e clicar em "Update" ou usar a função `update.packages(checkBuilt = TRUE, ask = FALSE)` para atualizá-los, entretanto, essa é uma função que costuma demorar muito para terminar de ser executada.
+E um último ponto fundamental sobre pacotes, diz respeito à atualização dos mesmos. Os pacotes são atualizados com frequência, e infelizmente (ou felizmente, pois as atualizações podem oferecer algumas quebras entre pacotes), não se atualizam sozinhos. Muitas vezes, a instalação de um pacote pode depender da versão dos pacotes dependentes, e geralmente uma janela com diversas opções numéricas se abre perguntando se você quer que todos os pacotes dependentes sejam atualizados. Podemos ir na aba **Packages** (Figura \@ref(fig:fig-rstudio) janela 4) e clicar em "Update" ou usar a função `update.packages(checkBuilt = TRUE, ask = FALSE)` para atualizá-los, entretanto, essa é uma função que costuma demorar muito para terminar de ser executada.
 
 ```{r eval=FALSE}
 ## Atualização dos pacotes
@@ -453,7 +453,7 @@ devtools::install_github()
 
 ### Ajuda (*Help*)
 
-Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) 4) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas. Abaixo descrever esses tópicos:
+Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) janela 4) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas. Abaixo descrever esses tópicos:
 
 -   **Description**: resumo da função
 -   **Usage**: como utilizar a função e quais os seus argumentos
@@ -794,7 +794,7 @@ Essa estruturação irá nos contar sobre a organização dos elementos, com rel
 4.  **Data frames**: heterogêneo (*mais de um modo*) e bidimensional (*duas dimensões*)
 5.  **Listas**: heterogêneo (*mais de um modo*) e unidimensional (*uma dimensão*)
 
-```{r fig-r-estruturas, echo=FALSE, fig.cap="Estruturas de dados mais comuns no R: vetores, matrizes, arrays, listas e data frames. Adaptado de: @grolemund2014."}
+```{r fig-r-estruturas, echo=FALSE, fig.cap="Estruturas de dados mais comuns no R: vetores, matrizes, arrays, listas e data frames. Adaptado de: [@grolemund2014]."}
 knitr::include_graphics("img/cap04_fig03.png")
 ```
 

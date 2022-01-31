@@ -25,7 +25,7 @@ library(leaflet)
 library(viridis)
 library(knitr)
 library(sidrar)
-library(janitor)
+library(landscapetools)
 
 ## Dados
 # world
@@ -50,13 +50,13 @@ library(janitor)
 
 Nesta seção, vamos fazer uma breve introdução aos principais conceitos sobre a manipulação e visualização de dados geoespaciais no R. Iremos abordar temas de forma teórica e prática, utilizando a linguagem R, focando em: i) formatos de dados vetoriais e dados raster, ii) Sistemas de Referências de Coordenadas e unidades (geográficas e projetadas), iii) fontes de dados, iv) importar e exportar dados, v) descrição de objetos geoespaciais e vi) principais operações (atributos, espaciais e geométricas). Num segundo momento, criaremos mapas com seus principais elementos como mapas principal e secundário, título, legenda, barra de escala, indicador de orientação (Norte), gride de coordenadas, descrição do Sistema de Referência de Coordenadas e informações de origem dos dados. Por fim, apresentaremos exemplos de aplicações de análises geoespaciais para dados ecológicos, focadas em: i) agregar informações sobre a biodiversidade, ii) preparar dados para compor variáveis preditoras, e iii) como fazer predições espaciais de distribuição de uma espécie e riqueza de espécies.
 
-Esse capítulo segue parte da estrutura organizada por @lovelace2019, principalmente os Capítulos 2 a 8, sendo adaptado para atender aos principais requisitos que julgamos necessários a estudos ecológicos. Entretanto, não foi possível cobrir todos os assuntos sobre o uso de dados geoespaciais no R, sendo um tema muito extenso que requer a leitura de livros especializados na área como @mas2019, @wegmann2016, @wegmann2020 e @fletcher2018. Outros livros sobre a análise geoespacial no R podem ser consultados no Capítulo [11 - Geospatial](https://www.bigbookofr.com/geospatial.html) do [Big Book of R](https://www.bigbookofr.com/index.html).
+Esse capítulo segue parte da estrutura organizada por Lovelace et al. [-@lovelace2019], principalmente os Capítulos 2 a 8, sendo adaptado para atender aos principais requisitos que julgamos necessários a estudos ecológicos. Entretanto, não foi possível cobrir todos os assuntos sobre o uso de dados geoespaciais no R, sendo um tema muito extenso que requer a leitura de livros especializados na área como: i) Mas et al. [-@mas2019] [Análise espacial com R](https://bit.ly/2KpSI7C), ii) Wegmann, Leutner & Dech [-@wegmann2016] Remote Sensing and GIS for Ecologists: Using Open Source Software, iii) Wegmann, Schwalb-Willmann & Dech [-@wegmann2020] An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, e iv) Fletcher & Fortin [-@fletcher2018] Spatial ecology and conservation modeling: Applications with R. Outros livros sobre a análise geoespacial no R podem ser consultados no Capítulo [11 - Geospatial](https://www.bigbookofr.com/geospatial.html) do [Big Book of R](https://www.bigbookofr.com/index.html).
 
 ## Vetor
 
 Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos)).
 
-```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de: @olaya2020."}
+```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de: Olaya [-@olaya2020]."}
 knitr::include_graphics("img/cap15_fig01.png")
 ```
 
@@ -97,7 +97,7 @@ plot(world[1], col = viridis::viridis(100), main = "Mapa do mundo")
 
 Os dados no formato raster consistem em uma matriz (com linhas e colunas) representando células, geralmente igualmente espaçadas (pixels; Figura \@ref(fig:fig-raster)). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura \@ref(fig:fig-raster) A) e; ii) valores das células (Figura \@ref(fig:fig-raster) B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura \@ref(fig:fig-raster) C). Além disso, valores ausentes ou não amostrados são representados por `NA`, ou seja, *not available* (Figura \@ref(fig:fig-raster) B e C).
 
-```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de: @lovelace2019."}
+```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de: Lovelace et al. [-@lovelace2019]."}
 library(gridExtra)
 
 # Dados
@@ -226,7 +226,7 @@ plot(raster_stack, col = viridis::viridis(n = 25), main = "")
 
 ## Sistema de Referência de Coordenadas e Unidades
 
-Os dados geoespaciais (vetor e raster) possuem ainda um outro componente fundamental que é o Sistema de Referência de Coordenadas, ou do inglês *Coordinate Reference System (CRS)*. Esse componente define a referência espacial dos elementos geoespaciais (vetor e raster) na superfície da Terra. Esse componente é composto por dois principais conceitos: primeiro, que tipo de unidades estão sendo utilizadas para a representação geográfica, podendo assumir dois tipos - ângulos ou metros, que definem o Sistema de Coordenadas Geográficas e o Sistema de Coordenadas Projetadas, respectivamente. O segundo componente é o datum, que é a relação do sistema de coordenadas (geográfica ou projetada) com a superfície da Terra. Esse último componente faz parte de uma área da Cartografia denominada Geodésia que estuda a forma e dimensões da Terra, campo gravitacional e a localização de pontos fixos e sistemas de coordenadas. O livro de @lapaine2017 é um excelente material para se aprofundar nesse assunto.
+Os dados geoespaciais (vetor e raster) possuem ainda um outro componente fundamental que é o Sistema de Referência de Coordenadas, ou do inglês *Coordinate Reference System (CRS)*. Esse componente define a referência espacial dos elementos geoespaciais (vetor e raster) na superfície da Terra. Esse componente é composto por dois principais conceitos: primeiro, que tipo de unidades estão sendo utilizadas para a representação geográfica, podendo assumir dois tipos - ângulos ou metros, que definem o Sistema de Coordenadas Geográficas e o Sistema de Coordenadas Projetadas, respectivamente. O segundo componente é o datum, que é a relação do sistema de coordenadas (geográfica ou projetada) com a superfície da Terra. Esse último componente faz parte de uma área da Cartografia denominada Geodésia que estuda a forma e dimensões da Terra, campo gravitacional e a localização de pontos fixos e sistemas de coordenadas. O livro de Lapaine & Usery [-@lapaine2017] é um excelente material para se aprofundar nesse assunto.
 
 ### Sistema de Coordenadas Geográficas
 
@@ -450,7 +450,7 @@ knitr::kable(
         Descrição = c("Formato popular que consiste em pelo menos quatro arquivos: .shp (feição), .dbf (tabela de atributos), .shx (ligação entre .shp e .dbf) e .prj (projeção)", "Estende o formato de troca JSON incluindo um subconjunto da representação de recurso simples", "Formato baseado em XML para visualização espacial, desenvolvido para uso com o Google Earth. O arquivo KML compactado forma o formato KMZ", "Esquema XML criado para troca de dados de GPS", "Formato raster popular. Um arquivo TIFF contendo metadados espaciais adicionais.", "Formato de texto em que as primeiras seis linhas representam o cabeçalho raster, seguido pelos valores das células raster organizadas em linhas e colunas", "NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes para criação", "BIL (Banda intercalada por linha) são métodos comuns de organização para imagens multibanda, geralmente acompanhados por um arquivo .hdr, descrevendo atributos específicos da imagem", "Formato raster nativo do raster do pacote R", "Banco de dados relacional autônomo", "objetos geoespaciais e não espaciais criados pelo ArcGIS. Permite: várias classes de recursos; topologia", "Contêiner de banco de dados leve baseado em SQLite permitindo uma troca fácil e independente de plataforma de geodados"),
         Tipo = c("Vetor", "Vetor", "Vetor", "Vetor", "Raster", "Raster", "Raster", "Raster", "Raster", "Vetor e raster", "Vetor e raster", "Vetor e raster"),
         Modelo = c("Parcialmente aberto", "Aberto", "Aberto", "Aberto", "Aberto", "Aberto", "Aberto", "Aberto", "Aberto", "Aberto", "Proprietário", "Aberto")), 
-    caption = "Principais formatos de arquivos geoespaciais. Adaptado de: @lovelace2019."
+    caption = "Principais formatos de arquivos geoespaciais. Adaptado de: Lovelace et al. [-@lovelace2019]."
 )
 ```
 
@@ -734,7 +734,7 @@ Primeiramente, vamos criar um diretório para os dados raster que fazeremos o do
 dir.create(here::here("dados", "raster"))
 ```
 
-Em seguida, vamos fazer o download de dados de elevação, na verdade dados de Modelo Digital de Elevação (*Digital Elevation Model* - DEM), localizados também para o município de Rio Claro. Utilizaremos os dados do [*Shuttle Radar Topography Mission - SRTM*](https://srtm.csi.cgiar.org/). Para saber mais sobre esses dados, recomendamos a leitura do artigo @farr_shuttle_2007.
+Em seguida, vamos fazer o download de dados de elevação, na verdade dados de Modelo Digital de Elevação (*Digital Elevation Model* - DEM), localizados também para o município de Rio Claro. Utilizaremos os dados do [*Shuttle Radar Topography Mission - SRTM*](https://srtm.csi.cgiar.org/). Para saber mais sobre esses dados, recomendamos a leitura do artigo de Farr et al. [-@farr_shuttle_2007].
 
 ```{r eval=FALSE}
 ## Aumentar o tempo de download
@@ -772,7 +772,7 @@ plot(geo_vetor_rio_claro$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 **Raster Stack**
 
-Além dos dados de elevação, dados de temperatura e precipitação podem ser obtidos do [WorldClim](https://www.worldclim.org/). Para saber mais sobre esses dados, recomendamos a leitura do artigo @fick_worldclim_2017.
+Além dos dados de elevação, dados de temperatura e precipitação podem ser obtidos do [WorldClim](https://www.worldclim.org/). Para saber mais sobre esses dados, recomendamos a leitura do artigo Fick & Hijmans [-@fick_worldclim_2017].
 
 ```{r eval=FALSE}
 ## Aumentar o tempo de download
@@ -993,7 +993,7 @@ geo_raster_srtm[] %>% head
 
 Em algumas situações é necessário alterar o CRS de um objeto espacial para um novo CRS. A reprojeção é justamente a transformação de coordenadas de um CRS para outro: geoespaciais ('lon/lat', com unidades em graus de longitude e latitude) e projetados (normalmente com unidades de metros a partir de um datum).
 
-Geralmente precisaremos fazer essa operação para transformar camadas vetoriais ou rasters para o mesmo CRS, de modo que possam ser exibidas conjuntamente, ou ainda que as camadas possuem CRS projetado para realizar alguma operação espacial entre camadas, ou quando precisamos calcular áreas, formatos ou distâncias, como métricas de paisagem, por exemplo. Existe uma infinidade de projeções e um excelente material de consulta é o livro de @lapaine2017.
+Geralmente precisaremos fazer essa operação para transformar camadas vetoriais ou rasters para o mesmo CRS, de modo que possam ser exibidas conjuntamente, ou ainda que as camadas possuem CRS projetado para realizar alguma operação espacial entre camadas, ou quando precisamos calcular áreas, formatos ou distâncias, como métricas de paisagem, por exemplo. Existe uma infinidade de projeções e um excelente material de consulta é o livro de Lapaine & Usery [-@lapaine2017].
 
 Podemos verificar o CRS de uma camada através da função `sf::st_crs()` ou `raster::projection()` e `raster::crs()`, ou ainda, saber se a mesma possui um CRS geográfico ou não, com a função `sf::st_is_longlat()`.
 
@@ -1208,7 +1208,7 @@ plot(co110_sf_moll[1], col = NA, add = TRUE)
 
 ## Principais operações com dados geoespaciais
 
-Nesta seção veremos as principais funções para realizar operações com dados geoespaciais. Essas operações são separadas conforme @lovelace2019 em: **Operações de atributos**, **Operações espaciais**, e **Operações geométricas**.
+Nesta seção veremos as principais funções para realizar operações com dados geoespaciais. Essas operações são separadas conforme Lovelace et al. [-@lovelace2019] em: **Operações de atributos**, **Operações espaciais**, e **Operações geométricas**.
 
 ### Operações de atributos
 
@@ -1610,7 +1610,7 @@ plot(geo_vetor_nascentes_dist_flo[7], pch = 20, axes = TRUE, graticule = TRUE, m
 
 **Raster**
 
-As principais operações espaciais para dados raster podem ser classificas, segundo @lovelace2019, em: i) operações locais (por célula), ii) operações focais (por bloco de múltiplas células regulares - e.g. 3x3), iii) operações zonais (por bloco de múltiplas células irregulares) e iv) operações globais (por um ou vários rasters inteiros). Cada uma delas é aplicada para objetivos e escalas espaciais específicas. Para os exemplos desta seção, utilizaremos o dado raster de elevação para o município de Rio Claro/SP.
+As principais operações espaciais para dados raster podem ser classificas, segundo Lovelace et al. [-@lovelace2019], em: i) operações locais (por célula), ii) operações focais (por bloco de múltiplas células regulares - e.g. 3x3), iii) operações zonais (por bloco de múltiplas células irregulares) e iv) operações globais (por um ou vários rasters inteiros). Cada uma delas é aplicada para objetivos e escalas espaciais específicas. Para os exemplos desta seção, utilizaremos o dado raster de elevação para o município de Rio Claro/SP.
 
 **Operações locais**
 
@@ -1980,7 +1980,7 @@ plot(geo_vetor_hidrografia_diferenca$geometry, col = "blue", add = TRUE)
 
 **Transformações de tipo**
 
-Esse tópico possui muitas funcionalidades, que são exploradas no tópico "5.2.7 Type transformations" de @lovelace2019. Aqui, nosso interesse principal é em relação à transformação dos tipos de objetos geoespaciais da classe `sf`: `MULTIPOINT`, `MULTILINESTRING` e `MULTIPOLYGON`, para `POINT`, `LINESTRING` e `POLYGON`. Muitas vezes as feições de nossos objetos, i.e., as linhas da tabela de atributos estão agrupadas em apenas uma linha da tabela. Quando o objeto espacial está nesse formato, geralmente em alguma classe dessas (`MULTIPOINT`, `MULTILINESTRING` e `MULTIPOLYGON`), não temos como realizar operações espaciais ou geométricas para cada feição, e precisamos separá-las em linhas diferentes para que operações como o cálculo de comprimento ou área seja possível para cada feição.
+Esse tópico possui muitas funcionalidades, que são exploradas no tópico "5.2.7 Type transformations" de Lovelace et al. [-@lovelace2019]. Aqui, nosso interesse principal é em relação à transformação dos tipos de objetos geoespaciais da classe `sf`: `MULTIPOINT`, `MULTILINESTRING` e `MULTIPOLYGON`, para `POINT`, `LINESTRING` e `POLYGON`. Muitas vezes as feições de nossos objetos, i.e., as linhas da tabela de atributos estão agrupadas em apenas uma linha da tabela. Quando o objeto espacial está nesse formato, geralmente em alguma classe dessas (`MULTIPOINT`, `MULTILINESTRING` e `MULTIPOLYGON`), não temos como realizar operações espaciais ou geométricas para cada feição, e precisamos separá-las em linhas diferentes para que operações como o cálculo de comprimento ou área seja possível para cada feição.
 
 Dessa forma, podemos utilizar a função `sf::st_cast()` para fazer essas transformações e atribuir cada feição a uma linha da tabela de atributos. Como exemplo, vamos separar os fragmentos de floresta e calcular a área para cada feição em hectares (Figura \@ref(fig:fig-vetor-tipo)).
 
@@ -2474,7 +2474,7 @@ dev.off()
 
 **Pacotes ggplot2 e ggspatial**
 
-Como discutimos no Capítulo \@ref(cap6) sobre gráficos, o pacote `ggplot2` utiliza a gramática de gráficos para composição de figuras no R [@wilkinson2005, @wickham2016]. Para cada classe de objeto geográfico há funções específicas para os dados: para objetos sf `geom_sf()` e para objetos raster `geom_raster()` e `geom_tile()`.
+Como discutimos no Capítulo \@ref(cap6) sobre gráficos, o pacote `ggplot2` utiliza a gramática de gráficos para composição de figuras no R [@wilkinson2005; @wickham2016]. Para cada classe de objeto geográfico há funções específicas para os dados: para objetos sf `geom_sf()` e para objetos raster `geom_raster()` e `geom_tile()`.
 
 Além do pacote `ggplot2`, podemos utilizar o pacote `ggspatial` para acrescentar elementos geoespaciais como a barra de escala e o indicador de orientação (Norte), através das funções `annotation_scale()` e `annotation_north_arrow()`, respectivamente, além de outras funções específicas que não abordaremos nesta seção.
 
@@ -3156,15 +3156,15 @@ geo_anfibios_especies_locais_vetor_mata_atlantica <- geo_anfibios_locais %>%
     dplyr::filter(sf::st_intersects(x = ., y = geo_vetor_mata_atlantica, sparse = FALSE)) %>% 
     dplyr::slice_sample(n = 50)
 
-## Buffers de ~10 km
+## Buffers de ~1 km
 geo_anfibios_especies_locais_vetor_mata_atlantica_buffer10km <-
     sf::st_buffer(geo_anfibios_especies_locais_vetor_mata_atlantica,
-                  dist = .08333)
+                  dist = 1000)
 ```
 
 Podemos conferir no mapa da Figura \@ref(fig:fig-vetor-aa-ma-buffer).
 
-```{r fig-vetor-aa-ma-buffer, fig.cap="Distribuição de 50 localidades aleatórios e buffers de ~10 km (fora de escala)."}
+```{r fig-vetor-aa-ma-buffer, fig.cap="Distribuição de 50 localidades aleatórios e buffers de ~1 km (fora de escala)."}
 ## Mudar o modo de exibição do tmap
 tmap::tmap_mode(mode = "plot")
 
@@ -3184,28 +3184,29 @@ Agora podemos utilizar a função `raster::extract()` para fazer a contabilizaç
 geo_anfibios_locais_vetor_ma_buffer10km_ext <- raster::extract(
     x = geo_raster_globcover_mata_atlantica,
     y = geo_anfibios_especies_locais_vetor_mata_atlantica_buffer10km,
-    fun = function(i,...) table(i), na.rm = TRUE) %>% 
-    dplyr::bind_rows() %>% 
+    df = TRUE, na.rm = TRUE) %>% 
+    dplyr::rename(id = ID, classe = 2) %>% 
+    tidyr::drop_na(classe) %>% 
+    dplyr::mutate(classe = paste0("classe_", classe)) %>%
+    dplyr::group_by(id, classe) %>% 
+    dplyr::summarise(n = n()) %>% 
+    tidyr::pivot_wider(id_cols = id, names_from = classe, values_from = n) %>% 
     dplyr::mutate(across(everything(), ~replace_na(.x, 0))) %>% 
-    dplyr::rename_with(~paste0("cover_", .)) %>% 
-    dplyr::mutate(across(everything(), as.numeric)) %>% 
-    dplyr::bind_cols(id = geo_anfibios_especies_locais_vetor_mata_atlantica_buffer10km$id, .) %>% 
     janitor::adorn_totals("col") %>% 
     janitor::adorn_percentages("row") %>% 
     janitor::adorn_pct_formatting(rounding = "half up", digits = 1)
 head(geo_anfibios_locais_vetor_ma_buffer10km_ext)
 ```
 
-Agora podemos juntar esses dados aos dados dos buffers.
+Agora podemos combinar esses dados aos dados dos buffers.
 
 ```{r}
-## Junção
-geo_anfibios_locais_vetor_ma_buffer10km_ext_join  <- dplyr::left_join(
+## Combinação
+geo_anfibios_locais_vetor_ma_buffer10km_ext_bind  <- dplyr::bind_cols(
     x = geo_anfibios_especies_locais_vetor_mata_atlantica_buffer10km,
-    y = geo_anfibios_locais_vetor_ma_buffer10km_ext,
-    by = "id") %>% 
+    y = geo_anfibios_locais_vetor_ma_buffer10km_ext[, -1]) %>% 
     sf::st_drop_geometry()
-geo_anfibios_locais_vetor_ma_buffer10km_ext_join
+geo_anfibios_locais_vetor_ma_buffer10km_ext_bind
 ```
 
 ### Predições espaciais de objetos raster

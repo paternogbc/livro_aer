@@ -28,7 +28,7 @@ Este capítulo foi organizado em quatro partes: i) principais pacotes, ii) gram�
 
 Usaremos os dados disponíveis no pacote `palmerpenguins` para exemplificar as funções do `ggplot2`, descrito no Capítulo \@ref(cap5).
 
-## Principais pacotes´
+## Principais pacotes
 
 A seguir, apresentamos uma listagem dos principais pacotes para visualização de dados no R, além das principais funções desses pacotes.
 
@@ -50,7 +50,7 @@ A seguir, apresentamos uma listagem dos principais pacotes para visualização d
 
 O livro *The Grammar of Graphics* [@wilkinson2005] utiliza uma analogia da linguística para criar uma "gramática" para a visualização gráfica. Segundo ele, a língua se torna expressiva pelo fato da gramática criar um sistema de regras que tornam as declarações com significado conhecido. De maneira semelhante, a ideia da *gramática dos gráficos* cria regras para representação gráfica dos dados a partir de atributos estéticos (do inglês *aesthetic*) como cor, forma e tamanho que definem a geometria dos objetos, como pontos, linhas e barras [@wickham2016]. Além disso, esta gramática reconhece que tais elementos podem ser organizados em camadas, tal como construímos um mapa com diferentes camadas como elevação, hidrografia, rodovias, limites políticos, etc.
 
-Inspirado pela *gramática dos gráficos* proposta por @wilkinson2005, Hadley Wickham cria o pacote `ggplot2`, onde "gg" representa a contração de *Grammar of Graphics* [@wickham2016]. As camadas nesta gramática (*layered-grammar*) são organizadas da seguinte forma:
+Inspirado pela *gramática dos gráficos* proposta por Wilkinson & Wills [-@wilkinson2005], Hadley Wickham cria o pacote `ggplot2`, onde "gg" representa a contração de *Grammar of Graphics* [@wickham2016]. As camadas nesta gramática (*layered-grammar*) são organizadas da seguinte forma:
 
 - **Camada 1** - dados `ggplot()`: são as informações no formato `data.frame` que serão usadas nas diferentes camadas nas funções `aes()`, `geom_*()`, `stat_*()`, `facet_*()` e `scale_*()`
 - **Camada 2** - mapeamento `aes()`: atributos estéticos, determina que colunas do `data.frame` serão usadas para as representações geométricas, assim como tamanho, forma, cor, preenchimento e transparência
@@ -741,7 +741,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm,
          color = "Espécies", shape = "Espécies")
 ```
 
-Além disso, podemos relacionar dados não tão usuais. Recomendamos a leitura do artigo de @matejka_same_2017 que apresenta as armadilhas típicas que dados podem gerar quando evitamos de visualizá-los previamente (Figura \@ref(fig:fig-scatter-dino)).
+Além disso, podemos relacionar dados não tão usuais. Recomendamos a leitura do artigo de Matejka & Fitzmaurice [-@matejka_same_2017] que apresenta as armadilhas típicas que dados podem gerar quando evitamos de visualizá-los previamente (Figura \@ref(fig:fig-scatter-dino)).
 
 ```{r fig-scatter-dino, fig.cap="Gráfico de dispersão relacionando as variáveis `x` e `y` formando um dinossauro."}
 ## Gráfico do dinossauro

@@ -18,6 +18,11 @@ library(readr)
 library(forcats)
 library(palmerpenguins)
 library(lubridate)
+
+## Dados
+# palmerpenguins::penguins
+# palmerpenguins::penguins_raw
+# ecodados::tidy_anfibios_locais
 ```
 
 ## Contextualização
@@ -26,9 +31,9 @@ Como todo idioma, a linguagem R vem passando por transformações nos últimos a
 
 Essas mudanças e expanções na utilização da linguagem R para a Ciência de Dados começaram a ser implementadas principalmente devido a um pesquisador: [Hadley Wickham](http://hadley.nz/), que iniciou sua contribuição à comunidade R com o desenvolvimento do já consagrado pacote `ggplot2` [@wickham2016] para a composição de gráficos no R (ver mais no Capítulo \@ref(cap6)), baseado na gramática de gráficos [@wilkinson2005]. Depois disso, Wickham dedicou-se ao desenvolvimento do pensamento de uma nova abordagem dentro da manipulação de dados, denominada **Tidy Data** (Dados organizados) [@wickham2014], na qual focou na limpeza e organização dos mesmos. A ideia postula que dados estão `tidy` quando: i) variáveis estão nas colunas, ii) observações estão nas linhas e iii) valores estão nas células, sendo que para esse último, não deve haver mais de um valor por célula (Figura \@ref(fig:fig-r-dados-tidy)).
 
-A partir dessas ideias, o [*tidyverse*](https://www.tidyverse.org/) foi operacionalizado no R como uma coleção de pacotes que atuam no fluxo de trabalho comum da ciência de dados: importação, manipulação, exploração, visualização, análise e comunicação de dados e análises [@tidyverse2019] (Figura \@ref(fig:fig-r-tidyverse)). O principal objetivo do *tidyverse* é aproximar a linguagem para melhorar a interação entre ser humano e computador sobre dados, de modo que os pacotes compartilham uma filosofia de design de alto nível e gramática, além da estrutura de dados de baixo nível [@tidyverse2019]. As principais leituras sobre o tema no R são os artigos [@wickham2014] e [@tidyverse2019], e o livro [@wickham2017], disponível on-line neste [link](https://r4ds.had.co.nz/), além do [site](https://www.tidyverse.org/) que possui muito mais informações.
+A partir dessas ideias, o [*tidyverse*](https://www.tidyverse.org/) foi operacionalizado no R como uma coleção de pacotes que atuam no fluxo de trabalho comum da ciência de dados: importação, manipulação, exploração, visualização, análise e comunicação de dados e análises [@tidyverse2019] (Figura \@ref(fig:fig-r-tidyverse)). O principal objetivo do *tidyverse* é aproximar a linguagem para melhorar a interação entre ser humano e computador sobre dados, de modo que os pacotes compartilham uma filosofia de design de alto nível e gramática, além da estrutura de dados de baixo nível [@tidyverse2019]. As principais leituras sobre o tema no R são os artigos "Tidy Data" [@wickham2014] e "Welcome to the Tidyverse" [@tidyverse2019], e o livro ["R for Data Science"](https://r4ds.had.co.nz/) [@wickham2017], além do [Tidyverse](https://www.tidyverse.org/) que possui muito mais informações.
 
-```{r fig-r-tidyverse, echo=FALSE, fig.cap="Modelo das ferramentas necessárias em um projeto típico de ciência de dados: importar, organizar, entender (transformar, visualizar, modelar) e comunicar, envolto à essas ferramentas está a programação. Adaptado de: @wickham2017."}
+```{r fig-r-tidyverse, echo=FALSE, fig.cap="Modelo das ferramentas necessárias em um projeto típico de ciência de dados: importar, organizar, entender (transformar, visualizar, modelar) e comunicar, envolto à essas ferramentas está a programação. Adaptado de: Wickham & Grolemund [-@wickham2017]."}
 knitr::include_graphics("img/cap05_fig01.png")
 ```
 
@@ -170,7 +175,7 @@ tidy_anfibios_locais <- ecodados::tidy_anfibios_locais
 head(tidy_anfibios_locais)
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [11 Data import](https://r4ds.had.co.nz/data-import.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [11 Data import](https://r4ds.had.co.nz/data-import.html) de Wickham & Grolemund [-@wickham2017].
 
 ## tibble
 
@@ -201,7 +206,7 @@ Por fim, podemos "espiar" os dados utilizando a função `tibble::glimpse()` par
 tibble::glimpse(tidy_anfibios_locais[, 1:10])
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [10 Tibbles](https://r4ds.had.co.nz/tibbles.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [10 Tibbles](https://r4ds.had.co.nz/tibbles.html) de Wickham & Grolemund [-@wickham2017].
 
 ## magrittr (pipe - %>%)
 
@@ -257,7 +262,7 @@ Há ainda três outras variações do pipe que podem ser úteis em alguns moment
 - `%$%`: "explode" as variáveis em um quadro de dados
 - `%<>%`: permite atribuição usando pipes
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [18 Pipes](https://r4ds.had.co.nz/pipes.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [18 Pipes](https://r4ds.had.co.nz/pipes.html) de Wickham & Grolemund [-@wickham2017].
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -272,7 +277,7 @@ Os conjuntos de dados `tidy` (organizados) são mais fáceis de manipular, model
 2. Cada observação em uma linha
 3. Cada valor como uma célula
 
-```{r fig-r-dados-tidy, echo=FALSE, fig.cap="As três regras que tornam um conjunto de dados *tidy*. Adaptado de: @wickham2017."}
+```{r fig-r-dados-tidy, echo=FALSE, fig.cap="As três regras que tornam um conjunto de dados *tidy*. Adaptado de: Wickham & Grolemund [-@wickham2017]."}
 knitr::include_graphics("img/cap05_fig02.png")
 ```
 
@@ -746,7 +751,7 @@ Finalmente, veremos o último conjunto de funções do pacote `dplyr`, a junçã
 
 Existem quatro tipos de junções de modificações, que são realizadas pelas funções: `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::full_join()` e `dplyr::right_join()`, e que podem ser representadas na Figura \@ref(fig:fig-r-join).
 
-```{r fig-r-join, echo=FALSE, fig.cap="Diferentes tipos de joins, representados com um diagrama de Venn. Adaptado de: @wickham2017."}
+```{r fig-r-join, echo=FALSE, fig.cap="Diferentes tipos de joins, representados com um diagrama de Venn. Adaptado de: Wickham & Grolemund [-@wickham2017]."}
 knitr::include_graphics("img/cap05_fig03.png")
 ```
 
@@ -787,7 +792,7 @@ Temos ainda operações de conjuntos e comparação de dados.
 -   `setdiff(x, y)`: retorna as linhas que aparecem `x`, mas não em `y`
 -   `setequal(x, y)`: retorna se `x` e `y` são iguais e quais suas diferenças
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [13 Relational data](https://r4ds.had.co.nz/relational-data.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [13 Relational data](https://r4ds.had.co.nz/relational-data.html) de Wickham & Grolemund [-@wickham2017].
 
 ## stringr
 
@@ -876,7 +881,7 @@ penguins_stringr_nomes <- penguins %>%
     dplyr::rename_with(stringr::str_to_title)
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [14 Strings](https://r4ds.had.co.nz/strings.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [14 Strings](https://r4ds.had.co.nz/strings.html) de Wickham & Grolemund [-@wickham2017].
 
 ## forcats
 
@@ -948,7 +953,7 @@ penguins_raw_multi_factor <- penguins_raw %>%
     dplyr::mutate(across(where(is.character), forcats::as_factor))
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [15 Factors](https://r4ds.had.co.nz/factors.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [15 Factors](https://r4ds.had.co.nz/factors.html) de Wickham & Grolemund [-@wickham2017].
 
 ## lubridate
 
@@ -1274,7 +1279,7 @@ lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
 lubridate::force_tz(lubridate::now(), tzone = "GMT")
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [16 Dates and times](https://r4ds.had.co.nz/dates-and-times.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [16 Dates and times](https://r4ds.had.co.nz/dates-and-times.html) de Wickham & Grolemund [-@wickham2017].
 
 ## purrr
 
@@ -1367,7 +1372,7 @@ penguins %>%
     purrr::map("r.squared")
 ```
 
-Para se aprofundar no tema, recomendamos a leitura do Capítulo [21 Iteration](https://r4ds.had.co.nz/iteration.html) de @wickham2017.
+Para se aprofundar no tema, recomendamos a leitura do Capítulo [21 Iteration](https://r4ds.had.co.nz/iteration.html) de Wickham & Grolemund [-@wickham2017].
 
 ## Exercícios
 
