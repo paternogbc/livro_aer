@@ -23,6 +23,11 @@ library(bbmle)
 library(glmmTMB)
 library(ordinal)
 library(car)
+ecodados::lagartos
+ecodados::parasitas
+ecodados::fish
+ecodados::fragmentos
+ecodados::uv_cells
 ```
 
 ## Introdução
@@ -808,6 +813,12 @@ Neste gráfico vemos que o grupo tratado com o hormônio começa com um índice 
 
 Aqui vamos utilizar como exemplo os dados do artigo de [-@Franco-Belussi2018a]. Os pesquisadores fizeram um experimento *in vivo* com peixes esgana-gato (*Gasterosteus aculeatus*) para testar como a coloração dos animais respondem ao fármaco ioimbina (YOH), que bloqueia a coloração típica que os machos exibem na época de acasalamento, e o tempo de exposição ao mesmo (além de um controle), num desenho de ANOVA fatorial. Como as medidas foram feitas repetidamente no mesmo animal, iremos incluir o `Animal` como um fator aleatório no modelo.
 
+```{r}
+head(fish)
+```
+
+Esses dados contêm as variáveis resposta medidas no experimento: a quantidade de vermelho e preto. Além dos fatores manipulados: Tratamento (controle e presença de YOH) e tempo de exposição.
+
 **Pergunta**
 
 A YOH aumenta a coloração escura no olho e mandíbula dos peixes via dispersão dos pigmentos?
@@ -820,7 +831,7 @@ A YOH promoverá um escurecimento do corpo do animal, já que ela inibe a ação
 
 - Variável resposta: a intensidade de coloração escura em peixes machos. Esses dados são expressos em termos de porcentagem e variam continuamente de 0 a 100%. Para facilitar a modelagem e nos adequarmos à maneira com que a função requer os dados, vamos simplesmente dividir por 100 para que os dados variem entre 0 e 1
 
-Para modelar os dados vamos utilizar a função `glmmTMB`. Antes disso, vamos analisar graficamente os dados (Figura \@ref(fig:fig-mod-beta-pre)).
+Para modelar os dados vamos utilizar a função `glmmTMB`. Antes disso, vamos analisar graficamente os dados (Figura \@ref(fig:fig-mod-beta-pre)). Vamos usar apenas os dados dos machos para este exemplo.
 
 ```{r fig-mod-beta-pre, fig.cap="Gráfico para explorar a distribuição da variável resposta."}
 ## Filtrando os dados
