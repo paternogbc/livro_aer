@@ -10,7 +10,7 @@ bookdown::clean_book()
 rmarkdown::clean_site(preview = FALSE)
 
 # Update ecodados
-# remotes::install_github(repo = "paternogbc/ecodados")
+remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
 
 # Render html -------------------------------------------------------------
 tic()
