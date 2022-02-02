@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-02-01" />
+<meta name="date" content="2022-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -577,593 +577,20 @@ div.csl-indent {
 <span id="cb285-9"><a href="cap8.html#cb285-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(piecewiseSEM)</span>
 <span id="cb285-10"><a href="cap8.html#cb285-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb285-11"><a href="cap8.html#cb285-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
-<span id="cb285-12"><a href="cap8.html#cb285-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sciplot)</span>
+<span id="cb285-12"><a href="cap8.html#cb285-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rmisc)</span>
 <span id="cb285-13"><a href="cap8.html#cb285-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans) </span>
 <span id="cb285-14"><a href="cap8.html#cb285-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
 <span id="cb285-15"><a href="cap8.html#cb285-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span>
 <span id="cb285-16"><a href="cap8.html#cb285-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmmTMB)</span>
 <span id="cb285-17"><a href="cap8.html#cb285-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ordinal)</span>
 <span id="cb285-18"><a href="cap8.html#cb285-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb285-19"><a href="cap8.html#cb285-19" aria-hidden="true" tabindex="-1"></a>ecodados<span class="sc">::</span>lagartos</span>
-<span id="cb285-20"><a href="cap8.html#cb285-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Numero    Sex   SVL Intact_tail_length Autotomized_tail_length Tail_state</span></span>
-<span id="cb285-21"><a href="cap8.html#cb285-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1        2   Male 20.70                 NA                   12.88          0</span></span>
-<span id="cb285-22"><a href="cap8.html#cb285-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2        3   Male 21.10                 NA                   13.07          0</span></span>
-<span id="cb285-23"><a href="cap8.html#cb285-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3        6 Female 23.72                 NA                   17.56          0</span></span>
-<span id="cb285-24"><a href="cap8.html#cb285-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4        9   Male 18.84              17.38                      NA          1</span></span>
-<span id="cb285-25"><a href="cap8.html#cb285-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       21   Male 22.20                 NA                   16.50          0</span></span>
-<span id="cb285-26"><a href="cap8.html#cb285-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       22   &lt;NA&gt; 20.59                 NA                   12.46          0</span></span>
-<span id="cb285-27"><a href="cap8.html#cb285-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7       24   &lt;NA&gt; 17.50              13.90                      NA          1</span></span>
-<span id="cb285-28"><a href="cap8.html#cb285-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8       25   &lt;NA&gt; 17.90              13.00                      NA          1</span></span>
-<span id="cb285-29"><a href="cap8.html#cb285-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9       26   &lt;NA&gt; 13.00               8.00                      NA          1</span></span>
-<span id="cb285-30"><a href="cap8.html#cb285-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10      27   &lt;NA&gt; 13.00               8.00                      NA          1</span></span>
-<span id="cb285-31"><a href="cap8.html#cb285-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11      28   &lt;NA&gt; 17.90              13.00                      NA          1</span></span>
-<span id="cb285-32"><a href="cap8.html#cb285-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12      29   &lt;NA&gt; 17.50              13.90                      NA          1</span></span>
-<span id="cb285-33"><a href="cap8.html#cb285-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13      32   Male 19.86                 NA                   13.62          0</span></span>
-<span id="cb285-34"><a href="cap8.html#cb285-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14      34   &lt;NA&gt; 22.30                 NA                   16.70          0</span></span>
-<span id="cb285-35"><a href="cap8.html#cb285-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15      48   Male 21.32                 NA                   17.86          0</span></span>
-<span id="cb285-36"><a href="cap8.html#cb285-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16      50 Female 22.80              18.66                      NA          1</span></span>
-<span id="cb285-37"><a href="cap8.html#cb285-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17      53   &lt;NA&gt; 13.32              11.31                      NA          1</span></span>
-<span id="cb285-38"><a href="cap8.html#cb285-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18      58   &lt;NA&gt; 19.04              18.30                      NA          1</span></span>
-<span id="cb285-39"><a href="cap8.html#cb285-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19      63   &lt;NA&gt; 20.45              16.90                      NA          1</span></span>
-<span id="cb285-40"><a href="cap8.html#cb285-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20      69   &lt;NA&gt; 13.02              17.42                      NA          1</span></span>
-<span id="cb285-41"><a href="cap8.html#cb285-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21      70   &lt;NA&gt; 22.65                 NA                   16.75          0</span></span>
-<span id="cb285-42"><a href="cap8.html#cb285-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22      87   &lt;NA&gt; 23.83              19.82                      NA          1</span></span>
-<span id="cb285-43"><a href="cap8.html#cb285-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23      88   &lt;NA&gt; 15.65              21.11                      NA          1</span></span>
-<span id="cb285-44"><a href="cap8.html#cb285-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24      91   &lt;NA&gt; 23.59                 NA                   16.75          0</span></span>
-<span id="cb285-45"><a href="cap8.html#cb285-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25      92   &lt;NA&gt; 22.37                 NA                   14.23          0</span></span>
-<span id="cb285-46"><a href="cap8.html#cb285-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26     104 Female 21.61                 NA                    2.97          0</span></span>
-<span id="cb285-47"><a href="cap8.html#cb285-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27     107 Female 21.99                 NA                   16.84          0</span></span>
-<span id="cb285-48"><a href="cap8.html#cb285-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28     115   Male 18.35                 NA                   11.30          0</span></span>
-<span id="cb285-49"><a href="cap8.html#cb285-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29     119   Male 21.90              17.83                      NA          1</span></span>
-<span id="cb285-50"><a href="cap8.html#cb285-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30     128   &lt;NA&gt; 21.00                 NA                   13.00          0</span></span>
-<span id="cb285-51"><a href="cap8.html#cb285-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 31     129   &lt;NA&gt; 13.00              10.00                      NA          1</span></span>
-<span id="cb285-52"><a href="cap8.html#cb285-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 32     130   &lt;NA&gt; 20.00                 NA                   15.00          0</span></span>
-<span id="cb285-53"><a href="cap8.html#cb285-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 33     132   &lt;NA&gt; 20.00                 NA                   15.00          0</span></span>
-<span id="cb285-54"><a href="cap8.html#cb285-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 34     145   &lt;NA&gt; 21.00              20.00                      NA          1</span></span>
-<span id="cb285-55"><a href="cap8.html#cb285-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35     152   &lt;NA&gt; 23.00              18.50                      NA          1</span></span>
-<span id="cb285-56"><a href="cap8.html#cb285-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 36     165 Female 23.65              19.98                      NA          1</span></span>
-<span id="cb285-57"><a href="cap8.html#cb285-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 37     166   Male 19.92                 NA                    2.75          0</span></span>
-<span id="cb285-58"><a href="cap8.html#cb285-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 38     168 Female 23.07              19.56                      NA          1</span></span>
-<span id="cb285-59"><a href="cap8.html#cb285-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 39     174 Female 22.44                 NA                   13.67          0</span></span>
-<span id="cb285-60"><a href="cap8.html#cb285-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 40     180   &lt;NA&gt; 23.00              18.00                      NA          1</span></span>
-<span id="cb285-61"><a href="cap8.html#cb285-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 41     183   &lt;NA&gt; 22.00              19.00                      NA          1</span></span>
-<span id="cb285-62"><a href="cap8.html#cb285-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 42     195   &lt;NA&gt; 23.00                 NA                    3.00          0</span></span>
-<span id="cb285-63"><a href="cap8.html#cb285-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 43     197   &lt;NA&gt; 22.00              17.00                      NA          1</span></span>
-<span id="cb285-64"><a href="cap8.html#cb285-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 44     199   &lt;NA&gt; 21.00                 NA                   14.00          0</span></span>
-<span id="cb285-65"><a href="cap8.html#cb285-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45     212   &lt;NA&gt; 21.00                 NA                    8.00          0</span></span>
-<span id="cb285-66"><a href="cap8.html#cb285-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 46     214   &lt;NA&gt; 23.00              19.00                      NA          1</span></span>
-<span id="cb285-67"><a href="cap8.html#cb285-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 47     220 Female 23.00                 NA                    6.04          0</span></span>
-<span id="cb285-68"><a href="cap8.html#cb285-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 48     223 Female 24.43                 NA                   17.44          0</span></span>
-<span id="cb285-69"><a href="cap8.html#cb285-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 49     225   Male 22.16                 NA                   16.31          0</span></span>
-<span id="cb285-70"><a href="cap8.html#cb285-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 50     231 Female 17.54                 NA                    7.78          0</span></span>
-<span id="cb285-71"><a href="cap8.html#cb285-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 51     232   Male 20.76                 NA                   10.29          0</span></span>
-<span id="cb285-72"><a href="cap8.html#cb285-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 52     241   &lt;NA&gt; 12.69              10.92                      NA          1</span></span>
-<span id="cb285-73"><a href="cap8.html#cb285-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 53     243 Female 21.82                 NA                    2.11          0</span></span>
-<span id="cb285-74"><a href="cap8.html#cb285-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 54     246 Female 24.64                 NA                    2.89          0</span></span>
-<span id="cb285-75"><a href="cap8.html#cb285-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 55     253 Female 24.08                 NA                   11.75          0</span></span>
-<span id="cb285-76"><a href="cap8.html#cb285-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 56     254   Male 21.83              20.70                      NA          1</span></span>
-<span id="cb285-77"><a href="cap8.html#cb285-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 57     257   Male 22.52                 NA                   16.19          0</span></span>
-<span id="cb285-78"><a href="cap8.html#cb285-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 58     259   &lt;NA&gt; 20.92                 NA                    6.72          0</span></span>
-<span id="cb285-79"><a href="cap8.html#cb285-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 59     265   Male 21.09                 NA                   10.22          0</span></span>
-<span id="cb285-80"><a href="cap8.html#cb285-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 60     266   Male 20.21              17.94                      NA          1</span></span>
-<span id="cb285-81"><a href="cap8.html#cb285-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 61     271 Female 22.99              18.44                      NA          1</span></span>
-<span id="cb285-82"><a href="cap8.html#cb285-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 62     272 Female 23.80                 NA                   13.06          0</span></span>
-<span id="cb285-83"><a href="cap8.html#cb285-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 63     274 Female 22.38              19.68                      NA          1</span></span>
-<span id="cb285-84"><a href="cap8.html#cb285-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 64     278   Male 18.82                 NA                   11.57          0</span></span>
-<span id="cb285-85"><a href="cap8.html#cb285-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 65     279 Female 17.45              15.62                      NA          1</span></span>
-<span id="cb285-86"><a href="cap8.html#cb285-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66     280   Male 21.94                 NA                    3.81          0</span></span>
-<span id="cb285-87"><a href="cap8.html#cb285-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 67     281   &lt;NA&gt; 12.60               9.65                      NA          1</span></span>
-<span id="cb285-88"><a href="cap8.html#cb285-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 68     282   Male 19.90              17.61                      NA          1</span></span>
-<span id="cb285-89"><a href="cap8.html#cb285-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 69     284   Male 17.50              16.53                      NA          1</span></span>
-<span id="cb285-90"><a href="cap8.html#cb285-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 70     285   &lt;NA&gt; 12.31                 NA                    2.44          0</span></span>
-<span id="cb285-91"><a href="cap8.html#cb285-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 71     286   Male 20.38                 NA                    4.05          0</span></span>
-<span id="cb285-92"><a href="cap8.html#cb285-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 72     287 Female 22.17              18.63                      NA          1</span></span>
-<span id="cb285-93"><a href="cap8.html#cb285-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 73     288 Female 22.02              18.90                      NA          1</span></span>
-<span id="cb285-94"><a href="cap8.html#cb285-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74     290   Male 20.25              17.78                      NA          1</span></span>
-<span id="cb285-95"><a href="cap8.html#cb285-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75     291   Male 20.76                 NA                    7.96          0</span></span>
-<span id="cb285-96"><a href="cap8.html#cb285-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76     294   Male 21.72              19.47                      NA          1</span></span>
-<span id="cb285-97"><a href="cap8.html#cb285-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 77     301   Male 23.11              19.71                      NA          1</span></span>
-<span id="cb285-98"><a href="cap8.html#cb285-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 78     304   Male 19.78              16.07                      NA          1</span></span>
-<span id="cb285-99"><a href="cap8.html#cb285-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 79     307   Male 21.78              18.64                      NA          1</span></span>
-<span id="cb285-100"><a href="cap8.html#cb285-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 80     309 Female 23.42                 NA                   17.24          0</span></span>
-<span id="cb285-101"><a href="cap8.html#cb285-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 81     310   Male 18.84                 NA                    9.57          0</span></span>
-<span id="cb285-102"><a href="cap8.html#cb285-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 82     311   &lt;NA&gt; 10.79                 NA                    3.57          0</span></span>
-<span id="cb285-103"><a href="cap8.html#cb285-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 83     320 Female 18.91              12.83                      NA          1</span></span>
-<span id="cb285-104"><a href="cap8.html#cb285-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 84     321 Female 23.62                 NA                   14.25          0</span></span>
-<span id="cb285-105"><a href="cap8.html#cb285-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 85     323   Male 21.18                 NA                   13.92          0</span></span>
-<span id="cb285-106"><a href="cap8.html#cb285-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 86     324 Female 17.05              11.29                      NA          1</span></span>
-<span id="cb285-107"><a href="cap8.html#cb285-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 87     329 Female 17.23              13.82                      NA          1</span></span>
-<span id="cb285-108"><a href="cap8.html#cb285-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 88     330 Female 24.21              19.94                      NA          1</span></span>
-<span id="cb285-109"><a href="cap8.html#cb285-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 89     331   Male 21.41              29.47                      NA          1</span></span>
-<span id="cb285-110"><a href="cap8.html#cb285-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 90     333   &lt;NA&gt; 11.42                 NA                    6.22          0</span></span>
-<span id="cb285-111"><a href="cap8.html#cb285-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 91     334   &lt;NA&gt; 12.17                 NA                    1.66          0</span></span>
-<span id="cb285-112"><a href="cap8.html#cb285-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 92     339 Female 20.03                 NA                   11.13          0</span></span>
-<span id="cb285-113"><a href="cap8.html#cb285-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 93     358   &lt;NA&gt; 20.77                 NA                   15.30          0</span></span>
-<span id="cb285-114"><a href="cap8.html#cb285-114" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 94     363 Female 17.57              12.23                      NA          1</span></span>
-<span id="cb285-115"><a href="cap8.html#cb285-115" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95     364 Female 20.52                 NA                    6.86          0</span></span>
-<span id="cb285-116"><a href="cap8.html#cb285-116" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 96     366   Male 20.76              18.21                      NA          1</span></span>
-<span id="cb285-117"><a href="cap8.html#cb285-117" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 97     367 Female 21.84                 NA                    1.43          0</span></span>
-<span id="cb285-118"><a href="cap8.html#cb285-118" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 98     375   Male 18.48                 NA                    7.95          0</span></span>
-<span id="cb285-119"><a href="cap8.html#cb285-119" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 99     377   Male 23.73                 NA                    3.94          0</span></span>
-<span id="cb285-120"><a href="cap8.html#cb285-120" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 100    388   Male 21.45                 NA                    9.78          0</span></span>
-<span id="cb285-121"><a href="cap8.html#cb285-121" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 101    391   Male 21.87                 NA                    3.05          0</span></span>
-<span id="cb285-122"><a href="cap8.html#cb285-122" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 102    396   Male 21.96                 NA                    3.72          0</span></span>
-<span id="cb285-123"><a href="cap8.html#cb285-123" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 103    397 Female 18.78              15.46                      NA          1</span></span>
-<span id="cb285-124"><a href="cap8.html#cb285-124" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 104    399   Male 21.61                 NA                   10.76          0</span></span>
-<span id="cb285-125"><a href="cap8.html#cb285-125" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 105    400 Female 23.24                 NA                    5.52          0</span></span>
-<span id="cb285-126"><a href="cap8.html#cb285-126" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 106    401   &lt;NA&gt; 19.74              16.69                      NA          1</span></span>
-<span id="cb285-127"><a href="cap8.html#cb285-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 107    406   Male 20.51              18.36                      NA          1</span></span>
-<span id="cb285-128"><a href="cap8.html#cb285-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 108    407 Female 21.74                 NA                    7.63          0</span></span>
-<span id="cb285-129"><a href="cap8.html#cb285-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 109    409   Male 19.44                 NA                    5.75          0</span></span>
-<span id="cb285-130"><a href="cap8.html#cb285-130" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 110    410   &lt;NA&gt; 19.27                 NA                    5.64          0</span></span>
-<span id="cb285-131"><a href="cap8.html#cb285-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 111    413   &lt;NA&gt; 23.48              18.55                      NA          1</span></span>
-<span id="cb285-132"><a href="cap8.html#cb285-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 112    414   &lt;NA&gt; 25.30                 NA                    3.69          0</span></span>
-<span id="cb285-133"><a href="cap8.html#cb285-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 113    415 Female 22.34              17.28                      NA          1</span></span>
-<span id="cb285-134"><a href="cap8.html#cb285-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 114    416   &lt;NA&gt; 13.06              12.54                      NA          1</span></span>
-<span id="cb285-135"><a href="cap8.html#cb285-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 115    419   &lt;NA&gt; 15.44              14.60                      NA          1</span></span>
-<span id="cb285-136"><a href="cap8.html#cb285-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 116    420   &lt;NA&gt; 14.74              10.54                      NA          1</span></span>
-<span id="cb285-137"><a href="cap8.html#cb285-137" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 117    432   &lt;NA&gt; 16.26              12.95                      NA          1</span></span>
-<span id="cb285-138"><a href="cap8.html#cb285-138" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 118    433 Female 23.29                 NA                   15.33          0</span></span>
-<span id="cb285-139"><a href="cap8.html#cb285-139" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 119    436 Female 25.06                 NA                   12.37          0</span></span>
-<span id="cb285-140"><a href="cap8.html#cb285-140" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 120    437 Female 24.70                 NA                    6.74          0</span></span>
-<span id="cb285-141"><a href="cap8.html#cb285-141" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 121    441   Male 22.84                 NA                    2.45          0</span></span>
-<span id="cb285-142"><a href="cap8.html#cb285-142" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 122    446   Male 21.05                 NA                   14.10          0</span></span>
-<span id="cb285-143"><a href="cap8.html#cb285-143" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 123    447   Male 13.67              10.42                      NA          1</span></span>
-<span id="cb285-144"><a href="cap8.html#cb285-144" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 124    448   Male 14.80              13.71                      NA          1</span></span>
-<span id="cb285-145"><a href="cap8.html#cb285-145" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 125    450 Female 20.29                 NA                    4.44          0</span></span>
-<span id="cb285-146"><a href="cap8.html#cb285-146" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 126    451 Female 22.20              19.25                      NA          1</span></span>
-<span id="cb285-147"><a href="cap8.html#cb285-147" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 127    455 Female 19.38                 NA                    4.31          0</span></span>
-<span id="cb285-148"><a href="cap8.html#cb285-148" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 128    460 Female 25.16                 NA                   12.42          0</span></span>
-<span id="cb285-149"><a href="cap8.html#cb285-149" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 129    464 Female 24.08              20.17                      NA          1</span></span>
-<span id="cb285-150"><a href="cap8.html#cb285-150" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 130    465   &lt;NA&gt; 16.30              15.62                      NA          1</span></span>
-<span id="cb285-151"><a href="cap8.html#cb285-151" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 131    466   &lt;NA&gt; 20.33                 NA                    3.51          0</span></span>
-<span id="cb285-152"><a href="cap8.html#cb285-152" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 132    467   &lt;NA&gt; 18.73              17.71                      NA          1</span></span>
-<span id="cb285-153"><a href="cap8.html#cb285-153" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 133    474 Female 18.90              14.82                      NA          1</span></span>
-<span id="cb285-154"><a href="cap8.html#cb285-154" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 134    478   Male 20.01                 NA                   15.77          0</span></span>
-<span id="cb285-155"><a href="cap8.html#cb285-155" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 135    487   &lt;NA&gt; 20.22                 NA                   14.19          0</span></span>
-<span id="cb285-156"><a href="cap8.html#cb285-156" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 136    490 Female 22.20                 NA                    4.75          0</span></span>
-<span id="cb285-157"><a href="cap8.html#cb285-157" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 137    493   Male 21.47                 NA                    7.53          0</span></span>
-<span id="cb285-158"><a href="cap8.html#cb285-158" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 138    494   Male 21.28                 NA                    2.83          0</span></span>
-<span id="cb285-159"><a href="cap8.html#cb285-159" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 139    497   Male 21.37                 NA                    2.99          0</span></span>
-<span id="cb285-160"><a href="cap8.html#cb285-160" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 140    504   Male 19.74              17.69                      NA          1</span></span>
-<span id="cb285-161"><a href="cap8.html#cb285-161" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 141    505   Male 22.08                 NA                    6.69          0</span></span>
-<span id="cb285-162"><a href="cap8.html#cb285-162" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 142    507   &lt;NA&gt; 16.89              13.79                      NA          1</span></span>
-<span id="cb285-163"><a href="cap8.html#cb285-163" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 143    508   Male 20.94              18.37                      NA          1</span></span>
-<span id="cb285-164"><a href="cap8.html#cb285-164" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 144    510 Female 19.83              17.95                      NA          1</span></span>
-<span id="cb285-165"><a href="cap8.html#cb285-165" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 145    511   Male 18.76              16.53                      NA          1</span></span>
-<span id="cb285-166"><a href="cap8.html#cb285-166" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 146    515   Male 21.42                 NA                   15.25          0</span></span>
-<span id="cb285-167"><a href="cap8.html#cb285-167" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 147    516 Female 20.69              17.22                      NA          1</span></span>
-<span id="cb285-168"><a href="cap8.html#cb285-168" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 148    517   Male 22.44              20.61                      NA          1</span></span>
-<span id="cb285-169"><a href="cap8.html#cb285-169" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 149    518   Male 21.19              17.35                      NA          1</span></span>
-<span id="cb285-170"><a href="cap8.html#cb285-170" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 150    525   Male 18.51              15.39                      NA          1</span></span>
-<span id="cb285-171"><a href="cap8.html#cb285-171" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 151    526 Female 21.18              18.23                      NA          1</span></span>
-<span id="cb285-172"><a href="cap8.html#cb285-172" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 152    528 Female 22.63              19.77                      NA          1</span></span>
-<span id="cb285-173"><a href="cap8.html#cb285-173" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 153    531   &lt;NA&gt; 17.40              15.38                      NA          1</span></span>
-<span id="cb285-174"><a href="cap8.html#cb285-174" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 154    532   &lt;NA&gt; 14.06              12.52                      NA          1</span></span>
-<span id="cb285-175"><a href="cap8.html#cb285-175" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 155    533   &lt;NA&gt; 14.11              12.92                      NA          1</span></span>
-<span id="cb285-176"><a href="cap8.html#cb285-176" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 156    534   Male 21.63              19.28                      NA          1</span></span>
-<span id="cb285-177"><a href="cap8.html#cb285-177" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 157    537   Male 21.76                 NA                   13.91          0</span></span>
-<span id="cb285-178"><a href="cap8.html#cb285-178" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 158    542 Female 22.48              20.12                      NA          1</span></span>
-<span id="cb285-179"><a href="cap8.html#cb285-179" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 159    556 Female 21.77              17.33                      NA          1</span></span>
-<span id="cb285-180"><a href="cap8.html#cb285-180" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 160    559 Female 22.46              20.03                      NA          1</span></span>
-<span id="cb285-181"><a href="cap8.html#cb285-181" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 161    564 Female 17.94              14.71                      NA          1</span></span>
-<span id="cb285-182"><a href="cap8.html#cb285-182" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 162    566 Female 23.47                 NA                    6.63          0</span></span>
-<span id="cb285-183"><a href="cap8.html#cb285-183" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 163    570 Female 23.59              21.00                      NA          1</span></span>
-<span id="cb285-184"><a href="cap8.html#cb285-184" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 164    574   &lt;NA&gt; 19.60              16.36                      NA          1</span></span>
-<span id="cb285-185"><a href="cap8.html#cb285-185" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 165    577   Male 18.35              16.76                      NA          1</span></span>
-<span id="cb285-186"><a href="cap8.html#cb285-186" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 166    578 Female 16.27              14.42                      NA          1</span></span>
-<span id="cb285-187"><a href="cap8.html#cb285-187" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 57 rows ]</span></span>
-<span id="cb285-188"><a href="cap8.html#cb285-188" aria-hidden="true" tabindex="-1"></a>ecodados<span class="sc">::</span>parasitas</span>
-<span id="cb285-189"><a href="cap8.html#cb285-189" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Especie Sexo CRC Raillietiella_mottae</span></span>
-<span id="cb285-190"><a href="cap8.html#cb285-190" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W124 Phyllopezus_pollicaris    F  61                    3</span></span>
-<span id="cb285-191"><a href="cap8.html#cb285-191" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W125 Phyllopezus_pollicaris    F  56                    0</span></span>
-<span id="cb285-192"><a href="cap8.html#cb285-192" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W127 Phyllopezus_pollicaris    M  61                    0</span></span>
-<span id="cb285-193"><a href="cap8.html#cb285-193" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W128 Phyllopezus_pollicaris    M  48                    0</span></span>
-<span id="cb285-194"><a href="cap8.html#cb285-194" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W129 Phyllopezus_pollicaris    F  40                    0</span></span>
-<span id="cb285-195"><a href="cap8.html#cb285-195" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W130 Phyllopezus_pollicaris    M  62                    0</span></span>
-<span id="cb285-196"><a href="cap8.html#cb285-196" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W131 Phyllopezus_pollicaris    F  40                    0</span></span>
-<span id="cb285-197"><a href="cap8.html#cb285-197" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W132 Phyllopezus_pollicaris    F  32                    0</span></span>
-<span id="cb285-198"><a href="cap8.html#cb285-198" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W137 Phyllopezus_pollicaris    M  69                    0</span></span>
-<span id="cb285-199"><a href="cap8.html#cb285-199" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W138 Phyllopezus_pollicaris    F  69                    3</span></span>
-<span id="cb285-200"><a href="cap8.html#cb285-200" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W139 Phyllopezus_pollicaris    F  69                    0</span></span>
-<span id="cb285-201"><a href="cap8.html#cb285-201" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W140 Phyllopezus_pollicaris    F  53                    0</span></span>
-<span id="cb285-202"><a href="cap8.html#cb285-202" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W141 Phyllopezus_pollicaris    F  42                    0</span></span>
-<span id="cb285-203"><a href="cap8.html#cb285-203" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W146 Phyllopezus_pollicaris    F  35                    0</span></span>
-<span id="cb285-204"><a href="cap8.html#cb285-204" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W149    Hemidactylus_agrius    F  49                    0</span></span>
-<span id="cb285-205"><a href="cap8.html#cb285-205" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W159 Phyllopezus_pollicaris    F  30                    0</span></span>
-<span id="cb285-206"><a href="cap8.html#cb285-206" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W160    Hemidactylus_agrius    M  48                    0</span></span>
-<span id="cb285-207"><a href="cap8.html#cb285-207" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W161    Hemidactylus_agrius    F  42                    0</span></span>
-<span id="cb285-208"><a href="cap8.html#cb285-208" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W162 Phyllopezus_pollicaris    M  56                    0</span></span>
-<span id="cb285-209"><a href="cap8.html#cb285-209" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W163 Phyllopezus_pollicaris    M  39                    0</span></span>
-<span id="cb285-210"><a href="cap8.html#cb285-210" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W165 Phyllopezus_pollicaris    M  61                    0</span></span>
-<span id="cb285-211"><a href="cap8.html#cb285-211" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W166 Phyllopezus_pollicaris    F  37                    0</span></span>
-<span id="cb285-212"><a href="cap8.html#cb285-212" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W167 Phyllopezus_pollicaris    M  72                    0</span></span>
-<span id="cb285-213"><a href="cap8.html#cb285-213" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W168 Phyllopezus_pollicaris    M  57                    0</span></span>
-<span id="cb285-214"><a href="cap8.html#cb285-214" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W171 Phyllopezus_pollicaris    M  73                    0</span></span>
-<span id="cb285-215"><a href="cap8.html#cb285-215" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W172 Phyllopezus_pollicaris    F  76                    0</span></span>
-<span id="cb285-216"><a href="cap8.html#cb285-216" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W173 Phyllopezus_pollicaris    F  79                    0</span></span>
-<span id="cb285-217"><a href="cap8.html#cb285-217" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W174 Phyllopezus_pollicaris    M  72                    0</span></span>
-<span id="cb285-218"><a href="cap8.html#cb285-218" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W175 Phyllopezus_pollicaris    F  80                    0</span></span>
-<span id="cb285-219"><a href="cap8.html#cb285-219" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W176 Phyllopezus_pollicaris    M  71                    0</span></span>
-<span id="cb285-220"><a href="cap8.html#cb285-220" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W177 Phyllopezus_pollicaris    F  66                    0</span></span>
-<span id="cb285-221"><a href="cap8.html#cb285-221" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W178 Phyllopezus_pollicaris    M  57                    0</span></span>
-<span id="cb285-222"><a href="cap8.html#cb285-222" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W179 Phyllopezus_pollicaris    F  52                    0</span></span>
-<span id="cb285-223"><a href="cap8.html#cb285-223" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W184 Phyllopezus_pollicaris    F  62                    0</span></span>
-<span id="cb285-224"><a href="cap8.html#cb285-224" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W185 Phyllopezus_pollicaris    F  48                    0</span></span>
-<span id="cb285-225"><a href="cap8.html#cb285-225" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W187 Phyllopezus_pollicaris    M  42                    0</span></span>
-<span id="cb285-226"><a href="cap8.html#cb285-226" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W188 Phyllopezus_pollicaris    M  73                    0</span></span>
-<span id="cb285-227"><a href="cap8.html#cb285-227" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W189 Phyllopezus_pollicaris    F  75                    0</span></span>
-<span id="cb285-228"><a href="cap8.html#cb285-228" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W190 Phyllopezus_pollicaris    M  68                    0</span></span>
-<span id="cb285-229"><a href="cap8.html#cb285-229" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W191 Phyllopezus_pollicaris    F  68                    0</span></span>
-<span id="cb285-230"><a href="cap8.html#cb285-230" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W192 Phyllopezus_pollicaris    F  62                    0</span></span>
-<span id="cb285-231"><a href="cap8.html#cb285-231" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W193 Phyllopezus_pollicaris    F  70                    0</span></span>
-<span id="cb285-232"><a href="cap8.html#cb285-232" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W194 Phyllopezus_pollicaris    F  64                    0</span></span>
-<span id="cb285-233"><a href="cap8.html#cb285-233" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W195 Phyllopezus_pollicaris    M  77                    0</span></span>
-<span id="cb285-234"><a href="cap8.html#cb285-234" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W196 Phyllopezus_pollicaris    F  76                    0</span></span>
-<span id="cb285-235"><a href="cap8.html#cb285-235" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W197 Phyllopezus_pollicaris    F  73                    0</span></span>
-<span id="cb285-236"><a href="cap8.html#cb285-236" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W198 Phyllopezus_pollicaris    M  64                    0</span></span>
-<span id="cb285-237"><a href="cap8.html#cb285-237" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W199 Phyllopezus_pollicaris    F  65                    0</span></span>
-<span id="cb285-238"><a href="cap8.html#cb285-238" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W200 Phyllopezus_pollicaris    F  64                    0</span></span>
-<span id="cb285-239"><a href="cap8.html#cb285-239" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W201 Phyllopezus_pollicaris    M  64                    0</span></span>
-<span id="cb285-240"><a href="cap8.html#cb285-240" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W202 Phyllopezus_pollicaris    F  61                    0</span></span>
-<span id="cb285-241"><a href="cap8.html#cb285-241" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W203 Phyllopezus_pollicaris    M  52                    0</span></span>
-<span id="cb285-242"><a href="cap8.html#cb285-242" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W204 Phyllopezus_pollicaris    M  63                    0</span></span>
-<span id="cb285-243"><a href="cap8.html#cb285-243" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W205    Hemidactylus_agrius    F  46                    0</span></span>
-<span id="cb285-244"><a href="cap8.html#cb285-244" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W208 Phyllopezus_pollicaris    F  56                    0</span></span>
-<span id="cb285-245"><a href="cap8.html#cb285-245" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W209 Phyllopezus_pollicaris    F  61                    0</span></span>
-<span id="cb285-246"><a href="cap8.html#cb285-246" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W210 Phyllopezus_pollicaris    F  65                    0</span></span>
-<span id="cb285-247"><a href="cap8.html#cb285-247" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W211 Phyllopezus_pollicaris    F  41                    0</span></span>
-<span id="cb285-248"><a href="cap8.html#cb285-248" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W212 Phyllopezus_pollicaris    F  42                    0</span></span>
-<span id="cb285-249"><a href="cap8.html#cb285-249" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W214    Hemidactylus_agrius    F  48                    0</span></span>
-<span id="cb285-250"><a href="cap8.html#cb285-250" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W215    Hemidactylus_agrius    M  46                    0</span></span>
-<span id="cb285-251"><a href="cap8.html#cb285-251" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W219 Phyllopezus_pollicaris    F  65                    0</span></span>
-<span id="cb285-252"><a href="cap8.html#cb285-252" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W220 Phyllopezus_pollicaris    M  64                    0</span></span>
-<span id="cb285-253"><a href="cap8.html#cb285-253" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W221 Phyllopezus_pollicaris    M  50                    0</span></span>
-<span id="cb285-254"><a href="cap8.html#cb285-254" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W227 Phyllopezus_pollicaris    M  63                    0</span></span>
-<span id="cb285-255"><a href="cap8.html#cb285-255" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W228 Phyllopezus_pollicaris    M  61                    0</span></span>
-<span id="cb285-256"><a href="cap8.html#cb285-256" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W229 Phyllopezus_pollicaris    F  59                    0</span></span>
-<span id="cb285-257"><a href="cap8.html#cb285-257" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W230 Phyllopezus_pollicaris    F  76                    1</span></span>
-<span id="cb285-258"><a href="cap8.html#cb285-258" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W231 Phyllopezus_pollicaris    M  61                    0</span></span>
-<span id="cb285-259"><a href="cap8.html#cb285-259" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W232 Phyllopezus_pollicaris    F  57                    0</span></span>
-<span id="cb285-260"><a href="cap8.html#cb285-260" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W233 Phyllopezus_pollicaris    F  65                    0</span></span>
-<span id="cb285-261"><a href="cap8.html#cb285-261" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W234 Phyllopezus_pollicaris    F  72                    2</span></span>
-<span id="cb285-262"><a href="cap8.html#cb285-262" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W263 Phyllopezus_pollicaris    F  61                    0</span></span>
-<span id="cb285-263"><a href="cap8.html#cb285-263" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W264 Phyllopezus_pollicaris    F  70                    0</span></span>
-<span id="cb285-264"><a href="cap8.html#cb285-264" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W265 Phyllopezus_pollicaris    F  71                    0</span></span>
-<span id="cb285-265"><a href="cap8.html#cb285-265" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W266 Phyllopezus_pollicaris    F  81                    0</span></span>
-<span id="cb285-266"><a href="cap8.html#cb285-266" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W267 Phyllopezus_pollicaris    M  77                    0</span></span>
-<span id="cb285-267"><a href="cap8.html#cb285-267" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W268 Phyllopezus_pollicaris    M  69                    0</span></span>
-<span id="cb285-268"><a href="cap8.html#cb285-268" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W269 Phyllopezus_pollicaris    M  69                    0</span></span>
-<span id="cb285-269"><a href="cap8.html#cb285-269" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W270 Phyllopezus_pollicaris    F  70                    0</span></span>
-<span id="cb285-270"><a href="cap8.html#cb285-270" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W271 Phyllopezus_pollicaris    F  64                    0</span></span>
-<span id="cb285-271"><a href="cap8.html#cb285-271" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W272 Phyllopezus_pollicaris    F  73                    0</span></span>
-<span id="cb285-272"><a href="cap8.html#cb285-272" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W273 Phyllopezus_pollicaris    M  64                    0</span></span>
-<span id="cb285-273"><a href="cap8.html#cb285-273" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W274 Phyllopezus_pollicaris    M  69                    1</span></span>
-<span id="cb285-274"><a href="cap8.html#cb285-274" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W275 Phyllopezus_pollicaris    M  70                    0</span></span>
-<span id="cb285-275"><a href="cap8.html#cb285-275" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W276 Phyllopezus_pollicaris    M  65                    0</span></span>
-<span id="cb285-276"><a href="cap8.html#cb285-276" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W277 Phyllopezus_pollicaris    M  54                    0</span></span>
-<span id="cb285-277"><a href="cap8.html#cb285-277" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W278    Hemidactylus_agrius    M  49                    1</span></span>
-<span id="cb285-278"><a href="cap8.html#cb285-278" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W279    Hemidactylus_agrius    F  46                    0</span></span>
-<span id="cb285-279"><a href="cap8.html#cb285-279" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W280    Hemidactylus_agrius    F  49                    0</span></span>
-<span id="cb285-280"><a href="cap8.html#cb285-280" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W289 Phyllopezus_pollicaris    M  73                    0</span></span>
-<span id="cb285-281"><a href="cap8.html#cb285-281" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W290 Phyllopezus_pollicaris    F  56                    0</span></span>
-<span id="cb285-282"><a href="cap8.html#cb285-282" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W291 Phyllopezus_pollicaris    M  73                    0</span></span>
-<span id="cb285-283"><a href="cap8.html#cb285-283" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W292 Phyllopezus_pollicaris    F  65                    0</span></span>
-<span id="cb285-284"><a href="cap8.html#cb285-284" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W293 Phyllopezus_pollicaris    M  57                    0</span></span>
-<span id="cb285-285"><a href="cap8.html#cb285-285" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W294 Phyllopezus_pollicaris    M  68                    0</span></span>
-<span id="cb285-286"><a href="cap8.html#cb285-286" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W295 Phyllopezus_pollicaris    F  71                    1</span></span>
-<span id="cb285-287"><a href="cap8.html#cb285-287" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W296 Phyllopezus_pollicaris    F  70                    0</span></span>
-<span id="cb285-288"><a href="cap8.html#cb285-288" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W297 Phyllopezus_pollicaris    M  62                    0</span></span>
-<span id="cb285-289"><a href="cap8.html#cb285-289" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W298 Phyllopezus_pollicaris    F  51                    0</span></span>
-<span id="cb285-290"><a href="cap8.html#cb285-290" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W299 Phyllopezus_pollicaris    F  64                    0</span></span>
-<span id="cb285-291"><a href="cap8.html#cb285-291" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W300 Phyllopezus_pollicaris    F  61                    0</span></span>
-<span id="cb285-292"><a href="cap8.html#cb285-292" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W301 Phyllopezus_pollicaris    M  72                    0</span></span>
-<span id="cb285-293"><a href="cap8.html#cb285-293" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W302 Phyllopezus_pollicaris    M  64                    0</span></span>
-<span id="cb285-294"><a href="cap8.html#cb285-294" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W306    Hemidactylus_agrius    F  48                    0</span></span>
-<span id="cb285-295"><a href="cap8.html#cb285-295" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W307    Hemidactylus_agrius    M  49                    0</span></span>
-<span id="cb285-296"><a href="cap8.html#cb285-296" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W308    Hemidactylus_agrius    F  43                    0</span></span>
-<span id="cb285-297"><a href="cap8.html#cb285-297" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W310    Hemidactylus_agrius    F  44                    0</span></span>
-<span id="cb285-298"><a href="cap8.html#cb285-298" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W311    Hemidactylus_agrius    F  49                    0</span></span>
-<span id="cb285-299"><a href="cap8.html#cb285-299" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W313    Hemidactylus_agrius    M  50                    0</span></span>
-<span id="cb285-300"><a href="cap8.html#cb285-300" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W314    Hemidactylus_agrius    M  48                    0</span></span>
-<span id="cb285-301"><a href="cap8.html#cb285-301" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W315    Hemidactylus_agrius    M  47                    0</span></span>
-<span id="cb285-302"><a href="cap8.html#cb285-302" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W316    Hemidactylus_agrius    F  48                    3</span></span>
-<span id="cb285-303"><a href="cap8.html#cb285-303" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W317    Hemidactylus_agrius    M  48                    2</span></span>
-<span id="cb285-304"><a href="cap8.html#cb285-304" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W318    Hemidactylus_agrius    F  50                    0</span></span>
-<span id="cb285-305"><a href="cap8.html#cb285-305" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W319    Hemidactylus_agrius    F  49                    1</span></span>
-<span id="cb285-306"><a href="cap8.html#cb285-306" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W324 Phyllopezus_pollicaris    F  70                    3</span></span>
-<span id="cb285-307"><a href="cap8.html#cb285-307" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W325 Phyllopezus_pollicaris    F  71                    0</span></span>
-<span id="cb285-308"><a href="cap8.html#cb285-308" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W326    Hemidactylus_agrius    F  53                    0</span></span>
-<span id="cb285-309"><a href="cap8.html#cb285-309" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W327    Hemidactylus_agrius    F  49                    0</span></span>
-<span id="cb285-310"><a href="cap8.html#cb285-310" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W328    Hemidactylus_agrius    M  53                    1</span></span>
-<span id="cb285-311"><a href="cap8.html#cb285-311" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W329    Hemidactylus_agrius    F  52                    1</span></span>
-<span id="cb285-312"><a href="cap8.html#cb285-312" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W331    Hemidactylus_agrius    M  49                    0</span></span>
-<span id="cb285-313"><a href="cap8.html#cb285-313" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W344 Phyllopezus_pollicaris    M  62                    0</span></span>
-<span id="cb285-314"><a href="cap8.html#cb285-314" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W345 Phyllopezus_pollicaris    M  58                    0</span></span>
-<span id="cb285-315"><a href="cap8.html#cb285-315" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W346 Phyllopezus_pollicaris    M  76                    1</span></span>
-<span id="cb285-316"><a href="cap8.html#cb285-316" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W347 Phyllopezus_pollicaris    F  74                    3</span></span>
-<span id="cb285-317"><a href="cap8.html#cb285-317" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W348 Phyllopezus_pollicaris    F  66                    1</span></span>
-<span id="cb285-318"><a href="cap8.html#cb285-318" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W349    Hemidactylus_agrius    F  52                    0</span></span>
-<span id="cb285-319"><a href="cap8.html#cb285-319" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W350    Hemidactylus_agrius    M  43                    0</span></span>
-<span id="cb285-320"><a href="cap8.html#cb285-320" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W371    Hemidactylus_agrius    M  50                    0</span></span>
-<span id="cb285-321"><a href="cap8.html#cb285-321" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W372    Hemidactylus_agrius    F  49                    0</span></span>
-<span id="cb285-322"><a href="cap8.html#cb285-322" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W373    Hemidactylus_agrius    F  52                    0</span></span>
-<span id="cb285-323"><a href="cap8.html#cb285-323" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W378 Phyllopezus_pollicaris    M  52                    0</span></span>
-<span id="cb285-324"><a href="cap8.html#cb285-324" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W379 Phyllopezus_pollicaris    F  61                    1</span></span>
-<span id="cb285-325"><a href="cap8.html#cb285-325" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W380 Phyllopezus_pollicaris    M  71                    2</span></span>
-<span id="cb285-326"><a href="cap8.html#cb285-326" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W381 Phyllopezus_pollicaris    F  69                    3</span></span>
-<span id="cb285-327"><a href="cap8.html#cb285-327" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W382 Phyllopezus_pollicaris    F  70                    2</span></span>
-<span id="cb285-328"><a href="cap8.html#cb285-328" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W383 Phyllopezus_pollicaris    F  69                    2</span></span>
-<span id="cb285-329"><a href="cap8.html#cb285-329" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W385    Hemidactylus_agrius    M  51                    0</span></span>
-<span id="cb285-330"><a href="cap8.html#cb285-330" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W391 Phyllopezus_pollicaris    M  61                    0</span></span>
-<span id="cb285-331"><a href="cap8.html#cb285-331" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W392 Phyllopezus_pollicaris    F  69                    1</span></span>
-<span id="cb285-332"><a href="cap8.html#cb285-332" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W393 Phyllopezus_pollicaris    M  73                    0</span></span>
-<span id="cb285-333"><a href="cap8.html#cb285-333" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W394 Phyllopezus_pollicaris    M  71                    0</span></span>
-<span id="cb285-334"><a href="cap8.html#cb285-334" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W395 Phyllopezus_pollicaris    M  69                    1</span></span>
-<span id="cb285-335"><a href="cap8.html#cb285-335" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W396 Phyllopezus_pollicaris    M  74                    5</span></span>
-<span id="cb285-336"><a href="cap8.html#cb285-336" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W397 Phyllopezus_pollicaris    M  63                    0</span></span>
-<span id="cb285-337"><a href="cap8.html#cb285-337" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W398 Phyllopezus_pollicaris    F  59                    0</span></span>
-<span id="cb285-338"><a href="cap8.html#cb285-338" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W409    Hemidactylus_agrius    F  49                    1</span></span>
-<span id="cb285-339"><a href="cap8.html#cb285-339" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W410    Hemidactylus_agrius    M  52                    1</span></span>
-<span id="cb285-340"><a href="cap8.html#cb285-340" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W411 Phyllopezus_pollicaris    F  46                    0</span></span>
-<span id="cb285-341"><a href="cap8.html#cb285-341" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W412 Phyllopezus_pollicaris    F  59                    0</span></span>
-<span id="cb285-342"><a href="cap8.html#cb285-342" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W413 Phyllopezus_pollicaris    F  51                    0</span></span>
-<span id="cb285-343"><a href="cap8.html#cb285-343" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W414 Phyllopezus_pollicaris    M  55                    0</span></span>
-<span id="cb285-344"><a href="cap8.html#cb285-344" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W415 Phyllopezus_pollicaris    F  70                    0</span></span>
-<span id="cb285-345"><a href="cap8.html#cb285-345" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W416 Phyllopezus_pollicaris    M  70                    0</span></span>
-<span id="cb285-346"><a href="cap8.html#cb285-346" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W422 Phyllopezus_pollicaris    F  71                    1</span></span>
-<span id="cb285-347"><a href="cap8.html#cb285-347" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W423 Phyllopezus_pollicaris    M  69                    0</span></span>
-<span id="cb285-348"><a href="cap8.html#cb285-348" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W424 Phyllopezus_pollicaris    F  69                    0</span></span>
-<span id="cb285-349"><a href="cap8.html#cb285-349" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W425 Phyllopezus_pollicaris    F  64                    0</span></span>
-<span id="cb285-350"><a href="cap8.html#cb285-350" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W426 Phyllopezus_pollicaris    M  70                    0</span></span>
-<span id="cb285-351"><a href="cap8.html#cb285-351" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W430    Hemidactylus_agrius    M  46                    0</span></span>
-<span id="cb285-352"><a href="cap8.html#cb285-352" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W434    Hemidactylus_agrius    M  42                    0</span></span>
-<span id="cb285-353"><a href="cap8.html#cb285-353" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W435    Hemidactylus_agrius    M  44                    0</span></span>
-<span id="cb285-354"><a href="cap8.html#cb285-354" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W436    Hemidactylus_agrius    F  44                    0</span></span>
-<span id="cb285-355"><a href="cap8.html#cb285-355" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W440 Phyllopezus_pollicaris    F  76                    0</span></span>
-<span id="cb285-356"><a href="cap8.html#cb285-356" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W441 Phyllopezus_pollicaris    M  61                    0</span></span>
-<span id="cb285-357"><a href="cap8.html#cb285-357" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W442 Phyllopezus_pollicaris    F  69                    2</span></span>
-<span id="cb285-358"><a href="cap8.html#cb285-358" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W443 Phyllopezus_pollicaris    F  69                    0</span></span>
-<span id="cb285-359"><a href="cap8.html#cb285-359" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W444 Phyllopezus_pollicaris    F  80                    1</span></span>
-<span id="cb285-360"><a href="cap8.html#cb285-360" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W447    Hemidactylus_agrius    M  37                    0</span></span>
-<span id="cb285-361"><a href="cap8.html#cb285-361" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W448    Hemidactylus_agrius    F  40                    0</span></span>
-<span id="cb285-362"><a href="cap8.html#cb285-362" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W449    Hemidactylus_agrius    F  55                    4</span></span>
-<span id="cb285-363"><a href="cap8.html#cb285-363" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W450    Hemidactylus_agrius    F  49                    0</span></span>
-<span id="cb285-364"><a href="cap8.html#cb285-364" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W451    Hemidactylus_agrius    F  50                    0</span></span>
-<span id="cb285-365"><a href="cap8.html#cb285-365" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W452    Hemidactylus_agrius    M  48                    1</span></span>
-<span id="cb285-366"><a href="cap8.html#cb285-366" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W453    Hemidactylus_agrius    F  46                    0</span></span>
-<span id="cb285-367"><a href="cap8.html#cb285-367" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W456    Hemidactylus_agrius    M  44                    0</span></span>
-<span id="cb285-368"><a href="cap8.html#cb285-368" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W458    Hemidactylus_agrius    M  46                    1</span></span>
-<span id="cb285-369"><a href="cap8.html#cb285-369" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W463    Hemidactylus_agrius    M  44                    2</span></span>
-<span id="cb285-370"><a href="cap8.html#cb285-370" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W464    Hemidactylus_agrius    F  51                    0</span></span>
-<span id="cb285-371"><a href="cap8.html#cb285-371" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W465    Hemidactylus_agrius    M  46                    0</span></span>
-<span id="cb285-372"><a href="cap8.html#cb285-372" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W466    Hemidactylus_agrius    F  50                    0</span></span>
-<span id="cb285-373"><a href="cap8.html#cb285-373" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W467    Hemidactylus_agrius    M  48                    1</span></span>
-<span id="cb285-374"><a href="cap8.html#cb285-374" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W468    Hemidactylus_agrius    F  52                    0</span></span>
-<span id="cb285-375"><a href="cap8.html#cb285-375" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W469    Hemidactylus_agrius    F  52                    0</span></span>
-<span id="cb285-376"><a href="cap8.html#cb285-376" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W470    Hemidactylus_agrius    M  47                    1</span></span>
-<span id="cb285-377"><a href="cap8.html#cb285-377" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W471    Hemidactylus_agrius    F  41                    0</span></span>
-<span id="cb285-378"><a href="cap8.html#cb285-378" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W472    Hemidactylus_agrius    M  40                    2</span></span>
-<span id="cb285-379"><a href="cap8.html#cb285-379" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W473    Hemidactylus_agrius    F  43                    0</span></span>
-<span id="cb285-380"><a href="cap8.html#cb285-380" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W474    Hemidactylus_agrius    F  43                    5</span></span>
-<span id="cb285-381"><a href="cap8.html#cb285-381" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W475    Hemidactylus_agrius    M  48                    0</span></span>
-<span id="cb285-382"><a href="cap8.html#cb285-382" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W476    Hemidactylus_agrius    M  55                    1</span></span>
-<span id="cb285-383"><a href="cap8.html#cb285-383" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W480    Hemidactylus_agrius    F  49                    1</span></span>
-<span id="cb285-384"><a href="cap8.html#cb285-384" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W481    Hemidactylus_agrius    F  42                    0</span></span>
-<span id="cb285-385"><a href="cap8.html#cb285-385" aria-hidden="true" tabindex="-1"></a>ecodados<span class="sc">::</span>fish</span>
-<span id="cb285-386"><a href="cap8.html#cb285-386" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Animal Treatment Time Sex Darkness Redness</span></span>
-<span id="cb285-387"><a href="cap8.html#cb285-387" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1        CT   0h   M    56.42  131.17</span></span>
-<span id="cb285-388"><a href="cap8.html#cb285-388" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       1        CT   1h   M    49.53  133.30</span></span>
-<span id="cb285-389"><a href="cap8.html#cb285-389" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       1        CT   2h   M    54.94  132.69</span></span>
-<span id="cb285-390"><a href="cap8.html#cb285-390" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       1        CT   3h   M    42.19  135.37</span></span>
-<span id="cb285-391"><a href="cap8.html#cb285-391" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       2        CT   0h   M    58.93  133.35</span></span>
-<span id="cb285-392"><a href="cap8.html#cb285-392" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2        CT   1h   M    52.45  133.65</span></span>
-<span id="cb285-393"><a href="cap8.html#cb285-393" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7       2        CT   2h   M    56.43  131.65</span></span>
-<span id="cb285-394"><a href="cap8.html#cb285-394" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8       2        CT   3h   M    66.17  122.80</span></span>
-<span id="cb285-395"><a href="cap8.html#cb285-395" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9       3        CT   0h   M    58.35  132.72</span></span>
-<span id="cb285-396"><a href="cap8.html#cb285-396" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10      3        CT   1h   M    57.80  135.24</span></span>
-<span id="cb285-397"><a href="cap8.html#cb285-397" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11      3        CT   2h   M    51.60  133.31</span></span>
-<span id="cb285-398"><a href="cap8.html#cb285-398" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12      3        CT   3h   M    55.73  128.71</span></span>
-<span id="cb285-399"><a href="cap8.html#cb285-399" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13      4        CT   0h   M    43.78  126.93</span></span>
-<span id="cb285-400"><a href="cap8.html#cb285-400" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14      4        CT   1h   M    53.16  132.29</span></span>
-<span id="cb285-401"><a href="cap8.html#cb285-401" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15      4        CT   2h   M    62.76  130.76</span></span>
-<span id="cb285-402"><a href="cap8.html#cb285-402" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16      4        CT   3h   M    53.85  128.46</span></span>
-<span id="cb285-403"><a href="cap8.html#cb285-403" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17      5        CT   0h   M    53.66  126.75</span></span>
-<span id="cb285-404"><a href="cap8.html#cb285-404" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18      5        CT   1h   M    52.38  121.34</span></span>
-<span id="cb285-405"><a href="cap8.html#cb285-405" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19      5        CT   2h   M    50.05  130.08</span></span>
-<span id="cb285-406"><a href="cap8.html#cb285-406" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20      5        CT   3h   M    48.60  130.43</span></span>
-<span id="cb285-407"><a href="cap8.html#cb285-407" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21      6       YOH   0h   M    55.75  130.55</span></span>
-<span id="cb285-408"><a href="cap8.html#cb285-408" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22      6       YOH   1h   M    75.44  148.66</span></span>
-<span id="cb285-409"><a href="cap8.html#cb285-409" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23      6       YOH   2h   M    88.18  141.26</span></span>
-<span id="cb285-410"><a href="cap8.html#cb285-410" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24      6       YOH   3h   M    79.96  146.26</span></span>
-<span id="cb285-411"><a href="cap8.html#cb285-411" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25      7       YOH   0h   M    61.57  136.70</span></span>
-<span id="cb285-412"><a href="cap8.html#cb285-412" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26      7       YOH   1h   M    84.04  144.15</span></span>
-<span id="cb285-413"><a href="cap8.html#cb285-413" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27      7       YOH   2h   M    86.28  155.17</span></span>
-<span id="cb285-414"><a href="cap8.html#cb285-414" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28      7       YOH   3h   M    80.05  155.27</span></span>
-<span id="cb285-415"><a href="cap8.html#cb285-415" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29      8       YOH   0h   M    54.14  136.50</span></span>
-<span id="cb285-416"><a href="cap8.html#cb285-416" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30      8       YOH   1h   M    75.22  146.96</span></span>
-<span id="cb285-417"><a href="cap8.html#cb285-417" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 31      8       YOH   2h   M    81.09  146.61</span></span>
-<span id="cb285-418"><a href="cap8.html#cb285-418" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 32      8       YOH   3h   M    85.21  152.07</span></span>
-<span id="cb285-419"><a href="cap8.html#cb285-419" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 33      9       YOH   0h   M    43.25  128.42</span></span>
-<span id="cb285-420"><a href="cap8.html#cb285-420" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 34      9       YOH   1h   M    76.31  143.88</span></span>
-<span id="cb285-421"><a href="cap8.html#cb285-421" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35      9       YOH   2h   M    72.83  144.36</span></span>
-<span id="cb285-422"><a href="cap8.html#cb285-422" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 36      9       YOH   3h   M    89.13  148.65</span></span>
-<span id="cb285-423"><a href="cap8.html#cb285-423" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 37     10       YOH   0h   M    52.81  121.99</span></span>
-<span id="cb285-424"><a href="cap8.html#cb285-424" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 38     10       YOH   1h   M    90.36  137.47</span></span>
-<span id="cb285-425"><a href="cap8.html#cb285-425" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 39     10       YOH   2h   M    73.96  142.76</span></span>
-<span id="cb285-426"><a href="cap8.html#cb285-426" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 40     10       YOH   3h   M    77.56  159.12</span></span>
-<span id="cb285-427"><a href="cap8.html#cb285-427" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 41     11        CT   0h   F    48.94      NA</span></span>
-<span id="cb285-428"><a href="cap8.html#cb285-428" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 42     11        CT   1h   F    65.44      NA</span></span>
-<span id="cb285-429"><a href="cap8.html#cb285-429" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 43     11        CT   2h   F    48.03      NA</span></span>
-<span id="cb285-430"><a href="cap8.html#cb285-430" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 44     11        CT   3h   F    68.42      NA</span></span>
-<span id="cb285-431"><a href="cap8.html#cb285-431" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45     12        CT   0h   F    57.95      NA</span></span>
-<span id="cb285-432"><a href="cap8.html#cb285-432" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 46     12        CT   1h   F    46.34      NA</span></span>
-<span id="cb285-433"><a href="cap8.html#cb285-433" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 47     12        CT   2h   F    45.64      NA</span></span>
-<span id="cb285-434"><a href="cap8.html#cb285-434" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 48     12        CT   3h   F    66.06      NA</span></span>
-<span id="cb285-435"><a href="cap8.html#cb285-435" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 49     13        CT   0h   F    66.65      NA</span></span>
-<span id="cb285-436"><a href="cap8.html#cb285-436" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 50     13        CT   1h   F    65.07      NA</span></span>
-<span id="cb285-437"><a href="cap8.html#cb285-437" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 51     13        CT   2h   F    65.63      NA</span></span>
-<span id="cb285-438"><a href="cap8.html#cb285-438" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 52     13        CT   3h   F    63.98      NA</span></span>
-<span id="cb285-439"><a href="cap8.html#cb285-439" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 53     14        CT   0h   F    63.11      NA</span></span>
-<span id="cb285-440"><a href="cap8.html#cb285-440" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 54     14        CT   1h   F    60.88      NA</span></span>
-<span id="cb285-441"><a href="cap8.html#cb285-441" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 55     14        CT   2h   F    62.40      NA</span></span>
-<span id="cb285-442"><a href="cap8.html#cb285-442" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 56     14        CT   3h   F    60.95      NA</span></span>
-<span id="cb285-443"><a href="cap8.html#cb285-443" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 57     15        CT   0h   F    55.66      NA</span></span>
-<span id="cb285-444"><a href="cap8.html#cb285-444" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 58     15        CT   1h   F    57.47      NA</span></span>
-<span id="cb285-445"><a href="cap8.html#cb285-445" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 59     15        CT   2h   F    53.37      NA</span></span>
-<span id="cb285-446"><a href="cap8.html#cb285-446" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 60     15        CT   3h   F    53.37      NA</span></span>
-<span id="cb285-447"><a href="cap8.html#cb285-447" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 61     16       YOH   0h   F    58.40      NA</span></span>
-<span id="cb285-448"><a href="cap8.html#cb285-448" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 62     16       YOH   1h   F    83.35      NA</span></span>
-<span id="cb285-449"><a href="cap8.html#cb285-449" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 63     16       YOH   2h   F    84.21      NA</span></span>
-<span id="cb285-450"><a href="cap8.html#cb285-450" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 64     16       YOH   3h   F    86.82      NA</span></span>
-<span id="cb285-451"><a href="cap8.html#cb285-451" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 65     17       YOH   0h   F    61.41      NA</span></span>
-<span id="cb285-452"><a href="cap8.html#cb285-452" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66     17       YOH   1h   F    89.15      NA</span></span>
-<span id="cb285-453"><a href="cap8.html#cb285-453" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 67     17       YOH   2h   F    93.15      NA</span></span>
-<span id="cb285-454"><a href="cap8.html#cb285-454" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 68     17       YOH   3h   F    83.67      NA</span></span>
-<span id="cb285-455"><a href="cap8.html#cb285-455" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 69     18       YOH   0h   F    67.37      NA</span></span>
-<span id="cb285-456"><a href="cap8.html#cb285-456" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 70     18       YOH   1h   F    87.97      NA</span></span>
-<span id="cb285-457"><a href="cap8.html#cb285-457" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 71     18       YOH   2h   F    82.55      NA</span></span>
-<span id="cb285-458"><a href="cap8.html#cb285-458" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 72     18       YOH   3h   F    82.83      NA</span></span>
-<span id="cb285-459"><a href="cap8.html#cb285-459" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 73     19       YOH   0h   F    61.82      NA</span></span>
-<span id="cb285-460"><a href="cap8.html#cb285-460" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 74     19       YOH   1h   F    75.54      NA</span></span>
-<span id="cb285-461"><a href="cap8.html#cb285-461" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75     19       YOH   2h   F    76.00      NA</span></span>
-<span id="cb285-462"><a href="cap8.html#cb285-462" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 76     19       YOH   3h   F    91.62      NA</span></span>
-<span id="cb285-463"><a href="cap8.html#cb285-463" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 77     20       YOH   0h   F    58.47      NA</span></span>
-<span id="cb285-464"><a href="cap8.html#cb285-464" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 78     20       YOH   1h   F    82.70      NA</span></span>
-<span id="cb285-465"><a href="cap8.html#cb285-465" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 79     20       YOH   2h   F    83.49      NA</span></span>
-<span id="cb285-466"><a href="cap8.html#cb285-466" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 80     20       YOH   3h   F    82.34      NA</span></span>
-<span id="cb285-467"><a href="cap8.html#cb285-467" aria-hidden="true" tabindex="-1"></a>ecodados<span class="sc">::</span>fragmentos</span>
-<span id="cb285-468"><a href="cap8.html#cb285-468" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    locality    site Riqueza_obs Riqueza_HB Bsc Dne Dnm Dnn Dns Hal Hra Lfu Lla Lpo Eun Pce Pcu Pfa1 Ppa Sfm Sfv Ebi Esp</span></span>
-<span id="cb285-469"><a href="cap8.html#cb285-469" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       MAC  MacAc1           3          6   0   0   0   0   0   0   0   0   0   0   1   0   0    0   0   0   1   0   1</span></span>
-<span id="cb285-470"><a href="cap8.html#cb285-470" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       MAC  MacAc2          11         13   1   0   1   1   0   0   1   1   0   1   0   0   1    1   1   1   0   1   0</span></span>
-<span id="cb285-471"><a href="cap8.html#cb285-471" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       MAC  MacAc3          10         12   1   0   0   0   0   0   1   1   0   1   1   0   1    1   0   1   1   0   0</span></span>
-<span id="cb285-472"><a href="cap8.html#cb285-472" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       MAC  MacAc4          10         13   1   1   1   1   0   1   1   0   0   1   0   0   1    1   0   1   0   0   0</span></span>
-<span id="cb285-473"><a href="cap8.html#cb285-473" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       MAC  MacAc5           3          6   0   0   0   0   0   0   0   1   0   0   1   0   1    0   0   0   0   0   0</span></span>
-<span id="cb285-474"><a href="cap8.html#cb285-474" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       MAC  MacBr1           9         12   0   0   0   1   0   1   1   1   1   0   1   0   1    1   0   0   0   0   1</span></span>
-<span id="cb285-475"><a href="cap8.html#cb285-475" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7       NOV  NovBr1           2          5   0   0   0   1   0   1   0   0   0   0   0   0   0    0   0   0   0   0   0</span></span>
-<span id="cb285-476"><a href="cap8.html#cb285-476" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8       NOV  NovBr2           8         11   0   0   1   1   0   1   0   0   0   1   0   0   1    0   1   1   1   0   0</span></span>
-<span id="cb285-477"><a href="cap8.html#cb285-477" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9       NOV  NovRe2           9         12   0   0   0   1   1   1   1   0   0   1   0   1   1    0   1   1   0   0   0</span></span>
-<span id="cb285-478"><a href="cap8.html#cb285-478" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10      NOV  NovRe3           8         11   0   0   0   1   0   1   1   1   0   1   0   0   1    0   1   1   0   0   0</span></span>
-<span id="cb285-479"><a href="cap8.html#cb285-479" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11      PIN  PinAc1           6          8   0   0   1   0   0   0   0   1   0   0   0   0   1    0   0   0   1   0   1</span></span>
-<span id="cb285-480"><a href="cap8.html#cb285-480" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12      PIN  PinBr1           4          7   0   0   0   1   0   1   0   0   0   1   0   0   1    0   0   0   0   0   0</span></span>
-<span id="cb285-481"><a href="cap8.html#cb285-481" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13      PIN  PinRe1           8         10   1   0   0   1   1   1   0   0   0   1   0   0   1    0   0   0   0   0   1</span></span>
-<span id="cb285-482"><a href="cap8.html#cb285-482" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14      PIN  PinRe2           8         11   1   0   0   1   0   1   0   1   0   1   0   0   1    0   0   1   1   0   0</span></span>
-<span id="cb285-483"><a href="cap8.html#cb285-483" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15      PIN  PinRe3           6          9   0   0   0   1   0   1   0   1   0   1   0   0   1    0   0   0   0   0   1</span></span>
-<span id="cb285-484"><a href="cap8.html#cb285-484" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16     PLAN PlanAc1          17         18   1   1   1   1   0   0   1   1   0   1   1   1   1    1   1   1   1   1   0</span></span>
-<span id="cb285-485"><a href="cap8.html#cb285-485" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17     PLAN PlanAc2          15         17   0   1   1   1   1   1   1   1   0   1   0   1   1    1   1   1   1   0   0</span></span>
-<span id="cb285-486"><a href="cap8.html#cb285-486" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18     PLAN PlanRe1          13         15   1   0   0   1   1   1   1   1   0   1   0   0   1    1   1   1   0   0   1</span></span>
-<span id="cb285-487"><a href="cap8.html#cb285-487" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19     PLAN PlanRe2           8         11   0   0   0   1   1   1   0   1   0   1   0   0   1    1   0   1   0   0   0</span></span>
-<span id="cb285-488"><a href="cap8.html#cb285-488" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20     PLAN PlanRe3          10         13   1   0   0   1   1   1   1   1   0   1   0   0   1    1   0   1   0   0   0</span></span>
-<span id="cb285-489"><a href="cap8.html#cb285-489" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21      SAL  SalRe1          12         14   0   0   1   1   0   0   1   1   0   1   1   1   1    1   1   1   0   1   0</span></span>
-<span id="cb285-490"><a href="cap8.html#cb285-490" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22      SAL  SalRe2          14         16   0   0   0   1   1   0   1   1   0   1   1   1   1    1   1   1   0   1   1</span></span>
-<span id="cb285-491"><a href="cap8.html#cb285-491" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23      TUR  TurAc1          14         16   1   1   1   1   0   1   1   1   0   1   0   1   1    1   1   1   1   0   0</span></span>
-<span id="cb285-492"><a href="cap8.html#cb285-492" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24      TUR  TurAc2          12         13   0   0   1   1   0   1   1   1   1   0   1   1   1    1   0   0   1   0   0</span></span>
-<span id="cb285-493"><a href="cap8.html#cb285-493" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25      TUR  TurAc3           8         11   1   1   1   1   0   0   0   1   0   0   1   0   1    0   1   0   0   0   0</span></span>
-<span id="cb285-494"><a href="cap8.html#cb285-494" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       hydrop   hydrop2    vegcov      nveg      fish      area     area2     depth    forcov   forcov2   forcov10</span></span>
-<span id="cb285-495"><a href="cap8.html#cb285-495" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  -2.553590 -2.235730 -1.461851 -1.965130 -1.508310 -2.418270 -1.884470 -1.232668 -0.604596 -0.672774  -6.045965</span></span>
-<span id="cb285-496"><a href="cap8.html#cb285-496" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   0.573255  0.606300 -1.145775 -0.158114  0.646419  0.147353  0.019560  0.821168 -0.020849 -0.152952  -0.208489</span></span>
-<span id="cb285-497"><a href="cap8.html#cb285-497" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   0.573255  0.606300 -0.987737 -1.061622 -1.508310 -0.564022 -0.699829 -0.704539 -0.013816 -0.146124  -0.138159</span></span>
-<span id="cb285-498"><a href="cap8.html#cb285-498" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   0.573255  0.606300  0.908718 -0.158114  0.646419 -0.348279 -0.497176  0.821168 -0.171663 -0.296136  -1.716633</span></span>
-<span id="cb285-499"><a href="cap8.html#cb285-499" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  -2.553590 -2.235730 -1.461851 -1.965130 -1.508310 -2.315159 -1.844802 -1.306019  0.203364  0.071358   2.033643</span></span>
-<span id="cb285-500"><a href="cap8.html#cb285-500" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   0.573255  0.606300  1.382832 -0.158114 -1.508310 -0.601947 -0.734057 -1.306019  0.203364  0.071358   2.033643</span></span>
-<span id="cb285-501"><a href="cap8.html#cb285-501" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   0.573255  0.606300  1.382832  0.745394  0.646419  1.556190  1.877820 -0.645858  0.562496  0.459151   5.624958</span></span>
-<span id="cb285-502"><a href="cap8.html#cb285-502" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   0.573255  0.606300  1.698908  1.648902  0.646419 -0.255774 -0.406145 -0.205750 -0.157193 -0.282666  -1.571928</span></span>
-<span id="cb285-503"><a href="cap8.html#cb285-503" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   0.573255  0.606300 -0.829699  0.745394  0.646419  0.875432  0.907959  1.554680 -0.793258 -0.820946  -7.932582</span></span>
-<span id="cb285-504"><a href="cap8.html#cb285-504" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  0.573255  0.606300  0.118528  1.648902  0.646419  1.295467  1.490478  1.554680 -0.397977 -0.499384  -3.979765</span></span>
-<span id="cb285-505"><a href="cap8.html#cb285-505" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 -1.511308 -1.667324 -1.145775 -1.061622 -1.508310 -1.846249 -1.625475 -1.232668  0.022087 -0.111058   0.220865</span></span>
-<span id="cb285-506"><a href="cap8.html#cb285-506" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12  0.573255  0.606300  0.434604  0.745394  0.646419 -0.663556 -0.788769 -1.159317 -0.023489 -0.155512  -0.234886</span></span>
-<span id="cb285-507"><a href="cap8.html#cb285-507" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13  0.573255  0.606300  0.118528  0.745394  0.646419  0.178500  0.054415 -0.499155 -0.527358 -0.609318  -5.273582</span></span>
-<span id="cb285-508"><a href="cap8.html#cb285-508" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14  0.573255  0.606300 -0.513623  1.648902  0.646419  0.567252  0.513137  1.554680  0.195744  0.063509   1.957436</span></span>
-<span id="cb285-509"><a href="cap8.html#cb285-509" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15  0.573255  0.606300 -1.303813 -0.158114  0.646419  1.596603  1.939626  1.554680  0.795472  0.729492   7.954719</span></span>
-<span id="cb285-510"><a href="cap8.html#cb285-510" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 -0.469027 -0.719981 -0.197547 -1.061622 -1.508310  0.007612 -0.133349 -0.499155  0.369590  0.246486   3.695897</span></span>
-<span id="cb285-511"><a href="cap8.html#cb285-511" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 -0.469027 -0.719981  1.066756 -0.158114  0.646419 -0.071058 -0.216939 -0.352453  0.933703  0.896875   9.337031</span></span>
-<span id="cb285-512"><a href="cap8.html#cb285-512" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18  0.573255  0.606300 -0.197547  0.745394  0.646419  0.717580  0.702284  0.821168  0.622540  0.527413   6.225403</span></span>
-<span id="cb285-513"><a href="cap8.html#cb285-513" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19  0.573255  0.606300  1.382832  0.745394  0.646419  0.495731  0.425450  0.381060  1.158991  1.180819  11.589915</span></span>
-<span id="cb285-514"><a href="cap8.html#cb285-514" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20  0.573255  0.606300  1.382832 -0.158114  0.646419  1.188100  1.336704  0.087655  0.984490  0.959679   9.844904</span></span>
-<span id="cb285-515"><a href="cap8.html#cb285-515" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21 -1.511308 -1.667324 -1.145775 -1.061622  0.646419  1.451645  1.720133  0.087655  2.629463  3.373445  26.294628</span></span>
-<span id="cb285-516"><a href="cap8.html#cb285-516" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22  0.573255  0.606300  1.066756  0.745394  0.646419  1.227401  1.392604  0.821168  1.205070  1.240595  12.050697</span></span>
-<span id="cb285-517"><a href="cap8.html#cb285-517" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23  0.573255  0.606300 -0.829699 -0.158114  0.646419 -0.119336 -0.267346  0.087655 -1.897186 -1.493789 -18.971856</span></span>
-<span id="cb285-518"><a href="cap8.html#cb285-518" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24  0.573255  0.606300 -1.303813 -1.061622  0.646419 -0.176150 -0.325800  0.821168 -1.897186 -1.493789 -18.971856</span></span>
-<span id="cb285-519"><a href="cap8.html#cb285-519" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25 -1.511308 -1.667324 -1.145775 -0.158114 -1.508310 -0.247019 -0.397400 -0.499155 -0.627665 -0.691412  -6.276651</span></span>
-<span id="cb285-520"><a href="cap8.html#cb285-520" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        dfrag    dfrag2    dwater   dwater2        X        Y</span></span>
-<span id="cb285-521"><a href="cap8.html#cb285-521" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   0.410084  0.166782  1.198175  1.166645 -49.9376 -20.7408</span></span>
-<span id="cb285-522"><a href="cap8.html#cb285-522" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  -0.097045 -0.381401  0.970207  0.864035 -49.9353 -20.7410</span></span>
-<span id="cb285-523"><a href="cap8.html#cb285-523" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  -1.242271 -1.059858 -0.121245 -0.299232 -49.9348 -20.7419</span></span>
-<span id="cb285-524"><a href="cap8.html#cb285-524" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  -1.242271 -1.059858 -0.087507 -0.270350 -49.9334 -20.7462</span></span>
-<span id="cb285-525"><a href="cap8.html#cb285-525" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  -0.471888 -0.688845  0.162610 -0.042156 -49.9270 -20.7453</span></span>
-<span id="cb285-526"><a href="cap8.html#cb285-526" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  -1.242271 -1.059858 -0.121245 -0.299232 -49.9271 -20.7451</span></span>
-<span id="cb285-527"><a href="cap8.html#cb285-527" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   1.307931  1.510271 -0.087507 -0.270350 -49.2742 -21.5187</span></span>
-<span id="cb285-528"><a href="cap8.html#cb285-528" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   1.557264  1.967926 -1.355308 -1.045428 -49.3303 -21.5282</span></span>
-<span id="cb285-529"><a href="cap8.html#cb285-529" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   0.479895  0.254153  0.113584 -0.088840 -49.3084 -21.5024</span></span>
-<span id="cb285-530"><a href="cap8.html#cb285-530" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  0.966774  0.943632 -0.193952 -0.359939 -49.3179 -21.5148</span></span>
-<span id="cb285-531"><a href="cap8.html#cb285-531" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 -0.192341 -0.467438  1.560877  1.690588 -48.9214 -21.2273</span></span>
-<span id="cb285-532"><a href="cap8.html#cb285-532" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 -1.242271 -1.059858 -1.355308 -1.045428 -48.9206 -21.2227</span></span>
-<span id="cb285-533"><a href="cap8.html#cb285-533" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13  0.199565 -0.079241  0.033809 -0.162766 -48.9186 -21.2292</span></span>
-<span id="cb285-534"><a href="cap8.html#cb285-534" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14  0.435948  0.198815  0.033809 -0.162766 -48.9232 -21.2297</span></span>
-<span id="cb285-535"><a href="cap8.html#cb285-535" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 -1.242271 -1.059858 -1.355308 -1.045428 -48.9258 -21.2252</span></span>
-<span id="cb285-536"><a href="cap8.html#cb285-536" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16  0.545065  0.338315  0.540419  0.349579 -49.9877 -20.9993</span></span>
-<span id="cb285-537"><a href="cap8.html#cb285-537" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 -1.242271 -1.059858  0.273651  0.067104 -49.9869 -21.0017</span></span>
-<span id="cb285-538"><a href="cap8.html#cb285-538" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 -1.242271 -1.059858 -1.355308 -1.045428 -49.9793 -20.9925</span></span>
-<span id="cb285-539"><a href="cap8.html#cb285-539" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 -1.242271 -1.059858 -1.355308 -1.045428 -49.9859 -21.0049</span></span>
-<span id="cb285-540"><a href="cap8.html#cb285-540" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20 -1.242271 -1.059858 -1.355308 -1.045428 -49.9849 -21.0071</span></span>
-<span id="cb285-541"><a href="cap8.html#cb285-541" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21 -0.471888 -0.688845  0.252598  0.046013 -49.5028 -21.3994</span></span>
-<span id="cb285-542"><a href="cap8.html#cb285-542" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22 -1.242271 -1.059858 -0.609975 -0.666981 -49.4757 -21.4097</span></span>
-<span id="cb285-543"><a href="cap8.html#cb285-543" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23  1.503483  1.866102  0.033809 -0.162766 -50.4543 -20.0072</span></span>
-<span id="cb285-544"><a href="cap8.html#cb285-544" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24  1.509829  1.878027  0.033809 -0.162766 -50.4544 -20.0073</span></span>
-<span id="cb285-545"><a href="cap8.html#cb285-545" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25  0.801138  0.693339  0.273651  0.067104 -50.4371 -20.0145</span></span>
-<span id="cb285-546"><a href="cap8.html#cb285-546" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 15 rows ]</span></span>
-<span id="cb285-547"><a href="cap8.html#cb285-547" aria-hidden="true" tabindex="-1"></a>ecodados<span class="sc">::</span>uv_cells</span>
-<span id="cb285-548"><a href="cap8.html#cb285-548" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       UV Pigmentation Total_Cell Lymphocyte Neutrophil Basophil Monocyte Eosinophil</span></span>
-<span id="cb285-549"><a href="cap8.html#cb285-549" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   1.CT          Yes        100         80         18        0        0          2</span></span>
-<span id="cb285-550"><a href="cap8.html#cb285-550" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   1.CT          Yes        100         74         17        6        0          3</span></span>
-<span id="cb285-551"><a href="cap8.html#cb285-551" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   1.CT          Yes        100         78         22        0        0          0</span></span>
-<span id="cb285-552"><a href="cap8.html#cb285-552" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   1.CT          Yes        100         87         13        0        0          0</span></span>
-<span id="cb285-553"><a href="cap8.html#cb285-553" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   1.CT          Yes        100         74         21        1        0          4</span></span>
-<span id="cb285-554"><a href="cap8.html#cb285-554" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   2.6h          Yes        100         95          4        0        0          1</span></span>
-<span id="cb285-555"><a href="cap8.html#cb285-555" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   2.6h          Yes        100         73         16        9        0          2</span></span>
-<span id="cb285-556"><a href="cap8.html#cb285-556" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   2.6h          Yes        100         77         20        4        0          0</span></span>
-<span id="cb285-557"><a href="cap8.html#cb285-557" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   2.6h          Yes        100         61         27       11        0          1</span></span>
-<span id="cb285-558"><a href="cap8.html#cb285-558" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  2.6h          Yes        100         81          4        0        2          3</span></span>
-<span id="cb285-559"><a href="cap8.html#cb285-559" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 3.12h          Yes        100         90          7        0        0          3</span></span>
-<span id="cb285-560"><a href="cap8.html#cb285-560" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 3.12h          Yes        100         80         17        0        0          3</span></span>
-<span id="cb285-561"><a href="cap8.html#cb285-561" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 3.12h          Yes        100         92          5        3        0          0</span></span>
-<span id="cb285-562"><a href="cap8.html#cb285-562" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 3.12h          Yes        100         76         21        3        0          0</span></span>
-<span id="cb285-563"><a href="cap8.html#cb285-563" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 3.12h          Yes        100         51         44        1        1          3</span></span>
-<span id="cb285-564"><a href="cap8.html#cb285-564" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 4.18h          Yes        100         62         27        5        5          1</span></span>
-<span id="cb285-565"><a href="cap8.html#cb285-565" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 4.18h          Yes        100         88          4        3        3          2</span></span>
-<span id="cb285-566"><a href="cap8.html#cb285-566" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 4.18h          Yes        100         59         41        0        0          0</span></span>
-<span id="cb285-567"><a href="cap8.html#cb285-567" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 4.18h          Yes        100         51         21        0       14         14</span></span>
-<span id="cb285-568"><a href="cap8.html#cb285-568" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20 4.18h          Yes        100         53         25       21        1          0</span></span>
-<span id="cb285-569"><a href="cap8.html#cb285-569" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21 5.24h          Yes        100         42         47        0        5          6</span></span>
-<span id="cb285-570"><a href="cap8.html#cb285-570" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22 5.24h          Yes        100         37         59        3        0          1</span></span>
-<span id="cb285-571"><a href="cap8.html#cb285-571" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23 5.24h          Yes        100         62         37        0        0          1</span></span>
-<span id="cb285-572"><a href="cap8.html#cb285-572" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24 5.24h          Yes        100         56         42        0        1          1</span></span>
-<span id="cb285-573"><a href="cap8.html#cb285-573" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25 5.24h          Yes        100         80         28        0        0          3</span></span>
-<span id="cb285-574"><a href="cap8.html#cb285-574" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26  1.CT           No        100         95          5        0        0          0</span></span>
-<span id="cb285-575"><a href="cap8.html#cb285-575" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27  1.CT           No        100         93          5        0        0          2</span></span>
-<span id="cb285-576"><a href="cap8.html#cb285-576" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28  1.CT           No        100         90         10        0        0          0</span></span>
-<span id="cb285-577"><a href="cap8.html#cb285-577" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29  1.CT           No        100          5         18        6        1         70</span></span>
-<span id="cb285-578"><a href="cap8.html#cb285-578" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30  1.CT           No        100         67         25        0        1          7</span></span>
-<span id="cb285-579"><a href="cap8.html#cb285-579" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 31  2.6h           No        100         67         18        5        8          2</span></span>
-<span id="cb285-580"><a href="cap8.html#cb285-580" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 32  2.6h           No        100         20         18        0        1         61</span></span>
-<span id="cb285-581"><a href="cap8.html#cb285-581" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 33  2.6h           No        100         85         11        3        1          0</span></span>
-<span id="cb285-582"><a href="cap8.html#cb285-582" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 34  2.6h           No        100         71         20        4        5          0</span></span>
-<span id="cb285-583"><a href="cap8.html#cb285-583" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35  2.6h           No        100         87          8        1        1          3</span></span>
-<span id="cb285-584"><a href="cap8.html#cb285-584" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 36 3.12h           No        100         39          7       12        1         41</span></span>
-<span id="cb285-585"><a href="cap8.html#cb285-585" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 37 3.12h           No        100         78          3        7        1         11</span></span>
-<span id="cb285-586"><a href="cap8.html#cb285-586" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 38 3.12h           No        100         45         21       10        1         23</span></span>
-<span id="cb285-587"><a href="cap8.html#cb285-587" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 39 3.12h           No        100         58          5       10        0         27</span></span>
-<span id="cb285-588"><a href="cap8.html#cb285-588" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 40 3.12h           No        100         50         10       26        0         14</span></span>
-<span id="cb285-589"><a href="cap8.html#cb285-589" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 41 4.18h           No        100         46         27        0       14         13</span></span>
-<span id="cb285-590"><a href="cap8.html#cb285-590" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 42 4.18h           No        100         58         29        0        3         10</span></span>
-<span id="cb285-591"><a href="cap8.html#cb285-591" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 43 4.18h           No        100         52         14        0       16         18</span></span>
-<span id="cb285-592"><a href="cap8.html#cb285-592" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 44 4.18h           No        100         81         14        0        0          5</span></span>
-<span id="cb285-593"><a href="cap8.html#cb285-593" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45 4.18h           No        100         84          2        3        9          2</span></span>
-<span id="cb285-594"><a href="cap8.html#cb285-594" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 46 5.24h           No        100         44         13        0       19         27</span></span>
-<span id="cb285-595"><a href="cap8.html#cb285-595" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 47 5.24h           No        100         63         10        0       27          0</span></span>
-<span id="cb285-596"><a href="cap8.html#cb285-596" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 48 5.24h           No        100         65         18        0       15          2</span></span>
-<span id="cb285-597"><a href="cap8.html#cb285-597" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 49 5.24h           No        100         68         15        0       12          5</span></span>
-<span id="cb285-598"><a href="cap8.html#cb285-598" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 50 5.24h           No        100         41         22        0       18         19</span></span></code></pre></div>
+<span id="cb285-19"><a href="cap8.html#cb285-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-20"><a href="cap8.html#cb285-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados</span></span>
+<span id="cb285-21"><a href="cap8.html#cb285-21" aria-hidden="true" tabindex="-1"></a>lagartos <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>lagartos</span>
+<span id="cb285-22"><a href="cap8.html#cb285-22" aria-hidden="true" tabindex="-1"></a>parasitas <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>parasitas</span>
+<span id="cb285-23"><a href="cap8.html#cb285-23" aria-hidden="true" tabindex="-1"></a>fish <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>fish</span>
+<span id="cb285-24"><a href="cap8.html#cb285-24" aria-hidden="true" tabindex="-1"></a>fragmentos <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>fragmentos</span>
+<span id="cb285-25"><a href="cap8.html#cb285-25" aria-hidden="true" tabindex="-1"></a>uv_cells <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>uv_cells</span></code></pre></div>
 </div>
 <div id="introdução-2" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Introdução</h2>
@@ -1265,7 +692,7 @@ div.csl-indent {
 <p>Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com “2” indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (<code>Riqueza_HB</code>) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma idéia da relação entre as variáveis (Figura <a href="cap8.html#fig:fig-mod-poi-pre">8.1</a>).</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="cap8.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
 <span id="cb287-2"><a href="cap8.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fragmentos, <span class="fu">aes</span>(dfrag, Riqueza_obs)) <span class="sc">+</span></span>
-<span id="cb287-3"><a href="cap8.html#cb287-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)<span class="sc">+</span></span>
+<span id="cb287-3"><a href="cap8.html#cb287-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb287-4"><a href="cap8.html#cb287-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb287-5"><a href="cap8.html#cb287-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-mod-poi-pre"></span>
@@ -1450,7 +877,7 @@ Figura 8.5: Teste de inflação de zeros do pacote <code>DHARMa</code>.
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="cap8.html#cb296-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(fragmentos, <span class="fu">aes</span>(dfrag, Riqueza_obs)) <span class="sc">+</span></span>
 <span id="cb296-2"><a href="cap8.html#cb296-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">cex =</span> <span class="dv">4</span>,<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb296-3"><a href="cap8.html#cb296-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">formula =</span> y<span class="sc">~</span>x, </span>
-<span id="cb296-4"><a href="cap8.html#cb296-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;poisson&quot;</span>), <span class="at">se =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb296-4"><a href="cap8.html#cb296-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;poisson&quot;</span>), <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb296-5"><a href="cap8.html#cb296-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Distância para o fragmento mais próximo&quot;</span>, </span>
 <span id="cb296-6"><a href="cap8.html#cb296-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Riqueza observada&quot;</span>) <span class="sc">+</span></span>
 <span id="cb296-7"><a href="cap8.html#cb296-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>()</span>
@@ -1643,7 +1070,25 @@ Figura 8.10: Diagnose dos resíduos do modelo GLM Quasi-Poisson.
 <span id="cb305-12"><a href="cap8.html#cb305-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ Eosinophil   &lt;int&gt; 2, 3, 0, 0, 4, 1, 2, 0, 1, 3, 3, 3, 0, 0, 3, 1, 2, 0, 14, 0, 6, 1, 1, 1, 3, 0, 2, 0, 70, 7, 2, 61,…</span></span></code></pre></div>
 <p>Vamos explorar os dados para tentar entender como são as relações (Figura <a href="cap8.html#fig:fig-mod-bin-pre">8.11</a>).</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="cap8.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
-<span id="cb306-2"><a href="cap8.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lineplot.CI</span>(UV, Eosinophil, Pigmentation, <span class="at">data =</span> uv_cells)</span></code></pre></div>
+<span id="cb306-2"><a href="cap8.html#cb306-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="cap8.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular média e intervalo de confiança</span></span>
+<span id="cb306-4"><a href="cap8.html#cb306-4" aria-hidden="true" tabindex="-1"></a>eosinophil <span class="ot">&lt;-</span> <span class="fu">summarySE</span>(uv_cells, </span>
+<span id="cb306-5"><a href="cap8.html#cb306-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">measurevar =</span> <span class="st">&quot;Eosinophil&quot;</span>,</span>
+<span id="cb306-6"><a href="cap8.html#cb306-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">groupvars =</span> <span class="fu">c</span>(<span class="st">&quot;UV&quot;</span>, <span class="st">&quot;Pigmentation&quot;</span>))</span>
+<span id="cb306-7"><a href="cap8.html#cb306-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-8"><a href="cap8.html#cb306-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir posição de linhas e pontos no gráfico</span></span>
+<span id="cb306-9"><a href="cap8.html#cb306-9" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.1</span>)</span>
+<span id="cb306-10"><a href="cap8.html#cb306-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-11"><a href="cap8.html#cb306-11" aria-hidden="true" tabindex="-1"></a>eosinophil <span class="sc">%&gt;%</span> </span>
+<span id="cb306-12"><a href="cap8.html#cb306-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> UV, <span class="at">y =</span> Eosinophil, <span class="at">colour =</span> Pigmentation,</span>
+<span id="cb306-13"><a href="cap8.html#cb306-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> Pigmentation, <span class="at">fill =</span> Pigmentation)) <span class="sc">+</span></span>
+<span id="cb306-14"><a href="cap8.html#cb306-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Eosinophil<span class="sc">-</span>se, <span class="at">ymax=</span>Eosinophil <span class="sc">+</span>se), </span>
+<span id="cb306-15"><a href="cap8.html#cb306-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">size =</span> <span class="fl">1.1</span>, <span class="at">position=</span>pd) <span class="sc">+</span></span>
+<span id="cb306-16"><a href="cap8.html#cb306-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">position=</span>pd, <span class="at">size =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb306-17"><a href="cap8.html#cb306-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">position=</span>pd, <span class="at">size=</span><span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb306-18"><a href="cap8.html#cb306-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb306-19"><a href="cap8.html#cb306-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb306-20"><a href="cap8.html#cb306-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-mod-bin-pre"></span>
 <img src="livro_files/figure-html/fig-mod-bin-pre-1.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%" />
 <p class="caption">
@@ -1814,8 +1259,8 @@ Figura 8.15: Gráficos para explorar os dados faltantes.
 <p>Agora, seguindo o que já estamos acostumados a fazer, vamos vizualisar os dados com a nossa hipótese (Figura <a href="cap8.html#fig:fig-mod-inc-pre">8.16</a>).</p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="cap8.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
 <span id="cb314-2"><a href="cap8.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_semNA, <span class="fu">aes</span>(SVL, Tail_state)) <span class="sc">+</span></span>
-<span id="cb314-3"><a href="cap8.html#cb314-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)<span class="sc">+</span></span>
-<span id="cb314-4"><a href="cap8.html#cb314-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>))<span class="sc">+</span></span>
+<span id="cb314-3"><a href="cap8.html#cb314-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb314-4"><a href="cap8.html#cb314-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb314-5"><a href="cap8.html#cb314-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Estado da Cauda&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Comprimento Rostro-Cloacal (mm)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb314-6"><a href="cap8.html#cb314-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-mod-inc-pre"></span>
@@ -2201,12 +1646,29 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Vamos analisar a predição do modelo (Figura <a href="cap8.html#fig:fig-mod-ord-model">8.21</a>).</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="cap8.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
-<span id="cb333-2"><a href="cap8.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lineplot.CI</span>(Time, <span class="fu">as.numeric</span>(Red), Treatment, <span class="at">data =</span> redmale, </span>
-<span id="cb333-3"><a href="cap8.html#cb333-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">&quot;Tempo de experimento (Horas)&quot;</span>, </span>
-<span id="cb333-4"><a href="cap8.html#cb333-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">ylab =</span> <span class="st">&quot;Índice de eritróforos (IE)&quot;</span>, <span class="at">cex.lab =</span> <span class="fl">1.5</span>, </span>
-<span id="cb333-5"><a href="cap8.html#cb333-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">x.leg =</span> <span class="dv">1</span>, <span class="at">y.leg =</span> <span class="fl">1.2</span>, <span class="at">cex.leg =</span> <span class="fl">1.3</span>, <span class="at">cex.axis =</span> <span class="fl">1.5</span>,</span>
-<span id="cb333-6"><a href="cap8.html#cb333-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#EE6363&quot;</span>, <span class="st">&quot;#79CDCD&quot;</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>), </span>
-<span id="cb333-7"><a href="cap8.html#cb333-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>)) </span></code></pre></div>
+<span id="cb333-2"><a href="cap8.html#cb333-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-3"><a href="cap8.html#cb333-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular média e erro padrão</span></span>
+<span id="cb333-4"><a href="cap8.html#cb333-4" aria-hidden="true" tabindex="-1"></a>redmale <span class="ot">&lt;-</span> <span class="fu">filter</span>(cores, Sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
+<span id="cb333-5"><a href="cap8.html#cb333-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-6"><a href="cap8.html#cb333-6" aria-hidden="true" tabindex="-1"></a>redmale_summ <span class="ot">&lt;-</span> <span class="fu">summarySE</span>(redmale, </span>
+<span id="cb333-7"><a href="cap8.html#cb333-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">measurevar =</span> <span class="st">&quot;Red&quot;</span>,</span>
+<span id="cb333-8"><a href="cap8.html#cb333-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">groupvars =</span> <span class="fu">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Treatment&quot;</span>))</span>
+<span id="cb333-9"><a href="cap8.html#cb333-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-10"><a href="cap8.html#cb333-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir posição de linhas e pontos no gráfico</span></span>
+<span id="cb333-11"><a href="cap8.html#cb333-11" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.1</span>)</span>
+<span id="cb333-12"><a href="cap8.html#cb333-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-13"><a href="cap8.html#cb333-13" aria-hidden="true" tabindex="-1"></a>redmale_summ <span class="sc">%&gt;%</span> </span>
+<span id="cb333-14"><a href="cap8.html#cb333-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Red, <span class="at">colour =</span> Treatment,</span>
+<span id="cb333-15"><a href="cap8.html#cb333-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> Treatment, <span class="at">fill =</span> Treatment)) <span class="sc">+</span></span>
+<span id="cb333-16"><a href="cap8.html#cb333-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Red<span class="sc">-</span>se, <span class="at">ymax=</span>Red <span class="sc">+</span>se), </span>
+<span id="cb333-17"><a href="cap8.html#cb333-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">size =</span> <span class="fl">1.1</span>, <span class="at">position=</span>pd) <span class="sc">+</span></span>
+<span id="cb333-18"><a href="cap8.html#cb333-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">position=</span>pd, <span class="at">size =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb333-19"><a href="cap8.html#cb333-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">position=</span>pd, <span class="at">size=</span><span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb333-20"><a href="cap8.html#cb333-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb333-21"><a href="cap8.html#cb333-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb333-22"><a href="cap8.html#cb333-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Tempo de exposição (horas)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb333-23"><a href="cap8.html#cb333-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Índice de eritróforos&quot;</span>) <span class="sc">+</span></span>
+<span id="cb333-24"><a href="cap8.html#cb333-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-mod-ord-model"></span>
 <img src="livro_files/figure-html/fig-mod-ord-model-1.png" alt="Gráfico do modelo cumulative link." width="100%" height="100%" />
 <p class="caption">
@@ -2305,11 +1767,25 @@ Figura 8.23: Diagnose avançada dos resíduos do modelo GLM Beta.
 <p>Agora podemos perceber que a diferença entre o controle e o tratado só passa a ser significativa depois de 1 h de exposição.</p>
 <p>Isso fica mais evidente quando plotamos os dados (Figura <a href="cap8.html#fig:fig-mod-beta-model">8.24</a>).</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="cap8.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
-<span id="cb340-2"><a href="cap8.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lineplot.CI</span>(Time, Darkness, Treatment, <span class="at">data =</span> darknessmale, </span>
-<span id="cb340-3"><a href="cap8.html#cb340-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">&quot;Tempo experimental (horas)&quot;</span>, </span>
-<span id="cb340-4"><a href="cap8.html#cb340-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">ylab =</span> <span class="st">&quot;Escuridão do corpo de machos (%)&quot;</span>, </span>
-<span id="cb340-5"><a href="cap8.html#cb340-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">cex.lab =</span> <span class="dv">1</span>, <span class="at">x.leg =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#EE6363&quot;</span>, <span class="st">&quot;#79CDCD&quot;</span>), </span>
-<span id="cb340-6"><a href="cap8.html#cb340-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>), <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<span id="cb340-2"><a href="cap8.html#cb340-2" aria-hidden="true" tabindex="-1"></a>escuridao <span class="ot">&lt;-</span> <span class="fu">summarySE</span>(darknessmale, </span>
+<span id="cb340-3"><a href="cap8.html#cb340-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">measurevar =</span> <span class="st">&quot;Darkness&quot;</span>,</span>
+<span id="cb340-4"><a href="cap8.html#cb340-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">groupvars =</span> <span class="fu">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Treatment&quot;</span>))</span>
+<span id="cb340-5"><a href="cap8.html#cb340-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb340-6"><a href="cap8.html#cb340-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir posição de linhas e pontos no gráfico</span></span>
+<span id="cb340-7"><a href="cap8.html#cb340-7" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.1</span>)</span>
+<span id="cb340-8"><a href="cap8.html#cb340-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb340-9"><a href="cap8.html#cb340-9" aria-hidden="true" tabindex="-1"></a>escuridao <span class="sc">%&gt;%</span> </span>
+<span id="cb340-10"><a href="cap8.html#cb340-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Darkness, <span class="at">colour =</span> Treatment,</span>
+<span id="cb340-11"><a href="cap8.html#cb340-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> Treatment, <span class="at">fill =</span> Treatment)) <span class="sc">+</span></span>
+<span id="cb340-12"><a href="cap8.html#cb340-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Darkness<span class="sc">-</span>se, <span class="at">ymax=</span>Darkness <span class="sc">+</span>se), </span>
+<span id="cb340-13"><a href="cap8.html#cb340-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">size =</span> <span class="fl">1.1</span>, <span class="at">position=</span>pd) <span class="sc">+</span></span>
+<span id="cb340-14"><a href="cap8.html#cb340-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">position=</span>pd, <span class="at">size =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb340-15"><a href="cap8.html#cb340-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">position=</span>pd, <span class="at">size=</span><span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb340-16"><a href="cap8.html#cb340-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb340-17"><a href="cap8.html#cb340-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb340-18"><a href="cap8.html#cb340-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Tempo de experimento (horas)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb340-19"><a href="cap8.html#cb340-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Índice de escuridão do corpo&quot;</span>) <span class="sc">+</span></span>
+<span id="cb340-20"><a href="cap8.html#cb340-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_livro</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-mod-beta-model"></span>
 <img src="livro_files/figure-html/fig-mod-beta-model-1.png" alt="Gráfico do modelo GLM beta." width="100%" height="100%" />
 <p class="caption">
@@ -2319,7 +1795,7 @@ Figura 8.24: Gráfico do modelo GLM beta.
 </div>
 <div id="para-se-aprofundar-4" class="section level2" number="8.11">
 <h2><span class="header-section-number">8.11</span> Para se aprofundar</h2>
-<p>Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros <span class="citation">(<a href="#ref-zuur_protocol_2009" role="doc-biblioref">Zuur et al., 2010</a>)</span> e <span class="citation">(<a href="#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro &amp; Bates, 2000</a>)</span> que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros do Alan Agresti, tais como <span class="citation">(<a href="#ref-agresti2010" role="doc-biblioref">Agresti, 2010</a>)</span> e Categorical Data Analysis, 3rd Edition, do mesmo autor.</p>
+<p>Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros “Mixed effects models and extensions in ecology with R” de Zurr et al. <span class="citation">(<a href="#ref-zuur_mixed_2009" role="doc-biblioref">2009</a>)</span> e “Mixed-Effects Models in S and S-PLUS” de Pinheiro et al. <span class="citation">(<a href="#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro &amp; Bates, 2000</a>)</span> que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros “Analysis of ordinal categorical data” de Agresti <span class="citation">(<a href="#ref-agresti2010" role="doc-biblioref">2010</a>)</span> e “Categorical Data Analysis,” do mesmo autor, Agresti <span class="citation">(<a href="#ref-agresti_categorical_2012" role="doc-biblioref">2012</a>)</span>.</p>
 
 </div>
 </div>
@@ -2327,6 +1803,9 @@ Figura 8.24: Gráfico do modelo GLM beta.
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-agresti2010" class="csl-entry">
 Agresti, A. (2010). <em><span class="nocase">Analysis of ordinal categorical data</span></em>. John Wiley &amp; Sons, Inc. <a href="https://doi.org/10.1002/9780470594001">https://doi.org/10.1002/9780470594001</a>
+</div>
+<div id="ref-agresti_categorical_2012" class="csl-entry">
+Agresti, A. (2012). <em>Categorical <span>Data</span> <span>Analysis</span></em> (3rd Revised ed. edição). Wiley.
 </div>
 <div id="ref-BOLKER2009127" class="csl-entry">
 Benjamin, M. B., Mollie, E. B., Connie, J. C., Shane, W. G., John, R. P., Henry, M. H. S., &amp; Jada-Simone, S. W. (2009). Generalized linear mixed models: A practical guide for ecology and evolution. <em>Trends in Ecology &amp; Evolution</em>, <em>24</em>(3), 127–135. https://doi.org/<a href="https://doi.org/10.1016/j.tree.2008.10.008">https://doi.org/10.1016/j.tree.2008.10.008</a>
@@ -2370,8 +1849,8 @@ Prado, V. H. M., &amp; Rossa-Feres, D. C. (2014). <span class="nocase">Multiple 
 <div id="ref-warton2018" class="csl-entry">
 Warton, D. I. (2018). <span class="nocase">Why you cannot transform your way out of trouble for small counts</span>. <em>Biometrics</em>, <em>74</em>(1), 362–368. <a href="https://doi.org/10.1111/biom.12728">https://doi.org/10.1111/biom.12728</a>
 </div>
-<div id="ref-zuur_protocol_2009" class="csl-entry">
-Zuur, A. F., Ieno, E. N., &amp; Elphick, C. S. (2010). <span class="nocase">A protocol for data exploration to avoid common statistical problems</span>. <em>Methods in Ecology and Evolution</em>, <em>1</em>(1), 3–14. <a href="https://doi.org/10.1111/j.2041-210X.2009.00001.x">https://doi.org/10.1111/j.2041-210X.2009.00001.x</a>
+<div id="ref-zuur_mixed_2009" class="csl-entry">
+Zuur, A. F., Ieno, E. N., Walker, N., Saveliev, A. A., &amp; Smith, G. M. (2009). <em>Mixed effects models and extensions in ecology with <span>R</span></em>. Springer New York. <a href="https://doi.org/10.1007/978-0-387-87458-6">https://doi.org/10.1007/978-0-387-87458-6</a>
 </div>
 </div>
             </section>

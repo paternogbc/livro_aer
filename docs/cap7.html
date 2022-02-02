@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-02-01" />
+<meta name="date" content="2022-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1894,13 +1894,13 @@ Figura 7.21: Variograma para os resíduos do modelo GLS ajustado.
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="cap7.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Seleção de modelos</span></span>
 <span id="cb283-2"><a href="cap7.html#cb283-2" aria-hidden="true" tabindex="-1"></a>aic_fit <span class="ot">&lt;-</span> <span class="fu">AIC</span>(no_spat_gls, espher_model, expon_model, gauss_model, cor_linear_model, ratio_model)</span>
 <span id="cb283-3"><a href="cap7.html#cb283-3" aria-hidden="true" tabindex="-1"></a>aic_fit <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(AIC)</span>
-<span id="cb283-4"><a href="cap7.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  df      AIC</span></span>
-<span id="cb283-5"><a href="cap7.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ratio_model       5 373.1186</span></span>
-<span id="cb283-6"><a href="cap7.html#cb283-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; expon_model       5 373.2439</span></span>
-<span id="cb283-7"><a href="cap7.html#cb283-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; no_spat_gls       3 383.8616</span></span>
-<span id="cb283-8"><a href="cap7.html#cb283-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; espher_model      5 387.8616</span></span>
-<span id="cb283-9"><a href="cap7.html#cb283-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; gauss_model       5 387.8616</span></span>
-<span id="cb283-10"><a href="cap7.html#cb283-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cor_linear_model  5 387.8616</span></span>
+<span id="cb283-4"><a href="cap7.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   df      AIC</span></span>
+<span id="cb283-5"><a href="cap7.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  5 373.1186</span></span>
+<span id="cb283-6"><a href="cap7.html#cb283-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  5 373.2439</span></span>
+<span id="cb283-7"><a href="cap7.html#cb283-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  3 383.8616</span></span>
+<span id="cb283-8"><a href="cap7.html#cb283-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  5 387.8616</span></span>
+<span id="cb283-9"><a href="cap7.html#cb283-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  5 387.8616</span></span>
+<span id="cb283-10"><a href="cap7.html#cb283-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  5 387.8616</span></span>
 <span id="cb283-11"><a href="cap7.html#cb283-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb283-12"><a href="cap7.html#cb283-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
 <span id="cb283-13"><a href="cap7.html#cb283-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(ratio_model, <span class="at">type =</span> <span class="st">&quot;normalized&quot;</span>) <span class="sc">~</span> <span class="fu">fitted</span>(ratio_model))</span></code></pre></div>
