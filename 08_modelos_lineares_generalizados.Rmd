@@ -16,7 +16,7 @@ library(MuMIn)
 library(piecewiseSEM)
 library(MASS)
 library(ggExtra)
-library(sciplot)
+library(Rmisc)
 library(emmeans) 
 library(sjPlot)
 library(bbmle)
@@ -428,7 +428,25 @@ Vamos explorar os dados para tentar entender como são as relações (Figura \@r
 
 ```{r fig-mod-bin-pre, fig.cap="Gráfico para explorar as relações entre as variáveis."}
 ## Gráfico
-lineplot.CI(UV, Eosinophil, Pigmentation, data = uv_cells)
+
+# Calcular média e intervalo de confiança
+eosinophil <- summarySE(uv_cells, 
+                        measurevar = "Eosinophil",
+                        groupvars = c("UV", "Pigmentation"))
+
+# Definir posição de linhas e pontos no gráfico
+pd <- position_dodge(0.1)
+
+eosinophil %>% 
+  ggplot(aes(x = UV, y = Eosinophil, colour = Pigmentation,
+             group = Pigmentation, fill = Pigmentation))+
+  geom_errorbar(aes(ymin=Eosinophil-se, ymax=Eosinophil+se), 
+                width=.1, size = 1.1, position=pd) +
+  geom_line(position=pd, size = 1.1) +
+  geom_point(pch = 21, colour = "black", position=pd, size=3.5)+
+  scale_colour_manual(values = c("darkorange", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", "cyan4"))+
+  tema_livro()
 ```
 
 Aqui vemos que a quantidade de eosinófilos é muito maior nos girinos sem pigmentação ("albinos"). Já que estes animais não têm pigmentação melânica, as células brancas do sangue são a única ferramenta de combate aos efeitos deletérios da UV.
@@ -799,12 +817,29 @@ Vamos analisar a predição do modelo (Figura \@ref(fig:fig-mod-ord-model)).
 
 ```{r fig-mod-ord-model, fig.cap="Gráfico do modelo cumulative link."}
 ## Gráfico
-lineplot.CI(Time, as.numeric(Red), Treatment, data = redmale, 
-            cex = 1, xlab = "Tempo de experimento (Horas)", 
-            ylab = "Índice de eritróforos (IE)", cex.lab = 1.5, 
-            x.leg = 1, y.leg = 1.2, cex.leg = 1.3, cex.axis = 1.5,
-            col = c("#EE6363", "#79CDCD"), pch = c(12, 12), 
-            lwd = 1.5, ylim = c(0, 5)) 
+
+# Calcular média e erro padrão
+redmale <- filter(cores, Sex == "M")
+
+redmale_summ <- summarySE(redmale, 
+                        measurevar = "Red",
+                        groupvars = c("Time", "Treatment"))
+
+# Definir posição de linhas e pontos no gráfico
+pd <- position_dodge(0.1)
+
+redmale_summ %>% 
+  ggplot(aes(x = Time, y = Red, colour = Treatment,
+             group = Treatment, fill = Treatment))+
+  geom_errorbar(aes(ymin=Red-se, ymax=Red+se), 
+                width=.1, size = 1.1, position=pd) +
+  geom_line(position=pd, size = 1.1) +
+  geom_point(pch = 21, colour = "black", position=pd, size=3.5)+
+  scale_colour_manual(values = c("darkorange", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", "cyan4"))+
+  xlab("Tempo de exposição (horas)")+
+  ylab("Índice de eritróforos")
+  tema_livro()
 ```
 
 Neste gráfico vemos que o grupo tratado com o hormônio começa com um índice de eritróforo ligeiramente maior do que o controle, mas logo tem uma brusca redução com uma hora de exposição, passando a ter índice 2, demonstrando que houve uma mudança de cor induzida pela dispersão dos cromatóforos. Já no controle, o índice não muda em relação ao tempo de exposição. Logo, podemos ver que há uma interação entre os fatores devido a esta queda do índice no grupo tratado e a ausência de efeito no controle.
@@ -891,11 +926,25 @@ Isso fica mais evidente quando plotamos os dados (Figura \@ref(fig:fig-mod-beta-
 
 ```{r fig-mod-beta-model, fig.cap="Gráfico do modelo GLM beta."}
 ## Gráfico
-lineplot.CI(Time, Darkness, Treatment, data = darknessmale, 
-            cex = 1, xlab = "Tempo experimental (horas)", 
-            ylab = "Escuridão do corpo de machos (%)", 
-            cex.lab = 1, x.leg = 1, col = c("#EE6363", "#79CDCD"), 
-            pch = c(12, 12), lwd = 1.5)
+escuridao <- summarySE(darknessmale, 
+                        measurevar = "Darkness",
+                        groupvars = c("Time", "Treatment"))
+
+# Definir posição de linhas e pontos no gráfico
+pd <- position_dodge(0.1)
+
+escuridao %>% 
+  ggplot(aes(x = Time, y = Darkness, colour = Treatment,
+             group = Treatment, fill = Treatment))+
+  geom_errorbar(aes(ymin=Darkness-se, ymax=Darkness+se), 
+                width=.1, size = 1.1, position=pd) +
+  geom_line(position=pd, size = 1.1) +
+  geom_point(pch = 21, colour = "black", position=pd, size=3.5)+
+  scale_colour_manual(values = c("darkorange", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", "cyan4"))+
+  xlab("Tempo de experimento (horas)")+
+  ylab("Índice de escuridão do corpo")+
+  tema_livro()
 ```
 
 ## Para se aprofundar
