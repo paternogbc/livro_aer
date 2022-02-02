@@ -623,17 +623,16 @@ Testar a relação da dissimilaridade considerando a abundância com a diferenç
 ```{r}
 ## ANOVA
 # Avaliar a relação entre os valores de diversidade beta total e precipitação
-anova_disAB <- lm(Bray ~ dados_prec, data = dados_dis)
-anova(anova_disAB)
+anova_dis_AB <- lm(Bray ~ dados_prec, data = dados_dis_AB)
+anova(anova_dis_AB)
 
 # Avaliar a relação entre os valores do componente balanceada e precipitação
-anova_balan <- lm(Balanceada ~ dados_prec, data = dados_dis)
+anova_balan <- lm(Balanceada ~ dados_prec, data = dados_dis_AB)
 anova(anova_balan)
 
 # Avaliar a relação entre os valores do componente gradiente e precipitação
-anova_grad <- lm(Gradiente ~ dados_prec, data = dados_dis)
+anova_grad <- lm(Gradiente ~ dados_prec, data = dados_dis_AB)
 anova(anova_grad)
-
 ```
 
 **Interpretação dos resultados**

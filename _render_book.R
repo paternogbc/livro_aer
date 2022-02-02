@@ -1,10 +1,12 @@
 
 # Packages ----------------------------------------------------------------
+
 library(bookdown)
 library(knitr)
 library(tictoc)
 
 # Clean files -------------------------------------------------------------
+
 options(bookdown.clean_book = TRUE)
 bookdown::clean_book()
 rmarkdown::clean_site(preview = FALSE)
