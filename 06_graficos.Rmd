@@ -13,6 +13,11 @@ library(gridExtra)
 
 ## Dados
 penguins <- palmerpenguins::penguins
+
+## Edição dos nomes das colunas para português 
+names(penguins)
+colnames(penguins) <- c("especies", "ilha", "comprimento_bico", "profundidade_bico", "comprimento_nadadeira", "massa_corporal", "sexo", "ano")
+
 ```
 
 ## Contextualização
@@ -102,6 +107,11 @@ Para facilitar a compreensão das regras da gramática dos dados, cada tipo de g
 
 Nos exemplos a seguir, a *versão padrão* se refere à representação determinada no *default* das funções do pacote `ggplot2`. Desse modo, somente informamos as variáveis que serão utilizadas dentro de cada camada e a forma geométrica (i.e., tipo de gráfico) desejada. Porém, para cada tipo gráfico apresentamos funções e argumentos para ajustes finos e personalizados.
 
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+Neste capítulo, vamos ensinar gradativamente os comandos para construir gráficos e como editar suas diferentes camadas. Por este motivo, o leitor não verá uma padronização nos temas dos gráficos (fonte, cor, fundo do painel, etc.), uma vez que os g ráficos sem edição (padrão do ggplot2) possuem tema pré-definido e, desse modo, para faazer um gráfico com maior qualidade (chamamos aqui de versão "com ajustes finos") será necessário adicionar comandos extras que são exatamente o foco deste capítulo. Em alguns comandos básicos o leitor vai perceber que os eixos vão possuir palavras em inglês misturadas com as palavras em português presentes nos dados utilizados. Optamos por não traduzir esses nomes para preservar o padrão que será visualizado nos primeiros comandos que cada leitor irá fazer em seu computador.  
+:::
+
 ### Histograma (*histogram*)
 
 O [histograma](https://www.data-to-viz.com/graph/histogram.html) é um gráfico extremamente popular, sendo bastante útil para visualizar a distribuição de variáveis contínuas. É bem provável que você já tenha visto um histograma quando aprendeu pela primeira vez a famosa *distribuição normal* (Figura \@ref(fig:fig-hist-norm)).
@@ -121,9 +131,9 @@ Neste histograma é possível entender que a maioria dos valores no objeto `dist
 
 Vamos utilizar o conjunto de dados *palmerpenguins* para construir um histograma da distribuição da variável *`flipper_length_mm`* com a função `geom_hitogram()`. Esta função utiliza uma variável contínua no eixo X e a frequência de cada categoria de intervalo de valores no eixo Y. O gráfico a seguir representa a frequência de uma variável (neste caso, a medida de todos os pinguins, independente da espécie) (Figura \@ref(fig:fig-hist-flipper)).
 
-```{r fig-hist-flipper, fig.cap="Histograma da variável `flipper_length_mm`."}
+```{r fig-hist-flipper, fig.cap="Histograma da variável `comprimento_nadadeira`."}
 ## Histograma da coluna flipper_length_mm
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_histogram()
 ```
 
@@ -131,14 +141,14 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 
 Vamos utilizar o argumento `bins` para definir em quantas classes a variável `x` deve ser dividida (Figura \@ref(fig:fig-hist-bins)).
 
-```{r fig-hist-bins, fig.cap="Histograma da variável `flipper_length_mm` para diferentes classes de divisão."}
+```{r fig-hist-bins, fig.cap="Histograma da variável `comprimento_nadadeira` para diferentes classes de divisão."}
 ## Histograma com 10 classes
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_histogram(bins = 10) +
     labs(title = "10 classes")
 
 ## Histograma com 30 classes
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_histogram(bins = 30) +
     labs(title = "30 classes")
 ```
@@ -147,26 +157,26 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 
 Se quisermos comparar a distribuição de uma variável contínua entre diferentes categorias, podemos utilizar o argumento `fill` para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável X (`x = flipper_length_mm`) entre espécies diferentes (`fill = species`) (Figura \@ref(fig:fig-hist-cat)).
 
-```{r fig-hist-cat, fig.cap="Histograma da variável `flipper_length_mm` para diferentes espécies com e sem sobreposição."}
+```{r fig-hist-cat, fig.cap="Histograma da variável `comprimento_nadadeira` para diferentes espécies com e sem sobreposição."}
 ## Histograma com cores para diferentes categorias com sobreposição
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_histogram(alpha = .4) +
     labs(title = "Com sobreposiçao")
 
 ## Histograma com cores para diferentes categorias sem sobreposição
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_histogram(position = "dodge") +
     labs(title = "Sem sobreposiçao")
 ```
 
 **Ajustes finos (versão personalizada)**
 
-```{r fig-hist-fino, fig.cap="Histograma da variável `flipper_length_mm` com ajustes finos."}
+```{r fig-hist-fino, fig.cap="Histograma da variável `comprimento_nadadeira` com ajustes finos."}
 ## Histograma exemplo
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_histogram(alpha = .4, position = "identity") +
     scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     labs(x = "Comprimento da nadadeira (mm)", 
          y = "Frequência (%)", fill = "Espécies")
 ```
@@ -174,8 +184,8 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 **Principais camadas utilizadas na função `geom_histogram()`**
 
 - `aes()`
-- Eixo X (`x`): variável contínua (`flipper_length_mm`)
-- Preenchimento (`fill`): variável categórica (`species`) que define as cores tendo como base o número de níveis dentro desta categoria
+- Eixo X (`x`): variável contínua (`comprimento_nadadeira`)
+- Preenchimento (`fill`): variável categórica (`especies`) que define as cores tendo como base o número de níveis dentro desta categoria
 - `geom()` 
 - `geom_histogram()`: para que a variável contínua seja plotada como histograma
 - Transparência das linhas e preenchimentos (`alpha`): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)
@@ -194,21 +204,21 @@ Nesta seção aprenderemos a criar um [gráfico de densidade](https://www.data-t
 
 Vamos utilizar o conjunto de dados *palmerpenguins* para plotar a distribuição da variável *`flipper_length_mm`* em um gráfico de densidade. Utilizaremos a função `geom_density()` para plotar uma variável no eixo X (Figura \@ref(fig:fig-dens-flipper)).
 
-```{r fig-dens-flipper, fig.cap="Gráfico de densidade da variável `flipper_length_mm`."}
+```{r fig-dens-flipper, fig.cap="Gráfico de densidade da variável `comprimento_nadadeira`."}
 ## Gráfico de densidade
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_density()
 ```
 
 Além da versão de densidade em linha, é possível utilizar o argumento `fill` para definir a cor de preenchimento do gráfico e o argumento `alpha` para definir a transparência do preenchimento. Utilizamos ainda o argumento `color` para definir a cor da linha (Figura \@ref(fig:fig-dens-flipper-color)).
 
-```{r fig-dens-flipper-color, fig.cap="Gráfico de densidade da variável `flipper_length_mm` com cor e preenchimento."}
+```{r fig-dens-flipper-color, fig.cap="Gráfico de densidade da variável `comprimento_nadadeira` com cor e preenchimento."}
 ## Argumento fill
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_density(fill = "cyan4")
 
 ## Argumento fill, color e alpha
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_density(fill = "cyan4", color = "black", alpha = .4)
 ```
 
@@ -216,15 +226,15 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 
 Em algumas situações queremos comparar a distribuição de uma variável contínua entre diferentes categorias. Dessa forma, podemos utilizar o argumento `fill` para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável x entre espécies diferentes (`fill = species`) (Figura \@ref(fig:fig-dens-flipper-cat)).
 
-```{r fig-dens-flipper-cat, fig.cap="Gráfico de densidade da variável `flipper_length_mm` para diferentes espécies com e sem transparência."}
-## O argumento fill preenche cada nível da coluna "species" (sem transparência: alpha = 1)
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+```{r fig-dens-flipper-cat, fig.cap="Gráfico de densidade da variável `comprimento_nadadeira` para diferentes espécies com e sem transparência."}
+## O argumento fill preenche cada nível da coluna "especies" (sem transparência: alpha = 1)
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_density() +
     scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
     labs(title = "Sem transparência")
 
 ## Gráfico de densidade com cores para diferentes categorias com sobreposição
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_density(alpha = .4) +
     scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
     labs(title = "Com transparência")
@@ -232,22 +242,22 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 
 **Ajustes finos (versão personalizada)**
 
-```{r fig-dens-fino, fig.cap="Gráfico de densidade da variável `flipper_length_mm` com ajustes finos."}
+```{r fig-dens-fino, fig.cap="Gráfico de densidade da variável `comprimento_nadadeira` com ajustes finos."}
 ## Gráfico de densidade exemplo
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_density(alpha = .4) +
     scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
     scale_x_continuous(breaks = seq(from = 160, to = 240, by = 10), limits = c(160, 240)) +
     scale_y_continuous(breaks = seq(from = 0, to = .07, by = .01)) +
-    theme_bw(base_size = 16) +
-    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência", fill = "Espécies")
+    theme_bw(base_size = 14) +
+    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência (%)", fill = "Espécies")
 ```
 
 **Principais camadas utilizadas na função `geom_density()`**
 
 - `aes()`
-- Eixo X (`x`): variável contínua (`flipper_length_mm`)
-- Preenchimento (`fill`): variável categórica (`species`) que define as cores tendo como base o número de níveis dentro desta categoria
+- Eixo X (`x`): variável contínua (`comprimento_nadadeira`)
+- Preenchimento (`fill`): variável categórica (`especies`) que define as cores tendo como base o número de níveis dentro desta categoria
 - `geom()` 
 - `geom_density()`: para que a variável contínua seja plotada como densidade
 - Transparência das linhas e preenchimentos (`alpha`): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)
@@ -266,9 +276,9 @@ Uma alternativa ao histograma e ao gráfico de densidade é o diagrama de pontos
 
 Vamos utilizar o conjunto de dados palmerpenguins para visualizar a distribuição da variável flipper_length_mm com o diagrama de pontos com a função `geom_dotplot()` (Figura \@ref(fig:fig-dot-flipper)).
 
-```{r fig-dot-flipper, fig.cap="Diagrama de pontos da variável `flipper_length_mm`."}
+```{r fig-dot-flipper, fig.cap="Diagrama de pontos da variável `comprimento_nadadeira`."}
 ## Gráfico de pontos
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
     geom_dotplot(dotsize = .6)
 ```
 
@@ -276,27 +286,27 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 
 Assim como nas funções `geom_histogram()` e `geom_density()`, é possível comparar categorias na função `geom_dotplot()` utilizando o argumento `fill`, bem como os argumentos `color`, `alpha` e `dotsize` (Figura \@ref(fig:fig-dot-flipper-cat)).
 
-```{r fig-dot-flipper-cat, fig.cap="Diagrama de pontos da variável `flipper_length_mm` para diferentes espécies com e sem transparência."}
+```{r fig-dot-flipper-cat, fig.cap="Diagrama de pontos da variável `comprimento_nadadeira` para diferentes espécies com e sem transparência."}
 ## O argumento fill preenche cada nível da coluna "species" (sem transparência: alpha = 1)
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_dotplot(dotsize = .9)
 
 ## Diagrama de pontos com cores para diferentes categorias com sobreposição
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_dotplot(dotsize = .7, color = "black", alpha = .4)
 ```
 
 **Ajustes finos (versão personalizada)**
 
-```{r fig-dot-flipper-fino, fig.cap="Diagrama de pontos da variável `flipper_length_mm` com ajustes finos."}
+```{r fig-dot-flipper-fino, fig.cap="Diagrama de pontos da variável `comprimento_nadadeira` com ajustes finos."}
 ## Diagrama de pontos exemplo
-ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_dotplot(color = "black", alpha = .7, position = "dodge") +
     scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
     scale_x_continuous(breaks = seq(from = 170, to = 240, by = 10), limits = c(170, 240)) +
     scale_y_continuous(breaks = seq(from = 0, to = 1.4, by = .2), limits = c(0, 1.4)) +
-    theme_bw(base_size = 16) +
-    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência", fill = "Espécies")
+    theme_bw(base_size = 14) +
+    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência (%)", fill = "Espécies")
 ```
 
 ::: {.alert .alert-info}
@@ -307,8 +317,8 @@ Uma das limitações do diagrama de pontos é que a sobreposição dos pontos po
 **Principais camadas utilizadas na função `geom_dotplot()`**
 
 - `aes()`:
-- Eixo X (`x`): variável contínua (`flipper_length_mm`)
-- Preenchimento (`fill`): variável categórica (`species`) que define as cores tendo como base o número de níveis dentro desta categoria
+- Eixo X (`x`): variável contínua (`comprimento_nadadeira`)
+- Preenchimento (`fill`): variável categórica (`especies`) que define as cores tendo como base o número de níveis dentro desta categoria
 - `geom():` 
 - `geom_dotplot()`: para que a variável contínua seja plotada como diagrama de pontos
 - Transparência dos pontos (`alpha`): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)
@@ -333,11 +343,11 @@ O gráfico de barras utiliza retângulos para representar uma variável contínu
 ```{r fig-bar-species, fig.cap="Gráfico de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim."}
 ## Número de indivíduos coletados
 penguins_count <- penguins %>%
-    dplyr::count(species)
+    dplyr::count(especies)
 penguins_count
 
 ## Gráfico de barras
-ggplot(data = penguins_count, aes(x = species, y = n)) + 
+ggplot(data = penguins_count, aes(x = especies, y = n)) + 
     geom_bar(stat = "identity")
 ```
 
@@ -345,20 +355,20 @@ Além disso, é possível alterar as cores (`color`) e preenchimento (`fill`) da
 
 ```{r fig-bar-species-color, fig.cap="Gráficos de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, modificando cor, preenchimento, transparência e largura das barras."}
 ## Modificando o preenchimento
-ggplot(data = penguins_count, aes(x = species, y = n)) + 
+ggplot(data = penguins_count, aes(x = especies, y = n)) + 
     geom_bar(stat = "identity", fill = "cyan4")
 
 ## Modificando a cor e o preenchimento
-ggplot(data = penguins_count, aes(x = species, y = n)) + 
+ggplot(data = penguins_count, aes(x = especies, y = n)) + 
     geom_bar(stat = "identity", color = "cyan4", fill = "white")
 
 ## Modificando a largura da barra = .75
-ggplot(data = penguins_count, aes(x = species, y = n)) +
+ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity", width = .75) +
     labs(title = "Largura = .75")
 
 ## Modificando a largura da barra = .25
-ggplot(data = penguins_count, aes(x = species, y = n)) +
+ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity", width = .25) +
     labs(title = "Largura = .25") 
 ```
@@ -367,11 +377,11 @@ Outra possibilidade para representação do gráfico de barras é inverter a dir
 
 ```{r fig-bar-species-invert, fig.cap="Gráficos de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, invertendo a direção das barras."}
 ## Barras vertical
-ggplot(data = penguins_count, aes(x = species, y = n)) +
+ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity", width = .6)
 
 ## Barras horizontal
-ggplot(data = penguins_count, aes(x = species, y = n)) +
+ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity", width = .6) + 
     coord_flip()
 ```
@@ -380,7 +390,7 @@ ggplot(data = penguins_count, aes(x = species, y = n)) +
 
 ```{r fig-bar-species-fill, fig.cap="Gráfico de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, para diferentes espécies."}
 ## Gráfico de barras com preenchimento colorido
-ggplot(data = penguins_count, aes(x = species, y = n, fill = species)) +
+ggplot(data = penguins_count, aes(x = especies, y = n, fill = especies)) +
     geom_bar(stat = "identity")
 ```
 
@@ -391,12 +401,12 @@ Em algumas comparações, utilizar somente os valores absolutos pode não ser a 
 ```{r fig-bar-species-sd, fig.cap="Gráfico de barras indicando os valores médios e o desvio padrão da variável `flipper_length_mm` para cada espécie de pinguim."}
 ## Calcular o desvio padrão por espécie
 penguins_media <- penguins %>% 
-    dplyr::group_by(species) %>% 
-    dplyr::summarise(media = mean(flipper_length_mm, na.rm = TRUE),
-                     desvio = sd(flipper_length_mm, na.rm = TRUE))
+    dplyr::group_by(especies) %>% 
+    dplyr::summarise(media = mean(comprimento_nadadeira, na.rm = TRUE),
+                     desvio = sd(comprimento_nadadeira, na.rm = TRUE))
 
 ## Gráfico de barras com desvio padrão
-ggplot(data = penguins_media, aes(x = species, y = media, fill = species)) +
+ggplot(data = penguins_media, aes(x = especies, y = media, fill = especies)) +
     geom_bar(stat = "identity", alpha = .4) +
     geom_errorbar(aes(ymin = media-desvio, ymax = media+desvio), width = .1) + 
     geom_point()
@@ -406,11 +416,11 @@ ggplot(data = penguins_media, aes(x = species, y = media, fill = species)) +
 
 ```{r fig-bar-species-fino, fig.cap="Gráfico de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, com ajustes finos."}
 ## Gráfico de barra exemplo
-ggplot(data = penguins_count, aes(x = species, y = n, fill = species)) +
+ggplot(data = penguins_count, aes(x = especies, y = n, fill = especies)) +
     geom_bar(stat = "identity") +
     geom_label(aes(label = n), fill = "white") +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     labs(x = "Espécies", y = "Número de indivíduos", fill = "Espécies")
 ```
 
@@ -425,11 +435,11 @@ Gráfico de setores do tipo *pie* (Figura \@ref(fig:fig-pie)).
 ```{r fig-pie, fig.cap="Gráfico de setores indicando a proporção de indivíduos medidos de cada espécie de pinguim."}
 ## Cálculo da proporção - pie
 penguins_prop <- penguins %>%
-    dplyr::count(species) %>% 
+    dplyr::count(especies) %>% 
     dplyr::mutate(prop = round(n/sum(n), 4)*100)
 
 ## Gráfico de setores
-ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) + 
+ggplot(data = penguins_prop, aes(x = "", y = prop, fill = especies)) + 
     geom_bar(stat = "identity", color = "white") +
     geom_text(aes(label = paste0(prop, "%")), color = "white", 
               position = position_stack(vjust = .5), size = 8) +
@@ -445,7 +455,7 @@ Gráfico de setores do tipo *donuts* (Figura \@ref(fig:fig-donut)).
 
 ```{r fig-donut, fig.cap="Gráfico de setores do tipo *donuts* indicando a proporção de indivíduos medidos de cada espécie de pinguim."}
 ## Gráfico de setores - donut
-ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = species)) +
+ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = especies)) +
     geom_bar(stat = "identity") +
     geom_text(aes(label = paste0(prop, "%")), color = "white",
               position = position_stack(vjust = .5), size = 5) +
@@ -465,7 +475,7 @@ O mesmo conjunto de dados pode ser visualizado de diferentes formas. Não difere
 
 ```{r fig-prop, fig.cap="Comparação da proporção de indivíduos por cada uma das três espécies dos dados feita através de gráfico de barras, setores do tipo *pie* e setores do tipo *donuts*.", message=FALSE, warning=FALSE, out.width="100%"}
 ## Gráfico de barras - vertical  
-g_bar_v <- ggplot(data = penguins_prop, aes(x = species, y = prop, fill = species)) +
+g_bar_v <- ggplot(data = penguins_prop, aes(x = especies, y = prop, fill = especies)) +
     geom_bar(stat = "identity") +
     geom_label(aes(label = prop), fill = "white") +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
@@ -475,7 +485,7 @@ g_bar_v <- ggplot(data = penguins_prop, aes(x = species, y = prop, fill = specie
          y = "Número de indivíduos", fill = "Espécies")
 
 ## Gráfico de barras - horizontal  
-g_bar_h <- ggplot(data = penguins_prop, aes(x = species, y = prop, fill = species)) +
+g_bar_h <- ggplot(data = penguins_prop, aes(x = especies, y = prop, fill = especies)) +
     geom_bar(stat = "identity") +
     geom_label(aes(label = prop), fill = "white") +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
@@ -486,7 +496,7 @@ g_bar_h <- ggplot(data = penguins_prop, aes(x = species, y = prop, fill = specie
          y = "Número de indivíduos", fill = "Espécies")
 
 ## Gráfico de setores - pie
-g_pie <- ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) + 
+g_pie <- ggplot(data = penguins_prop, aes(x = "", y = prop, fill = especies)) + 
     geom_bar(stat = "identity", color = "white") +
     geom_text(aes(label = paste0(prop, "%")), color = "white", 
               position = position_stack(vjust = .5), size = 3) +
@@ -496,7 +506,7 @@ g_pie <- ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) +
     labs(title = "Pie chart", fill = "Espécies")
 
 ## Gráfico de setores - donut
-g_donut <- ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = species)) +
+g_donut <- ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = especies)) +
     geom_bar(stat = "identity") +
     geom_text(aes(label = paste0(prop, "%")), color = "white",
               position = position_stack(vjust = .5), size = 2) +
@@ -515,8 +525,8 @@ grid.arrange(g_bar_v, g_bar_h, g_pie, g_donut, nrow = 2)
 
 - `aes()`
 - Eixo X (`x`): variável categórica (`species`)
-- Eixo Y (`y`): variável contínua (`flipper_length_mm`)
-- Preenchimento (`fill`): a variável categórica (`species`) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no `scale_fill_manual()`
+- Eixo Y (`y`): variável contínua (`comprimento_nadadeira`)
+- Preenchimento (`fill`): a variável categórica (`especies`) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no `scale_fill_manual()`
 - `geom()`
 - `geom_bar()`: para que as variáveis categóricas sejam plotadas como gráficos de barra ou setores
 - Transparência das barras (`alpha`): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)
@@ -542,33 +552,33 @@ knitr::include_graphics("img/cap06_fig03.png")
 
 **Versão padrão**
 
-Vamos plotar uma variável contínua (`flipper_length_mm`) no eixo y em função de uma variável categórica no eixo x (`species`). A definição de qual coluna do bando de dados é a x e qual é a y é feita dentro do na função `aes()` (Figura \@ref(fig:fig-boxplot)).
+Vamos plotar uma variável contínua (`comprimento_nadadeira`) no eixo y em função de uma variável categórica no eixo x (`especies`). A definição de qual coluna do bando de dados é a x e qual é a y é feita dentro do na função `aes()` (Figura \@ref(fig:fig-boxplot)).
 
-```{r fig-boxplot, fig.cap="Gráfico de caixa para a variável `flipper_length_mm` para cada espécie de penguim."}
-## Gráfico de caixas das coluna flipper_length_mm e species
-ggplot(data = penguins, aes(y = flipper_length_mm, x = species)) +
+```{r fig-boxplot, fig.cap="Gráfico de caixa para a variável `comprimento_nadadeira` para cada espécie de pinguim."}
+## Gráfico de caixas das coluna comprimento_nadadeira e espécies
+ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies)) +
     geom_boxplot()
 ```
 
 É possível destacar, se houver, os pontos referentes aos *outliers* (valores discrepantes) com o argumento `outlier.color`. Caso tenha interesse, é possível também remover os outliers do gráfico (Figura \@ref(fig:fig-boxplot-outlier)).
 
-```{r fig-boxplot-outlier, fig.cap="Gráfico de caixa para a variável `flipper_length_mm` para cada espécie de penguim, destacando e removendo os outliers."}
+```{r fig-boxplot-outlier, fig.cap="Gráfico de caixa para a variável `comprimento_nadadeira` para cada espécie de penguim, destacando e removendo os outliers."}
 ## Destaque dos outliers
-ggplot(data = penguins, aes(y = flipper_length_mm, x = species)) +
+ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies)) +
     geom_boxplot(outlier.color = "red") +
     labs(title = "Outliers vermelhos")
 
 ## Remoção dos outliers
-ggplot(data = penguins, aes(y = flipper_length_mm, x = species)) +
+ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies)) +
     geom_boxplot(outlier.shape = NA) +
     labs(title = "Outliers removidos")
 ```
 
 Outra opção para os gráficos do tipo boxplot é utilizar o argumento `notch = TRUE` para produzir diagramas de caixa entalhados (*notched*). Estes diagramas são úteis para inferir de forma aproximada se exite diferença significativa entre as medias dos grupos (Figura \@ref(fig:fig-boxplot-notched)).
 
-```{r fig-boxplot-notched, fig.cap="Gráfico de caixa para a variável `flipper_length_mm` para cada espécie de penguim, com entalhamentos."}
+```{r fig-boxplot-notched, fig.cap="Gráfico de caixa para a variável `comprimento_nadadeira` para cada espécie de penguim, com entalhamentos."}
 ## Gráfico com caixa entalhadas
-ggplot(data = penguins, aes(y = flipper_length_mm, x = species)) +
+ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies)) +
     geom_boxplot(notch = TRUE) +
     labs(title = "Caixas entalhadas")
 ```
@@ -577,10 +587,10 @@ ggplot(data = penguins, aes(y = flipper_length_mm, x = species)) +
 
 No exemplo abaixo, utilizamos cores diferentes para ilustrar espécies diferentes através do argumento `fill = species` (Figura \@ref(fig:fig-boxplot-cat)).
 
-```{r fig-boxplot-cat, fig.cap="Gráfico de caixa para a variável `flipper_length_mm` para cada espécie de penguim, com preenchimentos diferentes."}
+```{r fig-boxplot-cat, fig.cap="Gráfico de caixa para a variável `comprimento_nadadeira` para cada espécie de pinguim, com preenchimentos diferentes."}
 ## Modificando o preenchimento
 ggplot(data = penguins, 
-       aes(y = flipper_length_mm, x = species, fill = species)) +
+       aes(y = comprimento_nadadeira, x = especies, fill = especies)) +
     geom_boxplot()
 ```
 
@@ -590,9 +600,9 @@ Podemos ainda acrescentar pontos para mostrar a distribuição dos dados, fazend
 
 ```{r fig-boxplot-jitter, fig.cap="Gráfico de caixa para a variável `flipper_length_mm` para cada espécie de penguim, com distribuição dos dados."}
 ## Boxplot com jitters
-ggplot(data = penguins, aes(y = flipper_length_mm, 
-                            x = species, 
-                            fill = species)) +
+ggplot(data = penguins, aes(y = comprimento_nadadeira, 
+                            x = especies, 
+                            fill = especies)) +
     geom_boxplot() +
     geom_jitter(size = .5)
 ```
@@ -601,58 +611,56 @@ ggplot(data = penguins, aes(y = flipper_length_mm,
 
 Além das caixas no boxplot, podemos utilizar o formato de "violino" ([gráfico de violino](https://datavizproject.com/data-type/violin-plot/)) para representar a variação dos dados contínuos para as categorias. A informação adicional ao boxplot que o gráfico de violino permite visualizar é a densidade e distribuição dos pontos, assim como apresentamos acima no gráfico de densidades `geom_density()`. A diferença é que a densidade é espelhada e, desse modo, podemos visualizar os intervalores dos dados com maior ou menor concentração de valores (Figura \@ref(fig:fig-violin)).
 
-```{r fig-violin, fig.cap="Gráfico de violino para a variável `flipper_length_mm` para cada espécie de penguim, com distribuição dos dados."}
+```{r fig-violin, fig.cap="Gráfico de violino para a variável `comprimento_nadadeira` para cada espécie de penguim, com distribuição dos dados."}
 ## Gráfico de violino
-ggplot(data = penguins, aes(y = flipper_length_mm, x = species, fill = species)) +
+ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies, fill = especies)) +
     geom_violin() +
     geom_jitter(size = .5)
 ```
 
 É possível também combinar boxplot e gráfico de violino em um único gráfico (Figura \@ref(fig:fig-boxplot-violin)).
 
-```{r fig-boxplot-violin, fig.cap="Gráfico de caixa e de violino para a variável `flipper_length_mm` para cada espécie de penguim."}
+```{r fig-boxplot-violin, fig.cap="Gráfico de caixa e de violino para a variável `comprimento_nadadeira` para cada espécie de penguim."}
 ## Combinando o gráfico de violino com o de caixas
-ggplot(data = penguins, aes(y = flipper_length_mm, x = species, fill = species)) +
+ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies, fill = especies)) +
     geom_violin() +
     geom_boxplot(width = .1, fill = "gray")
 ```
 
 **Ajustes finos (versão personalizada)**
 
-```{r fig-boxplot-violin-fino, fig.cap="Gráfico de caixa, violino, e caixa e violino para a variável `flipper_length_mm` para cada espécie de penguim, com ajustes finos."}
+```{r fig-boxplot-violin-fino, fig.cap="Gráfico de caixa, violino, e caixa e violino para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos."}
 ## Gráfico de caixas exemplo
-ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = especies, y = comprimento_nadadeira, fill = especies)) +
     geom_boxplot(width = .5, show.legend = FALSE) +
-    geom_jitter(alpha = .4, show.legend = FALSE, 
-                position = position_jitter(width = .15, seed = 0)) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     labs(title = "Boxplot sem pontos", x = "Espécies", y = "Comprimento da nadadeira (mm)")
 
 ## Gráfico de violino exemplo
-ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = especies, y = comprimento_nadadeira, fill = especies)) +
     geom_violin(width = .5, show.legend = FALSE) +
     geom_jitter(alpha = .4, show.legend = FALSE, 
                 position = position_jitter(width = .15, seed = 0)) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     labs(title = "Gráfico de violino com jitter", x = "Espécies", y = "Comprimento da nadadeira (mm)")
 
 ## Gráfico de caixas e violino exemplo
-ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = especies, y = comprimento_nadadeira, fill = especies)) +
     geom_violin(width = .5, show.legend = FALSE) +
     geom_boxplot(width = .3, fill = "gray", show.legend = FALSE) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     labs(title = "Gráfico de violino com boxplot", x = "Espécies", y = "Comprimento da nadadeira (mm)")
 ```
 
 **Principais camadas utilizadas no `geom_boxplot()`e `geom_violin()`**
 
 - `aes()`
-- Eixo X (`x`): variável categórica (`species`)
-- Eixo Y (`y`): variável contínua (`flipper_length_mm`)
-- Preenchimento (`fill`): a variável categórica (`species`) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no `scale_fill_manual()`.
+- Eixo X (`x`): variável categórica (`especies`)
+- Eixo Y (`y`): variável contínua (`comprimento_nadadeira`)
+- Preenchimento (`fill`): a variável categórica (`especies`) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no `scale_fill_manual()`.
 - `geom():`
 - `geom_boxplot()`: para que as variáveis contínuas e categóricas sejam plotadas como gráficos de caixas ou violinos
 - `width`: largura das barras ou dos pontos(valor padrão: width = 1)
@@ -672,11 +680,11 @@ O [gráfico de dispersão](https://datavizproject.com/data-type/scatter-plot/) (
 
 **Versão padrão**
 
-Vamos utilizar o conjunto de dados *palmerpenguins* para construir um gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` com a função `geom_point()`. Esta função utiliza variável contínuas no eixo X e no Y. O gráfico mostra os pares ordenados das medidas das duas variáveis (Figura \@ref(fig:fig-scatter)).
+Vamos utilizar o conjunto de dados *palmerpenguins* para construir um gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` com a função `geom_point()`. Esta função utiliza variável contínuas no eixo X e no Y. O gráfico mostra os pares ordenados das medidas das duas variáveis (Figura \@ref(fig:fig-scatter)).
 
-```{r fig-scatter, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm`."}
+```{r fig-scatter, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira`."}
 ## Gráfico de dispersão das coluna flipper_length_mm e bill_length_mm
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point()
 ```
 
@@ -684,14 +692,14 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
 
 Da mesma forma que para os outros gráficos, podemos alterar cor, tamanho, forma e preenchimento dos pontos (Figura \@ref(fig:fig-scatter-col)).
 
-```{r fig-scatter-col, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com alterações na cor, tamanho e preenchimento dos pontos."}
+```{r fig-scatter-col, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com alterações na cor, tamanho e preenchimento dos pontos."}
 ## Cor e tamanho dos pontos 
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point(color = "cyan4", size = 4) + 
     labs(title = "Sem transparência")
 
 ## Cor, tamanho dos pontos e transparência
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point(color = "cyan4", size = 4, alpha = .4) +
     labs(title = "Com transparência")
 ```
@@ -704,17 +712,17 @@ knitr::include_graphics("img/cap06_fig02.png")
 
 Assim, é possível controlar cores, formas e preenchimento combinado os argumentos `shape`, `fill`e `color` com a função `scale_manual()`. É importante notar que para os símbolos entre 15 e 20 só podemos controlar o argumento cor, enquanto os símbolos entre 21 e 25 podemos controlar a cor e o preenchimento (Figura \@ref(fig:fig-scatter-shape)).
 
-```{r fig-scatter-shape, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com alterações no formato."}
+```{r fig-scatter-shape, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com alterações no formato."}
 ## Formato e tamanho
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point(shape = 1, size = 4)
 
 ## Formato e tamanho para espécies
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira, color = especies)) +
     geom_point(shape = 19, size = 4)
 
 ## Formato e tamanho e cor
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, fill = species)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira, fill = especies)) +
     geom_point(shape = 21, size = 4, color = "black")
 ```
 
@@ -722,9 +730,9 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, fill = sp
 
 Quando usamos modelos estatísticos como, por exemplo, `lm()`, `glm()`, `gam()`, entre outros (veja mais nos Capítulos \@ref(cap7) e \@ref(cap8)), podemos utilizar os valores preditos para demonstrar a relação entre as variáveis X e Y. No `ggplot2`, a função `geom_smooth()` faz esse ajuste com certa simplicidade (Figura \@ref(fig:fig-scatter-smooth)).
 
-```{r fig-scatter-smooth, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com linhas de ajustes estatísticos."}
+```{r fig-scatter-smooth, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com linhas de ajustes estatísticos."}
 ## Linha de ajuste
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point(shape = 20, size = 4, color = "black") +
     geom_smooth(method = lm)
 ```
@@ -733,14 +741,14 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
 
 ```{r fig-scatter-fino, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com ajustes finos."}
 ## Gráfico de dispersão exemplo
-ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm,
-                            color = species, shape = species)) +
+ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira,
+                            color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
     theme_bw(base_size = 16) +
-    labs(x = "Comprimento do bico (mm)", y = "Profundidade do bico (mm)", 
+    labs(x = "Comprimento do bico (mm)", y = "Comprimento da nadadeira (mm)", 
          color = "Espécies", shape = "Espécies")
 ```
 
@@ -771,8 +779,8 @@ A função `ggpairs()`do pacote `GGally` permite criar múltiplos gráficos pare
 ```{r fig-pairs-cont, fig.cap="Gráfico pareado relacionando várias variáveis contínuas para as espécies de penguins."}
 ## Gráfico pareado com variáveis contínuas
 penguins %>%
-    dplyr::select(body_mass_g, ends_with("_mm")) %>%
-    GGally::ggpairs(aes(color = penguins$species)) +
+    dplyr::select(massa_corporal, comprimento_bico, profundidade_bico, comprimento_nadadeira) %>%
+    GGally::ggpairs(aes(color = penguins$especies)) +
     scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     theme_bw()
@@ -785,8 +793,8 @@ Como alternativa, a função **`ggpairs()`** permite também incluir variáveis 
 ```{r fig-pairs-cont-cat, fig.cap="Gráfico pareado relacionando várias variáveis contínuas e categóricas para as espécies de penguins."}
 ## Gráfico pareado com variáveis contínuas e categóricas
 penguins %>%
-    dplyr::select(species, sex, body_mass_g, ends_with("_mm")) %>%
-    GGally::ggpairs(aes(color = species)) +
+    dplyr::select(especies, sexo, massa_corporal, comprimento_bico, profundidade_bico, comprimento_nadadeira) %>%
+    GGally::ggpairs(aes(color = especies)) +
     scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     theme_bw()
@@ -809,24 +817,24 @@ Abaixo, apresentamos uma lista não exaustiva dos erros mais comuns que cometemo
 Veja exemplos (Figura \@ref(fig:fig-plot-error)).
 
 ```{r fig-plot-error, fig.cap="Gráficos mostrando erros comuns na criação de gráficos no pacote `ggplot2`."}
-## Figura incorreta, sem a transformação da variável year
+## Figura incorreta, sem a transformação da variável ano
 penguins %>%
-    ggplot(aes(x = year, y = bill_length_mm)) +
+    ggplot(aes(x = ano, y = comprimento_bico)) +
     geom_boxplot() + 
     theme_bw() +
     labs(title = "Figura incorreta")
 
-## Figura correta, com transformação interna da variável year
+## Figura correta, com transformação interna da variável ano
 penguins %>%
-    ggplot(aes(x = factor(year), y = bill_length_mm)) +
+    ggplot(aes(x = factor(ano), y = comprimento_bico)) +
     geom_boxplot() + 
     theme_bw() +
     labs(title = "Figura correta com transformação interna")
 
-## Figura correta, com transformação prévia da variável year
+## Figura correta, com transformação prévia da variável ano
 penguins %>%
-    mutate(year_f = as.factor(year)) %>% 
-    ggplot(aes(x = year_f, y = bill_length_mm)) +
+    mutate(ano_f = as.factor(ano)) %>% 
+    ggplot(aes(x = ano_f, y = comprimento_bico)) +
     geom_boxplot() + 
     theme_bw() +
     labs(title = "Figura correta com transformação prévia")
@@ -851,52 +859,52 @@ Vejamos alguns exemplos (Figura \@ref(fig:fig-plot-final-legenda)).
 ```{r fig-plot-final-legenda, fig.cap="Gráficos mostrando a finalização de gráficos para publicação em relação à posição, cores e fonte da legenda no pacote `ggplot2`."}
 ## Legenda acima
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     theme(legend.position = "top") +
     labs(title = "Legenda acima do gráfico", x = "Comprimento do bico (mm)", 
          y = "Profundidade do bico (mm)", color = "Espécies", shape = "Espécies")
 
 ## Leganda abaixo
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     theme(legend.position = "bottom") +
     labs(title = "Legenda abaixo do gráfico", x = "Comprimento do bico (mm)", 
          y = "Profundidade do bico (mm)", color = "Espécies", shape = "Espécies")
 
 ## Sem legenda
 ggplot(data = penguins, 
-       aes(x = bill_length_mm,  y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico,  y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     theme(legend.position = "none") +
     labs(title = "Sem legenda", x = "Comprimento do bico (mm)", 
          y = "Profundidade do bico (mm)", color = "Espécies", shape = "Espécies")
 
 ## Legenda personalizada
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 14) +
     theme(legend.position = "right",
           legend.text = element_text(size = 14, colour = "red"),
           legend.title = element_text(face = "bold"),
@@ -907,8 +915,8 @@ ggplot(data = penguins,
 
 ## Legenda interna
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
@@ -936,8 +944,8 @@ Vejamos mais alguns exemplos (Figura \@ref(fig:fig-plot-final-eixos)).
 ```{r fig-plot-final-eixos, fig.cap="Gráficos mostrando a finalização de gráficos para publicação em relação aos elementos gráficos de eixo, fonte, gride no pacote `ggplot2`."}
 ## Nome dos eixos
 ggplot(data = penguins,  
-       aes(x = bill_length_mm, y = flipper_length_mm, 
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira, 
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     ylim(170, 230) +
     xlim(30, 60) +
@@ -945,8 +953,8 @@ ggplot(data = penguins,
 
 ## Intervalo dos eixos
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     scale_x_continuous(limits = c(30, 60), breaks = seq(30, 60, 2)) +
     labs(title = "Intervalo dos eixos", x = "Eixo X", y = "Eixo Y")
@@ -964,8 +972,8 @@ Vejamos outros exemplos com mudanças nos eixos (Figura \@ref(fig:fig-plot-final
 ```{r fig-plot-final-eixos-fonte, fig.cap="Gráficos mostrando a finalização de gráficos para publicação em relação aos eixos no pacote `ggplot2`."}
 ## Cor e fonte dos eixos
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     theme(axis.title.x = element_text(face = "bold", size = 20, colour = "cyan4"),
           axis.text.x = element_text(size = 14),
@@ -975,8 +983,8 @@ ggplot(data = penguins,
 
 ## Intervalo e ângulos do texto dos eixos
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     scale_x_continuous(limits = c(20, 60), breaks = seq(20, 60, 2)) +
     theme(axis.title.x = element_text(face = "bold", size = 20, colour = "cyan4"),
@@ -996,8 +1004,8 @@ Vejamos outros exemplos com mudanças ao gride (Figura \@ref(fig:fig-plot-final-
 ```{r fig-plot-final-gride, fig.cap="Gráficos mostrando a finalização de gráficos para publicação em relação ao gride no pacote `ggplot2`."}
 ## Linhas de grade principais
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     scale_x_continuous(limits = c(30, 60), breaks = seq(30, 60, 5)) +
     theme(axis.title.x = element_text(face = "bold", size = 16),
@@ -1009,8 +1017,8 @@ ggplot(data = penguins,
 
 ## Retirar linhas de grade
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     scale_x_continuous(limits = c(30, 60), breaks = seq(30, 60, 5)) +
     theme(axis.title.x = element_text(face = "bold", size = 16),
@@ -1023,8 +1031,8 @@ ggplot(data = penguins,
 
 ## Borda do gráfico
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = 0.5) +
     scale_x_continuous(limits = c(30, 60), breaks = seq(30, 60, 5)) +
     theme(axis.title.x = element_text(face = "bold", size = 16),
@@ -1038,8 +1046,8 @@ ggplot(data = penguins,
 
 ## Borda do gráfico
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .4) +
     scale_x_continuous(limits = c(30, 60), breaks = seq(30, 60, 5)) +
     theme(axis.title.x = element_text(face = "bold", size = 16),
@@ -1059,8 +1067,8 @@ Existem vários temas criados dentro do universo [`ggtheme()`](https://ggplot2.t
 ```{r fig-plot-final-ggtheme, fig.cap="Gráficos mostrando a finalização de gráficos para publicação em relação ao `ggtheme()` no pacote `ggplot2`."}
 ## theme_gray
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
@@ -1070,8 +1078,8 @@ ggplot(data = penguins,
          y = "Profundidade do bico (mm)", color = "Espécies", shape = "Espécies") 
 ## theme_bw()
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
@@ -1081,8 +1089,8 @@ ggplot(data = penguins,
          y = "Profundidade do bico (mm)", color = "Espécies", shape = "Espécies") 
 ## theme_classic()
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
@@ -1098,7 +1106,7 @@ Por fim, é possível criar um tema personalizado como uma função. Assim, o us
 
 ```{r fig-plot-final-theme-custom, fig.cap="Gráficos mostrando a finalização de gráficos para publicação em relação à criação de um tema usando o `theme_custom()` no pacote `ggplot2`."}
 ## Criar uma função com os ajustes finos
-theme_book <- function(){
+tema_personalizado <- function(){
     
     # Defina uma fonte
     font <- "Times" # Digite names(pdfFonts()) no console do R para ver a lista de fontes disponíveis
@@ -1145,13 +1153,13 @@ theme_book <- function(){
 
 ## Gráfico usando a função de tema criada
 ggplot(data = penguins, 
-       aes(x = bill_length_mm, y = flipper_length_mm,
-           color = species, shape = species)) +
+       aes(x = comprimento_bico, y = comprimento_nadadeira,
+           color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_book() +
+    tema_personalizado() +
     labs(title = "Tema personalizado", x = "Comprimento do bico (mm)", 
          y = "Profundidade do bico (mm)", color = "Espécies", 
          shape = "Espécies", caption = "Fonte = palmerpinguins")
@@ -1171,8 +1179,8 @@ Vejamos um último exemplo (Figura \@ref(fig:fig-plot-final-export)).
 ```{r fig-plot-final-export, fig.cap="Gráfico criado para a exportação no pacote `ggplot2`."}
 ## Gráfico
 g1 <- ggplot(data = penguins, 
-             aes(x = bill_length_mm, y = flipper_length_mm,
-                 color = species, shape = species)) +
+             aes(x = comprimento_bico, y = comprimento_nadadeira,
+                 color = especies, shape = especies)) +
     geom_point(size = 4, alpha = .7) +
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
@@ -1181,7 +1189,7 @@ g1 <- ggplot(data = penguins,
           legend.title = element_blank(),
           legend.key =  element_blank(),
           legend.background = element_blank()) +
-    theme_book() +
+    tema_personalizado() +
     labs(x = "Comprimento do bico (mm)", y = "Profundidade do bico (mm)", 
          color = "Espécies", shape = "Espécies")
 g1
@@ -1191,7 +1199,7 @@ Podemos exportar esse gráfico de diferentes formas.
 
 ```{r eval=FALSE}
 ## Exportar no formato PDF
-ggsave(filname = "g1.pdf", 
+ggsave(filename = "g1.pdf", 
        plot = g1, 
        width = 15, 
        height = 15, 
@@ -1199,7 +1207,7 @@ ggsave(filname = "g1.pdf",
        units = "cm")
 
 ## Exportar no formato PNG
-ggsave(filname = "g1.png", 
+ggsave(filename = "g1.png", 
        plot = g1, 
        width = 15, 
        height = 15, 
@@ -1207,7 +1215,7 @@ ggsave(filname = "g1.png",
        units = "cm")
 
 ## Exportar no formato SVG
-ggsave(filname = "g1.svg", 
+ggsave(filename = "g1.svg", 
        plot = g1, 
        width = 15, 
        height = 15, 
