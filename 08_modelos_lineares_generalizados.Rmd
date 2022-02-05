@@ -114,7 +114,9 @@ Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáv
 ## Gráfico
 ggplot(fragmentos, aes(dfrag, Riqueza_obs)) +
     geom_point(size = 4, alpha = 0.7) +
-    stat_smooth(method = "lm") +
+    geom_smooth(method = "lm") +
+     labs(x = "Distância para o fragmento mais próximo", 
+         y = "Riqueza observada") +
     tema_livro()
 ```
 
@@ -148,11 +150,9 @@ Iremos realizar três diagnoses básicas dos GLMs, avaliando diferentes aspectos
 Vamos começar avaliando as homogeneidade da variância e normalidade dos resíduos (Figura \@ref(fig:fig-mod-poi-diag-bas)).
 
 ```{r fig-mod-poi-diag-bas, fig.cap="Diagnose básica dos resíduos do modelo GLM Poisson."}
-## Diagnóse básica
-plotresid(mod_pois, shapiro = TRUE) #SÓ O PLOT DE RESÍDUOS
+## Diagnose básica
 par(mfrow = c(2, 2))
-plot(mod_pois) #TODOS OS 4 PLOTS
-par(mfrow = c(1, 1))
+plot(mod_pois) 
 ```
 
 Vemos que as linhas vermelhas (que indicam a tendência dos dados) estão praticamente retas seguindo a linha pontilhada, sugerindo que existe homogeneidade de variância dos resíduos. Vemos também que nos quatro plots alguns dados, 1, 7 e 30 (referem-se às linhas do data frame) aparecem identificados, pois apresentam ligeiro desvio da normalidade e estão distantes da média. No entanto, não é algo para nos preocuparmos, pois não são valores muito extremos. Portanto, a diagnose básica indicou que o modelo com Poisson parece ser adequado para modelar estes dados, ao menos em termos de homogeneidade de variância.
@@ -306,7 +306,7 @@ mod_nb <- glm.nb(Riqueza_obs ~ dfrag, data = fragmentos)
 Assim como fizemos com o modelo com Poisson, vamos agora diagnosticar os resíduos (Figura \@ref(fig:fig-mod-nb-diag-bas)).
 
 ```{r fig-mod-nb-diag-bas, fig.cap="Diagnose básica dos resíduos do modelo GLM binomial Negativo."}
-## Diagnóse
+## Diagnose
 par(mfrow = c(2, 2))
 plot(mod_nb)
 par(mfrow = c(1, 1))
@@ -423,7 +423,14 @@ Como a melanina participa do sistema imune inato, ela desempenharia um papel na 
 
 ```{r}
 ## Dados
-glimpse(uv_cells)
+head(uv_cells)
+
+## Traduzir nomes das colunas e níveis de pigmentação 
+colnames(uv_cells) <- c("UV", "Pigmentacao", "n_celulas", "linfocito", "neutrofilo", "basofilo", "monocito", "eosinofilo")
+uv_cells$Pigmentacao[uv_cells$Pigmentacao=="Yes"] <- "sim"
+uv_cells$Pigmentacao[uv_cells$Pigmentacao=="No"] <- "nao"
+
+
 ```
 
 Vamos explorar os dados para tentar entender como são as relações (Figura \@ref(fig:fig-mod-bin-pre)).
@@ -432,22 +439,23 @@ Vamos explorar os dados para tentar entender como são as relações (Figura \@r
 ## Gráfico
 
 # Calcular média e intervalo de confiança
-eosinophil <- summarySE(uv_cells, 
-                        measurevar = "Eosinophil",
-                        groupvars = c("UV", "Pigmentation"))
+eosinofilo <- summarySE(uv_cells, 
+                        measurevar = "eosinofilo",
+                        groupvars = c("UV", "Pigmentacao"))
 
 # Definir posição de linhas e pontos no gráfico
 pd <- position_dodge(0.1)
 
-eosinophil %>% 
-  ggplot(aes(x = UV, y = Eosinophil, colour = Pigmentation,
-             group = Pigmentation, fill = Pigmentation)) +
-  geom_errorbar(aes(ymin=Eosinophil-se, ymax=Eosinophil +se), 
+eosinofilo %>% 
+  ggplot(aes(x = UV, y = eosinofilo, colour = Pigmentacao,
+             group = Pigmentacao, fill = Pigmentacao)) +
+  geom_errorbar(aes(ymin=eosinofilo-se, ymax=eosinofilo +se), 
                 width=.1, size = 1.1, position=pd) +
   geom_line(position=pd, size = 1.1) +
   geom_point(pch = 21, colour = "black", position=pd, size=3.5) +
   scale_colour_manual(values = c("darkorange", "cyan4")) +
   scale_fill_manual(values = c("darkorange", "cyan4")) +
+  labs(x = "UV", y = "Eosinófilo", fill="Pigmentação", colour="Pigmentação")+
   tema_livro()
 ```
 
@@ -459,7 +467,7 @@ Aqui vamos usar o `cbind` no argumento `formula` para dizer que queremos modelar
 
 ```{r}
 ## Modelo
-mod1 <- glm(cbind(Eosinophil, Total_Cell) ~ UV * Pigmentation, family = binomial, data = uv_cells)
+mod1 <- glm(cbind(eosinofilo, n_celulas) ~ UV * Pigmentacao, family = binomial, data = uv_cells)
 ```
 
 **Diagnose básica dos resíduos do modelo**
@@ -497,7 +505,7 @@ Aqui temos tanto a tabela com os resultados por níveis dos fatores (`summary()`
 
 ```{r}
 ## Parâmetros
-pairs(emmeans(mod1, ~ UV|Pigmentation))
+pairs(emmeans(mod1, ~ UV|Pigmentacao))
 ```
 
 Aqui temos o valor de cada combinação de níveis dos fatores, com seu respectivo valor de contraste e o valor de *P*. Vemos que para girinos sem pigmentação, apenas três contrastes foram significativos.
@@ -507,9 +515,10 @@ Aqui temos o valor de cada combinação de níveis dos fatores, com seu respecti
 Vamos realizar a visualização do ajusto do modelo binomial (Figura \@ref(fig:fig-mod-bin-model)).
 
 ```{r fig-mod-bin-model, fig.cap="Gráfico do GLM binomial."}
-ggplot(uv_cells, aes(UV, Eosinophil)) +
-    geom_violin(aes(color = Pigmentation)) +
+ggplot(uv_cells, aes(UV, eosinofilo)) +
+    geom_violin(aes(color = Pigmentacao)) +
     geom_jitter(shape = 16, position = position_jitter(0.1), cex = 4, alpha = 0.7) +
+    scale_colour_manual(values = c("darkorange", "cyan4")) +
     tema_livro()
 ```
 
@@ -538,11 +547,16 @@ Quanto maior o lagarto, maior a probabilidade de autotomia da cauda e que esta r
 Este conjunto de dados possui muitas entradas faltantes (codificadas como `NA`). Primeiro vamos visualizar o conjunto de dados e depois precisamos remover as linhas que contêm dados faltantes. Aqui podemos usar a função interna do `ggplot2::remove_missing()` para remover linhas cujas variáveis informadas no argumento estejam faltando, vejamos (Figura \@ref(fig:fig-mod-inc-na)).
 
 ```{r fig-mod-inc-na, fig.cap="Gráficos para explorar os dados faltantes."}
-## Dados faltantes
+
+## Traduzir nomes das colunas e níveis de pigmentação 
 head(lagartos)
+colnames(lagartos) <- c("numero", "sexo", "SVL", "comprimento_cauda", "cauda_autotomizada", "estado_cauda")
+
+
+## Dados faltantes
 vis_dat(lagartos)
 vis_miss(lagartos, cluster = TRUE) # 22.9% dos dados estão faltando
-dados_semNA <- remove_missing(lagartos, vars = "Sex") # excluindo linhas com dados faltantes para a variável Sex
+dados_semNA <- remove_missing(lagartos, vars = "sexo") # excluindo linhas com dados faltantes para a variável Sex
 vis_miss(dados_semNA)
 dim(dados_semNA) # verificar as dimensões da tabela depois que os dados tiverem sido excluídos
 ```
@@ -551,10 +565,10 @@ Agora, seguindo o que já estamos acostumados a fazer, vamos vizualisar os dados
 
 ```{r fig-mod-inc-pre, fig.cap="Gráfico para explorar as relações entre as variáveis."}
 ## Gráfico
-ggplot(dados_semNA, aes(SVL, Tail_state)) +
-    geom_point(aes(shape = Sex, color = Sex), size = 4, alpha = 0.4) +
+ggplot(dados_semNA, aes(SVL, estado_cauda)) +
+    geom_point(aes(shape = sexo, colour = sexo), size = 4, alpha = 0.4) +
     geom_smooth(method = "glm", method.args = list(family = "binomial")) +
-    labs(y = "Estado da Cauda", x = "Comprimento Rostro-Cloacal (mm)") +
+    labs(y = "Estado da Cauda", x = "Comprimento Rostro-Cloacal (mm)", shape = "Sexo", colour = "Sexo") +
     tema_livro()
 ```
 
@@ -564,8 +578,8 @@ Aqui vamos construir dois modelos com a mesma distribuição binomial, mas com d
 
 ```{r}
 ## Modelos
-mod_log <- glm(Tail_state ~ SVL * Sex, data = dados_semNA, family = binomial(link = "logit"))
-mod_pro <- glm(Tail_state ~ SVL * Sex, data = dados_semNA, family = binomial(link = "probit"))
+mod_log <- glm(estado_cauda ~ SVL * sexo, data = dados_semNA, family = binomial(link = "logit"))
+mod_pro <- glm(estado_cauda ~ SVL * sexo, data = dados_semNA, family = binomial(link = "probit"))
 
 # Seleção de modelos
 AICctab(mod_log, mod_pro, nobs = 139)
@@ -630,15 +644,19 @@ Vamos explorar os dados (Figura \@ref(fig:fig-mod-zero-pre)).
 
 ```{r fig-mod-zero-pre, fig.cap="Gráfico para explorar as relações entre as variáveis."}
 ## Gráficos
-ggplot(parasitas, aes(Raillietiella_mottae)) +
-    geom_density(aes(fill = "red")) +
+ggplot(parasitas, aes(Raillietiella_mottae, fill = Especie)) +
+    geom_density(alpha = 0.4) +
     facet_grid(Especie ~ Sexo) +
+    scale_fill_manual(values = c("darkorange", "cyan4")) +
     tema_livro() +
     theme(legend.position = "none")
 
-ggplot(parasitas, aes(CRC, Raillietiella_mottae)) +
-    geom_point(size = 4, alpha = 0.4) +
+ggplot(parasitas, aes(CRC, Raillietiella_mottae, fill = Especie)) +
+    geom_point(size = 4, alpha = 0.4, shape = 21) +
     facet_grid(Sexo ~ Especie) +
+    scale_fill_manual(values = c("darkorange", "cyan4")) +
+    theme(legend.position = "none") +
+    labs(x = "Comprimento Rostro-Cloacal", y = expression(italic("Raillietiella mottae")))+
     tema_livro()
 ```
 
@@ -728,7 +746,9 @@ ggplot(parasitas, aes(x = CRC, y = phat, colour = Especie,
     geom_point(aes(y = Raillietiella_mottae), size = 4, 
                alpha = .7, position = position_jitter(h = .2)) +
     geom_line(size = 1) +
-    labs(x = "Comprimento Rostro-Cloacal", 
+    scale_fill_manual(values = c("darkorange", "cyan4")) +
+    scale_colour_manual(values = c("darkorange", "cyan4")) +
+       labs(x = "Comprimento Rostro-Cloacal", 
          y = expression(paste("Abundância de ", italic("Raillietiella mottae")))) +
     tema_livro()
 ```
@@ -757,20 +777,23 @@ A presença de noradrenalina causa a agregação dos pigmentos, permitindo que o
 cores <- read.csv2("https://ndownloader.figshare.com/files/10250700", header = TRUE)
 head(cores)
 
-## Filtrando dados - Red Male
-redmale <- filter(cores, Sex == "M")
-head(redmale)
+## Tradução dos nomes das colunas
+colnames(cores) <- c("animal", "tratamento", "tempo", "sexo", "preto", "vermelho")
+
+## Filtrando dados - macho vermelho
+macho_verm <- filter(cores, sexo == "M")
+head(macho_verm)
 ```
 
 Esses dados, no entanto, têm de ser codificados como um fator ordenado antes de entrarmos com eles no modelo.
 
 ```{r}
 ## Fator
-redmale$Animal <- factor(redmale$Animal)
-redmale$Red <- factor(redmale$Red, 
+macho_verm$animal <- factor(macho_verm$animal)
+macho_verm$vermelho_ord <- factor(macho_verm$vermelho, 
                       levels = c("1", "2", "3", "4", "5"), 
                       ordered = TRUE)
-str(redmale)
+str(macho_verm)
 ```
 
 Repare que a classe do objeto muda e temos agora que Red é um `Ordered factor`.
@@ -781,7 +804,7 @@ Vamos ajustar um modelo cumulative link, utilizando a função `clmm()` do pacot
 
 ```{r}
 ## Modelo
-mod3 <- clmm(Red ~ Treatment + Time + (1|Animal), data = redmale, threshold = "equidistant")
+mod3 <- clmm(vermelho_ord ~ tratamento + tempo + (1|animal), data = macho_verm, threshold = "equidistant")
 ```
 
 **Diagnose**
@@ -790,7 +813,7 @@ Infelizmente, o pacote `ordinal` não fornece métodos para lidar com modelos mi
 
 ```{r}
 ## Diagnose
-assumption3 <- clm(Red ~ Treatment + Time, data = redmale, threshold = "equidistant")
+assumption3 <- clm(vermelho_ord ~ tratamento + tempo, data = macho_verm, threshold = "equidistant")
 
 scale_test(assumption3)
 nominal_test(assumption3)
@@ -808,7 +831,7 @@ Vamos analisar os parâmetros do modelo.
 ## Coeficientes estimados pelo modelo
 summary(mod3)
 anova(assumption3)
-pairs(emmeans(mod3, ~ Treatment|Time, adjust = "tukey"))
+pairs(emmeans(mod3, ~ tratamento|tempo, adjust = "tukey"))
 ```
 
 Aqui vemos que tanto o tratamento, quanto o tempo de exposição foram significativos.
@@ -821,19 +844,17 @@ Vamos analisar a predição do modelo (Figura \@ref(fig:fig-mod-ord-model)).
 ## Gráfico
 
 # Calcular média e erro padrão
-redmale <- filter(cores, Sex == "M")
-
-redmale_summ <- summarySE(redmale, 
-                        measurevar = "Red",
-                        groupvars = c("Time", "Treatment"))
+macho_verm_res <- summarySE(macho_verm, 
+                        measurevar = "vermelho",
+                        groupvars = c("tempo", "tratamento"))
 
 # Definir posição de linhas e pontos no gráfico
 pd <- position_dodge(0.1)
 
-redmale_summ %>% 
-  ggplot(aes(x = Time, y = Red, colour = Treatment,
-             group = Treatment, fill = Treatment)) +
-  geom_errorbar(aes(ymin=Red-se, ymax=Red +se), 
+macho_verm_res %>% 
+  ggplot(aes(x = tempo, y = vermelho, colour = tratamento,
+             group = tratamento, fill = tratamento)) +
+  geom_errorbar(aes(ymin=vermelho-se, ymax=vermelho +se), 
                 width=.1, size = 1.1, position=pd) +
   geom_line(position=pd, size = 1.1) +
   geom_point(pch = 21, colour = "black", position=pd, size=3.5) +
@@ -852,6 +873,9 @@ Aqui vamos utilizar como exemplo os dados do artigo de [-@Franco-Belussi2018a]. 
 
 ```{r}
 head(fish)
+
+## Tradução dos nomes das colunas
+colnames(fish) <- c("animal", "tratamento", "tempo", "sexo", "preto", "vermelho")
 ```
 
 Esses dados contêm as variáveis resposta medidas no experimento: a quantidade de vermelho e preto. Além dos fatores manipulados: Tratamento (controle e presença de YOH) e tempo de exposição.
@@ -872,14 +896,15 @@ Para modelar os dados vamos utilizar a função `glmmTMB`. Antes disso, vamos an
 
 ```{r fig-mod-beta-pre, fig.cap="Gráfico para explorar a distribuição da variável resposta."}
 ## Filtrando os dados
-fish$Animal <- factor(fish$Animal)
-fish$Sex <- factor(fish$Sex)
-darknessmale <- dplyr::filter(fish, Sex == "M")
+fish$animal <- factor(fish$animal)
+fish$sexo <- factor(fish$sexo)
+macho_preto <- dplyr::filter(fish, sexo == "M")
 
 ## Gráfico
-ggplot(darknessmale, aes(Darkness/100)) +
-    geom_density(colour = "red", fill = "red") +
+ggplot(macho_preto, aes(preto/100)) +
+    geom_density(colour = "cyan4", fill = "cyan4", alpha = 0.4) +
     theme(legend.position = "none") +
+    labs(x = "Índice de escuridão do corpo")+
     tema_livro()
 ```
 
@@ -891,7 +916,7 @@ Vamos ajustar um GLM Beta.
 
 ```{r}
 ## Modelo
-mod2 <- glmmTMB(Darkness/100 ~ Treatment * Time + (1|Animal), family = beta_family, data = darknessmale)
+mod2 <- glmmTMB(preto/100 ~ tratamento * tempo + (1|animal), family = beta_family, data = macho_preto)
 ```
 
 **Diagnose**
@@ -919,7 +944,7 @@ Aqui vemos que a interação é significativa. Portanto, temos de interpretar os
 
 ```{r}
 ## níveis do fator da combinação
-pairs(emmeans(mod2, ~ Treatment|Time))
+pairs(emmeans(mod2, ~ tratamento|tempo))
 ```
 
 Agora podemos perceber que a diferença entre o controle e o tratado só passa a ser significativa depois de 1 h de exposição.
@@ -928,17 +953,17 @@ Isso fica mais evidente quando plotamos os dados (Figura \@ref(fig:fig-mod-beta-
 
 ```{r fig-mod-beta-model, fig.cap="Gráfico do modelo GLM beta."}
 ## Gráfico
-escuridao <- summarySE(darknessmale, 
-                        measurevar = "Darkness",
-                        groupvars = c("Time", "Treatment"))
+escuridao <- summarySE(macho_preto, 
+                        measurevar = "preto",
+                        groupvars = c("tempo", "tratamento"))
 
 # Definir posição de linhas e pontos no gráfico
 pd <- position_dodge(0.1)
 
 escuridao %>% 
-  ggplot(aes(x = Time, y = Darkness, colour = Treatment,
-             group = Treatment, fill = Treatment)) +
-  geom_errorbar(aes(ymin=Darkness-se, ymax=Darkness +se), 
+  ggplot(aes(x = tempo, y = preto, colour = tratamento,
+             group = tratamento, fill = tratamento)) +
+  geom_errorbar(aes(ymin=preto-se, ymax=preto +se), 
                 width=.1, size = 1.1, position=pd) +
   geom_line(position=pd, size = 1.1) +
   geom_point(pch = 21, colour = "black", position=pd, size=3.5) +
