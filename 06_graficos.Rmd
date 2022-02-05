@@ -17,7 +17,6 @@ penguins <- palmerpenguins::penguins
 ## Edição dos nomes das colunas para português 
 names(penguins)
 colnames(penguins) <- c("especies", "ilha", "comprimento_bico", "profundidade_bico", "comprimento_nadadeira", "massa_corporal", "sexo", "ano")
-
 ```
 
 ## Contextualização
@@ -178,7 +177,7 @@ ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
     theme_bw(base_size = 14) +
     labs(x = "Comprimento da nadadeira (mm)", 
-         y = "Frequência (%)", fill = "Espécies")
+         y = "Frequência absoluta", fill = "Espécies")
 ```
 
 **Principais camadas utilizadas na função `geom_histogram()`**
@@ -250,7 +249,7 @@ ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     scale_x_continuous(breaks = seq(from = 160, to = 240, by = 10), limits = c(160, 240)) +
     scale_y_continuous(breaks = seq(from = 0, to = .07, by = .01)) +
     theme_bw(base_size = 14) +
-    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência (%)", fill = "Espécies")
+    labs(x = "Comprimento da nadadeira (mm)", y = "Densidade", fill = "Espécies")
 ```
 
 **Principais camadas utilizadas na função `geom_density()`**
@@ -306,7 +305,7 @@ ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     scale_x_continuous(breaks = seq(from = 170, to = 240, by = 10), limits = c(170, 240)) +
     scale_y_continuous(breaks = seq(from = 0, to = 1.4, by = .2), limits = c(0, 1.4)) +
     theme_bw(base_size = 14) +
-    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência (%)", fill = "Espécies")
+    labs(x = "Comprimento da nadadeira (mm)", y = "Frequência", fill = "Espécies")
 ```
 
 ::: {.alert .alert-info}
@@ -442,7 +441,7 @@ penguins_prop <- penguins %>%
 ggplot(data = penguins_prop, aes(x = "", y = prop, fill = especies)) + 
     geom_bar(stat = "identity", color = "white") +
     geom_text(aes(label = paste0(prop, "%")), color = "white", 
-              position = position_stack(vjust = .5), size = 8) +
+              position = position_stack(vjust = .5), size = 6) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     coord_polar("y", start = 0) +
     theme_void() +
@@ -458,7 +457,7 @@ Gráfico de setores do tipo *donuts* (Figura \@ref(fig:fig-donut)).
 ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = especies)) +
     geom_bar(stat = "identity") +
     geom_text(aes(label = paste0(prop, "%")), color = "white",
-              position = position_stack(vjust = .5), size = 5) +
+              position = position_stack(vjust = .5), size = 4) +
     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
     xlim(0, 2.5) +
     coord_polar(theta = "y", start = 0) +
