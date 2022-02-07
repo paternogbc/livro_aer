@@ -613,9 +613,7 @@ Agora vamos verificar as premissas de normalidade e homogeneidade das variância
 
 ```{r fig-lm-multi-pre, fig.cap="Gráficos mostrando as premissas da regressão linear múltipla."}
 ## Normalidade e homogeneidade das variâncias
-par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
-plot(modelo_regressao_mul)
-dev.off()
+plot_grid(plot_model(modelo_regressao_mul , type = "diag"))
 ```
 
 Os resíduos apresentam distribuição normal e variâncias homogêneas.
@@ -839,9 +837,7 @@ Analisando o resultado do teste (P \> 0.05), a interação não é importante. E
 
 ```{r fig-lm-anova-fat-pre, fig.cap="Gráficos mostrando as premissas da ANOVA fatorial."}
 # Verificando as premissas do teste.
-par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
-plot(Modelo2)
-dev.off()
+plot_grid(plot_model(Modelo2, type = "diag"))
 ```
 
 Dois pontos estão fugindo da reta e chamam atenção sobre a normalidade da distribuição dos resíduos. A homogeneidade da variância está adequada. Por enquanto, vamos seguir a análise, mas veja o Capítulo \@ref(cap8) para entender como lidar com modelos que os resíduos não apresentam distribuição normal.
@@ -963,18 +959,15 @@ Olhando os dados usando a função `head()`.
 head(dados_bloco) 
 ```
 
-Há duas formas de incluir os efeitos dos blocos nos modelos.
+Análise da ANOVA em blocos.
 
 ```{r}
 ## Análise Anova em blocos aleatorizados
-model_bloco1 <- aov(Riqueza ~ Pocas + Blocos, data = dados_bloco)
-summary(model_bloco1)
-
 model_bloco2 <- aov(Riqueza ~ Pocas + Error(Blocos), data = dados_bloco)
 summary(model_bloco2)
 ```
 
-Percebam que as duas formas apresentam os mesmos resultados para o efeito da distância das poças que é o fator de interesse no estudo. Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
+Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
 
 O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a forma errada de analisar delineamento experimental com blocos.
 
