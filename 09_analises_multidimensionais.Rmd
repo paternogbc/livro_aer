@@ -171,7 +171,9 @@ distBocaina <- vegdist(x = sp_compos, method = "horn")
 dendro <- hclust(d = distBocaina, method = "average")
 
 ## Visualizar os resultados
-plot(dendro)
+plot(dendro, main = "Dendrograma", 
+     ylab = "Similaridade (índice de Horn)",
+     xlab="", sub="")
 ```
 
 **Assessando a qualidade do dendrograma**
@@ -188,7 +190,9 @@ Um coeficiente de correlação cofenética \> .7 indica uma boa representação.
 
 ```{r fig-dend-group, fig.cap="Dendrograma mostrando uma análise de agrupamento de anuros com uma linha de corte formando cinco grupos.", message=FALSE, warning=FALSE}
 ## Gráfico
-plot(dendro)
+plot(dendro, main = "Dendrograma", 
+     ylab = "Similaridade (índice de Horn)",
+     xlab="", sub="")
 k <- 4
 n <- ncol(sp_compos)
 MidPoint <- (dendro$height[n-k] + dendro$height[n-k+1]) / 2
@@ -215,7 +219,9 @@ bocaina_transf <- disttransform(t(sp_compos), "chord")
 ## Passo 2: realizar pvclust com método average e distância euclidiana
 analise <- pvclust(bocaina_transf, method.hclust = "average", method.dist = "euclidean", quiet = TRUE) 
 ## Passo 3: dendrograma
-plot(analise, hang = -1)
+plot(analise, hang=-1, main = "Dendrograma com valores de P", 
+     ylab = "Distância Euclideana",
+     xlab="", sub="")
 pvrect(analise)
 ```
 
@@ -229,7 +235,13 @@ bocaina_transf2 <- disttransform(t(bocaina), "hellinger")
 analise2 <- pvclust(bocaina_transf2, method.hclust="average", method.dist="euclidean", quiet = TRUE) 
 
 ## Passo 3: dendrograma
-plot(analise2, hang=-1)
+plot(analise2, hang=-1, main = "Dendrograma com valores de P", 
+     ylab = "Distância Euclideana",
+     xlab="", sub="")
+k <- 4
+n <- ncol(sp_compos)
+MidPoint <- (dendro$height[n-k] + dendro$height[n-k+1]) / 2
+abline(h = MidPoint, lty=2)
 pvrect(analise2)
 ```
 
