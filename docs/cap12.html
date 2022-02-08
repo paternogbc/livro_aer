@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R</title>
+  <meta name="description" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2022-02-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cap11.html"/>
+<link rel="next" href="cap13.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
+<li class="chapter" data-level="" data-path="revisores-e-colaboradores.html"><a href="revisores-e-colaboradores.html"><i class="fa fa-check"></i>Revisores e colaboradores</a></li>
+<li class="chapter" data-level="1" data-path="cap1.html"><a href="cap1.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="cap1.html"><a href="cap1.html#histórico-deste-livro"><i class="fa fa-check"></i><b>1.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="1.2" data-path="cap1.html"><a href="cap1.html#objetivo-deste-livro"><i class="fa fa-check"></i><b>1.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="1.3" data-path="cap1.html"><a href="cap1.html#o-que-você-não-encontrará-neste-livro"><i class="fa fa-check"></i><b>1.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="1.4" data-path="cap1.html"><a href="cap1.html#por-que-usar-o-r"><i class="fa fa-check"></i><b>1.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="1.5" data-path="cap1.html"><a href="cap1.html#indo-além-da-linguagem-de-progração-para-a-ecologia"><i class="fa fa-check"></i><b>1.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="1.6" data-path="cap1.html"><a href="cap1.html#como-usar-este-livro"><i class="fa fa-check"></i><b>1.6</b> Como usar este livro</a></li>
+<li class="chapter" data-level="1.7" data-path="cap1.html"><a href="cap1.html#como-ensinar-e-aprender-com-esse-livro"><i class="fa fa-check"></i><b>1.7</b> Como ensinar e aprender com esse livro</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="cap1.html"><a href="cap1.html#em-laboratórios-ou-grupos-de-pesquisa"><i class="fa fa-check"></i><b>1.7.1</b> Em laboratórios ou grupos de pesquisa</a></li>
+<li class="chapter" data-level="1.7.2" data-path="cap1.html"><a href="cap1.html#em-disciplinas-da-graduação-ou-pós-graduação"><i class="fa fa-check"></i><b>1.7.2</b> Em disciplinas da graduação ou pós-graduação</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cap2.html"><a href="cap2.html#introdução"><i class="fa fa-check"></i><b>2.1</b> Introdução</a></li>
+<li class="chapter" data-level="2.2" data-path="cap2.html"><a href="cap2.html#perguntas-devem-preceder-as-análises-estatísticas"><i class="fa fa-check"></i><b>2.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cap2.html"><a href="cap2.html#um-bestiárioperguntas_ecologia-1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>2.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cap2.html"><a href="cap2.html#fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas"><i class="fa fa-check"></i><b>2.3</b> Fluxograma: Conectando variáveis para melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="2.4" data-path="cap2.html"><a href="cap2.html#questões-fundamentais-em-etnobiologia-ecologia-e-conservação"><i class="fa fa-check"></i><b>2.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="2.5" data-path="cap2.html"><a href="cap2.html#considerações-finais"><i class="fa fa-check"></i><b>2.5</b> Considerações Finais</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cap3.html"><a href="cap3.html#introdução-1"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="cap3.html"><a href="cap3.html#instalação-do-r"><i class="fa fa-check"></i><b>3.2</b> Instalação do R</a></li>
+<li class="chapter" data-level="3.3" data-path="cap3.html"><a href="cap3.html#instalação-do-rstudio"><i class="fa fa-check"></i><b>3.3</b> Instalação do RStudio</a></li>
+<li class="chapter" data-level="3.4" data-path="cap3.html"><a href="cap3.html#versão-do-r"><i class="fa fa-check"></i><b>3.4</b> Versão do R</a></li>
+<li class="chapter" data-level="3.5" data-path="cap3.html"><a href="cap3.html#pacotes"><i class="fa fa-check"></i><b>3.5</b> Pacotes</a></li>
+<li class="chapter" data-level="3.6" data-path="cap3.html"><a href="cap3.html#dados"><i class="fa fa-check"></i><b>3.6</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap4.html"><a href="cap4.html#pré-requisitos-do-capítulo"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="cap4.html"><a href="cap4.html#contextualização"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="cap4.html"><a href="cap4.html#r-e-rstudio"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="cap4.html"><a href="cap4.html#funcionamento-da-linguagem-r"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="cap4.html"><a href="cap4.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cap4.html"><a href="cap4.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="cap4.html"><a href="cap4.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="cap4.html"><a href="cap4.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="cap4.html"><a href="cap4.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="cap4.html"><a href="cap4.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="cap4.html"><a href="cap4.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="cap4.html"><a href="cap4.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="cap4.html"><a href="cap4.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="cap4.html"><a href="cap4.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="cap4.html"><a href="cap4.html#estrutura-e-manipulação-de-objetos"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="cap4.html"><a href="cap4.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="cap4.html"><a href="cap4.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="cap4.html"><a href="cap4.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="cap4.html"><a href="cap4.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="cap4.html"><a href="cap4.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="cap4.html"><a href="cap4.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="cap4.html"><a href="cap4.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="cap4.html"><a href="cap4.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="cap4.html"><a href="cap4.html#exercícios"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+<li class="chapter" data-level="4.6" data-path="cap4.html"><a href="cap4.html#para-se-aprofundar"><i class="fa fa-check"></i><b>4.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="cap4.html"><a href="cap4.html#livros"><i class="fa fa-check"></i><b>4.6.1</b> Livros</a></li>
+<li class="chapter" data-level="4.6.2" data-path="cap4.html"><a href="cap4.html#links"><i class="fa fa-check"></i><b>4.6.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap5.html"><a href="cap5.html#pré-requisitos-do-capítulo-1"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="cap5.html"><a href="cap5.html#contextualização-1"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="cap5.html"><a href="cap5.html#tidyverse"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="cap5.html"><a href="cap5.html#here"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="cap5.html"><a href="cap5.html#readr-readxl-e-writexl"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="cap5.html"><a href="cap5.html#tibble"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="cap5.html"><a href="cap5.html#magrittr-pipe--"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="cap5.html"><a href="cap5.html#tidyr"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="cap5.html"><a href="cap5.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="cap5.html"><a href="cap5.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="cap5.html"><a href="cap5.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="cap5.html"><a href="cap5.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="cap5.html"><a href="cap5.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="cap5.html"><a href="cap5.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="cap5.html"><a href="cap5.html#dplyr"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="cap5.html"><a href="cap5.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="cap5.html"><a href="cap5.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="cap5.html"><a href="cap5.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="cap5.html"><a href="cap5.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="cap5.html"><a href="cap5.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="cap5.html"><a href="cap5.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="cap5.html"><a href="cap5.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="cap5.html"><a href="cap5.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="cap5.html"><a href="cap5.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="cap5.html"><a href="cap5.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="cap5.html"><a href="cap5.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="cap5.html"><a href="cap5.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="cap5.html"><a href="cap5.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="cap5.html"><a href="cap5.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="cap5.html"><a href="cap5.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="cap5.html"><a href="cap5.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="cap5.html"><a href="cap5.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="cap5.html"><a href="cap5.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="cap5.html"><a href="cap5.html#stringr"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="cap5.html"><a href="cap5.html#forcats"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="cap5.html"><a href="cap5.html#lubridate"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="cap5.html"><a href="cap5.html#purrr"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="cap5.html"><a href="cap5.html#exercícios-1"><i class="fa fa-check"></i><b>5.13</b> Exercícios</a></li>
+<li class="chapter" data-level="5.14" data-path="cap5.html"><a href="cap5.html#para-se-aprofundar-1"><i class="fa fa-check"></i><b>5.14</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="5.14.1" data-path="cap5.html"><a href="cap5.html#livros-1"><i class="fa fa-check"></i><b>5.14.1</b> Livros</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Visualização de dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap6.html"><a href="cap6.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#contextualização-2"><i class="fa fa-check"></i><b>6.1</b> Contextualização</a></li>
+<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.2</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.3</b> Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.4</b> Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.4.1</b> Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.4.2</b> Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cap6.html"><a href="cap6.html#diagrama-de-pontos-dot-plot"><i class="fa fa-check"></i><b>6.4.3</b> Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cap6.html"><a href="cap6.html#gráfico-de-barras-bar-plot"><i class="fa fa-check"></i><b>6.4.4</b> Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.4.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.4.5</b> Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.4.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.4.6</b> Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.7" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.4.7</b> Gráfico de dispersão (<em>scatter plot</em>)</a></li>
+<li class="chapter" data-level="6.4.8" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.4.8</b> Visualização de múltiplos gráficos pareados</a></li>
+<li class="chapter" data-level="6.4.9" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.4.9</b> Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.5</b> Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.5.1</b> Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-gride"><i class="fa fa-check"></i><b>6.5.2</b> Elementos gráficos: eixo, fonte, gride</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme"><i class="fa fa-check"></i><b>6.5.3</b> Temas personalizados <code>ggtheme()</code></a></li>
+<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.5.4</b> Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.5.5</b> Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#livros-2"><i class="fa fa-check"></i><b>6.6.1</b> Livros</a></li>
+<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#links-1"><i class="fa fa-check"></i><b>6.6.2</b> Links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="cap7.html"><a href="cap7.html#teste-t-de-student-para-duas-amostras-independentes"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="cap7.html"><a href="cap7.html#teste-t-para-amostras-pareadas"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="cap7.html"><a href="cap7.html#correlação-de-pearson"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="cap7.html"><a href="cap7.html#regressão-linear-simples"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="cap7.html"><a href="cap7.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="cap7.html"><a href="cap7.html#análises-de-variância-anova"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="cap7.html"><a href="cap7.html#anova-de-um-fator"><i class="fa fa-check"></i><b>7.6.1</b> ANOVA de um fator</a></li>
+<li class="chapter" data-level="7.6.2" data-path="cap7.html"><a href="cap7.html#anova-com-dois-fatores-ou-anova-fatorial"><i class="fa fa-check"></i><b>7.6.2</b> ANOVA com dois fatores ou ANOVA fatorial</a></li>
+<li class="chapter" data-level="7.6.3" data-path="cap7.html"><a href="cap7.html#anova-em-blocos-aleatorizados"><i class="fa fa-check"></i><b>7.6.3</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.6.4" data-path="cap7.html"><a href="cap7.html#análise-de-covariância-ancova"><i class="fa fa-check"></i><b>7.6.4</b> Análise de covariância (ANCOVA)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="cap7.html"><a href="cap7.html#generalized-least-squares-gls"><i class="fa fa-check"></i><b>7.7</b> Generalized Least Squares (GLS)</a></li>
+<li class="chapter" data-level="7.8" data-path="cap7.html"><a href="cap7.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.8</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Modelos Lineares Generalizados</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
+<li class="chapter" data-level="8.2" data-path="cap8.html"><a href="cap8.html#como-um-glm-funciona"><i class="fa fa-check"></i><b>8.2</b> Como um GLM funciona?</a></li>
+<li class="chapter" data-level="8.3" data-path="cap8.html"><a href="cap8.html#como-escolher-a-distribuição-correta-para-seus-dados"><i class="fa fa-check"></i><b>8.3</b> Como escolher a distribuição correta para seus dados?</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="cap8.html"><a href="cap8.html#para-dados-contínuos"><i class="fa fa-check"></i><b>8.3.1</b> Para dados contínuos</a></li>
+<li class="chapter" data-level="8.3.2" data-path="cap8.html"><a href="cap8.html#para-dados-de-contagem"><i class="fa fa-check"></i><b>8.3.2</b> Para dados de contagem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-a-distribuição-de-poisson"><i class="fa fa-check"></i><b>8.4</b> Dados de contagem: a distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="cap8.html"><a href="cap8.html#o-que-causa-a-overdispersion"><i class="fa fa-check"></i><b>8.4.1</b> O que causa a <em>overdispersion</em>?</a></li>
+<li class="chapter" data-level="8.4.2" data-path="cap8.html"><a href="cap8.html#o-que-fazer-se-seu-modelo-tiver-overdispersion"><i class="fa fa-check"></i><b>8.4.2</b> O que fazer se seu modelo tiver <em>overdispersion</em>?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-modelos-quasi-likelihood"><i class="fa fa-check"></i><b>8.5</b> Dados de contagem: modelos quasi-likelihood</a></li>
+<li class="chapter" data-level="8.6" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-a-distribuição-binomial"><i class="fa fa-check"></i><b>8.6</b> Dados de contagem: a distribuição binomial</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="cap8.html"><a href="cap8.html#análise-com-dados-de-proporção"><i class="fa fa-check"></i><b>8.6.1</b> Análise com dados de proporção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="cap8.html"><a href="cap8.html#análise-com-dados-de-incidência"><i class="fa fa-check"></i><b>8.7</b> Análise com dados de incidência</a></li>
+<li class="chapter" data-level="8.8" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-com-excesso-de-zeros"><i class="fa fa-check"></i><b>8.8</b> Dados de contagem com excesso de zeros</a></li>
+<li class="chapter" data-level="8.9" data-path="cap8.html"><a href="cap8.html#dados-ordinais-os-modelos-cumulative-link"><i class="fa fa-check"></i><b>8.9</b> Dados ordinais: os modelos cumulative link</a></li>
+<li class="chapter" data-level="8.10" data-path="cap8.html"><a href="cap8.html#dados-contínuos-distribuição-beta"><i class="fa fa-check"></i><b>8.10</b> Dados contínuos: distribuição beta</a></li>
+<li class="chapter" data-level="8.11" data-path="cap8.html"><a href="cap8.html#para-se-aprofundar-4"><i class="fa fa-check"></i><b>8.11</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cap9.html"><a href="cap9.html"><i class="fa fa-check"></i><b>9</b> Análises Multidimensionais</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="9.1" data-path="cap9.html"><a href="cap9.html#aspectos-teóricos"><i class="fa fa-check"></i><b>9.1</b> Aspectos teóricos</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cap9.html"><a href="cap9.html#coeficientes-de-associação"><i class="fa fa-check"></i><b>9.1.1</b> Coeficientes de associação</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cap9.html"><a href="cap9.html#métricas-de-distância"><i class="fa fa-check"></i><b>9.1.2</b> Métricas de distância</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cap9.html"><a href="cap9.html#análises-de-agrupamento"><i class="fa fa-check"></i><b>9.2</b> Análises de agrupamento</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cap9.html"><a href="cap9.html#agrupamento-hierárquico"><i class="fa fa-check"></i><b>9.2.1</b> Agrupamento hierárquico</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cap9.html"><a href="cap9.html#agrupamento-não-hierárquico-k-means"><i class="fa fa-check"></i><b>9.2.2</b> Agrupamento não-hierárquico (<em>K-means</em>)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cap9.html"><a href="cap9.html#espécies-indicadoras"><i class="fa fa-check"></i><b>9.2.3</b> Espécies indicadoras</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cap9.html"><a href="cap9.html#análises-de-ordenação"><i class="fa fa-check"></i><b>9.3</b> Análises de Ordenação</a></li>
+<li class="chapter" data-level="9.4" data-path="cap9.html"><a href="cap9.html#ordenação-irrestrira"><i class="fa fa-check"></i><b>9.4</b> Ordenação irrestrira</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="cap9.html"><a href="cap9.html#análise-de-componentes-principais-pca"><i class="fa fa-check"></i><b>9.4.1</b> Análise de Componentes Principais (PCA)</a></li>
+<li class="chapter" data-level="9.4.2" data-path="cap9.html"><a href="cap9.html#análises-de-coordenadas-principais-pcoa"><i class="fa fa-check"></i><b>9.4.2</b> Análises de Coordenadas Principais (PCoA)</a></li>
+<li class="chapter" data-level="9.4.3" data-path="cap9.html"><a href="cap9.html#regressão-de-componentes-principais-pcr"><i class="fa fa-check"></i><b>9.4.3</b> Regressão de Componentes Principais (PCR)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="cap9.html"><a href="cap9.html#ordenação-restrita"><i class="fa fa-check"></i><b>9.5</b> Ordenação restrita</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-rda"><i class="fa fa-check"></i><b>9.5.1</b> Análise de Redundância (RDA)</a></li>
+<li class="chapter" data-level="9.5.2" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-parcial-rdap"><i class="fa fa-check"></i><b>9.5.2</b> Análise de Redundância parcial (RDAp)</a></li>
+<li class="chapter" data-level="9.5.3" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-baseada-em-distância-db-rda"><i class="fa fa-check"></i><b>9.5.3</b> Análise de Redundância baseada em distância (db-RDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="cap9.html"><a href="cap9.html#permanova"><i class="fa fa-check"></i><b>9.6</b> PERMANOVA</a></li>
+<li class="chapter" data-level="9.7" data-path="cap9.html"><a href="cap9.html#mantel-e-mantel-parcial"><i class="fa fa-check"></i><b>9.7</b> Mantel e Mantel parcial</a></li>
+<li class="chapter" data-level="9.8" data-path="cap9.html"><a href="cap9.html#mantel-espacial-com-modelo-nulo-restrito-considerando-autocorrelação-espacial"><i class="fa fa-check"></i><b>9.8</b> Mantel espacial com modelo nulo restrito considerando autocorrelação espacial</a></li>
+<li class="chapter" data-level="9.9" data-path="cap9.html"><a href="cap9.html#procrustes-e-protest"><i class="fa fa-check"></i><b>9.9</b> PROCRUSTES e PROTEST</a></li>
+<li class="chapter" data-level="9.10" data-path="cap9.html"><a href="cap9.html#métodos-multivariados-baseados-em-modelos"><i class="fa fa-check"></i><b>9.10</b> Métodos multivariados baseados em modelos</a></li>
+<li class="chapter" data-level="9.11" data-path="cap9.html"><a href="cap9.html#para-se-aprofundar-5"><i class="fa fa-check"></i><b>9.11</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cap10.html"><a href="cap10.html"><i class="fa fa-check"></i><b>10</b> Rarefação</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="10.1" data-path="cap10.html"><a href="cap10.html#aspectos-teóricos-1"><i class="fa fa-check"></i><b>10.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="10.2" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-no-indivíduo-individual-based"><i class="fa fa-check"></i><b>10.2</b> Curva de rarefação baseada no indivíduo (<em>individual-based</em>)</a></li>
+<li class="chapter" data-level="10.3" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-em-amostras-sample-based"><i class="fa fa-check"></i><b>10.3</b> Curva de rarefação baseada em amostras (<em>sample-based</em>)</a></li>
+<li class="chapter" data-level="10.4" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-coverage-based"><i class="fa fa-check"></i><b>10.4</b> Curva de rarefação <em>coverage-based</em></a></li>
+<li class="chapter" data-level="10.5" data-path="cap10.html"><a href="cap10.html#para-se-aprofundar-6"><i class="fa fa-check"></i><b>10.5</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cap11.html"><a href="cap11.html"><i class="fa fa-check"></i><b>11</b> Estimadores de riqueza</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="11.1" data-path="cap11.html"><a href="cap11.html#aspectos-teóricos-2"><i class="fa fa-check"></i><b>11.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="11.2" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-abundância-das-espécies"><i class="fa fa-check"></i><b>11.2</b> Estimadores baseados na abundância das espécies</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="cap11.html"><a href="cap11.html#chao-1"><i class="fa fa-check"></i><b>11.2.1</b> CHAO 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="cap11.html"><a href="cap11.html#ace---abundance-based-coverage-estimador"><i class="fa fa-check"></i><b>11.2.2</b> ACE - <em>Abundance-based Coverage Estimador</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-incidência-das-espécies"><i class="fa fa-check"></i><b>11.3</b> Estimadores baseados na incidência das espécies</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="cap11.html"><a href="cap11.html#chao-2"><i class="fa fa-check"></i><b>11.3.1</b> CHAO 2</a></li>
+<li class="chapter" data-level="11.3.2" data-path="cap11.html"><a href="cap11.html#jackknife-1"><i class="fa fa-check"></i><b>11.3.2</b> JACKKNIFE 1</a></li>
+<li class="chapter" data-level="11.3.3" data-path="cap11.html"><a href="cap11.html#jackknife-2"><i class="fa fa-check"></i><b>11.3.3</b> JACKKNIFE 2</a></li>
+<li class="chapter" data-level="11.3.4" data-path="cap11.html"><a href="cap11.html#bootstrap"><i class="fa fa-check"></i><b>11.3.4</b> BOOTSTRAP</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="cap11.html"><a href="cap11.html#interpolação-e-extrapolação-baseadas-em-rarefação-usando-amostragens-de-incidência-ou-abundância"><i class="fa fa-check"></i><b>11.4</b> Interpolação e extrapolação baseadas em rarefação usando amostragens de incidência ou abundância</a></li>
+<li class="chapter" data-level="11.5" data-path="cap11.html"><a href="cap11.html#para-se-aprofundar-7"><i class="fa fa-check"></i><b>11.5</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cap12.html"><a href="cap12.html"><i class="fa fa-check"></i><b>12</b> Diversidade Taxonômica</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="12.1" data-path="cap12.html"><a href="cap12.html#aspectos-teóricos-3"><i class="fa fa-check"></i><b>12.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="12.2" data-path="cap12.html"><a href="cap12.html#diversidade-alfa"><i class="fa fa-check"></i><b>12.2</b> Diversidade alfa</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="cap12.html"><a href="cap12.html#riqueza-de-espécies-ou-número-de-espécies"><i class="fa fa-check"></i><b>12.2.1</b> Riqueza de espécies ou número de espécies</a></li>
+<li class="chapter" data-level="12.2.2" data-path="cap12.html"><a href="cap12.html#diversidade-de-espécies"><i class="fa fa-check"></i><b>12.2.2</b> Diversidade de espécies</a></li>
+<li class="chapter" data-level="12.2.3" data-path="cap12.html"><a href="cap12.html#diagramas-de-whittaker-ou-curva-de-dominância"><i class="fa fa-check"></i><b>12.2.3</b> Diagramas de Whittaker ou Curva de Dominância</a></li>
+<li class="chapter" data-level="12.2.4" data-path="cap12.html"><a href="cap12.html#curvas-de-distribuição-de-abundâncias"><i class="fa fa-check"></i><b>12.2.4</b> Curvas de distribuição de abundâncias</a></li>
+<li class="chapter" data-level="12.2.5" data-path="cap12.html"><a href="cap12.html#números-de-hill-ou-série-de-hill"><i class="fa fa-check"></i><b>12.2.5</b> Números de Hill ou Série de Hill</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="cap12.html"><a href="cap12.html#diversidade-beta"><i class="fa fa-check"></i><b>12.3</b> Diversidade beta</a></li>
+<li class="chapter" data-level="12.4" data-path="cap12.html"><a href="cap12.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>12.4</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cap13.html"><a href="cap13.html"><i class="fa fa-check"></i><b>13</b> Diversidade Filogenética</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="13.1" data-path="cap13.html"><a href="cap13.html#aspectos-teóricos-4"><i class="fa fa-check"></i><b>13.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="13.2" data-path="cap13.html"><a href="cap13.html#manipulação-de-filogenias"><i class="fa fa-check"></i><b>13.2</b> Manipulação de filogenias</a></li>
+<li class="chapter" data-level="13.3" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3</b> Métricas de diversidade alfa filogenética</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="cap13.html"><a href="cap13.html#riqueza-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.1</b> Riqueza da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.2" data-path="cap13.html"><a href="cap13.html#divergência-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.2</b> Divergência da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.3" data-path="cap13.html"><a href="cap13.html#regularidade-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.3</b> Regularidade da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.4" data-path="cap13.html"><a href="cap13.html#correlação-entre-as-métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.4</b> Correlação entre as métricas de diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.5" data-path="cap13.html"><a href="cap13.html#associação-entre-a-diversidade-alfa-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.3.5</b> Associação entre a diversidade alfa filogenética e o ambiente</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4</b> Métricas de diversidade beta filogenética</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="cap13.html"><a href="cap13.html#divergência-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.1</b> Divergência da diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.2" data-path="cap13.html"><a href="cap13.html#correlação-entre-as-métricas-de-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.2</b> Correlação entre as métricas de diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.3" data-path="cap13.html"><a href="cap13.html#associação-entre-a-divergência-da-diversidade-beta-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.4.3</b> Associação entre a divergência da diversidade beta filogenética e o ambiente</a></li>
+<li class="chapter" data-level="13.4.4" data-path="cap13.html"><a href="cap13.html#riqueza-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.4</b> Riqueza da diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.5" data-path="cap13.html"><a href="cap13.html#correlação-entre-phylosor-e-unifrac"><i class="fa fa-check"></i><b>13.4.5</b> Correlação entre Phylosor e Unifrac</a></li>
+<li class="chapter" data-level="13.4.6" data-path="cap13.html"><a href="cap13.html#associação-entre-a-riqueza-da-diversidade-beta-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.4.6</b> Associação entre a riqueza da diversidade beta filogenética e o ambiente</a></li>
+<li class="chapter" data-level="13.4.7" data-path="cap13.html"><a href="cap13.html#partição-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.7</b> Partição da diversidade beta filogenética</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="cap13.html"><a href="cap13.html#modelos-nulos"><i class="fa fa-check"></i><b>13.5</b> Modelos Nulos</a></li>
+<li class="chapter" data-level="13.6" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-9"><i class="fa fa-check"></i><b>13.6</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-10"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alfa"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alfa)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+<li class="chapter" data-level="14.3.4" data-path="cap14.html"><a href="cap14.html#correlação-entre-as-métricas-de-diversidade-funcional-alfa"><i class="fa fa-check"></i><b>14.3.4</b> Correlação entre as métricas de diversidade funcional (alfa)</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#composição-funcional-community-wegihed-means---cwm"><i class="fa fa-check"></i><b>14.5</b> Composição Funcional (<em>Community Wegihed Means</em> - CWM)</a></li>
+<li class="chapter" data-level="14.6" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.6</b> Variação Intraspecífica</a></li>
+<li class="chapter" data-level="14.7" data-path="cap14.html"><a href="cap14.html#para-se-aprofundar-10"><i class="fa fa-check"></i><b>14.7</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cap15.html"><a href="cap15.html"><i class="fa fa-check"></i><b>15</b> Dados geoespaciais no R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap15.html"><a href="cap15.html#pré-requisitos-do-capítulo-11"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="15.1" data-path="cap15.html"><a href="cap15.html#contextualização-3"><i class="fa fa-check"></i><b>15.1</b> Contextualização</a></li>
+<li class="chapter" data-level="15.2" data-path="cap15.html"><a href="cap15.html#vetor"><i class="fa fa-check"></i><b>15.2</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cap15.html"><a href="cap15.html#sf-principal-pacote-no-r-para-dados-vetoriais"><i class="fa fa-check"></i><b>15.2.1</b> sf: principal pacote no R para dados vetoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="cap15.html"><a href="cap15.html#raster"><i class="fa fa-check"></i><b>15.3</b> Raster</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="cap15.html"><a href="cap15.html#raster-principal-pacote-no-r-para-dados-raster"><i class="fa fa-check"></i><b>15.3.1</b> raster: principal pacote no R para dados raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-e-unidades"><i class="fa fa-check"></i><b>15.4</b> Sistema de Referência de Coordenadas e Unidades</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-geográficas"><i class="fa fa-check"></i><b>15.4.1</b> Sistema de Coordenadas Geográficas</a></li>
+<li class="chapter" data-level="15.4.2" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-projetadas"><i class="fa fa-check"></i><b>15.4.2</b> Sistema de Coordenadas Projetadas</a></li>
+<li class="chapter" data-level="15.4.3" data-path="cap15.html"><a href="cap15.html#datum"><i class="fa fa-check"></i><b>15.4.3</b> Datum</a></li>
+<li class="chapter" data-level="15.4.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-crs-no-r"><i class="fa fa-check"></i><b>15.4.4</b> Sistema de Referência de Coordenadas (CRS) no R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="cap15.html"><a href="cap15.html#principais-fontes-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.5</b> Principais fontes de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="cap15.html"><a href="cap15.html#vetor-1"><i class="fa fa-check"></i><b>15.5.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.5.2" data-path="cap15.html"><a href="cap15.html#raster-1"><i class="fa fa-check"></i><b>15.5.2</b> Raster</a></li>
+<li class="chapter" data-level="15.5.3" data-path="cap15.html"><a href="cap15.html#pacotes-do-r"><i class="fa fa-check"></i><b>15.5.3</b> Pacotes do R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="cap15.html"><a href="cap15.html#importar-e-exportar-dados-geoespaciais"><i class="fa fa-check"></i><b>15.6</b> Importar e exportar dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="cap15.html"><a href="cap15.html#principais-formatos-de-arquivos-geoespaciais"><i class="fa fa-check"></i><b>15.6.1</b> Principais formatos de arquivos geoespaciais</a></li>
+<li class="chapter" data-level="15.6.2" data-path="cap15.html"><a href="cap15.html#importar-dados-1"><i class="fa fa-check"></i><b>15.6.2</b> Importar dados</a></li>
+<li class="chapter" data-level="15.6.3" data-path="cap15.html"><a href="cap15.html#exportar-dados-1"><i class="fa fa-check"></i><b>15.6.3</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="cap15.html"><a href="cap15.html#descrição-de-objetos-geoespaciais"><i class="fa fa-check"></i><b>15.7</b> Descrição de objetos geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.7.1" data-path="cap15.html"><a href="cap15.html#vetor-2"><i class="fa fa-check"></i><b>15.7.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.7.2" data-path="cap15.html"><a href="cap15.html#raster-2"><i class="fa fa-check"></i><b>15.7.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="cap15.html"><a href="cap15.html#reprojeção-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.8</b> Reprojeção de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="cap15.html"><a href="cap15.html#vetor-3"><i class="fa fa-check"></i><b>15.8.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.8.2" data-path="cap15.html"><a href="cap15.html#raster-3"><i class="fa fa-check"></i><b>15.8.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="cap15.html"><a href="cap15.html#principais-operações-com-dados-geoespaciais"><i class="fa fa-check"></i><b>15.9</b> Principais operações com dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="cap15.html"><a href="cap15.html#operações-de-atributos"><i class="fa fa-check"></i><b>15.9.1</b> Operações de atributos</a></li>
+<li class="chapter" data-level="15.9.2" data-path="cap15.html"><a href="cap15.html#operações-espaciais"><i class="fa fa-check"></i><b>15.9.2</b> Operações espaciais</a></li>
+<li class="chapter" data-level="15.9.3" data-path="cap15.html"><a href="cap15.html#operações-geométricas"><i class="fa fa-check"></i><b>15.9.3</b> Operações geométricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="cap15.html"><a href="cap15.html#visualização-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.10</b> Visualização de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="cap15.html"><a href="cap15.html#principais-elementos-de-um-mapa"><i class="fa fa-check"></i><b>15.10.1</b> Principais elementos de um mapa</a></li>
+<li class="chapter" data-level="15.10.2" data-path="cap15.html"><a href="cap15.html#principais-pacotes-para-a-composição-de-mapas"><i class="fa fa-check"></i><b>15.10.2</b> Principais pacotes para a composição de mapas</a></li>
+<li class="chapter" data-level="15.10.3" data-path="cap15.html"><a href="cap15.html#mapas-estáticos"><i class="fa fa-check"></i><b>15.10.3</b> Mapas estáticos</a></li>
+<li class="chapter" data-level="15.10.4" data-path="cap15.html"><a href="cap15.html#mapas-animados"><i class="fa fa-check"></i><b>15.10.4</b> Mapas animados</a></li>
+<li class="chapter" data-level="15.10.5" data-path="cap15.html"><a href="cap15.html#mapas-interativos"><i class="fa fa-check"></i><b>15.10.5</b> Mapas interativos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.11" data-path="cap15.html"><a href="cap15.html#exemplos-de-aplicações-de-análises-geoespaciais-para-dados-ecológicos"><i class="fa fa-check"></i><b>15.11</b> Exemplos de aplicações de análises geoespaciais para dados ecológicos</a>
+<ul>
+<li class="chapter" data-level="15.11.1" data-path="cap15.html"><a href="cap15.html#resumir-informações-de-biodiversidade-para-unidades-espaciais"><i class="fa fa-check"></i><b>15.11.1</b> Resumir informações de biodiversidade para unidades espaciais</a></li>
+<li class="chapter" data-level="15.11.2" data-path="cap15.html"><a href="cap15.html#extrair-dados-raster-para-pontos"><i class="fa fa-check"></i><b>15.11.2</b> Extrair dados raster para pontos</a></li>
+<li class="chapter" data-level="15.11.3" data-path="cap15.html"><a href="cap15.html#resumir-dados-de-rasters-para-buffers"><i class="fa fa-check"></i><b>15.11.3</b> Resumir dados de rasters para buffers</a></li>
+<li class="chapter" data-level="15.11.4" data-path="cap15.html"><a href="cap15.html#predições-espaciais-de-objetos-raster"><i class="fa fa-check"></i><b>15.11.4</b> Predições espaciais de objetos raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.12" data-path="cap15.html"><a href="cap15.html#exercícios-2"><i class="fa fa-check"></i><b>15.12</b> Exercícios</a></li>
+<li class="chapter" data-level="15.13" data-path="cap15.html"><a href="cap15.html#para-se-aprofundar-11"><i class="fa fa-check"></i><b>15.13</b> Para se aprofundar</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a>
+<ul>
+<li class="chapter" data-level="15.14" data-path="glossário.html"><a href="glossário.html#descrição"><i class="fa fa-check"></i><b>15.14</b> Descrição</a>
+<ul>
+<li class="chapter" data-level="15.14.1" data-path="glossário.html"><a href="glossário.html#capítulo-4"><i class="fa fa-check"></i><b>15.14.1</b> Capítulo 4</a></li>
+<li class="chapter" data-level="15.14.2" data-path="glossário.html"><a href="glossário.html#capítulo-5"><i class="fa fa-check"></i><b>15.14.2</b> Capítulo 5</a></li>
+<li class="chapter" data-level="15.14.3" data-path="glossário.html"><a href="glossário.html#capítulo-6"><i class="fa fa-check"></i><b>15.14.3</b> Capítulo 6</a></li>
+<li class="chapter" data-level="15.14.4" data-path="glossário.html"><a href="glossário.html#capítulo-7"><i class="fa fa-check"></i><b>15.14.4</b> Capítulo 7</a></li>
+<li class="chapter" data-level="15.14.5" data-path="glossário.html"><a href="glossário.html#capítulo-8"><i class="fa fa-check"></i><b>15.14.5</b> Capítulo 8</a></li>
+<li class="chapter" data-level="15.14.6" data-path="glossário.html"><a href="glossário.html#capítulo-9"><i class="fa fa-check"></i><b>15.14.6</b> Capítulo 9</a></li>
+<li class="chapter" data-level="15.14.7" data-path="glossário.html"><a href="glossário.html#capítulo-10"><i class="fa fa-check"></i><b>15.14.7</b> Capítulo 10</a></li>
+<li class="chapter" data-level="15.14.8" data-path="glossário.html"><a href="glossário.html#capítulo-11"><i class="fa fa-check"></i><b>15.14.8</b> Capítulo 11</a></li>
+<li class="chapter" data-level="15.14.9" data-path="glossário.html"><a href="glossário.html#capítulo-12"><i class="fa fa-check"></i><b>15.14.9</b> Capítulo 12</a></li>
+<li class="chapter" data-level="15.14.10" data-path="glossário.html"><a href="glossário.html#capítulo-13"><i class="fa fa-check"></i><b>15.14.10</b> Capítulo 13</a></li>
+<li class="chapter" data-level="15.14.11" data-path="glossário.html"><a href="glossário.html#capítulo-14"><i class="fa fa-check"></i><b>15.14.11</b> Capítulo 14</a></li>
+<li class="chapter" data-level="15.14.12" data-path="glossário.html"><a href="glossário.html#capítulo-15"><i class="fa fa-check"></i><b>15.14.12</b> Capítulo 15</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cap12" class="section level1" number="12">
+<h1><span class="header-section-number">Capítulo 12</span> Diversidade Taxonômica</h1>
+<div id="pré-requisitos-do-capítulo-8" class="section level2 unnumbered">
+<h2>Pré-requisitos do capítulo</h2>
+<p>Pacotes e dados que serão utilizados nesse capítulo.</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="cap12.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Pacotes</span></span>
+<span id="cb437-2"><a href="cap12.html#cb437-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb437-3"><a href="cap12.html#cb437-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecodados)</span>
+<span id="cb437-4"><a href="cap12.html#cb437-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (vegan)</span>
+<span id="cb437-5"><a href="cap12.html#cb437-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb437-6"><a href="cap12.html#cb437-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiodiversityR)</span>
+<span id="cb437-7"><a href="cap12.html#cb437-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hillR)</span>
+<span id="cb437-8"><a href="cap12.html#cb437-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(betapart)</span>
+<span id="cb437-9"><a href="cap12.html#cb437-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb437-10"><a href="cap12.html#cb437-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados</span></span>
+<span id="cb437-11"><a href="cap12.html#cb437-11" aria-hidden="true" tabindex="-1"></a>composicao_especies <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>composicao_anuros_div_taxonomica</span>
+<span id="cb437-12"><a href="cap12.html#cb437-12" aria-hidden="true" tabindex="-1"></a>precipitacao        <span class="ot">&lt;-</span> ecodados<span class="sc">::</span>precipitacao_div_taxonomica</span></code></pre></div>
+</div>
+<div id="aspectos-teóricos-3" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Aspectos teóricos</h2>
+<p>A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.) <span class="citation">(<a href="#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>, <a href="#ref-gotelli2013" role="doc-biblioref">Gotelli and Chao 2013</a>)</span>. Whittaker <span class="citation">(<a href="#ref-whittaker1960" role="doc-biblioref">1960</a>, <a href="#ref-whittaker1972" role="doc-biblioref">1972</a>)</span> particionou a diversidade em três componentes: i) diversidade alfa que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) diversidade beta que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) diversidade gama que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.</p>
+<p>Neste capítulo, iremos abordar a diversidade taxonômica que ignora a relação de parentesco entre as espécies (e.g. diversidade filogenética - Capítulo <a href="cap13.html#cap13">13</a>) e as diferentes funções que as espécies realizam no ecossistema (e.g. diversidade funcional - Capítulo <a href="cap14.html#cap14">14</a>). Na diversidade taxonômica, pesquisadores estão interessados na riqueza de espécies (e.g. número de espécies), na distribuição de abundância das espécies (e.g. fato que algumas espécies são comuns e outras raras) e/ou diversidade de espécies (e.g. índices que descrevem a relação entre a riqueza e a distribuição da abundância relativa das espécies) nas localidades.</p>
+</div>
+<div id="diversidade-alfa" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Diversidade alfa</h2>
+<div id="riqueza-de-espécies-ou-número-de-espécies" class="section level3" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Riqueza de espécies ou número de espécies</h3>
+<p>Riqueza de espécies é uma métrica intuitiva e de fácil compreensão, uma vez que se refere ao número de espécies observadas em uma localidade. É importante ter em mente que a riqueza de espécies é influenciada pelo esforço amostral e sua estimativa real é um imenso desafio <span class="citation">(<a href="#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>)</span>. Comparações entre comunidades com diferenças no número de amostragens ou abundância das espécies devem ser realizadas por meio de rarefações (veja Capítulo <a href="cap10.html#cap10">10</a>), enquanto que o número de espécies não detectadas pode ser estimado pelos estimadores de riqueza (veja Capítulo <a href="cap11.html#cap11">11</a>). Embora raramente usados como alternativas à rarefação, existem alguns índices que calculam a riqueza de espécies ponderando a abundância total (i.e. tamanho da amostra) dentro de cada comunidade.</p>
+<p>Esses índices são:</p>
+<p><strong>1. Índice de Margalef</strong></p>
+<p><span class="math display">\[D_{Mg} = \frac{S-1}{ln (N)}\]</span></p>
+<p>onde:</p>
+<ul>
+<li>S = o número de espécies na comunidade</li>
+<li>ln = logaritmo natural</li>
+<li>N = número total de indivíduos na comunidade</li>
+<li>D<sub>Mg</sub> não tem um valor máximo e sua interpretação é comparativa, com valores maiores indicando maior riqueza de espécies</li>
+</ul>
+<p><strong>2. Índice de Menhinick</strong></p>
+<ul>
+<li><span class="math display">\[D_{Mn} = \frac{S}{\sqrt{N}}\]</span></li>
+</ul>
+<p>onde:</p>
+<ul>
+<li>S = o número de espécies na comunidade</li>
+<li>N = número total de indivíduos na comunidade</li>
+<li>D<sub>Mn</sub> não tem um valor máximo e sua interpretação é comparativa, com valores maiores indicando maior riqueza de espécies</li>
+</ul>
+<p><strong>Exemplo prático 1</strong></p>
+<p><strong>Explicação dos dados</strong></p>
+<p>Neste exemplo, avaliaremos a riqueza de espécies de 10 comunidades. Os dados de ocorrência das espécies nas comunidades foram simulados para demonstrar as propriedades das métricas de diversidade taxonômicas. Utilizaremos este conjunto de dados para todos os exemplos deste capítulo.</p>
+<p><strong>Pergunta</strong></p>
+<ul>
+<li>A variação espacial na riqueza de espécies nas comunidades está associada com a variação na precipitação?</li>
+</ul>
+<p><strong>Predições</strong></p>
+<ul>
+<li>Os valores de riqueza de espécies serão maiores nas comunidades localizadas em regiões que recebem grande volume de precipitação do que em regiões mais secas</li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li><p>Variáveis resposta e preditoras</p>
+<ul>
+<li>Data frame com as comunidades (unidade amostral) nas linhas e as espécies (variável resposta) nas colunas</li>
+<li>Data frame com as comunidades (unidade amostral) nas linhas e precipitação anual (variável preditora) na coluna</li>
+</ul></li>
+</ul>
+<p><strong>Checklist</strong></p>
+<ul>
+<li><p>Verificar se os data frames de composição de espécies e variáveis ambientais estão com as unidades amostrais nas linhas e variáveis preditores nas colunas</p></li>
+<li><p>Verificar se as comunidades nos data frames de composição de espécies e variáveis ambientais estão distribuídos na mesma sequência/ordem nos dois arquivos</p></li>
+</ul>
+<p><strong>Análise</strong></p>
+<p>Abaixo, demonstramos os códigos no R para determinar a riqueza de espécies para cada comunidade a partir dos dados de composição de espécies. Os dados estão disponíveis no pacote <code>ecodados</code>.</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="cap12.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Ver os dados das comunidades</span></span>
+<span id="cb438-2"><a href="cap12.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(composicao_especies)</span>
+<span id="cb438-3"><a href="cap12.html#cb438-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10</span></span>
+<span id="cb438-4"><a href="cap12.html#cb438-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_1  10  10  10  10  10  10  10  10  10   10</span></span>
+<span id="cb438-5"><a href="cap12.html#cb438-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_2  91   1   1   1   1   1   1   1   1    1</span></span>
+<span id="cb438-6"><a href="cap12.html#cb438-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_3   1   3   6  25   1   0   0   0   0    0</span></span>
+<span id="cb438-7"><a href="cap12.html#cb438-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_4   0   0   0   0   0  15  15  18  17   16</span></span>
+<span id="cb438-8"><a href="cap12.html#cb438-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_5   0   9   0   6   0  11   0   2  12    0</span></span>
+<span id="cb438-9"><a href="cap12.html#cb438-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_6   3   0   5   0  12   1   0  13  12    0</span></span></code></pre></div>
+<p>Vamos ver a riqueza de espécies para cada comunidade.</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="cap12.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculando a riqueza observada de espécies para cada comunidade</span></span>
+<span id="cb439-2"><a href="cap12.html#cb439-2" aria-hidden="true" tabindex="-1"></a>riqueza_sp <span class="ot">&lt;-</span> <span class="fu">specnumber</span>(composicao_especies)</span>
+<span id="cb439-3"><a href="cap12.html#cb439-3" aria-hidden="true" tabindex="-1"></a>riqueza_sp</span>
+<span id="cb439-4"><a href="cap12.html#cb439-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span></span>
+<span id="cb439-5"><a href="cap12.html#cb439-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     10     10      5      5      5      6      2      4      6      4</span></span></code></pre></div>
+<p>Vamos ver a abundância total de cada comunidade.</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="cap12.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculamos a abundância total para cada comunidade</span></span>
+<span id="cb440-2"><a href="cap12.html#cb440-2" aria-hidden="true" tabindex="-1"></a>abundancia <span class="ot">&lt;-</span> <span class="fu">apply</span>(composicao_especies, <span class="dv">1</span>, sum)</span>
+<span id="cb440-3"><a href="cap12.html#cb440-3" aria-hidden="true" tabindex="-1"></a>abundancia</span>
+<span id="cb440-4"><a href="cap12.html#cb440-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span></span>
+<span id="cb440-5"><a href="cap12.html#cb440-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    100    100     36     81     40     46      4     20     15     11</span></span></code></pre></div>
+<p>Calculando o Índice de Margalef.</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="cap12.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Índice de Menhinick</span></span>
+<span id="cb441-2"><a href="cap12.html#cb441-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A função round é para limitar o resultado para duas casas decimais.</span></span>
+<span id="cb441-3"><a href="cap12.html#cb441-3" aria-hidden="true" tabindex="-1"></a>Margalef <span class="ot">&lt;-</span> <span class="fu">round</span>((riqueza_sp <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span><span class="fu">log</span>(abundancia), <span class="dv">2</span>)</span>
+<span id="cb441-4"><a href="cap12.html#cb441-4" aria-hidden="true" tabindex="-1"></a>Margalef</span>
+<span id="cb441-5"><a href="cap12.html#cb441-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span></span>
+<span id="cb441-6"><a href="cap12.html#cb441-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1.95   1.95   1.12   0.91   1.08   1.31   0.72   1.00   1.85   1.25</span></span></code></pre></div>
+<p>Calculando o Índice de Menhinick.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="cap12.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Índice de Menhinick</span></span>
+<span id="cb442-2"><a href="cap12.html#cb442-2" aria-hidden="true" tabindex="-1"></a>Menhinick <span class="ot">&lt;-</span> <span class="fu">round</span>(riqueza_sp<span class="sc">/</span><span class="fu">sqrt</span>(abundancia), <span class="dv">2</span>)</span>
+<span id="cb442-3"><a href="cap12.html#cb442-3" aria-hidden="true" tabindex="-1"></a>Menhinick</span>
+<span id="cb442-4"><a href="cap12.html#cb442-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span></span>
+<span id="cb442-5"><a href="cap12.html#cb442-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1.00   1.00   0.83   0.56   0.79   0.88   1.00   0.89   1.55   1.21</span></span></code></pre></div>
+<p>Agora vamos analisar a relação entre a riqueza de espécies e a precipitação anual.</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="cap12.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Juntando todos os dados em um único data frame</span></span>
+<span id="cb443-2"><a href="cap12.html#cb443-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(precipitacao<span class="sc">$</span>prec, riqueza_sp, Margalef, Menhinick)</span>
+<span id="cb443-3"><a href="cap12.html#cb443-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb443-4"><a href="cap12.html#cb443-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Renomenado as colunas</span></span>
+<span id="cb443-5"><a href="cap12.html#cb443-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Precipitacao&quot;</span>, <span class="st">&quot;Riqueza&quot;</span>, <span class="st">&quot;Margalef&quot;</span>, <span class="st">&quot;Menhinick&quot;</span>)</span>
+<span id="cb443-6"><a href="cap12.html#cb443-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb443-7"><a href="cap12.html#cb443-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb443-8"><a href="cap12.html#cb443-8" aria-hidden="true" tabindex="-1"></a>anova_riq <span class="ot">&lt;-</span> <span class="fu">lm</span>(Riqueza <span class="sc">~</span> Precipitacao, <span class="at">data =</span> dados)</span>
+<span id="cb443-9"><a href="cap12.html#cb443-9" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_riq)</span>
+<span id="cb443-10"><a href="cap12.html#cb443-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb443-11"><a href="cap12.html#cb443-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb443-12"><a href="cap12.html#cb443-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Riqueza</span></span>
+<span id="cb443-13"><a href="cap12.html#cb443-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb443-14"><a href="cap12.html#cb443-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao  1 30.622 30.6224  8.9156 0.01744 *</span></span>
+<span id="cb443-15"><a href="cap12.html#cb443-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals     8 27.478  3.4347                  </span></span>
+<span id="cb443-16"><a href="cap12.html#cb443-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb443-17"><a href="cap12.html#cb443-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>Há uma relação positiva entre a riqueza de espécies e a precipitação anual (F<sub>1,8</sub> = 8,91, P = 0,01).</p>
+<p>Analisr a relação entre o Índice de Margalef e a precipitação anual.</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="cap12.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb444-2"><a href="cap12.html#cb444-2" aria-hidden="true" tabindex="-1"></a>anova_marg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Margalef <span class="sc">~</span> Precipitacao, <span class="at">data =</span> dados)</span>
+<span id="cb444-3"><a href="cap12.html#cb444-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_marg)</span>
+<span id="cb444-4"><a href="cap12.html#cb444-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb444-5"><a href="cap12.html#cb444-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb444-6"><a href="cap12.html#cb444-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Margalef</span></span>
+<span id="cb444-7"><a href="cap12.html#cb444-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Df  Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb444-8"><a href="cap12.html#cb444-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao  1 0.37865 0.37865  2.1201 0.1835</span></span>
+<span id="cb444-9"><a href="cap12.html#cb444-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals     8 1.42879 0.17860</span></span></code></pre></div>
+<p>Não há uma relação positiva entre o índice de Margalef e a precipitação anual (F<sub>1,8</sub> = 2,12, P = 0,18).</p>
+<p>Agora vamos analisar a relação entre o índice de Menhinick e a precipitação anual.</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="cap12.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb445-2"><a href="cap12.html#cb445-2" aria-hidden="true" tabindex="-1"></a>anova_menh <span class="ot">&lt;-</span> <span class="fu">lm</span>(Menhinick <span class="sc">~</span> Precipitacao, <span class="at">data =</span> dados)</span>
+<span id="cb445-3"><a href="cap12.html#cb445-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_menh)</span>
+<span id="cb445-4"><a href="cap12.html#cb445-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb445-5"><a href="cap12.html#cb445-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb445-6"><a href="cap12.html#cb445-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Menhinick</span></span>
+<span id="cb445-7"><a href="cap12.html#cb445-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Df  Sum Sq  Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb445-8"><a href="cap12.html#cb445-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao  1 0.07626 0.076262  1.0992 0.3251</span></span>
+<span id="cb445-9"><a href="cap12.html#cb445-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals     8 0.55503 0.069378</span></span></code></pre></div>
+<p>Não há uma relação positiva entre o índice de Menhinick e a precipitação anual (F<sub>1,8</sub> = 1,09, P = 0,32).</p>
+<p>Com base nos resultados, vamos plotar apenas o gráfico com os resultados da riqueza de espécies ao longo do gradiente de precipitação anual (Figura <a href="cap12.html#fig:fig-alfa-model">12.1</a>).</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="cap12.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
+<span id="cb446-2"><a href="cap12.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados, <span class="fu">aes</span>(<span class="at">x=</span> Precipitacao, <span class="at">y=</span> Riqueza)) <span class="sc">+</span> </span>
+<span id="cb446-3"><a href="cap12.html#cb446-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Precipitação anual (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb446-4"><a href="cap12.html#cb446-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb446-5"><a href="cap12.html#cb446-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb446-6"><a href="cap12.html#cb446-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-alfa-model"></span>
+<img src="livro_files/figure-html/fig-alfa-model-1.png" alt="Gráfico do modelo linear da relação entre riqeuza e precipitação." width="100%" height="100%" />
+<p class="caption">
+Figura 12.1: Gráfico do modelo linear da relação entre riqeuza e precipitação.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>O número de espécies é maior em comunidades com maior precipitação. Contudo, quando ponderamos pela abundância (índices de Margalef ou Menhinick), a relação com a precipitação não é significativa.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+Percebam que ponderar a riqueza de espécies pela abundância altera a interpretação dos resultados.</p>
+</div>
+</div>
+<div id="diversidade-de-espécies" class="section level3" number="12.2.2">
+<h3><span class="header-section-number">12.2.2</span> Diversidade de espécies</h3>
+<p>Diferente dos índices de riqueza de espécies que não levam em consideração a abundância relativa das espécies (i.e. todas as espécies tem o mesmo peso), os índices de diversidade avaliam além da riqueza, a dominância ou raridade das espécies nas comunidades. Assim, quando comparamos duas comunidades com a mesma riqueza de espécies, e uma das comunidades é dominada por uma única espécie e a outra comunidade apresenta espécies com abundâncias parecidas, consideramos a segunda comunidade mais diversa. Os índices de diversidade variam porque eles dão pesos diferentes para a riqueza e equitabilidade das espécies. Assim, um determinado índice de diversidade pode indicar que uma comunidade X é mais diversa que uma comunidade Y, enquanto outro índice indica o oposto <span class="citation">(<a href="#ref-melo2008" role="doc-biblioref">Melo 2008</a>)</span>. Portanto, uma maneira de determinar qual índice de diversidade usar é saber se você quer dar maior peso para riqueza ou equitabilidade das espécies nas comunidades.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+Ressaltamos que há várias críticas em relação ao uso dos índices de diversidade que são abstratos e difíceis de se interpretar <span class="citation">(<a href="#ref-hurlbert1971" role="doc-biblioref">Hurlbert 1971</a>)</span>. Por exemplo, dizer que o valor X estimado por índices de diversidade é alto ou baixo é irrelevante se não tivermos uma base comparativa (para mais detalhes veja Melo <span class="citation">(<a href="#ref-melo2008" role="doc-biblioref">2008</a>)</span>).</p>
+</div>
+<p>Os dois índices de diversidade mais usados em Ecologia são:</p>
+<p><strong>1. Índice de Shannon-Wiener</strong></p>
+<p>Quantifica a incerteza associada em predizer a identidade de uma espécie dado o número de espécies e a distribuição de abundância para cada espécie. Este índice é mais sensível à mudanças nas espécies raras da comunidade.</p>
+<p><span class="math display">\[H&#39; = -\sum_{i=1}^{S}p_i * ln p_i\]</span></p>
+<p>onde:</p>
+<ul>
+<li>p<sub>i</sub> = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade</li>
+<li>ln = logaritmo natural, mas outras bases logarítmas podem ser utilizadas</li>
+<li>H’ = não tem um valor máximo e sua interpretação é comparativa, com valores maiores indicando maior diversidade</li>
+</ul>
+<p><strong>2. Índice de Simpson</strong></p>
+<p>Quantifica a probabilidade de dois indivíduos retirados ao acaso da comunidade pertencerem à mesma espécie. Este índice é na verdade uma medida de dominância. Assim como a probabilidade dos indivíduos serem da mesma espécie diminui com o aumento da riqueza de espécies, o índice de Simpson também diminui com a riqueza.</p>
+<p><span class="math display">\[D = \sum_{i=1}^{S}p_i^2\]</span></p>
+<p>onde:</p>
+<ul>
+<li><p>P<sub>i</sub> = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade</p></li>
+<li><p>D = varia de 0 a 1, com valores próximos de 1 indicando menor diversidade enquanto valores próximos de 0 indicam maior diversidade. Para evitar confusão nas interpretações, normalmente o índice de Simpson é expressado como o valor inverso (1 - D) para que os maiores valores representem maior diversidade. Neste caso, o valor inverso é conhecido na literatura como índice Gini-Simpson. Para o índice Gini-Simpson estamos avaliando a probabilidade de dois indivíduos retirados ao acaso da comunidade sejam de espécies diferentes.</p></li>
+</ul>
+<p><strong>Exemplo prático 2</strong></p>
+<p><strong>Explicação dos dados</strong></p>
+<p>Usaremos os mesmos dados simulados do exemplo prático 1.</p>
+<p><strong>Pergunta</strong></p>
+<ul>
+<li>A variação espacial na diversidade de espécies das comunidades está associado com o gradiente de precipitação?</li>
+</ul>
+<p><strong>Predições</strong></p>
+<ul>
+<li>Os valores de diversidade de espécies serão maiores nas comunidades localizadas em regiões maior volume de precipitação do que em regiões mais secas</li>
+</ul>
+<p><strong>Análise</strong></p>
+<p>Abaixo demonstramos os códigos no R para determinar a diversidade de espécies para cada comunidade a partir da planilha de composição de espécies.</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="cap12.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Índice de Shannon</span></span>
+<span id="cb447-2"><a href="cap12.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="co"># MARGIN = 1 significa que a função irá calcular o índice considerando </span></span>
+<span id="cb447-3"><a href="cap12.html#cb447-3" aria-hidden="true" tabindex="-1"></a><span class="co"># as linhas do data.frame (comunidades).</span></span>
+<span id="cb447-4"><a href="cap12.html#cb447-4" aria-hidden="true" tabindex="-1"></a>shannon_res <span class="ot">&lt;-</span> <span class="fu">diversity</span>(composicao_especies, <span class="at">index =</span> <span class="st">&quot;shannon&quot;</span>, <span class="at">MARGIN =</span> <span class="dv">1</span>)</span>
+<span id="cb447-5"><a href="cap12.html#cb447-5" aria-hidden="true" tabindex="-1"></a>shannon_res</span>
+<span id="cb447-6"><a href="cap12.html#cb447-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span></span>
+<span id="cb447-7"><a href="cap12.html#cb447-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2.3025851 0.5002880 0.9580109 1.6068659 1.4861894 1.5607038 0.6931472 1.1058899 1.7140875 1.2636544</span></span></code></pre></div>
+<p>O argumento <code>index = "simpson"</code>, calcula o índice Gini-Simpson (1-D).</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="cap12.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Índice de Simpson</span></span>
+<span id="cb448-2"><a href="cap12.html#cb448-2" aria-hidden="true" tabindex="-1"></a>simpson_res <span class="ot">&lt;-</span> <span class="fu">diversity</span>(composicao_especies, <span class="at">index =</span> <span class="st">&quot;simpson&quot;</span>, <span class="at">MARGIN =</span> <span class="dv">1</span>) </span>
+<span id="cb448-3"><a href="cap12.html#cb448-3" aria-hidden="true" tabindex="-1"></a>simpson_res</span>
+<span id="cb448-4"><a href="cap12.html#cb448-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span></span>
+<span id="cb448-5"><a href="cap12.html#cb448-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.9000000 0.1710000 0.4814815 0.7989636 0.7587500 0.7674858 0.5000000 0.5850000 0.8088889 0.6942149</span></span></code></pre></div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies (Shannon-Wiener = 2,3 e Gini-Simpson = 0.9), enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade (Shannon-Wiener = 0,5 e Gini-Simpson = 0,17). Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas o padrão de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade.</p>
+<p>Dentro desta perspectiva, alguns índices fornecem uma estimativa sobre a equitabilidade da distribuição da abundância nas comunidades. Entre eles, o mais conhecido foi proposto por Pielou <span class="citation">(<a href="#ref-pielou1966" role="doc-biblioref">1966</a>)</span>.</p>
+<p><strong>Índice de Equabilidade (ou Equitabilidade) de Pielou</strong></p>
+<p>É uma métrica derivada do índice de Shannon-Wiener que descreve o padrão de distribuição da abundância relativa das espécies na comunidade.</p>
+<p><span class="math display">\[J = \frac{H&#39;}{Hmax} = \frac{H&#39;}{ln (S)}\]</span></p>
+<p>onde:</p>
+<ul>
+<li>H’ = índice de Shannon-Wiener</li>
+<li>H<sub>max</sub> = todas as espécies teriam a mesma abundância relativa</li>
+<li>H<sub>max</sub> é calculado aplicando o logaritmo natural (ln) para a riqueza de espécies (S)</li>
+<li>Se todas as espécies apresentam a mesma abundância relativa, então J = 1. Se uma espécie apresenta forte dominância, J aproxima-se de zero</li>
+</ul>
+<p>Não há uma função no R que calcule o índice de Pielou, mas ele pode facilmente ser calculado usando os valores de diversidade de Shannon-Wiener e o logaritmo da riqueza de espécies de cada comunidade.</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="cap12.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Índice de Pielou</span></span>
+<span id="cb449-2"><a href="cap12.html#cb449-2" aria-hidden="true" tabindex="-1"></a>Pielou <span class="ot">&lt;-</span> shannon_res<span class="sc">/</span><span class="fu">log</span>(<span class="fu">specnumber</span>(composicao_especies))</span></code></pre></div>
+<p>Agora que temos uma ideia de como a riqueza de espécies e a distribuição da abundância relativa são importantes para quantificar os valores dos índices de diversidade, vamos testar se há alguma relação entre os índices de diversidade e precipitação anual nas comunidades.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="cap12.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Juntando todos os dados em um único data frame</span></span>
+<span id="cb450-2"><a href="cap12.html#cb450-2" aria-hidden="true" tabindex="-1"></a>dados_div <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(precipitacao<span class="sc">$</span>prec, shannon_res, </span>
+<span id="cb450-3"><a href="cap12.html#cb450-3" aria-hidden="true" tabindex="-1"></a>                        simpson_res, Pielou)</span>
+<span id="cb450-4"><a href="cap12.html#cb450-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb450-5"><a href="cap12.html#cb450-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Renomeando as colunas</span></span>
+<span id="cb450-6"><a href="cap12.html#cb450-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dados_div) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Precipitacao&quot;</span>, <span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;Pielou&quot;</span>)</span></code></pre></div>
+<p>Vamos realizar uma regressão simples para verificar a relação entre o índice de Shannon-Wiener e a precipitação anual nas comunidades.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="cap12.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb451-2"><a href="cap12.html#cb451-2" aria-hidden="true" tabindex="-1"></a>anova_shan <span class="ot">&lt;-</span> <span class="fu">lm</span>(Shannon <span class="sc">~</span> Precipitacao, <span class="at">data =</span> dados_div)</span>
+<span id="cb451-3"><a href="cap12.html#cb451-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_shan)</span>
+<span id="cb451-4"><a href="cap12.html#cb451-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb451-5"><a href="cap12.html#cb451-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb451-6"><a href="cap12.html#cb451-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Shannon</span></span>
+<span id="cb451-7"><a href="cap12.html#cb451-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Df  Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb451-8"><a href="cap12.html#cb451-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao  1 0.10989 0.10989  0.3627 0.5637</span></span>
+<span id="cb451-9"><a href="cap12.html#cb451-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals     8 2.42366 0.30296</span></span></code></pre></div>
+<p>Agora, vamos realizar uma regressão simples para verificar a relação entre o índice de Simpson e a precipitação anual nas comunidades.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="cap12.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb452-2"><a href="cap12.html#cb452-2" aria-hidden="true" tabindex="-1"></a>anova_simp <span class="ot">&lt;-</span> <span class="fu">lm</span>(Simpson <span class="sc">~</span> Precipitacao, <span class="at">data =</span> dados_div)</span>
+<span id="cb452-3"><a href="cap12.html#cb452-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_simp)</span>
+<span id="cb452-4"><a href="cap12.html#cb452-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb452-5"><a href="cap12.html#cb452-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb452-6"><a href="cap12.html#cb452-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Simpson</span></span>
+<span id="cb452-7"><a href="cap12.html#cb452-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Df  Sum Sq  Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb452-8"><a href="cap12.html#cb452-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao  1 0.00132 0.001325  0.0252 0.8778</span></span>
+<span id="cb452-9"><a href="cap12.html#cb452-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals     8 0.42064 0.052580</span></span></code></pre></div>
+<p>Por fim, vamos fazer regressão simples para verificar a relação entre o índice de Pielou e a precipitação anual nas comunidades.</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="cap12.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb453-2"><a href="cap12.html#cb453-2" aria-hidden="true" tabindex="-1"></a>anova_piel <span class="ot">&lt;-</span> <span class="fu">lm</span>(Pielou <span class="sc">~</span> Precipitacao, <span class="at">data =</span> dados_div)</span>
+<span id="cb453-3"><a href="cap12.html#cb453-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_piel)</span>
+<span id="cb453-4"><a href="cap12.html#cb453-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb453-5"><a href="cap12.html#cb453-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb453-6"><a href="cap12.html#cb453-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Pielou</span></span>
+<span id="cb453-7"><a href="cap12.html#cb453-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Df  Sum Sq  Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb453-8"><a href="cap12.html#cb453-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Precipitacao  1 0.09080 0.090798  1.5792 0.2443</span></span>
+<span id="cb453-9"><a href="cap12.html#cb453-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals     8 0.45997 0.057496</span></span></code></pre></div>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+As análises acima são apenas ilustrativas. Não estamos avaliando as premissas de normalidade e homogeneidade da variância dos resíduos (veja Capítulo <a href="cap7.html#cap7">7</a>). Além disso, é importante estar ciente das críticas e limitações de usar índices de Shannon e Simpson como nesses exemplos <span class="citation">(<a href="#ref-jost_partitioning_2007" role="doc-biblioref">Jost 2007</a>)</span>.</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>A variação espacial na diversidade de espécies, obtida através dos índices de Shannon-Wiener e Simpson, e a equitabilidade de Pielou não foram associados com a variação na precipitação anual entre as áreas (P &gt; 0,05).</p>
+</div>
+<div id="diagramas-de-whittaker-ou-curva-de-dominância" class="section level3" number="12.2.3">
+<h3><span class="header-section-number">12.2.3</span> Diagramas de Whittaker ou Curva de Dominância</h3>
+<p>Embora os índices de diversidade de espécies englobem os componentes de riqueza e abundância relativa das espécies nas suas estimativas, não é possível conhecer o número de espécies ou quais são as espécies dominantes ou raras dentro das comunidades. Por exemplo, duas comunidades podem ter o mesmo valor de diversidade e ainda assim apresentarem diferenças na riqueza e equitabilidade <span class="citation">(<a href="#ref-melo2008" role="doc-biblioref">Melo 2008</a>)</span>. O <strong>Diagrama de Whittaker</strong> é um método que lida com essas questões utilizando informações visuais do número de espécies e abundância relativa de cada espécie nas comunidades. Este método plota as espécies ranqueadas no eixo X da mais abundante para a menos abundante, enquanto no eixo Y as abundâncias relativas das espécies são plotadas em escala logaritma (log<sub>10</sub>). Este gráfico permite ao leitor reconhecer: i) a riqueza de espécies observando o eixo X, ii) a equitabilidade da abundância relativa das espécies pela inclinação da reta, e iii) quais são as espécies dominantes, intermediárias e raras nas comunidades através da observação em relação ao eixo Y. A partir destas curvas, vários autores propuseram modelos matemáticos para explicar a distribuição de abundância das espécies gerando diferentes modelos teóricos (e.g. série geométrica, <em>broken-stick</em>, log-series e log-normal). Cada modelo possui predições distintas: o modelo geométrico prediz distribuição de abundâncias desiguais, <em>broken-stick</em> prediz distribuição de abundâncias uniformes, enquanto log-normal e log-series são intermediárias com predições distintas sobre as proporções de espécies raras - alta em log-series, baixa em log-normal (veja McGill et al. <span class="citation">(<a href="#ref-mcgill2007" role="doc-biblioref">2007</a>)</span> para revisão).</p>
+<p>Para análises exploratórias onde você tem interesse em visualizar o padrão da distribuição relativa das espécies por comunidade, a função <code>rankabundance</code> do pacote <code>BiodiversityR</code> é uma opção interessante (Figura <a href="cap12.html#fig:fig-whittaker">12.2</a>).</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="cap12.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cálculo da curva para as comunidades 2 e 3</span></span>
+<span id="cb454-2"><a href="cap12.html#cb454-2" aria-hidden="true" tabindex="-1"></a>rank_com2 <span class="ot">&lt;-</span> <span class="fu">rankabundance</span>(composicao_especies[<span class="dv">2</span>, composicao_especies[<span class="dv">2</span>,] <span class="sc">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb454-3"><a href="cap12.html#cb454-3" aria-hidden="true" tabindex="-1"></a>rank_com3 <span class="ot">&lt;-</span> <span class="fu">rankabundance</span>(composicao_especies[<span class="dv">3</span>, composicao_especies[<span class="dv">3</span>,] <span class="sc">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb454-4"><a href="cap12.html#cb454-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb454-5"><a href="cap12.html#cb454-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico </span></span>
+<span id="cb454-6"><a href="cap12.html#cb454-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Veja a ajuda da função rankabundplot para outros exemplos de gráficos.</span></span>
+<span id="cb454-7"><a href="cap12.html#cb454-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rankabunplot</span>(rank_com2, <span class="at">scale =</span> <span class="st">&quot;logabun&quot;</span>, <span class="at">specnames =</span> <span class="fu">c</span>(<span class="dv">1</span>), </span>
+<span id="cb454-8"><a href="cap12.html#cb454-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>)</span>
+<span id="cb454-9"><a href="cap12.html#cb454-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rankabunplot</span>(rank_com3, <span class="at">scale =</span> <span class="st">&quot;logabun&quot;</span>, <span class="at">specnames =</span> <span class="fu">c</span>(<span class="dv">1</span>), <span class="at">pch =</span> <span class="dv">19</span>, </span>
+<span id="cb454-10"><a href="cap12.html#cb454-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="at">addit =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&quot;cyan4&quot;</span> , <span class="at">legend =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb454-11"><a href="cap12.html#cb454-11" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">5</span>, <span class="dv">40</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Comunidade 2&quot;</span>, <span class="st">&quot;Comunidade 3&quot;</span>),</span>
+<span id="cb454-12"><a href="cap12.html#cb454-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;cyan4&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">box.lty =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-whittaker"></span>
+<img src="livro_files/figure-html/fig-whittaker-1.png" alt="Diagramas de Whittaker para duas comunidades." width="100%" height="100%" />
+<p class="caption">
+Figura 12.2: Diagramas de Whittaker para duas comunidades.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Percebam que olhando os eixos do gráfico conseguimos determinar que a Comunidade 2 (círculo laranja) abriga 10 espécies no total (i.e. comprimento do eixo X), com a espécie sp1 apresentando alta dominância e as outras espécies apresentando abundâncias muito baixas. A Comunidade 3 (círculo ciano) abriga cinco espécies no total, sendo que a espécie sp4 apresenta alta dominância, duas espécies apresentam abundâncias intermediárias e outras duas abundâncias baixas.</p>
+</div>
+<div id="curvas-de-distribuição-de-abundâncias" class="section level3" number="12.2.4">
+<h3><span class="header-section-number">12.2.4</span> Curvas de distribuição de abundâncias</h3>
+<p>Caso o interesse seja avaliar qual dos modelos teóricos melhor explica a distribuição das abundâncias das espécies, a função <code>radift()</code> do pacote <code>vegan</code> é a melhor opção.</p>
+<div class="alert alert-info">
+<p>A função <code>radfit</code> avalia cinco modelos teóricos para determinar qual deles melhor se ajustam aos dados. Os modelos teóricos avaliados na função são:</p>
+<ul>
+<li>Null = modelo broken-stick</li>
+<li>preemption = série geométrica</li>
+<li>log-normal</li>
+<li>Zipf</li>
+<li>Zipf-Mandelbrot</li>
+</ul>
+</div>
+<p>Você pode realizar as análises separadamente para cada comunidade ou para todas as comunidades ao mesmo tempo.</p>
+<p>Vamos começar avaliando separadamente a Comunidade 2.</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="cap12.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Teste das curvas de distribuição de abundâncias</span></span>
+<span id="cb455-2"><a href="cap12.html#cb455-2" aria-hidden="true" tabindex="-1"></a>curvas_dominancia_com2 <span class="ot">&lt;-</span> <span class="fu">radfit</span>(composicao_especies[<span class="dv">2</span>,])</span>
+<span id="cb455-3"><a href="cap12.html#cb455-3" aria-hidden="true" tabindex="-1"></a>curvas_dominancia_com2</span>
+<span id="cb455-4"><a href="cap12.html#cb455-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb455-5"><a href="cap12.html#cb455-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RAD models, family poisson </span></span>
+<span id="cb455-6"><a href="cap12.html#cb455-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No. of species 10, total abundance 100</span></span>
+<span id="cb455-7"><a href="cap12.html#cb455-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb455-8"><a href="cap12.html#cb455-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            par1     par2    par3        Deviance AIC     BIC    </span></span>
+<span id="cb455-9"><a href="cap12.html#cb455-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Null                                    175.242  199.592 199.592</span></span>
+<span id="cb455-10"><a href="cap12.html#cb455-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Preemption  0.68962                      79.560  105.910 106.213</span></span>
+<span id="cb455-11"><a href="cap12.html#cb455-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Lognormal  -0.65366  3.2485              47.350   75.701  76.306</span></span>
+<span id="cb455-12"><a href="cap12.html#cb455-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Zipf        0.83829 -3.0254              26.612   54.963  55.568</span></span>
+<span id="cb455-13"><a href="cap12.html#cb455-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mandelbrot  0.83829 -3.0254  1.6448e-07  26.612   56.963  57.871</span></span></code></pre></div>
+<p>Agora vamos fazer um gráfico com as predições dos modelos (Figura <a href="cap12.html#fig:fig-whittaker-teste">12.3</a>).</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="cap12.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(curvas_dominancia_com2, </span>
+<span id="cb456-2"><a href="cap12.html#cb456-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Abundância&quot;</span>, </span>
+<span id="cb456-3"><a href="cap12.html#cb456-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Ranqueamento das espécies&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-whittaker-teste"></span>
+<img src="livro_files/figure-html/fig-whittaker-teste-1.png" alt="Teste de cinco Diagramas de Whittaker para a Comunidade 2." width="100%" height="100%" />
+<p class="caption">
+Figura 12.3: Teste de cinco Diagramas de Whittaker para a Comunidade 2.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matématicos. Com base nos valores de AIC (veja Capítulo <a href="cap7.html#cap7">7</a>), o modelo <strong>Zipf</strong> é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.</p>
+<p>Agora vamos analisar os dados considerando todas as comunidades (Figura <a href="cap12.html#fig:fig-whittaker-testes">12.4</a>).</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="cap12.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Teste das curvas de distribuição de abundâncias</span></span>
+<span id="cb457-2"><a href="cap12.html#cb457-2" aria-hidden="true" tabindex="-1"></a>curvas_dominancia_todas <span class="ot">&lt;-</span> <span class="fu">radfit</span>(composicao_especies)</span>
+<span id="cb457-3"><a href="cap12.html#cb457-3" aria-hidden="true" tabindex="-1"></a>curvas_dominancia_todas</span>
+<span id="cb457-4"><a href="cap12.html#cb457-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb457-5"><a href="cap12.html#cb457-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Deviance for RAD models:</span></span>
+<span id="cb457-6"><a href="cap12.html#cb457-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb457-7"><a href="cap12.html#cb457-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  Com_1       Com_2       Com_3       Com_4       Com_5       Com_6       Com_7       Com_8       Com_9</span></span>
+<span id="cb457-8"><a href="cap12.html#cb457-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Null        8.2193e+01  1.7524e+02  8.9085e+00  4.2265e+01  4.9719e+00  4.7099e+00  1.1507e+00  1.8998e+00  2.7703e+00</span></span>
+<span id="cb457-9"><a href="cap12.html#cb457-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Preemption  2.2878e+01  7.9560e+01  1.5423e+00  1.4332e+01  3.0438e+00  4.5536e+00  7.7259e-01  1.7847e+00  9.2518e-01</span></span>
+<span id="cb457-10"><a href="cap12.html#cb457-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Lognormal   1.7764e-15  4.7350e+01  1.0161e+00  2.9441e-02  1.9303e+00  4.8898e+00 -2.2053e-25  1.4556e+00  2.0626e-01</span></span>
+<span id="cb457-11"><a href="cap12.html#cb457-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Zipf       -1.7764e-15  2.6612e+01  2.1659e-01  1.5846e-02  3.6094e+00  8.3245e+00 -2.2073e-25  6.6938e-01  4.7931e-01</span></span>
+<span id="cb457-12"><a href="cap12.html#cb457-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mandelbrot -1.7764e-15  2.6612e+01  2.0926e-01  1.1390e-02  1.8740e+00  4.1131e+00  0.0000e+00  6.6938e-01  2.3634e-01</span></span>
+<span id="cb457-13"><a href="cap12.html#cb457-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Com_10</span></span>
+<span id="cb457-14"><a href="cap12.html#cb457-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Null       1.1146</span></span>
+<span id="cb457-15"><a href="cap12.html#cb457-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Preemption 0.7428</span></span>
+<span id="cb457-16"><a href="cap12.html#cb457-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Lognormal  0.5079</span></span>
+<span id="cb457-17"><a href="cap12.html#cb457-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Zipf       0.8730</span></span>
+<span id="cb457-18"><a href="cap12.html#cb457-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mandelbrot 0.4456</span></span>
+<span id="cb457-19"><a href="cap12.html#cb457-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb457-20"><a href="cap12.html#cb457-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos fazer um gráfico para cada comunidade</span></span>
+<span id="cb457-21"><a href="cap12.html#cb457-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(curvas_dominancia_todas, <span class="at">log =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-whittaker-testes"></span>
+<img src="livro_files/figure-html/fig-whittaker-testes-1.png" alt="Testes de cinco Diagramas de Whittaker para todas as comunidades." width="100%" height="100%" />
+<p class="caption">
+Figura 12.4: Testes de cinco Diagramas de Whittaker para todas as comunidades.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>A Comunidade 1 foi associada com o modelo <strong>log-normal</strong>, as Comunidades 2 e 4 com o modelo <strong>Zipf</strong>, a Comunidade 3 com o modelo <strong>série geométrica</strong> e as outras comunidades com o <strong>modelo nulo</strong>. Para explorar a explicação biológica por trás destes modelos veja os artigos <span class="citation">(<a href="#ref-wilson1991" role="doc-biblioref">Wilson 1991</a>, <a href="#ref-mcgill2007" role="doc-biblioref">McGill et al. 2007</a>, <a href="#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>)</span>.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+A ligação entre o modelo matemático e a explicação biológica precisa ser interpretada com cuidado porque diferentes modelos matemáticos podem levar ao mesmo padrão de distribuição de abundância.</p>
+</div>
+</div>
+<div id="números-de-hill-ou-série-de-hill" class="section level3" number="12.2.5">
+<h3><span class="header-section-number">12.2.5</span> Números de Hill ou Série de Hill</h3>
+<p>Embora os índices de Shannon-Wiener e Gini-Simpson sejam amplamente usados em estudos ecológicos e de conservação, eles sofrem de propriedades matemáticas e não representam a diversidade propriamente dita <span class="citation">(<a href="#ref-jost2006" role="doc-biblioref">Jost 2006</a>)</span>. Portanto, quando o objetivo é avaliar a diversidade, os índices de Shannon-Wiener e Gini-Simpson não deveriam ser utilizados na sua forma padrão, mas transformados em números efetivos de espécies ou diversidade verdadeira <span class="citation">(<a href="#ref-jost2006" role="doc-biblioref">Jost 2006</a>)</span>. O número efetivo de espécies é o número de espécies igualmente abundantes (i.e. todas as espécies com a mesma abundância) necessárias para produzir o valor observado para um determinado índice. Por exemplo, uma comunidade com índice de Shannon-Wiener estimado de 4,5 teria um número efetivo de 90 espécies igualmente abundantes. Jost et al. <span class="citation">(<a href="#ref-jost2006" role="doc-biblioref">2006</a>)</span> usam o seguinte exemplo para explicar o conceito do número efetivo de espécies - uma comunidade com 16 espécies igualmente abundantes é duas vezes mais diversa do que uma comunidade com 8 espécies igualmente abundantes. Neste caso, a diversidade deveria ser proporcional ao número de espécies. Contudo, quando aplicamos os índices de diversidade para estas comunidades com 16 e 8 espécies (cada espécie com 5 indivíduos), o índice de Shannon-Wiener é 2,772 e 2,079, respectivamente, e o índice de Gini-Simpson é 0,937 e 0,875, respectivamente. Claramente, os valores estimados pelos índices de diversidade não representam a diferença entre as comunidades porque eles carecem de uma particularidade matemática conhecida como propriedade de duplicação.</p>
+<p>O próximo exemplo (modificado do website de Lou Jost; <a href="http://www.loujost.com/Statistics%20and%20Physics/Diversity%20and%20Similarity/EffectiveNumberOfSpecies.htm">http://www.loujost.com/</a>), demostra a importância da transformação dos índices de diversidade em números efetivos de espécies. Imagine que você foi contratado para avaliar a diversidade de peixes em um riacho antes e depois da instalação de uma usina hidrelétrica. Suponha que os valores estimados pelo índice de Gini-Simpson foi de 0,99 antes da instalação e de 0,97 depois da instalação. A princípio, você poderia concluir que a diversidade diminuiu somente 2% e que a instalação da hidrelétrica não afetou a diversidade de peixes no riacho. Contudo, transformando os valores do índice de diversidade em números efetivos, percebemos que antes da instalação a diversidade do riacho equivale a 100 espécies igualmente abundantes, enquanto após a instalação, a diversidade equivale a 33 espécies igualmente abundantes. Portanto, a queda da diversidade foi de 66% e não 2%.</p>
+<p>Hill <span class="citation">(<a href="#ref-hill1973" role="doc-biblioref">1973</a>)</span> derivou uma equação geral para o cálculo do número efetivo de espécies ou diversidade verdadeira que depende apenas do valor de <em>q</em> e da abundância relativa das espécies.</p>
+<p><span class="math display">\[^qD = (\sum_{i=1}^{S}p_i^q)^{1/(1-q)}\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><p>q = é um parâmetro conhecido como ordem da diversidade e é usado para dar peso às espécies comuns ou raras. q = 0 não considera a frequência das espécies e representa a riqueza observada de espécies, q = 1 equivale a transformação do índice de Shannon-Wiener (i.e. exp(H’)) e atribui pesos às espécies com base na proporção das suas frequências e, q = 2 equivale à transformação do índice de Gini-Simpson (i.e. 1/(1-D)) e atribui peso às espécies mais comuns. Valores de q &lt;1 favorecem espécies raras, enquanto valores de q &gt; 1 favorecem espécies comuns.</p></li>
+<li><p>p<sub>i</sub> = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade</p></li>
+</ul>
+<p>Vamos calcular o Número de Hill para as comunidades do nosso exemplo.</p>
+<p>Calculando o Número de Hill com q = 0.</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="cap12.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Número de Hill para q = 0</span></span>
+<span id="cb458-2"><a href="cap12.html#cb458-2" aria-hidden="true" tabindex="-1"></a>hill_res_q_0 <span class="ot">&lt;-</span> <span class="fu">hill_taxa</span>(composicao_especies, <span class="at">q  =</span> <span class="dv">0</span>)</span>
+<span id="cb458-3"><a href="cap12.html#cb458-3" aria-hidden="true" tabindex="-1"></a>hill_res_q_0</span>
+<span id="cb458-4"><a href="cap12.html#cb458-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span></span>
+<span id="cb458-5"><a href="cap12.html#cb458-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     10     10      5      5      5      6      2      4      6      4</span></span></code></pre></div>
+<p>Calculando o Número de Hill com q = 1.</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="cap12.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Número de Hill para q = 1</span></span>
+<span id="cb459-2"><a href="cap12.html#cb459-2" aria-hidden="true" tabindex="-1"></a>hill_res_q_1 <span class="ot">&lt;-</span> <span class="fu">hill_taxa</span>(composicao_especies, <span class="at">q  =</span> <span class="dv">1</span>)</span>
+<span id="cb459-3"><a href="cap12.html#cb459-3" aria-hidden="true" tabindex="-1"></a>hill_res_q_1</span>
+<span id="cb459-4"><a href="cap12.html#cb459-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span></span>
+<span id="cb459-5"><a href="cap12.html#cb459-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10.000000  1.649196  2.606507  4.987156  4.420220  4.762172  2.000000  3.021912  5.551608  3.538328</span></span></code></pre></div>
+<p>Calculando o Número de Hill com q = 2.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="cap12.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Número de Hill para q = 2</span></span>
+<span id="cb460-2"><a href="cap12.html#cb460-2" aria-hidden="true" tabindex="-1"></a>hill_res_q_2 <span class="ot">&lt;-</span> <span class="fu">hill_taxa</span>(composicao_especies, <span class="at">q  =</span> <span class="dv">2</span>)</span>
+<span id="cb460-3"><a href="cap12.html#cb460-3" aria-hidden="true" tabindex="-1"></a>hill_res_q_2</span>
+<span id="cb460-4"><a href="cap12.html#cb460-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span></span>
+<span id="cb460-5"><a href="cap12.html#cb460-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10.000000  1.206273  1.928571  4.974223  4.145078  4.300813  2.000000  2.409639  5.232558  3.270270</span></span></code></pre></div>
+<p>Criando um data frame com os três resultados anteriores.</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="cap12.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resultados</span></span>
+<span id="cb461-2"><a href="cap12.html#cb461-2" aria-hidden="true" tabindex="-1"></a>res_hill <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(hill_res_q_0, hill_res_q_1, hill_res_q_2)</span>
+<span id="cb461-3"><a href="cap12.html#cb461-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(res_hill) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;q=0&quot;</span>, <span class="st">&quot;q=1&quot;</span>, <span class="st">&quot;q=2&quot;</span>)</span>
+<span id="cb461-4"><a href="cap12.html#cb461-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res_hill)</span>
+<span id="cb461-5"><a href="cap12.html#cb461-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       q=0       q=1       q=2</span></span>
+<span id="cb461-6"><a href="cap12.html#cb461-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_1  10 10.000000 10.000000</span></span>
+<span id="cb461-7"><a href="cap12.html#cb461-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_2  10  1.649196  1.206273</span></span>
+<span id="cb461-8"><a href="cap12.html#cb461-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_3   5  2.606507  1.928571</span></span>
+<span id="cb461-9"><a href="cap12.html#cb461-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_4   5  4.987156  4.974223</span></span>
+<span id="cb461-10"><a href="cap12.html#cb461-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_5   5  4.420220  4.145078</span></span>
+<span id="cb461-11"><a href="cap12.html#cb461-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_6   6  4.762172  4.300813</span></span></code></pre></div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Como na comunidade 1 todas as espécies são igualmente abundantes, alterar os valores de <em>q</em> não altera o número efetivo de espécies que permanece sempre 10. Contudo, na comunidade 2, que apresenta alta dominância de uma espécie, alterar os valores de q diminui consideravelmente a estimativa da diversidade. A vantagem dos Números de Hill é que eles são de fácil interpretação e comparação entre as comunidades. Fator ausente para os índices de diversidade.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+Neste ponto, esperamos que tenha ficado claro que mais do que a riqueza de espécies, a abundância relativa das espécies (e.g. comuns ou raras) tem um papel fundamental na estimativa da diversidade de espécies.</p>
+</div>
+</div>
+</div>
+<div id="diversidade-beta" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Diversidade beta</h2>
+<p>O termo diversidade beta foi proposto por Whittker <span class="citation">(<a href="#ref-whittaker1960" role="doc-biblioref">1960</a>)</span> e foi definido como a razão entre a diversidade gama e a diversidade alfa (i.e. diversidade beta multiplicativa), quantificando não só a relação entre a diversidade regional e local, mas também o grau de diferenciação entre as comunidades. Para demonstrar como a diversidade beta varia entre comunidades locais dentro de uma região usaremos a explicação do Baselga (<a href="http://webspersoais.usc.es/persoais/andres.baselga/beta.html" class="uri">http://webspersoais.usc.es/persoais/andres.baselga/beta.html</a>). Imagine três comunidades, cada comunidade abrigando as mesmas cinco espécies. Neste caso, a média da diversidade alfa = 5, a diversidade gama = 5 e a razão entre elas (gama/alfa) indica uma diversidade beta = 1. Isso significa que na região existe apenas uma unidade distinta de composição. Quando a composição de espécies das três comunidades é completamente diferente (i.e. diferenciação máxima), temos que a média da diversidade alfa = 5, a diversidade gama = 15 e a razão entre elas indica uma diversidade beta = 3. Neste caso, existem três unidades distintas dentro da região. Assim, a diversidade beta multiplicativa varia de 1 até o número de comunidades dentro da região.</p>
+<p>A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de Jaccard e Sørensen) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância <span class="citation">(<a href="#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span> e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (<em>turnover</em>) entre comunidades. Contudo, índices de (dis)similaridade como Jaccard e Sørensen geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga <span class="citation">(<a href="#ref-baselga2009" role="doc-biblioref">2010</a>, <a href="#ref-baselga2012" role="doc-biblioref">2012</a>)</span> propôs uma abordagem que particiona a diversidade beta total (<span class="math inline">\(\beta\)</span><sub>jac</sub>) em dois componentes: o componente resultante da substituição de espécies (<em>turnover</em> - <span class="math inline">\(\beta\)</span><sub>tur</sub>) e o componente resultante do aninhamento (<em>nestedness</em>, i.e. diferença na riqueza de espécies - <span class="math inline">\(\beta\)</span><sub>nes</sub>). Vejam a (Figura <a href="cap12.html#fig:fig-div-beta">12.5</a>) onde temos 3 comunidades (X, Y e Z). No primeiro exemplo, temos apenas diferença no número de espécies entre as comunidades. Neste caso, o componente subsituição de espécies (<span class="math inline">\(\beta\)</span><sub>tur</sub>) é zero porque as espécies na comunidade Z são um sub-grupo das espécies nas comunidades X e Y. O mesmo para as espécies na comunidade Y que são um sub-grupo das espécies da comunidade X. No segundo exemplo, temos o cenário oposto com as comunidades abrigando a mesma riqueza de espécies e assim, o componente resultante do aninhamento (<span class="math inline">\(\beta\)</span><sub>nes</sub>) é zero, temos um valor máximo para o <span class="math inline">\(\beta\)</span><sub>tur</sub>. Percebam que somando <span class="math inline">\(\beta\)</span><sub>tur</sub> com <span class="math inline">\(\beta\)</span><sub>nes</sub> temos o valor da diversidade beta total (<span class="math inline">\(\beta\)</span><sub>jac</sub>). Baselga <span class="citation">(<a href="#ref-baselga2013" role="doc-biblioref">2013</a>)</span> também propôs a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies <em>versus</em> perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes <span class="citation">(<a href="#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>, <a href="#ref-baselga2012" role="doc-biblioref">Baselga 2012</a>, <a href="#ref-baselga2013" role="doc-biblioref">Baselga 2013</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-div-beta"></span>
+<img src="img/cap12_fig01.png" alt="Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois." width="100%" height="100%" />
+<p class="caption">
+Figura 12.5: Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.
+</p>
+</div>
+<p>Aqui, vamos demonstrar alguns exemplos de como calcular a partição da diversidade beta para os dados deste capítulo.</p>
+<p>Para isso, primeiro vamos transformar nossos dados de abundância em presença e ausência.</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="cap12.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Transformando dados em presencia e ausência.</span></span>
+<span id="cb462-2"><a href="cap12.html#cb462-2" aria-hidden="true" tabindex="-1"></a>composicao_PA <span class="ot">&lt;-</span> <span class="fu">decostand</span>(composicao_especies, <span class="at">method =</span> <span class="st">&quot;pa&quot;</span>)</span></code></pre></div>
+<p>Calculando a diversidade beta par a par usando os dados de presença e ausência.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="cap12.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diversidade beta</span></span>
+<span id="cb463-2"><a href="cap12.html#cb463-2" aria-hidden="true" tabindex="-1"></a>resultado_PA <span class="ot">&lt;-</span> <span class="fu">beta.pair</span>(composicao_PA, <span class="at">index.family =</span> <span class="st">&quot;sorensen&quot;</span>)</span></code></pre></div>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+A função <code>beta.pair()</code> gera três listas com matrizes triangulares:</p>
+<ul>
+<li><strong>Diversidade beta total</strong> = índice de Sørensen (beta.sor)</li>
+<li><strong>Componente de substituição</strong> = índice de Simpson (beta.sim)</li>
+<li><strong>Componente de aninhamento</strong> = diferença na riqueza (beta.sne)</li>
+</ul>
+</div>
+<p>Vamos olhar os resultados da diversidade beta total.</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="cap12.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resultados</span></span>
+<span id="cb464-2"><a href="cap12.html#cb464-2" aria-hidden="true" tabindex="-1"></a>resultado_PA<span class="sc">$</span>beta.sor</span>
+<span id="cb464-3"><a href="cap12.html#cb464-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9</span></span>
+<span id="cb464-4"><a href="cap12.html#cb464-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_2  0.0000000                                                                                </span></span>
+<span id="cb464-5"><a href="cap12.html#cb464-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_3  0.3333333 0.3333333                                                                      </span></span>
+<span id="cb464-6"><a href="cap12.html#cb464-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_4  0.3333333 0.3333333 1.0000000                                                            </span></span>
+<span id="cb464-7"><a href="cap12.html#cb464-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_5  0.3333333 0.3333333 0.6000000 0.4000000                                                  </span></span>
+<span id="cb464-8"><a href="cap12.html#cb464-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_6  0.2500000 0.2500000 0.4545455 0.4545455 0.4545455                                        </span></span>
+<span id="cb464-9"><a href="cap12.html#cb464-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_7  0.6666667 0.6666667 0.7142857 0.7142857 1.0000000 0.7500000                              </span></span>
+<span id="cb464-10"><a href="cap12.html#cb464-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_8  0.4285714 0.4285714 0.7777778 0.3333333 0.3333333 0.2000000 1.0000000                    </span></span>
+<span id="cb464-11"><a href="cap12.html#cb464-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_9  0.2500000 0.2500000 0.4545455 0.4545455 0.2727273 0.5000000 0.7500000 0.4000000          </span></span>
+<span id="cb464-12"><a href="cap12.html#cb464-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Com_10 0.4285714 0.4285714 0.3333333 0.7777778 0.5555556 0.4000000 0.6666667 0.7500000 0.6000000</span></span></code></pre></div>
+<p>Vamos montar um data.frame com os resultados</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="cap12.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data frame com os resultados</span></span>
+<span id="cb465-2"><a href="cap12.html#cb465-2" aria-hidden="true" tabindex="-1"></a>data.frame_PA <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">round</span>(<span class="fu">as.numeric</span>(resultado_PA<span class="sc">$</span>beta.sor), <span class="dv">2</span>),</span>
+<span id="cb465-3"><a href="cap12.html#cb465-3" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">round</span>(<span class="fu">as.numeric</span>(resultado_PA<span class="sc">$</span>beta.sim), <span class="dv">2</span>),</span>
+<span id="cb465-4"><a href="cap12.html#cb465-4" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">round</span>(<span class="fu">as.numeric</span>(resultado_PA<span class="sc">$</span>beta.sne), <span class="dv">2</span>))</span>
+<span id="cb465-5"><a href="cap12.html#cb465-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data.frame_PA) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sorensen&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;Aninhamento&quot;</span>)</span>
+<span id="cb465-6"><a href="cap12.html#cb465-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data.frame_PA)</span>
+<span id="cb465-7"><a href="cap12.html#cb465-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Sorensen Simpson Aninhamento</span></span>
+<span id="cb465-8"><a href="cap12.html#cb465-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.00       0        0.00</span></span>
+<span id="cb465-9"><a href="cap12.html#cb465-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     0.33       0        0.33</span></span>
+<span id="cb465-10"><a href="cap12.html#cb465-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     0.33       0        0.33</span></span>
+<span id="cb465-11"><a href="cap12.html#cb465-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     0.33       0        0.33</span></span>
+<span id="cb465-12"><a href="cap12.html#cb465-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     0.25       0        0.25</span></span>
+<span id="cb465-13"><a href="cap12.html#cb465-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6     0.67       0        0.67</span></span></code></pre></div>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+Percebam que a primeira linha e primeira coluna do data frame (i.e., 0.00) representa a dissimilaridade de Sørensen entre a Com1 e Com2 (compare com os valores da matriz triangular acima). As linhas subsequentes representam a dissimilaridade da Com1 com todas as outras comunidades, depois da Com2 com todas as comunidades e assim sucessivamente. Lembrem-se que os componentes, subsituição (Simpson) e aninhamento (beta.sor - beta.sim), são um desdobramento da diversidade beta total (Sørensen). Assim, a soma da dissimilaridade de Simpson e aninhamento é igual ao valor de dissimilaridade de Sørensen <span class="citation">(<a href="#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>, <a href="#ref-baselga2012" role="doc-biblioref">Baselga 2012</a>)</span>.</p>
+</div>
+<p>Vamos calcular a dissimilaridade entre a precipitação anual das comunidades usando o índice de distância euclidiana. Vejam a ajuda da função <code>vegdist()</code> que calcula 17 índices diferentes de dissimilaridade.</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="cap12.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dissimilaridade</span></span>
+<span id="cb466-2"><a href="cap12.html#cb466-2" aria-hidden="true" tabindex="-1"></a>prec_dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(precipitacao, <span class="at">method =</span> <span class="st">&quot;euclidian&quot;</span>)</span>
+<span id="cb466-3"><a href="cap12.html#cb466-3" aria-hidden="true" tabindex="-1"></a>dados_prec <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(prec_dis) </span></code></pre></div>
+<p>Agora vamos juntar os resultados.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br />
+As comunidades devem estar dispostas na mesma ordem nas duas planilhas (composição de espécies e precipitação) para que os resultados representem as dissimilaridades par a par para as mesmas comunidades no data frame.</p>
+</div>
+<p>Criando data frame.</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="cap12.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data frame</span></span>
+<span id="cb467-2"><a href="cap12.html#cb467-2" aria-hidden="true" tabindex="-1"></a>dados_dis <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados_prec, data.frame_PA)</span>
+<span id="cb467-3"><a href="cap12.html#cb467-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_dis)</span>
+<span id="cb467-4"><a href="cap12.html#cb467-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dados_prec Sorensen Simpson Aninhamento</span></span>
+<span id="cb467-5"><a href="cap12.html#cb467-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         88     0.00       0        0.00</span></span>
+<span id="cb467-6"><a href="cap12.html#cb467-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2        400     0.33       0        0.33</span></span>
+<span id="cb467-7"><a href="cap12.html#cb467-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       1400     0.33       0        0.33</span></span>
+<span id="cb467-8"><a href="cap12.html#cb467-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4        294     0.33       0        0.33</span></span>
+<span id="cb467-9"><a href="cap12.html#cb467-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5        195     0.25       0        0.25</span></span>
+<span id="cb467-10"><a href="cap12.html#cb467-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2270     0.67       0        0.67</span></span></code></pre></div>
+<p>Vamos testar a relação entre as diferença na composição de espécies e
+precipitação nas comunidades.</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="cap12.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb468-2"><a href="cap12.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Avaliar a relação entre os valores de diversidade beta total (Sørensen) e precipitação.</span></span>
+<span id="cb468-3"><a href="cap12.html#cb468-3" aria-hidden="true" tabindex="-1"></a>anova_sore <span class="ot">&lt;-</span><span class="fu">lm</span>(Sorensen <span class="sc">~</span> dados_prec, <span class="at">data =</span> dados_dis)</span>
+<span id="cb468-4"><a href="cap12.html#cb468-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_sore)</span>
+<span id="cb468-5"><a href="cap12.html#cb468-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb468-6"><a href="cap12.html#cb468-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb468-7"><a href="cap12.html#cb468-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Sorensen</span></span>
+<span id="cb468-8"><a href="cap12.html#cb468-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df  Sum Sq  Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb468-9"><a href="cap12.html#cb468-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dados_prec  1 0.00188 0.001877  0.0358 0.8508</span></span>
+<span id="cb468-10"><a href="cap12.html#cb468-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  43 2.25264 0.052387</span></span>
+<span id="cb468-11"><a href="cap12.html#cb468-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb468-12"><a href="cap12.html#cb468-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Avaliar a relação entre os valores do componente substituição (Simpson) e precipitação</span></span>
+<span id="cb468-13"><a href="cap12.html#cb468-13" aria-hidden="true" tabindex="-1"></a>anova_simp <span class="ot">&lt;-</span><span class="fu">lm</span>(Simpson <span class="sc">~</span> dados_prec, <span class="at">data =</span> dados_dis)</span>
+<span id="cb468-14"><a href="cap12.html#cb468-14" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_simp)</span>
+<span id="cb468-15"><a href="cap12.html#cb468-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb468-16"><a href="cap12.html#cb468-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb468-17"><a href="cap12.html#cb468-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Simpson</span></span>
+<span id="cb468-18"><a href="cap12.html#cb468-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df Sum Sq  Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb468-19"><a href="cap12.html#cb468-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dados_prec  1 0.1403 0.140342  1.4905 0.2288</span></span>
+<span id="cb468-20"><a href="cap12.html#cb468-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  43 4.0488 0.094157</span></span>
+<span id="cb468-21"><a href="cap12.html#cb468-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb468-22"><a href="cap12.html#cb468-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Avaliar a relação entre os valores do componente aninhamento e precipitação</span></span>
+<span id="cb468-23"><a href="cap12.html#cb468-23" aria-hidden="true" tabindex="-1"></a>anova_anin <span class="ot">&lt;-</span><span class="fu">lm</span>(Aninhamento <span class="sc">~</span> dados_prec, <span class="at">data =</span> dados_dis)</span>
+<span id="cb468-24"><a href="cap12.html#cb468-24" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_anin)</span>
+<span id="cb468-25"><a href="cap12.html#cb468-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb468-26"><a href="cap12.html#cb468-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb468-27"><a href="cap12.html#cb468-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Aninhamento</span></span>
+<span id="cb468-28"><a href="cap12.html#cb468-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df  Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb468-29"><a href="cap12.html#cb468-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dados_prec  1 0.17467 0.17467  6.4006 0.01515 *</span></span>
+<span id="cb468-30"><a href="cap12.html#cb468-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  43 1.17349 0.02729                  </span></span>
+<span id="cb468-31"><a href="cap12.html#cb468-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb468-32"><a href="cap12.html#cb468-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Há uma relação positiva entre o componente aninhado da diversidade beta e a diferença na precipitação entre as comunidades (F<sub>1,43</sub> = 6,4, P = 0,01). Contudo, não há relação entre a diversidade beta total (Sørensen) e o componente substituição de espécies (Simpson) com a precipitação (P &gt; 0,05).</p>
+<p>Agora vamos fazer um gráfico com o componente aninhamento da diversidade
+beta (Figura <a href="cap12.html#fig:fig-beta-model">12.6</a>).</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="cap12.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Gráfico</span></span>
+<span id="cb469-2"><a href="cap12.html#cb469-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_dis, <span class="fu">aes</span>(<span class="at">x =</span> dados_prec, <span class="at">y =</span> Aninhamento)) <span class="sc">+</span> </span>
+<span id="cb469-3"><a href="cap12.html#cb469-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb469-4"><a href="cap12.html#cb469-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb469-5"><a href="cap12.html#cb469-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diferença precipitação (mm)&quot;</span>, </span>
+<span id="cb469-6"><a href="cap12.html#cb469-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Componente aninhamento da</span><span class="sc">\n</span><span class="st"> diversidade beta&quot;</span>) <span class="sc">+</span></span>
+<span id="cb469-7"><a href="cap12.html#cb469-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-beta-model"></span>
+<img src="livro_files/figure-html/fig-beta-model-1.png" alt="Relação entre o componente de aninhamento da diversidade beta e a diferença da precipitação." width="100%" height="100%" />
+<p class="caption">
+Figura 12.6: Relação entre o componente de aninhamento da diversidade beta e a diferença da precipitação.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>As comunidades localizadas em locais com baixa precipitação anual apresentam espécies que são um subgrupo das espécies presentes nas comunidades com alta precipitação anual.</p>
+<p>Agora vamos fazer um exemplo considerando os dados de abundância das espécies.</p>
+<div class="alert alert-info">
+<p>A função <code>beta.pair.abund()</code> gera três listas com matrizes triangulares:</p>
+<ul>
+<li><strong>Diversidade beta total</strong> = índice de Bray-Curtis (beta.bray)</li>
+<li><strong>Componente variação balanceada (beta.bray.bal)</strong></li>
+<li><strong>Componente gradiente de abundância (beta.bray.gra)</strong></li>
+</ul>
+</div>
+<p>Análise.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="cap12.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diversidade beta para abundância</span></span>
+<span id="cb470-2"><a href="cap12.html#cb470-2" aria-hidden="true" tabindex="-1"></a>resultado_AB <span class="ot">&lt;-</span> <span class="fu">beta.pair.abund</span>(composicao_especies, <span class="at">index.family =</span> <span class="st">&quot;bray&quot;</span>)</span></code></pre></div>
+<p>Cria um data frame com os resultados.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="cap12.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data frame</span></span>
+<span id="cb471-2"><a href="cap12.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos montar um data.frame com os resultados.</span></span>
+<span id="cb471-3"><a href="cap12.html#cb471-3" aria-hidden="true" tabindex="-1"></a>data.frame_AB <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">round</span>(<span class="fu">as.numeric</span>(resultado_AB<span class="sc">$</span>beta.bray), <span class="dv">2</span>),</span>
+<span id="cb471-4"><a href="cap12.html#cb471-4" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">round</span>(<span class="fu">as.numeric</span>(resultado_AB<span class="sc">$</span>beta.bray.bal), <span class="dv">2</span>),</span>
+<span id="cb471-5"><a href="cap12.html#cb471-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">round</span>(<span class="fu">as.numeric</span>(resultado_AB<span class="sc">$</span>beta.bray.gra), <span class="dv">2</span>))</span>
+<span id="cb471-6"><a href="cap12.html#cb471-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data.frame_AB) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bray&quot;</span>, <span class="st">&quot;Balanceada&quot;</span>, <span class="st">&quot;Gradiente&quot;</span>)</span>
+<span id="cb471-7"><a href="cap12.html#cb471-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data.frame_AB)</span>
+<span id="cb471-8"><a href="cap12.html#cb471-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Bray Balanceada Gradiente</span></span>
+<span id="cb471-9"><a href="cap12.html#cb471-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 0.81       0.81      0.00</span></span>
+<span id="cb471-10"><a href="cap12.html#cb471-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 0.69       0.42      0.27</span></span>
+<span id="cb471-11"><a href="cap12.html#cb471-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 0.45       0.38      0.06</span></span>
+<span id="cb471-12"><a href="cap12.html#cb471-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 0.47       0.07      0.40</span></span>
+<span id="cb471-13"><a href="cap12.html#cb471-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 0.47       0.15      0.31</span></span>
+<span id="cb471-14"><a href="cap12.html#cb471-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 0.92       0.00      0.92</span></span>
+<span id="cb471-15"><a href="cap12.html#cb471-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-16"><a href="cap12.html#cb471-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Agora vamos juntar os resultados com a precipitação</span></span>
+<span id="cb471-17"><a href="cap12.html#cb471-17" aria-hidden="true" tabindex="-1"></a>dados_dis_AB <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados_prec, data.frame_AB)</span></code></pre></div>
+<p>Testar a relação da dissimilaridade considerando a abundância com a diferença na precipitação entre as comunidades.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="cap12.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
+<span id="cb472-2"><a href="cap12.html#cb472-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Avaliar a relação entre os valores de diversidade beta total e precipitação</span></span>
+<span id="cb472-3"><a href="cap12.html#cb472-3" aria-hidden="true" tabindex="-1"></a>anova_dis_AB <span class="ot">&lt;-</span> <span class="fu">lm</span>(Bray <span class="sc">~</span> dados_prec, <span class="at">data =</span> dados_dis_AB)</span>
+<span id="cb472-4"><a href="cap12.html#cb472-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_dis_AB)</span>
+<span id="cb472-5"><a href="cap12.html#cb472-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb472-6"><a href="cap12.html#cb472-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb472-7"><a href="cap12.html#cb472-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Bray</span></span>
+<span id="cb472-8"><a href="cap12.html#cb472-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df  Sum Sq  Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb472-9"><a href="cap12.html#cb472-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dados_prec  1 0.01782 0.017815  0.8441 0.3634</span></span>
+<span id="cb472-10"><a href="cap12.html#cb472-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  43 0.90755 0.021106</span></span>
+<span id="cb472-11"><a href="cap12.html#cb472-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb472-12"><a href="cap12.html#cb472-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Avaliar a relação entre os valores do componente balanceada e precipitação</span></span>
+<span id="cb472-13"><a href="cap12.html#cb472-13" aria-hidden="true" tabindex="-1"></a>anova_balan <span class="ot">&lt;-</span> <span class="fu">lm</span>(Balanceada <span class="sc">~</span> dados_prec, <span class="at">data =</span> dados_dis_AB)</span>
+<span id="cb472-14"><a href="cap12.html#cb472-14" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_balan)</span>
+<span id="cb472-15"><a href="cap12.html#cb472-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb472-16"><a href="cap12.html#cb472-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb472-17"><a href="cap12.html#cb472-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Balanceada</span></span>
+<span id="cb472-18"><a href="cap12.html#cb472-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df  Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb472-19"><a href="cap12.html#cb472-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dados_prec  1 0.48761 0.48761  7.0742 0.01094 *</span></span>
+<span id="cb472-20"><a href="cap12.html#cb472-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  43 2.96391 0.06893                  </span></span>
+<span id="cb472-21"><a href="cap12.html#cb472-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb472-22"><a href="cap12.html#cb472-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb472-23"><a href="cap12.html#cb472-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb472-24"><a href="cap12.html#cb472-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Avaliar a relação entre os valores do componente gradiente e precipitação</span></span>
+<span id="cb472-25"><a href="cap12.html#cb472-25" aria-hidden="true" tabindex="-1"></a>anova_grad <span class="ot">&lt;-</span> <span class="fu">lm</span>(Gradiente <span class="sc">~</span> dados_prec, <span class="at">data =</span> dados_dis_AB)</span>
+<span id="cb472-26"><a href="cap12.html#cb472-26" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_grad)</span>
+<span id="cb472-27"><a href="cap12.html#cb472-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb472-28"><a href="cap12.html#cb472-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb472-29"><a href="cap12.html#cb472-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: Gradiente</span></span>
+<span id="cb472-30"><a href="cap12.html#cb472-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
+<span id="cb472-31"><a href="cap12.html#cb472-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dados_prec  1 0.68981 0.68981  18.705 8.903e-05 ***</span></span>
+<span id="cb472-32"><a href="cap12.html#cb472-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals  43 1.58575 0.03688                      </span></span>
+<span id="cb472-33"><a href="cap12.html#cb472-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb472-34"><a href="cap12.html#cb472-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Há uma relação positiva entre os componentes variação balanceada (F<sub>1,43</sub> = 7,07, P = 0,01) e gradiente (F<sub>1,43</sub> = 18,7, P &lt; 0,001) de abundância da diversidade beta com a diferença na precipitação entre as comunidades. Contudo, não há relação entre a diversidade beta total (Bray) com a precipitação (F<sub>1,43</sub> = 0,84, P = 0,36).</p>
+<p>Vamos fazer um gráfico para a variação balanceada da diversidade beta (Figura <a href="cap12.html#fig:fig-beta-abund-balan-model">12.7</a>).</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="cap12.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_dis_AB, <span class="fu">aes</span>(<span class="at">x =</span> dados_prec, <span class="at">y =</span> Balanceada)) <span class="sc">+</span> </span>
+<span id="cb473-2"><a href="cap12.html#cb473-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb473-3"><a href="cap12.html#cb473-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb473-4"><a href="cap12.html#cb473-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diferença precipitação (mm)&quot;</span>,</span>
+<span id="cb473-5"><a href="cap12.html#cb473-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Componente variação balanceada</span><span class="sc">\n</span><span class="st"> da diversidade beta&quot;</span>) <span class="sc">+</span></span>
+<span id="cb473-6"><a href="cap12.html#cb473-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>() </span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-beta-abund-balan-model"></span>
+<img src="livro_files/figure-html/fig-beta-abund-balan-model-1.png" alt="Relação entre o componente variação balanceada da diversidade beta e a diferença da precipitação." width="100%" height="100%" />
+<p class="caption">
+Figura 12.7: Relação entre o componente variação balanceada da diversidade beta e a diferença da precipitação.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente variação balanceada indica que há uma tendência das espécies com maiores abundâncias não serem as mesmas quando comparamos duas comunidades (i.e. maiores valores de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente variação balanceada é baixo, indicando que as mesmas espécies estão dominando a abundância nas comunidades comparadas.</p>
+<p>Vamos fazer agora um gráfico para a variação gradiente da diversidade beta (Figura <a href="cap12.html#fig:fig-beta-abund-grad-model">12.8</a>).</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="cap12.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_dis_AB, <span class="fu">aes</span>(<span class="at">x =</span> dados_prec, <span class="at">y =</span> Gradiente)) <span class="sc">+</span> </span>
+<span id="cb474-2"><a href="cap12.html#cb474-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb474-3"><a href="cap12.html#cb474-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb474-4"><a href="cap12.html#cb474-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diferença precipitação anual (mm)&quot;</span>, </span>
+<span id="cb474-5"><a href="cap12.html#cb474-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Componente gradiente de abundância</span><span class="sc">\n</span><span class="st"> da diversidade beta&quot;</span>) <span class="sc">+</span></span>
+<span id="cb474-6"><a href="cap12.html#cb474-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_livro</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-beta-abund-grad-model"></span>
+<img src="livro_files/figure-html/fig-beta-abund-grad-model-1.png" alt="Relação entre o componente variação gradiente da diversidade beta e a diferença da precipitação." width="100%" height="100%" />
+<p class="caption">
+Figura 12.8: Relação entre o componente variação gradiente da diversidade beta e a diferença da precipitação.
+</p>
+</div>
+<p><strong>Interpretação dos resultados</strong></p>
+<p>Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente gradiente indica que há uma tendência das espécies apresentarem abundâncias parecidas (i.e. menor valor de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente gradiente é alto, indicando que as mesmas espécies tem valores discrepantes de abundâncias entre as comunidades.</p>
+</div>
+<div id="para-se-aprofundar-8" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> Para se aprofundar</h2>
+<ul>
+<li>Recomendamos aos interessados a leitura dos artigos citados no capítulo e os livros de Magurran &amp; McGill <span class="citation">(<a href="#ref-magurran_biological_2011" role="doc-biblioref">2011</a>)</span> - Biological Diversity Frontiers in Measurement and Assessment, e Legendre &amp; Legendre <span class="citation">(<a href="#ref-legendre_numerical_2012" role="doc-biblioref">2012</a>)</span> - Numerical Ecology.</li>
+</ul>
+
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baselga2009" class="csl-entry">
+Baselga, A. 2010: <span class="nocase">Partitioning the turnover and nestedness components of beta diversity</span>.: Global Ecology and Biogeography 19, 134–143.
+</div>
+<div id="ref-baselga2013" class="csl-entry">
+Baselga, A. 2013: <span class="nocase">Separating the two components of abundance-based dissimilarity: balanced changes in abundance vs. abundance gradients</span> Freckleton, R. (ed.).: Methods in Ecology and Evolution 4, 552–557.
+</div>
+<div id="ref-baselga2012" class="csl-entry">
+Baselga, A. 2012: <span class="nocase">The relationship between species replacement, dissimilarity derived from nestedness, and nestedness</span>.: Global Ecology and Biogeography 21, 1223–1232.
+</div>
+<div id="ref-gotelli2013" class="csl-entry">
+Gotelli, N.J., Chao, A. 2013: <span class="nocase">Measuring and estimating species richness, species diversity, and biotic similarity from sampling data</span>. Encyclopedia of biodiversity, 195–211. Elsevier.
+</div>
+<div id="ref-hill1973" class="csl-entry">
+Hill, M.O. 1973: <span class="nocase">Diversity and evenness: A unifying notation and its consequences</span>.: Ecology 54, 427–432.
+</div>
+<div id="ref-hurlbert1971" class="csl-entry">
+Hurlbert, S.H. 1971: <span class="nocase">The nonconcept of species diversity: A critique and alternative parameters</span>.: Ecology 52, 577–586.
+</div>
+<div id="ref-jost2006" class="csl-entry">
+Jost, L. 2006: <span class="nocase">Entropy and diversity</span>.: Oikos 113, 363–375.
+</div>
+<div id="ref-jost_partitioning_2007" class="csl-entry">
+Jost, L. 2007: Partitioning diversity into independent alpha and beta components.: Ecology 88, 2427–2439.
+</div>
+<div id="ref-legendre_numerical_2012" class="csl-entry">
+Legendre, P., Legendre, L. 2012: <span>Numerical Ecology</span> 3rd ed.,: Elsevier.
+</div>
+<div id="ref-magurran_biological_2011" class="csl-entry">
+Magurran, A.E., McGill, B.J. 2011: <span class="nocase">Biological diversity: Frontiers in measurement and assessment</span>,: Oxford, Oxford University Press.
+</div>
+<div id="ref-mcgill2007" class="csl-entry">
+McGill, B.J., Etienne, R.S., Gray, J.S., Alonso, D., Anderson, M.J., Benecha, H.K., Dornelas, M., Enquist, B.J., Green, J.L., He, F., Hurlbert, A.H., Magurran, A.E., Marquet, P.A., Maurer, B.A., Ostling, A., Soykan, C.U., Ugland, K.I., White, E.P. 2007: <span class="nocase">Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework</span>.: Ecology Letters 10, 995–1015.
+</div>
+<div id="ref-melo2008" class="csl-entry">
+Melo, A.S. 2008: <span class="nocase">O que ganhamos ’confundindo’ riqueza de esp<span class="nocase">é</span>cies e equabilidade em um <span class="nocase">í</span>ndice de diversidade?</span> Biota Neotropica 8, 21–27.
+</div>
+<div id="ref-pielou1966" class="csl-entry">
+Pielou, E.C. 1966: <span class="nocase">The measurement of diversity in different types of biological collections</span>.: Journal of Theoretical Biology 13, 131–144.
+</div>
+<div id="ref-whittaker1972" class="csl-entry">
+Whittaker, R.H. 1972: <span class="nocase">Evolution and measurement of species diversity</span>.: TAXON 21, 213–251.
+</div>
+<div id="ref-whittaker1960" class="csl-entry">
+Whittaker, R.H. 1960: <span class="nocase">Vegetation of the Siskiyou Mountains, Oregon and California</span>.: Ecological Monographs 30, 279–338.
+</div>
+<div id="ref-wilson1991" class="csl-entry">
+Wilson, J.B. 1991: <span class="nocase">Methods for fitting dominance/diversity curves</span>.: Journal of Vegetation Science 2, 35–46.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cap11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cap13.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/12_diversidade_taxonomica.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/12_diversidade_taxonomica.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
