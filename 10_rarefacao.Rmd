@@ -111,7 +111,7 @@ ggiNEXT(resultados_morcegos, type = 1) +
 
 **Interpretação dos resultados**
 
-Foram registrados 166 indivíduos na MC_Tenentes, 413 na MC_Talhadinho e 223 na FF_Experimental. Lembrando, você não pode comparar a riqueza de espécies observada diretamente: 15 espécies na MC_Tenentes, 19 espécies na MC_Talhadinho, e 17 espécies no FF_Experimental. A comparação da riqueza de espécies entre as comunidades deve ser feita com base na riqueza de espécies rarefeita, que é calculada com base no número de indivíduos da comunidade com menor abundância (166 indivíduos). Olhando o gráfico é possível perceber que a riqueza de espécies de morcegos rarefeita não é diferente entre os três fragmentos florestais quando corrigimos o problema da diferença na abundância pela rarefação. A interpretação é feita com base no intervalo de confiança de 95%. As curvas serão diferentes quando os intervalos de confiança não se sobreporem [@chao2014]. Percebam que esta abordagem, além da interpolação (rarefação), também realiza extrapolações que podem ser usadas para estimar o número de espécies caso o esforço de coleta fosse maior. Este é o assunto do Capítulo \@ref(cap11).
+Foram registrados 166 indivíduos na MC_Tenentes, 413 na MC_Talhadinho e 223 na FF_Experimental. Lembrando, você não pode comparar a riqueza de espécies observada diretamente: 15 espécies na MC_Tenentes, 19 espécies na MC_Talhadinho, e 17 espécies no FF_Experimental. A comparação da riqueza de espécies entre as comunidades deve ser feita com base na riqueza de espécies rarefeita, que é calculada com base no número de indivíduos da comunidade com menor abundância (166 indivíduos - linha preta tracejada). Olhando o gráfico é possível perceber que a riqueza de espécies de morcegos rarefeita não é diferente entre os três fragmentos florestais quando corrigimos o problema da diferença na abundância pela rarefação. A interpretação é feita com base no intervalo de confiança de 95%. As curvas serão diferentes quando os intervalos de confiança não se sobreporem [@chao2014]. Percebam que esta abordagem, além da interpolação (rarefação), também realiza extrapolações que podem ser usadas para estimar o número de espécies caso o esforço de coleta fosse maior. Este é o assunto do Capítulo \@ref(cap11).
 
 **Exemplo prático 2 - Anuros e Répteis**
 
@@ -355,7 +355,7 @@ Vamos juntar esses resultados com os dados geográficos e ambientais.
 dados_combinado <- data.frame(riqueza_rarefeita, agua, coord)
 ```
 
-Agora, seguindo os passos descritos no Capítulo \@(cap7), vamos identificar o melhor modelo que representa a estrutura espacial dos dados da riqueza rarefeita.
+Agora, seguindo os passos descritos no Capítulo \@ref(cap7), vamos identificar o melhor modelo que representa a estrutura espacial dos dados da riqueza rarefeita.
 
 ```{r}
 ## Criando diferentes modelos usando a função gls
