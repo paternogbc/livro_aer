@@ -963,8 +963,8 @@ Análise da ANOVA em blocos.
 
 ```{r}
 ## Análise Anova em blocos aleatorizados
-model_bloco2 <- aov(Riqueza ~ Pocas + Error(Blocos), data = dados_bloco)
-summary(model_bloco2)
+model_bloco <- aov(Riqueza ~ Pocas + Error(Blocos), data = dados_bloco)
+summary(model_bloco)
 ```
 
 Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
@@ -981,7 +981,7 @@ O resultado da ANOVA (Pr(\>F) \< 0.001) indica que devemos rejeitar a hipótese 
 
 ```{r}
 ## Teste de Tuckey's honest significant difference
-pairs(lsmeans(model_bloco2, "Pocas"), adjust = "tukey")
+pairs(lsmeans(model_bloco, "Pocas"), adjust = "tukey")
 ```
 
 Visualizar os resultados em gráfico (Figura \@ref(fig:fig-anova-blocos)).
