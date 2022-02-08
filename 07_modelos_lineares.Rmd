@@ -61,8 +61,14 @@ Onde:
 
 -   As amostras devem ser independentes
 -   As unidades amostrais são selecionadas aleatoriamente
--   Distribuição normal (gaussiana) dos resíduos. **Observação:** Zar [-@zar_biostatistical_2010] indica que o Teste T é robusto mesmo com moderada violação da normalidade, principalmente se o tamanho amostral for alto
--   Homogeneidade da variância. **Observação:** Caso as variâncias não sejam homogêneas, isso deve ser informado na linha de comando, pois o denominador da fórmula acima será corrigido
+-   Distribuição normal (gaussiana) dos resíduos. 
+-   Homogeneidade da variância. 
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+1. Zar [-@zar_biostatistical_2010] indica que o Teste T é robusto mesmo com moderada violação da normalidade, principalmente se o tamanho amostral for alto.
+2. Caso as variâncias não sejam homogêneas, isso deve ser informado na linha de comando, pois o denominador da fórmula acima será corrigido.
+:::
 
 **Avaliação das premissas**
 
@@ -318,11 +324,6 @@ Cálculo do Teste T com amostras pareadas.
 
 ```{r}
 ## Análise Teste T Pareado
-
-# O uso do [] é para selecionar dentro do vetor/coluna *Riqueza* os 27 
-# primeiros números [1:27] que representam as localidades antes da 
-# queimada e os últimos 27 números [28:54] que representam as mesmas 
-# localidades pós-queimada.
 
 t.test(Riqueza ~ Estado, paired = TRUE, data = Pareado)
 ```
@@ -596,7 +597,7 @@ modelo_regressao_mul <- lm(CRC ~ Temperatura + Precipitacao,
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-Multicolinearidade ocorre quando as variáveis preditoras são correlacionadas. Essa correlação é um problema porque as variáveis preditoras deveriam ser independentes. O Fator de Inflação da Variância (VIF) é um teste que quantifica quanto do erro padrão dos coeficientes estimados estão inflados devido à multicolinearidade. Na regressão múltipla, cada variável preditora tem um valor de VIF. Alguns autores consideram valores de VIF acima de 10 como fortemente correlacionadas, outros mais conservadores consideram o valor de 5, 3 ou até mesmo 2. Mais detalhes em zuur_protocol_2009 e @dormann_collinearity_2013.
+Multicolinearidade ocorre quando as variáveis preditoras são correlacionadas. Essa correlação é um problema porque as variáveis preditoras deveriam ser independentes. O Fator de Inflação da Variância (VIF) é um teste que quantifica quanto do erro padrão dos coeficientes estimados estão inflados devido à multicolinearidade. Na regressão múltipla, cada variável preditora tem um valor de VIF. Alguns autores consideram valores de VIF acima de 10 como fortemente correlacionadas, outros mais conservadores consideram o valor de 5, 3 ou até mesmo 2. Mais detalhes em @zuur_protocol_2009 e @dormann_collinearity_2013.
 :::
 
 Vamos analisar se as variáveis apresentam multicolinearidade.
@@ -612,9 +613,7 @@ Agora vamos verificar as premissas de normalidade e homogeneidade das variância
 
 ```{r fig-lm-multi-pre, fig.cap="Gráficos mostrando as premissas da regressão linear múltipla."}
 ## Normalidade e homogeneidade das variâncias
-par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
-plot(modelo_regressao_mul)
-dev.off()
+plot_grid(plot_model(modelo_regressao_mul , type = "diag"))
 ```
 
 Os resíduos apresentam distribuição normal e variâncias homogêneas.
@@ -838,9 +837,7 @@ Analisando o resultado do teste (P \> 0.05), a interação não é importante. E
 
 ```{r fig-lm-anova-fat-pre, fig.cap="Gráficos mostrando as premissas da ANOVA fatorial."}
 # Verificando as premissas do teste.
-par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
-plot(Modelo2)
-dev.off()
+plot_grid(plot_model(Modelo2, type = "diag"))
 ```
 
 Dois pontos estão fugindo da reta e chamam atenção sobre a normalidade da distribuição dos resíduos. A homogeneidade da variância está adequada. Por enquanto, vamos seguir a análise, mas veja o Capítulo \@ref(cap8) para entender como lidar com modelos que os resíduos não apresentam distribuição normal.
@@ -962,18 +959,15 @@ Olhando os dados usando a função `head()`.
 head(dados_bloco) 
 ```
 
-Há duas formas de incluir os efeitos dos blocos nos modelos.
+Análise da ANOVA em blocos.
 
 ```{r}
 ## Análise Anova em blocos aleatorizados
-model_bloco1 <- aov(Riqueza ~ Pocas + Blocos, data = dados_bloco)
-summary(model_bloco1)
-
 model_bloco2 <- aov(Riqueza ~ Pocas + Error(Blocos), data = dados_bloco)
 summary(model_bloco2)
 ```
 
-Percebam que as duas formas apresentam os mesmos resultados para o efeito da distância das poças que é o fator de interesse no estudo. Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
+Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
 
 O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a forma errada de analisar delineamento experimental com blocos.
 
