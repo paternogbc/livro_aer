@@ -43,6 +43,10 @@ fish_comm        <- ecodados::fish_comm
 data(mite)
 data(doubs)
 data(mite.env)
+
+## Traduzir nomes para português 
+colnames(penguins) <- c("especies", "ilha", "comprimento_bico", "profundidade_bico", "comprimento_nadadeira", "massa_corporal", "sexo", "ano")
+
 ```
 
 ## Aspectos teóricos
@@ -539,9 +543,6 @@ sum(is.na(penguins))
 ## Remover dados ausentes (NA), quando houver
 penguins <- na.omit(penguins)
 
-## Editar nomes para aparecer nos gráficos
-names(penguins) <- c("species", "island", "Bill length", "Bill depth", "Flipper length", "Body mass", "Sex", "Year")
-
 ## Manter somentes dados contínuos que pretende aplicar a PCA
 penguins_trait <- penguins[, 3:6]
 ```
@@ -572,8 +573,9 @@ pca.p$eig
 
 ## Visualização da porcentagem de explicação de cada eixo
 # nota: é necessário ficar atento ao valor máximo do eixo 1 da análise para determinar o valor do ylim (neste caso, colocamos que o eixo varia de 0 a 70).
-fviz_screeplot(pca.p, addlabels = TRUE, ylim = c(0, 70)) 
-
+fviz_screeplot(pca.p, addlabels = TRUE, ylim = c(0, 70), main = "", 
+               xlab = "Dimensões",
+               ylab = "Porcentagem de variância explicada") 
 ## Outros valores importantes
 var_env <- get_pca_var(pca.p)
 
@@ -608,7 +610,7 @@ Agora podemos utilizar o famoso **biplot** para representar a comparação morfo
 ```{r fig-pca-biplot, fig.cap="Biplot da PCA ordenando os dados morfológicos de penguins.", message=FALSE, warning=FALSE}
 fviz_pca_biplot(X = pca.p, 
                 geom.ind = "point", 
-                fill.ind = penguins$species, 
+                fill.ind = penguins$especies, 
                 col.ind = "black",
                 alpha.ind = 0.7,
                 pointshape = 21, 
@@ -1044,7 +1046,8 @@ Como resultado, é possível que a variação ambiental espacialmente estruturad
 ## Triplot da RDA
 # Partição de variância.
 pv.birds <- varpart(species.hel, env.pad.cat, spatial.pred)
-plot(pv.birds)
+plot(pv.birds, cutoff = -Inf)
+mtext("Diagrama de Venn: partição de variância")
 ```
 
 ### Análise de Redundância baseada em distância (db-RDA)
@@ -1380,7 +1383,9 @@ concord <- procrustes(pcoa_macro, pcoa_fish)
 protest(pcoa_macro, pcoa_fish)
 
 ## Gráfico
-plot(concord)
+plot(concord, main = "", 
+     xlab = "Dimensão 1",
+     ylab = "Dimensão 2")
 ```
 
 **Interpretação dos resultados**
