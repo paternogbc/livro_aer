@@ -234,7 +234,7 @@ Vamos conferir se os nomes das espécies de aves no data frame de composição s
 name.check(filogenia_aves, t(composicao_especies))
 
 ## Colocar os nomes das espécies do data frame na mesma ordem que aparecem na filogenia
-composicao_especies_P <- composicao_especies[,match(filogenia_aves$tip.label,colnames(composicao_especies))]
+composicao_especies_P <- match.phylo.comm(phy = filogenia_aves, comm = composicao_especies)$comm
 ```
 
 Os nomes das espécies que estão na planilha são iguais aos nomes das espécies que estão na filogenia. Podemos continuar as análises.
