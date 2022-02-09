@@ -109,7 +109,7 @@ abundancia
 Calculando o Índice de Margalef.
 
 ```{r}
-## Índice de Menhinick
+## Índice de Margalef
 # A função round é para limitar o resultado para duas casas decimais.
 Margalef <- round((riqueza_sp - 1)/log(abundancia), 2)
 Margalef
@@ -140,7 +140,7 @@ anova(anova_riq)
 
 Há uma relação positiva entre a riqueza de espécies e a precipitação anual (F~1,8~ = 8,91, P = 0,01).
 
-Analisr a relação entre o Índice de Margalef e a precipitação anual.
+Analisar a relação entre o Índice de Margalef e a precipitação anual.
 
 ```{r}
 ## ANOVA
@@ -672,3 +672,11 @@ Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual 
 ## Para se aprofundar
 
 -   Recomendamos aos interessados a leitura dos artigos citados no capítulo e os livros de Magurran & McGill [-@magurran_biological_2011] - Biological Diversity Frontiers in Measurement and Assessment, e Legendre & Legendre [-@legendre_numerical_2012] - Numerical Ecology.
+
+## Exercícios
+
+1.  Carregue os dados - anuros_composicao - que está no pacote ecodados. Este conjunto de dados representa a abundância de 211 espécies de anuros coletados em 44 localidades na Mata Atlântica. Calcule a riqueza de espécies para cada comunidade e os índices de Margalef, Menhinich, Shannon-Wiener, Gini-Simpson e Equitabilidade de Pielou. Salve todos os resultados em novo data frame. Faça uma gráfico usando o função `ggpairs` para ver a correlação entre as métricas. Qual a sua interpretação sobre os resultados?
+
+2.  Usando os resultados anteriores, selecione as duas comunidades com os maiores e menores valores de Shannon-Wiener. Em seguida, faça um Diagrama de Whittaker. Por fim, interprete as curvas considerando as curvas teóricas (i.e., geométrica, broken-stick, etc.) descritas nos livros de ecologia. 
+
+3.  Usando os dados - anuros_composicao - calcule a partição da diversidade beta considerando os dados de abundância e presença e ausência. a) Faça um gráfico boxplot com os resultados. Discuta se os resultados usando abundância ou presença e ausência são congruentes ou discrepantes. b) Calcule a distância geográfica (use a planilha anuros_ambientais) entre as localidaes (use a Distância euclidiana). Em seguida, faça uma análise de regressão para verificar se as localidades que estão próximas apresentam maior similaridade na composição de espécies (use componente turnover - Bsim) do que as comunidades que estão distantes (e.g., Decaimento da similaridade).
