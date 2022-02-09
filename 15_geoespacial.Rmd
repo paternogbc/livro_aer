@@ -4,7 +4,7 @@
 
 Pacotes e dados que serão utilizados nesse capítulo.
 
-```{r eval=TRUE}
+```{r}
 ## Pacotes
 library(ecodados)
 library(here)
@@ -2412,7 +2412,10 @@ Primeiramente, vamos fazer o download dos dados de limites de biomas, retirando 
 ```{r}
 ## Download de polígonos dos geo_vetor_biomas Brasileiros
 geo_vetor_biomas <- geobr::read_biomes(showProgress = FALSE) %>%
-    dplyr::filter(name_biome != "Sistema Costeiro")
+    dplyr::filter(name_biome != "Sistema Costeiro") %>% 
+    dplyr::rename(nome_bioma = name_biome,
+                  codigo_bioma = code_biome,
+                  ano = year)
 ```
 
 Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote `ecodados`.
@@ -2438,7 +2441,7 @@ plot(geo_vetor_biomas$geom,
              "yellow", "yellow3"),
      main = "Biomas do Brasil", axes = TRUE, graticule = TRUE)
 legend(x = -75, y = -20, pch = 15, cex = .7, pt.cex = 2.5,
-       legend = geo_vetor_biomas$name_biome, 
+       legend = geo_vetor_biomas$nome_bioma, 
        col = c("darkgreen", "orange", "orange4", "forestgreen", 
                "yellow", "yellow3"))
 ```
@@ -2487,7 +2490,7 @@ Vamos demonstrar esse funcionamento para compor o mapa de geo_vetor_biomas, apre
 ```{r fig-vetor-mapa-ggplot2, fig.cap="Mapa de Biomas do Brasil com o pacote `ggplot2`."}
 ## Plot
 mapa_vetor_biomas_ggplot2 <- ggplot(data = geo_vetor_biomas) +
-    aes(fill = name_biome) +
+    aes(fill = nome_bioma) +
     geom_sf(color = "black") +
     scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
                                  "forestgreen", "yellow", "yellow3")) +
@@ -2575,7 +2578,7 @@ tmap::tmap_mode(mode = "plot")
 
 ## Mapa
 mapa_vetor_biomas_tmap <- tm_shape(geo_vetor_biomas, bbox = c(-74, -35, -27, 10)) +
-    tm_polygons(col = "name_biome",
+    tm_polygons(col = "nome_bioma",
                 pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"),
                 border.col = "black",
                 title = "Legenda") +
@@ -3417,6 +3420,10 @@ mapa_pred_riq_nb <- tm_shape(modelo_riq_nb_pred) +
 Essa análise foi realizada com o intuito de exemplificar o funcionamento da função `raster::predict()`, para mais detalhes, consultar livros específicos da área de Ecologia Espacial [@fletcher2018].
 :::
 
+## Para se aprofundar
+
+Listamos aqui as principais referências sobre manipulação, visualização de dados geoespaciais e análises geoespaciais no R. Recomendamos aos interessados os livros: i) Lovelace, Nowosad & Muenchow [-@lovelace2019] [Geocomputation with R](https://geocompr.robinlovelace.net/), ii) Mas et al. [-@mas2019] [Análise espacial com R](https://bit.ly/2KpSI7C), iii) Olaya [-@olaya2020] [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/), iv) Moraga [-@moraga_geospatial_2019] [Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny](https://www.paulamoraga.com/book-geospatial/), v) Brunsdon & Comber [-@brunsdon_introduction_2015] [An Introduction to Spatial Analysis and Mapping in R](https://bookdown.org/lexcomber/brunsdoncomber2e/), vi) Wegmann, Leutner & Dech [-@wegmann2016] Remote Sensing and GIS for Ecologists: Using Open Source Software, vii)  Wegmann, Schwalb-Willmann & Dech [-@wegmann2020] An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, viii) Fletcher & Fortin [-@fletcher2018] Spatial ecology and conservation modeling: Applications with R, ix) Lapaine, Miljenko, Usery, E. Lynn [-@lapaine2017] Choosing a Map Projection.
+
 ## Exercícios
 
 1. Importe o limite dos estados brasileiros no formato **sf** com o nome **br**. Para isso, use a função **ne_states** do pacote **rnaturalearth**. Crie um mapa simples cinza utilizando a função **plot()**, selecionando a coluna  **geometry** com o operador **$** e com os argumentos **axes** e **graticule** verdadeiros.
@@ -3434,8 +3441,3 @@ Essa análise foi realizada com o intuito de exemplificar o funcionamento da fun
 7. Extraia os valores de cada pixel do raster criado no exercício 6 para os centroides dos estados do Brasil criado no exercício 5, atribuindo à coluna **val** do objeto espacial chamado **br_valid_poly_cent_ra**. 
 
 8. Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o pacote **tmap** e inclua todos os principais elementos de um mapa.
-
-## Para se aprofundar
-
-Listamos aqui as principais referências sobre manipulação, visualização de dados geoespaciais e análises geoespaciais no R. Recomendamos aos interessados os livros: i) Lovelace, Nowosad & Muenchow [-@lovelace2019] [Geocomputation with R](https://geocompr.robinlovelace.net/), ii) Mas et al. [-@mas2019] [Análise espacial com R](https://bit.ly/2KpSI7C), iii) Olaya [-@olaya2020] [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/), iv) Moraga [-@moraga_geospatial_2019] [Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny](https://www.paulamoraga.com/book-geospatial/), v) Brunsdon & Comber [-@brunsdon_introduction_2015] [An Introduction to Spatial Analysis and Mapping in R](https://bookdown.org/lexcomber/brunsdoncomber2e/), vi) Wegmann, Leutner & Dech [-@wegmann2016] Remote Sensing and GIS for Ecologists: Using Open Source Software, vii) 
-Wegmann, Schwalb-Willmann & Dech [-@wegmann2020] An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, viii) Fletcher & Fortin [-@fletcher2018] Spatial ecology and conservation modeling: Applications with R, ix) Lapaine, Miljenko, Usery, E. Lynn [-@lapaine2017] Choosing a Map Projection.
