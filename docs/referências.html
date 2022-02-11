@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Referências | Análises Ecológicas no R</title>
+  <meta name="description" content="Referências | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Referências | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Referências | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2022-02-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="glossário.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
+<li class="chapter" data-level="" data-path="revisores-e-colaboradores.html"><a href="revisores-e-colaboradores.html"><i class="fa fa-check"></i>Revisores e colaboradores</a></li>
+<li class="chapter" data-level="1" data-path="cap1.html"><a href="cap1.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="cap1.html"><a href="cap1.html#histórico-deste-livro"><i class="fa fa-check"></i><b>1.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="1.2" data-path="cap1.html"><a href="cap1.html#objetivo-deste-livro"><i class="fa fa-check"></i><b>1.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="1.3" data-path="cap1.html"><a href="cap1.html#o-que-você-não-encontrará-neste-livro"><i class="fa fa-check"></i><b>1.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="1.4" data-path="cap1.html"><a href="cap1.html#por-que-usar-o-r"><i class="fa fa-check"></i><b>1.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="1.5" data-path="cap1.html"><a href="cap1.html#indo-além-da-linguagem-de-progração-para-a-ecologia"><i class="fa fa-check"></i><b>1.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="1.6" data-path="cap1.html"><a href="cap1.html#como-usar-este-livro"><i class="fa fa-check"></i><b>1.6</b> Como usar este livro</a></li>
+<li class="chapter" data-level="1.7" data-path="cap1.html"><a href="cap1.html#como-ensinar-e-aprender-com-esse-livro"><i class="fa fa-check"></i><b>1.7</b> Como ensinar e aprender com esse livro</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="cap1.html"><a href="cap1.html#em-laboratórios-ou-grupos-de-pesquisa"><i class="fa fa-check"></i><b>1.7.1</b> Em laboratórios ou grupos de pesquisa</a></li>
+<li class="chapter" data-level="1.7.2" data-path="cap1.html"><a href="cap1.html#em-disciplinas-da-graduação-ou-pós-graduação"><i class="fa fa-check"></i><b>1.7.2</b> Em disciplinas da graduação ou pós-graduação</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cap2.html"><a href="cap2.html#introdução"><i class="fa fa-check"></i><b>2.1</b> Introdução</a></li>
+<li class="chapter" data-level="2.2" data-path="cap2.html"><a href="cap2.html#perguntas-devem-preceder-as-análises-estatísticas"><i class="fa fa-check"></i><b>2.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cap2.html"><a href="cap2.html#um-bestiárioperguntas_ecologia-1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>2.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cap2.html"><a href="cap2.html#fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas"><i class="fa fa-check"></i><b>2.3</b> Fluxograma: Conectando variáveis para melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="2.4" data-path="cap2.html"><a href="cap2.html#questões-fundamentais-em-etnobiologia-ecologia-e-conservação"><i class="fa fa-check"></i><b>2.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="2.5" data-path="cap2.html"><a href="cap2.html#considerações-finais"><i class="fa fa-check"></i><b>2.5</b> Considerações Finais</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cap3.html"><a href="cap3.html#introdução-1"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="cap3.html"><a href="cap3.html#instalação-do-r"><i class="fa fa-check"></i><b>3.2</b> Instalação do R</a></li>
+<li class="chapter" data-level="3.3" data-path="cap3.html"><a href="cap3.html#instalação-do-rstudio"><i class="fa fa-check"></i><b>3.3</b> Instalação do RStudio</a></li>
+<li class="chapter" data-level="3.4" data-path="cap3.html"><a href="cap3.html#versão-do-r"><i class="fa fa-check"></i><b>3.4</b> Versão do R</a></li>
+<li class="chapter" data-level="3.5" data-path="cap3.html"><a href="cap3.html#pacotes"><i class="fa fa-check"></i><b>3.5</b> Pacotes</a></li>
+<li class="chapter" data-level="3.6" data-path="cap3.html"><a href="cap3.html#dados"><i class="fa fa-check"></i><b>3.6</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap4.html"><a href="cap4.html#pré-requisitos-do-capítulo"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="cap4.html"><a href="cap4.html#contextualização"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="cap4.html"><a href="cap4.html#r-e-rstudio"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="cap4.html"><a href="cap4.html#funcionamento-da-linguagem-r"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="cap4.html"><a href="cap4.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cap4.html"><a href="cap4.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="cap4.html"><a href="cap4.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="cap4.html"><a href="cap4.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="cap4.html"><a href="cap4.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="cap4.html"><a href="cap4.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="cap4.html"><a href="cap4.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="cap4.html"><a href="cap4.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="cap4.html"><a href="cap4.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="cap4.html"><a href="cap4.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="cap4.html"><a href="cap4.html#estrutura-e-manipulação-de-objetos"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="cap4.html"><a href="cap4.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="cap4.html"><a href="cap4.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="cap4.html"><a href="cap4.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="cap4.html"><a href="cap4.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="cap4.html"><a href="cap4.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="cap4.html"><a href="cap4.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="cap4.html"><a href="cap4.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="cap4.html"><a href="cap4.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="cap4.html"><a href="cap4.html#para-se-aprofundar"><i class="fa fa-check"></i><b>4.5</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="cap4.html"><a href="cap4.html#livros"><i class="fa fa-check"></i><b>4.5.1</b> Livros</a></li>
+<li class="chapter" data-level="4.5.2" data-path="cap4.html"><a href="cap4.html#links"><i class="fa fa-check"></i><b>4.5.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="cap4.html"><a href="cap4.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap5.html"><a href="cap5.html#pré-requisitos-do-capítulo-1"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="cap5.html"><a href="cap5.html#contextualização-1"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="cap5.html"><a href="cap5.html#tidyverse"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="cap5.html"><a href="cap5.html#here"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="cap5.html"><a href="cap5.html#readr-readxl-e-writexl"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="cap5.html"><a href="cap5.html#tibble"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="cap5.html"><a href="cap5.html#magrittr-pipe--"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="cap5.html"><a href="cap5.html#tidyr"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="cap5.html"><a href="cap5.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="cap5.html"><a href="cap5.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="cap5.html"><a href="cap5.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="cap5.html"><a href="cap5.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="cap5.html"><a href="cap5.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="cap5.html"><a href="cap5.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="cap5.html"><a href="cap5.html#dplyr"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="cap5.html"><a href="cap5.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="cap5.html"><a href="cap5.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="cap5.html"><a href="cap5.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="cap5.html"><a href="cap5.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="cap5.html"><a href="cap5.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="cap5.html"><a href="cap5.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="cap5.html"><a href="cap5.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="cap5.html"><a href="cap5.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="cap5.html"><a href="cap5.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="cap5.html"><a href="cap5.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="cap5.html"><a href="cap5.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="cap5.html"><a href="cap5.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="cap5.html"><a href="cap5.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="cap5.html"><a href="cap5.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="cap5.html"><a href="cap5.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="cap5.html"><a href="cap5.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="cap5.html"><a href="cap5.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="cap5.html"><a href="cap5.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="cap5.html"><a href="cap5.html#stringr"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="cap5.html"><a href="cap5.html#forcats"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="cap5.html"><a href="cap5.html#lubridate"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="cap5.html"><a href="cap5.html#purrr"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="cap5.html"><a href="cap5.html#para-se-aprofundar-1"><i class="fa fa-check"></i><b>5.13</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="cap5.html"><a href="cap5.html#livros-1"><i class="fa fa-check"></i><b>5.13.1</b> Livros</a></li>
+<li class="chapter" data-level="5.13.2" data-path="cap5.html"><a href="cap5.html#links-1"><i class="fa fa-check"></i><b>5.13.2</b> Links</a></li>
+<li class="chapter" data-level="5.13.3" data-path="cap5.html"><a href="cap5.html#links-2"><i class="fa fa-check"></i><b>5.13.3</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="cap5.html"><a href="cap5.html#exercícios-1"><i class="fa fa-check"></i><b>5.14</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Visualização de dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap6.html"><a href="cap6.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#contextualização-2"><i class="fa fa-check"></i><b>6.1</b> Contextualização</a></li>
+<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.2</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.3</b> Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.4</b> Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.4.1</b> Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.4.2</b> Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cap6.html"><a href="cap6.html#diagrama-de-pontos-dot-plot"><i class="fa fa-check"></i><b>6.4.3</b> Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cap6.html"><a href="cap6.html#gráfico-de-barras-bar-plot"><i class="fa fa-check"></i><b>6.4.4</b> Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.4.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.4.5</b> Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.4.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.4.6</b> Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.7" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.4.7</b> Gráfico de dispersão (<em>scatter plot</em>)</a></li>
+<li class="chapter" data-level="6.4.8" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.4.8</b> Visualização de múltiplos gráficos pareados</a></li>
+<li class="chapter" data-level="6.4.9" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.4.9</b> Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.5</b> Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.5.1</b> Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-gride"><i class="fa fa-check"></i><b>6.5.2</b> Elementos gráficos: eixo, fonte, gride</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme"><i class="fa fa-check"></i><b>6.5.3</b> Temas personalizados <code>ggtheme()</code></a></li>
+<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.5.4</b> Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.5.5</b> Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#livros-2"><i class="fa fa-check"></i><b>6.6.1</b> Livros</a></li>
+<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#links-3"><i class="fa fa-check"></i><b>6.6.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="cap6.html"><a href="cap6.html#exercícios-2"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="cap7.html"><a href="cap7.html#teste-t-de-student-para-duas-amostras-independentes"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="cap7.html"><a href="cap7.html#teste-t-para-amostras-pareadas"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="cap7.html"><a href="cap7.html#correlação-de-pearson"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="cap7.html"><a href="cap7.html#regressão-linear-simples"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="cap7.html"><a href="cap7.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="cap7.html"><a href="cap7.html#análises-de-variância-anova"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="cap7.html"><a href="cap7.html#anova-de-um-fator"><i class="fa fa-check"></i><b>7.6.1</b> ANOVA de um fator</a></li>
+<li class="chapter" data-level="7.6.2" data-path="cap7.html"><a href="cap7.html#anova-com-dois-fatores-ou-anova-fatorial"><i class="fa fa-check"></i><b>7.6.2</b> ANOVA com dois fatores ou ANOVA fatorial</a></li>
+<li class="chapter" data-level="7.6.3" data-path="cap7.html"><a href="cap7.html#anova-em-blocos-aleatorizados"><i class="fa fa-check"></i><b>7.6.3</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.6.4" data-path="cap7.html"><a href="cap7.html#análise-de-covariância-ancova"><i class="fa fa-check"></i><b>7.6.4</b> Análise de covariância (ANCOVA)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="cap7.html"><a href="cap7.html#generalized-least-squares-gls"><i class="fa fa-check"></i><b>7.7</b> Generalized Least Squares (GLS)</a></li>
+<li class="chapter" data-level="7.8" data-path="cap7.html"><a href="cap7.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.8</b> Para se aprofundar</a></li>
+<li class="chapter" data-level="7.9" data-path="cap7.html"><a href="cap7.html#exercícios-3"><i class="fa fa-check"></i><b>7.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Modelos Lineares Generalizados</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
+<li class="chapter" data-level="8.2" data-path="cap8.html"><a href="cap8.html#como-um-glm-funciona"><i class="fa fa-check"></i><b>8.2</b> Como um GLM funciona?</a></li>
+<li class="chapter" data-level="8.3" data-path="cap8.html"><a href="cap8.html#como-escolher-a-distribuição-correta-para-seus-dados"><i class="fa fa-check"></i><b>8.3</b> Como escolher a distribuição correta para seus dados?</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="cap8.html"><a href="cap8.html#para-dados-contínuos"><i class="fa fa-check"></i><b>8.3.1</b> Para dados contínuos</a></li>
+<li class="chapter" data-level="8.3.2" data-path="cap8.html"><a href="cap8.html#para-dados-de-contagem"><i class="fa fa-check"></i><b>8.3.2</b> Para dados de contagem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-a-distribuição-de-poisson"><i class="fa fa-check"></i><b>8.4</b> Dados de contagem: a distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="cap8.html"><a href="cap8.html#o-que-causa-a-overdispersion"><i class="fa fa-check"></i><b>8.4.1</b> O que causa a <em>overdispersion</em>?</a></li>
+<li class="chapter" data-level="8.4.2" data-path="cap8.html"><a href="cap8.html#o-que-fazer-se-seu-modelo-tiver-overdispersion"><i class="fa fa-check"></i><b>8.4.2</b> O que fazer se seu modelo tiver <em>overdispersion</em>?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-modelos-quasi-likelihood"><i class="fa fa-check"></i><b>8.5</b> Dados de contagem: modelos quasi-likelihood</a></li>
+<li class="chapter" data-level="8.6" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-a-distribuição-binomial"><i class="fa fa-check"></i><b>8.6</b> Dados de contagem: a distribuição binomial</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="cap8.html"><a href="cap8.html#análise-com-dados-de-proporção"><i class="fa fa-check"></i><b>8.6.1</b> Análise com dados de proporção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="cap8.html"><a href="cap8.html#análise-com-dados-de-incidência"><i class="fa fa-check"></i><b>8.7</b> Análise com dados de incidência</a></li>
+<li class="chapter" data-level="8.8" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-com-excesso-de-zeros"><i class="fa fa-check"></i><b>8.8</b> Dados de contagem com excesso de zeros</a></li>
+<li class="chapter" data-level="8.9" data-path="cap8.html"><a href="cap8.html#dados-ordinais-os-modelos-cumulative-link"><i class="fa fa-check"></i><b>8.9</b> Dados ordinais: os modelos cumulative link</a></li>
+<li class="chapter" data-level="8.10" data-path="cap8.html"><a href="cap8.html#dados-contínuos-distribuição-beta"><i class="fa fa-check"></i><b>8.10</b> Dados contínuos: distribuição beta</a></li>
+<li class="chapter" data-level="8.11" data-path="cap8.html"><a href="cap8.html#para-se-aprofundar-4"><i class="fa fa-check"></i><b>8.11</b> Para se aprofundar</a></li>
+<li class="chapter" data-level="8.12" data-path="cap8.html"><a href="cap8.html#exercícios-4"><i class="fa fa-check"></i><b>8.12</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cap9.html"><a href="cap9.html"><i class="fa fa-check"></i><b>9</b> Análises Multidimensionais</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="9.1" data-path="cap9.html"><a href="cap9.html#aspectos-teóricos"><i class="fa fa-check"></i><b>9.1</b> Aspectos teóricos</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cap9.html"><a href="cap9.html#coeficientes-de-associação"><i class="fa fa-check"></i><b>9.1.1</b> Coeficientes de associação</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cap9.html"><a href="cap9.html#métricas-de-distância"><i class="fa fa-check"></i><b>9.1.2</b> Métricas de distância</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cap9.html"><a href="cap9.html#análises-de-agrupamento"><i class="fa fa-check"></i><b>9.2</b> Análises de agrupamento</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cap9.html"><a href="cap9.html#agrupamento-hierárquico"><i class="fa fa-check"></i><b>9.2.1</b> Agrupamento hierárquico</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cap9.html"><a href="cap9.html#agrupamento-não-hierárquico-k-means"><i class="fa fa-check"></i><b>9.2.2</b> Agrupamento não-hierárquico (<em>K-means</em>)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cap9.html"><a href="cap9.html#espécies-indicadoras"><i class="fa fa-check"></i><b>9.2.3</b> Espécies indicadoras</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cap9.html"><a href="cap9.html#análises-de-ordenação"><i class="fa fa-check"></i><b>9.3</b> Análises de Ordenação</a></li>
+<li class="chapter" data-level="9.4" data-path="cap9.html"><a href="cap9.html#ordenação-irrestrira"><i class="fa fa-check"></i><b>9.4</b> Ordenação irrestrira</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="cap9.html"><a href="cap9.html#análise-de-componentes-principais-pca"><i class="fa fa-check"></i><b>9.4.1</b> Análise de Componentes Principais (PCA)</a></li>
+<li class="chapter" data-level="9.4.2" data-path="cap9.html"><a href="cap9.html#análises-de-coordenadas-principais-pcoa"><i class="fa fa-check"></i><b>9.4.2</b> Análises de Coordenadas Principais (PCoA)</a></li>
+<li class="chapter" data-level="9.4.3" data-path="cap9.html"><a href="cap9.html#regressão-de-componentes-principais-pcr"><i class="fa fa-check"></i><b>9.4.3</b> Regressão de Componentes Principais (PCR)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="cap9.html"><a href="cap9.html#ordenação-restrita"><i class="fa fa-check"></i><b>9.5</b> Ordenação restrita</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-rda"><i class="fa fa-check"></i><b>9.5.1</b> Análise de Redundância (RDA)</a></li>
+<li class="chapter" data-level="9.5.2" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-parcial-rdap"><i class="fa fa-check"></i><b>9.5.2</b> Análise de Redundância parcial (RDAp)</a></li>
+<li class="chapter" data-level="9.5.3" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-baseada-em-distância-db-rda"><i class="fa fa-check"></i><b>9.5.3</b> Análise de Redundância baseada em distância (db-RDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="cap9.html"><a href="cap9.html#permanova"><i class="fa fa-check"></i><b>9.6</b> PERMANOVA</a></li>
+<li class="chapter" data-level="9.7" data-path="cap9.html"><a href="cap9.html#mantel-e-mantel-parcial"><i class="fa fa-check"></i><b>9.7</b> Mantel e Mantel parcial</a></li>
+<li class="chapter" data-level="9.8" data-path="cap9.html"><a href="cap9.html#mantel-espacial-com-modelo-nulo-restrito-considerando-autocorrelação-espacial"><i class="fa fa-check"></i><b>9.8</b> Mantel espacial com modelo nulo restrito considerando autocorrelação espacial</a></li>
+<li class="chapter" data-level="9.9" data-path="cap9.html"><a href="cap9.html#procrustes-e-protest"><i class="fa fa-check"></i><b>9.9</b> PROCRUSTES e PROTEST</a></li>
+<li class="chapter" data-level="9.10" data-path="cap9.html"><a href="cap9.html#métodos-multivariados-baseados-em-modelos"><i class="fa fa-check"></i><b>9.10</b> Métodos multivariados baseados em modelos</a></li>
+<li class="chapter" data-level="9.11" data-path="cap9.html"><a href="cap9.html#para-se-aprofundar-5"><i class="fa fa-check"></i><b>9.11</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="cap9.html"><a href="cap9.html#livros-3"><i class="fa fa-check"></i><b>9.11.1</b> Livros</a></li>
+<li class="chapter" data-level="9.11.2" data-path="cap9.html"><a href="cap9.html#links-4"><i class="fa fa-check"></i><b>9.11.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="cap9.html"><a href="cap9.html#exercícios-5"><i class="fa fa-check"></i><b>9.12</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cap10.html"><a href="cap10.html"><i class="fa fa-check"></i><b>10</b> Rarefação</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="10.1" data-path="cap10.html"><a href="cap10.html#aspectos-teóricos-1"><i class="fa fa-check"></i><b>10.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="10.2" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-no-indivíduo-individual-based"><i class="fa fa-check"></i><b>10.2</b> Curva de rarefação baseada no indivíduo (<em>individual-based</em>)</a></li>
+<li class="chapter" data-level="10.3" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-em-amostras-sample-based"><i class="fa fa-check"></i><b>10.3</b> Curva de rarefação baseada em amostras (<em>sample-based</em>)</a></li>
+<li class="chapter" data-level="10.4" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-coverage-based"><i class="fa fa-check"></i><b>10.4</b> Curva de rarefação <em>coverage-based</em></a></li>
+<li class="chapter" data-level="10.5" data-path="cap10.html"><a href="cap10.html#para-se-aprofundar-6"><i class="fa fa-check"></i><b>10.5</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="cap10.html"><a href="cap10.html#livros-4"><i class="fa fa-check"></i><b>10.5.1</b> Livros</a></li>
+<li class="chapter" data-level="10.5.2" data-path="cap10.html"><a href="cap10.html#links-5"><i class="fa fa-check"></i><b>10.5.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="cap10.html"><a href="cap10.html#exercícios-6"><i class="fa fa-check"></i><b>10.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cap11.html"><a href="cap11.html"><i class="fa fa-check"></i><b>11</b> Estimadores de riqueza</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="11.1" data-path="cap11.html"><a href="cap11.html#aspectos-teóricos-2"><i class="fa fa-check"></i><b>11.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="11.2" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-abundância-das-espécies"><i class="fa fa-check"></i><b>11.2</b> Estimadores baseados na abundância das espécies</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="cap11.html"><a href="cap11.html#chao-1"><i class="fa fa-check"></i><b>11.2.1</b> CHAO 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="cap11.html"><a href="cap11.html#ace---abundance-based-coverage-estimador"><i class="fa fa-check"></i><b>11.2.2</b> ACE - <em>Abundance-based Coverage Estimador</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-incidência-das-espécies"><i class="fa fa-check"></i><b>11.3</b> Estimadores baseados na incidência das espécies</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="cap11.html"><a href="cap11.html#chao-2"><i class="fa fa-check"></i><b>11.3.1</b> CHAO 2</a></li>
+<li class="chapter" data-level="11.3.2" data-path="cap11.html"><a href="cap11.html#jackknife-1"><i class="fa fa-check"></i><b>11.3.2</b> JACKKNIFE 1</a></li>
+<li class="chapter" data-level="11.3.3" data-path="cap11.html"><a href="cap11.html#jackknife-2"><i class="fa fa-check"></i><b>11.3.3</b> JACKKNIFE 2</a></li>
+<li class="chapter" data-level="11.3.4" data-path="cap11.html"><a href="cap11.html#bootstrap"><i class="fa fa-check"></i><b>11.3.4</b> BOOTSTRAP</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="cap11.html"><a href="cap11.html#interpolação-e-extrapolação-baseadas-em-rarefação-usando-amostragens-de-incidência-ou-abundância"><i class="fa fa-check"></i><b>11.4</b> Interpolação e extrapolação baseadas em rarefação usando amostragens de incidência ou abundância</a></li>
+<li class="chapter" data-level="11.5" data-path="cap11.html"><a href="cap11.html#para-se-aprofundar-7"><i class="fa fa-check"></i><b>11.5</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="cap11.html"><a href="cap11.html#livros-5"><i class="fa fa-check"></i><b>11.5.1</b> Livros</a></li>
+<li class="chapter" data-level="11.5.2" data-path="cap11.html"><a href="cap11.html#links-6"><i class="fa fa-check"></i><b>11.5.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="cap11.html"><a href="cap11.html#exercícios-7"><i class="fa fa-check"></i><b>11.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cap12.html"><a href="cap12.html"><i class="fa fa-check"></i><b>12</b> Diversidade Taxonômica</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="12.1" data-path="cap12.html"><a href="cap12.html#aspectos-teóricos-3"><i class="fa fa-check"></i><b>12.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="12.2" data-path="cap12.html"><a href="cap12.html#diversidade-alfa"><i class="fa fa-check"></i><b>12.2</b> Diversidade alfa</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="cap12.html"><a href="cap12.html#riqueza-de-espécies-ou-número-de-espécies"><i class="fa fa-check"></i><b>12.2.1</b> Riqueza de espécies ou número de espécies</a></li>
+<li class="chapter" data-level="12.2.2" data-path="cap12.html"><a href="cap12.html#diversidade-de-espécies"><i class="fa fa-check"></i><b>12.2.2</b> Diversidade de espécies</a></li>
+<li class="chapter" data-level="12.2.3" data-path="cap12.html"><a href="cap12.html#diagramas-de-whittaker-ou-curva-de-dominância"><i class="fa fa-check"></i><b>12.2.3</b> Diagramas de Whittaker ou Curva de Dominância</a></li>
+<li class="chapter" data-level="12.2.4" data-path="cap12.html"><a href="cap12.html#curvas-de-distribuição-de-abundâncias"><i class="fa fa-check"></i><b>12.2.4</b> Curvas de distribuição de abundâncias</a></li>
+<li class="chapter" data-level="12.2.5" data-path="cap12.html"><a href="cap12.html#números-de-hill-ou-série-de-hill"><i class="fa fa-check"></i><b>12.2.5</b> Números de Hill ou Série de Hill</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="cap12.html"><a href="cap12.html#diversidade-beta"><i class="fa fa-check"></i><b>12.3</b> Diversidade beta</a></li>
+<li class="chapter" data-level="12.4" data-path="cap12.html"><a href="cap12.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>12.4</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="cap12.html"><a href="cap12.html#livros-6"><i class="fa fa-check"></i><b>12.4.1</b> Livros</a></li>
+<li class="chapter" data-level="12.4.2" data-path="cap12.html"><a href="cap12.html#links-7"><i class="fa fa-check"></i><b>12.4.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="cap12.html"><a href="cap12.html#exercícios-8"><i class="fa fa-check"></i><b>12.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cap13.html"><a href="cap13.html"><i class="fa fa-check"></i><b>13</b> Diversidade Filogenética</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="13.1" data-path="cap13.html"><a href="cap13.html#aspectos-teóricos-4"><i class="fa fa-check"></i><b>13.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="13.2" data-path="cap13.html"><a href="cap13.html#manipulação-de-filogenias"><i class="fa fa-check"></i><b>13.2</b> Manipulação de filogenias</a></li>
+<li class="chapter" data-level="13.3" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3</b> Métricas de diversidade alfa filogenética</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="cap13.html"><a href="cap13.html#riqueza-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.1</b> Riqueza da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.2" data-path="cap13.html"><a href="cap13.html#divergência-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.2</b> Divergência da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.3" data-path="cap13.html"><a href="cap13.html#regularidade-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.3</b> Regularidade da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.4" data-path="cap13.html"><a href="cap13.html#correlação-entre-as-métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.4</b> Correlação entre as métricas de diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.5" data-path="cap13.html"><a href="cap13.html#associação-entre-a-diversidade-alfa-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.3.5</b> Associação entre a diversidade alfa filogenética e o ambiente</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4</b> Métricas de diversidade beta filogenética</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="cap13.html"><a href="cap13.html#divergência-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.1</b> Divergência da diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.2" data-path="cap13.html"><a href="cap13.html#correlação-entre-as-métricas-de-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.2</b> Correlação entre as métricas de diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.3" data-path="cap13.html"><a href="cap13.html#associação-entre-a-divergência-da-diversidade-beta-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.4.3</b> Associação entre a divergência da diversidade beta filogenética e o ambiente</a></li>
+<li class="chapter" data-level="13.4.4" data-path="cap13.html"><a href="cap13.html#riqueza-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.4</b> Riqueza da diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.5" data-path="cap13.html"><a href="cap13.html#correlação-entre-phylosor-e-unifrac"><i class="fa fa-check"></i><b>13.4.5</b> Correlação entre Phylosor e Unifrac</a></li>
+<li class="chapter" data-level="13.4.6" data-path="cap13.html"><a href="cap13.html#associação-entre-a-riqueza-da-diversidade-beta-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.4.6</b> Associação entre a riqueza da diversidade beta filogenética e o ambiente</a></li>
+<li class="chapter" data-level="13.4.7" data-path="cap13.html"><a href="cap13.html#partição-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.7</b> Partição da diversidade beta filogenética</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="cap13.html"><a href="cap13.html#modelos-nulos"><i class="fa fa-check"></i><b>13.5</b> Modelos Nulos</a></li>
+<li class="chapter" data-level="13.6" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-9"><i class="fa fa-check"></i><b>13.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="cap13.html"><a href="cap13.html#livros-7"><i class="fa fa-check"></i><b>13.6.1</b> Livros</a></li>
+<li class="chapter" data-level="13.6.2" data-path="cap13.html"><a href="cap13.html#links-8"><i class="fa fa-check"></i><b>13.6.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="cap13.html"><a href="cap13.html#exercícios-9"><i class="fa fa-check"></i><b>13.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-10"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alfa"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alfa)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+<li class="chapter" data-level="14.3.4" data-path="cap14.html"><a href="cap14.html#correlação-entre-as-métricas-de-diversidade-funcional-alfa"><i class="fa fa-check"></i><b>14.3.4</b> Correlação entre as métricas de diversidade funcional (alfa)</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#composição-funcional-community-wegihed-means---cwm"><i class="fa fa-check"></i><b>14.5</b> Composição Funcional (<em>Community Wegihed Means</em> - CWM)</a></li>
+<li class="chapter" data-level="14.6" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.6</b> Variação Intraspecífica</a></li>
+<li class="chapter" data-level="14.7" data-path="cap14.html"><a href="cap14.html#para-se-aprofundar-10"><i class="fa fa-check"></i><b>14.7</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="cap14.html"><a href="cap14.html#livros-8"><i class="fa fa-check"></i><b>14.7.1</b> Livros</a></li>
+<li class="chapter" data-level="14.7.2" data-path="cap14.html"><a href="cap14.html#links-9"><i class="fa fa-check"></i><b>14.7.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="cap14.html"><a href="cap14.html#exercícios-10"><i class="fa fa-check"></i><b>14.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cap15.html"><a href="cap15.html"><i class="fa fa-check"></i><b>15</b> Dados geoespaciais no R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap15.html"><a href="cap15.html#pré-requisitos-do-capítulo-11"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="15.1" data-path="cap15.html"><a href="cap15.html#contextualização-3"><i class="fa fa-check"></i><b>15.1</b> Contextualização</a></li>
+<li class="chapter" data-level="15.2" data-path="cap15.html"><a href="cap15.html#vetor"><i class="fa fa-check"></i><b>15.2</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cap15.html"><a href="cap15.html#sf-principal-pacote-no-r-para-dados-vetoriais"><i class="fa fa-check"></i><b>15.2.1</b> sf: principal pacote no R para dados vetoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="cap15.html"><a href="cap15.html#raster"><i class="fa fa-check"></i><b>15.3</b> Raster</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="cap15.html"><a href="cap15.html#raster-principal-pacote-no-r-para-dados-raster"><i class="fa fa-check"></i><b>15.3.1</b> raster: principal pacote no R para dados raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-e-unidades"><i class="fa fa-check"></i><b>15.4</b> Sistema de Referência de Coordenadas e Unidades</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-geográficas"><i class="fa fa-check"></i><b>15.4.1</b> Sistema de Coordenadas Geográficas</a></li>
+<li class="chapter" data-level="15.4.2" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-projetadas"><i class="fa fa-check"></i><b>15.4.2</b> Sistema de Coordenadas Projetadas</a></li>
+<li class="chapter" data-level="15.4.3" data-path="cap15.html"><a href="cap15.html#datum"><i class="fa fa-check"></i><b>15.4.3</b> Datum</a></li>
+<li class="chapter" data-level="15.4.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-crs-no-r"><i class="fa fa-check"></i><b>15.4.4</b> Sistema de Referência de Coordenadas (CRS) no R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="cap15.html"><a href="cap15.html#principais-fontes-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.5</b> Principais fontes de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="cap15.html"><a href="cap15.html#vetor-1"><i class="fa fa-check"></i><b>15.5.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.5.2" data-path="cap15.html"><a href="cap15.html#raster-1"><i class="fa fa-check"></i><b>15.5.2</b> Raster</a></li>
+<li class="chapter" data-level="15.5.3" data-path="cap15.html"><a href="cap15.html#pacotes-do-r"><i class="fa fa-check"></i><b>15.5.3</b> Pacotes do R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="cap15.html"><a href="cap15.html#importar-e-exportar-dados-geoespaciais"><i class="fa fa-check"></i><b>15.6</b> Importar e exportar dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="cap15.html"><a href="cap15.html#principais-formatos-de-arquivos-geoespaciais"><i class="fa fa-check"></i><b>15.6.1</b> Principais formatos de arquivos geoespaciais</a></li>
+<li class="chapter" data-level="15.6.2" data-path="cap15.html"><a href="cap15.html#importar-dados-1"><i class="fa fa-check"></i><b>15.6.2</b> Importar dados</a></li>
+<li class="chapter" data-level="15.6.3" data-path="cap15.html"><a href="cap15.html#exportar-dados-1"><i class="fa fa-check"></i><b>15.6.3</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="cap15.html"><a href="cap15.html#descrição-de-objetos-geoespaciais"><i class="fa fa-check"></i><b>15.7</b> Descrição de objetos geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.7.1" data-path="cap15.html"><a href="cap15.html#vetor-2"><i class="fa fa-check"></i><b>15.7.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.7.2" data-path="cap15.html"><a href="cap15.html#raster-2"><i class="fa fa-check"></i><b>15.7.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="cap15.html"><a href="cap15.html#reprojeção-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.8</b> Reprojeção de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="cap15.html"><a href="cap15.html#vetor-3"><i class="fa fa-check"></i><b>15.8.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.8.2" data-path="cap15.html"><a href="cap15.html#raster-3"><i class="fa fa-check"></i><b>15.8.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="cap15.html"><a href="cap15.html#principais-operações-com-dados-geoespaciais"><i class="fa fa-check"></i><b>15.9</b> Principais operações com dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="cap15.html"><a href="cap15.html#operações-de-atributos"><i class="fa fa-check"></i><b>15.9.1</b> Operações de atributos</a></li>
+<li class="chapter" data-level="15.9.2" data-path="cap15.html"><a href="cap15.html#operações-espaciais"><i class="fa fa-check"></i><b>15.9.2</b> Operações espaciais</a></li>
+<li class="chapter" data-level="15.9.3" data-path="cap15.html"><a href="cap15.html#operações-geométricas"><i class="fa fa-check"></i><b>15.9.3</b> Operações geométricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="cap15.html"><a href="cap15.html#visualização-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.10</b> Visualização de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="cap15.html"><a href="cap15.html#principais-elementos-de-um-mapa"><i class="fa fa-check"></i><b>15.10.1</b> Principais elementos de um mapa</a></li>
+<li class="chapter" data-level="15.10.2" data-path="cap15.html"><a href="cap15.html#principais-pacotes-para-a-composição-de-mapas"><i class="fa fa-check"></i><b>15.10.2</b> Principais pacotes para a composição de mapas</a></li>
+<li class="chapter" data-level="15.10.3" data-path="cap15.html"><a href="cap15.html#mapas-estáticos"><i class="fa fa-check"></i><b>15.10.3</b> Mapas estáticos</a></li>
+<li class="chapter" data-level="15.10.4" data-path="cap15.html"><a href="cap15.html#mapas-animados"><i class="fa fa-check"></i><b>15.10.4</b> Mapas animados</a></li>
+<li class="chapter" data-level="15.10.5" data-path="cap15.html"><a href="cap15.html#mapas-interativos"><i class="fa fa-check"></i><b>15.10.5</b> Mapas interativos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.11" data-path="cap15.html"><a href="cap15.html#exemplos-de-aplicações-de-análises-geoespaciais-para-dados-ecológicos"><i class="fa fa-check"></i><b>15.11</b> Exemplos de aplicações de análises geoespaciais para dados ecológicos</a>
+<ul>
+<li class="chapter" data-level="15.11.1" data-path="cap15.html"><a href="cap15.html#resumir-informações-de-biodiversidade-para-unidades-espaciais"><i class="fa fa-check"></i><b>15.11.1</b> Resumir informações de biodiversidade para unidades espaciais</a></li>
+<li class="chapter" data-level="15.11.2" data-path="cap15.html"><a href="cap15.html#extrair-dados-raster-para-pontos"><i class="fa fa-check"></i><b>15.11.2</b> Extrair dados raster para pontos</a></li>
+<li class="chapter" data-level="15.11.3" data-path="cap15.html"><a href="cap15.html#resumir-dados-de-rasters-para-buffers"><i class="fa fa-check"></i><b>15.11.3</b> Resumir dados de rasters para buffers</a></li>
+<li class="chapter" data-level="15.11.4" data-path="cap15.html"><a href="cap15.html#predições-espaciais-de-objetos-raster"><i class="fa fa-check"></i><b>15.11.4</b> Predições espaciais de objetos raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.12" data-path="cap15.html"><a href="cap15.html#para-se-aprofundar-11"><i class="fa fa-check"></i><b>15.12</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="15.12.1" data-path="cap15.html"><a href="cap15.html#livros-9"><i class="fa fa-check"></i><b>15.12.1</b> Livros</a></li>
+<li class="chapter" data-level="15.12.2" data-path="cap15.html"><a href="cap15.html#links-10"><i class="fa fa-check"></i><b>15.12.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="15.13" data-path="cap15.html"><a href="cap15.html#exercícios-11"><i class="fa fa-check"></i><b>15.13</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a>
+<ul>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#descrição"><i class="fa fa-check"></i>Descrição</a>
+<ul>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-4"><i class="fa fa-check"></i>Capítulo 4</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-5"><i class="fa fa-check"></i>Capítulo 5</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-6"><i class="fa fa-check"></i>Capítulo 6</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-7"><i class="fa fa-check"></i>Capítulo 7</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-8"><i class="fa fa-check"></i>Capítulo 8</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-9"><i class="fa fa-check"></i>Capítulo 9</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-10"><i class="fa fa-check"></i>Capítulo 10</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-11"><i class="fa fa-check"></i>Capítulo 11</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-12"><i class="fa fa-check"></i>Capítulo 12</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-13"><i class="fa fa-check"></i>Capítulo 13</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-14"><i class="fa fa-check"></i>Capítulo 14</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-15"><i class="fa fa-check"></i>Capítulo 15</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Agresti, A. 2010: <span class="nocase">Analysis of ordinal categorical data</span>,: Hoboken, NJ, USA, John Wiley &amp; Sons, Inc.
+</div>
+<div class="csl-entry">
+Agresti, A. 2012: Categorical <span>Data</span> <span>Analysis</span> 3rd Revised ed. edição.,: Hoboken, NJ, Wiley.
+</div>
+<div class="csl-entry">
+Albuquerque, U.P. 2013: <span class="nocase">How to improve the quality of scientific publications in ethnobiology</span>.: Ethnobiology and Conservation 2, 1–5.
+</div>
+<div class="csl-entry">
+Albuquerque, U.P., Ferreira Júnior, W.S. 2017: <span class="nocase">What Do we study in evolutionary ethnobiology? Defining the theoretical basis for a research program</span>.: Evolutionary Biology 44, 206–215.
+</div>
+<div class="csl-entry">
+Albuquerque, U.P., Hanazaki, N. 2009: <span class="nocase">Five problems in current ethnobotanical research—and some suggestions for strengthening them</span>.: Human Ecology 37, 653–661.
+</div>
+<div class="csl-entry">
+Altieri, M.A., Nicholls, C.I. 2017: <span class="nocase">The adaptation and mitigation potential of traditional agriculture in a changing climate</span>.: Climatic Change 140, 33–45.
+</div>
+<div class="csl-entry">
+Anderson, D.T. 1967: <span class="nocase">Larval development and segment formation in the branchipod crustaceans Limnadia stanleyana King (Conchostraca) and Artemia salina (L.) (Anostraca)</span>.: Australian Journal of Zoology 15, 47.
+</div>
+<div class="csl-entry">
+Anderson, M.J. 2001: <span class="nocase">A new method for non-parametric multivariate analysis of variance</span>.: Austral Ecology 26, 32–46.
+</div>
+<div class="csl-entry">
+Anderson, M.J. 2017: <span class="nocase">Permutational Multivariate Analysis of Variance (PERMANOVA)</span>. Wiley StatsRef: Statistics reference online, 1–15. Wiley.
+</div>
+<div class="csl-entry">
+Anderson, M.J., Crist, T.O., Chase, J.M., Vellend, M., Inouye, B.D., Freestone, A.L., Sanders, N.J., Cornell, H.V., Comita, L.S., Davies, K.F., Harrison, S.P., Kraft, N.J.B., Stegen, J.C., Swenson, N.G. 2011: <span class="nocase">Navigating the multiple meanings of <span class="math inline">\(\beta\)</span> diversity: A roadmap for the practicing ecologist</span>.: Ecology Letters 14, 19–28.
+</div>
+<div class="csl-entry">
+Anderson, M.J., Ellingsen, K.E., McArdle, B.H. 2006: <span class="nocase">Multivariate dispersion as a measure of beta diversity</span>.: Ecology Letters 9, 683–693.
+</div>
+<div class="csl-entry">
+Anderson, M.J., Gorley, R.N., Clarke, K.R. 2008: <span class="nocase">PERMANOVA+ for PRIMER: Guide to Software and Statistical Methods</span>,: UK, Primer-E.
+</div>
+<div class="csl-entry">
+Anderson, M.J., Walsh, D.C.I. 2013: <span class="nocase">PERMANOVA, ANOSIM, and the Mantel test in the face of heterogeneous dispersions: What null hypothesis are you testing?</span> Ecological Monographs 83, 557–574.
+</div>
+<div class="csl-entry">
+Anderson, M., Ter Braak, C. 2003: <span class="nocase">Permutation tests for multi-factorial analysis of variance</span>.: Journal of Statistical Computation and Simulation 73, 85–113.
+</div>
+<div class="csl-entry">
+Arino, O., Ramos Perez, J.J., Kalogirou, V., Bontemps, S., Defourny, P., Van Bogaert, E. 2012: <span class="nocase">Global land cover map for 2009 (GlobCover 2009)</span>.
+</div>
+<div class="csl-entry">
+Arlidge, S.M., Thanukos, A., Bean, J.R. 2017: <span class="nocase">Using the understanding science flowchart to illustrate and bring students’ science stories to life</span>.: The Bulletin of the Ecological Society of America 98, 211–226.
+</div>
+<div class="csl-entry">
+Barbaro, L., Van Halder, I. 2009: <span class="nocase">Linking bird, carabid beetle and butterfly life-history traits to habitat fragmentation in mosaic landscapes</span>.: Ecography 32, 321–333.
+</div>
+<div class="csl-entry">
+Barber, J.J., Ogle, K. 2014: <span class="nocase">To P or not to P ?</span> Ecology 95, 621–626.
+</div>
+<div class="csl-entry">
+Baselga, A. 2010: <span class="nocase">Partitioning the turnover and nestedness components of beta diversity</span>.: Global Ecology and Biogeography 19, 134–143.
+</div>
+<div class="csl-entry">
+Baselga, A. 2013: <span class="nocase">Separating the two components of abundance-based dissimilarity: balanced changes in abundance vs. abundance gradients</span> Freckleton, R. (ed.).: Methods in Ecology and Evolution 4, 552–557.
+</div>
+<div class="csl-entry">
+Baselga, A. 2012: <span class="nocase">The relationship between species replacement, dissimilarity derived from nestedness, and nestedness</span>.: Global Ecology and Biogeography 21, 1223–1232.
+</div>
+<div class="csl-entry">
+Baselga, A., Orme, D., Villeger, S., De Bortoli, J., Leprieur, F., Logez, M. 2021: Betapart: Partitioning beta diversity into turnover and nestedness components,.
+</div>
+<div class="csl-entry">
+Bauman, D., Drouet, T., Dray, S., Vleminckx, J. 2018: <span class="nocase">Disentangling good from bad practices in the selection of spatial or phylogenetic eigenvectors</span>.: Ecography 41, 1638–1649.
+</div>
+<div class="csl-entry">
+Bauman, D., Drouet, T., Fortin, M.-J., Dray, S. 2018: <span class="nocase">Optimizing the choice of a spatial weighting matrix in eigenvector-based methods</span>.: Ecology 99, 2159–2166.
+</div>
+<div class="csl-entry">
+Bello, F. de, Carmona, C.P., Dias, A.T.C., Götzenberger, L., Moretti, M., Berg, M.P. 2021: <span class="nocase">Handbook of Trait-Based Ecology</span>,: Cambridge University Press.
+</div>
+<div class="csl-entry">
+Benjamin, M.B., Mollie, E.B., Connie, J.C., Shane, W.G., John, R.P., Henry, M.H.S., Jada-Simone, S.W. 2009: Generalized linear mixed models: A practical guide for ecology and evolution.: Trends in Ecology &amp; Evolution 24, 127–135.
+</div>
+<div class="csl-entry">
+Birch, C.P.D., Oom, S.P., Beecham, J.A. 2007: <span class="nocase">Rectangular and hexagonal grids used for observation, experiment and simulation in ecology</span>.: Ecological Modelling 206, 347–359.
+</div>
+<div class="csl-entry">
+Blanchard, J.L., Watson, R.A., Fulton, E.A., Cottrell, R.S., Nash, K.L., Bryndum-Buchholz, A., Büchner, M., Carozza, D.A., Cheung, W.W.L., Elliott, J., Davidson, L.N.K., Dulvy, N.K., Dunne, J.P., Eddy, T.D., Galbraith, E., Lotze, H.K., Maury, O., Müller, C., Tittensor, D.P., Jennings, S. 2017: <span class="nocase">Linked sustainability challenges and trade-offs among fisheries, aquaculture and agriculture</span>.: Nature Ecology &amp; Evolution 1, 1240–1249.
+</div>
+<div class="csl-entry">
+Blasco‐Moreno, A., Pérez‐Casany, M., Puig, P., Morante, M., Castells, E. 2019: <span class="nocase">What does a zero mean? Understanding false, random and structural zeros in ecology</span>.: Methods in Ecology and Evolution 10, 949–959.
+</div>
+<div class="csl-entry">
+Boaratti, A.Z., Da Silva, F.R. 2015: <span class="nocase">Relationships between environmental gradients and geographic variation in the intraspecific body size of three species of frogs (Anura)</span>.: Austral Ecology 40, 869–876.
+</div>
+<div class="csl-entry">
+Bolnick, D.I., Amarasekare, P., Araújo, M.S., Bürger, R., Levine, J.M., Novak, M., Rudolf, V.H.W., Schreiber, S.J., Urban, M.C., Vasseur, D.A. 2011: <span class="nocase">Why intraspecific trait variation matters in community ecology</span>.: Trends in Ecology and Evolution 26, 183–192.
+</div>
+<div class="csl-entry">
+Borcard, D., Gillet, F., Legendre, P. 2018: <span class="nocase">Numerical Ecology with R</span>,: Springer International Publishing.
+</div>
+<div class="csl-entry">
+Borcard, D., Legendre, P., Drapeau, P. 1992: <span class="nocase">Partialling out the spatial component of ecological variation</span>.: Ecology 73, 1045–1055.
+</div>
+<div class="csl-entry">
+Breviglieri, C.P.B. 2008: <span class="nocase">Diversidade de morcegos (Chiroptera; Mammalia) em tr<span class="nocase">ê</span>s <span class="nocase">á</span>reas do noroeste paulista, com <span class="nocase">ê</span>nfase nas rela<span class="nocase">ç</span><span class="nocase">õ</span>es tr<span class="nocase">ó</span>ficas em Phyllostomidae</span>.
+</div>
+<div class="csl-entry">
+Brooks, M.E., Kristensen, K., Benthem, K.J.V., Magnusson, A., Berg, C.W., Nielsen, A., Skaug, H.J., Mächler, M., Bolker, B.M. 2017: <span class="nocase">glmmTMB Balances speed and flexibility among packages for zero-inflated generalized linear mixed modeling</span>.: The R Journal 9, 378.
+</div>
+<div class="csl-entry">
+Brunsdon, C., Comber, L. 2015: An introduction to <span>R</span> for spatial analysis &amp; mapping,: Los Angeles, SAGE.
+</div>
+<div class="csl-entry">
+Bryant, J.A., Lamanna, C., Morlon, H., Kerkhoff, A.J., Enquist, B.J., Green, J.L. 2008: <span class="nocase">Microbes on mountainsides: Contrasting elevational patterns of bacterial and plant diversity</span>.: Proceedings of the National Academy of Sciences 105, 11505–11511.
+</div>
+<div class="csl-entry">
+Burnham, K.P., Anderson, D.R. 2014: <span class="nocase">P values are only an index to evidence: 20th- vs. 21st-century statistical science</span>.: Ecology 95, 627–630.
+</div>
+<div class="csl-entry">
+Burnham, K.P., Overton, W.S. 1978: <span class="nocase">Estimation of the size of a closed population when capture probabilities vary among animals</span>.: Biometrika 65, 625–633.
+</div>
+<div class="csl-entry">
+Burnham, K.P., Overton, W.S. 1979: <span class="nocase">Robust estimation of population size when capture probabilities vary among animals</span>.: Ecology 60, 927–936.
+</div>
+<div class="csl-entry">
+Cadotte, M.W., Davies, T.J. 2016: <span class="nocase">Phylogenies in Ecology</span>,: Princeton University Press.
+</div>
+<div class="csl-entry">
+Carstensen, D.W., Lessard, J.-P., Holt, B.G., Borregaard, M.K., Rahbek, C. 2013: <span class="nocase">Introducing the biogeographic species pool</span>.: Ecography 36, 1310–1318.
+</div>
+<div class="csl-entry">
+Chaffin, B.C., Garmestani, A.S., Angeler, D.G., Herrmann, D.L., Stow, C.A., Nyström, M., Sendzimir, J., Hopton, M.E., Kolasa, J., Allen, C.R. 2016: <span class="nocase">Biological invasions, ecological resilience and adaptive governance</span>.: Journal of Environmental Management 183, 399–407.
+</div>
+<div class="csl-entry">
+Chang, W. 2018: R graphics cookbook: Practical recipes for visualizing data Second edition.,: Beijing ; Boston, O’Reilly.
+</div>
+<div class="csl-entry">
+Chao, A. 1987: <span class="nocase">Estimating the population size for capture-recapture data with unequal catchability</span>.: Biometrics 43, 783.
+</div>
+<div class="csl-entry">
+Chao, A. 1984: <span class="nocase">Nonparametric estimation of the number of classes in a population</span>.: Scandinavian Journal of Statistics 11, 265–270.
+</div>
+<div class="csl-entry">
+Chao, A., Gotelli, N.J., Hsieh, T.C., Sander, E.L., Ma, K.H., Colwell, R.K., Ellison, A.M. 2014: <span class="nocase">Rarefaction and extrapolation with Hill numbers: a framework for sampling and estimation in species diversity studies</span>.: Ecological Monographs 84, 45–67.
+</div>
+<div class="csl-entry">
+Chao, A., Hwang, W.-H., Chen, Y.-C., Kuo, C.-Y. 2000: <span class="nocase">Estimating the number of shared species in two communities</span>.: Statistica Sinica 10, 227–246.
+</div>
+<div class="csl-entry">
+Chao, A., Jost, L. 2012: <span class="nocase">Coverage-based rarefaction and extrapolation: standardizing samples by completeness rather than size</span>.: Ecology 93, 2533–2547.
+</div>
+<div class="csl-entry">
+Chao, A., Lee, S.-M. 1992: <span class="nocase">Estimating the number of classes via sample coverage</span>.: Journal of the American Statistical Association 87, 210–217.
+</div>
+<div class="csl-entry">
+Chazdon, R.L., Colwell, R.K., Denslow, J.S., Guariguata, M.R. 1998: <span class="nocase">Statistical methods for estimating species richness of woody regeneration in primary and secondary rain forest of northeastern <span>Costa</span> <span>Rica</span></span>. In: Dallmeier, F., Comiskey, J. A. (eds.), Forest biodiversity, research. Monitoring and modeling: <span>Conceptual</span> background and old world case studies, 285–309. Paris; New York, UNESCO; The Parthenon Publishing Group.
+</div>
+<div class="csl-entry">
+Chiles, J.-P., Delfiner, P. 1999: Geostatistics: Modeling spatial uncertainty,: Wiley.
+</div>
+<div class="csl-entry">
+Clarke, K.R., Warwick, R.M. 2001: <span class="nocase">Change in marine communities : an approach to statistical analysis and interpretation</span>,: Plymouth.
+</div>
+<div class="csl-entry">
+Colwell, R.K., Chao, A., Gotelli, N.J., Lin, S.Y., Mao, C.X., Chazdon, R.L., Longino, J.T. 2012: <span class="nocase">Models and estimators linking individual-based and sample-based rarefaction, extrapolation and comparison of assemblages</span>.: Journal of Plant Ecology 5, 3–21.
+</div>
+<div class="csl-entry">
+Colwell, R.K., Coddington, J.A. 1994: <span class="nocase">Estimating terrestrial biodiversity through extrapolation</span>.: Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences 345, 101–118.
+</div>
+<div class="csl-entry">
+Cornwell, W.K., Schwilk, D.W., Ackerly, D.D. 2006: <span class="nocase">A trait-based test for habitat filtering: convex hull volume</span>.: Ecology 87, 1465–1471.
+</div>
+<div class="csl-entry">
+Crabot, J., Clappe, S., Dray, S., Datry, T. 2019: Testing the mantel statistic with a spatially-constrained permutation procedure.: Methods in Ecology and Evolution 10, 532–540.
+</div>
+<div class="csl-entry">
+Crawley, M.J. 2012: <span>The R Book</span>,: Chichester, UK, John Wiley &amp; Sons, Ltd.
+</div>
+<div class="csl-entry">
+da Silva, F.R., Oliveira, T.A.L., Gibbs, J.P., Rossa-Feres, D.C. 2012: <span class="nocase">An experimental assessment of landscape configuration effects on frog and toad abundance and diversity in tropical agro-savannah landscapes of southeastern Brazil</span>.: Landscape Ecology 27, 87–96.
+</div>
+<div class="csl-entry">
+da Silva, F.R., Provete, D.B., Gerassi, L.K., Bovo, R.P. 2017: <span class="nocase">What do data from fieldwork and scientific collections tell us about species richness and composition of amphibians and reptiles?</span> South American Journal of Herpetology 12, 99–106.
+</div>
+<div class="csl-entry">
+da Silva, F.R., Rossa-Feres, D.C. 2010: <span class="nocase">Seasonal variation in body size of tropical anuran amphibians</span>.: Herpetology Notes 3.
+</div>
+<div class="csl-entry">
+Dalmolin, D.A., Tozetti, A.M., Pereira, M.J.R. 2020: <span class="nocase">Turnover or intraspecific trait variation: explaining functional variability in a neotropical anuran metacommunity</span>.: Aquatic Sciences 82, 62.
+</div>
+<div class="csl-entry">
+Davies, T.M. 2016: The book of <span>R</span>: A first course in programming and statistics,: San Francisco, No Starch Press.
+</div>
+<div class="csl-entry">
+Dawson, W., Moser, D., Kleunen, M. van, Kreft, H., Pergl, J., Pyšek, P., Weigelt, P., Winter, M., Lenzner, B., Blackburn, T.M., Dyer, E.E., Cassey, P., Scrivens, S.L., Economo, E.P., Guénard, B., Capinha, C., Seebens, H., García-Díaz, P., Nentwig, W., García-Berthou, E., Casal, C., Mandrak, N.E., Fuller, P., Meyer, C., Essl, F. 2017: <span class="nocase">Global hotspots and correlates of alien species richness across taxonomic groups</span>.: Nature Ecology &amp; Evolution 1, 0186.
+</div>
+<div class="csl-entry">
+Diniz-Filho, J.A.F., de Sant’Ana, C.E.R., Bini, L.M. 1998: <span class="nocase">An eigenvector method for estimating phylogenetic inertia</span>.: Evolution 52, 1247.
+</div>
+<div class="csl-entry">
+Diniz-Filho, J.A.F., Siqueira, T., Padial, A.A., Rangel, T.F., Landeiro, V.L., Bini, L.M. 2012: <span class="nocase">Spatial autocorrelation analysis allows disentangling the balance between neutral and niche processes in metacommunities</span>.: Oikos 121, 201–210.
+</div>
+<div class="csl-entry">
+Dı́az, S., Cabido, M. 2001: <span class="nocase">Vive la diff<span class="nocase">é</span>rence: plant functional diversity matters to ecosystem processes</span>.: Trends in Ecology &amp; Evolution 16, 646–655.
+</div>
+<div class="csl-entry">
+Dormann, C.F., Elith, J., Bacher, S., Buchmann, C., Carl, G., Carré, G., Marquéz, J.R.G., Gruber, B., Lafourcade, B., Leitão, P.J., Münkemüller, T., McClean, C., Osborne, P.E., Reineking, B., Schröder, B., Skidmore, A.K., Zurell, D., Lautenbach, S. 2013: Collinearity: A review of methods to deal with it and a simulation study evaluating their performance.: Ecography 36, 27–46.
+</div>
+<div class="csl-entry">
+Dray, S., Pélissier, R., Couteron, P., Fortin, M.J., Legendre, P., Peres-Neto, P.R., Bellier, E., Bivand, R., Blanchet, F.G., De Cáceres, M., Dufour, A.B., Heegaard, E., Jombart, T., Munoz, F., Oksanen, J., Thioulouse, J., Wagner, H.H. 2012: <span class="nocase">Community ecology in the age of multivariate multiscale spatial analysis</span>.: Ecological Monographs 82, 257–275.
+</div>
+<div class="csl-entry">
+Dufrêne, M., Legendre, P. 1997: <span class="nocase">Species assemblages and indicator species the need for a flexible asymmetrical approach</span>.: Ecological Monographs 67, 345–366.
+</div>
+<div class="csl-entry">
+Dunstan, P.K., Foster, S.D., Darnell, R. 2011: Model based grouping of species across environmental gradients.: Ecological Modelling 222, 955–963.
+</div>
+<div class="csl-entry">
+Ellison, A.M., Gotelli, N.J., Inouye, B.D., Strong, D.R. 2014: <span class="nocase">P values, hypothesis testing, and model selection: it’s d<span class="nocase">é</span>j<span class="nocase">à</span> vu all over again</span>.: Ecology 95, 609–610.
+</div>
+<div class="csl-entry">
+Emerson, J.W., Green, W.A., Schloerke, B., Crowley, J., Cook, D., Hofmann, H., Wickham, H. 2013: The <span>Generalized</span> <span>Pairs</span> <span>Plot</span>.: Journal of Computational and Graphical Statistics 22, 79–91.
+</div>
+<div class="csl-entry">
+Faith, D.P. 1992: <span class="nocase">Conservation evaluation and phylogenetic diversity</span>.: Biological Conservation 61, 1–10.
+</div>
+<div class="csl-entry">
+Farr, T.G., Rosen, P.A., Caro, E., Crippen, R., Duren, R., Hensley, S., Kobrick, M., Paller, M., Rodriguez, E., Roth, L., Seal, D., Shaffer, S., Shimada, J., Umland, J., Werner, M., Oskin, M., Burbank, D., Alsdorf, D. 2007: <span class="nocase">The shuttle radar topography mission</span>.: Reviews of Geophysics 45, RG2004.
+</div>
+<div class="csl-entry">
+Fick, S.E., Hijmans, R.J. 2017: <span class="nocase">WorldClim 2: new 1-km spatial resolution climate surfaces for global land areas</span>.: International Journal of Climatology 37, 4302–4315.
+</div>
+<div class="csl-entry">
+Fletcher, R., Fortin, M.-J. 2018: <span class="nocase">Spatial ecology and conservation modeling: applications with r</span>,: Cham, Springer International Publishing.
+</div>
+<div class="csl-entry">
+Ford, E.D. 2000: <span class="nocase">Scientific method for ecological research</span>,: Cambridge, UK, Cambridge University Press.
+</div>
+<div class="csl-entry">
+Fortin, M.-J., Dale, M.R.T. 2005: Spatial analysis: A guide for ecologists,: Cambridge University Press.
+</div>
+<div class="csl-entry">
+Fox, G.A., Negrete-Yankelevich, S., Sosa, V.J. eds. 2015: Ecological statistics: Contemporary theory and application,: Oxford, Oxford University Press.
+</div>
+<div class="csl-entry">
+Franco-Belussi, L., De Oliveira, C., Sköld, H.N. 2018: <span class="nocase">Regulation of eye and jaw colouration in three-spined stickleback Gasterosteus aculeatus</span>.: Journal of Fish Biology 92, 1788–1804.
+</div>
+<div class="csl-entry">
+Franklin, J., Miller, J.A. 2009: Mapping species distributions: Spatial inference and prediction,: Cambridge; New York, Cambridge University Press.
+</div>
+<div class="csl-entry">
+Frenette-Dussault, C., Shipley, B., Léger, J.-F., Meziane, D., Hingrat, Y. 2012: <span class="nocase">Functional structure of an arid steppe plant community reveals similarities with Grime’s C-S-R theory</span>.: Journal of Vegetation Science 23, 208–222.
+</div>
+<div class="csl-entry">
+Garamszegi, L.Z. 2014: <span class="nocase">Modern phylogenetic comparative methods and their application in evolutionary biology</span> Garamszegi, L. Z. (ed.),: Springer Berlin Heidelberg.
+</div>
+<div class="csl-entry">
+Garnier, E., Navas, M.-L., Grigulis, K. 2015: <span class="nocase">Plant functional diversity: organism traits, community structure, and ecosystem properties</span> First edition.,: Oxford, United Kingdom, Oxford University Press.
+</div>
+<div class="csl-entry">
+Garnier, E., Navas, M.-L., Grigulis, K. 2016: Plant functional diversity: Organism traits, community structure, and ecosystem properties / <span>Eric</span> <span>Garnier</span>, <span>Director</span> of <span>Research</span> at the <span>Centre</span> <span>National</span> de la <span>Recherche</span> <span>Scientifique</span> <span>Centre</span> d’<span>Ecologie</span> <span>Fonctionnelle</span> et <span>Evolutive</span> (<span>UMR</span> 5175), <span>Montpellier</span>, <span>France</span>, <span>Marie</span>-<span>Laure</span> <span>Navas</span>, <span>Professor</span> of <span>Ecology</span>, <span>Montpellier</span> <span>SupAgro</span>, <span>Montpellier</span>, <span>France</span>, <span>Karl</span> <span>Grigulis</span>, <span>Research</span> <span>Engineer</span> at the <span>Centre</span> <span>National</span> de la <span>Recherche</span> <span>Scientifique</span> <span>Laboratoire</span> d’<span>Ecologie</span> <span>Alpine</span> (<span>UMR</span> 5553), <span>Universite</span>́ <span>Joseph</span> <span>Fourier</span>, <span>Grenoble</span>, <span>France</span> First edition.,: Oxford, United Kingdom, Oxford University Press.
+</div>
+<div class="csl-entry">
+Gillespie, C., Lovelace, R. 2017: Efficient <span>R</span> programming: A practical guide to smarter programming,.
+</div>
+<div class="csl-entry">
+Goldenberg, S.U., Nagelkerken, I., Ferreira, C.M., Ullah, H., Connell, S.D. 2017: <span class="nocase">Boosted food web productivity through ocean acidification collapses under warming</span>.: Global Change Biology 23, 4177–4184.
+</div>
+<div class="csl-entry">
+Gonçalves, P.H.S., Albuquerque, U.P., Medeiros, P.M. de 2016: <span class="nocase">The most commonly available woody plant species are the most useful for human populations: a meta-analysis</span>.: Ecological Applications 26, 2238–2253.
+</div>
+<div class="csl-entry">
+Gonçalves-Souza, T., Garey, M.V., da Silva, F.R., Albuquerque, U.P., Provete, D.B. 2019: <span class="nocase">Multidimensional analyses for testing ecological, ethnobiological, and conservation hypotheses</span>. In: Albuquerque, U. P., de Lucena, R. F. P., da Cunha, L. V. F., Alves, R. R. N. (eds.), Methods and techniques in ethnobiology and ethnoecology, 87–110. Humana Press, New York, NY.
+</div>
+<div class="csl-entry">
+Gonçalves-Souza, T., Provete, D.B., Garey, M.V., da Silva, F.R., Albuquerque, U.P. 2019: <span class="nocase">Going back to basics: How to master the art of making scientifically sound questions</span>. In: Albuquerque, U. P., de Lucena, R. F. P., da Cunha, L. V. F., Alves, R. R. N. (eds.), Methods and techniques in ethnobiology and ethnoecology, 71–86. New York, NY, Springer New York.
+</div>
+<div class="csl-entry">
+Goodness, J., Andersson, E., Anderson, P.M.L., Elmqvist, T. 2016: <span class="nocase">Exploring the links between functional traits and cultural ecosystem services to enhance urban ecosystem management</span>.: Ecological Indicators 70, 597–605.
+</div>
+<div class="csl-entry">
+Gotelli, N.J. 2000: <span class="nocase">Null model analysis of species co-occurrence patterns</span>.: Ecology 81, 2606–2621.
+</div>
+<div class="csl-entry">
+Gotelli, N.J., Chao, A. 2013: <span class="nocase">Measuring and estimating species richness, species diversity, and biotic similarity from sampling data</span>. Encyclopedia of biodiversity, 195–211. Elsevier.
+</div>
+<div class="csl-entry">
+Gotelli, N.J., Colwell, R.K. 2001: <span class="nocase">Quantifying biodiversity: procedures and pitfalls in the measurement and comparison of species richness</span>.: Ecology Letters 4, 379–391.
+</div>
+<div class="csl-entry">
+Gotelli, N.J., Ellison, A.M. 2012: <span class="nocase">A primer of ecological statistics</span> Second edi.,: Sunderland, Massachusetts, Sinauer Associates, Inc., Publishers.
+</div>
+<div class="csl-entry">
+Gotelli, N.J., Graves, G.R. 1996: <span class="nocase">Null models in ecology</span>,: Smithsonian Institution Press.
+</div>
+<div class="csl-entry">
+Götzenberger, L., Bello, F. de, Bråthen, K.A., Davison, J., Dubuis, A., Guisan, A., Lepš, J., Lindborg, R., Moora, M., Pärtel, M., Pellissier, L., Pottier, J., Vittoz, P., Zobel, K., Zobel, M. 2012: <span class="nocase">Ecological assembly rules in plant communities-approaches, patterns and prospects</span>.: Biological Reviews 87, 111–127.
+</div>
+<div class="csl-entry">
+Gower, J.C. 1971: Statistical methods of comparing different multivariate analyses of the same data. In: Hodson, F. R., Kendall, D. G., Tautu, P. (eds.), Mathematics in the archaeological and historical science, 138–149. Edinburgh, Edinburgh University Press.
+</div>
+<div class="csl-entry">
+Grolemund, G. 2014: <span class="nocase">Hands-On programming with R: write your own functions and simulations</span>,.
+</div>
+<div class="csl-entry">
+Group, E.W. 2003: <span class="nocase">Intellectual imperatives in ethnobiology</span>,: St. Louis, Missouri Botanical Garden Press.
+</div>
+<div class="csl-entry">
+Guisan, A., Thuiller, W., Zimmermann, N.E. 2017: Habitat <span>Suitability</span> and <span>Distribution</span> <span>Models</span>: <span>With</span> <span>Applications</span> in <span>R</span>,: Cambridge, Cambridge University Press.
+</div>
+<div class="csl-entry">
+Hadi, A.S., Ling, R.F. 1998: Some <span>Cautionary</span> <span>Notes</span> on the <span>Use</span> of <span>Principal</span> <span>Components</span> <span>Regression</span>.: The American Statistician 52, 15–19.
+</div>
+<div class="csl-entry">
+Halsey, L.G. 2019: <span class="nocase">The reign of the p -value is over: what alternative analyses could we employ to fill the power vacuum?</span> Biology Letters 15, 20190174.
+</div>
+<div class="csl-entry">
+Harrison, X.A., Donaldson, L., Correa-Cano, M.E., Evans, J., Fisher, D.N., Goodwin, C.E.D., Robinson, B.S., Hodgson, D.J., Inger, R. 2018: A brief introduction to mixed effects modelling and multi-model inference in ecology.: PeerJ 6, e4794.
+</div>
+<div class="csl-entry">
+Healy, K. 2018: Data visualization: A practical introduction,: Princeton, NJ, Princeton University Press.
+</div>
+<div class="csl-entry">
+Helmus, M.R., Bland, T.J., Williams, C.K., Ives, A.R. 2007: <span class="nocase">Phylogenetic measures of biodiversity</span>.: The American Naturalist 169, E68–E83.
+</div>
+<div class="csl-entry">
+Hill, M.O. 1973: <span class="nocase">Diversity and evenness: A unifying notation and its consequences</span>.: Ecology 54, 427–432.
+</div>
+<div class="csl-entry">
+Holmes, S., Huber, W. 2019: Modern statistics for modern biology,: Cambridge, United Kingdom, Cambridge university press.
+</div>
+<div class="csl-entry">
+Horgan, G.W., Elston, D.A., Franklin, M.F., Glasbey, C.A., Hunter, E.A., Talbot, M., Kempton, R.A., McNicol, J.W., Wright, F. 1999: <span class="nocase">Teaching statistics to biological research scientists</span>.: Journal of the Royal Statistical Society: Series D (The Statistician) 48, 393–400.
+</div>
+<div class="csl-entry">
+Hortal, J., Borges, P.A.V., Gaspar, C. 2006: <span class="nocase">Evaluating the performance of species richness estimators: sensitivity to sample grain size</span>.: Journal of Animal Ecology 75, 274–287.
+</div>
+<div class="csl-entry">
+Hsieh, T.C., Ma, K.H., Chao, A. 2016: <span class="nocase">iNEXT</span>: An <span>R</span> package for rarefaction and extrapolation of species diversity (<span>Hill</span> numbers) McInerny, G. (ed.).: Methods in Ecology and Evolution 7, 1451–1456.
+</div>
+<div class="csl-entry">
+Hurlbert, S.H. 1971: <span class="nocase">The nonconcept of species diversity: A critique and alternative parameters</span>.: Ecology 52, 577–586.
+</div>
+<div class="csl-entry">
+Irizarry, R.A. 2017: Data analysis for the life sciences with <span>R</span>,: Boca Raton, CRC Press, Taylor &amp; Francis Group.
+</div>
+<div class="csl-entry">
+Irizarry, R.A. 2019: Introduction to <span>Data</span> <span>Science</span>: <span>Data</span> <span>Analysis</span> and <span>Prediction</span> <span>Algorithms</span> with <span>R</span> 1ª edição.,: Chapman; Hall/CRC.
+</div>
+<div class="csl-entry">
+Ismay, C., Kim, A.Y.-S. 2020: Statistical inference via data science: A <span>ModernDive</span> into <span>R</span> and the <span>Tidyverse</span>,: Boca Raton, CRC Press / Taylor &amp; Francis Group.
+</div>
+<div class="csl-entry">
+Ives, A.R. 2015: <span class="nocase">For testing the significance of regression coefficients, go ahead and log-transform count data</span>.: Methods in Ecology and Evolution 6, 828–835.
+</div>
+<div class="csl-entry">
+Jackson, D.A. 1995: PROTEST: A PROcrustean randomization TEST of community environment concordance.: Ecoscience 2, 297–303.
+</div>
+<div class="csl-entry">
+James, F.C., McCulloch, C.E. 1990: Multivariate <span>Analysis</span> in <span>Ecology</span> and <span>Systematics</span>: <span>Panacea</span> or <span>Pandora</span>’s <span>Box</span>? Annual Review of Ecology and Systematics 21, 129–166.
+</div>
+<div class="csl-entry">
+James, G., Witten, D., Hastie, T., Tibshirani, R. 2013: <span class="nocase">An introduction to statistical learning</span>,: Springer New York.
+</div>
+<div class="csl-entry">
+Jetz, W., Thomas, G.H., Joy, J.B., Hartmann, K., Mooers, A.O. 2012: <span class="nocase">The global diversity of birds in space and time</span>.: Nature 491, 444–448.
+</div>
+<div class="csl-entry">
+Jost, L. 2006: <span class="nocase">Entropy and diversity</span>.: Oikos 113, 363–375.
+</div>
+<div class="csl-entry">
+Jost, L. 2007: Partitioning diversity into independent alpha and beta components.: Ecology 88, 2427–2439.
+</div>
+<div class="csl-entry">
+Kabacoff, R. 2011: R in action: Data analysis and graphics with <span>R</span>,: Shelter Island, NY, Manning.
+</div>
+<div class="csl-entry">
+Lai, J., Lortie, C.J., Muenchen, R.A., Yang, J., Ma, K. 2019: Evaluating the popularity of <span>R</span> in ecology.: Ecosphere 10.
+</div>
+<div class="csl-entry">
+Laliberté, E., Legendre, P. 2010: <span class="nocase">A distance-based framework for measuring functional diversity from multiple traits</span>.: Ecology 91, 299–305.
+</div>
+<div class="csl-entry">
+Lapaine, M., Usery, E.L. 2017: <span class="nocase">Choosing a map projection</span>,: Springer.
+</div>
+<div class="csl-entry">
+Legendre, P. 2000: Comparison of permutation methods for the partial correlation and partial mantel tests.: Journal of Statistical Computation and Simulation 67, 37–73.
+</div>
+<div class="csl-entry">
+Legendre, P. 1993: Spatial <span>Autocorrelation</span>: <span>Trouble</span> or <span>New</span> <span>Paradigm</span>? Ecology 74, 1659–1673.
+</div>
+<div class="csl-entry">
+Legendre, P., Anderson, M.J. 1999: Distance-based redundancy analysis: Testing multispecies responses in multifactorial ecological experiments.: Ecological monographs 69, 1–24.
+</div>
+<div class="csl-entry">
+Legendre, P., Borcard, D. 2018: <span class="nocase">Box-Cox-chord transformations for community composition data prior to beta diversity analysis</span>.: Ecography 41, 1820–1824.
+</div>
+<div class="csl-entry">
+Legendre, P., De Cáceres, M. 2013: <span class="nocase">Beta diversity as the variance of community data: dissimilarity coefficients and partitioning</span>.: Ecology Letters 16, 951–963.
+</div>
+<div class="csl-entry">
+Legendre, P., Fortin, M.-J. 2010: Comparison of the mantel test and alternative approaches for detecting complex multivariate relationships in the spatial analysis of genetic data.: Molecular Ecology Resources 10, 831–844.
+</div>
+<div class="csl-entry">
+Legendre, P., Fortin, M.-J., Borcard, D. 2015: Should the mantel test be used in spatial analysis? Methods in Ecology and Evolution 6, 1239–1247.
+</div>
+<div class="csl-entry">
+Legendre, P., Gallagher, E.D. 2001: <span class="nocase">Ecologically meaningful transformations for ordination of species data</span>.: Oecologia 129, 271–280.
+</div>
+<div class="csl-entry">
+Legendre, P., Legendre, L. 2012: <span>Numerical Ecology</span> 3rd ed.,: Elsevier.
+</div>
+<div class="csl-entry">
+Leprieur, F., Albouy, C., De Bortoli, J., Cowman, P.F., Bellwood, D.R., Mouillot, D. 2012: <span class="nocase">Quantifying phylogenetic beta diversity: Distinguishing between ‘true’ turnover of lineages and phylogenetic diversity gradients</span>.: PLoS ONE 7, e42760.
+</div>
+<div class="csl-entry">
+Lepš, J., de Bello, F., Šmilauer, P., Doležal, J. 2011: <span class="nocase">Community trait response to environment: Disentangling species turnover vs intraspecific trait variability effects</span>.: Ecography 34, 856–863.
+</div>
+<div class="csl-entry">
+Lessard, J.-P., Belmaker, J., Myers, J.A., Chase, J.M., Rahbek, C. 2012: <span class="nocase">Inferring local ecological processes amid species pool influences</span>.: Trends in Ecology &amp; Evolution 27, 600–607.
+</div>
+<div class="csl-entry">
+Lima, V.F., Brito, S.V., Araujo Filho, J.A., Teles, D.A., Ribeiro, S.C., Teixeira, A.A.M., Pereira, A.M.A., Almeida, W.O. 2018: <span class="nocase">Raillietiella mottae (Pentastomida: Raillietiellidae) parasitizing four species of Gekkota lizards (Gekkonidae and Phyllodactylidae) in the Brazilian Caatinga</span>.: Helminthologia 55, 140–145.
+</div>
+<div class="csl-entry">
+Lindenmayer, D.B., Sato, C. 2018: <span class="nocase">Hidden collapse is driven by fire and logging in a socioecological forest ecosystem</span>.: Proceedings of the National Academy of Sciences 115, 5181–5186.
+</div>
+<div class="csl-entry">
+Lisboa, F.J.G., Peres-Neto, P.R., Chaer, G.M., Jesus, E.C., Mitchell, R.J., Chapman, S.J., Berbara, R.L.L. 2014: Much beyond mantel: Bringing procrustes association metric to the plant and soil ecologist’s toolbox.: PLoS One 9, e101238.
+</div>
+<div class="csl-entry">
+Littell, R.C., Milliken, G.A., Stroup, W.W., Wolfinger, R.D., Schabenberger, O. 2006: SAS for mixed models, second edition,: SAS Institute.
+</div>
+<div class="csl-entry">
+Long, J.D., Teetor, P. 2019: R cookbook: Proven recipes for data analysis, statistics, and graphics Second edition.,: Beijing Boston Farnham Sebastopol Tokyo, O’Reilly.
+</div>
+<div class="csl-entry">
+Lovelace, R., Nowosad, J., Münchow, J. 2019: <span class="nocase">Geocomputation with <span>R</span></span>,: Boca Raton, CRC Press, Taylor; Francis Group.
+</div>
+<div class="csl-entry">
+Lozupone, C., Knight, R. 2005: <span class="nocase">UniFrac: a new phylogenetic method for comparing microbial communities</span>.: Applied and Environmental Microbiology 71, 8228–8235.
+</div>
+<div class="csl-entry">
+MacDougall, A.S., Gilbert, B., Levine, J.M. 2009: <span class="nocase">Plant invasions and the niche</span>.: Journal of Ecology 97, 609–615.
+</div>
+<div class="csl-entry">
+Magnusson, W.E., Mourão, G. 2004: <span class="nocase">Statistics without math</span>,: Sala, Brazil : Sunderland, MA, Editora Planta ; North American distributor, Sinauer Associates.
+</div>
+<div class="csl-entry">
+Magurran, A.E., McGill, B.J. 2011: <span class="nocase">Biological diversity: Frontiers in measurement and assessment</span>,: Oxford, Oxford University Press.
+</div>
+<div class="csl-entry">
+Mammola, S., Carmona, C.P., Guillerme, T., Cardoso, P. 2021: Concepts and applications in functional diversity.: Functional Ecology 35, 1869–1885.
+</div>
+<div class="csl-entry">
+Manly, B.F.J. 1991: <span class="nocase">Randomization and <span>Monte</span> <span>Carlo</span> methods in biology</span>,: Chapman &amp; Hall.
+</div>
+<div class="csl-entry">
+Martijn, T. 2018: <span class="nocase">tmap</span>: Thematic maps in <span>R</span>.: Journal of Statistical Software 84, 1–39.
+</div>
+<div class="csl-entry">
+Martínez-Abraín, A. 2008: <span class="nocase">Statistical significance and biological relevance: A call for a more cautious interpretation of results in ecology</span>.: Acta Oecologica 34, 9–11.
+</div>
+<div class="csl-entry">
+Mas, J.-F., Horta, M.B., de Vasconcelos, R.N., Cambui, E.C.B. 2019: <span class="nocase">An<span class="nocase">á</span>lise espacial com R</span>,: UEFS Editora.
+</div>
+<div class="csl-entry">
+Mason, N.W.H., Mouillot, D. 2013: <span class="nocase">Functional diversity measures</span>. Encyclopedia of biodiversity, 597–608. Elsevier.
+</div>
+<div class="csl-entry">
+Matejka, J., Fitzmaurice, G. 2017: Same <span>Stats</span>, <span>Different</span> <span>Graphs</span>: <span>Generating</span> <span>Datasets</span> with <span>Varied</span> <span>Appearance</span> and <span>Identical</span> <span>Statistics</span> through <span>Simulated</span> <span>Annealing</span>. Proceedings of the 2017 <span>CHI</span> <span>Conference</span> on <span>Human</span> <span>Factors</span> in <span>Computing</span> <span>Systems</span>, 1290–1294. Denver Colorado USA, ACM.
+</div>
+<div class="csl-entry">
+Matloff, N.S. 2011: The art of <span>R</span> programming: Tour of statistical software design,: San Francisco, No Starch Press.
+</div>
+<div class="csl-entry">
+McGill, B.J., Enquist, B.J., Weiher, E., Westoby, M. 2006: <span class="nocase">Rebuilding community ecology from functional traits</span>.: Trends in Ecology and Evolution 21, 178–185.
+</div>
+<div class="csl-entry">
+McGill, B.J., Etienne, R.S., Gray, J.S., Alonso, D., Anderson, M.J., Benecha, H.K., Dornelas, M., Enquist, B.J., Green, J.L., He, F., Hurlbert, A.H., Magurran, A.E., Marquet, P.A., Maurer, B.A., Ostling, A., Soykan, C.U., Ugland, K.I., White, E.P. 2007: <span class="nocase">Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework</span>.: Ecology Letters 10, 995–1015.
+</div>
+<div class="csl-entry">
+McIntosh, A., Pontius, J. 2017: <span class="nocase">Science and the global environment: case studies for integrating science and the global environment</span>,.
+</div>
+<div class="csl-entry">
+Melo, A.S. 2008: <span class="nocase">O que ganhamos ’confundindo’ riqueza de esp<span class="nocase">é</span>cies e equabilidade em um <span class="nocase">í</span>ndice de diversidade?</span> Biota Neotropica 8, 21–27.
+</div>
+<div class="csl-entry">
+Metz, A.M. 2008: <span class="nocase">Teaching statistics in biology: Using inquiry-based learning to strengthen understanding of statistical analysis in biology laboratory courses</span>.: CBE—Life Sciences Education 7, 317–326.
+</div>
+<div class="csl-entry">
+Moraga, P. 2019: Geospatial <span>Health</span> <span>Data</span>: <span>Modeling</span> and <span>Visualization</span> with <span>R</span>-<span>INLA</span> and <span>Shiny</span> 1st ed.,: Chapman; Hall/CRC.
+</div>
+<div class="csl-entry">
+Muff, S., Nilsem, E.B., O’Hara, R.B., Nater, C.R. 2021: Rewriting results sections in the language of evidence.: Trends in Ecology &amp; Evolution.
+</div>
+<div class="csl-entry">
+Murtaugh, P.A. 2014: <span class="nocase">In defense of P values</span>.: Ecology 95, 611–617.
+</div>
+<div class="csl-entry">
+Muylaert, R.L., Vancine, M.H., Bernardo, R., Oshima, J.E.F., Sobral-Souza, T., Tonetti, V.R., Niebuhr, B.B., Ribeiro, M.C. 2018: <span class="nocase">Uma nota sobre os limites territoriais da mata atl<span class="nocase">â</span>ntica</span>.: Oecologia Australis 22, 302–311.
+</div>
+<div class="csl-entry">
+Nakagawa, S., Johnson, P.C.D., Schielzeth, H. 2017: <span class="nocase">The coefficient of determination R 2 and intra-class correlation coefficient from generalized linear mixed-effects models revisited and expanded</span>.: Journal of The Royal Society Interface 14, 20170213.
+</div>
+<div class="csl-entry">
+Newbold, T., Hudson, L.N., Hill, S.L.L., Contu, S., Lysenko, I., Senior, R.A., Börger, L., Bennett, D.J., Choimes, A., Collen, B., Day, J., De Palma, A., Díaz, S., Echeverria-Londoño, S., Edgar, M.J., Feldman, A., Garon, M., Harrison, M.L.K., Alhusseini, T., Ingram, D.J., Itescu, Y., Kattge, J., Kemp, V., Kirkpatrick, L., Kleyer, M., Correia, D.L.P., Martin, C.D., Meiri, S., Novosolov, M., Pan, Y., Phillips, H.R.P., Purves, D.W., Robinson, A., Simpson, J., Tuck, S.L., Weiher, E., White, H.J., Ewers, R.M., Mace, G.M., Scharlemann, J.P.W., Purvis, A. 2015: <span class="nocase">Global effects of land use on local terrestrial biodiversity</span>.: Nature 520, 45–50.
+</div>
+<div class="csl-entry">
+Neyman, J., Pearson, E.S. 1933: <span class="nocase">IX. On the problem of the most efficient tests of statistical hypotheses</span>.: Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character 231, 289–337.
+</div>
+<div class="csl-entry">
+Niggli, U., Fliessbach, A., Hepperly, P., Scialabba, N. 2009: <span class="nocase">Low greenhouse gas agriculture: Mitigation and adaptation potential of sustainable farming systems</span>,: Food; Agriculture Organization of the United Nations (FAO).
+</div>
+<div class="csl-entry">
+O’Hara, R.B., Kotze, D.J. 2010: <span class="nocase">Do not log-transform count data</span>.: Methods in Ecology and Evolution 1, 118–122.
+</div>
+<div class="csl-entry">
+Okabe, A. 2000: <span class="nocase">Spatial tessellations: concepts and applications of <span>Voronoi</span> diagrams</span> 2nd ed.,: Chichester; New York, Wiley.
+</div>
+<div class="csl-entry">
+Olalla-Tárraga, M.A., Rodríguez, M.A. 2007: <span class="nocase">Energy and interspecific body size patterns of amphibian faunas in Europe and North America: anurans follow Bergmann’s rule, urodeles its converse</span>.: Global Ecology and Biogeography 16, 606–617.
+</div>
+<div class="csl-entry">
+Olaya Ferrero, V. 2020: <span class="nocase">Sistemas de informaci<span class="nocase">ó</span>n geogr<span class="nocase">á</span>fica</span>,: Espa<span>ñ</span>a: Bubok Publishing. E-book.
+</div>
+<div class="csl-entry">
+Oliveira, C.N., Campos, I.H.M.P., Provete, D.B., Guarnieri, M.C., Ribeiro, S.C. 2020: <span class="nocase">Defensive behaviour and tail autotomy in Coleodactylus meridionalis (Squamata: Sphaerodactylidae)</span>.: Journal of Natural History 54, 2209–2218.
+</div>
+<div class="csl-entry">
+Oliveira, P.F., Guerra, S., McDonnell, R. 2018: Ciência de <span>Dados</span> com <span>R</span> - <span>Introdução</span>,.
+</div>
+<div class="csl-entry">
+Ovaskainen, O., Abrego, N. 2020: Joint <span>Species</span> <span>Distribution</span> <span>Modelling</span>,.
+</div>
+<div class="csl-entry">
+Palmer, M.W. 1991: <span class="nocase">Estimating species richness: The second-order Jackknife reconsidered</span>.: Ecology 72, 1512–1513.
+</div>
+<div class="csl-entry">
+Palmer, M.W. 1990: <span class="nocase">The estimation of species richness by extrapolation</span>.: Ecology 71, 1195–1198.
+</div>
+<div class="csl-entry">
+Paradis, E. 2012: <span class="nocase">Analysis of phylogenetics and evolution with R</span>,: New York, NY, Springer New York.
+</div>
+<div class="csl-entry">
+Pavoine, S., Bonsall, M.B. 2011: <span class="nocase">Measuring biodiversity to explain community assembly: A unified approach</span>.: Biological Reviews 86, 792–812.
+</div>
+<div class="csl-entry">
+Pavoine, S., Vallet, J., Dufour, A.-B., Gachet, S., Daniel, H. 2009: <span class="nocase">On the challenge of treating various types of variables: application for improving the measurement of functional diversity</span>.: Oikos 118, 391–402.
+</div>
+<div class="csl-entry">
+Pebesma, E. 2018: <span class="nocase">Simple features for R: Standardized support for spatial vector data</span>.: The R Journal 10, 439–446.
+</div>
+<div class="csl-entry">
+Pebesma, E.J., Bivand, R.S. 2005: Classes and methods for spatial data in <span>R</span>.: R News 5, 9–13.
+</div>
+<div class="csl-entry">
+Pereira, R.H.M., Goncalves, C.N. 2021: <span class="nocase">geobr: Download official spatial data sets of Brazil</span>,.
+</div>
+<div class="csl-entry">
+Peres-Neto, P.R., Dray, S., Braak, C.J.F. ter 2017: <span class="nocase">Linking trait variation to the environment: critical issues with community-weighted mean correlation resolved by the fourth-corner approach</span>.: Ecography 40, 806–816.
+</div>
+<div class="csl-entry">
+Peres-Neto, P.R., Jackson, D.A. 2001: How well do multivariate data sets match? The advantages of a procrustean superimposition approach over the mantel test.: Oecologia 129, 169–178.
+</div>
+<div class="csl-entry">
+Petchey, O.L., Gaston, K.J. 2002: <span class="nocase">Functional diversity (FD), species richness and community composition</span>.: Ecology Letters 5, 402–411.
+</div>
+<div class="csl-entry">
+Peterson, A.T. ed. 2011: Ecological niches and geographic distributions,: Princeton, N.J, Princeton University Press.
+</div>
+<div class="csl-entry">
+Phillips, O., Gentry, A.H. 1993: <span class="nocase">The useful plants of Tambopata, Peru: II. Additional hypothesis testing in quantitative ethnobotany</span>.: Economic Botany 47, 33–43.
+</div>
+<div class="csl-entry">
+Pickett, S.T., Kolasa, J., Jones, C.G. 2007: <span class="nocase">Ecological understanding: the nature of theory and the theory of nature</span> 2nd ed.,: Amsterdam ; Boston, Elsevier/Academic Press.
+</div>
+<div class="csl-entry">
+Pielou, E.C. 1966: <span class="nocase">The measurement of diversity in different types of biological collections</span>.: Journal of Theoretical Biology 13, 131–144.
+</div>
+<div class="csl-entry">
+Pinheiro, J.C., Bates, D.M. 2000: <span class="nocase">Mixed-Effects Models in S and S-PLUS</span>,: Springer-Verlag.
+</div>
+<div class="csl-entry">
+Platt, J.R. 1964: <span class="nocase">Strong Inference: Certain systematic methods of scientific thinking may produce much more rapid progress than others</span>.: Science 146, 347–353.
+</div>
+<div class="csl-entry">
+Popper, K.R. 1959: <span class="nocase">The logic of scientific discovery</span>,: London; New York, Routledge.
+</div>
+<div class="csl-entry">
+Prado, V.H.M., Rossa-Feres, D.C. 2014: <span class="nocase">Multiple determinants of anuran richness and occurrence in an agricultural region in south-eastern Brazil</span>.: Environmental Management 53, 823–837.
+</div>
+<div class="csl-entry">
+Provete, D.B., Gonçalves-Souza, T., Garey, M.V., Martins, I.A., Rossa-Feres, D.C. 2014: Broad-scale spatial patterns of canopy cover and pond morphology affect the structure of a <span>Neotropical</span> amphibian metacommunity.: Hydrobiologia 734, 69–79.
+</div>
+<div class="csl-entry">
+Quinn, G.P., Keough, M.J. 2002: <span class="nocase">Experimental design and data analysis for biologists</span>.
+</div>
+<div class="csl-entry">
+Rahlf, T. 2019: Data visualisation with <span>R</span>: 111 examples Second edition.,: Cham, Springer.
+</div>
+<div class="csl-entry">
+Redding, D.W., Mooers, A.Ø. 2006: <span class="nocase">Incorporating evolutionary measures into conservation prioritization</span>.: Conservation Biology 20, 1670–1678.
+</div>
+<div class="csl-entry">
+Reed, J., Vianen, J. van, Barlow, J., Sunderland, T. 2017: <span class="nocase">Have integrated landscape approaches reconciled societal and environmental issues in the tropics?</span> Land Use Policy 63, 481–492.
+</div>
+<div class="csl-entry">
+Ripple, W.J., Estes, J.A., Beschta, R.L., Wilmers, C.C., Ritchie, E.G., Hebblewhite, M., Berger, J., Elmhagen, B., Letnic, M., Nelson, M.P., Schmitz, O.J., Smith, D.W., Wallach, A.D., Wirsing, A.J. 2014: <span class="nocase">Status and ecological effects of the World’s largest carnivores</span>.: Science 343, 1241484–1241484.
+</div>
+<div class="csl-entry">
+Rosauer, D., Laffan, S.W., Crisp, M.D., Donnellan, S.C., Cook, L.G. 2009: <span class="nocase">Phylogenetic endemism: a new approach for identifying geographical concentrations of evolutionary history</span>.: Molecular Ecology 18, 4061–4072.
+</div>
+<div class="csl-entry">
+Roswell, M., Dushoff, J., Winfree, R. 2021: <span class="nocase">A conceptual guide to measuring species diversity</span>.: Oikos 130, 321–338.
+</div>
+<div class="csl-entry">
+Ruxton, G.D., Colegrave, N. 2016: <span class="nocase">Experimental design for the life sciences</span> 3rd ed.,: Oxford ; New York, Oxford University Press.
+</div>
+<div class="csl-entry">
+Saslis-Lagoudakis, C.H., Clarke, A.C. 2013: Ethnobiology: The missing link in ecology and evolution.: Trends in Ecology &amp; Evolution 28, 67–68.
+</div>
+<div class="csl-entry">
+Saslis-Lagoudakis, C.H., Hawkins, J.A., Greenhill, S.J., Pendry, C.A., Watson, M.F., Tuladhar-Douglas, W., Baral, S.R., Savolainen, V. 2014: <span class="nocase">The evolution of traditional knowledge: environment shapes medicinal plant use in Nepal</span>.: Proceedings of the Royal Society B: Biological Sciences 281, 20132768.
+</div>
+<div class="csl-entry">
+Saslis-Lagoudakis, C.H., Savolainen, V., Williamson, E.M., Forest, F., Wagstaff, S.J., Baral, S.R., Watson, M.F., Pendry, C.A., Hawkins, J.A. 2012: <span class="nocase">Phylogenies reveal predictive power of traditional medicine in bioprospecting</span>.: Proceedings of the National Academy of Sciences 109, 15835–15840.
+</div>
+<div class="csl-entry">
+Saul, W.-C., Jeschke, J.M. 2015: <span class="nocase">Eco-evolutionary experience in novel species interactions</span>.: Ecology Letters 18, 236–245.
+</div>
+<div class="csl-entry">
+Scheiner, S.M., Gurevitch, J. 2001: <span class="nocase">Design and analysis of ecological experiments</span>,: Oxford University Press.
+</div>
+<div class="csl-entry">
+Schleuter, D., Daufresne, M., Massol, F., Argillier, C. 2010: <span class="nocase">A user’s guide to functional diversity indices</span>.: Ecological Monographs 80, 469–484.
+</div>
+<div class="csl-entry">
+Siefert, A., Violle, C., Chalmandrier, L., Albert, C.H., Taudiere, A., Fajardo, A., Aarssen, L.W., Baraloto, C., Carlucci, M.B., Cianciaruso, M.V., Dantas, L.V., Bello, F., Duarte, L.D.S., Fonseca, C.R., Freschet, G.T., Gaucherand, S., Gross, N., Hikosaka, K., Jackson, B., Jung, V., Kamiyama, C., Katabuchi, M., Kembel, S.W., Kichenin, E., Kraft, N.J.B., Lagerström, A., Bagousse‐Pinguet, Y.L., Li, Y., Mason, N., Messier, J., Nakashizuka, T., Overton, J.M., Peltzer, D.A., Pérez‐Ramos, I.M., Pillar, V.D., Prentice, H.C., Richardson, S., Sasaki, T., Schamp, B.S., Schöb, C., Shipley, B., Sundqvist, M., Sykes, M.T., Vandewalle, M., Wardle, D.A. 2015: A global meta‐analysis of the relative extent of intraspecific trait variation in plant communities Chase, J. (ed.).: Ecology Letters 18, 1406–1419.
+</div>
+<div class="csl-entry">
+Sievert, C. 2020: Interactive web-based data visualization with <span>R</span>, plotly, and shiny,: Boca Raton, FL, CRC Press, Taylor; Francis Group.
+</div>
+<div class="csl-entry">
+Silva, F.R. da, Provete, D.B., Gerassi, L.K., Bovo, R.P. 2017: <span class="nocase">What do data from fieldwork and scientific collections tell us about species richness and composition of amphibians and reptiles?</span> South American Journal of Herpetology 12, 99–106.
+</div>
+<div class="csl-entry">
+Smith, E.P., van Belle, G. 1984: <span class="nocase">Nonparametric estimation of species richness</span>.: Biometrics 40, 119.
+</div>
+<div class="csl-entry">
+Sneath, P.H.A., Sokal, R.R. 1973: <span class="nocase">Numerical taxonomy: the principles and practice of numerical classification</span>,: San Francisco, W. H. Freeman.
+</div>
+<div class="csl-entry">
+Solar, R.R.C., Barlow, J., Ferreira, J., Berenguer, E., Lees, A.C., Thomson, J.R., Louzada, J., Maués, M., Moura, N.G., Oliveira, V.H.F., Chaul, J.C.M., Schoereder, J.H., Vieira, I.C.G., Mac Nally, R., Gardner, T.A. 2015: <span class="nocase">How pervasive is biotic homogenization in human-modified tropical forest landscapes?</span> Ecology Letters 18, 1108–1118.
+</div>
+<div class="csl-entry">
+Stepp, J.R. 2005: <span class="nocase">Advances in ethnobiological field methods</span>.: Field Methods 17, 211–218.
+</div>
+<div class="csl-entry">
+Strong, D.R., Simberloff, D., Abele, L.G., Thistle, A.B. eds. 1984: <span class="nocase">Ecological communities</span>,: Princeton University Press.
+</div>
+<div class="csl-entry">
+Sutherland, W.J., Freckleton, R.P., Godfray, H.C.J., Beissinger, S.R., Benton, T., Cameron, D.D., Carmel, Y., Coomes, D.A., Coulson, T., Emmerson, M.C., Hails, R.S., Hays, G.C., Hodgson, D.J., Hutchings, M.J., Johnson, D., Jones, J.P.G., Keeling, M.J., Kokko, H., Kunin, W.E., Lambin, X., Lewis, O.T., Malhi, Y., Mieszkowska, N., Milner-Gulland, E.J., Norris, K., Phillimore, A.B., Purves, D.W., Reid, J.M., Reuman, D.C., Thompson, K., Travis, J.M.J., Turnbull, L.A., Wardle, D.A., Wiegand, T. 2013: <span class="nocase">Identification of 100 fundamental ecological questions</span>.: Journal of Ecology 101, 58–67.
+</div>
+<div class="csl-entry">
+Swenson, N.G. 2014: <span class="nocase">Functional and Phylogenetic Ecology in R</span>,: New York, NY, Springer New York.
+</div>
+<div class="csl-entry">
+Swenson, N.G. 2011: <span class="nocase">Phylogenetic beta diversity metrics, trait evolution and inferring the functional beta diversity of communities</span>.: PLoS ONE 6.
+</div>
+<div class="csl-entry">
+Tennekes, M. 2021: <span class="nocase">tmap: Thematic maps</span>,.
+</div>
+<div class="csl-entry">
+Thioulouse, J., Dray, S., Dufour, A.-B., Siberchicot, A., Jombart, T., Pavoine, S. 2018: Multivariate <span>Analysis</span> of <span>Ecological</span> <span>Data</span> with ade4,: New York, NY, Springer New York.
+</div>
+<div class="csl-entry">
+Touchon, J.C. 2021: Applied statistics with <span>R</span>: A practical guide for the life sciences,: New York, AC Science: ACSCI.
+</div>
+<div class="csl-entry">
+Tucker, C.M., Cadotte, M.W., Carvalho, S.B., Davies, T.J., Ferrier, S., Fritz, S.A., Grenyer, R., Helmus, M.R., Jin, L.S., Mooers, A.O., Pavoine, S., Purschke, O., Redding, D.W., Rosauer, D.F., Winter, M., Mazel, F. 2017: <span class="nocase">A guide to phylogenetic metrics for conservation, community ecology and macroecology</span>.: Biological Reviews 92, 698–715.
+</div>
+<div class="csl-entry">
+Ulrich, W., Gotelli, N.J. 2010: <span class="nocase">Null model analysis of species associations using abundance data</span>.: Ecology 91, 3384–3397.
+</div>
+<div class="csl-entry">
+Vancine, M.H., Duarte, K.S., de Souza, Y.S., Giovanelli, J.G.R., Martins-Sobrinho, P.M., López, A., Bovo, R.P., Maffei, F., Lion, M.B.i., Ribeiro Júnior, J.W., Brassaloti, R., da Costa, C.O.R., Sawakuchi, H.O., Forti, L.R., Cacciali, P., Bertoluci, J., Haddad, C.F.B., Ribeiro, M.C. 2018: <span class="nocase">ATLANTIC AMPHIBIANS: a data set of amphibian communities from the Atlantic Forests of South America</span>.: Ecology 99, 1692–1692.
+</div>
+<div class="csl-entry">
+Vane-Wright, R.I., Humphries, C.J., Williams, P.H. 1991: <span class="nocase">What to protect?—Systematics and the agony of choice</span>.: Biological Conservation 55, 235–254.
+</div>
+<div class="csl-entry">
+Vellend, M. 2016: <span class="nocase">The theory of ecological communities</span>,: Princeton, Princeton University Press.
+</div>
+<div class="csl-entry">
+Vellend, M., Cornwell, W.K., Magnuson-Ford, K., Mooers, A. 2011: <span class="nocase">Measuring phylogenetic biodiversity</span>. Biological diversity: Frontiers in measurement and assessment, 194–207. Oxford University Press.
+</div>
+<div class="csl-entry">
+Venables, W.N., Ripley, B.D. 2002: <span class="nocase">Modern applied statistics with S</span>,: Springer-Verlag.
+</div>
+<div class="csl-entry">
+Véron, S., Saito, V., Padilla-García, N., Forest, F., Bertheau, Y. 2019: <span class="nocase">The Use of phylogenetic diversity in conservation biology and community ecology: A common base but different approaches</span>.: The Quarterly Review of Biology 94, 123–148.
+</div>
+<div class="csl-entry">
+Villéger, S., Mason, N.W.H., Mouillot, D. 2008: <span class="nocase">New multidimensional functional diversity indices for a multifaceted framework in functional ecology</span>.: Ecology 89, 2290–2301.
+</div>
+<div class="csl-entry">
+Violle, C., Enquist, B.J., McGill, B.J., Jiang, L., Albert, C.H., Hulshof, C., Jung, V., Messier, J. 2012: <span class="nocase">The return of the variance: Intraspecific variability in community ecology</span>.: Trends in Ecology and Evolution 27, 244–252.
+</div>
+<div class="csl-entry">
+Violle, C., Navas, M.-L., Vile, D., Kazakou, E., Fortunel, C., Hummel, I., Garnier, E. 2007: <span class="nocase">Let the concept of trait be functional!</span> Oikos 116, 882–892.
+</div>
+<div class="csl-entry">
+Walther, B.A., Moore, J.L. 2005: <span class="nocase">The concepts of bias, precision and accuracy, and their use in testing the performance of species richness estimators, with a literature review of estimator performance</span>.: Ecography 28, 815–829.
+</div>
+<div class="csl-entry">
+Wang, Y., Naumann, U., Wright, S.T., Warton, D.I. 2012: Mvabundâ€“ an r package for model-based analysis of multivariate abundance data.: Methods in Ecology and Evolution 3, 471–474.
+</div>
+<div class="csl-entry">
+Warton, D.I. 2018: <span class="nocase">Why you cannot transform your way out of trouble for small counts</span>.: Biometrics 74, 362–368.
+</div>
+<div class="csl-entry">
+Warton, D.I., Wright, S.T., Wang, Y. 2012: Distance-based multivariate analyses confound location and dispersion effects.: Methods in Ecology and Evolution 3, 89–101.
+</div>
+<div class="csl-entry">
+Webb, C.O., Ackerly, D.D., Kembel, S.W. 2008: <span class="nocase">Phylocom: software for the analysis of phylogenetic community structure and trait evolution</span>.: Bioinformatics 24, 2098–2100.
+</div>
+<div class="csl-entry">
+Webb, C.O., Ackerly, D.D., McPeek, M.A., Donoghue, M.J. 2002: <span class="nocase">Phylogenies and community ecology</span>.: Annual Review of Ecology and Systematics 33, 475–505.
+</div>
+<div class="csl-entry">
+Wegmann, M., Leutner, B., Dech, S. eds. 2016: <span class="nocase">Remote sensing and <span>GIS</span> for ecologists: using open source software</span>,: Exeter, Pelagic Publishing.
+</div>
+<div class="csl-entry">
+Wegmann, M., Schwalb-Willmann, J., Dech, S. 2020: <span class="nocase">An introduction to spatial data analysis: Remote sensing and GIS with open source software</span>,: Pelagic Publishing Ltd.
+</div>
+<div class="csl-entry">
+White, J.W., Rassweiler, A., Samhouri, J.F., Stier, A.C., White, C. 2014: <span class="nocase">Ecologists should not use statistical significance tests to interpret simulation model results</span>.: Oikos 123, 385–388.
+</div>
+<div class="csl-entry">
+Whitlock, M., Schluter, D. 2015: <span class="nocase">The analysis of biological data</span> Second edi.,: Roberts; Company Publishers.
+</div>
+<div class="csl-entry">
+Whittaker, R.H. 1972: <span class="nocase">Evolution and measurement of species diversity</span>.: TAXON 21, 213–251.
+</div>
+<div class="csl-entry">
+Whittaker, R.H. 1960: <span class="nocase">Vegetation of the Siskiyou Mountains, Oregon and California</span>.: Ecological Monographs 30, 279–338.
+</div>
+<div class="csl-entry">
+Wickham, H. 2019: Advanced <span>R</span> Second edition.,: Boca Raton, CRC Press/Taylor; Francis Group.
+</div>
+<div class="csl-entry">
+Wickham, H. 2016: <span class="nocase">ggplot2: Elegant graphics for data analysis</span>,: Springer-Verlag New York.
+</div>
+<div class="csl-entry">
+Wickham, H. 2013: <span class="nocase">R and S</span>.: Encyclopedia of Environmetrics.
+</div>
+<div class="csl-entry">
+Wickham, H. 2014: <span>Tidy Data</span>.: Journal of Statistical Software 59.
+</div>
+<div class="csl-entry">
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T., Miller, E., Bache, S., Müller, K., Ooms, J., Robinson, D., Seidel, D., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., Yutani, H. 2019: <span class="nocase">Welcome to the Tidyverse</span>.: Journal of Open Source Software 4, 1686.
+</div>
+<div class="csl-entry">
+Wickham, H., Chang, W., Henry, L., Pedersen, T.L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D. 2020: <span class="nocase">ggplot2: Create elegant data visualisations using the grammar of graphics</span>,.
+</div>
+<div class="csl-entry">
+Wickham, H., Grolemund, G. 2017: <span class="nocase">R for data science: import, tidy, transform, visualize, and model data</span> First edit.,: Sebastopol, CA, O’Reilly.
+</div>
+<div class="csl-entry">
+Wilke, C. 2019: Fundamentals of data visualization: A primer on making informative and compelling figures First edition.,: Sebastopol, CA, O’Reilly Media.
+</div>
+<div class="csl-entry">
+Wilkinson, L., Wills, G. 2005: <span class="nocase">The grammar of graphics</span> 2nd ed.,: New York, Springer.
+</div>
+<div class="csl-entry">
+Williams, G.J. 2018: The essentials of data science: Knowledge discovery using <span>R</span>,: Boca Raton, Taylor &amp; Francis, CRC Press.
+</div>
+<div class="csl-entry">
+Wilson, J.B. 1991: <span class="nocase">Methods for fitting dominance/diversity curves</span>.: Journal of Vegetation Science 2, 35–46.
+</div>
+<div class="csl-entry">
+Xu, W., Xiao, Y., Zhang, J., Yang, W., Zhang, L., Hull, V., Wang, Z., Zheng, H., Liu, J., Polasky, S., Jiang, L., Xiao, Y., Shi, X., Rao, E., Lu, F., Wang, X., Daily, G.C., Ouyang, Z. 2017: <span class="nocase">Strengthening protected areas for biodiversity and ecosystem services in China</span>.: Proceedings of the National Academy of Sciences 114, 1601–1606.
+</div>
+<div class="csl-entry">
+Zar, J.H. 2010: <span class="nocase">Biostatistical analysis</span>,: Pearson.
+</div>
+<div class="csl-entry">
+Zumel, N., Mount, J. 2014: Practical data science with <span>R</span>,: Shelter Island, NY, Manning Publications Co.
+</div>
+<div class="csl-entry">
+Zuur, A.F., Ieno, E.N., Elphick, C.S. 2010: <span class="nocase">A protocol for data exploration to avoid common statistical problems</span>.: Methods in Ecology and Evolution 1, 3–14.
+</div>
+<div class="csl-entry">
+Zuur, A.F., Ieno, E.N., Smith, G.M. 2007: Analysing <span>Ecological</span> <span>Data</span> Gail, M., Krickeberg, K., Sarnet, J., Tsiatis, A., Wong, W. (eds.),: New York, NY, Springer New York.
+</div>
+<div class="csl-entry">
+Zuur, A.F., Ieno, E.N., Walker, N., Saveliev, A.A., Smith, G.M. 2009: Mixed effects models and extensions in ecology with <span>R</span>,: New York, NY, Springer New York.
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="glossário.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/99_referencias.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/99_referencias.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

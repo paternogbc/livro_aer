@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 1 Introdução | Análises Ecológicas no R</title>
+  <meta name="description" content="Capítulo 1 Introdução | Análises Ecológicas no R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 1 Introdução | Análises Ecológicas no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 1 Introdução | Análises Ecológicas no R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2022-02-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="revisores-e-colaboradores.html"/>
+<link rel="next" href="cap2.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análises Ecológicas no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Capa</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
+<li class="chapter" data-level="" data-path="revisores-e-colaboradores.html"><a href="revisores-e-colaboradores.html"><i class="fa fa-check"></i>Revisores e colaboradores</a></li>
+<li class="chapter" data-level="1" data-path="cap1.html"><a href="cap1.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="cap1.html"><a href="cap1.html#histórico-deste-livro"><i class="fa fa-check"></i><b>1.1</b> Histórico deste livro</a></li>
+<li class="chapter" data-level="1.2" data-path="cap1.html"><a href="cap1.html#objetivo-deste-livro"><i class="fa fa-check"></i><b>1.2</b> Objetivo deste livro</a></li>
+<li class="chapter" data-level="1.3" data-path="cap1.html"><a href="cap1.html#o-que-você-não-encontrará-neste-livro"><i class="fa fa-check"></i><b>1.3</b> O que você não encontrará neste livro</a></li>
+<li class="chapter" data-level="1.4" data-path="cap1.html"><a href="cap1.html#por-que-usar-o-r"><i class="fa fa-check"></i><b>1.4</b> Por que usar o R?</a></li>
+<li class="chapter" data-level="1.5" data-path="cap1.html"><a href="cap1.html#indo-além-da-linguagem-de-progração-para-a-ecologia"><i class="fa fa-check"></i><b>1.5</b> Indo além da linguagem de progração para a Ecologia</a></li>
+<li class="chapter" data-level="1.6" data-path="cap1.html"><a href="cap1.html#como-usar-este-livro"><i class="fa fa-check"></i><b>1.6</b> Como usar este livro</a></li>
+<li class="chapter" data-level="1.7" data-path="cap1.html"><a href="cap1.html#como-ensinar-e-aprender-com-esse-livro"><i class="fa fa-check"></i><b>1.7</b> Como ensinar e aprender com esse livro</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="cap1.html"><a href="cap1.html#em-laboratórios-ou-grupos-de-pesquisa"><i class="fa fa-check"></i><b>1.7.1</b> Em laboratórios ou grupos de pesquisa</a></li>
+<li class="chapter" data-level="1.7.2" data-path="cap1.html"><a href="cap1.html#em-disciplinas-da-graduação-ou-pós-graduação"><i class="fa fa-check"></i><b>1.7.2</b> Em disciplinas da graduação ou pós-graduação</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cap2.html"><a href="cap2.html"><i class="fa fa-check"></i><b>2</b> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cap2.html"><a href="cap2.html#introdução"><i class="fa fa-check"></i><b>2.1</b> Introdução</a></li>
+<li class="chapter" data-level="2.2" data-path="cap2.html"><a href="cap2.html#perguntas-devem-preceder-as-análises-estatísticas"><i class="fa fa-check"></i><b>2.2</b> Perguntas devem preceder as análises estatísticas</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cap2.html"><a href="cap2.html#um-bestiárioperguntas_ecologia-1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa"><i class="fa fa-check"></i><b>2.2.1</b> Um bestiário para o teste de hipóteses (Você está fazendo a pergunta certa?)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cap2.html"><a href="cap2.html#fluxograma-conectando-variáveis-para-melhorar-o-desenho-experimental-e-as-análises-estatísticas"><i class="fa fa-check"></i><b>2.3</b> Fluxograma: Conectando variáveis para melhorar o desenho experimental e as análises estatísticas</a></li>
+<li class="chapter" data-level="2.4" data-path="cap2.html"><a href="cap2.html#questões-fundamentais-em-etnobiologia-ecologia-e-conservação"><i class="fa fa-check"></i><b>2.4</b> Questões fundamentais em etnobiologia, ecologia e conservação</a></li>
+<li class="chapter" data-level="2.5" data-path="cap2.html"><a href="cap2.html#considerações-finais"><i class="fa fa-check"></i><b>2.5</b> Considerações Finais</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cap3.html"><a href="cap3.html"><i class="fa fa-check"></i><b>3</b> Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cap3.html"><a href="cap3.html#introdução-1"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="cap3.html"><a href="cap3.html#instalação-do-r"><i class="fa fa-check"></i><b>3.2</b> Instalação do R</a></li>
+<li class="chapter" data-level="3.3" data-path="cap3.html"><a href="cap3.html#instalação-do-rstudio"><i class="fa fa-check"></i><b>3.3</b> Instalação do RStudio</a></li>
+<li class="chapter" data-level="3.4" data-path="cap3.html"><a href="cap3.html#versão-do-r"><i class="fa fa-check"></i><b>3.4</b> Versão do R</a></li>
+<li class="chapter" data-level="3.5" data-path="cap3.html"><a href="cap3.html#pacotes"><i class="fa fa-check"></i><b>3.5</b> Pacotes</a></li>
+<li class="chapter" data-level="3.6" data-path="cap3.html"><a href="cap3.html#dados"><i class="fa fa-check"></i><b>3.6</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Introdução ao R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap4.html"><a href="cap4.html#pré-requisitos-do-capítulo"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="4.1" data-path="cap4.html"><a href="cap4.html#contextualização"><i class="fa fa-check"></i><b>4.1</b> Contextualização</a></li>
+<li class="chapter" data-level="4.2" data-path="cap4.html"><a href="cap4.html#r-e-rstudio"><i class="fa fa-check"></i><b>4.2</b> R e RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="cap4.html"><a href="cap4.html#funcionamento-da-linguagem-r"><i class="fa fa-check"></i><b>4.3</b> Funcionamento da linguagem R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="cap4.html"><a href="cap4.html#console"><i class="fa fa-check"></i><b>4.3.1</b> Console</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cap4.html"><a href="cap4.html#scripts"><i class="fa fa-check"></i><b>4.3.2</b> Scripts</a></li>
+<li class="chapter" data-level="4.3.3" data-path="cap4.html"><a href="cap4.html#operadores"><i class="fa fa-check"></i><b>4.3.3</b> Operadores</a></li>
+<li class="chapter" data-level="4.3.4" data-path="cap4.html"><a href="cap4.html#objetos"><i class="fa fa-check"></i><b>4.3.4</b> Objetos</a></li>
+<li class="chapter" data-level="4.3.5" data-path="cap4.html"><a href="cap4.html#funções"><i class="fa fa-check"></i><b>4.3.5</b> Funções</a></li>
+<li class="chapter" data-level="4.3.6" data-path="cap4.html"><a href="cap4.html#pacotes-1"><i class="fa fa-check"></i><b>4.3.6</b> Pacotes</a></li>
+<li class="chapter" data-level="4.3.7" data-path="cap4.html"><a href="cap4.html#ajuda-help"><i class="fa fa-check"></i><b>4.3.7</b> Ajuda (<em>Help</em>)</a></li>
+<li class="chapter" data-level="4.3.8" data-path="cap4.html"><a href="cap4.html#ambiente-environment"><i class="fa fa-check"></i><b>4.3.8</b> Ambiente (<em>Environment</em>)</a></li>
+<li class="chapter" data-level="4.3.9" data-path="cap4.html"><a href="cap4.html#citações"><i class="fa fa-check"></i><b>4.3.9</b> Citações</a></li>
+<li class="chapter" data-level="4.3.10" data-path="cap4.html"><a href="cap4.html#principais-erros-de-iniciantes"><i class="fa fa-check"></i><b>4.3.10</b> Principais erros de iniciantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="cap4.html"><a href="cap4.html#estrutura-e-manipulação-de-objetos"><i class="fa fa-check"></i><b>4.4</b> Estrutura e manipulação de objetos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="cap4.html"><a href="cap4.html#atributo-dos-objetos"><i class="fa fa-check"></i><b>4.4.1</b> Atributo dos objetos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="cap4.html"><a href="cap4.html#manipulação-de-objetos-unidimensionais"><i class="fa fa-check"></i><b>4.4.2</b> Manipulação de objetos unidimensionais</a></li>
+<li class="chapter" data-level="4.4.3" data-path="cap4.html"><a href="cap4.html#manipulação-de-objetos-multidimensionais"><i class="fa fa-check"></i><b>4.4.3</b> Manipulação de objetos multidimensionais</a></li>
+<li class="chapter" data-level="4.4.4" data-path="cap4.html"><a href="cap4.html#valores-faltantes-e-especiais"><i class="fa fa-check"></i><b>4.4.4</b> Valores faltantes e especiais</a></li>
+<li class="chapter" data-level="4.4.5" data-path="cap4.html"><a href="cap4.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>4.4.5</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="4.4.6" data-path="cap4.html"><a href="cap4.html#importar-dados"><i class="fa fa-check"></i><b>4.4.6</b> Importar dados</a></li>
+<li class="chapter" data-level="4.4.7" data-path="cap4.html"><a href="cap4.html#conferência-dos-dados-importados"><i class="fa fa-check"></i><b>4.4.7</b> Conferência dos dados importados</a></li>
+<li class="chapter" data-level="4.4.8" data-path="cap4.html"><a href="cap4.html#exportar-dados"><i class="fa fa-check"></i><b>4.4.8</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="cap4.html"><a href="cap4.html#para-se-aprofundar"><i class="fa fa-check"></i><b>4.5</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="cap4.html"><a href="cap4.html#livros"><i class="fa fa-check"></i><b>4.5.1</b> Livros</a></li>
+<li class="chapter" data-level="4.5.2" data-path="cap4.html"><a href="cap4.html#links"><i class="fa fa-check"></i><b>4.5.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="cap4.html"><a href="cap4.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cap5.html"><a href="cap5.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap5.html"><a href="cap5.html#pré-requisitos-do-capítulo-1"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="5.1" data-path="cap5.html"><a href="cap5.html#contextualização-1"><i class="fa fa-check"></i><b>5.1</b> Contextualização</a></li>
+<li class="chapter" data-level="5.2" data-path="cap5.html"><a href="cap5.html#tidyverse"><i class="fa fa-check"></i><b>5.2</b> <em>tidyverse</em></a></li>
+<li class="chapter" data-level="5.3" data-path="cap5.html"><a href="cap5.html#here"><i class="fa fa-check"></i><b>5.3</b> here</a></li>
+<li class="chapter" data-level="5.4" data-path="cap5.html"><a href="cap5.html#readr-readxl-e-writexl"><i class="fa fa-check"></i><b>5.4</b> readr, readxl e writexl</a></li>
+<li class="chapter" data-level="5.5" data-path="cap5.html"><a href="cap5.html#tibble"><i class="fa fa-check"></i><b>5.5</b> tibble</a></li>
+<li class="chapter" data-level="5.6" data-path="cap5.html"><a href="cap5.html#magrittr-pipe--"><i class="fa fa-check"></i><b>5.6</b> magrittr (pipe - %&gt;%)</a></li>
+<li class="chapter" data-level="5.7" data-path="cap5.html"><a href="cap5.html#tidyr"><i class="fa fa-check"></i><b>5.7</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="cap5.html"><a href="cap5.html#palmerpenguins"><i class="fa fa-check"></i><b>5.7.1</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.7.2" data-path="cap5.html"><a href="cap5.html#glimpse"><i class="fa fa-check"></i><b>5.7.2</b> glimpse()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="cap5.html"><a href="cap5.html#unite"><i class="fa fa-check"></i><b>5.7.3</b> unite()</a></li>
+<li class="chapter" data-level="5.7.4" data-path="cap5.html"><a href="cap5.html#separate"><i class="fa fa-check"></i><b>5.7.4</b> separate()</a></li>
+<li class="chapter" data-level="5.7.5" data-path="cap5.html"><a href="cap5.html#drop_na-e-replace_na"><i class="fa fa-check"></i><b>5.7.5</b> drop_na() e replace_na()</a></li>
+<li class="chapter" data-level="5.7.6" data-path="cap5.html"><a href="cap5.html#pivot_longer-e-pivot_wider"><i class="fa fa-check"></i><b>5.7.6</b> pivot_longer() e pivot_wider()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="cap5.html"><a href="cap5.html#dplyr"><i class="fa fa-check"></i><b>5.8</b> dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="cap5.html"><a href="cap5.html#gramática"><i class="fa fa-check"></i><b>5.8.1</b> Gramática</a></li>
+<li class="chapter" data-level="5.8.2" data-path="cap5.html"><a href="cap5.html#sintaxe"><i class="fa fa-check"></i><b>5.8.2</b> Sintaxe</a></li>
+<li class="chapter" data-level="5.8.3" data-path="cap5.html"><a href="cap5.html#palmerpenguins-1"><i class="fa fa-check"></i><b>5.8.3</b> palmerpenguins</a></li>
+<li class="chapter" data-level="5.8.4" data-path="cap5.html"><a href="cap5.html#relocate"><i class="fa fa-check"></i><b>5.8.4</b> relocate()</a></li>
+<li class="chapter" data-level="5.8.5" data-path="cap5.html"><a href="cap5.html#rename"><i class="fa fa-check"></i><b>5.8.5</b> rename()</a></li>
+<li class="chapter" data-level="5.8.6" data-path="cap5.html"><a href="cap5.html#select"><i class="fa fa-check"></i><b>5.8.6</b> select()</a></li>
+<li class="chapter" data-level="5.8.7" data-path="cap5.html"><a href="cap5.html#pull"><i class="fa fa-check"></i><b>5.8.7</b> pull()</a></li>
+<li class="chapter" data-level="5.8.8" data-path="cap5.html"><a href="cap5.html#mutate"><i class="fa fa-check"></i><b>5.8.8</b> mutate()</a></li>
+<li class="chapter" data-level="5.8.9" data-path="cap5.html"><a href="cap5.html#arrange"><i class="fa fa-check"></i><b>5.8.9</b> arrange()</a></li>
+<li class="chapter" data-level="5.8.10" data-path="cap5.html"><a href="cap5.html#filter"><i class="fa fa-check"></i><b>5.8.10</b> filter()</a></li>
+<li class="chapter" data-level="5.8.11" data-path="cap5.html"><a href="cap5.html#slice"><i class="fa fa-check"></i><b>5.8.11</b> slice()</a></li>
+<li class="chapter" data-level="5.8.12" data-path="cap5.html"><a href="cap5.html#distinct"><i class="fa fa-check"></i><b>5.8.12</b> distinct()</a></li>
+<li class="chapter" data-level="5.8.13" data-path="cap5.html"><a href="cap5.html#count"><i class="fa fa-check"></i><b>5.8.13</b> count()</a></li>
+<li class="chapter" data-level="5.8.14" data-path="cap5.html"><a href="cap5.html#group_by"><i class="fa fa-check"></i><b>5.8.14</b> group_by()</a></li>
+<li class="chapter" data-level="5.8.15" data-path="cap5.html"><a href="cap5.html#summarise"><i class="fa fa-check"></i><b>5.8.15</b> summarise()</a></li>
+<li class="chapter" data-level="5.8.16" data-path="cap5.html"><a href="cap5.html#bind_rows-e-bind_cols"><i class="fa fa-check"></i><b>5.8.16</b> bind_rows() e bind_cols()</a></li>
+<li class="chapter" data-level="5.8.17" data-path="cap5.html"><a href="cap5.html#join"><i class="fa fa-check"></i><b>5.8.17</b> *_join()</a></li>
+<li class="chapter" data-level="5.8.18" data-path="cap5.html"><a href="cap5.html#operações-de-conjuntos-e-comparação-de-dados"><i class="fa fa-check"></i><b>5.8.18</b> Operações de conjuntos e comparação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="cap5.html"><a href="cap5.html#stringr"><i class="fa fa-check"></i><b>5.9</b> stringr</a></li>
+<li class="chapter" data-level="5.10" data-path="cap5.html"><a href="cap5.html#forcats"><i class="fa fa-check"></i><b>5.10</b> forcats</a></li>
+<li class="chapter" data-level="5.11" data-path="cap5.html"><a href="cap5.html#lubridate"><i class="fa fa-check"></i><b>5.11</b> lubridate</a></li>
+<li class="chapter" data-level="5.12" data-path="cap5.html"><a href="cap5.html#purrr"><i class="fa fa-check"></i><b>5.12</b> purrr</a></li>
+<li class="chapter" data-level="5.13" data-path="cap5.html"><a href="cap5.html#para-se-aprofundar-1"><i class="fa fa-check"></i><b>5.13</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="cap5.html"><a href="cap5.html#livros-1"><i class="fa fa-check"></i><b>5.13.1</b> Livros</a></li>
+<li class="chapter" data-level="5.13.2" data-path="cap5.html"><a href="cap5.html#links-1"><i class="fa fa-check"></i><b>5.13.2</b> Links</a></li>
+<li class="chapter" data-level="5.13.3" data-path="cap5.html"><a href="cap5.html#links-2"><i class="fa fa-check"></i><b>5.13.3</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="cap5.html"><a href="cap5.html#exercícios-1"><i class="fa fa-check"></i><b>5.14</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Visualização de dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap6.html"><a href="cap6.html#pré-requisitos-do-capítulo-2"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="6.1" data-path="cap6.html"><a href="cap6.html#contextualização-2"><i class="fa fa-check"></i><b>6.1</b> Contextualização</a></li>
+<li class="chapter" data-level="6.2" data-path="cap6.html"><a href="cap6.html#principais-pacotes"><i class="fa fa-check"></i><b>6.2</b> Principais pacotes</a></li>
+<li class="chapter" data-level="6.3" data-path="cap6.html"><a href="cap6.html#grámatica-dos-gráficos"><i class="fa fa-check"></i><b>6.3</b> Grámatica dos gráficos</a></li>
+<li class="chapter" data-level="6.4" data-path="cap6.html"><a href="cap6.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>6.4</b> Tipos de gráficos</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cap6.html"><a href="cap6.html#histograma-histogram"><i class="fa fa-check"></i><b>6.4.1</b> Histograma (<em>histogram</em>)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cap6.html"><a href="cap6.html#gráfico-de-densidade-density-plot"><i class="fa fa-check"></i><b>6.4.2</b> Gráfico de densidade (<em>density plot</em>)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cap6.html"><a href="cap6.html#diagrama-de-pontos-dot-plot"><i class="fa fa-check"></i><b>6.4.3</b> Diagrama de pontos (<em>dot plot</em>)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cap6.html"><a href="cap6.html#gráfico-de-barras-bar-plot"><i class="fa fa-check"></i><b>6.4.4</b> Gráfico de barras (<em>bar plot</em>)</a></li>
+<li class="chapter" data-level="6.4.5" data-path="cap6.html"><a href="cap6.html#gráfico-de-setores-pie-chart-e-donut-chart"><i class="fa fa-check"></i><b>6.4.5</b> Gráfico de setores (<em>pie chart</em> e <em>donut chart</em>)</a></li>
+<li class="chapter" data-level="6.4.6" data-path="cap6.html"><a href="cap6.html#gráfico-de-caixa-boxplot"><i class="fa fa-check"></i><b>6.4.6</b> Gráfico de caixa (<em>boxplot</em>)</a></li>
+<li class="chapter" data-level="6.4.7" data-path="cap6.html"><a href="cap6.html#gráfico-de-dispersão-scatter-plot"><i class="fa fa-check"></i><b>6.4.7</b> Gráfico de dispersão (<em>scatter plot</em>)</a></li>
+<li class="chapter" data-level="6.4.8" data-path="cap6.html"><a href="cap6.html#visualização-de-múltiplos-gráficos-pareados"><i class="fa fa-check"></i><b>6.4.8</b> Visualização de múltiplos gráficos pareados</a></li>
+<li class="chapter" data-level="6.4.9" data-path="cap6.html"><a href="cap6.html#erros-comuns-dos-usuários-do-ggplot2-e-como-evitá-los"><i class="fa fa-check"></i><b>6.4.9</b> Erros comuns dos usuários do <code>ggplot2</code> e como evitá-los</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cap6.html"><a href="cap6.html#finalização-de-gráficos-para-publicação"><i class="fa fa-check"></i><b>6.5</b> Finalização de gráficos para publicação</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cap6.html"><a href="cap6.html#posição-cores-e-fonte-da-legenda"><i class="fa fa-check"></i><b>6.5.1</b> Posição, cores e fonte da legenda</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cap6.html"><a href="cap6.html#elementos-gráficos-eixo-fonte-gride"><i class="fa fa-check"></i><b>6.5.2</b> Elementos gráficos: eixo, fonte, gride</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cap6.html"><a href="cap6.html#temas-personalizados-ggtheme"><i class="fa fa-check"></i><b>6.5.3</b> Temas personalizados <code>ggtheme()</code></a></li>
+<li class="chapter" data-level="6.5.4" data-path="cap6.html"><a href="cap6.html#criando-seu-próprio-theme_custom"><i class="fa fa-check"></i><b>6.5.4</b> Criando seu próprio <code>theme_custom()</code></a></li>
+<li class="chapter" data-level="6.5.5" data-path="cap6.html"><a href="cap6.html#exportando-dados-com-alta-qualidade-com-a-função-ggsave"><i class="fa fa-check"></i><b>6.5.5</b> Exportando dados com alta qualidade com a função <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cap6.html"><a href="cap6.html#para-se-aprofundar-2"><i class="fa fa-check"></i><b>6.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="cap6.html"><a href="cap6.html#livros-2"><i class="fa fa-check"></i><b>6.6.1</b> Livros</a></li>
+<li class="chapter" data-level="6.6.2" data-path="cap6.html"><a href="cap6.html#links-3"><i class="fa fa-check"></i><b>6.6.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="cap6.html"><a href="cap6.html#exercícios-2"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cap7.html"><a href="cap7.html"><i class="fa fa-check"></i><b>7</b> Modelos lineares</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap7.html"><a href="cap7.html#pré-requisitos-do-capítulo-3"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="7.1" data-path="cap7.html"><a href="cap7.html#teste-t-de-student-para-duas-amostras-independentes"><i class="fa fa-check"></i><b>7.1</b> Teste T (de Student) para duas amostras independentes</a></li>
+<li class="chapter" data-level="7.2" data-path="cap7.html"><a href="cap7.html#teste-t-para-amostras-pareadas"><i class="fa fa-check"></i><b>7.2</b> Teste T para amostras pareadas</a></li>
+<li class="chapter" data-level="7.3" data-path="cap7.html"><a href="cap7.html#correlação-de-pearson"><i class="fa fa-check"></i><b>7.3</b> Correlação de Pearson</a></li>
+<li class="chapter" data-level="7.4" data-path="cap7.html"><a href="cap7.html#regressão-linear-simples"><i class="fa fa-check"></i><b>7.4</b> Regressão Linear Simples</a></li>
+<li class="chapter" data-level="7.5" data-path="cap7.html"><a href="cap7.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>7.5</b> Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="7.6" data-path="cap7.html"><a href="cap7.html#análises-de-variância-anova"><i class="fa fa-check"></i><b>7.6</b> Análises de Variância (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="cap7.html"><a href="cap7.html#anova-de-um-fator"><i class="fa fa-check"></i><b>7.6.1</b> ANOVA de um fator</a></li>
+<li class="chapter" data-level="7.6.2" data-path="cap7.html"><a href="cap7.html#anova-com-dois-fatores-ou-anova-fatorial"><i class="fa fa-check"></i><b>7.6.2</b> ANOVA com dois fatores ou ANOVA fatorial</a></li>
+<li class="chapter" data-level="7.6.3" data-path="cap7.html"><a href="cap7.html#anova-em-blocos-aleatorizados"><i class="fa fa-check"></i><b>7.6.3</b> ANOVA em blocos aleatorizados</a></li>
+<li class="chapter" data-level="7.6.4" data-path="cap7.html"><a href="cap7.html#análise-de-covariância-ancova"><i class="fa fa-check"></i><b>7.6.4</b> Análise de covariância (ANCOVA)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="cap7.html"><a href="cap7.html#generalized-least-squares-gls"><i class="fa fa-check"></i><b>7.7</b> Generalized Least Squares (GLS)</a></li>
+<li class="chapter" data-level="7.8" data-path="cap7.html"><a href="cap7.html#para-se-aprofundar-3"><i class="fa fa-check"></i><b>7.8</b> Para se aprofundar</a></li>
+<li class="chapter" data-level="7.9" data-path="cap7.html"><a href="cap7.html#exercícios-3"><i class="fa fa-check"></i><b>7.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="cap8.html"><a href="cap8.html"><i class="fa fa-check"></i><b>8</b> Modelos Lineares Generalizados</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap8.html"><a href="cap8.html#pré-requisitos-do-capítulo-4"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="8.1" data-path="cap8.html"><a href="cap8.html#introdução-2"><i class="fa fa-check"></i><b>8.1</b> Introdução</a></li>
+<li class="chapter" data-level="8.2" data-path="cap8.html"><a href="cap8.html#como-um-glm-funciona"><i class="fa fa-check"></i><b>8.2</b> Como um GLM funciona?</a></li>
+<li class="chapter" data-level="8.3" data-path="cap8.html"><a href="cap8.html#como-escolher-a-distribuição-correta-para-seus-dados"><i class="fa fa-check"></i><b>8.3</b> Como escolher a distribuição correta para seus dados?</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="cap8.html"><a href="cap8.html#para-dados-contínuos"><i class="fa fa-check"></i><b>8.3.1</b> Para dados contínuos</a></li>
+<li class="chapter" data-level="8.3.2" data-path="cap8.html"><a href="cap8.html#para-dados-de-contagem"><i class="fa fa-check"></i><b>8.3.2</b> Para dados de contagem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-a-distribuição-de-poisson"><i class="fa fa-check"></i><b>8.4</b> Dados de contagem: a distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="cap8.html"><a href="cap8.html#o-que-causa-a-overdispersion"><i class="fa fa-check"></i><b>8.4.1</b> O que causa a <em>overdispersion</em>?</a></li>
+<li class="chapter" data-level="8.4.2" data-path="cap8.html"><a href="cap8.html#o-que-fazer-se-seu-modelo-tiver-overdispersion"><i class="fa fa-check"></i><b>8.4.2</b> O que fazer se seu modelo tiver <em>overdispersion</em>?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-modelos-quasi-likelihood"><i class="fa fa-check"></i><b>8.5</b> Dados de contagem: modelos quasi-likelihood</a></li>
+<li class="chapter" data-level="8.6" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-a-distribuição-binomial"><i class="fa fa-check"></i><b>8.6</b> Dados de contagem: a distribuição binomial</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="cap8.html"><a href="cap8.html#análise-com-dados-de-proporção"><i class="fa fa-check"></i><b>8.6.1</b> Análise com dados de proporção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="cap8.html"><a href="cap8.html#análise-com-dados-de-incidência"><i class="fa fa-check"></i><b>8.7</b> Análise com dados de incidência</a></li>
+<li class="chapter" data-level="8.8" data-path="cap8.html"><a href="cap8.html#dados-de-contagem-com-excesso-de-zeros"><i class="fa fa-check"></i><b>8.8</b> Dados de contagem com excesso de zeros</a></li>
+<li class="chapter" data-level="8.9" data-path="cap8.html"><a href="cap8.html#dados-ordinais-os-modelos-cumulative-link"><i class="fa fa-check"></i><b>8.9</b> Dados ordinais: os modelos cumulative link</a></li>
+<li class="chapter" data-level="8.10" data-path="cap8.html"><a href="cap8.html#dados-contínuos-distribuição-beta"><i class="fa fa-check"></i><b>8.10</b> Dados contínuos: distribuição beta</a></li>
+<li class="chapter" data-level="8.11" data-path="cap8.html"><a href="cap8.html#para-se-aprofundar-4"><i class="fa fa-check"></i><b>8.11</b> Para se aprofundar</a></li>
+<li class="chapter" data-level="8.12" data-path="cap8.html"><a href="cap8.html#exercícios-4"><i class="fa fa-check"></i><b>8.12</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cap9.html"><a href="cap9.html"><i class="fa fa-check"></i><b>9</b> Análises Multidimensionais</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap9.html"><a href="cap9.html#pré-requisitos-do-capítulo-5"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="9.1" data-path="cap9.html"><a href="cap9.html#aspectos-teóricos"><i class="fa fa-check"></i><b>9.1</b> Aspectos teóricos</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cap9.html"><a href="cap9.html#coeficientes-de-associação"><i class="fa fa-check"></i><b>9.1.1</b> Coeficientes de associação</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cap9.html"><a href="cap9.html#métricas-de-distância"><i class="fa fa-check"></i><b>9.1.2</b> Métricas de distância</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cap9.html"><a href="cap9.html#análises-de-agrupamento"><i class="fa fa-check"></i><b>9.2</b> Análises de agrupamento</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cap9.html"><a href="cap9.html#agrupamento-hierárquico"><i class="fa fa-check"></i><b>9.2.1</b> Agrupamento hierárquico</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cap9.html"><a href="cap9.html#agrupamento-não-hierárquico-k-means"><i class="fa fa-check"></i><b>9.2.2</b> Agrupamento não-hierárquico (<em>K-means</em>)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cap9.html"><a href="cap9.html#espécies-indicadoras"><i class="fa fa-check"></i><b>9.2.3</b> Espécies indicadoras</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cap9.html"><a href="cap9.html#análises-de-ordenação"><i class="fa fa-check"></i><b>9.3</b> Análises de Ordenação</a></li>
+<li class="chapter" data-level="9.4" data-path="cap9.html"><a href="cap9.html#ordenação-irrestrira"><i class="fa fa-check"></i><b>9.4</b> Ordenação irrestrira</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="cap9.html"><a href="cap9.html#análise-de-componentes-principais-pca"><i class="fa fa-check"></i><b>9.4.1</b> Análise de Componentes Principais (PCA)</a></li>
+<li class="chapter" data-level="9.4.2" data-path="cap9.html"><a href="cap9.html#análises-de-coordenadas-principais-pcoa"><i class="fa fa-check"></i><b>9.4.2</b> Análises de Coordenadas Principais (PCoA)</a></li>
+<li class="chapter" data-level="9.4.3" data-path="cap9.html"><a href="cap9.html#regressão-de-componentes-principais-pcr"><i class="fa fa-check"></i><b>9.4.3</b> Regressão de Componentes Principais (PCR)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="cap9.html"><a href="cap9.html#ordenação-restrita"><i class="fa fa-check"></i><b>9.5</b> Ordenação restrita</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-rda"><i class="fa fa-check"></i><b>9.5.1</b> Análise de Redundância (RDA)</a></li>
+<li class="chapter" data-level="9.5.2" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-parcial-rdap"><i class="fa fa-check"></i><b>9.5.2</b> Análise de Redundância parcial (RDAp)</a></li>
+<li class="chapter" data-level="9.5.3" data-path="cap9.html"><a href="cap9.html#análise-de-redundância-baseada-em-distância-db-rda"><i class="fa fa-check"></i><b>9.5.3</b> Análise de Redundância baseada em distância (db-RDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="cap9.html"><a href="cap9.html#permanova"><i class="fa fa-check"></i><b>9.6</b> PERMANOVA</a></li>
+<li class="chapter" data-level="9.7" data-path="cap9.html"><a href="cap9.html#mantel-e-mantel-parcial"><i class="fa fa-check"></i><b>9.7</b> Mantel e Mantel parcial</a></li>
+<li class="chapter" data-level="9.8" data-path="cap9.html"><a href="cap9.html#mantel-espacial-com-modelo-nulo-restrito-considerando-autocorrelação-espacial"><i class="fa fa-check"></i><b>9.8</b> Mantel espacial com modelo nulo restrito considerando autocorrelação espacial</a></li>
+<li class="chapter" data-level="9.9" data-path="cap9.html"><a href="cap9.html#procrustes-e-protest"><i class="fa fa-check"></i><b>9.9</b> PROCRUSTES e PROTEST</a></li>
+<li class="chapter" data-level="9.10" data-path="cap9.html"><a href="cap9.html#métodos-multivariados-baseados-em-modelos"><i class="fa fa-check"></i><b>9.10</b> Métodos multivariados baseados em modelos</a></li>
+<li class="chapter" data-level="9.11" data-path="cap9.html"><a href="cap9.html#para-se-aprofundar-5"><i class="fa fa-check"></i><b>9.11</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="cap9.html"><a href="cap9.html#livros-3"><i class="fa fa-check"></i><b>9.11.1</b> Livros</a></li>
+<li class="chapter" data-level="9.11.2" data-path="cap9.html"><a href="cap9.html#links-4"><i class="fa fa-check"></i><b>9.11.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="cap9.html"><a href="cap9.html#exercícios-5"><i class="fa fa-check"></i><b>9.12</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="cap10.html"><a href="cap10.html"><i class="fa fa-check"></i><b>10</b> Rarefação</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap10.html"><a href="cap10.html#pré-requisitos-do-capítulo-6"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="10.1" data-path="cap10.html"><a href="cap10.html#aspectos-teóricos-1"><i class="fa fa-check"></i><b>10.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="10.2" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-no-indivíduo-individual-based"><i class="fa fa-check"></i><b>10.2</b> Curva de rarefação baseada no indivíduo (<em>individual-based</em>)</a></li>
+<li class="chapter" data-level="10.3" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-baseada-em-amostras-sample-based"><i class="fa fa-check"></i><b>10.3</b> Curva de rarefação baseada em amostras (<em>sample-based</em>)</a></li>
+<li class="chapter" data-level="10.4" data-path="cap10.html"><a href="cap10.html#curva-de-rarefação-coverage-based"><i class="fa fa-check"></i><b>10.4</b> Curva de rarefação <em>coverage-based</em></a></li>
+<li class="chapter" data-level="10.5" data-path="cap10.html"><a href="cap10.html#para-se-aprofundar-6"><i class="fa fa-check"></i><b>10.5</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="cap10.html"><a href="cap10.html#livros-4"><i class="fa fa-check"></i><b>10.5.1</b> Livros</a></li>
+<li class="chapter" data-level="10.5.2" data-path="cap10.html"><a href="cap10.html#links-5"><i class="fa fa-check"></i><b>10.5.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="cap10.html"><a href="cap10.html#exercícios-6"><i class="fa fa-check"></i><b>10.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cap11.html"><a href="cap11.html"><i class="fa fa-check"></i><b>11</b> Estimadores de riqueza</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap11.html"><a href="cap11.html#pré-requisitos-do-capítulo-7"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="11.1" data-path="cap11.html"><a href="cap11.html#aspectos-teóricos-2"><i class="fa fa-check"></i><b>11.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="11.2" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-abundância-das-espécies"><i class="fa fa-check"></i><b>11.2</b> Estimadores baseados na abundância das espécies</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="cap11.html"><a href="cap11.html#chao-1"><i class="fa fa-check"></i><b>11.2.1</b> CHAO 1</a></li>
+<li class="chapter" data-level="11.2.2" data-path="cap11.html"><a href="cap11.html#ace---abundance-based-coverage-estimador"><i class="fa fa-check"></i><b>11.2.2</b> ACE - <em>Abundance-based Coverage Estimador</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="cap11.html"><a href="cap11.html#estimadores-baseados-na-incidência-das-espécies"><i class="fa fa-check"></i><b>11.3</b> Estimadores baseados na incidência das espécies</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="cap11.html"><a href="cap11.html#chao-2"><i class="fa fa-check"></i><b>11.3.1</b> CHAO 2</a></li>
+<li class="chapter" data-level="11.3.2" data-path="cap11.html"><a href="cap11.html#jackknife-1"><i class="fa fa-check"></i><b>11.3.2</b> JACKKNIFE 1</a></li>
+<li class="chapter" data-level="11.3.3" data-path="cap11.html"><a href="cap11.html#jackknife-2"><i class="fa fa-check"></i><b>11.3.3</b> JACKKNIFE 2</a></li>
+<li class="chapter" data-level="11.3.4" data-path="cap11.html"><a href="cap11.html#bootstrap"><i class="fa fa-check"></i><b>11.3.4</b> BOOTSTRAP</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="cap11.html"><a href="cap11.html#interpolação-e-extrapolação-baseadas-em-rarefação-usando-amostragens-de-incidência-ou-abundância"><i class="fa fa-check"></i><b>11.4</b> Interpolação e extrapolação baseadas em rarefação usando amostragens de incidência ou abundância</a></li>
+<li class="chapter" data-level="11.5" data-path="cap11.html"><a href="cap11.html#para-se-aprofundar-7"><i class="fa fa-check"></i><b>11.5</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="cap11.html"><a href="cap11.html#livros-5"><i class="fa fa-check"></i><b>11.5.1</b> Livros</a></li>
+<li class="chapter" data-level="11.5.2" data-path="cap11.html"><a href="cap11.html#links-6"><i class="fa fa-check"></i><b>11.5.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="cap11.html"><a href="cap11.html#exercícios-7"><i class="fa fa-check"></i><b>11.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cap12.html"><a href="cap12.html"><i class="fa fa-check"></i><b>12</b> Diversidade Taxonômica</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap12.html"><a href="cap12.html#pré-requisitos-do-capítulo-8"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="12.1" data-path="cap12.html"><a href="cap12.html#aspectos-teóricos-3"><i class="fa fa-check"></i><b>12.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="12.2" data-path="cap12.html"><a href="cap12.html#diversidade-alfa"><i class="fa fa-check"></i><b>12.2</b> Diversidade alfa</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="cap12.html"><a href="cap12.html#riqueza-de-espécies-ou-número-de-espécies"><i class="fa fa-check"></i><b>12.2.1</b> Riqueza de espécies ou número de espécies</a></li>
+<li class="chapter" data-level="12.2.2" data-path="cap12.html"><a href="cap12.html#diversidade-de-espécies"><i class="fa fa-check"></i><b>12.2.2</b> Diversidade de espécies</a></li>
+<li class="chapter" data-level="12.2.3" data-path="cap12.html"><a href="cap12.html#diagramas-de-whittaker-ou-curva-de-dominância"><i class="fa fa-check"></i><b>12.2.3</b> Diagramas de Whittaker ou Curva de Dominância</a></li>
+<li class="chapter" data-level="12.2.4" data-path="cap12.html"><a href="cap12.html#curvas-de-distribuição-de-abundâncias"><i class="fa fa-check"></i><b>12.2.4</b> Curvas de distribuição de abundâncias</a></li>
+<li class="chapter" data-level="12.2.5" data-path="cap12.html"><a href="cap12.html#números-de-hill-ou-série-de-hill"><i class="fa fa-check"></i><b>12.2.5</b> Números de Hill ou Série de Hill</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="cap12.html"><a href="cap12.html#diversidade-beta"><i class="fa fa-check"></i><b>12.3</b> Diversidade beta</a></li>
+<li class="chapter" data-level="12.4" data-path="cap12.html"><a href="cap12.html#para-se-aprofundar-8"><i class="fa fa-check"></i><b>12.4</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="cap12.html"><a href="cap12.html#livros-6"><i class="fa fa-check"></i><b>12.4.1</b> Livros</a></li>
+<li class="chapter" data-level="12.4.2" data-path="cap12.html"><a href="cap12.html#links-7"><i class="fa fa-check"></i><b>12.4.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="cap12.html"><a href="cap12.html#exercícios-8"><i class="fa fa-check"></i><b>12.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cap13.html"><a href="cap13.html"><i class="fa fa-check"></i><b>13</b> Diversidade Filogenética</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap13.html"><a href="cap13.html#pré-requisitos-do-capítulo-9"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="13.1" data-path="cap13.html"><a href="cap13.html#aspectos-teóricos-4"><i class="fa fa-check"></i><b>13.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="13.2" data-path="cap13.html"><a href="cap13.html#manipulação-de-filogenias"><i class="fa fa-check"></i><b>13.2</b> Manipulação de filogenias</a></li>
+<li class="chapter" data-level="13.3" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3</b> Métricas de diversidade alfa filogenética</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="cap13.html"><a href="cap13.html#riqueza-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.1</b> Riqueza da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.2" data-path="cap13.html"><a href="cap13.html#divergência-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.2</b> Divergência da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.3" data-path="cap13.html"><a href="cap13.html#regularidade-da-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.3</b> Regularidade da diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.4" data-path="cap13.html"><a href="cap13.html#correlação-entre-as-métricas-de-diversidade-alfa-filogenética"><i class="fa fa-check"></i><b>13.3.4</b> Correlação entre as métricas de diversidade alfa filogenética</a></li>
+<li class="chapter" data-level="13.3.5" data-path="cap13.html"><a href="cap13.html#associação-entre-a-diversidade-alfa-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.3.5</b> Associação entre a diversidade alfa filogenética e o ambiente</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="cap13.html"><a href="cap13.html#métricas-de-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4</b> Métricas de diversidade beta filogenética</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="cap13.html"><a href="cap13.html#divergência-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.1</b> Divergência da diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.2" data-path="cap13.html"><a href="cap13.html#correlação-entre-as-métricas-de-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.2</b> Correlação entre as métricas de diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.3" data-path="cap13.html"><a href="cap13.html#associação-entre-a-divergência-da-diversidade-beta-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.4.3</b> Associação entre a divergência da diversidade beta filogenética e o ambiente</a></li>
+<li class="chapter" data-level="13.4.4" data-path="cap13.html"><a href="cap13.html#riqueza-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.4</b> Riqueza da diversidade beta filogenética</a></li>
+<li class="chapter" data-level="13.4.5" data-path="cap13.html"><a href="cap13.html#correlação-entre-phylosor-e-unifrac"><i class="fa fa-check"></i><b>13.4.5</b> Correlação entre Phylosor e Unifrac</a></li>
+<li class="chapter" data-level="13.4.6" data-path="cap13.html"><a href="cap13.html#associação-entre-a-riqueza-da-diversidade-beta-filogenética-e-o-ambiente"><i class="fa fa-check"></i><b>13.4.6</b> Associação entre a riqueza da diversidade beta filogenética e o ambiente</a></li>
+<li class="chapter" data-level="13.4.7" data-path="cap13.html"><a href="cap13.html#partição-da-diversidade-beta-filogenética"><i class="fa fa-check"></i><b>13.4.7</b> Partição da diversidade beta filogenética</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="cap13.html"><a href="cap13.html#modelos-nulos"><i class="fa fa-check"></i><b>13.5</b> Modelos Nulos</a></li>
+<li class="chapter" data-level="13.6" data-path="cap13.html"><a href="cap13.html#para-se-aprofundar-9"><i class="fa fa-check"></i><b>13.6</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="cap13.html"><a href="cap13.html#livros-7"><i class="fa fa-check"></i><b>13.6.1</b> Livros</a></li>
+<li class="chapter" data-level="13.6.2" data-path="cap13.html"><a href="cap13.html#links-8"><i class="fa fa-check"></i><b>13.6.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="cap13.html"><a href="cap13.html#exercícios-9"><i class="fa fa-check"></i><b>13.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cap14.html"><a href="cap14.html"><i class="fa fa-check"></i><b>14</b> Diversidade Funcional</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap14.html"><a href="cap14.html#pré-requisitos-do-capítulo-10"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="14.1" data-path="cap14.html"><a href="cap14.html#aspectos-teóricos-5"><i class="fa fa-check"></i><b>14.1</b> Aspectos teóricos</a></li>
+<li class="chapter" data-level="14.2" data-path="cap14.html"><a href="cap14.html#definindo-a-dissimilaridade-entre-espécies"><i class="fa fa-check"></i><b>14.2</b> Definindo a dis(similaridade) entre espécies</a></li>
+<li class="chapter" data-level="14.3" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-alfa"><i class="fa fa-check"></i><b>14.3</b> Métricas de diversidade funcional (alfa)</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="cap14.html"><a href="cap14.html#riqueza-funcional"><i class="fa fa-check"></i><b>14.3.1</b> Riqueza funcional</a></li>
+<li class="chapter" data-level="14.3.2" data-path="cap14.html"><a href="cap14.html#divergência-funcional"><i class="fa fa-check"></i><b>14.3.2</b> Divergência funcional</a></li>
+<li class="chapter" data-level="14.3.3" data-path="cap14.html"><a href="cap14.html#regularidade-funcional"><i class="fa fa-check"></i><b>14.3.3</b> Regularidade funcional</a></li>
+<li class="chapter" data-level="14.3.4" data-path="cap14.html"><a href="cap14.html#correlação-entre-as-métricas-de-diversidade-funcional-alfa"><i class="fa fa-check"></i><b>14.3.4</b> Correlação entre as métricas de diversidade funcional (alfa)</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="cap14.html"><a href="cap14.html#métricas-de-diversidade-funcional-beta"><i class="fa fa-check"></i><b>14.4</b> Métricas de diversidade funcional (beta)</a></li>
+<li class="chapter" data-level="14.5" data-path="cap14.html"><a href="cap14.html#composição-funcional-community-wegihed-means---cwm"><i class="fa fa-check"></i><b>14.5</b> Composição Funcional (<em>Community Wegihed Means</em> - CWM)</a></li>
+<li class="chapter" data-level="14.6" data-path="cap14.html"><a href="cap14.html#variação-intraspecífica"><i class="fa fa-check"></i><b>14.6</b> Variação Intraspecífica</a></li>
+<li class="chapter" data-level="14.7" data-path="cap14.html"><a href="cap14.html#para-se-aprofundar-10"><i class="fa fa-check"></i><b>14.7</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="cap14.html"><a href="cap14.html#livros-8"><i class="fa fa-check"></i><b>14.7.1</b> Livros</a></li>
+<li class="chapter" data-level="14.7.2" data-path="cap14.html"><a href="cap14.html#links-9"><i class="fa fa-check"></i><b>14.7.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="cap14.html"><a href="cap14.html#exercícios-10"><i class="fa fa-check"></i><b>14.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cap15.html"><a href="cap15.html"><i class="fa fa-check"></i><b>15</b> Dados geoespaciais no R</a>
+<ul>
+<li class="chapter" data-level="" data-path="cap15.html"><a href="cap15.html#pré-requisitos-do-capítulo-11"><i class="fa fa-check"></i>Pré-requisitos do capítulo</a></li>
+<li class="chapter" data-level="15.1" data-path="cap15.html"><a href="cap15.html#contextualização-3"><i class="fa fa-check"></i><b>15.1</b> Contextualização</a></li>
+<li class="chapter" data-level="15.2" data-path="cap15.html"><a href="cap15.html#vetor"><i class="fa fa-check"></i><b>15.2</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="cap15.html"><a href="cap15.html#sf-principal-pacote-no-r-para-dados-vetoriais"><i class="fa fa-check"></i><b>15.2.1</b> sf: principal pacote no R para dados vetoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="cap15.html"><a href="cap15.html#raster"><i class="fa fa-check"></i><b>15.3</b> Raster</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="cap15.html"><a href="cap15.html#raster-principal-pacote-no-r-para-dados-raster"><i class="fa fa-check"></i><b>15.3.1</b> raster: principal pacote no R para dados raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-e-unidades"><i class="fa fa-check"></i><b>15.4</b> Sistema de Referência de Coordenadas e Unidades</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-geográficas"><i class="fa fa-check"></i><b>15.4.1</b> Sistema de Coordenadas Geográficas</a></li>
+<li class="chapter" data-level="15.4.2" data-path="cap15.html"><a href="cap15.html#sistema-de-coordenadas-projetadas"><i class="fa fa-check"></i><b>15.4.2</b> Sistema de Coordenadas Projetadas</a></li>
+<li class="chapter" data-level="15.4.3" data-path="cap15.html"><a href="cap15.html#datum"><i class="fa fa-check"></i><b>15.4.3</b> Datum</a></li>
+<li class="chapter" data-level="15.4.4" data-path="cap15.html"><a href="cap15.html#sistema-de-referência-de-coordenadas-crs-no-r"><i class="fa fa-check"></i><b>15.4.4</b> Sistema de Referência de Coordenadas (CRS) no R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="cap15.html"><a href="cap15.html#principais-fontes-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.5</b> Principais fontes de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="cap15.html"><a href="cap15.html#vetor-1"><i class="fa fa-check"></i><b>15.5.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.5.2" data-path="cap15.html"><a href="cap15.html#raster-1"><i class="fa fa-check"></i><b>15.5.2</b> Raster</a></li>
+<li class="chapter" data-level="15.5.3" data-path="cap15.html"><a href="cap15.html#pacotes-do-r"><i class="fa fa-check"></i><b>15.5.3</b> Pacotes do R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="cap15.html"><a href="cap15.html#importar-e-exportar-dados-geoespaciais"><i class="fa fa-check"></i><b>15.6</b> Importar e exportar dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="cap15.html"><a href="cap15.html#principais-formatos-de-arquivos-geoespaciais"><i class="fa fa-check"></i><b>15.6.1</b> Principais formatos de arquivos geoespaciais</a></li>
+<li class="chapter" data-level="15.6.2" data-path="cap15.html"><a href="cap15.html#importar-dados-1"><i class="fa fa-check"></i><b>15.6.2</b> Importar dados</a></li>
+<li class="chapter" data-level="15.6.3" data-path="cap15.html"><a href="cap15.html#exportar-dados-1"><i class="fa fa-check"></i><b>15.6.3</b> Exportar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="cap15.html"><a href="cap15.html#descrição-de-objetos-geoespaciais"><i class="fa fa-check"></i><b>15.7</b> Descrição de objetos geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.7.1" data-path="cap15.html"><a href="cap15.html#vetor-2"><i class="fa fa-check"></i><b>15.7.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.7.2" data-path="cap15.html"><a href="cap15.html#raster-2"><i class="fa fa-check"></i><b>15.7.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="cap15.html"><a href="cap15.html#reprojeção-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.8</b> Reprojeção de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="cap15.html"><a href="cap15.html#vetor-3"><i class="fa fa-check"></i><b>15.8.1</b> Vetor</a></li>
+<li class="chapter" data-level="15.8.2" data-path="cap15.html"><a href="cap15.html#raster-3"><i class="fa fa-check"></i><b>15.8.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="cap15.html"><a href="cap15.html#principais-operações-com-dados-geoespaciais"><i class="fa fa-check"></i><b>15.9</b> Principais operações com dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="cap15.html"><a href="cap15.html#operações-de-atributos"><i class="fa fa-check"></i><b>15.9.1</b> Operações de atributos</a></li>
+<li class="chapter" data-level="15.9.2" data-path="cap15.html"><a href="cap15.html#operações-espaciais"><i class="fa fa-check"></i><b>15.9.2</b> Operações espaciais</a></li>
+<li class="chapter" data-level="15.9.3" data-path="cap15.html"><a href="cap15.html#operações-geométricas"><i class="fa fa-check"></i><b>15.9.3</b> Operações geométricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="cap15.html"><a href="cap15.html#visualização-de-dados-geoespaciais"><i class="fa fa-check"></i><b>15.10</b> Visualização de dados geoespaciais</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="cap15.html"><a href="cap15.html#principais-elementos-de-um-mapa"><i class="fa fa-check"></i><b>15.10.1</b> Principais elementos de um mapa</a></li>
+<li class="chapter" data-level="15.10.2" data-path="cap15.html"><a href="cap15.html#principais-pacotes-para-a-composição-de-mapas"><i class="fa fa-check"></i><b>15.10.2</b> Principais pacotes para a composição de mapas</a></li>
+<li class="chapter" data-level="15.10.3" data-path="cap15.html"><a href="cap15.html#mapas-estáticos"><i class="fa fa-check"></i><b>15.10.3</b> Mapas estáticos</a></li>
+<li class="chapter" data-level="15.10.4" data-path="cap15.html"><a href="cap15.html#mapas-animados"><i class="fa fa-check"></i><b>15.10.4</b> Mapas animados</a></li>
+<li class="chapter" data-level="15.10.5" data-path="cap15.html"><a href="cap15.html#mapas-interativos"><i class="fa fa-check"></i><b>15.10.5</b> Mapas interativos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.11" data-path="cap15.html"><a href="cap15.html#exemplos-de-aplicações-de-análises-geoespaciais-para-dados-ecológicos"><i class="fa fa-check"></i><b>15.11</b> Exemplos de aplicações de análises geoespaciais para dados ecológicos</a>
+<ul>
+<li class="chapter" data-level="15.11.1" data-path="cap15.html"><a href="cap15.html#resumir-informações-de-biodiversidade-para-unidades-espaciais"><i class="fa fa-check"></i><b>15.11.1</b> Resumir informações de biodiversidade para unidades espaciais</a></li>
+<li class="chapter" data-level="15.11.2" data-path="cap15.html"><a href="cap15.html#extrair-dados-raster-para-pontos"><i class="fa fa-check"></i><b>15.11.2</b> Extrair dados raster para pontos</a></li>
+<li class="chapter" data-level="15.11.3" data-path="cap15.html"><a href="cap15.html#resumir-dados-de-rasters-para-buffers"><i class="fa fa-check"></i><b>15.11.3</b> Resumir dados de rasters para buffers</a></li>
+<li class="chapter" data-level="15.11.4" data-path="cap15.html"><a href="cap15.html#predições-espaciais-de-objetos-raster"><i class="fa fa-check"></i><b>15.11.4</b> Predições espaciais de objetos raster</a></li>
+</ul></li>
+<li class="chapter" data-level="15.12" data-path="cap15.html"><a href="cap15.html#para-se-aprofundar-11"><i class="fa fa-check"></i><b>15.12</b> Para se aprofundar</a>
+<ul>
+<li class="chapter" data-level="15.12.1" data-path="cap15.html"><a href="cap15.html#livros-9"><i class="fa fa-check"></i><b>15.12.1</b> Livros</a></li>
+<li class="chapter" data-level="15.12.2" data-path="cap15.html"><a href="cap15.html#links-10"><i class="fa fa-check"></i><b>15.12.2</b> Links</a></li>
+</ul></li>
+<li class="chapter" data-level="15.13" data-path="cap15.html"><a href="cap15.html#exercícios-11"><i class="fa fa-check"></i><b>15.13</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a>
+<ul>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#descrição"><i class="fa fa-check"></i>Descrição</a>
+<ul>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-4"><i class="fa fa-check"></i>Capítulo 4</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-5"><i class="fa fa-check"></i>Capítulo 5</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-6"><i class="fa fa-check"></i>Capítulo 6</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-7"><i class="fa fa-check"></i>Capítulo 7</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-8"><i class="fa fa-check"></i>Capítulo 8</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-9"><i class="fa fa-check"></i>Capítulo 9</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-10"><i class="fa fa-check"></i>Capítulo 10</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-11"><i class="fa fa-check"></i>Capítulo 11</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-12"><i class="fa fa-check"></i>Capítulo 12</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-13"><i class="fa fa-check"></i>Capítulo 13</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-14"><i class="fa fa-check"></i>Capítulo 14</a></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#capítulo-15"><i class="fa fa-check"></i>Capítulo 15</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análises Ecológicas no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cap1" class="section level1" number="1">
+<h1><span class="header-section-number">Capítulo 1</span> Introdução</h1>
+<div id="histórico-deste-livro" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Histórico deste livro</h2>
+<p>Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso <em>Estatística aplicada à ecologia usando o R</em> no PPG em Biologia Animal da UNESP de São José Rio Preto/SP, em abril de 2011. Os três pesquisadores eram então alunos do PPG em Biologia Animal quando elaboraram o material disponibilizado na apostila <a href="https://cran.r-project.org/doc/contrib/Provete-Estatistica_aplicada.pdf">Estatística aplicada à ecologia usando o R</a>. A proposta de transformar a apostila em livro sempre foi um tópico recorrente desde 2011, e concretizado agora, um pouco mais de 10 anos depois.</p>
+<p>Neste período, Diogo, Fernando e Thiago foram contratados pela Universidade Federal de Mato Grosso do Sul, Universidade Federal de São Carlos campus Sorocaba, e Universidade Federal Rural de Pernambuco, respectivamente. Nestes anos eles ofertaram diferentes versões do curso <em>Estatística aplicada à ecologia usando o R</em> para alunos de graduação e pós-graduação em diferentes instituições do Brasil. A possibilidade da oferta destes novos cursos fortaleceu a ideia de trasformar a apostila em um livro com base nas experiências dos pesquisadores em sala de aula.</p>
+<p>Considerando que novas abordagens ecológicas vêm sendo descritas e criadas a uma taxa elevada nos últimos anos, era de se esperar que as informações disponíveis na apostila estivessem defasadas após uma década. Por este motivo, Diogo, Fernando e Thiago convidaram outros dois pesquisadores, Gustavo B. Paterno da Georg-August-University of Göttingen e Maurício H. Vancine do PPG em Ecologia, Evolução e Biodiversidade da UNESP de Rio Claro/SP, que são referências no uso de estatística em ecologia usando o R. Com o time completo, passaram mais de um ano realizando reuniões, compartilhando scripts e pagando cerveja para os coautores por capítulos atrasados até chegarem nesta primeira versão do livro.</p>
+</div>
+<div id="objetivo-deste-livro" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Objetivo deste livro</h2>
+<p>Nossa proposta com este livro é traçar o melhor caminho, pelo menos do nosso ponto de vista, entre questões ecológicas e os métodos estatísticos mais robustos para testá-las. Guiar seus passos nesse caminho (nem sempre linear) necessita que você utilize um requisito básico: o de se esforçar para caminhar. O nosso esforço, em contrapartida, será o de indicar as melhores direções para que você adquira certa independência em análises ecológicas. Um dos nossos objetivos é mostrar que o conhecimento de teorias ecológicas e a formulação de questões apropriadas são o primeiro passo na caminhada rumo à compreensão da lógica estatística. Não deixe que a estatística se torne a “pedra no seu caminho.” Em nossa opinião, programas com ambiente de programação favorecem o entendimento da lógica estatística, uma vez que cada passo (lembre-se de que você está caminhando em uma estrada desconhecida e cheia de pedras) precisa ser coordenado, ou seja, as linhas de código (detalhes abaixo) precisam ser compreendidas para que você teste suas hipóteses. No entanto, tome cuidado ao copiar deliberadamente scripts sem entender cada um dos passos da análise ou gráfico realizado.</p>
+<p>A primeira parte deste livro pretende utilizar uma estratégia que facilita a escolha do teste estatístico apropriado, por meio da seleção de questões/hipóteses claras e da ligação dessas hipóteses com a teoria e o método (veja Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> no Capítulo <a href="cap2.html#cap2">2</a>). Enfatizamos que é fundamental ter em mente aonde se quer chegar, para poder escolher o que deve ser feito. Posteriormente à escolha de suas questões, é necessário transferir o contexto ecológico para um contexto meramente estatístico (hipótese nula/alternativa). A partir da definição de uma hipótese nula, partiremos para a aplicação de cada teste estatístico (de modelos lineares generalizados à análises multivariadas) utilizando a linguagem R.</p>
+<p>Antes de detalhar cada análise estatística, apresentaremos o funcionamento básico da utilização da linguagem R e os tipos de distribuição estatística que são essenciais para a compreensão dos testes estatísticos. Para isso, organizamos um esquema que chamamos de “estrutura lógica” que facilita a compreensão dos passos necessários para testar suas hipóteses (veja Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> no Capítulo <a href="cap2.html#cap2">2</a>) <span class="citation">(<a href="#ref-albuquerque_going_2019" role="doc-biblioref">Gonçalves-Souza, Provete, et al. 2019</a>)</span>.</p>
+</div>
+<div id="o-que-você-não-encontrará-neste-livro" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> O que você não encontrará neste livro</h2>
+<p>Aprofundamento teórico, detalhes matemáticos e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Recomendamos a leitura de livro <em>Analysing Ecological Data</em> <span class="citation">(<a href="#ref-zuur_analysing_2007" role="doc-biblioref">Zuur et al. 2007</a>)</span> para conceitos detalhados em análises univariadas e o livro <em>Numerical Ecology</em> <span class="citation">(<a href="#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span> é uma leitura que permite o aprofundamento de cada uma das análises multivariadas propostas aqui. Além disso, são de fundamental importância para o amadurecimento em análises ecológicas as seguintes leituras: <span class="citation"><a href="#ref-manly_randomization_1991" role="doc-biblioref">Manly</a> (<a href="#ref-manly_randomization_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation"><a href="#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates</a> (<a href="#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">2000</a>)</span>, <span class="citation"><a href="#ref-scheiner_design_2001" role="doc-biblioref">Scheiner and Gurevitch</a> (<a href="#ref-scheiner_design_2001" role="doc-biblioref">2001</a>)</span>, <span class="citation"><a href="#ref-burnham_pvalues_2014" role="doc-biblioref">Burnham and Anderson</a> (<a href="#ref-burnham_pvalues_2014" role="doc-biblioref">2014</a>)</span>, <span class="citation"><a href="#ref-quinn_experimental_2002" role="doc-biblioref">Quinn and Keough</a> (<a href="#ref-quinn_experimental_2002" role="doc-biblioref">2002</a>)</span>, <span class="citation"><a href="#ref-venables_modern_2002" role="doc-biblioref">Venables and Ripley</a> (<a href="#ref-venables_modern_2002" role="doc-biblioref">2002</a>)</span>, <span class="citation"><a href="#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill</a> (<a href="#ref-magurran_biological_2011" role="doc-biblioref">2011</a>)</span>, <span class="citation"><a href="#ref-gotelli_primer_2012" role="doc-biblioref">Gotelli and Ellison</a> (<a href="#ref-gotelli_primer_2012" role="doc-biblioref">2012</a>)</span>, <span class="citation"><a href="#ref-zar_biostatistical_2010" role="doc-biblioref">Zar</a> (<a href="#ref-zar_biostatistical_2010" role="doc-biblioref">2010</a>)</span>, <span class="citation"><a href="#ref-zuur_protocol_2009" role="doc-biblioref">Zuur et al.</a> (<a href="#ref-zuur_protocol_2009" role="doc-biblioref">2010</a>)</span>, <span class="citation"><a href="#ref-crawley_r_2012" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2012" role="doc-biblioref">2012</a>)</span>, <span class="citation"><a href="#ref-james_introduction_2013" role="doc-biblioref">James et al.</a> (<a href="#ref-james_introduction_2013" role="doc-biblioref">2013</a>)</span>, <span class="citation"><a href="#ref-fox_ecological_2015" role="doc-biblioref">Fox et al.</a> (<a href="#ref-fox_ecological_2015" role="doc-biblioref">2015</a>)</span>, <span class="citation"><a href="#ref-thioulouse_multivariate_2018" role="doc-biblioref">Thioulouse et al.</a> (<a href="#ref-thioulouse_multivariate_2018" role="doc-biblioref">2018</a>)</span> e <span class="citation"><a href="#ref-touchon_applied_2021" role="doc-biblioref">Touchon</a> (<a href="#ref-touchon_applied_2021" role="doc-biblioref">2021</a>)</span>.</p>
+</div>
+<div id="por-que-usar-o-r" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Por que usar o R?</h2>
+<p>Os criadores do R o chamam de uma linguagem e ambiente de programação estatística e gráfica <span class="citation">(<a href="#ref-venables_modern_2002" role="doc-biblioref">Venables and Ripley 2002</a>)</span>. A linguagem R também é chamada de programação “orientada ao objeto” (<em>object oriented programming</em>), o que significa que utilizar o R envolve basicamente a criação e manipulação de objetos em um terminal, em que o usuário tem de dizer exatamente o que deseja que o programa execute, ao invés de simplesmente clicar em botões. E vem daí uma das grandes vantagens em se usar o R: o usuário tem total controle sobre o que está acontecendo e também tem de compreender o que deseja antes de executar uma análise. Além disso, o R permite integração com outros programas escritos em Fortran, C++, Python e Java, permitindo que os usuários possam aplicar novas metodologias sem ter que aprender novas linguagens.</p>
+<p>Na página pessoal do Prof. Nicolas J. Gotelli (<a href="http://www.uvm.edu/~ngotelli/GradAdvice.html">link</a>) existem vários conselhos para um estudante iniciante de ecologia. Dentre esses conselhos, o Prof. Gotelli menciona que o domínio de uma linguagem de programação é uma das habilidades mais importantes, porque dá liberdade ao ecólogo para executar tarefas que vão além daquelas disponíveis em pacotes estatísticos comerciais. Além disso, a maioria das novas análises propostas nos mais reconhecidos periódicos em ecologia normalmente são implementadas na linguagem R, e os autores geralmente incluem o código fonte no material suplementar dos artigos, tornando a análise acessível e reprodutível. A partir do momento que essas análises ficam disponíveis (seja por código fornecido pelo autor ou por implementação em pacotes pré-existentes), é mais simples entendermos a lógica de análises complexas, especialmente as multivariadas, utilizando nossos próprios dados, realizando-as passo a passo. Sem a utilização do R, normalmente temos que contatar os autores que nem sempre são tão acessíveis.</p>
+<p>Especificamente em Ecologia, o uso da linguagem R para análise de dados cresceu enormemente nas duas últimas décadas. Em um artigo de revisão, Lai et al. <span class="citation">(<a href="#ref-lai_evaluating_2019" role="doc-biblioref">2019</a>)</span> analisaram mais de 60.000 artigos revisados por pares publicados em 30 periódicos de Ecologia durante um período de 10 anos. O número de estudos usando R aumentou linearmente de 11,4% em 2008 para 58,0% em 2017, e os 10 principais pacotes utilizados e ordenados por maior frequência de uso foram: <code>lme4</code>, <code>vegan</code>, <code>nlme</code>, <code>ape</code>, <code>MuMIn</code>, <code>MASS</code>, <code>mgcv</code>, <code>ade4</code>, <code>multcomp</code> e <code>car</code>. Os autores afirmam que a crescente popularidade do R promoveu a ciência aberta na pesquisa ecológica, melhorando a reprodutibilidade das análises e o fluxo de trabalho, principalmente quando scripts e códigos foram incluídos e compartilhados nos artigos. Eles finalizam dizendo que a partir dos resultados encontrados, a linguagem R é um componente significativo das análises no campo da Ecologia.</p>
+<p>Uma última vantagem é que por ser um software livre, a citação do R em artigos é permitida e até aconselhável. Para saber como citar o R, digite <code>citation()</code> na linha de comando. Para citar um pacote específico, digite <code>citation()</code> com o nome do pacote entre aspas dentro dos parênteses. Mais detalhes sobre citações podem ser vistos no Capítulo <a href="cap4.html#cap4">4</a>. Neste ponto, esperamos ter convencido você leitor(a), de que aprender a utilizar o R tem inúmeras vantagens. Entretanto, provavelmente vai ser difícil no começo, mas continue e perceberá que o investimento vai valer à pena no futuro.</p>
+</div>
+<div id="indo-além-da-linguagem-de-progração-para-a-ecologia" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Indo além da linguagem de progração para a Ecologia</h2>
+<p>Um ponto em comum em que todos os autores deste livro concordaram em conversas durante sua estruturação, foi a dificuldade que todos tivemos quando estávamos aprendendo a linguagem:</p>
+<ol style="list-style-type: decimal">
+<li>Como transcrever os objetivos (manipulação de dados, análises e gráficos) em linguagem R</li>
+<li>Como interpretar os resultados das análises estatísticas do R para os objetivos ecológicos</li>
+</ol>
+<p>Num primeiro momento, quando estamos aprendendo a linguagem R é muito desafiador pensar em como estruturar nossos códigos para que eles façam o que precisamos: importar dados, selecionar linhas ou colunas, qual pacote ou função usar para uma certa análise ou como fazer um gráfico que nas nossas anotações são simples, mas no código parece impossível. Bem, não há um caminho fácil nesse sentido e ele depende muito da experiência e familiaridade adquirida com o tempo de uso da linguagem, assim como outra língua qualquer, como inglês ou espanhol. Entretanto, uma dica pode ajudar: estruture seus códigos antes de partir para o R. Por exemplo, escreva um papel os pontos que deseja executar em seus códigos, como se estivesse explicando para alguém os passos que precisa para realizar as tarefas. Depois disso, transcreva para o script (arquivo onde os códigos são escritos, mas não se preocupe, iremos explicar esse conceito no Capítulo <a href="cap4.html#cap4">4</a>) esses pontos em formato de texto. Por fim, traduza isso em linguagem R. Pode parecer massante e cansativo no começo, mas isso o ajudará a ter maior domínio da linguagem, sendo que esse passo se tornará desnecessário quando se adquire bastante experiência.</p>
+<p>Uma vez que esta barreira inicial foi transposta e você conseguiu obter os primeiros resultados de suas análises com valores de estatísticas, parâmetros estimados, valores de p e R², gráficos, e etc., como interpretamos à luz da teoria ecológica? Esse ponto é talvez um dos mais complicados. Com o tempo, ter um valor final de uma estatística ou gráfico à partir da linaguagem R é relativamente simples, mas o que esse valor ou gráfico significam para nossa hipótese ecológica é o ponto mais complexo. Essa dificuldade por ser por inexperiência teórica (ainda não lemos muito sobre um aspecto ecológico) ou inexperiência científica (ainda temos dificuldade para expandir nossos argumentos de forma indutiva). Destacamos esse ponto porque ele é fundamental no processo científico e talvez seja o principal aspecto que diferencia os cientistas de outros profissionais: sua capacidade de entendimento dos padrões à partir dos processos e mecanismos atrelados. Nesse ponto, quase sempre recorremos aos nossos orientadores ou colegas mais experientes para nos ajudar, mas é natural e faz parte do processo de aprendizado de uso da linguagem R junto à Ecologia como Ciência. Entretanto, contrapomos a importância dessa extrapolação para não nos tornarmos apenas especialistas em linguagem R sem a fundamental capacidade de entendimento do sistema ecológico que estamos estudando.</p>
+</div>
+<div id="como-usar-este-livro" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Como usar este livro</h2>
+<p>Os conteúdos apresentados em cada capítulo são independentes entre si. Portanto, você pode utilizar este livro de duas formas. A primeira é seguir uma ordem sequencial (capítulos 1, 2, 3, …) que recomendamos, principalmente, para as pessoas que não possuem familiaridade com a linguagem R. A segunda forma, é selecionar o capítulo que contém a análise de seu interesse e mudar de um capítulo para outro sem seguir a sequência apresentada no livro.</p>
+<p>Com exceção dos capítulos 2, 3, 4, 5, 6 e 15, os outros capítulos foram elaborados seguindo a mesma estrutura, contendo uma descrição da análise estatística (aspectos teóricos) e exemplos relacionados com questões ecólogicas que podem ser respondidas por esta análise. Todos os exemplos são compostos por: i) uma descrição dos dados utilizados, ii) pergunta e predição do trabalho, iii) descrição das variáveis resposta(s) e preditora(s), e iv) descrição e explicação das linhas de código do R necessárias para realização das análises. A maioria dos exemplos utilizados são baseados em dados reais que já foram publicados em artigos científicos ou são dados coletados por um dos autores deste livro. Nós recomendamos que primeiro você utilize estes exemplos para se familiarizar com as análises e a formatação das linhas e colunas das planilhas. Em seguida, utilize seus próprios dados para realizar as análises. Esta é a melhor maneira de se familiarizar com as linhas de código do R.</p>
+<p>Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muito outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os leitores(as) adquiram independência e segurança para que possam caminhar sozinhos(as) na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.</p>
+</div>
+<div id="como-ensinar-e-aprender-com-esse-livro" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Como ensinar e aprender com esse livro</h2>
+<p>Uma forma bastante interessante de aprender ou aprofundar seu conhecimento sobre um tema é a partir de grupos de estudo. Aproveitando as dinâmicas de estudos que os próprios autores fizeram em seus laboratórios (seja como discente ou professor), sugerimos abaixo alguns formatos que podem ser usados por um grupo de discentes (sem a presença de um orientador) ou pelo laboratório. É importante ressaltar que esses formatos não são os únicos que podem ser testados. O leitor pode juntar ideias de diferentes propostas ou mesmo usar parte das propostas e inserir suas próprias ideias, tendo como base as características do grupo que irá se reunir.</p>
+<div id="em-laboratórios-ou-grupos-de-pesquisa" class="section level3" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> Em laboratórios ou grupos de pesquisa</h3>
+<p><strong>Líder aleatório</strong></p>
+<p>Cada capítulo é sorteado para um integrante do grupo que ficará responsável por estudar, apresentar e enviar outros materiais que julgar necessário. Neste formato, existem duas possibilidades interessantes. A primeira é de um grupo de estudantes que é iniciante em determinado tema (e.g., análise multivariada) e, desse modo, todos integrantes serão estimulados a participarem do processo de ensino e de aprendizagem. O segundo ponto interessante é para grupos heterogêneos onde pessoas diferentes possuem domínio de diferentes ferramentas. Neste caso, é importante que mesmo que determinado integrante seja especialista na análise X, ele poderá aleatoriamente ter que aprender e ensinar a análise Y. Como resultado, espera-se que os grupos de estudo neste formato tenham ampla discussão, uma vez que integrantes com baixo, médio ou alto conhecimento em determinada análise serão tanto professores como aprendizes.</p>
+<p><strong>Líder especialista I (discentes como líderes)</strong></p>
+<p>Cada capítulo é liderado pelo “maior especialista” naquele determinado assunto, que ficará responsável por organizar toda dinâmica do grupo. O ideal é que especialistas distintos liderem a discussão de diferentes capítulos, para que todos os membros do grupo sejam líderes em no mínimo um capítulo.</p>
+<p><strong>Líder especialista II (orientador ou pós-doc)</strong></p>
+<p>O orientador (ou pós-doc ou ambos) selecionam os capítulos sobre o assunto de interesse (ou todos os capítulos do livro) e se reúne regularmente para discussão com discentes. Além da leitura dos capítulos, o líder pode enviar atividades extras ou desafios para estimular que os discentes leiam o conteúdo e também executem comandos no R. Por exemplo, em cada capítulo, o desafio pode ser criar hipóteses sobre um tema de estudo, gerar dados fictícios (ou usar dados reais disponíveis) e analisar os dados com determinado teste estatístico no R.
+Líder especialista I ou II integrando com teoria (específico para capítulos 8 a 15):
+Esta proposta expande o Líder especialista I uma vez que não estará focada somente na análise estatística apresentada no livro. Além de inserir este componente analítico, o líder irá apresentar o arcabouço teórico ecológico que é geralmente usado em estudos que utilizaram determinada análise. Por exemplo, o capítulo que apresenta regressão linear seria combinado com a teoria de biogeografia de ilhas para entender a relação espécies-área. Desse modo, não seria apresentado somente as especificidades da regressão linear, mas também a teoria de biogeografia de ilhas.</p>
+</div>
+<div id="em-disciplinas-da-graduação-ou-pós-graduação" class="section level3" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Em disciplinas da graduação ou pós-graduação</h3>
+<p><strong>Atividade em grupo em sala invertida</strong></p>
+<p>O professor pode sortear diferentes grupos que ficarão responsáveis por cada capítulo do livro (a depender do conteúdo da disciplina). Cada componente do grupo pode ficar responsável por diferentes partes do capítulo. Por exemplo, se a disciplina for de gráficos, um discente pode discutir a estrutura das funções do pacote ggplot2, outro discente pode apresentar a conexão entre tipos de variáveis e gráficos, enquanto um terceiro discente se responsabiliza por executar os comandos dos gráficos no R. As atividades devem ser realizadas e apresentadas antes da aula teórica/prática sobre aquela temática, e o docente ficará responsável por mediar as apresentações e discussões.</p>
+<p><strong>Sala convencional</strong></p>
+<p>O professor pode usar o livro como material didático seguindo o conteúdo de acordo com a disciplina em questão, seja ela da linguagem R, de análises univariadas, multivariadas ou espaciais. Além disso, o professor pode fornecer dados para os discentes (ou estimular que discentes usem os próprios dados) e replicar gráficos e análises usando os scripts fornecidos no livro.</p>
+
+</div>
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-burnham_pvalues_2014" class="csl-entry">
+Burnham, K.P., Anderson, D.R. 2014: <span class="nocase">P values are only an index to evidence: 20th- vs. 21st-century statistical science</span>.: Ecology 95, 627–630.
+</div>
+<div id="ref-crawley_r_2012" class="csl-entry">
+Crawley, M.J. 2012: <span>The R Book</span>,: Chichester, UK, John Wiley &amp; Sons, Ltd.
+</div>
+<div id="ref-fox_ecological_2015" class="csl-entry">
+Fox, G.A., Negrete-Yankelevich, S., Sosa, V.J. eds. 2015: Ecological statistics: Contemporary theory and application,: Oxford, Oxford University Press.
+</div>
+<div id="ref-albuquerque_going_2019" class="csl-entry">
+Gonçalves-Souza, T., Provete, D.B., Garey, M.V., da Silva, F.R., Albuquerque, U.P. 2019: <span class="nocase">Going back to basics: How to master the art of making scientifically sound questions</span>. In: Albuquerque, U. P., de Lucena, R. F. P., da Cunha, L. V. F., Alves, R. R. N. (eds.), Methods and techniques in ethnobiology and ethnoecology, 71–86. New York, NY, Springer New York.
+</div>
+<div id="ref-gotelli_primer_2012" class="csl-entry">
+Gotelli, N.J., Ellison, A.M. 2012: <span class="nocase">A primer of ecological statistics</span> Second edi.,: Sunderland, Massachusetts, Sinauer Associates, Inc., Publishers.
+</div>
+<div id="ref-james_introduction_2013" class="csl-entry">
+James, G., Witten, D., Hastie, T., Tibshirani, R. 2013: <span class="nocase">An introduction to statistical learning</span>,: Springer New York.
+</div>
+<div id="ref-lai_evaluating_2019" class="csl-entry">
+Lai, J., Lortie, C.J., Muenchen, R.A., Yang, J., Ma, K. 2019: Evaluating the popularity of <span>R</span> in ecology.: Ecosphere 10.
+</div>
+<div id="ref-legendre_numerical_2012" class="csl-entry">
+Legendre, P., Legendre, L. 2012: <span>Numerical Ecology</span> 3rd ed.,: Elsevier.
+</div>
+<div id="ref-magurran_biological_2011" class="csl-entry">
+Magurran, A.E., McGill, B.J. 2011: <span class="nocase">Biological diversity: Frontiers in measurement and assessment</span>,: Oxford, Oxford University Press.
+</div>
+<div id="ref-manly_randomization_1991" class="csl-entry">
+Manly, B.F.J. 1991: <span class="nocase">Randomization and <span>Monte</span> <span>Carlo</span> methods in biology</span>,: Chapman &amp; Hall.
+</div>
+<div id="ref-pinheiro_mixed-effects_2000" class="csl-entry">
+Pinheiro, J.C., Bates, D.M. 2000: <span class="nocase">Mixed-Effects Models in S and S-PLUS</span>,: Springer-Verlag.
+</div>
+<div id="ref-quinn_experimental_2002" class="csl-entry">
+Quinn, G.P., Keough, M.J. 2002: <span class="nocase">Experimental design and data analysis for biologists</span>.
+</div>
+<div id="ref-scheiner_design_2001" class="csl-entry">
+Scheiner, S.M., Gurevitch, J. 2001: <span class="nocase">Design and analysis of ecological experiments</span>,: Oxford University Press.
+</div>
+<div id="ref-thioulouse_multivariate_2018" class="csl-entry">
+Thioulouse, J., Dray, S., Dufour, A.-B., Siberchicot, A., Jombart, T., Pavoine, S. 2018: Multivariate <span>Analysis</span> of <span>Ecological</span> <span>Data</span> with ade4,: New York, NY, Springer New York.
+</div>
+<div id="ref-touchon_applied_2021" class="csl-entry">
+Touchon, J.C. 2021: Applied statistics with <span>R</span>: A practical guide for the life sciences,: New York, AC Science: ACSCI.
+</div>
+<div id="ref-venables_modern_2002" class="csl-entry">
+Venables, W.N., Ripley, B.D. 2002: <span class="nocase">Modern applied statistics with S</span>,: Springer-Verlag.
+</div>
+<div id="ref-zar_biostatistical_2010" class="csl-entry">
+Zar, J.H. 2010: <span class="nocase">Biostatistical analysis</span>,: Pearson.
+</div>
+<div id="ref-zuur_protocol_2009" class="csl-entry">
+Zuur, A.F., Ieno, E.N., Elphick, C.S. 2010: <span class="nocase">A protocol for data exploration to avoid common statistical problems</span>.: Methods in Ecology and Evolution 1, 3–14.
+</div>
+<div id="ref-zuur_analysing_2007" class="csl-entry">
+Zuur, A.F., Ieno, E.N., Smith, G.M. 2007: Analysing <span>Ecological</span> <span>Data</span> Gail, M., Krickeberg, K., Sarnet, J., Tsiatis, A., Wong, W. (eds.),: New York, NY, Springer New York.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="revisores-e-colaboradores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cap2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/paternogbc/livro_aer/edit/master/01_introducao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/paternogbc/livro_aer/blob/master/01_introducao.Rmd",
+"text": null
+},
+"download": ["livro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

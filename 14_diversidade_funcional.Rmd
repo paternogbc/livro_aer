@@ -700,5 +700,43 @@ Um passo importante nos estudos de Diversidade Funcional é encontrar atributos 
 - [TRY - Plant Trait Database](https://www.try-db.org/TryWeb/Home.php)
 - [World Spider Trait](https://spidertraits.sci.muni.cz/)
  
+## Exercícios
 
+1. Utilize os dados “aviurba” do pacote ade4 para testar o efeito de variáveis ambientais na dispersão (FDis) e regularidade funcional (FEve). Utilize as análises PERMANOVA e dbRDA e responda às seguintes perguntas.
+
+    a. Quais são as variáveis ambientais (mite.env) mais importantes para a composição de ácaros em cada uma das análises? 
+
+```{r}
+## Dados necessários
+library(ade4)
+data(aviurba)
+com <- aviurba$fau # matriz de composição de espécies 
+trait <- aviurba$traits # atributos funcionais das espécies
+amb <- aviurba$mil # matriz de variáveis ambientais
+```
+
+2. Utilize os dados “mafragh” do pacote ade4 para teste o efeito da das variáveis “conductivity”, “silt” e “K2O” na diversidade funcional (método de Petchey e Gaston). Utilize modelos lineares (regressão múltipla) para testar a relação entre essas variáveis e discuta (a) qual variável mais importante (se houver) e (b) se as conclusões são coerentes tendo como base os pressupostos dos modelos lineares. Além disso, caso exista alguma relação significativa, faça um gráfico (scatterplot) da relação da variável mais importante e a diversidade funcional.
+
+```{r}
+## Dados necessários
+library(ade4)
+data(mafragh)
+trait_ma <- mafragh$traits$tabQuantitative  # atributos funcionais das espécies
+amb_ma <- mafragh$env # matriz de variáveis ambientais
+com_ma <- mafragh$flo # matriz de composição de espécies
+```
+
+3. Utilize os dados “mafragh” do pacote ade4 para comparar a composição filogenética e funcional em áreas com alta e baixa concentração de potássio. Para fazer esta comparação, será necessário transformar a matriz de atributos funcionais e a árvore filogenética em matrizes de distância. Depois, você poderá usar a matriz de distância para testar potenciais diferenças entre concentrações com PERMANOVA e para visualizar com PCoA.
+
+```{r}
+## Dados necessários
+library(ade4)
+data(mafragh)
+env <- mafragh$env
+comm <- mafragh$flo
+trait <- mafragh$traits$tabQuantitative
+rownames(trait) <- colnames(comm)
+```
+
+[Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html).
 
