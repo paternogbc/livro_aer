@@ -20,9 +20,9 @@ rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')
 toc()
 
 # Render pdf
-tic()
-rmarkdown::render_site(output_format = 'bookdown::pdf_document2', encoding = 'UTF-8')
-toc()
+# tic()
+# rmarkdown::render_site(output_format = 'bookdown::pdf_document2', encoding = 'UTF-8')
+# toc()
 
 # Render word
 tic()
