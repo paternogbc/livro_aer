@@ -117,11 +117,6 @@ head(CRC_PN_macho)
 
 Vamos verificar a normalidade dos resíduos usando o QQ-plot (Figura \@ref(fig:fig-qqplot-var-igual)).
 
-::: {.alert .alert-info}
-<strong> 📝 Importante </strong>\
-Optamos por manter a versão padrão em alguns gráficos utilizados nos capítulos 7 e 15, principalmente aqueles gráficos que são "output" de análises como, por exemplo, visualização de normalidade de resíduos, homogeneidade de variâncias, entre outros. Em geral, essese gráficos são usados no processo de decisão de algum passo da análise e não possuem qualidade de publicação. Como o usuário vai obter o mesmo gráfico quando replicar as análises propostas aqui ou suas próprias análises, julgamos ser mais didático manter a versão original, em inglês.
-:::
-
 ```{r fig-qqplot-var-igual, fig.cap="Normalidade dos resíduos usando o QQ-plot."}
 ## Teste de normalidade
 residuos <- lm(CRC ~ Estacao, data = CRC_PN_macho)
