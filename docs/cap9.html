@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-02-12" />
+<meta name="date" content="2022-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -580,10 +580,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="15.13" data-path="cap15.html"><a href="cap15.html#exercícios-11"><i class="fa fa-check"></i><b>15.13</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a>
-<ul>
-<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#descrição"><i class="fa fa-check"></i>Descrição</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -695,7 +692,7 @@ onde</p>
 <p>Todos os índices discutidos até aqui estão implementados nas funções <code>ade4::dist.ktab()</code>, <code>adespatial::dist.ldc()</code> e <code>vegan::vegdist()</code>.</p>
 <p><strong>Coeficientes para descritores (R mode) que incluem mistura de tipos de dados</strong></p>
 <p>É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (<em>traits</em>) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença/ausência de uma dada característica), fuzzy (um atributo multiestado codificado em várias colunas), ordinais e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função <code>ade4::dist.ktab().</code></p>
-<p>O capítulo 7 de <span class="citation">(<a href="#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span> fornece uma chave dicotômica para escolha do índice mais adequado.</p>
+<p>O capítulo 7 de Legendre &amp; Legendre <span class="citation">(<a href="#ref-legendre_numerical_2012" role="doc-biblioref">2012</a>)</span> fornece uma chave dicotômica para escolha do índice mais adequado.</p>
 <p><strong>Padronizações e transformações</strong></p>
 <p>É comum coletarmos múltiplas variáveis ambientais cujas unidades sejam diferentes. Por exemplo, temperatura (ºC), distância da margem (m), área (m<sup>2</sup>), etc. Para diminuir a taxa de Erro do Tipo I das análises (rejeitar a hipótese nula quando ela é verdadeira), é recomendado que <strong><em>padronizemos</em></strong> os dados utilizando distribuição <em>Z</em>, assim todas as variáveis passam a ter média 0 e desvio padrão 1. Essa operação garante que todas as variáveis tenham o mesmo peso nas análises que avaliam o padrão dos objetos considerando os múltiplos descritores. Essa padronização pode ser implementada na função <code>vegan::decostand()</code>.</p>
 <p>Um outro problema comum de matrizes de dados de composição de espécies é o alto número de zeros, enquanto outras espécies podem ter altas abundâncias. Isso gera problemas em ordenações. Para diminuir essa discrepância, podemos <strong>transformar</strong> os dados, por exemplo, utilizando a distância de Hellinger ou Chord. Para dados contínuos pode ser que transformação log ou raiz quadrada ajude quando há valores muito discrepantes (<em>leverages</em>) que podem influenciar em demasiado a relação entre objetos ou descritores. Isso pode ser feito na função <code>vegan::decostand()</code>.</p>
@@ -2739,7 +2736,7 @@ Figura 9.24: Diagnose dos resíduos do modelo ajustado.
 <h3><span class="header-section-number">9.11.2</span> Links</h3>
 <p>Existem alguns tutoriais online bem interessantes, mas todos em inglês. Veja lista abaixo:</p>
 <ul>
-<li>[Análises de ordenação - 1] (<a href="https://www.davidzeleny.net/anadat-r/doku.php/en:ordination" class="uri">https://www.davidzeleny.net/anadat-r/doku.php/en:ordination</a>)</li>
+<li><a href="https://www.davidzeleny.net/anadat-r/doku.php/en:ordination">Análises de ordenação - 1</a></li>
 <li><a href="http://ordination.okstate.edu/overview.htm">Análises de ordenação - 2</a></li>
 <li><a href="https://www.davidzeleny.net/anadat-r/doku.php/en:classification">Classificação numérica - agrupamento e kmeans</a></li>
 </ul>

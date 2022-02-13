@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-02-12" />
+<meta name="date" content="2022-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -580,10 +580,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="15.13" data-path="cap15.html"><a href="cap15.html#exercícios-11"><i class="fa fa-check"></i><b>15.13</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a>
-<ul>
-<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html#descrição"><i class="fa fa-check"></i>Descrição</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i>Glossário</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -1481,38 +1478,10 @@ Figura 14.11: Gráficos diagnósticos do modelo linear ajustado para iWTV em fun
 </div>
 <div id="exercícios-10" class="section level2" number="14.8">
 <h2><span class="header-section-number">14.8</span> Exercícios</h2>
-<ol style="list-style-type: decimal">
-<li><p>Utilize os dados “aviurba” do pacote ade4 para testar o efeito de variáveis ambientais na dispersão (FDis) e regularidade funcional (FEve). Utilize as análises PERMANOVA e dbRDA e responda às seguintes perguntas.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Quais são as variáveis ambientais (mite.env) mais importantes para a composição de ácaros em cada uma das análises?</li>
-</ol></li>
-</ol>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="cap14.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados necessários</span></span>
-<span id="cb536-2"><a href="cap14.html#cb536-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span>
-<span id="cb536-3"><a href="cap14.html#cb536-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(aviurba)</span>
-<span id="cb536-4"><a href="cap14.html#cb536-4" aria-hidden="true" tabindex="-1"></a>com <span class="ot">&lt;-</span> aviurba<span class="sc">$</span>fau <span class="co"># matriz de composição de espécies </span></span>
-<span id="cb536-5"><a href="cap14.html#cb536-5" aria-hidden="true" tabindex="-1"></a>trait <span class="ot">&lt;-</span> aviurba<span class="sc">$</span>traits <span class="co"># atributos funcionais das espécies</span></span>
-<span id="cb536-6"><a href="cap14.html#cb536-6" aria-hidden="true" tabindex="-1"></a>amb <span class="ot">&lt;-</span> aviurba<span class="sc">$</span>mil <span class="co"># matriz de variáveis ambientais</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Utilize os dados “mafragh” do pacote ade4 para teste o efeito da das variáveis “conductivity,” “silt” e “K2O” na diversidade funcional (método de Petchey e Gaston). Utilize modelos lineares (regressão múltipla) para testar a relação entre essas variáveis e discuta (a) qual variável mais importante (se houver) e (b) se as conclusões são coerentes tendo como base os pressupostos dos modelos lineares. Além disso, caso exista alguma relação significativa, faça um gráfico (scatterplot) da relação da variável mais importante e a diversidade funcional.</li>
-</ol>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="cap14.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados necessários</span></span>
-<span id="cb537-2"><a href="cap14.html#cb537-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span>
-<span id="cb537-3"><a href="cap14.html#cb537-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mafragh)</span>
-<span id="cb537-4"><a href="cap14.html#cb537-4" aria-hidden="true" tabindex="-1"></a>trait_ma <span class="ot">&lt;-</span> mafragh<span class="sc">$</span>traits<span class="sc">$</span>tabQuantitative  <span class="co"># atributos funcionais das espécies</span></span>
-<span id="cb537-5"><a href="cap14.html#cb537-5" aria-hidden="true" tabindex="-1"></a>amb_ma <span class="ot">&lt;-</span> mafragh<span class="sc">$</span>env <span class="co"># matriz de variáveis ambientais</span></span>
-<span id="cb537-6"><a href="cap14.html#cb537-6" aria-hidden="true" tabindex="-1"></a>com_ma <span class="ot">&lt;-</span> mafragh<span class="sc">$</span>flo <span class="co"># matriz de composição de espécies</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Utilize os dados “mafragh” do pacote ade4 para comparar a composição filogenética e funcional em áreas com alta e baixa concentração de potássio. Para fazer esta comparação, será necessário transformar a matriz de atributos funcionais e a árvore filogenética em matrizes de distância. Depois, você poderá usar a matriz de distância para testar potenciais diferenças entre concentrações com PERMANOVA e para visualizar com PCoA.</li>
-</ol>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="cap14.html#cb538-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados necessários</span></span>
-<span id="cb538-2"><a href="cap14.html#cb538-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span>
-<span id="cb538-3"><a href="cap14.html#cb538-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mafragh)</span>
-<span id="cb538-4"><a href="cap14.html#cb538-4" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> mafragh<span class="sc">$</span>env</span>
-<span id="cb538-5"><a href="cap14.html#cb538-5" aria-hidden="true" tabindex="-1"></a>comm <span class="ot">&lt;-</span> mafragh<span class="sc">$</span>flo</span>
-<span id="cb538-6"><a href="cap14.html#cb538-6" aria-hidden="true" tabindex="-1"></a>trait <span class="ot">&lt;-</span> mafragh<span class="sc">$</span>traits<span class="sc">$</span>tabQuantitative</span>
-<span id="cb538-7"><a href="cap14.html#cb538-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(trait) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(comm)</span></code></pre></div>
-<p><a href="https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html">Soluções dos exercícios</a>.</p>
+<p>14.1 Utilize os dados <code>aviurba</code> do pacote <code>ade4</code> para testar o efeito de variáveis ambientais na dispersão (FDis) e regularidade funcional (FEve). Utilize modelos lineares (LM, veja Capítulo <a href="cap7.html#cap7">7</a>) para testar quais variáveis ambientais são as mais importantes para a dispersão e regularidade funcional. Além disso, faça um boxplot (veja Capítulo <a href="cap6.html#cap6">6</a>) comparando os valores de FDis e FEve entre as categorias das variáveis ambientais mais relevantes.</p>
+<p>14.2 Utilize os dados <code>mafragh</code> do pacote <code>ade4</code> para teste o efeito da das variáveis <code>conductivity</code>, <code>silt</code> e <code>K2O</code> na diversidade funcional (método de Petchey e Gaston). Utilize modelos lineares (regressão múltipla, veja Capítulo <a href="cap7.html#cap7">7</a>) para testar a relação entre essas variáveis e discuta: (a) qual variável mais importante (se houver) e (b) se as conclusões são coerentes tendo como base os pressupostos dos modelos lineares. Além disso, caso exista alguma relação significativa, faça um gráfico (scatterplot, veja Capítulo <a href="cap6.html#cap6">6</a>) da relação da variável mais importante e a diversidade funcional.</p>
+<p>14.3 Utilize os dados <code>mafragh</code> do pacote <code>ade4</code> para comparar a composição filogenética e funcional em áreas com alta e baixa concentração de potássio. Para fazer esta comparação será necessário transformar a matriz de atributos funcionais e a árvore filogenética em matrizes de distância e, depois, utilizar o CWM para criar uma matriz de localidades por composição funcional ou filogenética. Depois, você poderá usar a matriz CWM para testar potenciais diferenças entre concentrações com PERMANOVA e para visualizar com PCoA.</p>
+<p>Você pode conferir as soluções dos exercícios <a href="https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html">aqui</a>.</p>
 
 </div>
 </div>
