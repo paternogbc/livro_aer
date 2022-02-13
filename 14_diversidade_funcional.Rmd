@@ -510,8 +510,32 @@ perman_fren
 betad_fren <- betadisper(cwm_dis, ambie_fren_dat$Grazing)
 permutest(betad_fren)
 
-## Passo 5: visualização com PCoA
-plot(betad_fren)
+## Passo 5: PCoA
+
+cwm_pcoa <- pcoa(D = cwm_dis, correction = "cailliez")
+pcoa_eixos <- cwm_pcoa$vectors[, 1:2]
+pcoa_dat <- data.frame(pastagem = ambie_fren_dat$Grazing, pcoa_eixos)
+
+## Passo 6: definir os grupos ("HULL") para serem categorizados no gráfico 
+
+grp.Grazed <- pcoa_dat[pcoa_dat$pastagem == "Grazed", ][chull(pcoa_dat[pcoa_dat$pastagem == "Grazed", c("Axis.1", "Axis.2")]), ]
+grp.Ungrazed <- pcoa_dat[pcoa_dat$pastagem == "Ungrazed", ][chull(pcoa_dat[pcoa_dat$pastagem == "Ungrazed", c("Axis.1", "Axis.2")]), ]
+hull_cwm <- rbind(grp.Grazed, grp.Ungrazed) 
+
+## Passo 7: Gráfico biplot
+
+100 * (cwm_pcoa$values[, 1]/cwm_pcoa$trace)[1] # % de explicação do eixo 1
+100 * (cwm_pcoa$values[, 1]/cwm_pcoa$trace)[2] # % de explicação do eixo 2
+
+ggplot(pcoa_dat, aes(x = Axis.1, y = Axis.2, color = pastagem, shape = pastagem)) + 
+  geom_point(size = 4, alpha = 0.7) + 
+  geom_polygon(data = hull_cwm, aes(fill = pastagem, group = pastagem), alpha = 0.3) + 
+  scale_color_manual(values = c("darkorange", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", "cyan4")) +
+  labs(x = "PCO 1 (53.6%)", y = "PCO 2 (24.6%)") + 
+  tema_livro()
+
+
 ```
 
 Neste exemplo, os resultados `perman_fren` demonstram que a composição funcional de plantas não é afetada pelo pastejo (P \> 0,05) e que a dispersão da composição [uma medida potencial de diversidade beta: @anderson_multivariate_2006] de espécies também não muda entre áreas com ou sem pastejo (`permutest(betad_fren)`). A função `betadisper()` deve ser sempre utilizada em conjunto com a PERMANOVA (`adonis()`) para poder interpretar quais as fontes de variação na composição de espécies. Sendo assim, esta análise representa um método fundamental para comparar se o potencial efeito (quando houver) é fruto de diferença na composição de espécies (i.e., diferença na posição dos centróides entre dois ou mais grupos) ou na variação da composição de espécies entre os grupos (i.e., diferença na dispersão dos dados em relação aos centróides, ver mais no Capítulo \@ref(cap9)). Esta última informação, a dispersão, é geralmente interpretada como uma analogia a homogeneidade de variâncias de uma ANOVA (i.e., Teste de Levene). A hipótese nula do `betadisper()` é que a dispersão dos grupos é homogênea (ou seja, o valor de probabilidade nos casos que existem dispersões homogêneas será maior do que 0,05). Porém, se esse valor de p for menor do que 0,05, você deve rejeitar a hipótese nula e concluir que as dispersões são heterogêneas. 
