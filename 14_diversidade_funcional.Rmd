@@ -702,9 +702,8 @@ Um passo importante nos estudos de Diversidade Funcional é encontrar atributos 
  
 ## Exercícios
 
-1. Utilize os dados “aviurba” do pacote ade4 para testar o efeito de variáveis ambientais na dispersão (FDis) e regularidade funcional (FEve). Utilize as análises PERMANOVA e dbRDA e responda às seguintes perguntas.
-
-    a. Quais são as variáveis ambientais (mite.env) mais importantes para a composição de ácaros em cada uma das análises? 
+1. Utilize os dados “aviurba” do pacote ade4 para testar o efeito de variáveis ambientais na dispersão (FDis) e regularidade funcional (FEve). Utilize modelos lineares (lm) para 
+testar quais variáveis ambientais são as mais importantes para a dispersão e regularidade funcional. Além disso, faça um boxplot comparando os valores de FDis e FEve entre as categorias das variáveis ambientais mais relevantes. 
 
 ```{r}
 ## Dados necessários
@@ -715,7 +714,7 @@ trait <- aviurba$traits # atributos funcionais das espécies
 amb <- aviurba$mil # matriz de variáveis ambientais
 ```
 
-2. Utilize os dados “mafragh” do pacote ade4 para teste o efeito da das variáveis “conductivity”, “silt” e “K2O” na diversidade funcional (método de Petchey e Gaston). Utilize modelos lineares (regressão múltipla) para testar a relação entre essas variáveis e discuta (a) qual variável mais importante (se houver) e (b) se as conclusões são coerentes tendo como base os pressupostos dos modelos lineares. Além disso, caso exista alguma relação significativa, faça um gráfico (scatterplot) da relação da variável mais importante e a diversidade funcional.
+2. Utilize os dados “mafragh” do pacote ade4 para teste o efeito da das variáveis “conductivity”, “silt”, "K+" e “K2O” na diversidade funcional (método de Petchey e Gaston). Utilize modelos lineares (regressão múltipla) para testar a relação entre essas variáveis e discuta **(a)** qual variável mais importante (se houver) e **(b)** se as conclusões são coerentes tendo como base os pressupostos dos modelos lineares. Além disso, faça um gráfico (scatterplot) da relação da variável mais importante e a diversidade funcional.
 
 ```{r}
 ## Dados necessários
@@ -724,9 +723,11 @@ data(mafragh)
 trait_ma <- mafragh$traits$tabQuantitative  # atributos funcionais das espécies
 amb_ma <- mafragh$env # matriz de variáveis ambientais
 com_ma <- mafragh$flo # matriz de composição de espécies
+colnames(com_ma) <- rownames(trait_ma)
+
 ```
 
-3. Utilize os dados “mafragh” do pacote ade4 para comparar a composição filogenética e funcional em áreas com alta e baixa concentração de potássio. Para fazer esta comparação, será necessário transformar a matriz de atributos funcionais e a árvore filogenética em matrizes de distância. Depois, você poderá usar a matriz de distância para testar potenciais diferenças entre concentrações com PERMANOVA e para visualizar com PCoA.
+3. Utilize os dados “mafragh” do pacote ade4 para comparar a funcional em áreas com alta e baixa concentração de potássio. Para fazer esta comparação, será necessário transformar a matriz de atributos funcionais por espécie em uma matriz "CWM", que representa a composição funcional por localidade. Depois, você poderá usar a matriz CWM para testar potenciais diferenças entre concentrações com PERMANOVA e para visualizar com PCoA. **Dica:** utilize a função ifelse() para criar uma variável categórica com dois níveis: valores maiores do que a média chamados de "alto" e abaixo da média de "baixo".  
 
 ```{r}
 ## Dados necessários
@@ -735,7 +736,8 @@ data(mafragh)
 env <- mafragh$env
 comm <- mafragh$flo
 trait <- mafragh$traits$tabQuantitative
-rownames(trait) <- colnames(comm)
+colnames(com_ma) <- rownames(trait_ma)
+
 ```
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html).
