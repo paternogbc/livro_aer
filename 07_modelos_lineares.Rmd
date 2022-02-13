@@ -1196,7 +1196,12 @@ ratio_model <- gls(riqueza ~ agua, mite_dat,
                    corRatio(form = ~lat+long, nugget = TRUE))
 ```
 
-Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessário comparar os modelos para escolher o mais "provável", utilizando a seleção de modelos pelo Critério de Seleção de Akaike (AIC) [@chiles_1999; @fortin_dale_2005] (Figura \@ref(fig:fig-diag-ratio)).
+Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessário comparar os modelos para escolher o mais "provável", utilizando a seleção de modelos pelo Critério de Seleção de Akaike (AIC) [@chiles_1999; @burnham2002; @fortin_dale_2005] (Figura \@ref(fig:fig-diag-ratio)). AIC é um método estatístico que compara os modelos criados na sua pesquisa e seleciona o melhor entre eles. Diferente do LRT que compara apenas modelos aninhados, o AIC compara modelos com diferentes combinações de variáveis preditoras. Uma vez que a fórmula do AIC penaliza parâmetros extras no modelo, se dois modelos explicam igualmente a variação dos dados, o modelo com menos parâmetros terá o menor valor de AIC e será selecionado como o melhor modelo. 
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+O valor de AIC por si só não tem significado. Ele precisa ser comparado com outro modelo. Contudo, um modelo só será considerado superior a outro quando a diferença entre os seus valores de AIC (i.e, *delta*) forem maiores do que 2. [@burnham2002]
+:::
 
 ```{r fig-diag-ratio, fig.cap="Gráfico dos resíduos em relação aos dodos ajustados do modelo GLS Ratio."}
 ## Seleção de modelos
