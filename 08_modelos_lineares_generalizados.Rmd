@@ -266,11 +266,12 @@ Aqui vemos que há uma leve tendência na relação positiva entre distância pa
 
 Existem dois conjuntos de causas: aparente ou real. 
 
-As causas aparentes são geradas pela *má especificação do modelo*, tais como:
+As causas aparentes são geradas pela má especificação do modelo, tais como:
 
 1. não inclusão de covariáveis ou interações no modelo
-2. presença de *outliers* na variável resposta, efeitos não lineares da covariável (X2, X3...)
-3. escolha errada da função de ligação (*link function*)
+2. presença de *outliers* na variável resposta
+3. efeitos não lineares da covariável (X2, X3...)
+4. escolha errada da função de ligação (*link function*)
 
 As causas reais incluem:
 
@@ -311,14 +312,14 @@ par(mfrow = c(1, 1))
 (chat <- deviance(mod_nb) / df.residual(mod_nb)) # DISPERSION PARAMETER
 ```
 
-Compare estes gráficos (Figura \@ref(fig:fig-mod-nb-diag)) com os do modelo anterior com distribuição Poisson (Figura \@ref(fig:fig-mod-poi-diag-bas)). Eles são praticamente idênticos, ou seja, o modelo com Poisson já tinha homogeneidade de variância e não tinha problemas com normalidade dos resíduos. Agora vejamos se o problema com *overdispersion* foi resolvido (Figura \@ref(fig:fig-mod-bn-diag-avan)).
+Compare estes gráficos (Figura \@ref(fig:fig-mod-nb-diag-bas)) com os do modelo anterior com distribuição Poisson (Figura \@ref(fig:fig-mod-poi-diag-bas)). Eles são praticamente idênticos, ou seja, o modelo com Poisson já tinha homogeneidade de variância e não tinha problemas com normalidade dos resíduos. Agora vejamos se o problema com *overdispersion* foi resolvido (Figura \@ref(fig:fig-mod-bn-diag-avan)).
 
 ```{r fig-mod-bn-diag-avan, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial Negativo."}
 ## Diagnose avançada
 simulationOutput <- simulateResiduals(fittedModel = mod_nb, plot = TRUE)
 ```
 
-Na diagnose do modelo pelo `DHARMa`, vemos que bastou mudar a distribuição de probabilidade que o problema de *overdispersion* foi resolvido (nenhum teste foi significativo no quadro da esquerda), e como já sabíamos, não há problemas com homogeneidade de variância (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de *outliers*. O *dispersion parameter* é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R^2^.
+Na diagnose do modelo pelo `DHARMa`, vemos que bastou mudar a distribuição de probabilidade que o problema de *overdispersion* foi resolvido (nenhum teste foi significativo no quadro da esquerda). Como já sabíamos, não há problemas com homogeneidade de variância (plot da direita mostrando a tendência entre o predito e resíduos pra cada quantil), nem de *outliers*. O *dispersion parameter* é mais próximo de 1 do que no modelo com Poisson. Agora sim podemos levar em conta o R^2^.
 
 **Inferência**
 
@@ -329,8 +330,6 @@ rsquared(mod_nb)
 
 Mas esse valor parece ser um pouco menor do que anteriormente. Perceba que aqui utilizamos somente uma das funções apresentadas anteriormente, já que se trata de um modelo GLM com binomial negativa, calculamos o R^2^ pelo método de Nagelkerke.
 
-**Interpretação dos resultados**
-
 Usando a função `summary()` podemos ter um resumo e descrição dos parâmetros do modelo.
 
 ```{r message=FALSE, warning=FALSE}
@@ -338,10 +337,10 @@ Usando a função `summary()` podemos ter um resumo e descrição dos parâmetro
 summary(mod_nb)
 ```
 
-::: {.alert .alert-info}
-<strong> 📝 Importante </strong>\
-Aqui vemos que o resultado em termos de valor de _P_ não mudou, ou seja, a distância para o fragmento mais próximo não foi significativo. Mas vejam que o coeficiente (slope) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).
-:::
+**Interpretação dos resultados**
+
+Aqui vemos que a interpretação do resultado em termos de valor de _P_ não mudou, ou seja, a distância para o fragmento mais próximo não foi significativo. Mas vejam que o coeficiente (slope) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).
+
 
 **Plot do modelo predito**
 
@@ -461,7 +460,7 @@ Aqui vemos que a quantidade de eosinófilos é muito maior nos girinos sem pigme
 
 **Modelagem**
 
-Aqui vamos usar o `cbind` no argumento `formula` para dizer que queremos modelar a contagem de eosinófilos *em relação ao número total de células, ou seja, sua proporção.* Aqui temos a contagem do número de eusinófilos (um tipo de célula da série branca do sangue) em lâminas histológicas de girinos da rã-touro (*Lithobates catesbeianus*) num total de 1000 células.
+Aqui vamos usar o `cbind` no argumento `formula` para dizer que queremos modelar a contagem de eosinófilos em relação ao número total de células, ou seja, sua proporção. Aqui temos a contagem do número de eusinófilos (um tipo de célula da série branca do sangue) em lâminas histológicas de girinos da rã-touro (*Lithobates catesbeianus*) num total de 1000 células.
 
 ```{r}
 ## Modelo
