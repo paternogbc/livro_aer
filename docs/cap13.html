@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 13 Diversidade Filogenética | Análises Ecológicas no R</title>
+<meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 13 Diversidade Filogenética | Análises Ecológicas no R">
 <meta property="og:type" content="book">
@@ -156,10 +157,10 @@ Figura 13.3: Filogenia de 37 espécies de aves endêmicas da Mata Atlântica, co
 </div>
 <p>Percebam que existem vários argumentos para modificar a largura e cor dos ramos, tamanho da fonte, distância entre a filogenia e o nomes da espécies e muito mais. Uma sugestão é visitar o blog do professor Liam Revell (<a href="http://blog.phytools.org/" class="uri">http://blog.phytools.org/</a>) que é o criador e mantenedor do pacote <code>phytools</code> no R.</p>
 <p><strong>Acessar informações da filogenia</strong></p>
-<p>Um das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
+<p>Um das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função <code><a href="https://rdrr.io/pkg/raster/man/names.html">names()</a></code>.</p>
 <div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Nomes</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">minha_arvore</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">minha_arvore</span><span class="op">)</span>
 <span class="co">#&gt; [1] "edge"        "edge.length" "Nnode"       "tip.label"</span></code></pre></div>
 <p>Temos acesso a quatro componentes da filogenia: i) ramo (<code>edge</code>), ii) comprimento do ramo (<code>edge.length</code>), iii) número de nós (<code>Nnode</code>), e iv) nome das espécies (<code>tip.label</code>). Podemos usar o operador <code>$</code> para acessar estes componentes. Veja abaixo como acessar o nome das 37 espécies de aves na filogenia ou o comprimento de cada um dos ramos da filogenia.</p>
 <div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
@@ -320,7 +321,7 @@ Figura 13.5: Filogenia de espécies de plantas criada pelo pacote <code>V.PhyloM
 <p>Vamos conferir se os nomes das espécies de aves no data frame de composição são os mesmos da filogenia. O resultado <code>OK</code> indica que os nomes estão corretos. Caso contrário, você deve verificar e arrumar.</p>
 <div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Conferir os nomes das espécies</span>
-<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/name.check.html">name.check</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/name.check.html">name.check</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "OK"</span>
 
 <span class="co">## Colocar os nomes das espécies do data frame na mesma ordem que aparecem na filogenia</span>
@@ -378,7 +379,7 @@ Este índice é correlacionado com a riqueza de espécies. Discutiremos essa que
 <div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Phylogenetic Endemism (PE)</span>
 <span class="co"># Transformando data.frame em matriz.</span>
-<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
+<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
 
 <span class="co"># Análise.</span>
 <span class="va">resultados_PE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloregion/man/phylo_endemism.html">phylo_endemism</a></span><span class="op">(</span><span class="va">dados_matriz</span>, <span class="va">filogenia_aves</span>, 
@@ -503,7 +504,7 @@ Os valores de PSV são idênticos ao MPD quando a filogenia é ultramétrica.</p
 <div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Variance of Pairwise Distance (VPD)</span>
 <span class="co"># Transformando data frame em matriz.</span>
-<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
+<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
 
 <span class="co"># Transformar os dados para o formato requerido pelo pacote pez.</span>
 <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pez/man/comparative.comm.html">comparative.comm</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="va">dados_matriz</span><span class="op">)</span>
@@ -1057,7 +1058,7 @@ Figura 13.14: Relação dos componentes substituição e aninhamento da diversid
 
 <span class="co"># Função para calcular o SES eo valor de P.</span>
 <span class="va">ses.physo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">obs</span>, <span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">nulo_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>
+    <span class="va">nulo_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>
                                      <span class="op">(</span><span class="va">nulo_phylosor</span>, <span class="va">as.vector</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
     <span class="va">physo.obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>
     <span class="va">physo.mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">nulo_phylosor</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, 
@@ -1073,7 +1074,7 @@ Figura 13.14: Relação dos componentes substituição e aninhamento da diversid
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">physo.obs</span>, <span class="va">physo.mean</span>, <span class="va">physo.sd</span>, 
                <span class="va">physo.obs.rank</span>, <span class="va">physo.ses</span>, 
                physo.obs.p <span class="op">=</span> <span class="va">physo.obs.rank</span><span class="op">/</span>
-                   <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+                   <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/dimensions.html">dim</a></span><span class="op">(</span><span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co">## Resultados</span>
@@ -1111,9 +1112,12 @@ Figura 13.14: Relação dos componentes substituição e aninhamento da diversid
 <h2>
 <span class="header-section-number">13.7</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-9"><i class="fas fa-link"></i></a>
 </h2>
-<p>13.1 Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote <code>ecodados</code>. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e temperatura anual na distribuição espacial da diversidade filogenética (PD) e Endemismo filogenético (PE). Calcule o SES para verificar se os resultados da diversidade filogenética (PD) diferem do esperado ao acaso devido ao número de espécies em cada comunidade. Qual a sua interpretação sobre os resultados?</p>
-<p>13.2 Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote ecodados. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e temperatura anual na distribuição espacial do NRI e NTI. Qual a sua interpretação sobre os resultados?</p>
-<p>13.3 Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote ecodados. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e distância geográfica na distribuição espacial dos diferentes componentes da diversidade beta filogenética (Phylosor). Qual a sua interpretação sobre os resultados?</p>
+<p><strong>13.1</strong>
+Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote <code>ecodados</code>. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e temperatura anual na distribuição espacial da diversidade filogenética (PD) e Endemismo filogenético (PE). Calcule o SES para verificar se os resultados da diversidade filogenética (PD) diferem do esperado ao acaso devido ao número de espécies em cada comunidade. Qual a sua interpretação sobre os resultados?</p>
+<p><strong>13.2</strong>
+Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote ecodados. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e temperatura anual na distribuição espacial do NRI e NTI. Qual a sua interpretação sobre os resultados?</p>
+<p><strong>13.3</strong>
+Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote ecodados. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e distância geográfica na distribuição espacial dos diferentes componentes da diversidade beta filogenética (Phylosor). Qual a sua interpretação sobre os resultados?</p>
 <p><a href="https://exercicios-livro-aer.netlify.app/cap.-13---diversidade-filogen%C3%A9tica.html">Soluções dos exercícios</a>.</p>
 
 </div>
@@ -1173,7 +1177,7 @@ Figura 13.14: Relação dos componentes substituição e aninhamento da diversid
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by . It was last built on 2022-02-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-02-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

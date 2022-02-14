@@ -3446,20 +3446,28 @@ Listamos aqui as principais referências sobre manipulação, visualização de 
 
 ## Exercícios
 
-15.1 Importe o limite dos estados brasileiros no formato `sf` com o nome `br`. Para isso, use a função `ne_states` do pacote `rnaturalearth`. Crie um mapa simples cinza utilizando a função `plot()`, selecionando a coluna  `geometry` com o operador `$` e com os argumentos `axes` e `graticule` verdadeiros.
+**15.1**
+Importe o limite dos estados brasileiros no formato `sf` com o nome `br`. Para isso, use a função `ne_states` do pacote `rnaturalearth`. Crie um mapa simples cinza utilizando a função `plot()`, selecionando a coluna  `geometry` com o operador `$` e com os argumentos `axes` e `graticule` verdadeiros.
 
-15.2 Dados vetoriais podem ser criados com diversos erros de topologia, e.g., sobreposição de linhas ou polígonos ou buracos. Algumas funções exigem que os objetos vetoriais aos quais são atribuídos esses dados não possuam esses wrros para que o algoritmo funcione. Para verificar se há erros, podemos usar a função `st_is_valid()` do pacote `sf`. Há diversas forma de correções desses erros, mas vamos usar uma correção simples do R, com a função `st_make_valid()`. Vamos fazer essa correção para o `br` importado anteriormente e atribuindo ao objeto `br_valid`. Podemos conferir para saber se há erros e fazer um plot.
+**15.2**
+Dados vetoriais podem ser criados com diversos erros de topologia, e.g., sobreposição de linhas ou polígonos ou buracos. Algumas funções exigem que os objetos vetoriais aos quais são atribuídos esses dados não possuam esses wrros para que o algoritmo funcione. Para verificar se há erros, podemos usar a função `st_is_valid()` do pacote `sf`. Há diversas forma de correções desses erros, mas vamos usar uma correção simples do R, com a função `st_make_valid()`. Vamos fazer essa correção para o `br` importado anteriormente e atribuindo ao objeto `br_valid`. Podemos conferir para saber se há erros e fazer um plot.
 
-15.3 Crie um objeto RasterLayer vazio chamado `ra` com resolução de 5º (~600 km). Atribua um sistema de referência de coordendas com o código `4326`. Atribua valores aleatórios de uma distribuição normal e plote o mesmo.
+**15.3**
+Crie um objeto RasterLayer vazio chamado `ra` com resolução de 5º (~600 km). Atribua um sistema de referência de coordendas com o código `4326`. Atribua valores aleatórios de uma distribuição normal e plote o mesmo.
 
-15.4 Reprojete o limite dos estados brasileiros do exercício anterior para o CRS SIRGAS 2000/Brazil Polyconic, utilizando o código EPSG:5880 e chamando de `br_poly`. Faça um mapa simples como no exercício 1. Atente para as curvaturas das linhas.
+**15.4**
+Reprojete o limite dos estados brasileiros do exercício anterior para o CRS SIRGAS 2000/Brazil Polyconic, utilizando o código EPSG:5880 e chamando de `br_poly`. Faça um mapa simples como no exercício 1. Atente para as curvaturas das linhas.
 
-15.5 Utilizando a função `st_centroid` do pacote `sf`, crie um vetor chamado  `br_valid_cen` que armazenará o centroide de cada estado brasileiro do objeto `br_valid` do exercício 2 e plot o resultado.
+**15.5**
+Utilizando a função `st_centroid` do pacote `sf`, crie um vetor chamado  `br_valid_cen` que armazenará o centroide de cada estado brasileiro do objeto `br_valid` do exercício 2 e plot o resultado.
 
-15.6 Ajuste o limite e máscara do objeto raster criado no exercício 3 para o  limite do Brasil, atribuindo ao objeto `ra_br`. Depois reprojete esse raster para a mesma projeção utilizada no exercício 4 com o nome `ra_br_poly` e plote o mapa resultante.
+**15.6**
+Ajuste o limite e máscara do objeto raster criado no exercício 3 para o  limite do Brasil, atribuindo ao objeto `ra_br`. Depois reprojete esse raster para a mesma projeção utilizada no exercício 4 com o nome `ra_br_poly` e plote o mapa resultante.
 
-15.7 Extraia os valores de cada pixel do raster criado no exercício 6 para os centroides dos estados do Brasil criado no exercício 5, atribuindo à coluna `val` do objeto espacial chamado `br_valid_poly_cent_ra`. 
+**15.7**
+Extraia os valores de cada pixel do raster criado no exercício 6 para os centroides dos estados do Brasil criado no exercício 5, atribuindo à coluna `val` do objeto espacial chamado `br_valid_poly_cent_ra`. 
 
-15.8 Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o pacote `tmap` e inclua todos os principais elementos de um mapa.
+**15.8**
+Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o pacote `tmap` e inclua todos os principais elementos de um mapa.
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html).

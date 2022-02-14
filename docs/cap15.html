@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 15 Dados geoespaciais no R | Análises Ecológicas no R</title>
+<meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 15 Dados geoespaciais no R | Análises Ecológicas no R">
 <meta property="og:type" content="book">
@@ -5549,14 +5550,22 @@ Essa análise foi realizada com o intuito de exemplificar o funcionamento da fun
 <h2>
 <span class="header-section-number">15.13</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-11"><i class="fas fa-link"></i></a>
 </h2>
-<p>15.1 Importe o limite dos estados brasileiros no formato <code>sf</code> com o nome <code>br</code>. Para isso, use a função <code>ne_states</code> do pacote <code>rnaturalearth</code>. Crie um mapa simples cinza utilizando a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code>, selecionando a coluna <code>geometry</code> com o operador <code>$</code> e com os argumentos <code>axes</code> e <code>graticule</code> verdadeiros.</p>
-<p>15.2 Dados vetoriais podem ser criados com diversos erros de topologia, e.g., sobreposição de linhas ou polígonos ou buracos. Algumas funções exigem que os objetos vetoriais aos quais são atribuídos esses dados não possuam esses wrros para que o algoritmo funcione. Para verificar se há erros, podemos usar a função <code><a href="https://r-spatial.github.io/sf/reference/valid.html">st_is_valid()</a></code> do pacote <code>sf</code>. Há diversas forma de correções desses erros, mas vamos usar uma correção simples do R, com a função <code><a href="https://r-spatial.github.io/sf/reference/valid.html">st_make_valid()</a></code>. Vamos fazer essa correção para o <code>br</code> importado anteriormente e atribuindo ao objeto <code>br_valid</code>. Podemos conferir para saber se há erros e fazer um plot.</p>
-<p>15.3 Crie um objeto RasterLayer vazio chamado <code>ra</code> com resolução de 5º (~600 km). Atribua um sistema de referência de coordendas com o código <code>4326</code>. Atribua valores aleatórios de uma distribuição normal e plote o mesmo.</p>
-<p>15.4 Reprojete o limite dos estados brasileiros do exercício anterior para o CRS SIRGAS 2000/Brazil Polyconic, utilizando o código EPSG:5880 e chamando de <code>br_poly</code>. Faça um mapa simples como no exercício 1. Atente para as curvaturas das linhas.</p>
-<p>15.5 Utilizando a função <code>st_centroid</code> do pacote <code>sf</code>, crie um vetor chamado <code>br_valid_cen</code> que armazenará o centroide de cada estado brasileiro do objeto <code>br_valid</code> do exercício 2 e plot o resultado.</p>
-<p>15.6 Ajuste o limite e máscara do objeto raster criado no exercício 3 para o limite do Brasil, atribuindo ao objeto <code>ra_br</code>. Depois reprojete esse raster para a mesma projeção utilizada no exercício 4 com o nome <code>ra_br_poly</code> e plote o mapa resultante.</p>
-<p>15.7 Extraia os valores de cada pixel do raster criado no exercício 6 para os centroides dos estados do Brasil criado no exercício 5, atribuindo à coluna <code>val</code> do objeto espacial chamado <code>br_valid_poly_cent_ra</code>.</p>
-<p>15.8 Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o pacote <code>tmap</code> e inclua todos os principais elementos de um mapa.</p>
+<p><strong>15.1</strong>
+Importe o limite dos estados brasileiros no formato <code>sf</code> com o nome <code>br</code>. Para isso, use a função <code>ne_states</code> do pacote <code>rnaturalearth</code>. Crie um mapa simples cinza utilizando a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code>, selecionando a coluna <code>geometry</code> com o operador <code>$</code> e com os argumentos <code>axes</code> e <code>graticule</code> verdadeiros.</p>
+<p><strong>15.2</strong>
+Dados vetoriais podem ser criados com diversos erros de topologia, e.g., sobreposição de linhas ou polígonos ou buracos. Algumas funções exigem que os objetos vetoriais aos quais são atribuídos esses dados não possuam esses wrros para que o algoritmo funcione. Para verificar se há erros, podemos usar a função <code><a href="https://r-spatial.github.io/sf/reference/valid.html">st_is_valid()</a></code> do pacote <code>sf</code>. Há diversas forma de correções desses erros, mas vamos usar uma correção simples do R, com a função <code><a href="https://r-spatial.github.io/sf/reference/valid.html">st_make_valid()</a></code>. Vamos fazer essa correção para o <code>br</code> importado anteriormente e atribuindo ao objeto <code>br_valid</code>. Podemos conferir para saber se há erros e fazer um plot.</p>
+<p><strong>15.3</strong>
+Crie um objeto RasterLayer vazio chamado <code>ra</code> com resolução de 5º (~600 km). Atribua um sistema de referência de coordendas com o código <code>4326</code>. Atribua valores aleatórios de uma distribuição normal e plote o mesmo.</p>
+<p><strong>15.4</strong>
+Reprojete o limite dos estados brasileiros do exercício anterior para o CRS SIRGAS 2000/Brazil Polyconic, utilizando o código EPSG:5880 e chamando de <code>br_poly</code>. Faça um mapa simples como no exercício 1. Atente para as curvaturas das linhas.</p>
+<p><strong>15.5</strong>
+Utilizando a função <code>st_centroid</code> do pacote <code>sf</code>, crie um vetor chamado <code>br_valid_cen</code> que armazenará o centroide de cada estado brasileiro do objeto <code>br_valid</code> do exercício 2 e plot o resultado.</p>
+<p><strong>15.6</strong>
+Ajuste o limite e máscara do objeto raster criado no exercício 3 para o limite do Brasil, atribuindo ao objeto <code>ra_br</code>. Depois reprojete esse raster para a mesma projeção utilizada no exercício 4 com o nome <code>ra_br_poly</code> e plote o mapa resultante.</p>
+<p><strong>15.7</strong>
+Extraia os valores de cada pixel do raster criado no exercício 6 para os centroides dos estados do Brasil criado no exercício 5, atribuindo à coluna <code>val</code> do objeto espacial chamado <code>br_valid_poly_cent_ra</code>.</p>
+<p><strong>15.8</strong>
+Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o pacote <code>tmap</code> e inclua todos os principais elementos de um mapa.</p>
 <p><a href="https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html">Soluções dos exercícios</a>.</p>
 
 </div>
@@ -5658,7 +5667,7 @@ Essa análise foi realizada com o intuito de exemplificar o funcionamento da fun
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by . It was last built on 2022-02-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-02-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

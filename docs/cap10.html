@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 10 Rarefação | Análises Ecológicas no R</title>
+<meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 10 Rarefação | Análises Ecológicas no R">
 <meta property="og:type" content="book">
@@ -385,7 +386,7 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 <code class="sourceCode R"><span class="co">## Menos abundância</span>
 <span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span>
 <span class="co"># Para as análises teremos que transpor a planilha.</span>
-<span class="va">composicao_acaros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span>
+<span class="va">composicao_acaros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span>
 
 <span class="co"># Verificar qual é a menor abundância registrada nas comunidades. </span>
 <span class="va">abun_min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colSums</a></span><span class="op">(</span><span class="va">composicao_acaros</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -514,9 +515,12 @@ Figura 10.7: Gráfico do modelo GLS selecionado.
 <h2>
 <span class="header-section-number">10.6</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-6"><i class="fas fa-link"></i></a>
 </h2>
-<p>10.1. Usando os dados <code>Cap10_exercicio1</code> disponível no pacote <code>ecodados</code>, avalie se diferentes tipos de uso da terra (fragmento florestal, borda de mata, área de pastagem e cana de açúcar) apresentam diferentes riquezas de espécies? Qual a sua interpretação? Faça um gráfico com os resultados.</p>
-<p>10.2 O estudo é o mesmo do exercício anterior. Contudo, ao invés da rarefação baseada na abundância, faça rarefações baseadas no número de amostras. Qual a sua interpretação considerando os resultados do exercício 1? Faça um gráfico com os resultados.</p>
-<p>10.3 Use os dados dos exercícios anteriores e calcule a rarefação baseada na cobertura de amostragem (coverage-based). Qual a sua interpretação considerando os resultados anteriores? Faça um gráfico com os resultados.</p>
+<p><strong>10.1</strong>
+Usando os dados <code>Cap10_exercicio1</code> disponível no pacote <code>ecodados</code>, avalie se diferentes tipos de uso da terra (fragmento florestal, borda de mata, área de pastagem e cana de açúcar) apresentam diferentes riquezas de espécies? Qual a sua interpretação? Faça um gráfico com os resultados.</p>
+<p><strong>10.2</strong>
+O estudo é o mesmo do exercício anterior. Contudo, ao invés da rarefação baseada na abundância, faça rarefações baseadas no número de amostras. Qual a sua interpretação considerando os resultados do exercício 1? Faça um gráfico com os resultados.</p>
+<p><strong>10.3</strong>
+Use os dados dos exercícios anteriores e calcule a rarefação baseada na cobertura de amostragem (coverage-based). Qual a sua interpretação considerando os resultados anteriores? Faça um gráfico com os resultados.</p>
 <p><a href="https://exercicios-livro-aer.netlify.app/cap.-10---rarefa%C3%A7%C3%A3o.html">Soluções dos exercícios</a>.</p>
 
 </div>
@@ -557,7 +561,7 @@ Figura 10.7: Gráfico do modelo GLS selecionado.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by . It was last built on 2022-02-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-02-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -12,12 +12,12 @@ bookdown::clean_book()
 rmarkdown::clean_site(preview = FALSE)
 
 # Update ecodados
-remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
+# remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
 
 # Render html -------------------------------------------------------------
-tic()
-rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')
-toc()
+# tic()
+# rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')
+# toc()
 
 # Render BS4 -------------------------------------------------------------
 tic()
@@ -30,9 +30,9 @@ toc()
 # toc()
 
 # Render word
-tic()
-rmarkdown::render_site(output_format = 'bookdown::word_document2', encoding = 'UTF-8')
-toc()
+# tic()
+# rmarkdown::render_site(output_format = 'bookdown::word_document2', encoding = 'UTF-8')
+# toc()
 
 
 # end ---------------------------------------------------------------------
