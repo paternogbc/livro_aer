@@ -19,6 +19,9 @@ tic()
 rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')
 toc()
 
+# Render BS4 -------------------------------------------------------------
+rmarkdown::render_site(output_format = 'bookdown::bs4_book', encoding = 'UTF-8')
+
 # Render pdf
 # tic()
 # rmarkdown::render_site(output_format = 'bookdown::pdf_document2', encoding = 'UTF-8')
@@ -28,5 +31,6 @@ toc()
 tic()
 rmarkdown::render_site(output_format = 'bookdown::word_document2', encoding = 'UTF-8')
 toc()
+
 
 # end ---------------------------------------------------------------------
