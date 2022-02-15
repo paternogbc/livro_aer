@@ -20,9 +20,9 @@ rmarkdown::clean_site(preview = FALSE)
 # toc()
 
 # Render BS4 -------------------------------------------------------------
-tic()
+tictoc::tic()
 rmarkdown::render_site(output_format = 'bookdown::bs4_book', encoding = 'UTF-8')
-toc()
+tictoc::toc()
 
 # Render pdf
 # tic()
@@ -30,9 +30,8 @@ toc()
 # toc()
 
 # Render word
-# tic()
-# rmarkdown::render_site(output_format = 'bookdown::word_document2', encoding = 'UTF-8')
-# toc()
-
+tictoc::tic()
+rmarkdown::render_site(output_format = 'bookdown::word_document2', encoding = 'UTF-8')
+tictoc::toc()
 
 # end ---------------------------------------------------------------------

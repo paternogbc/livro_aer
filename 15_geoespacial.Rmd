@@ -137,6 +137,12 @@ p_3 <- spplot(small_ras_val,
 grid.arrange(p_1, p_2, p_3, ncol = 3)
 ```
 
+Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos)).
+
+```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de: Olaya [-@olaya2020]."}
+knitr::include_graphics("img/cap15_fig02.png")
+```
+
 ### raster: principal pacote no R para dados raster
 
 Atualmente, o principal pacote para trabalhar com dados raster é o [*raster*](https://rspatial.org/raster/index.html), apesar de existir outros dois: [*terra*](https://rspatial.org/terra/index.html) e [*stars*](https://r-spatial.github.io/stars/), com algumas mudanças na sintaxe que não abordaremos neste livro.
@@ -3327,7 +3333,7 @@ mapa_pa_pred_corte <- tm_shape(modelo_pa_pred_corte) +
               legend.position = c("left", "top"))
 
 ## União dos mapas
-#tmap_arrange(mapa_pa_pred_cont, mapa_pa_pred_corte)
+# tmap_arrange(mapa_pa_pred_cont, mapa_pa_pred_corte)
 ```
 
 ::: {.alert .alert-info}
@@ -3412,7 +3418,7 @@ mapa_pred_riq_nb <- tm_shape(modelo_riq_nb_pred) +
               legend.position = c("left", "top"))
 
 ## União dos mapas
-#tmap_arrange(mapa_pred_riq_pois, mapa_pred_riq_nb)
+# tmap_arrange(mapa_pred_riq_pois, mapa_pred_riq_nb)
 ```
 
 ::: {.alert .alert-info}
