@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 13 Diversidade Filogenética | Análises Ecológicas no R</title>
+<meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine">
+<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library(V.PhyloMaker) library(vegan) library(ggplot2) library(GGally)...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 13 Diversidade Filogenética | Análises Ecológicas no R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://analises-ecologicas.netlify.app/cap13.html">
+<meta property="og:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
+<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library(V.PhyloMaker) library(vegan) library(ggplot2) library(GGally)...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 13 Diversidade Filogenética | Análises Ecológicas no R">
+<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library(V.PhyloMaker) library(vegan) library(ggplot2) library(GGally)...">
+<meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Análises Ecológicas no R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Sumário"><h2>Sumário</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bem-vindos</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="revisores-e-colaboradores.html">Revisores e colaboradores</a></li>
+<li><a class="" href="cap1.html"><span class="header-section-number">1</span> Introdução</a></li>
+<li><a class="" href="cap2.html"><span class="header-section-number">2</span> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a></li>
+<li><a class="" href="cap3.html"><span class="header-section-number">3</span> Pré-requisitos</a></li>
+<li><a class="" href="cap4.html"><span class="header-section-number">4</span> Introdução ao R</a></li>
+<li><a class="" href="cap5.html"><span class="header-section-number">5</span> Tidyverse</a></li>
+<li><a class="" href="cap6.html"><span class="header-section-number">6</span> Visualização de dados</a></li>
+<li><a class="" href="cap7.html"><span class="header-section-number">7</span> Modelos lineares</a></li>
+<li><a class="" href="cap8.html"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></li>
+<li><a class="" href="cap9.html"><span class="header-section-number">9</span> Análises Multidimensionais</a></li>
+<li><a class="" href="cap10.html"><span class="header-section-number">10</span> Rarefação</a></li>
+<li><a class="" href="cap11.html"><span class="header-section-number">11</span> Estimadores de riqueza</a></li>
+<li><a class="" href="cap12.html"><span class="header-section-number">12</span> Diversidade Taxonômica</a></li>
+<li><a class="active" href="cap13.html"><span class="header-section-number">13</span> Diversidade Filogenética</a></li>
+<li><a class="" href="cap14.html"><span class="header-section-number">14</span> Diversidade Funcional</a></li>
+<li><a class="" href="cap15.html"><span class="header-section-number">15</span> Dados geoespaciais no R</a></li>
+<li><a class="" href="gloss%C3%A1rio.html">Glossário</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap13" class="section level1" number="13">
+<h1>
+<span class="header-section-number">Capítulo 13</span> Diversidade Filogenética<a class="anchor" aria-label="anchor" href="#cap13"><i class="fas fa-link"></i></a>
+</h1>
+<div id="pré-requisitos-do-capítulo-9" class="section level2 unnumbered">
+<h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-9"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pacotes e dados que serão utilizados nesse capítulo.</p>
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Pacotes</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">V.PhyloMaker</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">picante</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/liamrevell/phytools">phytools</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/">ape</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mwpennell/geiger-v2">geiger</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/darunabas/phyloregion">phyloregion</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pez</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape">reshape2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">betapart</span><span class="op">)</span>
+
+<span class="co">## Dados</span>
+<span class="va">minha_arvore</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/ecodados/man/filogenia_aves.html">filogenia_aves</a></span>
+<span class="va">especies_plantas</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/ecodados/man/sp_list.html">sp_list</a></span>
+<span class="va">comunidade</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/ecodados/man/comm.html">comm</a></span>
+<span class="va">composicao_especies</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/ecodados/man/composicao_aves_filogenetica.html">composicao_aves_filogenetica</a></span>
+<span class="va">filogenia_aves</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/ecodados/man/filogenia_aves.html">filogenia_aves</a></span>
+<span class="va">precipitacao</span> <span class="op">&lt;-</span> <span class="va">precipitacao_filogenetica</span></code></pre></div>
+</div>
+<div id="aspectos-teóricos-4" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> Aspectos teóricos<a class="anchor" aria-label="anchor" href="#aspectos-te%C3%B3ricos-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>A diversidade filogenética captura a ancestralidade compartilhada entre as espécies em termos de quantidade da história evolutiva e o grau de parentesco entre as espécies. Pesquisadores têm utilizado diferentes métricas de diversidade filogenética em duas linhas de investigações principais: i) incorporar a história evolutiva das espécies na seleção das áreas prioritárias para conservação visando minimizar a perda da diversidade evolutiva <span class="citation">(<a href="refer%C3%AAncias.html#ref-vane-wright1991" role="doc-biblioref">Vane-Wright, Humphries, and Williams 1991</a>; <a href="refer%C3%AAncias.html#ref-faith1992" role="doc-biblioref">Faith 1992</a>; <a href="refer%C3%AAncias.html#ref-v%C3%A9ron2019" role="doc-biblioref">Véron et al. 2019</a>)</span>, e ii) produzir explicações sobre os processos atuando na montagem das comunidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2002" role="doc-biblioref">Webb et al. 2002</a>; <a href="refer%C3%AAncias.html#ref-helmus2007" role="doc-biblioref">Helmus et al. 2007</a>)</span>. A quantidade de artigos abordando ecologia, macroecologia e conservação com diversidade filogenética cresceram exponencialmente nas últimas décadas <span class="citation">(<a href="refer%C3%AAncias.html#ref-v%C3%A9ron2019" role="doc-biblioref">Véron et al. 2019</a>)</span>. Seguindo esta tendência, o número de métricas de diversidade filogenética propostas não param de aumentar. Tucker et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-tucker2016" role="doc-biblioref">2017</a>)</span> revisaram 70 métricas de diversidade filogenética e classificaram estas métricas em três dimensões: i) <strong>riqueza</strong> - representa a soma da diferença filogenética acumulada entre táxons, ii) <strong>divergência</strong> - representa o padrão de diferença filogenética entre táxons de uma assembleia, e iii) <strong>regularidade</strong> - representa o grau de variação das diferenças filogenéticas entre táxons em uma assembleia. Outros autores utilizaram diferentes classificações <span class="citation">(<a href="refer%C3%AAncias.html#ref-pavoine2010" role="doc-biblioref">Pavoine and Bonsall 2011</a>; <a href="refer%C3%AAncias.html#ref-vellend2011" role="doc-biblioref">Vellend et al. 2011</a>; <a href="refer%C3%AAncias.html#ref-garamszegi2014" role="doc-biblioref">Garamszegi 2014</a>)</span>. Neste capítulo, iremos seguir a classificação de Tucker et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-tucker2016" role="doc-biblioref">2017</a>)</span> e mostrar algumas das principais métricas dentro de cada uma dessas dimensões. Alguns autores recomendam que os pesquisadores não foquem em apenas uma dimensão, mas comparem métricas de diferentes dimensões <span class="citation">(<a href="refer%C3%AAncias.html#ref-tucker2016" role="doc-biblioref">Tucker et al. 2017</a>)</span>.</p>
+</div>
+<div id="manipulação-de-filogenias" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Manipulação de filogenias<a class="anchor" aria-label="anchor" href="#manipula%C3%A7%C3%A3o-de-filogenias"><i class="fas fa-link"></i></a>
+</h2>
+<p>Nesta seção, iremos descrever os códigos em R para carregar, plotar, acessar os dados, e excluir e adicionar espécies em filogenias. Estes são códigos introdutórios e necessários para realizarmos as análises de diversidade filogenética. Não iremos descrever os comandos necessários para construir uma filogenia. Estamos assumindo que já existe uma filogenia disponível para os organismos de interesse.</p>
+<p>Mas antes, vamos entender as principais terminologias de uma filogenia e analisá-las graficamente (Figura <a href="cap13.html#fig:fig-filo">13.1</a>).</p>
+<div class="alert alert-info">
+<ul>
+<li><p><strong>Árvore filogenética</strong>: são hipóteses que representam o relação de parentesco entre as espécies (pode ser também indivíduos, genes, etc.) com informações sobre quais espécies compartilham um ancestral comum e a distância (tempo, genética, ou diferenças nos caracteres) que as separam</p></li>
+<li><p><strong>Nó</strong>: o ponto onde uma linhagem dá origem a duas ou mais linhagens descendentes</p></li>
+<li><p><strong>Politomia</strong>: três ou mais linhagens descendendo de um único nó</p></li>
+<li><p><strong>Ramo</strong>: uma linha orientada ao longo de um eixo terminais-raiz que conecta os nós na filogenia</p></li>
+<li><p><strong>Terminal (do inglês <em>tip</em>)</strong>: o final do ramo representando uma espécie atual ou extinta (pode também representar gêneros, indivíduos, genes, etc.)</p></li>
+<li><p><strong>Raiz</strong>: representa o ancestral comum de todas as espécies na filogenia</p></li>
+<li><p><strong>Clado</strong>: um grupo de espécies aparentadas descendendo de um único nó na filogenia</p></li>
+<li><p><strong>Ultramétrica</strong>: a distância de todos os terminais até a raiz são idênticas. Característica requerida pela maioria dos índices de diversidade filogenética</p></li>
+</ul>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo"></span>
+<img src="img/cap13_fig1.jpg" alt="Ilustrações de diferentes árvores filogenéticas. A) Árvore enraizada e ultramétrica indicando a raiz da árvore, nós, ramos, comprimento do ramo, politomias e terminais. B) Árvore não enraizada que mostra as relações entre as espécies, mas não define a história evolutiva. C) Árvore não ultramétrica onde as espécies apresentam diferentes distâncias até a raiz." width="100%" height="100%"><p class="caption">
+Figura 13.1: Ilustrações de diferentes árvores filogenéticas. A) Árvore enraizada e ultramétrica indicando a raiz da árvore, nós, ramos, comprimento do ramo, politomias e terminais. B) Árvore não enraizada que mostra as relações entre as espécies, mas não define a história evolutiva. C) Árvore não ultramétrica onde as espécies apresentam diferentes distâncias até a raiz.
+</p>
+</div>
+<p>Agora vamos plotar a filogenia para visualizar as relações entre as 37 espécies de aves endêmicas da Mata Atlântica. Essa filogenia foi extraída de Jetz et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-jetz2012" role="doc-biblioref">2012</a>)</span>. Os dados estão disponíveis no pacote <em>ecodados</em> (Figura <a href="cap13.html#fig:fig-filo-aves">13.2</a>).</p>
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Gráfico</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ape/man/plot.phylo.html">plot.phylo</a></span> <span class="op">(</span><span class="va">minha_arvore</span>, type <span class="op">=</span> <span class="st">"phylogram"</span>, show.tip.label <span class="op">=</span> <span class="cn">TRUE</span>, 
+            show.node.label <span class="op">=</span> <span class="cn">TRUE</span>, edge.color <span class="op">=</span> <span class="st">"black"</span>, edge.width <span class="op">=</span> <span class="fl">1.5</span>, 
+            tip.color <span class="op">=</span> <span class="st">"black"</span>, cex <span class="op">=</span> <span class="fl">0.45</span>, label.offset <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-aves"></span>
+<img src="livro_files/figure-html/fig-filo-aves-1.png" alt="Filogenia de 37 espécies de aves endêmicas da Mata Atlântica." width="100%" height="100%"><p class="caption">
+Figura 13.2: Filogenia de 37 espécies de aves endêmicas da Mata Atlântica.
+</p>
+</div>
+<p>Podemos alterar o formato de apresentação da filogenia usando o argumento <code>type</code> e a cor dos ramos usando o argumento <code>edge.color</code> (Figura <a href="cap13.html#fig:fig-filo-aves-col">13.3</a>).</p>
+<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Gráfico</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ape/man/plot.phylo.html">plot.phylo</a></span> <span class="op">(</span><span class="va">minha_arvore</span>, type <span class="op">=</span> <span class="st">"fan"</span>, show.tip.label <span class="op">=</span> <span class="cn">TRUE</span>, 
+            show.node.label <span class="op">=</span> <span class="cn">TRUE</span>, edge.color <span class="op">=</span> <span class="st">"blue"</span>, edge.width <span class="op">=</span> <span class="fl">1.5</span>, 
+            tip.color <span class="op">=</span> <span class="st">"black"</span>, cex <span class="op">=</span> <span class="fl">0.45</span>, label.offset <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-aves-col"></span>
+<img src="livro_files/figure-html/fig-filo-aves-col-1.png" alt="Filogenia de 37 espécies de aves endêmicas da Mata Atlântica, com alterações de parametros de visualização." width="100%" height="100%"><p class="caption">
+Figura 13.3: Filogenia de 37 espécies de aves endêmicas da Mata Atlântica, com alterações de parametros de visualização.
+</p>
+</div>
+<p>Percebam que existem vários argumentos para modificar a largura e cor dos ramos, tamanho da fonte, distância entre a filogenia e o nomes da espécies e muito mais. Uma sugestão é visitar o blog do professor Liam Revell (<a href="http://blog.phytools.org/" class="uri">http://blog.phytools.org/</a>) que é o criador e mantenedor do pacote <code>phytools</code> no R.</p>
+<p><strong>Acessar informações da filogenia</strong></p>
+<p>Um das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Nomes</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">minha_arvore</span><span class="op">)</span>
+<span class="co">#&gt; [1] "edge"        "edge.length" "Nnode"       "tip.label"</span></code></pre></div>
+<p>Temos acesso a quatro componentes da filogenia: i) ramo (<code>edge</code>), ii) comprimento do ramo (<code>edge.length</code>), iii) número de nós (<code>Nnode</code>), e iv) nome das espécies (<code>tip.label</code>). Podemos usar o operador <code>$</code> para acessar estes componentes. Veja abaixo como acessar o nome das 37 espécies de aves na filogenia ou o comprimento de cada um dos ramos da filogenia.</p>
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Nome das espécies</span>
+<span class="va">minha_arvore</span><span class="op">$</span><span class="va">tip.label</span>
+<span class="co">#&gt;  [1] "Cranioleuca_pallida"          "Synallaxis_ruficapilla"       "Phacellodomus_ferrugineigula"</span>
+<span class="co">#&gt;  [4] "Cinclodes_pabsti"             "Conopophaga_melanops"         "Herpsilochmus_pileatus"      </span>
+<span class="co">#&gt;  [7] "Pyriglena_leucoptera"         "Formicivora_serrana"          "Chiroxiphia_caudata"         </span>
+<span class="co">#&gt; [10] "Neopelma_aurifrons"           "Carpornis_cucullata"          "Mionectes_rufiventris"       </span>
+<span class="co">#&gt; [13] "Phylloscartes_kronei"         "Dacnis_nigripes"              "Ramphocelus_bresilius"       </span>
+<span class="co">#&gt; [16] "Sporophila_frontalis"         "Tangara_seledon"              "Euphonia_pectoralis"         </span>
+<span class="co">#&gt; [19] "Cyanocorax_caeruleus"         "Brotogeris_tirica"            "Pionopsitta_pileata"         </span>
+<span class="co">#&gt; [22] "Pyrrhura_frontalis"           "Ramphastos_dicolorus"         "Pteroglossus_bailloni"       </span>
+<span class="co">#&gt; [25] "Veniliornis_maculifrons"      "Melanerpes_flavifrons"        "Malacoptila_striata"         </span>
+<span class="co">#&gt; [28] "Strix_hylophila"              "Pulsatrix_koeniswaldiana"     "Megascops_sanctaecatarinae"  </span>
+<span class="co">#&gt; [31] "Leucopternis_polionotus"      "Buteogallus_lacernulatus"     "Thalurania_glaucopis"        </span>
+<span class="co">#&gt; [34] "Stephanoxis_lalandi"          "Aramides_saracura"            "Ortalis_guttata"             </span>
+<span class="co">#&gt; [37] "Tinamus_solitarius"</span>
+
+<span class="co">## Comprimento dos ramos</span>
+<span class="va">minha_arvore</span><span class="op">$</span><span class="va">edge.length</span>
+<span class="co">#&gt;  [1]   8.3802647  18.8669712   1.7333865   3.6642170  10.6732942  15.2239228  11.0917270   1.7755983  28.3607791</span>
+<span class="co">#&gt; [10]   2.9678911   1.7546545   8.0910030   8.0910030   9.8456576  12.8135486  41.1743278  25.4606915   0.5546030</span>
+<span class="co">#&gt; [19]  16.9346316  16.9346316  17.4892346  18.4363079   4.6581580  13.5498048  17.3960309  17.3960309  30.9471871</span>
+<span class="co">#&gt; [28]  12.4567724  23.1472214  23.1472214  17.4065182  24.1723764  12.4712971   2.4600303  12.6082491  12.5529673</span>
+<span class="co">#&gt; [37]  12.6146793  15.2153841  27.6866812  51.8590576  50.4721698   1.0975337  28.3691666  28.3691666  29.4667004</span>
+<span class="co">#&gt; [46]   0.4805624   1.9967144   2.7687118  17.0272986  23.4955884  20.5338341  17.3003772  17.3003772  22.2636579</span>
+<span class="co">#&gt; [55]  15.5705534  15.5705534  61.3297997  50.6621138   5.3479249  22.3470597  22.3470597  27.6949846  66.5513507</span>
+<span class="co">#&gt; [64]  14.5744595  14.5744595  67.7448719  15.3776527  15.3776527  85.3364736 104.2034448 112.5837095</span></code></pre></div>
+<p><strong>Remover espécies da filogenia</strong></p>
+<p>Nas análises de diversidade filogenética, as espécies que estarão presentes na filogenia normalmente são aquelas que foram amostradas no seu estudo. Contudo, muitas vezes utilizamos filogenias contendo espécies que não estão presentes no nosso estudo. Neste caso, precisamos excluir essas espécies da filogenia. A função <code><a href="https://rdrr.io/pkg/ape/man/drop.tip.html">drop.tip()</a></code> faz essa tarefa.</p>
+<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Remover espécies da filogenia</span>
+<span class="co"># Vamos criar um novo nome para o objeto e excluir as espécies Leucopternis polionotus e Aramides saracura da filogenia</span>
+<span class="va">filogenia_cortada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/drop.tip.html">drop.tip</a></span><span class="op">(</span><span class="va">minha_arvore</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Leucopternis_polionotus"</span>, <span class="st">"Aramides_saracura"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">filogenia_cortada</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Phylogenetic tree with 35 tips and 33 internal nodes.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Tip labels:</span>
+<span class="co">#&gt;   Cranioleuca_pallida, Synallaxis_ruficapilla, Phacellodomus_ferrugineigula, Cinclodes_pabsti, Conopophaga_melanops, Herpsilochmus_pileatus, ...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Rooted; includes branch lengths.</span></code></pre></div>
+<p>Vejam que agora a filogenia tem 35 espécies de aves. As duas espécies que selecionamos foram excluídas da filogenia.</p>
+<p><strong>Adicionar espécies na filogenia</strong></p>
+<p>Outra situação bem comum é quando precisamos inserir espécies que foram amostradas no nosso estudo, mas não estão presente na filogenia. Para isso, vamos usar a função <code><a href="https://rdrr.io/pkg/phytools/man/add.species.to.genus.html">add.species.to.genus()</a></code>. A função <code><a href="https://rdrr.io/pkg/phytools/man/force.ultrametric.html">force.ultrametric()</a></code> é usada para que a filogenia continue sendo ultramétrica (sem essa função a árvore perde os comprimentos dos ramos)</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+O comprimento do ramo que a espécie irá receber dependerá de onde você indicar a inserção da espécie.</p>
+<p>As opções são:
+- <strong>root</strong>: insere a espécie no ancestral comum mais recente (MRCA) de todas as espécies do gênero (<em>default</em>)
+- <strong>random</strong>: insere a espécie aleatoriamente dentro do clado do MRCA contendo todos as espécies do gênero</p>
+</div>
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Adicionar espécies à filogenia</span>
+<span class="co"># Vamos inserir as espécies Megascops_sp1, Carponis_sp, Strix_sp1, Strix_sp2 e</span>
+<span class="co"># Strix_sp3 na filogenia</span>
+<span class="va">Megascops</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Megascops_sp1"</span><span class="op">)</span>
+<span class="va">Carpornis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Carpornis_sp1"</span><span class="op">)</span>
+<span class="va">Strix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Strix_sp1"</span>, <span class="st">"Strix_sp2"</span>, <span class="st">"Strix_sp3"</span><span class="op">)</span>
+
+<span class="co"># Inserindo espécies como politomias</span>
+<span class="va">filogenia_nova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phytools/man/add.species.to.genus.html">add.species.to.genus</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/force.ultrametric.html">force.ultrametric</a></span><span class="op">(</span><span class="va">minha_arvore</span>, message <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, <span class="va">Megascops</span><span class="op">)</span>
+<span class="va">filogenia_nova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phytools/man/add.species.to.genus.html">add.species.to.genus</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/force.ultrametric.html">force.ultrametric</a></span><span class="op">(</span><span class="va">filogenia_nova</span>, message <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, <span class="va">Carpornis</span><span class="op">)</span></code></pre></div>
+<p>Agora vamos inserir várias espécies dentro do mesmo gênero.</p>
+<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Adicionar várias espécies à filogenia</span>
+<span class="co"># Para inserir mais de uma espécie dentro do gênero, vamos utilizar um loop.  </span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Strix</span><span class="op">)</span><span class="op">)</span> 
+    <span class="va">filogenia_nova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phytools/man/add.species.to.genus.html">add.species.to.genus</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/force.ultrametric.html">force.ultrametric</a></span><span class="op">(</span><span class="va">filogenia_nova</span>, message <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
+                                           <span class="va">Strix</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, where <span class="op">=</span> <span class="st">"root"</span><span class="op">)</span></code></pre></div>
+<p>Vamos plotar essa nova filogenia (Figura <a href="cap13.html#fig:fig-filo-aves-add">13.4</a>).</p>
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Gráfico</span>
+<span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">filogenia_nova</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, no.margin <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-aves-add"></span>
+<img src="livro_files/figure-html/fig-filo-aves-add-1.png" alt="Filogenia de espécies de aves endêmicas da Mata Atlântica, com adição de espécies." width="100%" height="100%"><p class="caption">
+Figura 13.4: Filogenia de espécies de aves endêmicas da Mata Atlântica, com adição de espécies.
+</p>
+</div>
+<p>Vamos fazer outro exemplo usando a função <code><a href="https://rdrr.io/pkg/V.PhyloMaker/man/phylo.maker.html">phylo.maker()</a></code> do pacote <code>V.PhyloMaker</code> que adiciona as espécies nos gêneros ou os gêneros nas famílias usando uma filogênia <em>backbone</em>.</p>
+<p>Essa função permite a adição dos gêneros ou espécies considerando três cenários diferentes:</p>
+<ul>
+<li>
+<strong>Cenário 1</strong>: adiciona gêneros ou espécies como politomias basais dentro das famílias ou gêneros da filogenia respectivamente</li>
+<li>
+<strong>Cenário 2</strong>: adiciona gêneros e espécies aleatoriamente nas famílias ou gêneros da filogenia respectivamente</li>
+<li>
+<strong>Cenário 3</strong>: adiciona gêneros e espécies nas famílias ou gêneros da filogenia respectivamente usando as abordagens implementadas no <em>Phylomatic</em> e <em>BLADJ</em>
+</li>
+</ul>
+<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## phylo.maker</span>
+<span class="co"># A função phylo.maker usa uma filogenia default de plantas (i.e. GBOTB.extended).</span>
+<span class="co"># Caso você queira utilizar outra filogenia, é só alterar o argumento tree</span>
+<span class="va">novas_filogenias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/V.PhyloMaker/man/phylo.maker.html">phylo.maker</a></span><span class="op">(</span><span class="va">especies_plantas</span>,
+                                tree <span class="op">=</span> <span class="va">GBOTB.extended</span>,
+                                scenarios <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S1"</span>,<span class="st">"S2"</span>,<span class="st">"S3"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "Note: 2 taxa fail to be binded to the tree,"</span>
+<span class="co">#&gt; [1] "Genus7_sp1" "Genus8_sp1"</span></code></pre></div>
+<p>Vamos essa filogenia criada pelo pacote <code>V.PhyloMaker</code> (Figura <a href="cap13.html#fig:fig-filo-phylomaker">13.5</a>).</p>
+<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Gráfico</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ape/man/plot.phylo.html">plot.phylo</a></span><span class="op">(</span><span class="va">novas_filogenias</span><span class="op">$</span><span class="va">scenario.1</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, main <span class="op">=</span> <span class="st">"Cenário 1"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ape/man/plot.phylo.html">plot.phylo</a></span><span class="op">(</span><span class="va">novas_filogenias</span><span class="op">$</span><span class="va">scenario.3</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, main <span class="op">=</span> <span class="st">"Cenário 3"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; null device </span>
+<span class="co">#&gt;           1</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-phylomaker"></span>
+<img src="livro_files/figure-html/fig-filo-phylomaker-1.png" alt="Filogenia de espécies de plantas criada pelo pacote `V.PhyloMaker`." width="100%" height="100%"><p class="caption">
+Figura 13.5: Filogenia de espécies de plantas criada pelo pacote <code>V.PhyloMaker</code>.
+</p>
+</div>
+</div>
+<div id="métricas-de-diversidade-alfa-filogenética" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> Métricas de diversidade alfa filogenética<a class="anchor" aria-label="anchor" href="#m%C3%A9tricas-de-diversidade-alfa-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h2>
+<p>Métricas de diversidade alfa utilizam os dados de incidência (presença e ausência) ou abundância das espécies para determinar um valor de diversidade para cada comunidade ou sítio de interesse.</p>
+<p><strong>Exemplo prático 1</strong></p>
+<p><strong>Explicação dos dados</strong></p>
+<p>Avaliaremos a diversidade filogenética de 10 comunidades de aves amostradas ao longo de um gradiente de precipitação. Utilizaremos este conjunto de dados para todos os exemplos deste capítulo.</p>
+<p><strong>Pergunta</strong></p>
+<ul>
+<li>A variação na distribuição espacial dos valores de diversidade filogenética das comunidades está associada com o gradiente de precipitação?</li>
+</ul>
+<p><strong>Predições</strong></p>
+<ul>
+<li>Os valores de diversidade filogenética serão maiores nas comunidades localizadas em regiões com altas precipitações do que em regiões mais secas</li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>
+<p>Variáveis resposta e preditoras</p>
+<ul>
+<li>Data frame com as comunidades (unidade amostral) nas linhas e as espécies de aves nas colunas (variável resposta)</li>
+<li>Data frame com as comunidades (unidade amostral) nas linhas e a variável precipitação anual na coluna (variável preditora)</li>
+<li>Arquivo com a filogenia das 37 espécies de aves (variável resposta)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Checklist</strong></p>
+<ul>
+<li><p>Verificar se os data frames de composição de espécies e variáveis ambientais estão com as unidades amostrais nas linhas e variáveis preditoras nas colunas</p></li>
+<li><p>Verificar se as comunidades nos data frames de composição de espécies e variáveis ambientais estão distribuídos na mesma sequência/ordem nos dois arquivos.</p></li>
+<li><p>Verificar se o nome das espécies de aves no data frame de composição de espécies é idêntico ao nome das espécies na filogenia.</p></li>
+</ul>
+<div id="riqueza-da-diversidade-alfa-filogenética" class="section level3" number="13.3.1">
+<h3>
+<span class="header-section-number">13.3.1</span> Riqueza da diversidade alfa filogenética<a class="anchor" aria-label="anchor" href="#riqueza-da-diversidade-alfa-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p>As métricas de riqueza somam a quantidade da diferença filogenética presente em uma comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-tucker2016" role="doc-biblioref">Tucker et al. 2017</a>)</span>.</p>
+<p><strong>Phylogenetic diversity (PD)</strong></p>
+<p>Esta métrica é definida pela soma do comprimento dos ramos conectando todas as espécies na comunidade. É a métrica mais conhecida e usada nos estudos de conservação e comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-faith1992" role="doc-biblioref">Faith 1992</a>)</span>.</p>
+<p>Vamos conferir se os nomes das espécies de aves no data frame de composição são os mesmos da filogenia. O resultado <code>OK</code> indica que os nomes estão corretos. Caso contrário, você deve verificar e arrumar.</p>
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Conferir os nomes das espécies</span>
+<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/name.check.html">name.check</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "OK"</span>
+
+<span class="co">## Colocar os nomes das espécies do data frame na mesma ordem que aparecem na filogenia</span>
+<span class="va">composicao_especies_P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/data.checking.html">match.phylo.comm</a></span><span class="op">(</span>phy <span class="op">=</span> <span class="va">filogenia_aves</span>, comm <span class="op">=</span> <span class="va">composicao_especies</span><span class="op">)</span><span class="op">$</span><span class="va">comm</span></code></pre></div>
+<p>Os nomes das espécies que estão na planilha são iguais e estão na mesma ordem dos nomes das espécies que estão na filogenia. Agora podemos continuar as análises.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo de PD para as comunidades de aves.</p>
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Phylogenetic diversity (PD)</span>
+<span class="co"># Calculando a métrica de diversidade filogenética proposta por Faith (1992).</span>
+<span class="va">resultados_PD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/pd.html">pd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="va">filogenia_aves</span><span class="op">)</span>
+
+<span class="co"># Mostra o valor de PD e riqueza de espécies para cada comunidade.</span>
+<span class="va">resultados_PD</span>
+<span class="co">#&gt;               PD SR</span>
+<span class="co">#&gt; Com_1  1259.3151 27</span>
+<span class="co">#&gt; Com_2  1293.1521 26</span>
+<span class="co">#&gt; Com_3  1222.3102 25</span>
+<span class="co">#&gt; Com_4  1254.5410 25</span>
+<span class="co">#&gt; Com_5  1021.9670 22</span>
+<span class="co">#&gt; Com_6   856.7810 18</span>
+<span class="co">#&gt; Com_7   930.6452 15</span>
+<span class="co">#&gt; Com_8   678.9394 12</span>
+<span class="co">#&gt; Com_9   673.6288 13</span>
+<span class="co">#&gt; Com_10  599.6924  9</span></code></pre></div>
+<p>A comunidade 2 abriga a maior diversidade filogenética com a composicação de espécies contemplando 1293,15 milhões de anos (i.e. soma do comprimento dos ramos ligando todas as espécies da comunidade). Por outro lado, a comunidade 10 abriga a menor diversidade filogenética contemplando 599,69 milhões de anos.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+Este índice é correlacionado com a riqueza de espécies. Discutiremos essa questão na seção de modelos nulos.</p>
+</div>
+<p><strong>Phylogenetic Species Richness (PSR)</strong></p>
+<p>Esta métrica é calculada multiplicando a riqueza de espécies registrada na comunidade pela <em>Phylogenetic Species Variability</em> (PSV) da comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-helmus2007" role="doc-biblioref">Helmus et al. 2007</a>)</span>. PSR é diretamente comparável ao número de espécies na comunidade, mas inclui o parentesco filogenético entre as espécies.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do PSR utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Phylogenetic Species Richness (PSR)</span>
+<span class="co"># Análise com dados de composição das espécies nas comunidades.</span>
+<span class="va">resultados_PSR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/psd.html">psr</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>,<span class="va">filogenia_aves</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de PSR para cada comunidade.</span>
+<span class="va">resultados_PSR</span> 
+<span class="co">#&gt;              PSR SR       vars</span>
+<span class="co">#&gt; Com_1  18.084236 27 0.04537904</span>
+<span class="co">#&gt; Com_2  18.167183 26 0.04881734</span>
+<span class="co">#&gt; Com_3  16.230938 25 0.05205832</span>
+<span class="co">#&gt; Com_4  17.153972 25 0.05205832</span>
+<span class="co">#&gt; Com_5  13.981597 22 0.06060866</span>
+<span class="co">#&gt; Com_6  11.287030 18 0.06933707</span>
+<span class="co">#&gt; Com_7  10.279983 15 0.07398666</span>
+<span class="co">#&gt; Com_8   7.538134 12 0.07721118</span>
+<span class="co">#&gt; Com_9   8.060933 13 0.07627517</span>
+<span class="co">#&gt; Com_10  5.720063  9 0.07948474</span></code></pre></div>
+<p>A comunidade 2 abriga o maior valor de PSR enquanto a comunidade 10 abriga o menor valor. Vejam que PSR é fortemente correlacionado com número de espécies nas comunidades (r = 0.99, p &lt;0.0001). Contudo, existe uma variabilidade residual no PSR em relação ao número de espécies que afeta o ranqueamento das comunidades quando utilizando PSR ou número de espécies. Consequentemente, a escolha da métrica pode gerar diferentes delineamentos de áreas prioritárias para conservação <span class="citation">(<a href="refer%C3%AAncias.html#ref-helmus2007" role="doc-biblioref">Helmus et al. 2007</a>)</span>.</p>
+<p><strong>Phylogenetic Endemism (PE)</strong></p>
+<p>Esta métrica calcula a fração dos ramos restritas a regiões específicas. PE identifica áreas ou comunidades que abrigam componentes restritos da diversidade filogenética. PE é uma métrica proposta para auxiliar estudos de conservação estabelecendo critérios para priorizar regiões a serem conservadas com base na importância evolutiva (i.e. partes da filogênia com distribuição espacial limitada) das espécies que ocorrem nestes locais <span class="citation">(<a href="refer%C3%AAncias.html#ref-rosauer2009" role="doc-biblioref">Rosauer et al. 2009</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do PE utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Phylogenetic Endemism (PE)</span>
+<span class="co"># Transformando data.frame em matriz.</span>
+<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
+
+<span class="co"># Análise.</span>
+<span class="va">resultados_PE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloregion/man/phylo_endemism.html">phylo_endemism</a></span><span class="op">(</span><span class="va">dados_matriz</span>, <span class="va">filogenia_aves</span>, 
+                                weighted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de PE para cada comunidade.</span>
+<span class="va">resultados_PE</span> 
+<span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span>
+<span class="co">#&gt; 232.09145 272.60106 210.22647 218.89037 146.99281 135.06423 148.65234  79.22402  77.95458  68.50266</span></code></pre></div>
+<p>O índice PE considera as 10 comunidades como o range espacial máximo. Se todas as espécies ocorressem nas 10 comunidades, o valor de PE seria 1, indicando baixo endemismo filogenético. A comunidade 2 abriga um conjunto de espécies cujo os ramos com distribuição espacial restrita contemplam 272,6 milhões de anos. Por outro lado, a comunidade 10 abriga um conjunto de espécies cujo os ramos com distribuição espacial restrita contemplam 68,5 milhões de anos. Assim, as comunidades 1, 2 e 4 são as áreas que abrigam os maiores endemismo filogenéticos.</p>
+<p><strong>Species Evolutionary Distinctiveness (ED)</strong></p>
+<p>Esta métrica calcula qual é a fração da árvore filogenética que é atribuída para uma espécie. ED reflete quão evolutivamente isolada uma espécie é comparada com as outras espécies na filogenia <span class="citation">(<a href="refer%C3%AAncias.html#ref-redding2006" role="doc-biblioref">Redding and Mooers 2006</a>)</span>. ED é uma métrica proposta para auxiliar estudos de conservação estabelecendo critérios para priorizar as espécies a serem conservadas com base na sua importância evolutiva (exclusividade do comprimento do ramo) que não é comportilhada com outras espécies. Portanto, apenas as informações da filogenia são utilizadas para o cálculo de ED.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do ED utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Species Evolutionary Distinctiveness (ED)</span>
+<span class="co"># Análise.</span>
+<span class="va">resultados_ED</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/evol.distinct.html">evol.distinct</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de ED para cada espécie.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">resultados_ED</span><span class="op">)</span>
+<span class="co">#&gt;                        Species        w</span>
+<span class="co">#&gt; 1          Cranioleuca_pallida 14.07447</span>
+<span class="co">#&gt; 2       Synallaxis_ruficapilla 14.07447</span>
+<span class="co">#&gt; 3 Phacellodomus_ferrugineigula 20.05793</span>
+<span class="co">#&gt; 4             Cinclodes_pabsti 30.27020</span>
+<span class="co">#&gt; 5         Conopophaga_melanops 47.72685</span>
+<span class="co">#&gt; 6       Herpsilochmus_pileatus 26.40947</span></code></pre></div>
+<p>Com base na filogenia estudada, <em>Tinamus solitarius</em> (112,58 milhões de anos), <em>Ortalis guttata</em> (108,39 m.a.) e <em>Aramides saracura</em> (96,86 m.a.) são as espécies com maior distinção evolutiva devido a elevada fração dos ramos não compartilhado com as outras espécies.</p>
+</div>
+<div id="divergência-da-diversidade-alfa-filogenética" class="section level3" number="13.3.2">
+<h3>
+<span class="header-section-number">13.3.2</span> Divergência da diversidade alfa filogenética<a class="anchor" aria-label="anchor" href="#diverg%C3%AAncia-da-diversidade-alfa-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p>As métricas de divergência utilizam a média da distribuição das unidades extraídas da árvore filogenética <span class="citation">(<a href="refer%C3%AAncias.html#ref-tucker2016" role="doc-biblioref">Tucker et al. 2017</a>)</span>.</p>
+<p><strong>Mean Pairwise Distance (MPD)</strong></p>
+<p>Esta métrica utiliza a matriz de distância filogenética para quantificar a distância média do parentesco entre pares de espécies em uma comunidade. Este índice pode ser calculado considerando dados de incidência ou considerando dados de abundância das espécies. Importante, o MPD é uma métrica que pesa a estrutura interna da filogenia (e.g., relações entre espécies de famílias diferentes) <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2002" role="doc-biblioref">Webb et al. 2002</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do MPD utilizando os dados das comunidades de aves.</p>
+<p>Vamos iniciar com dados de incidência (presença e ausência) das espécies nas comunidades. A função <code><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic()</a></code> gera uma matriz com as distâncias par a par entre as espécies. Essas distâncias são utilizadas para computar a distância média do parentesco das espécies dentro das comunidades.</p>
+<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Mean Pairwise Distance (MPD)</span>
+<span class="co"># Análise com dados de incidência das espécies nas comunidades.</span>
+<span class="va">resultados_MPD_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/mpd.html">mpd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                         abundance.weighted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de MPD para cada comunidade.</span>
+<span class="va">resultados_MPD_PA</span> 
+<span class="co">#&gt;  [1] 150.7914 157.3158 146.1622 154.5005 143.0727 141.1926 154.3145 141.4292 139.6198 143.0862</span></code></pre></div>
+<p>A comunidade 9 abriga a composição de espécies mais aparentada (i.e. menor diversidade filogenética) com distância média entre as espécies de 139,62 milhões de anos. Por outro lado, a comunidade 2 abriga a composição de espécies menos aparentada (i.e. maior diversidade filogenética) com distância média de 157,31 milhões anos.</p>
+<p>Vamos refazer a análise do MPD, mas desta vez, considerando a abundância das espécies de aves nas comunidades. Para isso, alteramos o argumento <code>abundance.weighted = TRUE</code>.</p>
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Mean Pairwise Distance (MPD)</span>
+<span class="co"># Análise com dados de abundância das espécies nas comunidades.</span>
+<span class="va">resultados_MPD_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/mpd.html">mpd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                         abundance.weighted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de MPD para cada comunidade.</span>
+<span class="va">resultados_MPD_AB</span> 
+<span class="co">#&gt;  [1] 135.0704 143.3156 129.1940 142.8127 131.4027 128.7733 134.0380 132.6389 133.4041 117.8787</span></code></pre></div>
+<p>Percebam que pesando o comprimento do ramo pela abundância das espécies altera-se os valores do índice de diversidade filogenética. Neste caso, a comunidade 10 passa a ser a comunidade que abriga a composição de espécies mais aparentada (i.e. menor diversidade filogenética) com distância média entre as espécies de 117,88 milhões de anos.</p>
+<p><strong>Mean Nearest Taxon Distance (MNTD)</strong></p>
+<p>Esta métrica utiliza a matriz de distância filogenética para quantificar a média dos valores mínimos de parentesco entre pares de espécies em uma comunidade. Ou seja, qual o valor médio da distância para o vizinho mais próximo. Este índice pode ser calculado considerando dados de incidência (presença e ausência) ou considerando dados de abundância das espécies. Diferente do MPD, o MNTD é uma métrica terminal que pesa as relações nas pontas da filogenia (e.g. espécies dentro do mesmo gênero) <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2002" role="doc-biblioref">Webb et al. 2002</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do MNTD utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Mean Nearest Taxon Distance (MNTD)</span>
+<span class="co"># Análise com dados de presença e ausência das espécies nas comunidades.</span>
+<span class="va">resultados_MNTD_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/mntd.html">mntd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                           abundance.weighted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de MPD para cada comunidade.</span>
+<span class="va">resultados_MNTD_PA</span> 
+<span class="co">#&gt;  [1]  63.89727  66.15828  72.96912  67.67170  64.93477  63.72337  93.54980  78.24876  62.34565 112.23127</span></code></pre></div>
+<p>A comunidade 9 abriga a composição de espécies com distância média do vizinho mais próximo de 62,34 milhões de anos. Esse resultado indica que as espécies terminais são mais aparentada (e.g. espécies do mesmo gênero) do que a composição de espécies da comunidade 10 onde a distância média do vizinho mais próximo é 112,23 milhões de anos (e.g. espécies de gêneros diferentes).</p>
+<p>Vamos refazer a análise do MNTD, mas desta vez, considerando a abundância das espécies de aves nas comunidades.</p>
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Análise com dados de abundância das espécies nas comunidades.</span>
+<span class="va">resultados_MNTD_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/mntd.html">mntd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                           abundance.weighted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de MPD para cada comunidade.</span>
+<span class="va">resultados_MNTD_AB</span> 
+<span class="co">#&gt;  [1]  57.11745  53.02212  70.47864  59.12049  61.23225  60.26180 110.13043  97.35404  82.12099 127.70084</span></code></pre></div>
+<p>Como nos resultados do MPD, pesar o comprimento do ramo pela abundância das espécies altera os valores do MNTD. Neste caso, ao invés da comunidade 9, a comunidade 2 passa a ser a comunidade que abriga a composição de espécies com a menor distância média do vizinho mais próximo (53,02 milhões de anos).</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+Perceba que ao determinar as análises com base na incidência ou abundância das espécies, você pode também alterar a interpretação dos padrões encontrados.</p>
+</div>
+<p><strong>Phylogenetic Species Variability (PSV)</strong></p>
+<p>Esta métrica estima a quantidade relativa dos comprimentos dos ramos não compartilhados entre as comunidades. Quando todas as espécies em uma amostra não são aparentadas (i.e. filogenia em estrela), o valor do PSV é 1 (um), indicando máxima variabilidade. Quando as espécies tornando-se mais aparentadas, o valor de PSV aproxima-se de 0 (zero), indicando reduzida variabilidade. Os valores esperados de PSV são estatisticamente independentes da riqueza de espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-helmus2007" role="doc-biblioref">Helmus et al. 2007</a>)</span>.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+Os valores de PSV são idênticos ao MPD quando a filogenia é ultramétrica.</p>
+</div>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do PSV utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Phylogenetic Species Variability (PSV)</span>
+<span class="co"># Análise com dados de presença e ausência das espécies nas comunidades.</span>
+<span class="va">resultados_PSV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/psd.html">psv</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>,<span class="va">filogenia_aves</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de PSV para cada comunidade.</span>
+<span class="va">resultados_PSV</span> 
+<span class="co">#&gt;             PSVs SR         vars</span>
+<span class="co">#&gt; Com_1  0.6697865 27 6.224834e-05</span>
+<span class="co">#&gt; Com_2  0.6987378 26 7.221499e-05</span>
+<span class="co">#&gt; Com_3  0.6492375 25 8.329332e-05</span>
+<span class="co">#&gt; Com_4  0.6861589 25 8.329332e-05</span>
+<span class="co">#&gt; Com_5  0.6355271 22 1.252245e-04</span>
+<span class="co">#&gt; Com_6  0.6270572 18 2.140033e-04</span>
+<span class="co">#&gt; Com_7  0.6853322 15 3.288296e-04</span>
+<span class="co">#&gt; Com_8  0.6281778 12 5.361887e-04</span>
+<span class="co">#&gt; Com_9  0.6200717 13 4.513324e-04</span>
+<span class="co">#&gt; Com_10 0.6355626  9 9.812931e-04</span></code></pre></div>
+<p>A comunidade 2 abriga o maior variabilidade filogenética (0,69) enquanto a comunidade 9 abriga a menor variabilidade (0,62). Perceba que os valores de PSV não são correlacionados com número de espécies nas comunidades (r = 0,59, p = 0,07).</p>
+</div>
+<div id="regularidade-da-diversidade-alfa-filogenética" class="section level3" number="13.3.3">
+<h3>
+<span class="header-section-number">13.3.3</span> Regularidade da diversidade alfa filogenética<a class="anchor" aria-label="anchor" href="#regularidade-da-diversidade-alfa-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p>As métricas de regularidade caracterizam a variação das distâncias entre as espécies em uma comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-tucker2016" role="doc-biblioref">Tucker et al. 2017</a>)</span>.</p>
+<p><strong>Variance of Pairwise Distance (VPD)</strong></p>
+<p>Esta métrica utiliza a matriz de distância filogenética para quantificar a variância do parentesco entre pares de espécies em uma comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-clarke2001" role="doc-biblioref">Clarke and Warwick 2001</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do VPD utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Variance of Pairwise Distance (VPD)</span>
+<span class="co"># Transformando data frame em matriz.</span>
+<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
+
+<span class="co"># Transformar os dados para o formato requerido pelo pacote pez.</span>
+<span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pez/man/comparative.comm.html">comparative.comm</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="va">dados_matriz</span><span class="op">)</span>
+
+<span class="co"># Análise.</span>
+<span class="va">resultados_VPD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pez/man/pez.metrics.html">.vpd</a></span><span class="op">(</span><span class="va">dados</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Mostra os valores de VPD para cada comunidade.</span>
+<span class="va">resultados_VPD</span> 
+<span class="co">#&gt;     Com_1    Com_10     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9 </span>
+<span class="co">#&gt; 1619.4697 1031.8887 1828.1930 1630.4026 1317.9919 1465.1728 1519.6115  825.5349 1278.0076 1508.0495</span></code></pre></div>
+<p>A comunidade 2 abriga a maior variância na distância filogenética entre pares de espécies dentro da comunidade (1828,19 milhões de anos) enquanto a comunidade 7 abriga a menor variância entre os pares de espécies (825,53 m.a.).</p>
+</div>
+<div id="correlação-entre-as-métricas-de-diversidade-alfa-filogenética" class="section level3" number="13.3.4">
+<h3>
+<span class="header-section-number">13.3.4</span> Correlação entre as métricas de diversidade alfa filogenética<a class="anchor" aria-label="anchor" href="#correla%C3%A7%C3%A3o-entre-as-m%C3%A9tricas-de-diversidade-alfa-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos avaliar a correlação entre os valores das métricas de diversidade alfa filogenética. Vamos criar um data frame com os resultados das métricas separados para as dimensões de riqueza e divergência. Não iremos fazer para regularidade, pois só apresentamos uma métrica de diversidade filogenética nesta dimensão (Figura <a href="cap13.html#fig:fig-filo-alfa-cor-metricas-riq">13.6</a>).</p>
+<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Data frame</span>
+<span class="co"># Vamos criar um data.frame com os resultados das métricas da dimensão riqueza.</span>
+<span class="va">metricas_riqueza</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>riqueza <span class="op">=</span> <span class="va">resultados_PD</span><span class="op">$</span><span class="va">SR</span>,
+                               PD <span class="op">=</span> <span class="va">resultados_PD</span><span class="op">$</span><span class="va">PD</span>,
+                               PSR <span class="op">=</span> <span class="va">resultados_PSR</span><span class="op">$</span><span class="va">PSR</span>,
+                               PE <span class="op">=</span> <span class="va">resultados_PE</span><span class="op">)</span>
+
+<span class="co">## Gráfico</span>
+<span class="co"># Gráfico mostrando na parte:</span>
+<span class="co"># i) inferior a distribuição dos pontos considerando as métricas pareadas</span>
+<span class="co"># ii) superior o valor da correlação de pearson</span>
+<span class="co"># iii) diagonal a curva de densidade</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">metricas_riqueza</span>, upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html">wrap</a></span><span class="op">(</span><span class="st">"cor"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-alfa-cor-metricas-riq"></span>
+<img src="livro_files/figure-html/fig-filo-alfa-cor-metricas-riq-1.png" alt="Correlação entre as métricas de riqueza da diversidade alfa filogenética." width="100%" height="100%"><p class="caption">
+Figura 13.6: Correlação entre as métricas de riqueza da diversidade alfa filogenética.
+</p>
+</div>
+<p>Percebam que as três métricas apresentam correlações pareadas acima de 94%. Isso indica que as métricas são redundantes. Portanto, não há necessidade de calcular mais de uma métrica dentro da dimensão da riqueza filogenética. Além disso, as três métricas de diversidade alfa filogenética também apresentam alta correlação com a riqueza de espécies. Veja abaixo na seção de modelos nulos como controlar o efeito da riqueza de espécies nas métricas de diversidade filogenética.</p>
+<p>Vamos avaliar a correlação entre os valores das métricas de diversidade alfa filogénetica para a dimensão divergência (Figura <a href="cap13.html#fig:fig-filo-alfa-cor-metricas-div">13.7</a>).</p>
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Data frame</span>
+<span class="co"># Vamos criar um data.frame com os resultados das métricas da dimensão divergência.</span>
+<span class="va">metricas_divergencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>riqueza <span class="op">=</span> <span class="va">resultados_PD</span><span class="op">$</span><span class="va">SR</span>,
+                                   MPD <span class="op">=</span> <span class="va">resultados_MPD_PA</span>,
+                                   MPD_AB <span class="op">=</span> <span class="va">resultados_MPD_AB</span>,
+                                   MNTD <span class="op">=</span> <span class="va">resultados_MNTD_PA</span>,
+                                   MNTD_AB <span class="op">=</span> <span class="va">resultados_MNTD_AB</span>,
+                                   PSV <span class="op">=</span> <span class="va">resultados_PSV</span><span class="op">$</span><span class="va">PSVs</span><span class="op">)</span>
+
+<span class="co">## Gráfico</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">metricas_divergencia</span>, upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html">wrap</a></span><span class="op">(</span><span class="st">"cor"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-alfa-cor-metricas-div"></span>
+<img src="livro_files/figure-html/fig-filo-alfa-cor-metricas-div-1.png" alt="Correlação entre as métricas de divergência da diversidade alfa filogenética." width="100%" height="100%"><p class="caption">
+Figura 13.7: Correlação entre as métricas de divergência da diversidade alfa filogenética.
+</p>
+</div>
+<p>Como mencionado, as métricas MPD e PSV são idênticas quando usamos uma filogenia ultramétrica. Contudo, as métricas de divergência não apresentam correlações tão altas como as métricas da dimensão riqueza, com exceção do MNTD usando dados de incidência e abundância que foram fortemente correlacionados (r = 0,9). Além disso, estas métricas não são tão afetadas pela riqueza de espécies das comunidades como as métricas da dimensão riqueza.</p>
+</div>
+<div id="associação-entre-a-diversidade-alfa-filogenética-e-o-ambiente" class="section level3" number="13.3.5">
+<h3>
+<span class="header-section-number">13.3.5</span> Associação entre a diversidade alfa filogenética e o ambiente<a class="anchor" aria-label="anchor" href="#associa%C3%A7%C3%A3o-entre-a-diversidade-alfa-filogen%C3%A9tica-e-o-ambiente"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos avaliar e plotar a relação entre os valores de algumas métrica de diversidade alfa filogenética (variável resposta) e os valores de precipitação (variável preditora) (Figura <a href="cap13.html#fig:fig-filo-alfa-metricas-amb">13.8</a>).</p>
+<div class="sourceCode" id="cb500"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Vamos inserir os dados de precipitação na planilha metrica_divergencia.</span>
+<span class="va">metricas_divergencia</span><span class="op">$</span><span class="va">precipitacao</span> <span class="op">&lt;-</span> <span class="va">precipitacao_filogenetica</span><span class="op">$</span><span class="va">prec</span>
+
+<span class="co">## Gráficos</span>
+<span class="va">MPD_PA_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">MPD</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Mean Pairwise Distance\n (MPD - Ausência e Presença)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">MPD_AB_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">MPD_AB</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Mean Pairwise Distance\n (MPD - Abundância)"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span> 
+
+<span class="va">MNTD_AP_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">MNTD</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Mean Nearest Taxon Distance\n (MNTD - Ausência e Presença)"</span>, 
+         size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span> 
+
+<span class="va">MNTD_AB_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">MNTD_AB</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Mean Nearest Taxon Distance\n (MNTD - Abundância)"</span>, 
+         size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">MPD_PA_plot</span>, <span class="va">MPD_AB_plot</span>, <span class="va">MNTD_AP_plot</span>, <span class="va">MNTD_AB_plot</span>,
+          ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-alfa-metricas-amb"></span>
+<img src="livro_files/figure-html/fig-filo-alfa-metricas-amb-1.png" alt="Relação de algumas métrica de diversidade alfa filogenética e valores de precipitação." width="100%" height="100%"><p class="caption">
+Figura 13.8: Relação de algumas métrica de diversidade alfa filogenética e valores de precipitação.
+</p>
+</div>
+<p>O MPD, que avalia as relações de parentesco mais internas da filogenia (i.e. relações entre espécies de famílias diferentes) não apresentou associação com o gradiente de precipitação. Por outro lado, o MNTD que avalia as relações mais terminais da filogenia (i.e. espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação. Interessante que a associação só foi significativa quando pesamos a análise pela abundância das espécies nas comunidades. Esses resultados demonstram a importância da seleção das métricas de diversidade filogenética e tipos de dados (e.g. incidência ou abundância) utilizados na interpretação dos padrões observados na natureza.</p>
+<p>Vamos ver os gráficos das métricas da dimensão riqueza da diversidade alfa filogenética (Figura <a href="cap13.html#fig:fig-filo-alfa-metricas-riq-amb">13.9</a>).</p>
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Vamos inserir os dados de precipitação na planilha metrica_riqueza.</span>
+<span class="va">metricas_riqueza</span><span class="op">$</span><span class="va">precipitacao</span> <span class="op">&lt;-</span> <span class="va">precipitacao</span><span class="op">$</span><span class="va">prec</span>
+
+<span class="co">## Gráficos</span>
+<span class="va">Riqueza_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_riqueza</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">riqueza</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, y <span class="op">=</span> <span class="st">"Riqueza de espécies"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span> 
+
+<span class="va">PD_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_riqueza</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">PD</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Diversidade Filogenética\n (Faith)"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">PSR_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_riqueza</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">PSR</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span>  <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Phylogenetic Species Richness\n (PSR)"</span>, 
+         size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">PE_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_riqueza</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="va">PE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span>  <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Phylogenetic Endemism\n (PE)"</span>, 
+         size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span> 
+
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">Riqueza_plot</span>, <span class="va">PD_plot</span>, <span class="va">PSR_plot</span>, <span class="va">PE_plot</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-alfa-metricas-riq-amb"></span>
+<img src="livro_files/figure-html/fig-filo-alfa-metricas-riq-amb-1.png" alt="Relação de algumas métrica de diversidade alfa filogenética e valores de precipitação." width="100%" height="100%"><p class="caption">
+Figura 13.9: Relação de algumas métrica de diversidade alfa filogenética e valores de precipitação.
+</p>
+</div>
+<p>As três métricas de diversidade filogenética foram relacionadas com o gradiente de precipitação. Esse resultado indica que comunidades localizadas em áreas com maior precipitação anual abrigaram maior diversidade filogenética do que comunidades localizadas em áreas mais secas. Contudo, estas métricas são dependentes da riqueza de espécies nas comunidades. Veja abaixo a seção de modelos nulos para entender como lidar com essa dependência.</p>
+</div>
+</div>
+<div id="métricas-de-diversidade-beta-filogenética" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> Métricas de diversidade beta filogenética<a class="anchor" aria-label="anchor" href="#m%C3%A9tricas-de-diversidade-beta-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h2>
+<p>Métricas de diversidade beta filogenética utilizam dados de presença e ausência ou abundância das espécies para determinar um valor que representa a diferença entre comunidades em relação a história evolutiva das linhagens (para detalhes de diversidade beta, consulte o Capítulo <a href="cap12.html#cap12">12</a>).</p>
+<div id="divergência-da-diversidade-beta-filogenética" class="section level3" number="13.4.1">
+<h3>
+<span class="header-section-number">13.4.1</span> Divergência da diversidade beta filogenética<a class="anchor" aria-label="anchor" href="#diverg%C3%AAncia-da-diversidade-beta-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Community Mean Pairwise Distance (COMDIST)</strong></p>
+<p>Esta métrica é uma extensão do MPD. COMDIST calcula a média da distância filogenética entre as espécies de duas comunidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2008" role="doc-biblioref">Webb, Ackerly, and Kembel 2008</a>)</span>. COMDIST pode ser calculada usando dados de incidência (presença e ausência) ou abundância das espécies. Esta extensão do MPD também é conhecida na literatura como Dpw <span class="citation">(<a href="refer%C3%AAncias.html#ref-swenson2011" role="doc-biblioref">Swenson 2011</a>, <a href="refer%C3%AAncias.html#ref-swenson2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do COMDIST utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb502"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Community Mean Pairwise Distance (COMDIST)</span>
+<span class="co"># Análise com dados de presença e ausência das espécies nas comunidades.</span>
+<span class="va">resultados_Comdist_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/comdist.html">comdist</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, 
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                                 abundance.weighted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">resultados_Comdist_PA</span>
+<span class="co">#&gt;           Com_1    Com_2    Com_3    Com_4    Com_5    Com_6    Com_7    Com_8    Com_9</span>
+<span class="co">#&gt; Com_2  150.5242                                                                        </span>
+<span class="co">#&gt; Com_3  144.3300 148.7436                                                               </span>
+<span class="co">#&gt; Com_4  149.4782 153.2992 147.5838                                                      </span>
+<span class="co">#&gt; Com_5  141.8435 146.9829 139.9606 145.8746                                             </span>
+<span class="co">#&gt; Com_6  142.6019 148.3160 140.0376 143.1340 137.9527                                    </span>
+<span class="co">#&gt; Com_7  147.7189 150.2248 147.1703 150.3418 144.1481 145.2975                           </span>
+<span class="co">#&gt; Com_8  141.3083 145.6684 138.5875 145.3897 137.0034 137.7062 144.4818                  </span>
+<span class="co">#&gt; Com_9  141.6018 146.4697 138.3515 144.3480 136.9036 136.3453 144.3257 130.7628         </span>
+<span class="co">#&gt; Com_10 140.8810 145.9333 136.9978 145.1400 136.5394 137.2350 144.3660 130.0691 130.2321</span></code></pre></div>
+<p>As comunidades 8 e 10 apresentaram a menor média na distância filogenética (130,06 m.a. - espécies de linhagens mais próximas) entre as espécies presente em cada comunidade, enquanto as comunidades 2 e 4 apresentaram a maior média na distância filogenética (153.29 m.a. - espécies de linhagens mais distintas).</p>
+<p>Vamos refazer a análise do COMDIST, mas desta vez, considerando a abundância das espécies de aves nas comunidades.</p>
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Community Mean Pairwise Distance (COMDIST)</span>
+<span class="co"># Análise com dados de abundância das espécies nas comunidades.</span>
+<span class="va">resultados_Comdist_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/comdist.html">comdist</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, 
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                                 abundance.weighted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Como no caso do MPD, pensar a abundância das espécies altera o padrão de distribuição dos valores de COMDIST. Neste caso, ao invés das comunidades 2 e 4, as comunidades 2 e 10 apresentam a maior média na distância filogenética (155,85 m.a.).</p>
+<p><strong>Community Mean Nearest Taxon Distance (COMDISTNT)</strong></p>
+<p>Esta métrica é uma extensão do MNTD. COMDISTNT calcula a média da distância filogenética entre o táxon mais próximo das espécies de duas comunidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2008" role="doc-biblioref">Webb, Ackerly, and Kembel 2008</a>)</span>. COMDISTNT pode ser calculada usando dados de incidência ou abundância das espécies. Esta extensão do MNTD também é conhecida na literatura como Dnn <span class="citation">(<a href="refer%C3%AAncias.html#ref-swenson2011" role="doc-biblioref">Swenson 2011</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do COMDISTNT utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Community Mean Nearest Taxon Distance (COMDISTNT)</span>
+<span class="co"># Análise com dados de presença e ausência das espécies nas comunidades.</span>
+<span class="va">resultados_Comdistnt_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/comdistnt.html">comdistnt</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, 
+                                     <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                                     abundance.weighted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">resultados_Comdistnt_PA</span>
+<span class="co">#&gt;           Com_1    Com_2    Com_3    Com_4    Com_5    Com_6    Com_7    Com_8    Com_9</span>
+<span class="co">#&gt; Com_2  24.65946                                                                        </span>
+<span class="co">#&gt; Com_3  18.56953 22.22310                                                               </span>
+<span class="co">#&gt; Com_4  26.85806 24.04505 17.87073                                                      </span>
+<span class="co">#&gt; Com_5  13.15074 34.14223 18.82684 25.54000                                             </span>
+<span class="co">#&gt; Com_6  35.43332 49.33726 33.82511 24.59980 28.50505                                    </span>
+<span class="co">#&gt; Com_7  30.37968 29.22411 39.89649 34.06858 29.27588 47.69536                           </span>
+<span class="co">#&gt; Com_8  38.16628 48.17376 38.46830 51.02029 32.52846 50.37593 54.37647                  </span>
+<span class="co">#&gt; Com_9  42.58727 54.09441 41.83792 46.29635 36.35245 46.18264 49.85495 10.69759         </span>
+<span class="co">#&gt; Com_10 45.71452 56.82713 40.39642 60.17935 40.74857 59.63770 60.24556 10.87162 16.12367</span></code></pre></div>
+<p>As comunidades 8 e 9 apresentaram a menor média na distância do vizinho mais próximo (10,69 m.a. - espécies do mesmo gênero ou gêneros irmãos) entre as espécies presente em cada comunidade, enquanto as comunidades 7 e 10 apresentaram a maior média na distância entre vizinhos (60,24 m.a. - espécies de linhagens distintas).</p>
+<p>Vamos refazer a análise do COMDISTNT, mas desta vez, considerando a abundância das espécies de aves nas comunidades.</p>
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Community Mean Nearest Taxon Distance (COMDISTNT)</span>
+<span class="co"># Análise com dados de abundância das espécies nas comunidades.</span>
+<span class="va">resultados_Comdistnt_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/comdistnt.html">comdistnt</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, 
+                                     <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>, 
+                                     abundance.weighted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>As comunidades 8 e 10 apresentaram a menor média na distância do vizinho mais próximo (5,64 m.a.) entre as espécies presente em cada comunidade, enquanto as comunidades 6 e 10 apresentaram a maior média na distância entre vizinhos (82,62 m.a.).</p>
+</div>
+<div id="correlação-entre-as-métricas-de-diversidade-beta-filogenética" class="section level3" number="13.4.2">
+<h3>
+<span class="header-section-number">13.4.2</span> Correlação entre as métricas de diversidade beta filogenética<a class="anchor" aria-label="anchor" href="#correla%C3%A7%C3%A3o-entre-as-m%C3%A9tricas-de-diversidade-beta-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos avaliar a correlação entre os valores das métricas da diversidade beta filogenética para a dimensão divergência (Figura <a href="cap13.html#fig:fig-filo-beta-cor-metricas-div">13.10</a>).</p>
+<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Vamos criar um data frame com os resultados das métricas da dimensão divergência.</span>
+<span class="va">metricas_divergencia_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+    COMDIST_PA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Comdist_PA</span><span class="op">)</span>,
+    COMDIST_AB <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Comdist_AB</span><span class="op">)</span>,
+    COMDISTNT_PA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Comdistnt_PA</span><span class="op">)</span>,
+    COMDISTNT_AB <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Comdistnt_AB</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Gráfico</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">metricas_divergencia_beta</span>,
+        upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html">wrap</a></span><span class="op">(</span><span class="st">"cor"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-beta-cor-metricas-div"></span>
+<img src="livro_files/figure-html/fig-filo-beta-cor-metricas-div-1.png" alt="Correlação entre as métricas de divergência da diversidade beta filogenética." width="100%" height="100%"><p class="caption">
+Figura 13.10: Correlação entre as métricas de divergência da diversidade beta filogenética.
+</p>
+</div>
+<p>Os valores das métricas de divergência filogenética beta apresentam correlações mais baixas do que as métricas da dimensão riqueza. Lembrem-se que COMDIST e COMDISTNT dão pesos diferentes para as relações de parentesco. COMDIST pesa as relações mais basais e internas da filogenia, enquanto COMDISTNT pesa as relações nas partes terminais da filogenia. Portanto, elas podem trazer informações complementares.</p>
+</div>
+<div id="associação-entre-a-divergência-da-diversidade-beta-filogenética-e-o-ambiente" class="section level3" number="13.4.3">
+<h3>
+<span class="header-section-number">13.4.3</span> Associação entre a divergência da diversidade beta filogenética e o ambiente<a class="anchor" aria-label="anchor" href="#associa%C3%A7%C3%A3o-entre-a-diverg%C3%AAncia-da-diversidade-beta-filogen%C3%A9tica-e-o-ambiente"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos avaliar e plotar a relação entre os valores de algumas métricas de divergência da diversidade beta filogenética (variável resposta) e os valores de precipitação (variável preditora) (Figura <a href="cap13.html#fig:fig-filo-beta-metricas-div-amb">13.11</a>).</p>
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Precisamos calcular a dissimilaridade par a par da precipitação entre as comunidades.</span>
+<span class="va">dis_prec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">precipitacao</span>, <span class="st">"euclidian"</span><span class="op">)</span>
+
+<span class="co"># Vamos inserir estes dados na planilha metrica_divergencia_beta.</span>
+<span class="va">metricas_divergencia_beta</span><span class="op">$</span><span class="va">dis_prec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dis_prec</span><span class="op">)</span>
+
+<span class="co"># Gráficos.</span>
+<span class="va">COMDIST_PA_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia_beta</span>, 
+                          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">COMDIST_PA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"COMDIST\n (Presença e Ausência)"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span> 
+
+<span class="va">COMDIST_AB_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia_beta</span>, 
+                          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">COMDIST_AB</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"COMDIST\n (Abundância)"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">COMDISTNT_PA_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia_beta</span>, 
+                            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">COMDISTNT_PA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"COMDISTNT\n (Ausência e Presença)"</span>, 
+         size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">COMDISTNT_AB_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_divergencia_beta</span>, 
+                            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">COMDISTNT_AB</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">" COMDISTNT\n (Abundância)"</span>, 
+         size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span> 
+
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">COMDIST_PA_plot</span>, <span class="va">COMDIST_AB_plot</span>, <span class="va">COMDISTNT_PA_plot</span>, 
+          <span class="va">COMDISTNT_AB_plot</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-beta-metricas-div-amb"></span>
+<img src="livro_files/figure-html/fig-filo-beta-metricas-div-amb-1.png" alt="Relação de algumas métrica de divergência diversidade beta filogenética e valores de precipitação." width="100%" height="100%"><p class="caption">
+Figura 13.11: Relação de algumas métrica de divergência diversidade beta filogenética e valores de precipitação.
+</p>
+</div>
+<p>O COMDIST que avalia as relações de parentesco mais internas da filogenia (i.e. relações entre espécies de famílias diferentes) apresentou associação com o gradiente de precipitação quando avaliado pesado pela abundância das espécies. Por outro lado, o COMDISTNT que avalia as relações mais terminais da filogenia (i.e. espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação quando avaliado usando a incidência das espécies.</p>
+</div>
+<div id="riqueza-da-diversidade-beta-filogenética" class="section level3" number="13.4.4">
+<h3>
+<span class="header-section-number">13.4.4</span> Riqueza da diversidade beta filogenética<a class="anchor" aria-label="anchor" href="#riqueza-da-diversidade-beta-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Phylogenetic index of beta diversity (Phylosor)</strong></p>
+<p>Phylosor é uma métrica de similaridade e determina o comprimento total dos ramos da filogenia que é compartilhado entre pares de comunidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-bryant2008" role="doc-biblioref">Bryant et al. 2008</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo do Phylosor utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Phylogenetic index of beta diversity (Phylosor)</span>
+<span class="co"># Análise com dados de presença e ausência das espécies nas comunidades.</span>
+<span class="va">resultados_Phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/phylosor.html">phylosor</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="va">filogenia_aves</span><span class="op">)</span>
+
+<span class="co"># Mostra uma matriz triangular com a similaridade entre a fração dos ramos </span>
+<span class="co"># compartilahdos entre duas comunidades</span>
+<span class="va">resultados_Phylosor</span> 
+<span class="co">#&gt;            Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9</span>
+<span class="co">#&gt; Com_2  0.7856828                                                                                </span>
+<span class="co">#&gt; Com_3  0.8052839 0.7794964                                                                      </span>
+<span class="co">#&gt; Com_4  0.7831520 0.8066793 0.8595462                                                            </span>
+<span class="co">#&gt; Com_5  0.8586780 0.6919478 0.8083230 0.7930266                                                  </span>
+<span class="co">#&gt; Com_6  0.6717414 0.5827551 0.6977734 0.7494945 0.7383098                                        </span>
+<span class="co">#&gt; Com_7  0.7414284 0.7325727 0.6836231 0.7289449 0.7384561 0.6425717                              </span>
+<span class="co">#&gt; Com_8  0.6826177 0.6283918 0.6443193 0.6404373 0.7123197 0.5928097 0.6146854                    </span>
+<span class="co">#&gt; Com_9  0.6789983 0.6074676 0.6405220 0.6727656 0.7082867 0.6169977 0.6506880 0.9016007          </span>
+<span class="co">#&gt; Com_10 0.6264594 0.5709671 0.6422800 0.5823317 0.6493935 0.5362575 0.6015983 0.9106658 0.8607104</span></code></pre></div>
+<p>As espécies presentes nas comunidades 6 e 10 compartilham a menor porção do comprimento dos ramos da filogenia (53% - menor similaridade entre os pares de comunidades), enquanto as espécies presentes nas comunidades 8 e 10 compartilham grande parte dos comprimentos dos ramos da filogenia (91% - maior similaridade entre os pares de comunidades).</p>
+<p><strong>Unique Fraction metric (UniFrac)</strong></p>
+<p>UniFrac é uma métrica de dissimilaridade e determina a fração única da filogenia contida em cada uma das duas comunidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-lozupone2005" role="doc-biblioref">Lozupone and Knight 2005</a>)</span>.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo da UniFrac utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Unique Fraction metric (UniFrac)</span>
+<span class="co"># Análise com dados de presença e ausência das espécies nas comunidades.</span>
+<span class="va">resultados_UniFrac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/unifrac.html">unifrac</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="va">filogenia_aves</span><span class="op">)</span></code></pre></div>
+<p>As espécies presentes nas comunidades 6 e 10 apresentam a menor dissimilaridade (16,4 % - maior fração única da filogenia em cada comunidade), enquanto as espécies presentes nas comunidades 8 e 10 apresentam a maior dissimilaridade (63,36 % - maior compartilhamento de ramos da filogenia entre os pares de comunidades).</p>
+</div>
+<div id="correlação-entre-phylosor-e-unifrac" class="section level3" number="13.4.5">
+<h3>
+<span class="header-section-number">13.4.5</span> Correlação entre Phylosor e Unifrac<a class="anchor" aria-label="anchor" href="#correla%C3%A7%C3%A3o-entre-phylosor-e-unifrac"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos calcula a correlação entre as duas métricas de Riqueza da diversidade beta filogenética: Phylosor e Unifrac (Figura <a href="cap13.html#fig:fig-filo-beta-cor-metricas-riq">13.12</a>).</p>
+<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Vamos criar um data.frame com os resultados das métricas separados </span>
+<span class="co"># para as dimensões de riqueza e divergência.</span>
+<span class="va">metricas_riqueza_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Phylosor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Phylosor</span><span class="op">)</span>,
+                                    UniFrac <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_UniFrac</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Gráfico</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">metricas_riqueza_beta</span>, upper<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html">wrap</a></span><span class="op">(</span><span class="st">"cor"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-beta-cor-metricas-riq"></span>
+<img src="livro_files/figure-html/fig-filo-beta-cor-metricas-riq-1.png" alt="Correlação entre as métricas de riqueza da diversidade beta filogenética." width="100%" height="100%"><p class="caption">
+Figura 13.12: Correlação entre as métricas de riqueza da diversidade beta filogenética.
+</p>
+</div>
+<p>Os valores de Phylosor e UniFrac apresenta 99% de correlação entre eles. Portanto, essas duas métricas identificam padrões idênticos e não devem ser utilizadas simultaneamente.</p>
+</div>
+<div id="associação-entre-a-riqueza-da-diversidade-beta-filogenética-e-o-ambiente" class="section level3" number="13.4.6">
+<h3>
+<span class="header-section-number">13.4.6</span> Associação entre a riqueza da diversidade beta filogenética e o ambiente<a class="anchor" aria-label="anchor" href="#associa%C3%A7%C3%A3o-entre-a-riqueza-da-diversidade-beta-filogen%C3%A9tica-e-o-ambiente"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos avaliar e plotar a relação entre os valores de algumas métricas de riqueza da diversidade beta filogenética (variável resposta) e os valores de precipitação (variável preditora) (Figura <a href="cap13.html#fig:fig-filo-beta-metricas-riq-amb">13.13</a>).</p>
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Vamos inserir os dados de precipitação na planilha metrica_riqueza_beta.</span>
+<span class="va">metricas_riqueza_beta</span><span class="op">$</span><span class="va">dis_prec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dis_prec</span><span class="op">)</span>
+
+<span class="co">## Gráficos</span>
+<span class="co"># Phylosor.</span>
+<span class="va">plot_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_riqueza_beta</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">Phylosor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Phylosor"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Unifrag.</span>
+<span class="va">plot_unifrac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metricas_riqueza_beta</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">UniFrac</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"UniFrac"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">plot_phylosor</span>, <span class="va">plot_unifrac</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-beta-metricas-riq-amb"></span>
+<img src="livro_files/figure-html/fig-filo-beta-metricas-riq-amb-1.png" alt="Relação de algumas métrica de riqeuza diversidade beta filogenética e valores de precipitação." width="100%" height="100%"><p class="caption">
+Figura 13.13: Relação de algumas métrica de riqeuza diversidade beta filogenética e valores de precipitação.
+</p>
+</div>
+<p>Phylosor (similaridade) e UniFrac (dissimilaridade) foram relacionadas com o gradiente de precipitação. Comunidades com quantidade de precipitação parecidas abrigaram linhagens similares enquanto comunidades que recebem quantidade de precipitação diferentes abrigam linhagens mais distintas.</p>
+</div>
+<div id="partição-da-diversidade-beta-filogenética" class="section level3" number="13.4.7">
+<h3>
+<span class="header-section-number">13.4.7</span> Partição da diversidade beta filogenética<a class="anchor" aria-label="anchor" href="#parti%C3%A7%C3%A3o-da-diversidade-beta-filogen%C3%A9tica"><i class="fas fa-link"></i></a>
+</h3>
+<p>As métricas, Phylosor e UniFrac, podem ser particionadas em dois componentes <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>; <a href="refer%C3%AAncias.html#ref-leprieur2012" role="doc-biblioref">Leprieur et al. 2012</a>)</span>: i) substituição (do inglês <em>turnover</em>) de espécies entre as comunidades; e ii) componente de aninhamento (do inglês <em>nestedness</em>) que representa a perda ou ganho de espécies entre comunidades atribuídos a diferença na riqueza de espécies. A partição da diversidade beta nestes componentes permite avaliar diferentes hipóteses sobre os processos e mecanismos atuando na montagem de comunidades.</p>
+<p>Abaixo, demonstramos os códigos no R para o cálculo da partição da diversidade beta filogenética utilizando os dados das comunidades de aves.</p>
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Partição</span>
+<span class="co"># Temos que transformar os dados para presença e ausência das espécies nas comunidades.</span>
+<span class="va">dados_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="st">"pa"</span><span class="op">)</span>
+
+<span class="co"># Partição dos componentes do Phylosor.</span>
+<span class="va">resultados_Phylosor_particao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/betapart/man/phylo.beta.pair.html">phylo.beta.pair</a></span><span class="op">(</span><span class="va">dados_PA</span>,
+                                                <span class="va">filogenia_aves</span>, 
+                                                index.family <span class="op">=</span> <span class="st">"sorensen"</span><span class="op">)</span></code></pre></div>
+<p>Vamos refazer a análise para UniFrac.</p>
+<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Partição dos componentes do UniFrac.</span>
+<span class="va">resultados_UniFrac_particao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/betapart/man/phylo.beta.pair.html">phylo.beta.pair</a></span><span class="op">(</span><span class="va">dados_PA</span>,
+                                               <span class="va">filogenia_aves</span>, 
+                                               index.family <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span>
+<span class="co"># Resultado tem três matrizes: </span>
+<span class="co"># i) dissimilaridade total (phylo.beta.jac); </span>
+<span class="co"># ii) componente substituição de espécies (phylo.beta.jtu); e </span>
+<span class="co"># iii) componente aninhamento (phylo.beta.jne).</span>
+<span class="co"># resultados_UniFrac_particao (para ver os resultados corra este comando)</span></code></pre></div>
+<p>Gráfico com os resultados dos componentes substituição e aninhamento da diversidade beta filogenética - Phylosor (Figura <a href="cap13.html#fig:fig-filo-beta-part-amb">13.14</a>).</p>
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados</span>
+<span class="co"># Vamos preparar os dados para o gráfico.</span>
+<span class="va">particao_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+    substituicao <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Phylosor_particao</span><span class="op">$</span><span class="va">phylo.beta.sim</span><span class="op">)</span>,
+    aninhamento <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Phylosor_particao</span><span class="op">$</span><span class="va">phylo.beta.sne</span><span class="op">)</span>,
+    sorensen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultados_Phylosor_particao</span><span class="op">$</span><span class="va">phylo.beta.sor</span><span class="op">)</span>,
+    dis_prec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dis_prec</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Gráficos</span>
+<span class="va">sorensen_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">particao_phylosor</span>, 
+                        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">sorensen</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">"Sorensen"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">subst_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">particao_phylosor</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">substituicao</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Diferença na precipitação\n (mm)"</span>, 
+         y <span class="op">=</span> <span class="st">"Componente Substituição"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">aninha_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">particao_phylosor</span>, 
+                      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dis_prec</span>, <span class="va">aninhamento</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">"Componente aninhamento"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">sorensen_plot</span>, <span class="va">subst_plot</span>, <span class="va">aninha_plot</span>, 
+          ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-filo-beta-part-amb"></span>
+<img src="livro_files/figure-html/fig-filo-beta-part-amb-1.png" alt="Relação dos componentes substituição e aninhamento da diversidade beta filogenética - Phylosor e valores de precipitação." width="100%" height="100%"><p class="caption">
+Figura 13.14: Relação dos componentes substituição e aninhamento da diversidade beta filogenética - Phylosor e valores de precipitação.
+</p>
+</div>
+<p>Percebam que o componente substituição é maior entre comunidades que apresentam diferenças altas na quantidade de precipitação, enquanto o componente aninhamento é maior entre as comunidades que apresentam quantidade similar de precipitação.</p>
+</div>
+</div>
+<div id="modelos-nulos" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> Modelos Nulos<a class="anchor" aria-label="anchor" href="#modelos-nulos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Em muitos casos, os valores de diversidade filogenética são correlacionados com a riqueza de espécies nas comunidades. Por exemplo, se um pesquisador relata que duas comunidades apresentam diferentes valores de PD, é impossível saber se esta diferença é simplesmente porque elas têm diferentes valores de riqueza de espécies ou se há algum fator fundamental sobre a informação filogenética que é importante. Outra questão abordada nos estudos de montagem das comunidades é saber se os valores observados para as métricas (e.g. MPD ou MNTD) relacionadas com a estrutura filogenética das comunidades seriam diferentes se a colonização das espécies do <em>pool</em> regional fosse aleatória? Os modelos nulos respondem a estas perguntas. Contudo, a definição do <em>pool</em> regional não é uma tarefa trivial <span class="citation">(<a href="refer%C3%AAncias.html#ref-lessard2012" role="doc-biblioref">Lessard et al. 2012</a>; <a href="refer%C3%AAncias.html#ref-carstensen2013" role="doc-biblioref">Carstensen et al. 2013</a>)</span>.</p>
+<p>Os modelos nulos são construídos considerando processos ecológicos ou evolutivos de interesse. Eles geram padrões que são baseados na aleatorização dos dados ecológicos ou amostragens aleatórias de uma distribuição conhecida ou hipótetica <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli1996" role="doc-biblioref">Gotelli and Graves 1996</a>)</span>. Neste caso, alguns elementos dos dados (como colunas ou linhas) são mantidos constantes, e outros são permitidos variar aleatoriamente para criar novos padrões. O principal motivo para a construção de modelos nulos é produzir um padrão que seria esperado na ausência de um mecanismo ecológico específico <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli1996" role="doc-biblioref">Gotelli and Graves 1996</a>)</span>. Contudo, ressaltamos que os modelos nulos podem revelar padrões não comuns, mas eles não podem determinar os mecanismos responsáveis por gerar estes padrões <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli1996" role="doc-biblioref">Gotelli and Graves 1996</a>)</span>.</p>
+<p>Os modelos nulos empregados para contrapor os padrões observados pelas métricas de diversidade filogenética utilizam a aleatorização dos dados de duas formas principais: i) aleatorizando o nome das espécies na árvore filogenética mantendo a estrutura e composição da matriz de co-ocorrência das espécies e o comprimento dos ramos da árvore inalterados; e ii) aleatorizando as linhas e/ou colunas da matriz de co-ocorrência das espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli2000" role="doc-biblioref">Gotelli 2000</a>; <a href="refer%C3%AAncias.html#ref-ulrich2010" role="doc-biblioref">Ulrich and Gotelli 2010</a>)</span>. De forma geral, nas análises de diversidade filogenética as aleatorizações são repetidas 999 vezes (pode ser mais ou menos, a critério do pesquisador) e calcula-se a média e o desvio padrão dos valores gerados pelo modelos. Com estes dados, calcula-se o tamanho do efeito padronizado (do inglês <em>Standardized Effect Size</em> - SES) utilizando a seguinte fórmula:</p>
+<ul>
+<li>SES = (valor observado - média dos valores gerados na aleatorização)/ desvio padrão dos valores gerados na aleatorização</li>
+</ul>
+<p>Os valores de SES são utilizados para rejeitar ou não a hipótese nula de que o padrão observado difere do esperado ao acaso. Contudo, tenha em mente que a definição do esquema de aleatorização dos modelos nulos não é meramente uma questão técnica <span class="citation">(<a href="refer%C3%AAncias.html#ref-g%C3%B6tzenberger2011" role="doc-biblioref">Götzenberger et al. 2012</a>)</span>. A definição do esquema de aleatorização irá determinar quais os mecanismos ecológicos são permitidos ou excluídos no modelo nulo <span class="citation">(<a href="refer%C3%AAncias.html#ref-g%C3%B6tzenberger2011" role="doc-biblioref">Götzenberger et al. 2012</a>)</span>. Consequentemente, ele estará avaliando diferentes hipóteses nulas.</p>
+<p>Abaixo, demonstramos os códigos no R para calcular os modelos nulos para as métricas de diversidade filogenética.</p>
+<p><strong>Nearest Relative Index (NRI) ou Standardized Effect Size of MPD</strong></p>
+<p>Esta métrica calcula o tamanho do efeito padronizado para a métrica MPD. Contudo, NRI é calculado multiplicando os resultados do SES por -1. Valores positivos de NRI indicam agrupamento filogenético e valores negativos de NRI indicam dispersão filogenética <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2008" role="doc-biblioref">Webb, Ackerly, and Kembel 2008</a>)</span>.</p>
+<p>Veja a ajuda desta função usando <code>?ses.mpd()</code> para ver todas as possibilidades de modelos nulos disponíveis.</p>
+<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## NRI ou SES_MPD</span>
+<span class="va">resultados_SES_MPD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/ses.mpd.html">ses.mpd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>,
+                              null.model <span class="op">=</span> <span class="st">"taxa.labels"</span>, 
+                              abundance.weighted <span class="op">=</span> <span class="cn">FALSE</span>,
+                              runs <span class="op">=</span> <span class="fl">999</span><span class="op">)</span> 
+
+<span class="co"># Mostra a riqueza de espéices, MPD observado, média e desvio padrão dos </span>
+<span class="co"># valores de MPD das aleatorizações, SES e o valor de p.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">resultados_SES_MPD</span><span class="op">)</span>
+<span class="co">#&gt;       ntaxa  mpd.obs mpd.rand.mean mpd.rand.sd mpd.obs.rank  mpd.obs.z mpd.obs.p runs</span>
+<span class="co">#&gt; Com_1    27 150.7914      153.9953    3.891718          215 -0.8232597     0.215  999</span>
+<span class="co">#&gt; Com_2    26 157.3158      153.5833    4.367399          770  0.8546215     0.770  999</span>
+<span class="co">#&gt; Com_3    25 146.1622      153.9931    4.476428           52 -1.7493791     0.052  999</span>
+<span class="co">#&gt; Com_4    25 154.5005      153.5113    4.720348          551  0.2095591     0.551  999</span>
+<span class="co">#&gt; Com_5    22 143.0727      153.7490    5.294432           24 -2.0165115     0.024  999</span>
+<span class="co">#&gt; Com_6    18 141.1926      153.9709    6.951990           34 -1.8380846     0.034  999</span></code></pre></div>
+<p>Somente as comunidades 5 e 6 apresentaram valores de p &lt; 0.05 indicando que os resultados observados de MPD são menores que o esperado ao acaso (i.e. valores simulados). Neste caso, a composição de espécies presentes nessas duas comunidades apresenta agrupamento filogenético. Por outro lado, os valores de MPD observados para as outras comunidades são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia.</p>
+<p><strong>Nearest Taxon Index (NTI) ou Standardized Effect Size of MNTD</strong></p>
+<p>Esta métrica calcula o tamanho do efeito padronizado para a métrica MNTD. Contudo, NTI é calculado multiplicando os resultados do SES por -1. Valores positivos de NTI indicam agrupamento filogenético e valores negativos de NTI indicam dispersão filogenética <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2008" role="doc-biblioref">Webb, Ackerly, and Kembel 2008</a>)</span>.</p>
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## NTI ou SES_MNTD</span>
+<span class="va">resultados_SES_MNTD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/ses.mntd.html">ses.mntd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">filogenia_aves</span><span class="op">)</span>,
+                                null.model <span class="op">=</span> <span class="st">"taxa.labels"</span>, 
+                                abundance.weighted <span class="op">=</span> <span class="cn">FALSE</span>,
+                                runs <span class="op">=</span> <span class="fl">999</span><span class="op">)</span> 
+
+<span class="co"># Mostra a riqueza de espéices,MNTD observado, média e desvio padrão dos </span>
+<span class="co"># valores de MNTD das aleatorizações, SES e o valor de p.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">resultados_SES_MNTD</span><span class="op">)</span>
+<span class="co">#&gt;       ntaxa mntd.obs mntd.rand.mean mntd.rand.sd mntd.obs.rank  mntd.obs.z mntd.obs.p runs</span>
+<span class="co">#&gt; Com_1    27 63.89727       63.30504     6.864478           518  0.08627467      0.518  999</span>
+<span class="co">#&gt; Com_2    26 66.15828       64.81499     7.217753           575  0.18610860      0.575  999</span>
+<span class="co">#&gt; Com_3    25 72.96912       65.76333     7.754651           811  0.92922217      0.811  999</span>
+<span class="co">#&gt; Com_4    25 67.67170       65.70886     7.752673           600  0.25318258      0.600  999</span>
+<span class="co">#&gt; Com_5    22 64.93477       69.46545     9.133114           305 -0.49607138      0.305  999</span>
+<span class="co">#&gt; Com_6    18 63.72337       76.12099    11.819687           162 -1.04889562      0.162  999</span></code></pre></div>
+<p>Somente a comunidade 9 apresentou valor de p &lt; 0.05 indicando que o resultado observado de MNTD foi menor que o esperado ao acaso (i.e. valores simulados). Neste caso, a composição de espécies presente nessa comunidade apresenta agrupamento filogenético. Por outro lado, os valores de MNTD observados para as outras comunidades são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia.</p>
+<p><strong>Standardized Effect Size of PD</strong></p>
+<p>Esta métrica calcula o tamanho do efeito padronizado para a métrica PD <span class="citation">(<a href="refer%C3%AAncias.html#ref-webb2008" role="doc-biblioref">Webb, Ackerly, and Kembel 2008</a>)</span>.</p>
+<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## SES_PD</span>
+<span class="va">resultados_SES_PD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/ses.pd.html">ses.pd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="va">filogenia_aves</span>,
+                            null.model <span class="op">=</span> <span class="st">"independentswap"</span>, 
+                            runs <span class="op">=</span> <span class="fl">999</span><span class="op">)</span> 
+
+<span class="co"># Mostra a riqueza de espéices,MNTD observado, média e desvio padrão dos </span>
+<span class="co"># valores de PD das aleatorizações, SES e o valor de p.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">resultados_SES_PD</span><span class="op">)</span> 
+<span class="co">#&gt;       ntaxa   pd.obs pd.rand.mean pd.rand.sd pd.obs.rank   pd.obs.z pd.obs.p runs</span>
+<span class="co">#&gt; Com_1    27 1259.315     1272.480   66.74674         429 -0.1972372    0.429  999</span>
+<span class="co">#&gt; Com_2    26 1293.152     1238.690   68.04238         799  0.8004172    0.799  999</span>
+<span class="co">#&gt; Com_3    25 1222.310     1201.471   65.51971         624  0.3180526    0.624  999</span>
+<span class="co">#&gt; Com_4    25 1254.541     1205.879   68.34858         750  0.7119674    0.750  999</span>
+<span class="co">#&gt; Com_5    22 1021.967     1096.024   67.73466         129 -1.0933409    0.129  999</span>
+<span class="co">#&gt; Com_6    18  856.781      950.239   64.54864          76 -1.4478696    0.076  999</span></code></pre></div>
+<p>Nenhuma comunidade apresentou valor de p &lt; 0.05. Neste caso, os valores observados de PD são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia.</p>
+<p><strong>Standardized effect size do Phylosor</strong></p>
+<p>Não há pacotes que calculam o SES para a métrica Phylosor. Assim, iremos usar a função <code><a href="https://rdrr.io/pkg/picante/man/phylosor.rnd.html">phylosor.rnd()</a></code> para criar modelos nulos para o Physolor, e em seguida, iremos usar uma função criada por Pedro Braga &amp; Katherine Hébert (diposnível em <a href="https://pedrohbraga.github.io/CommunityPhylogenetics-Workshop/CommunityPhylogenetics-Workshop.html" class="uri">https://pedrohbraga.github.io/CommunityPhylogenetics-Workshop/CommunityPhylogenetics-Workshop.html</a>) para calcular os valores de SES e os valores de P.</p>
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Standardized effect size do Phylosor</span>
+<span class="co"># Modelo nulo que rearranja o nome das espécies na filogenia. </span>
+<span class="va">modelos_nulo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/phylosor.rnd.html">phylosor.rnd</a></span><span class="op">(</span><span class="va">composicao_especies_P</span>, <span class="va">filogenia_aves</span>, 
+                             null.model <span class="op">=</span> <span class="st">"taxa.labels"</span>, runs <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>
+
+<span class="co"># Função para calcular o SES eo valor de P.</span>
+<span class="va">ses.physo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">obs</span>, <span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">nulo_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>
+                                     <span class="op">(</span><span class="va">nulo_phylosor</span>, <span class="va">as.vector</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">physo.obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>
+    <span class="va">physo.mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">nulo_phylosor</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, 
+                        FUN <span class="op">=</span> <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+    <span class="va">physo.sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">nulo_phylosor</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, 
+                      FUN <span class="op">=</span> <span class="va">sd</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+    <span class="va">physo.ses</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">physo.obs</span> <span class="op">-</span> <span class="va">physo.mean</span><span class="op">)</span><span class="op">/</span><span class="va">physo.sd</span>
+    <span class="va">physo.obs.rank</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">rbind</a></span><span class="op">(</span><span class="va">physo.obs</span>, 
+                                      <span class="va">nulo_phylosor</span><span class="op">)</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, 
+                            FUN <span class="op">=</span> <span class="va">rank</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>
+    <span class="va">physo.obs.rank</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">physo.mean</span><span class="op">)</span>, <span class="cn">NA</span>, 
+                             <span class="va">physo.obs.rank</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">physo.obs</span>, <span class="va">physo.mean</span>, <span class="va">physo.sd</span>, 
+               <span class="va">physo.obs.rank</span>, <span class="va">physo.ses</span>, 
+               physo.obs.p <span class="op">=</span> <span class="va">physo.obs.rank</span><span class="op">/</span>
+                   <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co">## Resultados</span>
+<span class="va">resultados</span> <span class="op">&lt;-</span> <span class="fu">ses.physo</span> <span class="op">(</span><span class="va">resultados_Phylosor</span>, <span class="va">modelos_nulo</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">resultados</span><span class="op">)</span>
+<span class="co">#&gt;   physo.obs physo.mean   physo.sd physo.obs.rank  physo.ses physo.obs.p</span>
+<span class="co">#&gt; 1 0.7856828  0.7915561 0.04011508              6 -0.1464099         0.6</span>
+<span class="co">#&gt; 2 0.8052839  0.8813422 0.03356047              1 -2.2663056         0.1</span>
+<span class="co">#&gt; 3 0.7831520  0.8174306 0.04545519              2 -0.7541175         0.2</span>
+<span class="co">#&gt; 4 0.8586780  0.8687616 0.03659588              5 -0.2755416         0.5</span>
+<span class="co">#&gt; 5 0.6717414  0.7460991 0.02806215              1 -2.6497526         0.1</span>
+<span class="co">#&gt; 6 0.7414284  0.6904007 0.04842748              9  1.0536941         0.9</span></code></pre></div>
+<p>Nenhum valor de similaridade entre pares comunidade apresentou valor de p &lt; 0.05. Neste caso, os valores de Phylosor observados são similares aos valores obtidos para as comunidades simuladas com a redistribuição dos nomes das espécies na filogenia.</p>
+</div>
+<div id="para-se-aprofundar-9" class="section level2" number="13.6">
+<h2>
+<span class="header-section-number">13.6</span> Para se aprofundar<a class="anchor" aria-label="anchor" href="#para-se-aprofundar-9"><i class="fas fa-link"></i></a>
+</h2>
+<div id="livros-7" class="section level3" number="13.6.1">
+<h3>
+<span class="header-section-number">13.6.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-7"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Recomendamos aos interessados os livros: i) Swenson <span class="citation">(<a href="refer%C3%AAncias.html#ref-swenson2014" role="doc-biblioref">2014</a>)</span> Functional and Phylogenetic Ecology in R; ii) Paradis <span class="citation">(<a href="refer%C3%AAncias.html#ref-paradis2012" role="doc-biblioref">2012</a>)</span> Analysis of Phylogenetics and Evolution in R; iii) Cadotte &amp; Davies <span class="citation">(<a href="refer%C3%AAncias.html#ref-cadotte2016" role="doc-biblioref">2016</a>)</span> Phylogenies in Ecology, iv) Gotelli &amp; Graves <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli1996" role="doc-biblioref">1996</a>)</span> Null Models in Ecology; e v) Magurran &amp; McGill <span class="citation">(<a href="refer%C3%AAncias.html#ref-magurran_biological_2011" role="doc-biblioref">2011</a>)</span> Biological Diversity Frontiers in Measurement and Assessment.</li>
+</ul>
+</div>
+<div id="links-8" class="section level3" number="13.6.2">
+<h3>
+<span class="header-section-number">13.6.2</span> Links<a class="anchor" aria-label="anchor" href="#links-8"><i class="fas fa-link"></i></a>
+</h3>
+<p>O blog <a href="http://blog.phytools.org/">Ferramentas filogenéticas para biologia comparada</a> do pesquisador Liam Revell é uma ferramenta excelente para obter informações e aplicações das análises filogenéticas diretamente no R.</p>
+</div>
+</div>
+<div id="exercícios-9" class="section level2" number="13.7">
+<h2>
+<span class="header-section-number">13.7</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-9"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>13.1</strong>
+Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote <code>ecodados</code>. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e temperatura anual na distribuição espacial da diversidade filogenética (PD) e Endemismo filogenético (PE). Calcule o SES para verificar se os resultados da diversidade filogenética (PD) diferem do esperado ao acaso devido ao número de espécies em cada comunidade. Qual a sua interpretação sobre os resultados?</p>
+<p><strong>13.2</strong>
+Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote ecodados. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e temperatura anual na distribuição espacial do NRI e NTI. Qual a sua interpretação sobre os resultados?</p>
+<p><strong>13.3</strong>
+Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuros coletados em 44 localidades na Mata Atlântica), <code>anuros_ambientais</code> (i.e., variáveis climáticas, topográficas e coordenadas geográficas) e <code>filogenia_anuros</code> (filogenia das 211 espécies) - que estão no pacote ecodados. Use a função <code><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart()</a></code> do pacote <code>vegan</code> para testar a importância relativa dos efeitos da precipitação anual, range altitudinal e distância geográfica na distribuição espacial dos diferentes componentes da diversidade beta filogenética (Phylosor). Qual a sua interpretação sobre os resultados?</p>
+<p><a href="https://exercicios-livro-aer.netlify.app/cap.-13---diversidade-filogen%C3%A9tica.html">Soluções dos exercícios</a>.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="cap12.html"><span class="header-section-number">12</span> Diversidade Taxonômica</a></div>
+<div class="next"><a href="cap14.html"><span class="header-section-number">14</span> Diversidade Funcional</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap13"><span class="header-section-number">13</span> Diversidade Filogenética</a></li>
+<li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-9">Pré-requisitos do capítulo</a></li>
+<li><a class="nav-link" href="#aspectos-te%C3%B3ricos-4"><span class="header-section-number">13.1</span> Aspectos teóricos</a></li>
+<li><a class="nav-link" href="#manipula%C3%A7%C3%A3o-de-filogenias"><span class="header-section-number">13.2</span> Manipulação de filogenias</a></li>
+<li>
+<a class="nav-link" href="#m%C3%A9tricas-de-diversidade-alfa-filogen%C3%A9tica"><span class="header-section-number">13.3</span> Métricas de diversidade alfa filogenética</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#riqueza-da-diversidade-alfa-filogen%C3%A9tica"><span class="header-section-number">13.3.1</span> Riqueza da diversidade alfa filogenética</a></li>
+<li><a class="nav-link" href="#diverg%C3%AAncia-da-diversidade-alfa-filogen%C3%A9tica"><span class="header-section-number">13.3.2</span> Divergência da diversidade alfa filogenética</a></li>
+<li><a class="nav-link" href="#regularidade-da-diversidade-alfa-filogen%C3%A9tica"><span class="header-section-number">13.3.3</span> Regularidade da diversidade alfa filogenética</a></li>
+<li><a class="nav-link" href="#correla%C3%A7%C3%A3o-entre-as-m%C3%A9tricas-de-diversidade-alfa-filogen%C3%A9tica"><span class="header-section-number">13.3.4</span> Correlação entre as métricas de diversidade alfa filogenética</a></li>
+<li><a class="nav-link" href="#associa%C3%A7%C3%A3o-entre-a-diversidade-alfa-filogen%C3%A9tica-e-o-ambiente"><span class="header-section-number">13.3.5</span> Associação entre a diversidade alfa filogenética e o ambiente</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#m%C3%A9tricas-de-diversidade-beta-filogen%C3%A9tica"><span class="header-section-number">13.4</span> Métricas de diversidade beta filogenética</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#diverg%C3%AAncia-da-diversidade-beta-filogen%C3%A9tica"><span class="header-section-number">13.4.1</span> Divergência da diversidade beta filogenética</a></li>
+<li><a class="nav-link" href="#correla%C3%A7%C3%A3o-entre-as-m%C3%A9tricas-de-diversidade-beta-filogen%C3%A9tica"><span class="header-section-number">13.4.2</span> Correlação entre as métricas de diversidade beta filogenética</a></li>
+<li><a class="nav-link" href="#associa%C3%A7%C3%A3o-entre-a-diverg%C3%AAncia-da-diversidade-beta-filogen%C3%A9tica-e-o-ambiente"><span class="header-section-number">13.4.3</span> Associação entre a divergência da diversidade beta filogenética e o ambiente</a></li>
+<li><a class="nav-link" href="#riqueza-da-diversidade-beta-filogen%C3%A9tica"><span class="header-section-number">13.4.4</span> Riqueza da diversidade beta filogenética</a></li>
+<li><a class="nav-link" href="#correla%C3%A7%C3%A3o-entre-phylosor-e-unifrac"><span class="header-section-number">13.4.5</span> Correlação entre Phylosor e Unifrac</a></li>
+<li><a class="nav-link" href="#associa%C3%A7%C3%A3o-entre-a-riqueza-da-diversidade-beta-filogen%C3%A9tica-e-o-ambiente"><span class="header-section-number">13.4.6</span> Associação entre a riqueza da diversidade beta filogenética e o ambiente</a></li>
+<li><a class="nav-link" href="#parti%C3%A7%C3%A3o-da-diversidade-beta-filogen%C3%A9tica"><span class="header-section-number">13.4.7</span> Partição da diversidade beta filogenética</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#modelos-nulos"><span class="header-section-number">13.5</span> Modelos Nulos</a></li>
+<li>
+<a class="nav-link" href="#para-se-aprofundar-9"><span class="header-section-number">13.6</span> Para se aprofundar</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#livros-7"><span class="header-section-number">13.6.1</span> Livros</a></li>
+<li><a class="nav-link" href="#links-8"><span class="header-section-number">13.6.2</span> Links</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#exerc%C3%ADcios-9"><span class="header-section-number">13.7</span> Exercícios</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/13_diversidade_filogenetica.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/13_diversidade_filogenetica.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-15.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a> </p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

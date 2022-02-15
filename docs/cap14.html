@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 14 Diversidade Funcional | Análises Ecológicas no R</title>
+<meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine">
+<meta name="description" content="Pré-requisitos do capítulo Pacotes, dados e funções que serão utilizados nesse capítulo. ## Pacotes library(FD) library(ade4) library(ecodados) library(gridExtra) library(ggplot2) library(ggrepel)...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 14 Diversidade Funcional | Análises Ecológicas no R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://analises-ecologicas.netlify.app/cap14.html">
+<meta property="og:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
+<meta property="og:description" content="Pré-requisitos do capítulo Pacotes, dados e funções que serão utilizados nesse capítulo. ## Pacotes library(FD) library(ade4) library(ecodados) library(gridExtra) library(ggplot2) library(ggrepel)...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 14 Diversidade Funcional | Análises Ecológicas no R">
+<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes, dados e funções que serão utilizados nesse capítulo. ## Pacotes library(FD) library(ade4) library(ecodados) library(gridExtra) library(ggplot2) library(ggrepel)...">
+<meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Análises Ecológicas no R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Sumário"><h2>Sumário</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bem-vindos</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="revisores-e-colaboradores.html">Revisores e colaboradores</a></li>
+<li><a class="" href="cap1.html"><span class="header-section-number">1</span> Introdução</a></li>
+<li><a class="" href="cap2.html"><span class="header-section-number">2</span> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a></li>
+<li><a class="" href="cap3.html"><span class="header-section-number">3</span> Pré-requisitos</a></li>
+<li><a class="" href="cap4.html"><span class="header-section-number">4</span> Introdução ao R</a></li>
+<li><a class="" href="cap5.html"><span class="header-section-number">5</span> Tidyverse</a></li>
+<li><a class="" href="cap6.html"><span class="header-section-number">6</span> Visualização de dados</a></li>
+<li><a class="" href="cap7.html"><span class="header-section-number">7</span> Modelos lineares</a></li>
+<li><a class="" href="cap8.html"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></li>
+<li><a class="" href="cap9.html"><span class="header-section-number">9</span> Análises Multidimensionais</a></li>
+<li><a class="" href="cap10.html"><span class="header-section-number">10</span> Rarefação</a></li>
+<li><a class="" href="cap11.html"><span class="header-section-number">11</span> Estimadores de riqueza</a></li>
+<li><a class="" href="cap12.html"><span class="header-section-number">12</span> Diversidade Taxonômica</a></li>
+<li><a class="" href="cap13.html"><span class="header-section-number">13</span> Diversidade Filogenética</a></li>
+<li><a class="active" href="cap14.html"><span class="header-section-number">14</span> Diversidade Funcional</a></li>
+<li><a class="" href="cap15.html"><span class="header-section-number">15</span> Dados geoespaciais no R</a></li>
+<li><a class="" href="gloss%C3%A1rio.html">Glossário</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap14" class="section level1" number="14">
+<h1>
+<span class="header-section-number">Capítulo 14</span> Diversidade Funcional<a class="anchor" aria-label="anchor" href="#cap14"><i class="fas fa-link"></i></a>
+</h1>
+<div id="pré-requisitos-do-capítulo-10" class="section level2 unnumbered">
+<h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-10"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pacotes, dados e funções que serão utilizados nesse capítulo.</p>
+<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Pacotes </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">FD</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://pbil.univ-lyon1.fr/ADE-4/">ade4</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">picante</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">SYNCSA</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">FD</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">betapart</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">nlme</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/">ape</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TPD</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adrientaudiere/cati">cati</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
+
+<span class="co">## Dados e funções</span>
+<span class="va">comun_fren_dat</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">fundiv_frenette2012a_comu</span>
+<span class="va">ambie_fren_dat</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">fundiv_frenette2012a_amb</span>
+<span class="va">trait_fren_dat</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">fundiv_frenette2012a_trait</span>
+<span class="va">trait_dat</span>      <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">fundiv_barbaro2009a_trait</span>
+<span class="va">comun_dat</span>      <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">fundiv_barbaro2009a_comu</span>
+<span class="va">ambie_dat</span>      <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">fundiv_barbaro2009a_amb</span>
+<span class="va">trait_baselga</span>  <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">trait_baselga</span>
+<span class="va">comm_baselga</span>   <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">comm_baselga</span>
+<span class="va">anuros_comm</span>    <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">anuros_comm</span>
+<span class="va">traits</span>         <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">traits</span>
+<span class="va">env</span>            <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">env</span>
+<span class="co"># ecodados::wITV # funtion: wITV</span></code></pre></div>
+</div>
+<div id="aspectos-teóricos-5" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Aspectos teóricos<a class="anchor" aria-label="anchor" href="#aspectos-te%C3%B3ricos-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>Até a década de 1990, a teoria ecológica investigava basicamente quais processos determinavam a abundância e riqueza de espécies no espaço e tempo. As décadas de 1980 e 1990 foram marcadas por intensos debates sobre as regras de montagem de comunidades e como interações e filtros ambientais determinavam a coexistência de espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-strong_ecological_1984" role="doc-biblioref">Strong et al. 1984</a>)</span>. Porém, a década de 2000 foi marcada pelo uso mais explícito da características das espécies como uma variável fundamental tanto para explicar como a distribuição dos organismos seria afetada pelo ambiente, quanto para entender como tais espécies afetariam o ecossistema <span class="citation">(<a href="refer%C3%AAncias.html#ref-diaz_vive_2001" role="doc-biblioref">Dı́az and Cabido 2001</a>; <a href="refer%C3%AAncias.html#ref-mcgill_rebuilding_2006" role="doc-biblioref">McGill et al. 2006</a>)</span>. O primeiro estudo que utilizou o termo <em>Diversidade Funcional</em> foi publicado por Williams <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson1967" role="doc-biblioref">1967</a>)</span>, que comparou espécies de naúplios filogenéticamente relacionadas e demonstrou que elas possuem alta plasticidade funcional que favorecem ampla variação de comportamentos e, desse modo, permitem que sejam espécies generalistas em ambientes em contante mudança. A unidade básica desses estudos, o atributo funcional (do inglês “<em>functional trait</em>”), é definido como uma propriedade mensurável dos organismos (geralmente em nível individual) que represente características morfológicas, fisiológicas ou fenológicas que afetam a aptidão alterando aspectos do crescimento, reprodução e sobrevivência <span class="citation">(<a href="refer%C3%AAncias.html#ref-violle_let_2007" role="doc-biblioref">Violle et al. 2007</a>)</span>. Mais especificamente, o atributo funcional pode ser divido em atributo efeito (i.e., atributos do organismo que afetam condições ambientais ou propriedades do ecossistema) e resposta (i.e., atributos do organismo que variam em resposta a condições ambientais) <span class="citation">(<a href="refer%C3%AAncias.html#ref-violle_let_2007" role="doc-biblioref">Violle et al. 2007</a>)</span>.</p>
+<p>Dessa forma, as medidas de diversidade passaram a ser representadas não somente por diferenças no número e na quantidade de espécies, mas pelas diferenças e/ou semelhanças dos atributos funcionais das espécies dentro e entre localidades. Assim, a variação no grau de expressão de diferentes atributos funcionais entre diferentes populações, comunidades ou ecossistemas é definida como <em>Diversidade Funcional</em> <span class="citation">(<em>sensu</em> <a href="refer%C3%AAncias.html#ref-garnier_plant_2015" role="doc-biblioref">Garnier, Navas, and Grigulis 2015</a>)</span>. Porém, a diversidade funcional não deve ser usada como medida única, uma vez que tais diferenças entre os atributos funcionais pode ser medida a partir da abundância relativa, riqueza e variação dos atributos funcionais. Desse modo, podemos dividir a diversidade funcional em três diferentes medidas: i) riqueza funcional, ii) divergência funcional, e iii) regularidade funcional <span class="citation">(<a href="refer%C3%AAncias.html#ref-villeger_new_2008" role="doc-biblioref">Villéger, Mason, and Mouillot 2008</a>)</span>. Existem dezenas de métricas que calculam cada uma dessas <em>dimensões</em> da diversidadade funcional, mas se destacam aquelas baseadas em dendrograma <span class="citation">(e.g., FD: <a href="refer%C3%AAncias.html#ref-petchey_functional_2002" role="doc-biblioref">Petchey and Gaston 2002</a>)</span> ou em medidas de distância <span class="citation">(e.g., <a href="refer%C3%AAncias.html#ref-villeger_new_2008" role="doc-biblioref">Villéger, Mason, and Mouillot 2008</a>)</span>. Assim como a diversidade taxonômica (Capítulo <a href="cap12.html#cap12">12</a>), a diversidade funcional pode ser medida em componentes alfa e beta. A seguir, apresentamos diferentes maneiras de calcular a distância entre localidades tendo como base os atributos funcionais das espécies e, além disso, demonstramos como calcular algumas das métricas de diversidade (alfa e beta) funcional mais usadas em Ecologia. A parte final deste capítulo apresenta dois exemplos de como podemos testar hipóteses ecológicas comparando a diversidade funcional alfa e beta.</p>
+</div>
+<div id="definindo-a-dissimilaridade-entre-espécies" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> Definindo a dis(similaridade) entre espécies<a class="anchor" aria-label="anchor" href="#definindo-a-dissimilaridade-entre-esp%C3%A9cies"><i class="fas fa-link"></i></a>
+</h2>
+<p>Definir o quão diferente ou semelhante são duas espécies que ocorrem em uma determinada localidade é a base para calcular a diversidade alfa e beta funcional. Para isso, é fundamental ter em mente que os atributos funcionais podem ser de vários tipos como, por exemplo, contínuos (e.g., tamanho corporal em centímetro), categóricos (e.g., guilda: frugívoro, detritívoro, etc.), ordinais (e.g., 1 para organismo até 5 cm, 2 para organismos entre 5 e 30 cm, e 3 para organismos maiores do que 30 cm), binários (e.g., presença ou ausência de espinho), entre outros [veja a Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> no Capítulo <a href="cap2.html#cap2">2</a>]. Por este motivo, a decisão do método de distância só será possível após o reconhecimento dos tipos de atributos funcionais escolhidos. Em linhas gerais, para variáveis contínuas a distância euclideana é a melhor opção, enquanto para os outros tipos de variáveis ou para conjuntos de atributos com mais de um tipo de variável, a distância de Gower geralmente deve ser a melhor opção <span class="citation">(<a href="refer%C3%AAncias.html#ref-pavoine_challenge_2009" role="doc-biblioref">Pavoine et al. 2009</a>)</span>.</p>
+<p><strong>Exemplo prático</strong></p>
+<p><strong>Exemplo1: variáveis contínuas</strong></p>
+<p>Vamos utilizar um conjunto de dados com atributos contínuos (e.g., área foliar específica e massa foliar seca) de 34 espécies de plantas em um gradiente de aridez <span class="citation">(<a href="refer%C3%AAncias.html#ref-frenette-dussault_functional_2012" role="doc-biblioref">Frenette-Dussault et al. 2012</a>)</span>. Diversas análises funcionais podem ser afetadas por valores extremos ou pela diferença de unidade/escala entre as variáveis utilizadas. Por este motivo, é importante padronizar a matriz de atributos com média 0 e desvio padrão 1. Esta padronização é necessária tanto para fazer uma PCA como para PCoA (veja Capítulo <a href="cap9.html#cap9">9</a>).</p>
+<p><strong>Pergunta</strong></p>
+<p>Quais são as espécies de plantas mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies).</p>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Dependentes: atributos funcionais (matriz de atributos contínuos por espécie: <code>trait_fren_dat</code>)</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Aqui realizamos os passos para uma ordenação usando os atributos funcionais contínuos (Figura <a href="cap14.html#fig:fig-func-pcoa-cont">14.1</a>).</p>
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## PCoA dos atributos contínuos</span>
+
+<span class="co"># 1. Padronização dos dados</span>
+<span class="va">trait_pad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">trait_fren_dat</span>, <span class="st">"standardize"</span><span class="op">)</span>
+<span class="va">euclid_dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">trait_pad</span>, <span class="st">"euclidean"</span><span class="op">)</span>
+
+<span class="co"># 2. PCoA</span>
+<span class="co"># Resultados são idênticos aos resultados de uma PCA.</span>
+<span class="va">pcoa_traits_cont</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/pcoa.html">pcoa</a></span><span class="op">(</span><span class="va">euclid_dis</span>, correction <span class="op">=</span> <span class="st">"cailliez"</span><span class="op">)</span> 
+
+<span class="co"># 3. Exportandos dados para gráfico</span>
+<span class="co"># Ao usar '[,1:2]' você irá selecionar os dois primeiros eixos.</span>
+<span class="va">eixos_cont</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">pcoa_traits_cont</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> 
+
+<span class="co"># 4. Gráfico de ordenação </span>
+<span class="va">plot_trait_cont</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">eixos_cont</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Axis.1</span>, y <span class="op">=</span> <span class="va">Axis.2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, fill <span class="op">=</span> <span class="st">"red2"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Axis.1</span>, <span class="va">Axis.2</span>, label <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">eixos_cont</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"PCO 1"</span>, y <span class="op">=</span> <span class="st">"PCO 2"</span>, title <span class="op">=</span> <span class="st">"Dados contínuos"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+<span class="va">plot_trait_cont</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-pcoa-cont"></span>
+<img src="livro_files/figure-html/fig-func-pcoa-cont-1.png" alt="Ordenação usando os atributos funcionais contínuos." width="100%" height="100%"><p class="caption">
+Figura 14.1: Ordenação usando os atributos funcionais contínuos.
+</p>
+</div>
+<p><strong>Exemplo 2: variáveis categóricas</strong></p>
+<p>Ao contrário dos dados contínuos, para dados categóricos não é possível utilizar PCA. No próximo exemplo, utilizamos atributos funcionais de besouros distribuídos na Europa <span class="citation">(<a href="refer%C3%AAncias.html#ref-barbaro_linking_2009" role="doc-biblioref">Barbaro and Van Halder 2009</a>)</span>. Esses dados são categóricos e incluem atributos como período de atividade (noturno, diurno, dioturno), tendência da população na europa (estável, aumentando, diminuíndo) entre outros.</p>
+<p><strong>Pergunta</strong></p>
+<p>Quais são as espécies de besouros mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies).</p>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Dependentes: atributos funcionais (matriz de atributos categóricos por espécie: <code>trait_dat</code>)</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Aqui realizamos os passos para uma ordenação usando os atributos funcionais categóricos (Figura <a href="cap14.html#fig:fig-func-pcoa-cat">14.2</a>).</p>
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## PCoA dos atributos categóricos</span>
+
+<span class="co"># 1. Selecionar somente os atributos categóricos</span>
+<span class="va">trait_cat</span> <span class="op">&lt;-</span> <span class="va">trait_dat</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>
+
+<span class="co"># 2. Calcular a distância de Gower</span>
+<span class="va">dist_categ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/gowdis.html">gowdis</a></span><span class="op">(</span><span class="va">trait_cat</span><span class="op">)</span>
+
+<span class="co"># 3. PCoA da matriz de distância funcional (Gower)</span>
+<span class="va">pcoa_traits_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/pcoa.html">pcoa</a></span><span class="op">(</span><span class="va">dist_categ</span>, correction <span class="op">=</span> <span class="st">"cailliez"</span><span class="op">)</span>
+
+<span class="co"># 4. Exportar dados (escores) para ggplot</span>
+<span class="va">eixos_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">pcoa_traits_cat</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="co"># Selecionar os dois primeiros eixos</span>
+
+<span class="co"># 5. Gráfico de ordenação</span>
+<span class="va">plot_trait_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">eixos_cat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Axis.1</span>, y <span class="op">=</span> <span class="va">Axis.2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"cyan4"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Axis.1</span>, <span class="va">Axis.2</span>, label <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">eixos_cat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"PCO 1"</span>, y <span class="op">=</span> <span class="st">"PCO 2"</span>, title <span class="op">=</span> <span class="st">"Dados categóricos"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+<span class="va">plot_trait_cat</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-pcoa-cat"></span>
+<img src="livro_files/figure-html/fig-func-pcoa-cat-1.png" alt="Ordenação usando os atributos funcionais categóricos." width="100%" height="100%"><p class="caption">
+Figura 14.2: Ordenação usando os atributos funcionais categóricos.
+</p>
+</div>
+<p><strong>Exemplo 3: variáveis mistas</strong></p>
+<p>Em casos mais complexos, a pesquisa inclui diversos atributos funcionais com naturezas diferentes, como atributos contínuos, categóricos, ordinais, circulares, entre outros. Desse modo, é possível utilizar medidas como Gower (<code><a href="https://rdrr.io/pkg/FD/man/gowdis.html">gowdis()</a></code>). Porém, existe uma alternativa mais apropriada que generalizou o coeficiente de Gower para tratar cada conjunto de variáveis de acordo com sua natureza <span class="citation">(<a href="refer%C3%AAncias.html#ref-pavoine_challenge_2009" role="doc-biblioref">Pavoine et al. 2009</a>)</span>. Vamos usar o mesmo conjunto de dados que foram considerados no exemplo anterior. Porém, ao invés de utilizar somente as variáveis categóricas, usaremos todas elas. O primeiro passo é identificar para o programa as classes apropriadas para cada tipo de variável e, além disso, preparar os dados para a função <code><a href="https://rdrr.io/pkg/ade4/man/dist.ktab.html">dist.ktab()</a></code>.</p>
+<p><strong>Pergunta</strong></p>
+<p>Quais são as espécies de besouros mais semelhantes? (Neste caso, sem predição, pois representa uma avaliação exploratória com as características funcionais das espécies)</p>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Dependentes: atributos funcionais (matriz de atributos contínuos e categóricos por espécie: <code>trait_dat</code>)</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Aqui realizamos os passos para uma ordenação usando os atributos funcionais de diversas naturezas (Figura <a href="cap14.html#fig:fig-func-pcoa-mistos">14.3</a>).</p>
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## PCoA dos atributos mistos</span>
+
+<span class="co">## 1. Verifique a classe de todos os traits e veja se estão de acordo com sua expectativa</span>
+<span class="va">trait_dat</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">class</span><span class="op">)</span>
+<span class="co">#&gt;    variable     class</span>
+<span class="co">#&gt; 1     trend character</span>
+<span class="co">#&gt; 2   redlist character</span>
+<span class="co">#&gt; 3     regio   integer</span>
+<span class="co">#&gt; 4      biog character</span>
+<span class="co">#&gt; 5     activ character</span>
+<span class="co">#&gt; 6      diet character</span>
+<span class="co">#&gt; 7    winter character</span>
+<span class="co">#&gt; 8     color character</span>
+<span class="co">#&gt; 9     breed character</span>
+<span class="co">#&gt; 10     body   integer</span>
+<span class="co">#&gt; 11     wing character</span>
+<span class="co">#&gt; 12   period character</span>
+
+<span class="co">## 2. Neste exemplo, algumas variáveis que são ordinais (regio e body) </span>
+<span class="co"># foram reconhecidas como numéricas ou categóricas. </span>
+<span class="va">trait_dat</span><span class="op">$</span><span class="va">regio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.ordered</a></span><span class="op">(</span><span class="va">trait_dat</span><span class="op">$</span><span class="va">regio</span><span class="op">)</span>
+<span class="va">trait_dat</span><span class="op">$</span><span class="va">body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.ordered</a></span><span class="op">(</span><span class="va">trait_dat</span><span class="op">$</span><span class="va">body</span><span class="op">)</span>
+
+<span class="co">## 3. Combinar cada conjunto de atributos de acordo com sua natureza em um </span>
+<span class="co"># data.frame separado.</span>
+<span class="co"># 3.1. Categóricos.</span>
+<span class="va">trait_categ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span>
+    trend <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">trend</span>, 
+    redlist <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">redlist</span>, 
+    biog <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">biog</span>, 
+    activ <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">activ</span>,  
+    diet <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">diet</span>, 
+    winter <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">winter</span>,
+    color <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">color</span>, 
+    breed <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">breed</span>,
+    wing <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">wing</span>, 
+    period <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">period</span><span class="op">)</span>
+
+<span class="co"># 3.2 Ordinais.</span>
+<span class="va">trait_ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span>regio <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">regio</span>, 
+                              body <span class="op">=</span> <span class="va">trait_dat</span><span class="op">$</span><span class="va">body</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">trait_categ</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">trait_dat</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">trait_ord</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">trait_dat</span><span class="op">)</span>
+
+<span class="co"># Agora, combinar os dois data.frames em uma lista chamada "ktab".</span>
+<span class="va">ktab_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/ktab.list.df.html">ktab.list.df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">trait_categ</span>, <span class="va">trait_ord</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Por fim, calcular a distância funcional entre as espécies.</span>
+<span class="co"># Em "type", a letra "N" indica variável categórica (ou nominal), </span>
+<span class="co"># enquanto a letra "O" indica variável ordinal.</span>
+<span class="va">dist_mist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/dist.ktab.html">dist.ktab</a></span><span class="op">(</span><span class="va">ktab_list</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"O"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Visualize os dados com uma PCoA</span>
+<span class="va">pcoa_traits_mist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/pcoa.html">pcoa</a></span><span class="op">(</span><span class="va">dist_mist</span>, correction <span class="op">=</span> <span class="st">"cailliez"</span><span class="op">)</span>
+<span class="va">eixos_mist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">pcoa_traits_mist</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> 
+
+<span class="va">plot_trait_mist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">eixos_mist</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Axis.1</span>, y <span class="op">=</span> <span class="va">Axis.2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, 
+               color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Axis.1</span>, <span class="va">Axis.2</span>, label <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">eixos_mist</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"PCO 1"</span>, y <span class="op">=</span> <span class="st">"PCO 2"</span>, title <span class="op">=</span> <span class="st">"Dados mistos"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+<span class="va">plot_trait_mist</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-pcoa-mistos"></span>
+<img src="livro_files/figure-html/fig-func-pcoa-mistos-1.png" alt="Ordenação usando os atributos funcionais de dados mistos." width="100%" height="100%"><p class="caption">
+Figura 14.3: Ordenação usando os atributos funcionais de dados mistos.
+</p>
+</div>
+<p>Podemos combinar os dois gráficos (baseado em variáveis categóricas e em variáveis mistas) para comparar as duas medidas de distância, uma somente com dados categóricos (<code>gower()</code>) e uma com dados categóricos e ordinais (<code><a href="https://rdrr.io/pkg/ade4/man/dist.ktab.html">dist.ktab()</a></code>) (Figura <a href="cap14.html#fig:fig-func-pcoa-cat-mistos">14.4</a>).</p>
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Gráficos</span>
+<span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">plot_trait_cat</span>, <span class="va">plot_trait_mist</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-pcoa-cat-mistos"></span>
+<img src="livro_files/figure-html/fig-func-pcoa-cat-mistos-1.png" alt="Ordenações usando os atributos funcionais categóricos e de dados mistos." width="100%" height="100%"><p class="caption">
+Figura 14.4: Ordenações usando os atributos funcionais categóricos e de dados mistos.
+</p>
+</div>
+</div>
+<div id="métricas-de-diversidade-funcional-alfa" class="section level2" number="14.3">
+<h2>
+<span class="header-section-number">14.3</span> Métricas de diversidade funcional (alfa)<a class="anchor" aria-label="anchor" href="#m%C3%A9tricas-de-diversidade-funcional-alfa"><i class="fas fa-link"></i></a>
+</h2>
+<div id="riqueza-funcional" class="section level3" number="14.3.1">
+<h3>
+<span class="header-section-number">14.3.1</span> Riqueza funcional<a class="anchor" aria-label="anchor" href="#riqueza-funcional"><i class="fas fa-link"></i></a>
+</h3>
+<p>A riqueza funcional mede a quantidade de espaço funcional preenchido pela espécies de uma comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-mason_functional_2013" role="doc-biblioref">Mason and Mouillot 2013</a>)</span>. A estimativa desse espaço pode ser calculada usando dengrogramas <span class="citation">(<a href="refer%C3%AAncias.html#ref-petchey_functional_2002" role="doc-biblioref">Petchey and Gaston 2002</a>)</span> ou através do método <strong>Convex Hull</strong> <span class="citation">(<a href="refer%C3%AAncias.html#ref-cornwell_trait-based_2006" role="doc-biblioref">Cornwell, Schwilk, and Ackerly 2006</a>)</span> que dão origem, respectivamente, às duas métricas mais usadas: i) Diversidade Funcional (FD) e ii) Riqueza Funcional (FRic). Os índices de riqueza funcional geralmente são usados como indicadores do espaço de nicho que é potencialmente usado ou não <span class="citation">(<a href="refer%C3%AAncias.html#ref-schleuter_users_2010" role="doc-biblioref">Schleuter et al. 2010</a>)</span>.</p>
+<p><strong>Exemplo prático</strong></p>
+<p><strong>Explicação dos dados</strong></p>
+<p>Os dados utilizados neste exemplo são os mesmos do exemplo com dados mistos, i.e., categóricos e contínuos (objeto <code>dist_mist</code>).</p>
+<p><strong>Pergunta</strong></p>
+<p>Qual a relação entre riqueza de espécies e diversidade funcional? Todos os índices são correlacionados com a riqueza?</p>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Dependentes: atributos funcionais e composição de espécies para cálculo da diversidade funcional e riqueza em cada parcela</li>
+</ul>
+<p><strong>Análises</strong></p>
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Estrutura dos dados</span>
+<span class="co"># matriz de distância: distância entre as seis primeiras espécies</span>
+<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dist_mist</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+<span class="co">#&gt;           sp1       sp2       sp3       sp4       sp5       sp6</span>
+<span class="co">#&gt; sp1 0.0000000 0.5000000 0.7107801 0.7771900 0.6107116 0.5041691</span>
+<span class="co">#&gt; sp2 0.5000000 0.0000000 0.6808389 0.8538292 0.7345988 0.6487320</span>
+<span class="co">#&gt; sp3 0.7107801 0.6808389 0.0000000 0.7179711 0.7381353 0.6527339</span>
+<span class="co">#&gt; sp4 0.7771900 0.8538292 0.7179711 0.0000000 0.5106682 0.6522593</span>
+<span class="co">#&gt; sp5 0.6107116 0.7345988 0.7381353 0.5106682 0.0000000 0.5177440</span>
+<span class="co">#&gt; sp6 0.5041691 0.6487320 0.6527339 0.6522593 0.5177440 0.0000000</span>
+
+<span class="co"># composição de espécies: seis primeiras espécies nas seis primeiras localidades</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">comun_dat</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+<span class="co">#&gt;    sp1 sp2 sp3 sp4 sp5 sp6</span>
+<span class="co">#&gt; 3    0  19   2   0   0   0</span>
+<span class="co">#&gt; 4    0   4   0   0   0   0</span>
+<span class="co">#&gt; 6    1  58   2   0   0   0</span>
+<span class="co">#&gt; 7    1   0   0   0   0   0</span>
+<span class="co">#&gt; 9    3   0   0   0   0   0</span>
+<span class="co">#&gt; 10   3  15   0   0   0   0</span>
+
+<span class="co">## Antes de calcular as métricas de diversidade funcional, vamos calcular </span>
+<span class="co"># a riqueza de espécies com intuito de comparação entre métricas.</span>
+<span class="va">richness</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">dist_mist</span>, <span class="va">comun_dat</span><span class="op">)</span><span class="op">$</span><span class="va">nbsp</span> 
+<span class="co">#&gt; FRic: Dimensionality reduction was required. The last 17 PCoA axes (out of 19 in total) were removed. </span>
+<span class="co">#&gt; FRic: Quality of the reduced-space representation = 0.3243851 </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">richness</span><span class="op">)</span>
+<span class="co">#&gt;  3  4  6  7  9 10 </span>
+<span class="co">#&gt; 12  3  7  7  4  7</span>
+
+<span class="co">## É preciso definir uma distância apropriada (veja descrição anterior) para os cálculos abaixo</span>
+
+<span class="co"># O índice "Functional Richness" só funciona para comunidades com 3 ou mais espécies.</span>
+<span class="co"># Caso você tenha comunidades com 1 ou 2 espécies, o valor será NA.</span>
+<span class="va">fric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">dist_mist</span>, <span class="va">comun_dat</span><span class="op">)</span><span class="op">$</span><span class="va">FRic</span>
+<span class="co">#&gt; FRic: Dimensionality reduction was required. The last 17 PCoA axes (out of 19 in total) were removed. </span>
+<span class="co">#&gt; FRic: Quality of the reduced-space representation = 0.3243851 </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fric</span><span class="op">)</span>
+<span class="co">#&gt;           3           4           6           7           9          10 </span>
+<span class="co">#&gt; 0.226236923 0.009033539 0.158760885 0.158529234 0.014290140 0.200075112</span>
+
+<span class="co">## Functional Diversity </span>
+<span class="co"># Passo 1: análise de agrupamento para criar o dendrograma. </span>
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">dist_mist</span>, <span class="st">"average"</span><span class="op">)</span>
+
+<span class="co"># Passo 2: transformar o dengrograma em um arquivo da classe phylo.</span>
+<span class="va">tree_dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/as.phylo.html">as.phylo</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span>
+
+<span class="co"># Passo 3: calcular o valor da diversidade funcional. </span>
+<span class="va">FD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/picante/man/pd.html">pd</a></span><span class="op">(</span><span class="va">comun_dat</span>, <span class="va">tree_dend</span><span class="op">)</span><span class="op">$</span><span class="va">PD</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">FD</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3.590053 1.115574 2.255337 2.356478 1.472314 2.430329</span></code></pre></div>
+<p>Os valores da Riqueza Funcional (FRic) variam entre 0 e +∞, sendo o valor máximo limitado pelo número de espécies em uma comunidade. Desse modo, os valores de FRic basicamente são uma representação da riqueza de espécies (e seus atributos funcionais) de uma comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-villeger_new_2008" role="doc-biblioref">Villéger, Mason, and Mouillot 2008</a>)</span>. Ou seja, quanto maior o número de espécies, maior será o espaço funcional ocupado por essas espécies. No pacote ‘dbFD’ o valor de FRic é dividido pelo valor de FRic global (ou seja, pela riqueza funcional de todas as comunidades combinadas). Como resultado, ele limita a variação entre 0 e 1, onde valores próximos a 1 indicam que uma determinada comunidade tem riqueza funcional tão alta quanto a riqueza funcional de todas as comunidades juntas. Neste exemplo, as localidades 21 e 89 possuem, respectivamente, a maior e menor Riqueza Funcional.</p>
+</div>
+<div id="divergência-funcional" class="section level3" number="14.3.2">
+<h3>
+<span class="header-section-number">14.3.2</span> Divergência funcional<a class="anchor" aria-label="anchor" href="#diverg%C3%AAncia-funcional"><i class="fas fa-link"></i></a>
+</h3>
+<p>A divergência funcional é uma medida que descreve a irregularidade na distribuição dos valores dos atributos no volume do espaço funcional ocupado por todas as espécies de uma certa comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-garnier_plant_2015" role="doc-biblioref">Garnier, Navas, and Grigulis 2015</a>)</span>. Para obter os valores de divergência, o espaço funcional é calculado através do método <em>Convex Hull</em> (Functional Divergence) ou do espaço multidimensional calculado com um PCoA (Functional Dispersion). Nos dois casos, o valor da métrica representa a distância média das espécies para o centro de gravidade ou centroide do espaço funcional, ponderado pela abundância relativa das espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-villeger_new_2008" role="doc-biblioref">Villéger, Mason, and Mouillot 2008</a>; <a href="refer%C3%AAncias.html#ref-laliberte_distance-based_2010" role="doc-biblioref">Laliberté and Legendre 2010</a>)</span>. Desse modo, a divergência funcional é uma medida que calcula o grau de diferenciação em que a distribuição da abundância maximiza a divergência entre entre os atributos funcionais <span class="citation">(<a href="refer%C3%AAncias.html#ref-mason_functional_2013" role="doc-biblioref">Mason and Mouillot 2013</a>)</span>. Em geral, estudos que usam esses índices buscam entender o grau de diferenciação de recursos de espécies que coexistem em uma comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-garnier_plant_2015" role="doc-biblioref">Garnier, Navas, and Grigulis 2015</a>)</span>.</p>
+<div class="sourceCode" id="cb525"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">## Aqui, iremos utilizar a matriz de distância obtida dos dados </span>
+<span class="co"># trait_dat (variáveis categóricas e ordinais) e nomeada como dist_mist.</span>
+
+<span class="co">## O índice "Functional Divergence" só é calculado para comunidades com 3 ou mais espécies</span>
+<span class="co"># Caso você tenha comunidades com 1 ou 2 espécies, a análise irá retornar o valor "NA"</span>
+<span class="va">fdiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">dist_mist</span>, <span class="va">comun_dat</span><span class="op">)</span><span class="op">$</span><span class="va">FDiv</span>
+<span class="co">#&gt; FRic: Dimensionality reduction was required. The last 17 PCoA axes (out of 19 in total) were removed. </span>
+<span class="co">#&gt; FRic: Quality of the reduced-space representation = 0.3243851 </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fdiv</span><span class="op">)</span>
+<span class="co">#&gt;         3         4         6         7         9        10 </span>
+<span class="co">#&gt; 0.9692023 0.8838557 0.4082808 0.9147644 0.9010790 0.6982640</span>
+
+<span class="co"># O índice "Functional Dispersion" atribui valor 0 para comunidades com 1 ou 2 espécies</span>
+<span class="va">fdis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">dist_mist</span>, <span class="va">comun_dat</span><span class="op">)</span><span class="op">$</span><span class="va">FDis</span>
+<span class="co">#&gt; FRic: Dimensionality reduction was required. The last 17 PCoA axes (out of 19 in total) were removed. </span>
+<span class="co">#&gt; FRic: Quality of the reduced-space representation = 0.3243851 </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fdis</span><span class="op">)</span>
+<span class="co">#&gt;         3         4         6         7         9        10 </span>
+<span class="co">#&gt; 0.2977975 0.3203602 0.2218237 0.3261248 0.3683898 0.3910530</span></code></pre></div>
+<p>Os valores da Divergência Funcional (FDiv) variam entre 0 e 1. Valores que se aproximam de zero indicam que a espécie mais abundante está muito próxima do valor do atributo médio da comunidade, ao passo que valores próximos a 1 indicam que a espécie mais abundante está muito distante (ou seja, é muito diferente) do valor médio da comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-villeger_new_2008" role="doc-biblioref">Villéger, Mason, and Mouillot 2008</a>)</span>. Neste exemplo, as localidades 159 e 6 possuem, respectivamente, a maior e menor Divergência Funcional.</p>
+</div>
+<div id="regularidade-funcional" class="section level3" number="14.3.3">
+<h3>
+<span class="header-section-number">14.3.3</span> Regularidade funcional<a class="anchor" aria-label="anchor" href="#regularidade-funcional"><i class="fas fa-link"></i></a>
+</h3>
+<p>A regularidade funcional (do inglês <em>Functional Evenness</em>) mede o quão regular é a distribuição da abundância dos valores dos atributos funcionais no espaço funcional. Diferente dos outros métodos, a versão multidimensional deste índice utiliza um método chamado <em>Minimum Spanning Tree</em> (MST) para conectar todas espécies no espaço funcional. A distância par apar das espécies na MST é ponderada pela abundância relativa das espécies e, desse modo, o valor final da regularidade funcional (FEve) vai variar de 0 (máxima irregularidade da distribuição da abundância ou distância funcional das espécies) a 1 (máxima regularidade).</p>
+<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">## Aqui, iremos utilizar a matriz de distância obtida dos dados trait_dat (variáveis categóricas e ordinais) e nomeada como dist_mist</span>
+
+<span class="co">## O índice "Functional evenness" só funciona para comunidades com 3 ou mais espécies</span>
+<span class="co"># Caso você tenha comunidades com 1 ou 2 espécies, a análise irá retornar o valor NA</span>
+<span class="va">feve</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">dist_mist</span>, <span class="va">comun_dat</span><span class="op">)</span><span class="op">$</span><span class="va">FEve</span>
+<span class="co">#&gt; FRic: Dimensionality reduction was required. The last 17 PCoA axes (out of 19 in total) were removed. </span>
+<span class="co">#&gt; FRic: Quality of the reduced-space representation = 0.3243851 </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">feve</span><span class="op">)</span>
+<span class="co">#&gt;         3         4         6         7         9        10 </span>
+<span class="co">#&gt; 0.4054808 0.5587917 0.5406140 0.6974712 0.9575697 0.6297941</span></code></pre></div>
+<p>Os valores da Regularidade Funcional (FEve) variam entre 0 e 1 (máxima regularidade ou regularidade perfeita). A diminuição do valor de FEve em direção a zero indica que uma redução da regularidade da distribuição da abundância ou distância funcional entre as espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-villeger_new_2008" role="doc-biblioref">Villéger, Mason, and Mouillot 2008</a>)</span>. Neste exemplo, as localidades 197 e 175 possuem, respectivamente, a maior e menor Regularidade Funcional.</p>
+</div>
+<div id="correlação-entre-as-métricas-de-diversidade-funcional-alfa" class="section level3" number="14.3.4">
+<h3>
+<span class="header-section-number">14.3.4</span> Correlação entre as métricas de diversidade funcional (alfa)<a class="anchor" aria-label="anchor" href="#correla%C3%A7%C3%A3o-entre-as-m%C3%A9tricas-de-diversidade-funcional-alfa"><i class="fas fa-link"></i></a>
+</h3>
+<p>Aqui vamos fazer a correlação entre as métricas de diversidade funcional (alfa) (Figura <a href="cap14.html#fig:fig-func-alfa-cor">14.5</a>).</p>
+<div class="sourceCode" id="cb527"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Gráficos</span>
+<span class="co">## Você pode criar uma tabela com os resultados de todas as métricas</span>
+<span class="va">metricas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>richness <span class="op">=</span> <span class="va">richness</span>,
+                       FD_gp <span class="op">=</span> <span class="va">FD</span>,
+                       fric <span class="op">=</span> <span class="va">fric</span>,
+                       fdiv <span class="op">=</span> <span class="va">fdiv</span>,
+                       fdis <span class="op">=</span> <span class="va">fdis</span>,
+                       feve <span class="op">=</span> <span class="va">feve</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">metricas</span><span class="op">)</span>
+<span class="co">#&gt;    richness    FD_gp        fric      fdiv      fdis      feve</span>
+<span class="co">#&gt; 3        12 3.590053 0.226236923 0.9692023 0.2977975 0.4054808</span>
+<span class="co">#&gt; 4         3 1.115574 0.009033539 0.8838557 0.3203602 0.5587917</span>
+<span class="co">#&gt; 6         7 2.255337 0.158760885 0.4082808 0.2218237 0.5406140</span>
+<span class="co">#&gt; 7         7 2.356478 0.158529234 0.9147644 0.3261248 0.6974712</span>
+<span class="co">#&gt; 9         4 1.472314 0.014290140 0.9010790 0.3683898 0.9575697</span>
+<span class="co">#&gt; 10        7 2.430329 0.200075112 0.6982640 0.3910530 0.6297941</span>
+
+<span class="co">## Gráfico para comparar o comportamento das métricas</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">metricas</span><span class="op">)</span> <span class="op">+</span> <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-alfa-cor"></span>
+<img src="livro_files/figure-html/fig-func-alfa-cor-1.png" alt="Correlação entre as métricas de diversidade funcional (alfa)." width="100%" height="100%"><p class="caption">
+Figura 14.5: Correlação entre as métricas de diversidade funcional (alfa).
+</p>
+</div>
+<p>Os resultados indicam que a Diversidade Funcional de Petchey &amp; Gaston <span class="citation">(<a href="refer%C3%AAncias.html#ref-petchey_functional_2002" role="doc-biblioref">2002</a>)</span> (<em>r</em> = 0.985) e a riqueza funcional (<em>r</em> = 0.813) são altamente correlacionadas com a riqueza de espécies. Porém, a divergência funcional, regularidade funcional e dispersão funcional não estão correlacionadas com a riqueza de espécies.</p>
+<p>A figura obtida com o código <code>ggpairs(metricas)</code> representa uma matriz de correlação comparando cada par de variáveis (neste caso, os índices de diversidade). No lado esquerdo da figura (abaixo da diagonal) são representados <em>scatter plots</em> (veja Capítulo <a href="cap6.html#cap6">6</a>), a no lado direito (acima da diagonal) pode-se encontrar os valores das correlações (<em>r</em>) entre os pares comparados. No caso das correlações, quanto mais próximo de +1 ou -1, mais forte é a relação entre essas variáveis do par comparado. O gráfico de linhas na diagonal demonstra a densidade de cada variáveis individualmente (veja Capítulo <a href="cap7.html#cap7">7</a>).</p>
+</div>
+</div>
+<div id="métricas-de-diversidade-funcional-beta" class="section level2" number="14.4">
+<h2>
+<span class="header-section-number">14.4</span> Métricas de diversidade funcional (beta)<a class="anchor" aria-label="anchor" href="#m%C3%A9tricas-de-diversidade-funcional-beta"><i class="fas fa-link"></i></a>
+</h2>
+<p>Assim como na diversidade beta taxonômica Capítulo <a href="cap12.html#cap12">12</a> e na diversidade beta filogenética <a href="cap13.html#cap13">13</a>, a diversidade beta funcional é uma medida que compara a composição (e a variação na composição) de atributos funcionais das espécies entre duas ou mais localidades. Porém, assim como na medida tradicional taxonômica (como Jaccard ou Sørensen), diferenças na diversidade beta podem ser geradas pela <strong>mudança na identidade das espécies (ou do atributo)</strong> ou na <strong>riqueza de espécies (ou de atributos)</strong> entre duas localidades (Figura <a href="cap14.html#fig:fig-func">14.6</a>). Desse modo, é possível particionar a diversidade beta funcional em aninhamento (do inglês <em>nestedness</em>) e substituição (do inglês <em>turnover</em>) (veja Capítulo <a href="cap12.html#cap12">12</a>). Além disso, os cálculos da diversidade beta funcional podem ser realizados par a par (<code><a href="https://rdrr.io/pkg/betapart/man/functional.beta.pair.html">functional.beta.pair()</a></code>) ou para a comparações de múltiplas localidades (<code>funcional.beta.multi()</code>).</p>
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"img/cap14_fig01.svg"</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func"></span>
+<img src="img/cap14_fig01.svg" alt="Partição da diversidade beta taxonômica (A) e funcional (B). Os três cenários apresentados tanto para a diversidade beta taxonômica como funcional representam, respectivamente, diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois." width="100%" height="100%"><p class="caption">
+Figura 14.6: Partição da diversidade beta taxonômica (A) e funcional (B). Os três cenários apresentados tanto para a diversidade beta taxonômica como funcional representam, respectivamente, diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.
+</p>
+</div>
+<p><strong>Exemplo 4</strong></p>
+<p>Os dados no exemplo a seguir utilizam somente a informação de presença (1) ou ausência (0) das espécies nas localidades. Neste exemplo hipotético criado por Baselga et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga_2021" role="doc-biblioref">2021</a>)</span>, foram amostradas 11 espécies (sp1-sp11) em quatro localidades (A-D). Para cada espécie, criamos dois atributos contínuos hipotéticos (trait1 e trait2).</p>
+<p><strong>Pergunta</strong></p>
+<p>Qual a contribuição relativa do aninhamento e substituição para a diversidade beta?</p>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Dependentes: atributos funcionais e composição de espécies.</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Vamos fazer a análise da partição da diversidade beta funcional e comparar seus componentes (Figura <a href="cap14.html#fig:fig-func-beta-comp">14.7</a>).</p>
+<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Partição da Diversidade beta (Método Baselga)</span>
+<span class="va">fun_beta_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/betapart/man/functional.beta.multi.html">functional.beta.multi</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comm_baselga</span>,
+                                        trait <span class="op">=</span> <span class="va">trait_baselga</span>, index <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span> 
+<span class="va">fun_beta_multi</span>
+<span class="co">#&gt; $funct.beta.JTU</span>
+<span class="co">#&gt; [1] 0.7101449</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $funct.beta.JNE</span>
+<span class="co">#&gt; [1] 0.1509662</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $funct.beta.JAC</span>
+<span class="co">#&gt; [1] 0.8611111</span>
+
+<span class="co">## Partição da Diversidade beta (Método Baselga)</span>
+<span class="va">fun_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/betapart/man/functional.beta.pair.html">functional.beta.pair</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comm_baselga</span>, 
+                                 trait <span class="op">=</span> <span class="va">trait_baselga</span>, index <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span> 
+
+<span class="co"># Os códigos abaixo permitem extrair a matriz de distância (par a par) com a partição em substituição e nestedness</span>
+<span class="va">fun_turnover</span> <span class="op">&lt;-</span> <span class="va">fun_beta</span><span class="op">$</span><span class="va">funct.beta.jne</span>
+<span class="va">fun_nestedness</span> <span class="op">&lt;-</span> <span class="va">fun_beta</span><span class="op">$</span><span class="va">funct.beta.jtu</span>
+<span class="va">fun_jaccard</span> <span class="op">&lt;-</span> <span class="va">fun_beta</span><span class="op">$</span><span class="va">funct.beta.jac</span>
+
+<span class="co">## Gráfico de comparação do substituição e aninhamento</span>
+<span class="va">dat_betapart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>turnover <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">fun_turnover</span><span class="op">)</span>, 
+                           nested <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">fun_nestedness</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Gráfico</span>
+<span class="va">plot_betapart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_betapart</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">turnover</span>, y <span class="op">=</span> <span class="va">nested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"#525252"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Beta Diveristy (Substituição)"</span>, y <span class="op">=</span> <span class="st">"Beta Diveristy (Aninhamento)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+<span class="va">plot_betapart</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-beta-comp"></span>
+<img src="livro_files/figure-html/fig-func-beta-comp-1.png" alt="Relação entre os componentes partição da diversidade funcional (beta)." width="100%" height="100%"><p class="caption">
+Figura 14.7: Relação entre os componentes partição da diversidade funcional (beta).
+</p>
+</div>
+<p>Os resultados da análise de partição (<code>fun_beta_multi()</code>) indicam que 82,5% (0,710/0,861) da variação na diversidade beta é explicada pelo componente substituição, enquanto 17,5% (0,151/0,861) pelo componente aninhamento. As matrizes de distância obtidas na análise par a par pode ser utilizadas para testar, <em>a posteriori</em>, a relação entre gradientes ambientais e diversidade beta funcional (mais detalhes abaixo).</p>
+</div>
+<div id="composição-funcional-community-wegihed-means---cwm" class="section level2" number="14.5">
+<h2>
+<span class="header-section-number">14.5</span> Composição Funcional (<em>Community Wegihed Means</em> - CWM)<a class="anchor" aria-label="anchor" href="#composi%C3%A7%C3%A3o-funcional-community-wegihed-means---cwm"><i class="fas fa-link"></i></a>
+</h2>
+<p>As medidas de diversidade beta funcional apresentadas acima fornecem matrizes de distância com comparações par a par de localidades em termos da composição de atributos funcionais. Porém, muitas vezes o pesquisador quer medir o “atributo médio” da comunidade para investigar, por exemplo, se um determinado gradiente ambiental afeta a expressão (em termos de abundância ou densidade) de dado atributo funcional. Em geral, a medida utilizada é o CWM (do inglês <em>Community Wegihed Means</em>). O CWM é basicamente uma média ponderada de um determinado atributo (coluna <em>m</em> na matriz T) em relação a abundância de todas as espécies que ocorrem na localidade (linha <em>n</em> na matrix X). O cálculo no R é feito pela função <code><a href="https://rdrr.io/pkg/FD/man/functcomp.html">functcomp()</a></code> e usa somente as duas matrizes (T e X). Os leitores que pretendem usar essas métricas devem ler críticas em Peres-Neto et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-peres-neto_linking_2017" role="doc-biblioref">2017</a>)</span>.</p>
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Matriz T</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">trait_baselga</span><span class="op">)</span>
+<span class="co">#&gt;     Trait.1 Trait.2</span>
+<span class="co">#&gt; sp1       1       1</span>
+<span class="co">#&gt; sp2       1       2</span>
+<span class="co">#&gt; sp3       1       4</span>
+<span class="co">#&gt; sp4       2       1</span>
+<span class="co">#&gt; sp5       2       2</span>
+<span class="co">#&gt; sp6       3       3</span>
+
+<span class="co">## Matriz X</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">comm_baselga</span><span class="op">)</span>
+<span class="co">#&gt;   sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10 sp11</span>
+<span class="co">#&gt; A   1   1   0   1   1   0   0   0   0    0    0</span>
+<span class="co">#&gt; B   1   0   1   0   0   0   0   1   1    0    0</span>
+<span class="co">#&gt; C   0   0   0   0   0   1   1   0   0    1    1</span>
+<span class="co">#&gt; D   0   1   0   1   0   0   1   0   1    0    0</span>
+
+<span class="co">## Função functcomp calcula o cwm para combinar as matrizes T e X</span>
+<span class="va">cwm_ex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/functcomp.html">functcomp</a></span><span class="op">(</span><span class="va">trait_baselga</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">comm_baselga</span><span class="op">)</span><span class="op">)</span>
+<span class="va">cwm_ex</span>
+<span class="co">#&gt;   Trait.1 Trait.2</span>
+<span class="co">#&gt; A     1.5     1.5</span>
+<span class="co">#&gt; B     2.5     2.5</span>
+<span class="co">#&gt; C     4.0     4.0</span>
+<span class="co">#&gt; D     2.5     3.0</span></code></pre></div>
+<p>A matriz resultante <code>cwm_es</code> é formada pelas localidades (linhas) e os atributos “médios” (colunas) nestas localidades. Essa matriz pode ser utilizada em diversas análises como dbRDA, RDA ou RDA parcial (veja Capítulo <a href="cap9.html#cap9">9</a>). Na sequência, vamos utilizar testes de hipóteses para entender como podemos calcular as diversidades funcional alfa e beta com outros testes estatísticos apresentados neste livro.</p>
+<p><strong>Exemplo 5</strong></p>
+<p>Neste exemplo, usaremos novamente os dados de 34 espécies de plantas <span class="citation">(<a href="refer%C3%AAncias.html#ref-frenette-dussault_functional_2012" role="doc-biblioref">Frenette-Dussault et al. 2012</a>)</span>, mas agora vamos testar o efeito de um gradiente de aridez sobre a diversidade alfa funcional.</p>
+<p><strong>Pergunta</strong></p>
+<p>O gradiente de aridez influencia a divergência e regularidade funcional de plantas?</p>
+<p><strong>Predições</strong></p>
+<ul>
+<li><p><em>Predição 1</em>: locais mais áridos possuem menor divergência funcional de plantas (métrica escolhida: FDis)</p></li>
+<li><p><em>Predição 2</em>: locais mais úmidos possuem menor regularidade funcional de plantas (métrica escolhida: FEve)</p></li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li><p>Preditora: gradiente de aridez (matriz de variáveis ambientais por localidade: <code>ambie_fren_dat</code>)</p></li>
+<li><p>Dependentes: composição de espécies (matriz de espécies por localidade: <code>comun_fren_dat</code>) e atributos funcionais (matriz de atributos contínuos por espécie: <code>trait_fren_dat</code>)</p></li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Vamos calcular primeiramente as matrizes de Divergência funcional (FDis) e Regularidade Funcional (FEve), depois ajustar modelos lineares, fazer o diagnóstico dos mesmo e por fim plotar os resultados (Figura <a href="cap14.html#fig:fig-func-comp-model">14.8</a>).</p>
+<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Passo 1: calcular a distância funcional</span>
+<span class="va">trait_pad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">trait_fren_dat</span>, <span class="st">"standardize"</span><span class="op">)</span>
+<span class="va">euclid_dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">trait_pad</span>, <span class="st">"euclidean"</span><span class="op">)</span>
+
+<span class="co">## Passo 2: calcular a Divergência funcional (FDis) e Regularidade Funcional (FEve)</span>
+<span class="va">fdis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">euclid_dis</span>, <span class="va">comun_fren_dat</span><span class="op">)</span><span class="op">$</span><span class="va">FDis</span> <span class="co"># Fdis=0 em locais com somente uma espécie</span>
+<span class="co">#&gt; FRic: No dimensionality reduction was required. All 5 PCoA axes were kept as 'traits'. </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+<span class="va">feve</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/dbFD.html">dbFD</a></span><span class="op">(</span><span class="va">euclid_dis</span>, <span class="va">comun_fren_dat</span><span class="op">)</span><span class="op">$</span><span class="va">FEve</span>
+<span class="co">#&gt; FRic: No dimensionality reduction was required. All 5 PCoA axes were kept as 'traits'. </span>
+<span class="co">#&gt; CWM: When 'x' is a distance matrix, CWM cannot be calculated.</span>
+
+<span class="co">## Passo 3: Utilizar um modelo linear para comparar o efeito da aridez sobre FDis (predição 1) e FEve (predição 2)</span>
+<span class="co"># Combinar dados em um data.frame.</span>
+<span class="va">lm_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>aridez <span class="op">=</span> <span class="va">ambie_fren_dat</span><span class="op">$</span><span class="va">Aridity</span>, fdis <span class="op">=</span> <span class="va">fdis</span>, feve <span class="op">=</span> <span class="va">feve</span><span class="op">)</span>
+
+<span class="co"># Modelo 1</span>
+<span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fdis</span> <span class="op">~</span> <span class="va">aridez</span>, data <span class="op">=</span> <span class="va">lm_dat</span><span class="op">)</span>
+
+<span class="co"># Conclusão: a aridez não tem efeito sobre a divergência funcional</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span> 
+<span class="co">#&gt; Analysis of Variance Table</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Response: fdis</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; aridez     1 0.2083 0.20834  0.9945 0.3241</span>
+<span class="co">#&gt; Residuals 44 9.2179 0.20950</span>
+
+<span class="co"># Modelo 2</span>
+<span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">feve</span> <span class="op">~</span> <span class="va">aridez</span>, data <span class="op">=</span> <span class="va">lm_dat</span><span class="op">)</span>
+
+<span class="co"># Conclusão: a aridez não tem efeito sobre a regularidade funcional</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span> 
+<span class="co">#&gt; Analysis of Variance Table</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Response: feve</span>
+<span class="co">#&gt;           Df  Sum Sq  Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; aridez     1 0.02098 0.020979  1.0447 0.3123</span>
+<span class="co">#&gt; Residuals 44 0.88353 0.020080</span>
+
+<span class="co">## Passo 4: gráfico para visualizar os dois resultados  </span>
+<span class="co"># Gráfico modelo 1.</span>
+<span class="va">plot_pred1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lm_dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">aridez</span>, y <span class="op">=</span> <span class="va">fdis</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Aridez"</span>, y <span class="op">=</span> <span class="st">"Divergência Funcional (FDis)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Gráfico modelo 2.</span>
+<span class="va">plot_pred2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lm_dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">aridez</span>, y <span class="op">=</span> <span class="va">feve</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>pch<span class="op">=</span><span class="fl">21</span>, size<span class="op">=</span><span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill<span class="op">=</span><span class="st">"cyan4"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Aridez"</span>, y <span class="op">=</span> <span class="st">"Regularidade Funcional (FEve)"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co">## Visualização dos dois gráficos em um única janela</span>
+<span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">plot_pred1</span>, <span class="va">plot_pred2</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-comp-model"></span>
+<img src="livro_files/figure-html/fig-func-comp-model-1.png" alt="Relação entre a composição funcional e o gradiente de aridez, ajustado por modelos lineares com seus diagnósticos." width="100%" height="100%"><p class="caption">
+Figura 14.8: Relação entre a composição funcional e o gradiente de aridez, ajustado por modelos lineares com seus diagnósticos.
+</p>
+</div>
+<p>Os resultados dos modelos <code>anova(mod1)</code> e <code>anova(mod2)</code> indicam que o gradiente de aridez não afeta a dispersão e regularidade funcional. Os detalhes para conferir os pressupostos das análise foram descritos no Capítulo <a href="cap7.html#cap7">7</a>.</p>
+<p><strong>Exemplo 6</strong></p>
+<p>Agora, vamos utilizar novamente os dados de 34 espécies de plantas <span class="citation">(<a href="refer%C3%AAncias.html#ref-frenette-dussault_functional_2012" role="doc-biblioref">Frenette-Dussault et al. 2012</a>)</span>, mas agora para testar o efeito do pastejo sobre a diversidade beta funcional.</p>
+<p><strong>Pergunta</strong></p>
+<p>O pastejo determina a ocorrência de espécies de plantas com diferentes atributos funcionais?</p>
+<p><strong>Predição</strong></p>
+<ul>
+<li>A composição funcional de plantas é diferente entre áreas com e sem pastejo?</li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li><p>Preditora: áreas com e sem pastejo de gado (variável categórica com dois níveis: <em>grazed</em> e <em>ungrazed</em>: <code>ambie_fren_dat</code>)</p></li>
+<li><p>Dependentes: composição de espécies (matriz de espécies por localidade: <code>comun_fren_dat</code>) e atributos funcionais (matriz de atributos contínuos por espécie: <code>trait_fren_dat</code>)</p></li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Nesse exemplo vamos calcular a CWM e depois usar uma PERMANOVA (<a href="cap9.html#cap9">9</a>) para comparar o efeito da áreas com e sem pastejo sobre a diversidade funcional (Figura <a href="cap14.html#fig:fig-func-cwm-model">14.9</a>).</p>
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Passo 1: CWM</span>
+<span class="va">cwm_fren</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/functcomp.html">functcomp</a></span><span class="op">(</span><span class="va">trait_pad</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">comun_fren_dat</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cwm_fren</span><span class="op">)</span>
+<span class="co">#&gt;           LA        SLA        LDMC       LN15        LCC</span>
+<span class="co">#&gt; 1 -0.2411700 -0.3485515  0.19745200  0.1874003 -0.5367368</span>
+<span class="co">#&gt; 2 -0.3977371  0.2326622 -0.09093270 -0.2859777  0.1643190</span>
+<span class="co">#&gt; 3 -0.1857134  0.2010756 -0.39877265 -0.1250643 -0.4304617</span>
+<span class="co">#&gt; 4 -0.2284064  0.1604101  0.80496307 -0.3704253  0.7193853</span>
+<span class="co">#&gt; 5 -0.1664790  0.3486956  0.02232213 -0.2041931  0.2051391</span>
+<span class="co">#&gt; 6 -0.3258821  0.3664583  0.04996829 -0.3352572  0.4713089</span>
+
+<span class="co">## Passo 2: calcular a distância funcional</span>
+<span class="va">cwm_dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">cwm_fren</span>, <span class="st">"euclidean"</span><span class="op">)</span>
+
+<span class="co">## Passo 3: testar se a composição funcional varia entre as áreas com uma PERMANOVA</span>
+<span class="va">perman_fren</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis</a></span><span class="op">(</span><span class="va">cwm_fren</span> <span class="op">~</span> <span class="va">Grazing</span>, data <span class="op">=</span> <span class="va">ambie_fren_dat</span><span class="op">)</span>
+<span class="va">perman_fren</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; adonis(formula = cwm_fren ~ Grazing, data = ambie_fren_dat) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Permutation: free</span>
+<span class="co">#&gt; Number of permutations: 999</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Terms added sequentially (first to last)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;           Df SumsOfSqs MeanSqs  F.Model      R2 Pr(&gt;F)</span>
+<span class="co">#&gt; Grazing    1    -174.5 -174.46 -0.61591 -0.0142  0.547</span>
+<span class="co">#&gt; Residuals 44   12463.0  283.25           1.0142       </span>
+<span class="co">#&gt; Total     45   12288.5                   1.0000</span>
+
+<span class="co">## Passo 4: comparar a variação dentro de cada grupo com Betadisper </span>
+<span class="va">betad_fren</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper</a></span><span class="op">(</span><span class="va">cwm_dis</span>, <span class="va">ambie_fren_dat</span><span class="op">$</span><span class="va">Grazing</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/vegan/man/anova.cca.html">permutest</a></span><span class="op">(</span><span class="va">betad_fren</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Permutation test for homogeneity of multivariate dispersions</span>
+<span class="co">#&gt; Permutation: free</span>
+<span class="co">#&gt; Number of permutations: 999</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Response: Distances</span>
+<span class="co">#&gt;           Df  Sum Sq  Mean Sq      F N.Perm Pr(&gt;F)</span>
+<span class="co">#&gt; Groups     1  0.0539 0.053858 0.1946    999  0.669</span>
+<span class="co">#&gt; Residuals 44 12.1763 0.276735</span>
+
+<span class="co">## Passo 5: PCoA</span>
+
+<span class="va">cwm_pcoa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/pcoa.html">pcoa</a></span><span class="op">(</span>D <span class="op">=</span> <span class="va">cwm_dis</span>, correction <span class="op">=</span> <span class="st">"cailliez"</span><span class="op">)</span>
+<span class="va">pcoa_eixos</span> <span class="op">&lt;-</span> <span class="va">cwm_pcoa</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
+<span class="va">pcoa_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pastagem <span class="op">=</span> <span class="va">ambie_fren_dat</span><span class="op">$</span><span class="va">Grazing</span>, <span class="va">pcoa_eixos</span><span class="op">)</span>
+
+<span class="co">## Passo 6: definir os grupos ("HULL") para serem categorizados no gráfico </span>
+
+<span class="va">grp.Grazed</span> <span class="op">&lt;-</span> <span class="va">pcoa_dat</span><span class="op">[</span><span class="va">pcoa_dat</span><span class="op">$</span><span class="va">pastagem</span> <span class="op">==</span> <span class="st">"Grazed"</span>, <span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/grDevices/chull.html">chull</a></span><span class="op">(</span><span class="va">pcoa_dat</span><span class="op">[</span><span class="va">pcoa_dat</span><span class="op">$</span><span class="va">pastagem</span> <span class="op">==</span> <span class="st">"Grazed"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Axis.1"</span>, <span class="st">"Axis.2"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="op">]</span>
+<span class="va">grp.Ungrazed</span> <span class="op">&lt;-</span> <span class="va">pcoa_dat</span><span class="op">[</span><span class="va">pcoa_dat</span><span class="op">$</span><span class="va">pastagem</span> <span class="op">==</span> <span class="st">"Ungrazed"</span>, <span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/grDevices/chull.html">chull</a></span><span class="op">(</span><span class="va">pcoa_dat</span><span class="op">[</span><span class="va">pcoa_dat</span><span class="op">$</span><span class="va">pastagem</span> <span class="op">==</span> <span class="st">"Ungrazed"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Axis.1"</span>, <span class="st">"Axis.2"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="op">]</span>
+<span class="va">hull_cwm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">rbind</a></span><span class="op">(</span><span class="va">grp.Grazed</span>, <span class="va">grp.Ungrazed</span><span class="op">)</span> 
+
+<span class="co">## Passo 7: Gráfico biplot</span>
+
+<span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="va">cwm_pcoa</span><span class="op">$</span><span class="va">values</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">cwm_pcoa</span><span class="op">$</span><span class="va">trace</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># % de explicação do eixo 1</span>
+<span class="co">#&gt; [1] 53.5471</span>
+<span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="va">cwm_pcoa</span><span class="op">$</span><span class="va">values</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">cwm_pcoa</span><span class="op">$</span><span class="va">trace</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="co"># % de explicação do eixo 2</span>
+<span class="co">#&gt; [1] 24.56026</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pcoa_dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Axis.1</span>, y <span class="op">=</span> <span class="va">Axis.2</span>, color <span class="op">=</span> <span class="va">pastagem</span>, shape <span class="op">=</span> <span class="va">pastagem</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hull_cwm</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">pastagem</span>, group <span class="op">=</span> <span class="va">pastagem</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkorange"</span>, <span class="st">"cyan4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkorange"</span>, <span class="st">"cyan4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"PCO 1 (53.6%)"</span>, y <span class="op">=</span> <span class="st">"PCO 2 (24.6%)"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-cwm-model"></span>
+<img src="livro_files/figure-html/fig-func-cwm-model-1.png" alt="Relação do pastejo sobre a composição funcional." width="100%" height="100%"><p class="caption">
+Figura 14.9: Relação do pastejo sobre a composição funcional.
+</p>
+</div>
+<p>Neste exemplo, os resultados <code>perman_fren</code> demonstram que a composição funcional de plantas não é afetada pelo pastejo (P &gt; 0,05) e que a dispersão da composição <span class="citation">(uma medida potencial de diversidade beta: <a href="refer%C3%AAncias.html#ref-anderson_multivariate_2006" role="doc-biblioref">M. J. Anderson, Ellingsen, and McArdle 2006</a>)</span> de espécies também não muda entre áreas com ou sem pastejo (<code>permutest(betad_fren)</code>). A função <code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper()</a></code> deve ser sempre utilizada em conjunto com a PERMANOVA (<code><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis()</a></code>) para poder interpretar quais as fontes de variação na composição de espécies. Sendo assim, esta análise representa um método fundamental para comparar se o potencial efeito (quando houver) é fruto de diferença na composição de espécies (i.e., diferença na posição dos centróides entre dois ou mais grupos) ou na variação da composição de espécies entre os grupos (i.e., diferença na dispersão dos dados em relação aos centróides, ver mais no Capítulo <a href="cap9.html#cap9">9</a>). Esta última informação, a dispersão, é geralmente interpretada como uma analogia a homogeneidade de variâncias de uma ANOVA (i.e., Teste de Levene). A hipótese nula do <code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper()</a></code> é que a dispersão dos grupos é homogênea (ou seja, o valor de probabilidade nos casos que existem dispersões homogêneas será maior do que 0,05). Porém, se esse valor de p for menor do que 0,05, você deve rejeitar a hipótese nula e concluir que as dispersões são heterogêneas.</p>
+<p>Os gráficos de PCoA são uma ferramenta poderosa para interpretar os resultados da PERMANOVA + Betadisper. Quanto mais diferente a composição de espécies entre dois ou mais grupos, mais distante devem ser os centroides desses grupos. Além disso, se as áreas dos polígonos que conectam todas as réplicas de cada grupo forem diferentes em tamanho (hipótese que será testada com o Betadisper), é possível também visualizar esta diferença. Em conclusão, para testar se diferenças de composição funcional existem entre dois ou mais grupos, será fundamental: i) comparar a variação da posição dos centróides (função <code><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis()</a></code>) e ii) a variação da dispersão da composição funcional entre os grupos (função <code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper()</a></code>).</p>
+</div>
+<div id="variação-intraspecífica" class="section level2" number="14.6">
+<h2>
+<span class="header-section-number">14.6</span> Variação Intraspecífica<a class="anchor" aria-label="anchor" href="#varia%C3%A7%C3%A3o-intraspec%C3%ADfica"><i class="fas fa-link"></i></a>
+</h2>
+<p>Os métodos discutidos anteriormente utilizam valores médios dos atributos das espécies para descrever a estrutura funcional da comunidade e interpretar as relações entre determinadas variáveis preditoras (como clima, por exemplo) com a diverisdade funcional. Porém, ao utilizar atributos médios estamos desconsiderando que a variação deste atributo dentro da espécie seja determinante para a resposta da espécie ao ambiente ou seu efeito sobre o ecossistema <span class="citation">(<a href="refer%C3%AAncias.html#ref-bolnick_why_2011" role="doc-biblioref">Bolnick et al. 2011</a> ; <a href="refer%C3%AAncias.html#ref-violle_return_2012" role="doc-biblioref">Violle et al. 2012</a>)</span>. Os estudos que usam dados médios para testar hipóteses em ecologia funcional argumentam que a variação dentro da espécie é menor do que a variação entre espécies e, desse modo, o ruído causado ao desconsiderar a variância do atributo dentro da espécies é desprezível <span class="citation">(<a href="refer%C3%AAncias.html#ref-siefert_global_2015" role="doc-biblioref">Siefert et al. 2015</a>)</span>. Porém, diversos estudos têm mostrado que esse argumento é frágil e que a inclusão da variação intraespecífica melhora nossa capacidade preditiva em ecologia funcional <span class="citation">(<a href="refer%C3%AAncias.html#ref-violle_return_2012" role="doc-biblioref">Violle et al. 2012</a>; <a href="refer%C3%AAncias.html#ref-siefert_global_2015" role="doc-biblioref">Siefert et al. 2015</a>)</span>. Um abordagem geralmente utilizada é a decomposição da variância do atributo em diferentes níveis de organização: i) variação dentro da população da mesma espécie em uma mesma unidade amostral, ii) variação dentro das populações (independente da espécie) de uma comunidade em uma mesma unidade amostral, e iii) variação entre populações. Conhecida como estatística T, esta abordagem permite entender as fontes (intra ou interespecífica) de variação no atributos em diferentes escalas <span class="citation">(<a href="refer%C3%AAncias.html#ref-violle_return_2012" role="doc-biblioref">Violle et al. 2012</a>)</span>. Outro método que quantifica a variância explicada pela variabilidade intraespecífica, interespecífica e a covariância entre elas foi proposto por Leps et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-leps_community_2011" role="doc-biblioref">2011</a>)</span>. Este método permite calcular a contribuição da variação intraespecífica dentro e entre comunidades. Agora, vamos entender a contribuição da variação de um atributo dentro da espécie comparada à variação entre espécies.</p>
+<p><strong>Exemplo 7</strong></p>
+<p>Vamos utilizar os dados de 11 espécies de anuros associados com 26 poças no Parque Nacional Lagoa do Peixe <span class="citation">(<a href="refer%C3%AAncias.html#ref-dalmolin_turnover_2020" role="doc-biblioref">Dalmolin, Tozetti, and Pereira 2020</a>)</span>. Atributos morfológicos foram coletados em todos os indivíduos coletados em cada poça. Desse modo, é possível comparar a variação morfológica entre indivíduos da mesma espécie e entre espécies diferentes. Além disso, é possível quantificar a contribuição da variação dentro e entre diferentes poças. No exemplo abaixo, criamos cinco atributos com nomes diferentes daqueles usados no artigo de Dalmolin et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-dalmolin_turnover_2020" role="doc-biblioref">2020</a>)</span>. Em cada poça, os autores coletaram os seguintes dados das poças: i) profundidade, ii) area, iii) distância entre poças, e iv) distância da poça para a floresta mais próxima.</p>
+<p><strong>Pergunta 1</strong></p>
+<p>Qual a contribuição da variação intraespecífica para a variação total dos atributos morfológicos de anuros?</p>
+<p><strong>Predição</strong></p>
+<ul>
+<li>A alta plasticidade fenotípica de anuros indica alta contribuição da variação intraespecífica comparada a interespecífica</li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Preditora: espécies (categórica)</li>
+<li>Dependente: variação dos atributos morfológicos</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Aqui vamos realizar o passo a passo das análises para comparar a contribuição da variação intraespecífica para a variação total dos atributos morfológicos.</p>
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados necessários</span>
+<span class="co"># Matriz de traits.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">traits</span><span class="op">)</span>
+<span class="co">#&gt;   pond Species body_size biomass eye_size leg_size flatness</span>
+<span class="co">#&gt; 1  DN1     Sp2     2.405   2.291    3.104    0.450    0.794</span>
+<span class="co">#&gt; 2  DN1     Sp3     1.882   2.039    2.926    0.345    1.063</span>
+<span class="co">#&gt; 3  DN1     Sp4     0.699   0.342    0.782    0.104    3.055</span>
+<span class="co">#&gt; 4  DN1     Sp4     0.725   0.598    1.120    0.136    2.759</span>
+<span class="co">#&gt; 5  DN1     Sp4     0.448   0.385    0.844    0.107    3.557</span>
+<span class="co">#&gt; 6  DN1     Sp4     0.640   0.470    0.861    0.093    3.420</span>
+
+<span class="co">## Partição da variação intra e interespecífica</span>
+<span class="co">## Passo 1: Tamanho corporal</span>
+<span class="va">mod_body_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">body_size</span><span class="op">~</span><span class="va">Species</span>, data <span class="op">=</span> <span class="va">traits</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_body_size</span><span class="op">)</span>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)    </span>
+<span class="co">#&gt; Species      10  95.91   9.591    25.5 &lt;2e-16 ***</span>
+<span class="co">#&gt; Residuals   195  73.35   0.376                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+
+<span class="co"># Contribuição da variação intra-específica para o tamanho corporal.</span>
+<span class="va">itv_BS</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="fl">73.35</span><span class="op">/</span><span class="op">(</span><span class="fl">95.92</span> <span class="op">+</span> <span class="fl">73.35</span><span class="op">)</span><span class="op">)</span>
+<span class="va">itv_BS</span>
+<span class="co">#&gt; [1] 43.33314</span>
+
+<span class="co">## Passo 2: Biomassa</span>
+<span class="va">mod_biomass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">biomass</span><span class="op">~</span><span class="va">Species</span>, data <span class="op">=</span> <span class="va">traits</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_biomass</span><span class="op">)</span>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)    </span>
+<span class="co">#&gt; Species      10 118.17  11.817   23.95 &lt;2e-16 ***</span>
+<span class="co">#&gt; Residuals   195  96.22   0.493                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+
+<span class="co"># Contribuição da variação intra-específica para a biomassa.</span>
+<span class="va">itv_biomass</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="fl">96.22</span><span class="op">/</span><span class="op">(</span><span class="fl">118.17</span> <span class="op">+</span> <span class="fl">96.22</span><span class="op">)</span><span class="op">)</span>
+<span class="va">itv_biomass</span>
+<span class="co">#&gt; [1] 44.88082</span>
+
+<span class="co">## Passo 3: Tamanho do olho</span>
+<span class="va">mod_eye_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">eye_size</span> <span class="op">~</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">traits</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_eye_size</span><span class="op">)</span>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)    </span>
+<span class="co">#&gt; Species      10  203.1  20.309   50.51 &lt;2e-16 ***</span>
+<span class="co">#&gt; Residuals   195   78.4   0.402                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+
+<span class="co"># Contribuição da variação intra-específica para o tamanho do olho.</span>
+<span class="va">itv_eye_size</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="fl">78.39</span><span class="op">/</span><span class="op">(</span><span class="fl">203.09</span> <span class="op">+</span> <span class="fl">78.39</span><span class="op">)</span><span class="op">)</span>
+<span class="va">itv_eye_size</span>
+<span class="co">#&gt; [1] 27.84923</span>
+
+<span class="co">## Passo 4: Achatamento dorso-ventral</span>
+<span class="va">mod_flatness</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">flatness</span><span class="op">~</span><span class="va">Species</span>, data <span class="op">=</span> <span class="va">traits</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_flatness</span><span class="op">)</span>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)    </span>
+<span class="co">#&gt; Species      10 104.47  10.447   92.07 &lt;2e-16 ***</span>
+<span class="co">#&gt; Residuals   195  22.13   0.113                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+
+<span class="co"># Contribuição da variação intra-específica para o achatamento dorso-ventral.</span>
+<span class="va">itv_flatness</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="fl">22.13</span><span class="op">/</span><span class="op">(</span><span class="fl">104.48</span> <span class="op">+</span> <span class="fl">22.13</span><span class="op">)</span><span class="op">)</span>
+<span class="va">itv_flatness</span>
+<span class="co">#&gt; [1] 17.47887</span>
+
+<span class="co">## Passo 5: Combinar os valores de cada trait em um vetor</span>
+<span class="va">valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">itv_BS</span>, <span class="va">itv_biomass</span>, <span class="va">itv_eye_size</span>, <span class="va">itv_flatness</span><span class="op">)</span>
+
+<span class="co"># Passo 6: Combinar valores e traits em um data.frame.</span>
+<span class="va">itv_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>trait <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"body_size"</span>, <span class="st">"biomass"</span>, <span class="st">"eye_size"</span>, <span class="st">"flatness"</span><span class="op">)</span>,
+                          itv_explic <span class="op">=</span> <span class="va">valores</span><span class="op">)</span>
+
+<span class="co">## Tabela com resultados da explicação atribuida para a variação intraespecífica</span>
+<span class="va">itv_results</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="st">"explained intraspecific variance"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">itv_explic</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">trait</span>, <span class="st">"explained intraspecific variance"</span><span class="op">)</span>
+<span class="co">#&gt;       trait explained intraspecific variance</span>
+<span class="co">#&gt; 1 body_size                            43.33</span>
+<span class="co">#&gt; 2   biomass                            44.88</span>
+<span class="co">#&gt; 3  eye_size                            27.85</span>
+<span class="co">#&gt; 4  flatness                            17.48</span></code></pre></div>
+<p><strong>Pergunta 2</strong></p>
+<p>Qual a contribuição da variação entre poças para a variação total dos atributos morfológicos de anuros?</p>
+<p><strong>Predição</strong></p>
+<ul>
+<li>A variação morfológica de anuros é afetada por mudanças dentro das espécies e entre diferentes espécies de poças distintas</li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Preditoras: poças e espécies (ambas categóricas)</li>
+<li>Dependente: variação dos atributos morfológicos</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Aqui vamos realizar o teste para comparar a contribuição da variação entre poças para a variação total dos atributos morfológicos (Figura <a href="cap14.html#fig:fig-func-intra">14.10</a>).</p>
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados necessários</span>
+<span class="co"># Matriz de traits sem nomes de espécies ou localidades</span>
+<span class="va">trait_m</span> <span class="op">&lt;-</span> <span class="va">traits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"body_size"</span>, <span class="st">"biomass"</span>, <span class="st">"eye_size"</span>, <span class="st">"leg_size"</span>, <span class="st">"flatness"</span><span class="op">)</span><span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">trait_m</span><span class="op">)</span>
+<span class="co">#&gt;   body_size biomass eye_size leg_size flatness</span>
+<span class="co">#&gt; 1     2.405   2.291    3.104    0.450    0.794</span>
+<span class="co">#&gt; 2     1.882   2.039    2.926    0.345    1.063</span>
+<span class="co">#&gt; 3     0.699   0.342    0.782    0.104    3.055</span>
+<span class="co">#&gt; 4     0.725   0.598    1.120    0.136    2.759</span>
+<span class="co">#&gt; 5     0.448   0.385    0.844    0.107    3.557</span>
+<span class="co">#&gt; 6     0.640   0.470    0.861    0.093    3.420</span>
+<span class="va">trait_decomp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cati/man/decompCTRE.html">decompCTRE</a></span><span class="op">(</span>traits <span class="op">=</span> <span class="va">trait_m</span>, sp <span class="op">=</span> <span class="va">traits</span><span class="op">$</span><span class="va">Species</span>, 
+                           ind.plot <span class="op">=</span> <span class="va">traits</span><span class="op">$</span><span class="va">pond</span>, print <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/cati/man/decompCTRE.html">barplot.decompCTRE</a></span><span class="op">(</span><span class="va">trait_decomp</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-intra"></span>
+<img src="livro_files/figure-html/fig-func-intra-1.png" alt="Gráfico de barras mostrando a contribuição da variação entre poças para a variação total dos atributos morfológicos." width="100%" height="100%"><p class="caption">
+Figura 14.10: Gráfico de barras mostrando a contribuição da variação entre poças para a variação total dos atributos morfológicos.
+</p>
+</div>
+<p><strong>Pergunta 3</strong></p>
+<p>Características ambientais das poças afetam a variação intraespecífica?</p>
+<p><strong>Predição</strong></p>
+<ul>
+<li>A profunidade e área da poça aumentam a contribuição da variação intraespecífica em relação a variação interespecífica.</li>
+</ul>
+<p><strong>Variáveis</strong></p>
+<ul>
+<li>Preditora: características das poças</li>
+<li>Dependentes: variação dos atributos morfológicos e contribuição da variação intraespecífica</li>
+</ul>
+<p><strong>Análises</strong></p>
+<p>Para calcular a contribuição relativa da variação intraespecífica em relação à variação interespecífica dentro de uma comunidade, por exemplo, Siefert et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-siefert_global_2015" role="doc-biblioref">2015</a>)</span> sugeriram uma métrica chamada de wITV (<em>within-community Intraspecific Trait Variation</em>). A wITV representa a razão da variação intraespecífica em relação a variação total dentro de uma comunidade (e.g., parcela, poça) que inclui: i) a abundância relativa de cada espécie <em>j</em> ocorrendo na comunidade <em>i</em>, ii) o valor médio do atributo da espécie <em>j</em> na comunidade <em>i</em>, e iii) o valor do atributo <em>k</em> de cada indivíduo da espécie <em>j</em> que ocorre na comunidade <em>i</em>. Como esta medida é feita por unidade amostral (ou seja, sua comunidade de interesse), é possível testar hipóteses ecológicas que tentem explicar processos que aumentem ou diminuam a variação de um determinado atributo dentro ou entre espécies diferentes. A função wITV foi adaptada para a linguagem R por de Bello et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-de_bello_handbook_2021" role="doc-biblioref">2021</a>)</span>. Para facilitar o cálculo do wITV para cada comunidade, de Bello et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-de_bello_handbook_2021" role="doc-biblioref">2021</a>)</span> executaram os códigos com a função <code>for()</code> que repete iterativamente a análise para gerar os valores de todas as comunidades em uma forma dinâmica. Após executar as análises com o <code>for()</code>, a função salva os resultados dentro do objeto <code>wITVResults</code>. Após obter esses resultados, é possível utilizar modelos lineares para testar quais variáveis preditoras (em nosso exemplo, características das poças) afetam o aumento ou diminuição da contribuição relativa da variação intraespecífica (Figura <a href="cap14.html#fig:fig-func-intra">14.10</a>).</p>
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Dados necessários</span>
+<span class="co"># Matriz de traits.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">traits</span><span class="op">)</span>
+<span class="co">#&gt;   pond Species body_size biomass eye_size leg_size flatness</span>
+<span class="co">#&gt; 1  DN1     Sp2     2.405   2.291    3.104    0.450    0.794</span>
+<span class="co">#&gt; 2  DN1     Sp3     1.882   2.039    2.926    0.345    1.063</span>
+<span class="co">#&gt; 3  DN1     Sp4     0.699   0.342    0.782    0.104    3.055</span>
+<span class="co">#&gt; 4  DN1     Sp4     0.725   0.598    1.120    0.136    2.759</span>
+<span class="co">#&gt; 5  DN1     Sp4     0.448   0.385    0.844    0.107    3.557</span>
+<span class="co">#&gt; 6  DN1     Sp4     0.640   0.470    0.861    0.093    3.420</span>
+
+<span class="co"># Matriz de comunidades e padronização para abundância relativa</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">anuros_comm</span><span class="op">)</span>
+<span class="co">#&gt;      Sp10 Sp11 Sp2 Sp3 Sp4 Sp6 Sp7 Sp8 Sp1 Sp9 Sp5</span>
+<span class="co">#&gt; DN1     1    8   1   1   6   8   4   0   0   0   0</span>
+<span class="co">#&gt; DN2     0    0   0   0   1   1   4   2   0   0   0</span>
+<span class="co">#&gt; DN3     1    0   0   0   0   0   0   0   0   0   0</span>
+<span class="co">#&gt; DN4     0    0   2   2   1   0   0   0   6   0   0</span>
+<span class="co">#&gt; DN5     0    0   3   0   1   0   4   1   0   0   0</span>
+<span class="co">#&gt; FIG1    0    0   1   0   0   0   1   0   0   0   0</span>
+<span class="va">anuros_comm_rel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">anuros_comm</span>, <span class="st">"total"</span><span class="op">)</span>
+
+<span class="co"># Variáveis ambientais.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">env</span><span class="op">)</span>
+<span class="co">#&gt;      depth  area dits_bt_pond dist_for</span>
+<span class="co">#&gt; DN1   0.50  3800          115     2650</span>
+<span class="co">#&gt; DN2   0.60 54600          250     2500</span>
+<span class="co">#&gt; DN3   0.80 29110          150     1800</span>
+<span class="co">#&gt; DN4   1.00  1386          410      195</span>
+<span class="co">#&gt; DN5   1.00   590          770      100</span>
+<span class="co">#&gt; FIG1  0.15    30           25      135</span>
+
+<span class="co">## Prearação da matriz para receber os resultados do `for`</span>
+<span class="va">wITVResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ITV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">traits</span><span class="op">$</span><span class="va">pond</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">wITVResults</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">traits</span><span class="op">$</span><span class="va">pond</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">traits</span><span class="op">$</span><span class="va">pond</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">commAux</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">traits</span>, <span class="va">traits</span><span class="op">$</span><span class="va">pond</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">traits</span><span class="op">$</span><span class="va">pond</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+    <span class="va">commAux</span><span class="op">$</span><span class="va">Species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">commAux</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">spNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">commAux</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span>
+    <span class="va">relAbund</span> <span class="op">&lt;-</span> <span class="va">anuros_comm_rel</span><span class="op">[</span><span class="va">i</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">spNames</span><span class="op">)</span><span class="op">]</span> 
+    <span class="va">traitsVector</span> <span class="op">&lt;-</span> <span class="va">commAux</span><span class="op">$</span><span class="va">body_size</span>
+    <span class="va">spVector</span> <span class="op">&lt;-</span> <span class="va">commAux</span><span class="op">$</span><span class="va">Species</span>
+    <span class="va">wITVResults</span><span class="op">[</span><span class="va">i</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="fu">wITV</span><span class="op">(</span>spIDs <span class="op">=</span> <span class="va">spVector</span>, traitVals <span class="op">=</span> <span class="va">traitsVector</span>, relAbund <span class="op">=</span> <span class="va">relAbund</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">wITVResults</span><span class="op">$</span><span class="va">ITV</span>
+<span class="co">#&gt;  [1] 0.82517670 0.23326457        NaN 0.15341806 0.10298952 0.00000000 0.02338235 0.68170997 0.79275763 0.66446945</span>
+<span class="co">#&gt; [11] 0.81726278 1.00000000 0.00000000 1.00000000 1.00000000 0.99220999 1.00000000 0.55519098 0.58945126 0.55148974</span>
+<span class="co">#&gt; [21] 0.80178255 1.00000000 1.00000000        NaN 0.19621528 0.14467854</span>
+<span class="va">env</span><span class="op">$</span><span class="va">wITV</span> <span class="op">&lt;-</span> <span class="va">wITVResults</span><span class="op">$</span><span class="va">ITV</span> <span class="co"># NaN = locais com uma única espécie</span>
+
+<span class="co">## Remover NAs para executar o modelo linear</span>
+<span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">env</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span>  
+<span class="co">#&gt;      depth  area dits_bt_pond dist_for       wITV</span>
+<span class="co">#&gt; DN1   0.50  3800          115     2650 0.82517670</span>
+<span class="co">#&gt; DN2   0.60 54600          250     2500 0.23326457</span>
+<span class="co">#&gt; DN4   1.00  1386          410      195 0.15341806</span>
+<span class="co">#&gt; DN5   1.00   590          770      100 0.10298952</span>
+<span class="co">#&gt; FIG1  0.15    30           25      135 0.00000000</span>
+<span class="co">#&gt; FIG2  0.15    30           25      135 0.02338235</span>
+
+<span class="co">## Modelo linear </span>
+<span class="va">mod_itv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">wITV</span> <span class="op">~</span> <span class="va">depth</span> <span class="op">+</span> <span class="va">area</span> <span class="op">+</span> <span class="va">dits_bt_pond</span> <span class="op">+</span> <span class="va">dist_for</span>, data <span class="op">=</span> <span class="va">env</span><span class="op">)</span>
+
+<span class="co">## Testar pressuposto da análise</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">mod_itv</span><span class="op">)</span>
+
+<span class="co">## Resultado</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_itv</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = wITV ~ depth + area + dits_bt_pond + dist_for, data = env)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -0.6298 -0.3937  0.0448  0.3387  0.5266 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                Estimate Std. Error t value Pr(&gt;|t|)  </span>
+<span class="co">#&gt; (Intercept)   4.555e-01  2.113e-01   2.156   0.0449 *</span>
+<span class="co">#&gt; depth         2.767e-01  3.789e-01   0.730   0.4746  </span>
+<span class="co">#&gt; area         -3.116e-06  9.276e-06  -0.336   0.7409  </span>
+<span class="co">#&gt; dits_bt_pond -3.653e-04  6.193e-04  -0.590   0.5626  </span>
+<span class="co">#&gt; dist_for      5.698e-05  1.419e-04   0.401   0.6928  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 0.4103 on 18 degrees of freedom</span>
+<span class="co">#&gt;   (3 observations deleted due to missingness)</span>
+<span class="co">#&gt; Multiple R-squared:  0.03155,    Adjusted R-squared:  -0.1837 </span>
+<span class="co">#&gt; F-statistic: 0.1466 on 4 and 18 DF,  p-value: 0.9621</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-func-witv"></span>
+<img src="livro_files/figure-html/fig-func-witv-1.png" alt="Gráficos diagnósticos do modelo linear ajustado para iWTV em função de características das poças." width="100%" height="100%"><p class="caption">
+Figura 14.11: Gráficos diagnósticos do modelo linear ajustado para iWTV em função de características das poças.
+</p>
+</div>
+<p>Combinando os resultados das três análises é possível compreender que existem diferenças morfológicas entre as espécies de poças diferentes (componente substituição). Porém, é evidente que a variação dentro da espécie é bastante relevante para compreender a diversidade funcional de anuros. Na primeira análise, os resultados dessas quatro análises indicaram que a variação intraspecifica explica de 17% a 45% da variação morfológica nas metacomunidades de anuros. A segunda, por sua vez, demonstra que a variação morfológica entre espécies de poças diferentes representa o principal componente de variação, mas que a variação intraespecífica não pode ser ignorada. Por fim, ao combinar a métrica wITV com modelos lineares, percebe-se que as características das poças não determinam a contribuição da variação intraespecífica. Além disso, existe uma variação muito grande entre poças. Ao passo que em algumas poças a variação intraespecífica não contribui para a variação total (wITV = 0), em outras, este componente representou 100% da variação (wITV = 1). Os resultados obtidos nas análises das perguntas 1 a 3 indicam que utilizar somente a média dos atributos morfológicos pode refletir em interpretações incorretas em estudos que compararam a diversidade funcional no espaço/tempo <span class="citation">(veja discussão em <a href="refer%C3%AAncias.html#ref-dalmolin_turnover_2020" role="doc-biblioref">Dalmolin, Tozetti, and Pereira 2020</a>)</span>.</p>
+</div>
+<div id="para-se-aprofundar-10" class="section level2" number="14.7">
+<h2>
+<span class="header-section-number">14.7</span> Para se aprofundar<a class="anchor" aria-label="anchor" href="#para-se-aprofundar-10"><i class="fas fa-link"></i></a>
+</h2>
+<div id="livros-8" class="section level3" number="14.7.1">
+<h3>
+<span class="header-section-number">14.7.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-8"><i class="fas fa-link"></i></a>
+</h3>
+<p>Recomendamos a leitura de dois livros: Garnier et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-garnier_plant_2016" role="doc-biblioref">2016</a>)</span> e de Bello et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-de_bello_handbook_2021" role="doc-biblioref">2021</a>)</span>. Os dois livros oferecem excelente oportunidade para se aprofundar no campo teórico da diversidade funcional e, além disso, o livro liderado pelo pesquisador Francesco de Bello fornece diversas aplicações analíticas na linguagem R. Outro recurso excelente foi publicado por Mammola et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-mammola_concepts_2021" role="doc-biblioref">2021</a>)</span> e serve para se aprofundar nas diferentes medidas da diversidade funcional.</p>
+</div>
+<div id="links-9" class="section level3" number="14.7.2">
+<h3>
+<span class="header-section-number">14.7.2</span> Links<a class="anchor" aria-label="anchor" href="#links-9"><i class="fas fa-link"></i></a>
+</h3>
+<p>Um passo importante nos estudos de Diversidade Funcional é encontrar atributos funcionais dos organismos estudados. Abaixo indicamos uma lista de potenciais bases de dados:</p>
+<ul>
+<li><a href="https://compadre-db.org/">COMADRE - Animal Matrix Database</a></li>
+<li><a href="https://compadre-db.org/">COMPADRE - Plant Matrix Database</a></li>
+<li><a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1890/13-1917.1">Elton Traits 1.0</a></li>
+<li><a href="https://figshare.com/articles/dataset/TetraDENSITY_Population_Density_dataset/5371633?file=11358218">TetraDENSITY - Density estimates in terrestrial vertebrates</a></li>
+<li><a href="https://www.try-db.org/TryWeb/Home.php">TRY - Plant Trait Database</a></li>
+<li><a href="https://spidertraits.sci.muni.cz/">World Spider Trait</a></li>
+</ul>
+</div>
+</div>
+<div id="exercícios-10" class="section level2" number="14.8">
+<h2>
+<span class="header-section-number">14.8</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-10"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>14.1</strong>
+Utilize os dados <code>aviurba</code> do pacote <code>ade4</code> para testar o efeito de variáveis ambientais na dispersão (FDis) e regularidade funcional (FEve). Utilize modelos lineares (LM, veja Capítulo <a href="cap7.html#cap7">7</a>) para testar quais variáveis ambientais são as mais importantes para a dispersão e regularidade funcional. Além disso, faça um boxplot (veja Capítulo <a href="cap6.html#cap6">6</a>) comparando os valores de FDis e FEve entre as categorias das variáveis ambientais mais relevantes.</p>
+<p><strong>14.2</strong>
+Utilize os dados <code>mafragh</code> do pacote <code>ade4</code> para teste o efeito da das variáveis <code>conductivity</code>, <code>silt</code> e <code>K2O</code> na diversidade funcional (método de Petchey e Gaston). Utilize modelos lineares (regressão múltipla, veja Capítulo <a href="cap7.html#cap7">7</a>) para testar a relação entre essas variáveis e discuta: (a) qual variável mais importante (se houver) e (b) se as conclusões são coerentes tendo como base os pressupostos dos modelos lineares. Além disso, caso exista alguma relação significativa, faça um gráfico (scatterplot, veja Capítulo <a href="cap6.html#cap6">6</a>) da relação da variável mais importante e a diversidade funcional.</p>
+<p><strong>14.3</strong>
+Utilize os dados <code>mafragh</code> do pacote <code>ade4</code> para comparar a composição filogenética e funcional em áreas com alta e baixa concentração de potássio. Para fazer esta comparação será necessário transformar a matriz de atributos funcionais e a árvore filogenética em matrizes de distância e, depois, utilizar o CWM para criar uma matriz de localidades por composição funcional ou filogenética. Depois, você poderá usar a matriz CWM para testar potenciais diferenças entre concentrações com PERMANOVA e para visualizar com PCoA.</p>
+<p><a href="https://exercicios-livro-aer.netlify.app/cap.-14---diversidade-filogen%C3%A9tica.html">Soluções dos exercícios</a>.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="cap13.html"><span class="header-section-number">13</span> Diversidade Filogenética</a></div>
+<div class="next"><a href="cap15.html"><span class="header-section-number">15</span> Dados geoespaciais no R</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap14"><span class="header-section-number">14</span> Diversidade Funcional</a></li>
+<li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-10">Pré-requisitos do capítulo</a></li>
+<li><a class="nav-link" href="#aspectos-te%C3%B3ricos-5"><span class="header-section-number">14.1</span> Aspectos teóricos</a></li>
+<li><a class="nav-link" href="#definindo-a-dissimilaridade-entre-esp%C3%A9cies"><span class="header-section-number">14.2</span> Definindo a dis(similaridade) entre espécies</a></li>
+<li>
+<a class="nav-link" href="#m%C3%A9tricas-de-diversidade-funcional-alfa"><span class="header-section-number">14.3</span> Métricas de diversidade funcional (alfa)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#riqueza-funcional"><span class="header-section-number">14.3.1</span> Riqueza funcional</a></li>
+<li><a class="nav-link" href="#diverg%C3%AAncia-funcional"><span class="header-section-number">14.3.2</span> Divergência funcional</a></li>
+<li><a class="nav-link" href="#regularidade-funcional"><span class="header-section-number">14.3.3</span> Regularidade funcional</a></li>
+<li><a class="nav-link" href="#correla%C3%A7%C3%A3o-entre-as-m%C3%A9tricas-de-diversidade-funcional-alfa"><span class="header-section-number">14.3.4</span> Correlação entre as métricas de diversidade funcional (alfa)</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#m%C3%A9tricas-de-diversidade-funcional-beta"><span class="header-section-number">14.4</span> Métricas de diversidade funcional (beta)</a></li>
+<li><a class="nav-link" href="#composi%C3%A7%C3%A3o-funcional-community-wegihed-means---cwm"><span class="header-section-number">14.5</span> Composição Funcional (Community Wegihed Means - CWM)</a></li>
+<li><a class="nav-link" href="#varia%C3%A7%C3%A3o-intraspec%C3%ADfica"><span class="header-section-number">14.6</span> Variação Intraspecífica</a></li>
+<li>
+<a class="nav-link" href="#para-se-aprofundar-10"><span class="header-section-number">14.7</span> Para se aprofundar</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#livros-8"><span class="header-section-number">14.7.1</span> Livros</a></li>
+<li><a class="nav-link" href="#links-9"><span class="header-section-number">14.7.2</span> Links</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#exerc%C3%ADcios-10"><span class="header-section-number">14.8</span> Exercícios</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/14_diversidade_funcional.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/14_diversidade_funcional.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-15.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a> </p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
