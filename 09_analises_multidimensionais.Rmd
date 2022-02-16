@@ -1469,9 +1469,35 @@ Existem alguns tutoriais online bem interessantes, mas todos em inglês. Veja li
 ## Exercícios
 
 **9.1**
+Utilize os dados “mite” do pacote vegan para testar o efeito de variáveis ambientais sobre a composição de espécies de ácaros utilizando as seguintes análises: RDA, RDAp (combinada com MEM), dbRDA e PERMANOVA. Após realizar as cinco análises, responda às seguintes perguntas?
 
-**9.1**
+A. Quais são as variáveis ambientais (mite.env) mais importantes para a composição de ácaros em cada uma das análises? 
+B. Os vetores espaciais obtidos com a análise MEM explicam a variação na composição de espécies? Eles são mais ou menos importantes do que as variáveis ambientais?
+C. Discuta as diferenças de interpretação entre a RDA, RDAp, dbRDA e PERMANOVA.
 
-**9.1**
+Dados necessários:
+
+```{r}
+data(mite)
+data(mite.env)
+data(mite.xy)
+```
+
+**9.2**
+Efetue uma análise de agrupamento pela função `hclust()`. Lembre-se de dar nome ao objeto para poder plotar o dendrograma depois. Utilize a ajuda para encontrar como entrar com os argumentos da função. 
+
+A) utilizando o método UPGMA e o índice de Bray-Curtis. 
+B) Faça agora o dendrograma com outro índice de dissimilaridade e compare os resultados. São diferentes? No que eles influenciaríam a interpretação do resultado?
+
+**9.3**
+Na perspectiva de metacomunidades (Leibold et al., 2004), a dispersão dos organismos tem um papel proeminente para entender como as espécies estão distribuídas na natureza. Com o objetivo de testar se a dispersão influencia a composição de espécies de cladóceros e copépodos, e portanto a estrutura da metacomunidade, um pesquisador selecionou dois conjuntos de lagos: em um deles todos os lagos são isolados e no outro os lagos são conectados. 
+
+A) Importe o conjunto de dados lagos do pacote `ecodados` e responda a pergunta se o fato de os lagos estarem conectados ou não influencia a composição de espécies desses microcrustáceos. Utilize métodos baseados em modelos que você aprendeu ao longo do capítulo para modelar a abundância multivariada.
+
+B) Faça um plot mostrando a abundância relativa das espécies com maior abundância e veja se elas são diferentes entre os tipos lagos. Combine este resultado com o do item anterior para interpretar o resultado final.
+
+**9.4**
+Carregue o pacote `MASS` para utilizar os dados `crabs`. Este conjunto traz medidas morfológicas de dois morfo-tipos da espécie de carangueijo *Leptograpsus variegatus* coletada em Fremantle, Austrália. Calcule uma PCA e veja se existe uma semelhança morfológica entre os dois morfo-tipos. Lembre-se de dar nome
+ao objeto e use a função `biplot()` para plotar o resultado do teste. Dica: a projeção de um objeto perpendicular à seta do descritor fornece a posição aproximada do objeto ao longo desse descritor. A distância dos objetos no espaço cartesiano reflete a distância euclidiana entre eles.
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-9---introdu%C3%A7%C3%A3o-ao-r.html).

@@ -978,9 +978,40 @@ Neste capítulo apenas fizemos uma breve introdução aos modelos lineares gener
 ## Exercícios
 
 **8.1**
+Baixe [estes dados](https://www.stat.berkeley.edu/~statlabs/labs.html#video) que foram coletados numa pesquisa de opinião sobre uso de vídeo games por 91 estudantes de graduação no outono de 1994. Utilizando estes dados, constra um modelo: 1) Predizer a frequência com que uma pessoa joga vídeo game em função da idade; 2) Predizer a nota do estudante em função do tempo que jogou na semana antes da entrevista. Dica: esses são dados ordinais!
 
 **8.2**
+Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sobre a abundância de morcegos em paisagens agroecológicas desenvolveu uma simulação para gerar dados parecidos com o que irá coletar em breve no campo. Ela utilizou uma abordagem que simula a abundância de uma espécie sob deriva ecológica segundo a Teoria Neutra da Biodiversidade. A simulação gerou os seguintes dados:
 
-**8.3**
+```{r}
+set.seed(42)
+J <- 5000 # número de indivíduos na comunidade local
+theta <- 50 #número fundamental da biodiversidade
+m <- 0.05 #taxa de dispersão
+comm1a <- coalesc(J, m, theta) #simulação
+abund1a <- abund(comm1a) #extração de dados de abundância local
+
+head(abund1a$com) #dados da comunidade local
+
+#histograma da abundância
+ggplot(abund1a$com, aes(ab))+
+  geom_density(aes(col="red", fill="red"))+
+  theme(legend.position = "non")
+```
+
+Além disso, a pesquisadora também simulou dados que representam a porcentagem do solo destinado à agricultura:
+
+```{r}
+porc_solo <- rbeta(length(abund1a$com$ab), 10, 90) #simulação uso do solo para agricultura
+hist(porc_solo)
+
+dados_finais <- data.frame(abund=abund1a$com$ab, solo=porc_solo)
+head(dados_finais)
+
+ggplot(dados_finais, aes(solo, abund))+
+  geom_point()
+```
+
+Agora com esses dados ela pode ter uma idéia do que esperar quando for pra campo. Ajude a pesquisadora a construir um modelo linear generalizado que seja adequado para modelar a abundância desta espécie de morcego em função da porcentagem de agricultura. Lembre-se de que ela vai precisar diagnosticar o modelo antes de utilizá-lo para fazer uma inferência. Por fim, interprete os resultados e sugira uma possível interpretação para a pesquisadora.
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-8---introdu%C3%A7%C3%A3o-ao-r.html).
