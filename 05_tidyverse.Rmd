@@ -31,9 +31,9 @@ Como todo idioma, a linguagem R vem passando por transformações nos últimos a
 
 Essas mudanças e expanções na utilização da linguagem R para a Ciência de Dados começaram a ser implementadas principalmente devido a um pesquisador: [Hadley Wickham](http://hadley.nz/), que iniciou sua contribuição à comunidade R com o desenvolvimento do já consagrado pacote `ggplot2` [@wickham2016] para a composição de gráficos no R (ver mais no Capítulo \@ref(cap6)), baseado na gramática de gráficos [@wilkinson2005]. Depois disso, Wickham dedicou-se ao desenvolvimento do pensamento de uma nova abordagem dentro da manipulação de dados, denominada **Tidy Data** (Dados organizados) [@wickham2014], na qual focou na limpeza e organização dos mesmos. A ideia postula que dados estão `tidy` quando: i) variáveis estão nas colunas, ii) observações estão nas linhas e iii) valores estão nas células, sendo que para esse último, não deve haver mais de um valor por célula (Figura \@ref(fig:fig-r-dados-tidy)).
 
-A partir dessas ideias, o [*tidyverse*](https://www.tidyverse.org/) foi operacionalizado no R como uma coleção de pacotes que atuam no fluxo de trabalho comum da ciência de dados: importação, manipulação, exploração, visualização, análise e comunicação de dados e análises [@tidyverse2019] (Figura \@ref(fig:fig-r-tidyverse)). O principal objetivo do *tidyverse* é aproximar a linguagem para melhorar a interação entre ser humano e computador sobre dados, de modo que os pacotes compartilham uma filosofia de design de alto nível e gramática, além da estrutura de dados de baixo nível [@tidyverse2019]. As principais leituras sobre o tema no R são os artigos "Tidy Data" [@wickham2014] e "Welcome to the Tidyverse" [@tidyverse2019], e o livro ["R for Data Science"](https://r4ds.had.co.nz/) [@wickham2017], além do [Tidyverse](https://www.tidyverse.org/) que possui muito mais informações.
+A partir dessas ideias, o [*tidyverse*](https://www.tidyverse.org/) foi operacionalizado no R como uma coleção de pacotes que atuam no fluxo de trabalho comum da ciência de dados: importação, manipulação, exploração, visualização, análise e comunicação de dados e análises [@tidyverse2019] (Figura \@ref(fig:fig-r-tidyverse), adaptado de Wickham & Grolemund [-@wickham2017]). O principal objetivo do *tidyverse* é aproximar a linguagem para melhorar a interação entre ser humano e computador sobre dados, de modo que os pacotes compartilham uma filosofia de design de alto nível e gramática, além da estrutura de dados de baixo nível [@tidyverse2019]. As principais leituras sobre o tema no R são os artigos "Tidy Data" [@wickham2014] e "Welcome to the Tidyverse" [@tidyverse2019], e o livro ["R for Data Science"](https://r4ds.had.co.nz/) [@wickham2017], além do [Tidyverse](https://www.tidyverse.org/) que possui muito mais informações.
 
-```{r fig-r-tidyverse, echo=FALSE, fig.cap="Modelo das ferramentas necessárias em um projeto típico de ciência de dados: importar, organizar, entender (transformar, visualizar, modelar) e comunicar, envolto à essas ferramentas está a programação. Adaptado de: Wickham & Grolemund [-@wickham2017]."}
+```{r fig-r-tidyverse, echo=FALSE, fig.cap="Modelo das ferramentas necessárias em um projeto típico de ciência de dados: importar, organizar, entender (transformar, visualizar, modelar) e comunicar, envolto à essas ferramentas está a programação."}
 knitr::include_graphics("img/cap05_fig01.png")
 ```
 
@@ -137,7 +137,7 @@ Seguindo a estrutura da Figura \@ref(fig:fig-r-tidyverse), iremos ver nos itens 
 
 Dentro do fluxo de trabalho do tidyverse, devemos sempre trabalhar com **Projetos do RStudio**. Junto com o projeto, também podemos fazer uso do pacote `here`. Ele permite construir caminhos para os arquivos do projeto de forma mais simples e com maior reprodutibilidade.
 
-Esse pacote cobre o ponto de mudarmos o diretório de trabalho que discutimos no capítulo \@ref(cap4), dado que muitas vezes mudar o diretório com a função `setwd()` tende a ser demorado e tedioso, principalmente quando se trata de um script em que várias pessoas estão trabalhando em diferentes computadores e sistemas operacionais. Além disso, ele elimina a questão da fragilidade dos scripts, pois geralmente um script está com os diretórios conectados exatamente a um lugar e a um momento. Por fim, ele também simplifica o trabalho com subdiretórios, facilitando importar ou exportar arquivos para subpastas.
+Esse pacote cobre o ponto de mudarmos o diretório de trabalho que discutimos no Capítulo \@ref(cap4), dado que muitas vezes mudar o diretório com a função `setwd()` tende a ser demorado e tedioso, principalmente quando se trata de um script em que várias pessoas estão trabalhando em diferentes computadores e sistemas operacionais. Além disso, ele elimina a questão da fragilidade dos scripts, pois geralmente um script está com os diretórios conectados exatamente a um lugar e a um momento. Por fim, ele também simplifica o trabalho com subdiretórios, facilitando importar ou exportar arquivos para subpastas.
 
 Seu uso é relativamente simples: uma vez criado e aberto o RStudio pelo Projeto do RStudio, o diretório automaticamente é definido para o diretório do projeto. Depois disso, podemos usar a função `here::here()` para definir os subdiretórios onde estão os dados. O exemplo da aplicação fica para a seção seguinte, quando iremos de fato importar um arquivo tabular para o R. Logo abaixo, mostramos como instalar e carregar o pacote `here`.
 
@@ -271,13 +271,13 @@ A partir da versão do R 4.1+ (18/05/2021), o operador pipe se tornou nativo do 
 
 ## tidyr
 
-Os conjuntos de dados `tidy` (organizados) são mais fáceis de manipular, modelar e visualizar. Um conjunto de dados está no formato `tidy` ou não, dependendo de como linhas, colunas e células são combinadas com observações, variáveis e valores. Nos dados tidy, as variáveis estão nas colunas, observações estão nas linhas e valores estão nas células, sendo que para esse último, não deve haver mais de um valor por célula (Figura \@ref(fig:fig-r-dados-tidy)).
+Os conjuntos de dados `tidy` (organizados) são mais fáceis de manipular, modelar e visualizar. Um conjunto de dados está no formato `tidy` ou não, dependendo de como linhas, colunas e células são combinadas com observações, variáveis e valores. Nos dados tidy, as variáveis estão nas colunas, observações estão nas linhas e valores estão nas células, sendo que para esse último, não deve haver mais de um valor por célula (Figura \@ref(fig:fig-r-dados-tidy), adaptado de Wickham & Grolemund [-@wickham2017]).
 
 1. Cada variável em uma coluna
 2. Cada observação em uma linha
 3. Cada valor como uma célula
 
-```{r fig-r-dados-tidy, echo=FALSE, fig.cap="As três regras que tornam um conjunto de dados *tidy*. Adaptado de: Wickham & Grolemund [-@wickham2017]."}
+```{r fig-r-dados-tidy, echo=FALSE, fig.cap="As três regras que tornam um conjunto de dados *tidy*.."}
 knitr::include_graphics("img/cap05_fig02.png")
 ```
 
@@ -749,9 +749,9 @@ head(penguins_bind_cols)
 
 Finalmente, veremos o último conjunto de funções do pacote `dplyr`, a junção de tabelas. Nessa operação, fazemos a combinação de pares de conjunto de dados tabulares por uma ou mais colunas chaves. Há dois tipos de junções: junção de modificação e junção de filtragem. A junção de modificação primeiro combina as observações por suas chaves e, em seguida, copia as variáveis (colunas) de uma tabela para a outra. É fundamental destacar a importância da coluna chave, que é indicada pelo argumento `by`. Essa coluna deve conter elementos que sejam comuns às duas tabelas para que haja a combinação dos elementos.
 
-Existem quatro tipos de junções de modificações, que são realizadas pelas funções: `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::full_join()` e `dplyr::right_join()`, e que podem ser representadas na Figura \@ref(fig:fig-r-join).
+Existem quatro tipos de junções de modificações, que são realizadas pelas funções: `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::full_join()` e `dplyr::right_join()`, e que podem ser representadas na Figura \@ref(fig:fig-r-join), adaptado de Wickham & Grolemund [-@wickham2017].
 
-```{r fig-r-join, echo=FALSE, fig.cap="Diferentes tipos de joins, representados com um diagrama de Venn. Adaptado de: Wickham & Grolemund [-@wickham2017]."}
+```{r fig-r-join, echo=FALSE, fig.cap="Diferentes tipos de joins, representados com um diagrama de Venn."}
 knitr::include_graphics("img/cap05_fig03.png")
 ```
 

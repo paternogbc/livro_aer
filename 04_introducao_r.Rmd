@@ -793,7 +793,7 @@ class(fac)
 
 Uma vez entendido a natureza dos modos dos elementos dos objetos no R, podemos passar para o passo seguinte e entender como esses elementos são estruturados dentro dos objetos.
 
-Essa estruturação irá nos contar sobre a organização dos elementos, com relação aos modos e dimensionalidade da disposição dos elementos (Figura \@ref(fig:fig-r-estruturas)). De modo bem simples, os elementos podem ser estruturados em cinco tipos:
+Essa estruturação irá nos contar sobre a organização dos elementos, com relação aos modos e dimensionalidade da disposição dos elementos (Figura \@ref(fig:fig-r-estruturas), adaptado de Grolemund [-@grolemund2014]). De modo bem simples, os elementos podem ser estruturados em cinco tipos:
 
 1.  **Vetores e fatores**: homogêneo (*um modo*) e unidimensional (*uma dimensão*). Um tipo especial de vetor são os fatores, usados para designar variáveis categóricas
 2.  **Matrizes**: homogêneo (*um modo*) e bidimensional (*duas dimensões*)
@@ -801,7 +801,7 @@ Essa estruturação irá nos contar sobre a organização dos elementos, com rel
 4.  **Data frames**: heterogêneo (*mais de um modo*) e bidimensional (*duas dimensões*)
 5.  **Listas**: heterogêneo (*mais de um modo*) e unidimensional (*uma dimensão*)
 
-```{r fig-r-estruturas, echo=FALSE, fig.cap="Estruturas de dados mais comuns no R: vetores, matrizes, arrays, listas e data frames. Adaptado de: [@grolemund2014]."}
+```{r fig-r-estruturas, echo=FALSE, fig.cap="Estruturas de dados mais comuns no R: vetores, matrizes, arrays, listas e data frames."}
 knitr::include_graphics("img/cap04_fig03.png")
 ```
 
@@ -1541,17 +1541,17 @@ Instale o pacote `tidyverse` do CRAN.
 Escolha números para jogar na mega-sena usando o R, nomeando o objeto como `mega`. Lembrando: são 6 valores de 1 a 60 e atribuam a um objeto.
 
 **4.7**
-Crie um fator chamado `tr`, com dois níveis ("cont" e "trat") para descrever 100 locais de amostragem, 50 de cada tratamento. O fator deve ser dessa forma `cont, cont, cont, ...., cont, trat, trat, ...., trat`.
+Crie um fator chamado `tr`, com dois níveis ("cont" e "trat") para descrever 300 locais de amostragem, 15 de cada tratamento. O fator deve ser dessa forma `cont, cont, cont, ...., cont, trat, trat, ...., trat`.
 
 **4.8**
-Crie uma matriz chamada `ma`, resultante da disposição de um vetor composto por 1000 valores aleatórios entre 0 e 10. A matriz deve conter 100 linhas e ser disposta por colunas.
+Crie uma matriz chamada `ma`, resultante da disposição de um vetor composto por 130 valores aleatórios entre 0 e 10. A matriz deve conter 100 linhas e ser disposta por colunas.
 
 **4.9**
 Crie um data frame chamado `df`, resultante da composição desses vetores:
 
--   `id: 1:50`
--   `sp: sp01, sp02, ..., sp49, sp50`
--   `ab: 50 valores aleatórios entre 0 a 5`
+-   `id: 1:30`
+-   `sp: sp01, sp02, ..., sp29, sp30`
+-   `ab: 30 valores aleatórios entre 0 a 5`
 
 **4.10**
 Crie uma lista com os objetos criados anteriormente: `mega`, `tr`, `ma` e `df`.
@@ -1563,7 +1563,7 @@ Selecione os elementos ímpares do objeto `tr` e atribua ao objeto `tr_impar`.
 Selecione as linhas com ids pares do objeto `df` e atribua ao objeto `df_ids_par`.
 
 **4.13**
-Faça uma amostragem de 10 linhas do objeto `df` e atribua ao objeto `df_amos10`.
+Faça uma amostragem de 10 linhas do objeto `df` e atribua ao objeto `df_amos10`. Use a função `set.seed()` para fixar a amostragem.
 
 **4.14**
 Amostre 10 linhas do objeto `ma`, mas utilizando as linhas amostradas do `df_amos10` e atribua ao objeto `ma_amos10`.

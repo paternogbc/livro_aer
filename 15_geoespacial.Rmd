@@ -1,4 +1,4 @@
-# Dados geoespaciais no R {#cap15}
+# Dados geoespaciais {#cap15}
 
 ## Pré-requisitos do capítulo {-}
 
@@ -54,9 +54,9 @@ Esse capítulo segue parte da estrutura organizada por Lovelace et al. [-@lovela
 
 ## Vetor
 
-Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos)).
+Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos), adaptado de Olaya [-@olaya2020]).
 
-```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de: Olaya [-@olaya2020]."}
+```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos."}
 knitr::include_graphics("img/cap15_fig01.png")
 ```
 
@@ -95,9 +95,9 @@ plot(world[1], col = viridis::viridis(100), main = "Mapa do mundo")
 
 ## Raster
 
-Os dados no formato raster consistem em uma matriz (com linhas e colunas) em que os elementos representam células, geralmente igualmente espaçadas (pixels; Figura \@ref(fig:fig-raster)). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura \@ref(fig:fig-raster) A) e; ii) valores das células (Figura \@ref(fig:fig-raster) B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura \@ref(fig:fig-raster) C). Além disso, valores ausentes ou não amostrados são representados por `NA`, ou seja, *not available* (Figura \@ref(fig:fig-raster) B e C).
+Os dados no formato raster consistem em uma matriz (com linhas e colunas) em que os elementos representam células, geralmente igualmente espaçadas (pixels; Figura \@ref(fig:fig-raster), adaptado de Lovelace et al. [-@lovelace2019]). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura \@ref(fig:fig-raster) A) e; ii) valores das células (Figura \@ref(fig:fig-raster) B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura \@ref(fig:fig-raster) C). Além disso, valores ausentes ou não amostrados são representados por `NA`, ou seja, *not available* (Figura \@ref(fig:fig-raster) B e C).
 
-```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de: Lovelace et al. [-@lovelace2019]."}
+```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas."}
 library(gridExtra)
 
 # Dados
@@ -137,9 +137,9 @@ p_3 <- spplot(small_ras_val,
 grid.arrange(p_1, p_2, p_3, ncol = 3)
 ```
 
-Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos)).
+Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos), , adaptado de Olaya [-@olaya2020]).
 
-```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de: Olaya [-@olaya2020]."}
+```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster."}
 knitr::include_graphics("img/cap15_fig02.png")
 ```
 
@@ -201,7 +201,7 @@ raster_brick
 
 Ao utilizarmos a função `plot()` do pacote `raster`, podemos visualizar os raster contidos no objeto `RasterBrick` (Figura \@ref(fig:fig-raster-brick)).
 
-```{r fig-raster-brick, fig.cap="Mapas simples de um raster RasterBrick."}
+```{r fig-raster-brick, fig.cap="Mapas simples de um raster `RasterBrick`."}
 ## Plot raster brick
 plot(raster_brick, col = viridis::viridis(n = 25), main = "")
 ```
@@ -225,7 +225,7 @@ raster_stack
 
 Da mesma forma, ao utilizar a função `plot()` do pacote `raster`, podemos visualizar os raster contidos no objeto `RasterStack` (Figura \@ref(fig:fig-raster-stack)).
 
-```{r fig-raster-stack, fig.cap="Mapas simples de um raster RasterStack."}
+```{r fig-raster-stack, fig.cap="Mapas simples de um raster `RasterStack`."}
 ## Plot raster stack
 plot(raster_stack, col = viridis::viridis(n = 25), main = "")
 ```
@@ -682,7 +682,7 @@ Caso o download não funcione ou haja problemas com a importação, disponibiliz
 ecodados::geo_anfibios_locais
 ```
 
-Por fim, podemos facilmente criar um objeto espacial do tipo `MULTIPOINT` utilizando a função `sf::st_as_sf()`. Podemos ver essas coordenadas plotadas no mapa simples da Figura \@ref(fig:fig-vetor-pontos-atlantic-amphibians).
+Por fim, podemos facilmente criar um objeto espacial do tipo `MULTIPOINT` utilizando a função `sf::st_as_sf()`. Podemos ver essas coordenadas plotadas no mapa simples da Figura \@ref(fig:fig-vetor-pontos-atlantic-amphibians) [@vancine2018].
 
 É necessário antes se ater ao argumento `coords` que deve indicar as colunas de longitude e latitude, nessa ordem; e também ao argumento `crs` para indicar o CRS correspondente dessas coordenadas, que aqui sabemos se tratar de coordenadas geográficas e datum WGS84. Então podemos facilmente utilizar o código EPSG 4326. Entretanto, se as coordenadas estiverem em metros, por exemplo, teremos de nos ater a qual CRS as mesmas foram coletadas, ou seja, se forem coordenadas de GPS, é preciso saber como o GPS estava configurado (projeção e datum).
 
@@ -693,7 +693,7 @@ geo_anfibios_locais_vetor <- geo_anfibios_locais %>%
 geo_anfibios_locais_vetor
 ```
 
-```{r fig-vetor-pontos-atlantic-amphibians, fig.cap="Coordenadas das comunidades do Atlantic Amphibians [@vancine2018]."}
+```{r fig-vetor-pontos-atlantic-amphibians, fig.cap="Coordenadas das comunidades do Atlantic Amphibians."}
 ## Plot
 plot(geo_anfibios_locais_vetor[1], pch = 20, col = "black", 
      main = NA, axes = TRUE, graticule = TRUE)
@@ -1668,7 +1668,7 @@ plot(geo_raster_srtm_rio_claro_prod, col = viridis::viridis(10))
 plot(geo_vetor_rio_claro$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 ```
 
-A predição de objetos raster (utilizando a função `raster::predict()`) é outra aplicação extremamente útil em operações locais, nós a veremos mais à frente nesse capítulo. Essa função possui basicamente dois argumentos: `object` que é os rasters preditores e `model` com o modelo ajustado para o qual os valores serão preditos com base nos valores dos rasters. A partir da relação entre variáveis respostas (e.g, pontos no espaço, como ocorrência ou riqueza de espécies), e variáveis preditoras (rasters contínuos de elevação, pH, precipitação, temperatura, cobertura da terra ou classe de solo), criamos modelos usando funções como `lm()`, `glm()`, `gam()` ou uma técnica de aprendizado de máquina, e fazemos predições espaciais aplicando os coeficientes estimados aos valores dos raster preditores (consulte od Capítulod \@ref(cap7) e \@ref(cap8)).
+A predição de objetos raster (utilizando a função `raster::predict()`) é outra aplicação extremamente útil em operações locais, nós a veremos mais à frente nesse capítulo. Essa função possui basicamente dois argumentos: `object` que é os rasters preditores e `model` com o modelo ajustado para o qual os valores serão preditos com base nos valores dos rasters. A partir da relação entre variáveis respostas (e.g, pontos no espaço, como ocorrência ou riqueza de espécies), e variáveis preditoras (rasters contínuos de elevação, pH, precipitação, temperatura, cobertura da terra ou classe de solo), criamos modelos usando funções como `lm()`, `glm()`, `gam()` ou uma técnica de aprendizado de máquina, e fazemos predições espaciais aplicando os coeficientes estimados aos valores dos raster preditores (consulte od Capítulos \@ref(cap7) e \@ref(cap8)).
 
 Por fim, a reclassificação de rasters é outra operação muito comum quando trabalhamos com rasters. Nela é realizada a classificação de intervalos de valores numéricos em grupos, e.g. agrupar um modelo digital de elevação em classes de valores. A função que faz essa operação é a `raster::reclassify()`. Ela possui dois argumentos: `x` que é o raster a ser reclassificado, e o segundo `rcl` para o qual devemos construir uma matriz de reclassificação, onde a primeira coluna é a extremidade inferior, a segunda coluna é a extremidade superior, e a terceira coluna representa o novo valor para os intervalos das colunas um e dois. Vamos reclassificar o raster de elevação de Rio Claro/SP para os intervalos 400--600, 600--800 e 800--1000 que são reclassificados para os valores 1, 2 e 3, respectivamente (Figura \@ref(fig:fig-raster-local-reclassificacao)).
 
@@ -2759,7 +2759,7 @@ mapa_srtm_rio_claro_tmap_int <- mapa_srtm_rio_claro_tmap
 ```
 
 ```{r fig-raster-mapa-tmap-int, echo=FALSE, fig.cap="Mapa vetorial interativo com o pacote `tmap`."}
-#knitr::include_url("img/cap15_fig76.html")
+knitr::include_url("img/cap15_fig76.png")
 ```
 
 Para exportar mapas interativos criados com o pacote `tmap`, podemos utilizar novamente a função `tmap::tmap_save()`, indicando a extensão como `.html`.
@@ -2781,7 +2781,7 @@ mapa_srtm_rio_claro_mapview_int <- mapview::mapview(
 ```
 
 ```{r fig-raster-mapa-mapview-int, echo=FALSE, fig.cap="Mapa vetorial interativo com o pacote `mapview`."}
-#knitr::include_url("img/cap15_fig77.html")
+knitr::include_url("img/cap15_fig77.png")
 ```
 
 Para exportar mapas interativos criados com o pacote `mapview`, podemos utilizar a função `mapivew::mapshot()`, indicando a extensão como `.html`.
@@ -2813,8 +2813,8 @@ mapa_srtm_rio_claro_leaflet_int <- leaflet() %>%
     addPolygons(data = geo_vetor_rio_claro, col = "red", fill = NA)
 ```
 
-```{r fig-raster-mapa-leaflet-int, fig.cap="Mapa vetorial interativo com o pacote *leaflet*."}
-#knitr::include_url("img/cap15_fig78.html")
+```{r fig-raster-mapa-leaflet-int, fig.cap="Mapa vetorial interativo com o pacote `leaflet`."}
+knitr::include_url("img/cap15_fig78.png")
 ```
 
 Para exportar mapas interativos criados com o pacote `leaflet`, podemos utilizar novamente a função `mapivew::mapshot()`, indicando a extensão como `.html`.
@@ -3002,7 +3002,7 @@ geo_vetor_mata_atlantica_hex_especies_oco_riq <- geo_vetor_mata_atlantica_hex_es
 
 Finalmente podemos compor os mapas finais, mostrando os hexágonos com cores e valores do número de ocorrências e de espécies \@ref(fig:fig-vetor-aa-ma-sel-hex-oco-riq)).
 
-```{r fig-vetor-aa-ma-sel-hex-oco-riq, fig.cap="Mapa com o número de ocorrências e riqueza de anfíbios para hexágonos no limite da Mata Atlântica."}
+```{r eval=FALSE}
 ## Mudar o modo de exibição do tmap
 tmap::tmap_mode(mode = "plot")
 
@@ -3031,7 +3031,11 @@ mapa_riq <- tm_shape(geo_vetor_mata_atlantica_hex_especies_oco_riq) +
               legend.position = c("left", "top"))
 
 ## União dos mapas
-#tmap_arrange(mapa_oco, mapa_riq)
+tmap_arrange(mapa_oco, mapa_riq)
+```
+
+```{r fig-vetor-aa-ma-sel-hex-oco-riq, echo=FALSE, fig.cap="Mapa com o número de ocorrências e riqueza de anfíbios para hexágonos no limite da Mata Atlântica."}
+knitr::include_graphics("img/cap15_fig81.png")
 ```
 
 ### Extrair dados raster para pontos
@@ -3311,29 +3315,15 @@ Por fim, vamos produzir dois mapas mostrando os valores das predições, o mapa 
 ## Mudar o modo de exibição do tmap
 tmap::tmap_mode(mode = "plot")
 
-## Mapa de predição contínua
-mapa_pa_pred_cont <- tm_shape(modelo_pa_pred) +
-    tm_raster(title = "Predição contínua", pal = "viridis") +
-    tm_graticules(lines = FALSE) +
-    tm_compass() +
-    tm_scale_bar() +
-    tm_layout(legend.title.size = 2,
-              legend.title.fontface = "bold",
-              legend.position = c("left", "top"))
+## Combinar os dois raster
+modelo_pa_pred <- raster::stack(modelo_pa_pred, modelo_pa_pred_corte)
+names(modelo_pa_pred) <- c("Contínuo", "Binário")
 
-## Mapa de predição binária
-mapa_pa_pred_corte <- tm_shape(modelo_pa_pred_corte) +
-    tm_raster(title = "Predição binária", pal = c("#440154", "#fde725"), 
-              labels = c("Potencialmente ausente", "Potencialmente presente")) +
-    tm_graticules(lines = FALSE) +
-    tm_compass() +
-    tm_scale_bar() +
-    tm_layout(legend.title.size = 2,
-              legend.title.fontface = "bold",
-              legend.position = c("left", "top"))
-
-## União dos mapas
-# tmap_arrange(mapa_pa_pred_cont, mapa_pa_pred_corte)
+## Mapas de predição contínua e binária
+tm_shape(modelo_pa_pred) +
+    tm_raster(pal = "viridis", title = c("Predição", "Predição"),
+              style = "fisher") +
+    tm_facets(free.scales.raster = TRUE)
 ```
 
 ::: {.alert .alert-info}
@@ -3397,28 +3387,15 @@ Por fim, podemos compor os dois mapas de predições (Figura \@ref(fig:fig-raste
 ## Mudar o modo de exibição do tmap
 tmap::tmap_mode(mode = "plot")
 
-## Mapa da predição Poisson
-mapa_pred_riq_pois <- tm_shape(modelo_riq_pois_pred) +
-    tm_raster(title = "Número de espécies (Poisson)", pal = "viridis") +
-    tm_graticules(lines = FALSE) +
-    tm_compass() +
-    tm_scale_bar() +
-    tm_layout(legend.title.size = 2,
-              legend.title.fontface = "bold",
-              legend.position = c("left", "top"))
+## Combinar os dois raster
+modelo_riq_pred <- raster::stack(modelo_riq_pois_pred, modelo_riq_nb_pred)
+names(modelo_riq_pred) <- c("Poisson", "Binomial Negativa")
 
-## Mapa predição Binomial Negativo
-mapa_pred_riq_nb <- tm_shape(modelo_riq_nb_pred) +
-    tm_raster(title = "Número de espécies (Binomial Negativa)", pal = "viridis") +
-    tm_graticules(lines = FALSE) +
-    tm_compass() +
-    tm_scale_bar() +
-    tm_layout(legend.title.size = 2,
-              legend.title.fontface = "bold",
-              legend.position = c("left", "top"))
-
-## União dos mapas
-# tmap_arrange(mapa_pred_riq_pois, mapa_pred_riq_nb)
+## Mapas da predição Poisson e Binomial Negativa
+tm_shape(modelo_riq_pred) +
+    tm_raster(pal = "viridis", title = c("Número de espécies", "Número de espécies"),
+              style = "fisher") +
+    tm_facets(free.scales.raster = TRUE)
 ```
 
 ::: {.alert .alert-info}

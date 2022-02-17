@@ -53,15 +53,13 @@ colnames(penguins) <- c("especies", "ilha", "comprimento_bico", "profundidade_bi
 
 Análises multivariadas avaliam hipóteses cuja variável resposta é definida por múltiplas variáveis ao mesmo tempo, comumente expressa na forma de uma matriz quadrada ou de distância (dissimilaridade).
 
-Em geral, análises multivariadas têm três principais utilidades: i) reduzir a dimensionalidade dos dados e encontrar a principal direção de variação dos dados, ii) testar relações entre matrizes, ou ainda, iii) encontrar diferenças entre grupos. Análises multivariadas podem ser utilizadas como análises exploratórias e/ou para descrever padrões em estudos ecológicos. No entanto, mesmo quando se deseja apenas explorar o conjunto de dados para encontrar possíveis padrões, a necessidade de se ter hipóteses, ou ao menos expectativas *a priori*, não pode ser ignorada. Antes de entrar de cabeça nas análises multivariadas, também sugerimos fortemente o estudo de métodos de amostragem e como fazer boas perguntas (Capítulo \@ref(cap2)).
+Em geral, análises multivariadas têm três principais utilidades: i) reduzir a dimensionalidade dos dados e encontrar a principal direção de variação dos mesmos, ii) testar relações entre matrizes, ou ainda, iii) encontrar diferenças entre grupos. Análises multivariadas podem ser utilizadas como análises exploratórias e/ou para descrever padrões em estudos ecológicos. No entanto, mesmo quando se deseja apenas explorar o conjunto de dados para encontrar possíveis padrões, a necessidade de se ter hipóteses, ou ao menos expectativas *a priori*, não pode ser ignorada. Antes de entrar de cabeça nas análises multivariadas, também sugerimos fortemente o estudo de métodos de amostragem e como fazer boas perguntas (Capítulo \@ref(cap2)).
 
 Análises multivariadas podem ser divididas, grosseiramente, em dois tipos: agrupamento e ordenação. Análises de agrupamento, em geral, tentam agrupar objetos (observações) ou descritores em grupos de maneira que objetos do mesmo grupo sejam mais semelhantes entre si do que objetos de outros grupos [@legendre_numerical_2012]. Por exemplo, os objetos podem ser localidades como "parcelas", "riachos" ou "florestas", enquanto os descritores são as difentes variáveis coletadas para esses objetos (e.g., espécies, variáveis ambientais). A análise de ordenação, por sua vez, é uma operação pela qual os objetos (ou descritores) são posicionados num espaço que contém menos dimensões que o conjunto de dados original; a posição dos objetos ou descritores em relação aos outros também pode ser usada para agrupá-los.
 
-Vamos começar com análises de agrupamento. Aqui vamos exemplificar dois métodos: uma técnica de agrupamento hierárquica (dendrograma) e outra não-hierárquica (k-means).
-
 ### Coeficientes de associação
 
-Assim chamados genericamente, os coeficientes de associação medem o quão parecidos objetos ou descritores são entre si. Objetos estão nas linhas da matriz, enquanto descritores estão nas colunas. Geralmente objetos são as nossas unidades amostrais, enquanto os descritores são as variáveis. Quando analisamos a relação entre objetos fazemos uma análise no modo Q, ao passo que o modo R é quando analisamos a relação entre descritores. Coeficientes de associação do modo Q são medidas de (dis)similaridade ou distância, enquanto para o modo R utilizamos covariância ou correlação. Como já tratamos neste livro sobre covariância e correlação (ver \@ref(cap7)), neste tópico vamos falar sobre índices de distância e similaridade. Mas qual a definição destas duas quantitades?
+Assim chamados genericamente, os coeficientes de associação medem o quão parecidos objetos ou descritores são entre si. Objetos estão nas linhas da matriz, enquanto descritores estão nas colunas. Geralmente objetos são as nossas unidades amostrais, enquanto os descritores são as variáveis. Quando analisamos a relação entre objetos fazemos uma análise no modo Q, ao passo que o modo R é quando analisamos a relação entre descritores. Coeficientes de associação do modo Q são medidas de (dis)similaridade ou distância, enquanto para o modo R utilizamos covariância ou correlação. Como já tratamos neste livro sobre covariância e correlação (ver Capítulo \@ref(cap7)), neste tópico vamos falar sobre índices de distância e similaridade. Mas qual a definição destas duas quantitades?
 
 - Similaridade são máximas (*S=1*) quando dois objetos são idênticos
 - Distâncias são o contrário da similaridade (*D=1-S*) e não têm limites superiores (dependem da unidade de medida)
@@ -76,7 +74,9 @@ Uma característica comum de conjuntos de dados ecológicos são os vários zero
 
 **Coeficientes assimétricos binários para objetos**
 
-Esses coeficientes (ou índices) são apropriados para dados de incidência de espécies (presença-ausência) e desconsideram as duplas ausências. Os índices deste tipo mais comuns utilizados em ecologia são Sørensen, Jaccard e Ochiai.
+Esses coeficientes (ou índices) são apropriados para dados de incidência de espécies (presença-ausência) e desconsideram as duplas ausências. Os índices deste tipo mais comuns utilizados em ecologia são Jaccard, Sørensen e Ochiai.
+
+O coeficiente de Jaccard é dado por: 
 
 $$\beta_j = a/(a+b+c)$$
 onde 
@@ -87,6 +87,8 @@ onde
 
 A diferença entre os índices de Jaccard e Sørensen é que o índice de Sørensen dá peso dobrado para duplas presenças. Por conta dessas características, estes índices são adequados para quantificar diversidade beta [@anderson2010; @legendre2013]. Esses índices variam entre 0 (nenhuma espécie é compartilhada entre o par de locais) a 1 (todas as espécies são compartilhadas entre o par de locais).
 
+O coeficiente de Sørensen é dado por: 
+
 $$\beta_s = 2a/(2a+b+c)$$
 onde 
 
@@ -96,17 +98,17 @@ onde
 
 **Coeficientes binários para descritores (R mode)**
 
-Se o objetivo for calcular a similaridade entre descritores binários (e.g., presença ou ausência de características ambientais) de pares de locais, geralmente o coeficiente recomendado é o de Sokal & Michener. Este índice está implementado na `ade4::dist.binary()`.
+Se o objetivo for calcular a similaridade entre descritores binários (e.g., presença ou ausência de características ambientais) de pares de locais, geralmente o coeficiente recomendado é o de Sokal & Michener. Este índice está implementado na função `dist.binary()` do pacote `ade4`.
 
 **Coeficientes quantitativos para objetos**
 
-Estes são os coeficientes utilizados para dados de contagem (e.g., abundância) e quantitativos (e.g., frequência, biomassa, porcentagem cobertura). Diferentemente das distâncias, estes coeficientes são assimétricos, ou seja, não consideram duplas ausências, e portanto, são adequados para analisar dados de composição de espécies. Além disso, uma outra característica deles é serem semi-métricos. Os índices mais comuns deste tipo são Bray-Curtis (conhecido como *percentage difference*, em inglês), Chord, log-Chord, Hellinger, chi-quadrado e Morisita-Horn.
+Estes são os coeficientes utilizados para dados de contagem (e.g., abundância) e quantitativos (e.g., frequência, biomassa, porcentagem de cobertura). Diferentemente das distâncias, estes coeficientes são assimétricos, ou seja, não consideram duplas ausências, e portanto, são adequados para analisar dados de composição de espécies. Além disso, uma outra característica deles é serem semi-métricos. Os índices mais comuns deste tipo são Bray-Curtis (conhecido como *percentage difference*, em inglês), Chord, log-Chord, Hellinger, chi-quadrado e Morisita-Horn.
 
 Todos os índices discutidos até aqui estão implementados nas funções `ade4::dist.ktab()`, `adespatial::dist.ldc()` e `vegan::vegdist()`.
 
 **Coeficientes para descritores (R mode) que incluem mistura de tipos de dados**
 
-É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (*traits*) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença/ausência de uma dada característica), fuzzy (um atributo multiestado codificado em várias colunas), ordinais e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função `ade4::dist.ktab().`
+É comum em análises de diversidade funcional que tenhamos um conjunto de atributos (*traits*) de espécies que são formados por vários tipos de dados: quantitativos (e.g., tamanho de corpo), binários (presença/ausência de uma dada característica), *fuzzy* (um atributo multiestado codificado em várias colunas), ordinais e circulares (e.g., distribuição de uma fenofase ao longo de um ano). O índice que lida com todos esses dados é o Gower. A versão extendida do índice de Gower pode ser encontrada na função `ade4::dist.ktab().`
 
 O capítulo 7 de Legendre & Legendre [-@legendre_numerical_2012] fornece uma chave dicotômica para escolha do índice mais adequado.
 
@@ -114,7 +116,7 @@ O capítulo 7 de Legendre & Legendre [-@legendre_numerical_2012] fornece uma cha
 
 É comum coletarmos múltiplas variáveis ambientais cujas unidades sejam diferentes. Por exemplo, temperatura (ºC), distância da margem (m), área (m^2^), etc. Para diminuir a taxa de Erro do Tipo I das análises (rejeitar a hipótese nula quando ela é verdadeira), é recomendado que ***padronizemos*** os dados utilizando distribuição *Z*, assim todas as variáveis passam a ter média 0 e desvio padrão 1. Essa operação garante que todas as variáveis tenham o mesmo peso nas análises que avaliam o padrão dos objetos considerando os múltiplos descritores. Essa padronização pode ser implementada na função `vegan::decostand()`.
 
-Um outro problema comum de matrizes de dados de composição de espécies é o alto número de zeros, enquanto outras espécies podem ter altas abundâncias. Isso gera problemas em ordenações. Para diminuir essa discrepância, podemos **transformar** os dados, por exemplo, utilizando a distância de Hellinger ou Chord. Para dados contínuos pode ser que transformação log ou raiz quadrada ajude quando há valores muito discrepantes (*leverages*) que podem influenciar em demasiado a relação entre objetos ou descritores. Isso pode ser feito na função `vegan::decostand()`.
+Outro problema comum de matrizes de dados de composição de espécies é o alto número de zeros, enquanto outras espécies podem ter altas abundâncias. Isso gera problemas em ordenações. Para diminuir essa discrepância, podemos **transformar** os dados, por exemplo, utilizando a distância de Hellinger ou Chord. Para dados contínuos pode ser que transformação log ou raiz quadrada ajude quando há valores muito discrepantes (*leverages*) que podem influenciar em demasiado a relação entre objetos ou descritores. Isso pode ser feito na função `vegan::decostand()`.
 
 ## Análises de agrupamento
 
