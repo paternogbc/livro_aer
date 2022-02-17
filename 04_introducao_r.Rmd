@@ -111,11 +111,11 @@ Podemos ver o histórico dos códigos executados no console na aba **History** (
 
 Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (Figura \@ref(fig:fig-rstudio) janela 1). Para criar um script, basta ir em `File > New File > R Script`, ou clicando no ícone com uma folha branca e um círculo verde com um sinal de `+`, logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`.
 
-Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em **Source** ou usando o atalho `Ctrl + Shift + Enter`; ou ii) apenas a linha onde o cursor estiver posicionado, independente de sua posição naquela linha, clicando em **Run** ou usando o atalho `Ctrl + Enter`.
+Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em **Source** ou usando o atalho `Ctrl + Shift + Enter`; ou ii) apenas a linha onde o cursor estiver posicionado, independentemente de sua posição naquela linha, clicando em **Run** ou usando o atalho `Ctrl + Enter`.
 
 Devemos sempre salvar nossos scripts, tomando por via de regra: primeiro criar o arquivo e depois ir salvando nesse mesmo arquivo a cada passo de desenvolvimento das análises (não é raro o RStudio fechar sozinho e você perder algum tempo de trabalho). Há diversos motivos para criar um script: continuar o desenvolvimento desse script em outro momento ou em outro computador, preservar trabalhos passados, ou ainda compartilhar seus códigos com outras pessoas. Para criar ou salvar um script basta ir em `File > Save`, escolher um diretório e nome para o script e salvá-lo. Podemos ainda utilizar o atalho `Ctrl + S`.
 
-Em relação aos scripts, há ainda os comentários, representados pelos símbolos `#` (hash), `#'` (hash-linha) e `#>` (hash-maior). A diferença entre eles é que para o segundo e terceiro, quando precionamos a tecla `Enter` o comentário `#'` e `#>` são inseridos automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: i) descrever informações sobre dados ou funções e/ou ii) suprimir linhas de código. 
+Em relação aos scripts, há ainda os comentários, representados pelos símbolos `#` (hash), `#'` (hash-linha) e `#>` (hash-maior). A diferença entre eles é que para o segundo e terceiro, quando pressionamos a tecla `Enter` o comentário `#'` e `#>` são inseridos automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: i) descrever informações sobre dados ou funções e/ou ii) suprimir linhas de código. 
 
 É interessante ter no início de cada script um cabeçalho identificando o objetivo ou análise, autor e data para facilitar o compartilhamento e reprodutibilidade. Os comentários podem ser inseridos ou retirados das linhas com o atalho: `Ctrl + Shift + C`.
 
@@ -147,7 +147,7 @@ name <- function(variables) {
 }
 ```
 
-Uma aplicação bem interessante dos *Code Snippets* no script é o `ts`. Basta digitar esse código e em seguida completar um a tecla `Tab` para inserir rapidamente a data e horário atuais no script em forma de comentário.
+Uma aplicação bem interessante dos *Code Snippets* no script é o `ts`. Basta digitar esse código e em seguida pressionar a tecla `Tab` para inserir rapidamente a data e horário atuais no script em forma de comentário.
 
 ```{r}
 # ts {snippet}
@@ -235,7 +235,7 @@ Segundo, o R tem limitações ao nomear objetos:
 -   nome de objetos só podem conter letras (`a-z` ou `A-Z`), números (`0-9`), underscores (`_`) ou pontos (`.`)
 -   R é *case-sensitive*, i.e., ele reconhece letras maiúsculas como diferentes de letras minúscula. Assim, um objeto chamado "resposta" é diferente do objeto "RESPOSTA"
 -   devemos evitar acentos ou cedilha (`ç`) para facilitar a memorização dos objetos e também para evitar erros de codificação (*encoding*) de caracteres
--   nome de objetos não podem ser iguais a nomes especiais, reservados para programação (`break`, `else`, `FALSE`, `for`, `function`, `if`, `Inf`, `NA`, `NaN`, `next`, `repeat`, `return`, `TRUE`, `while`)
+-   nomes de objetos não podem ser iguais a nomes especiais, reservados para programação (`break`, `else`, `FALSE`, `for`, `function`, `if`, `Inf`, `NA`, `NaN`, `next`, `repeat`, `return`, `TRUE`, `while`)
 
 Podemos ainda utilizar objetos para fazer operações e criar objetos. Isso pode parecer um pouco confuso para os iniciantes, mas é fundamental aprender essa lógica para passar para os próximos passos.
 
@@ -251,7 +251,7 @@ adi
 
 ### Funções
 
-Funções são códigos preparados para realizar uma tarefa específica de modo simples. Outra forma de entender uma função é: códigos que realizam operações em argumentos. Devemos retomar ao conceito do ensino médio de funções: os dados de entrada são argumentos e a função realizá alguma operação para modificar esses dados de entrada. A estrutura de uma função é muito similar à sintaxe usada em planilhas eletrônicas, sendo composta por:
+Funções são códigos preparados para realizar uma tarefa específica de modo simples. Outra forma de entender uma função é: códigos que realizam operações em argumentos. Devemos retomar ao conceito do ensino médio de funções: os dados de entrada são argumentos e a função realizará alguma operação para modificar esses dados de entrada. A estrutura de uma função é muito similar à sintaxe usada em planilhas eletrônicas, sendo composta por:
 
 > nome_da_função(argumento1, argumento2, ...)
 
@@ -275,7 +275,7 @@ sum(10, 2)
 sum(va1, va2)
 ```
 
-Vamos ver agora alguns exemplos de argumentos usados como parâmetros. Note que apesar do valor do argumento ser o mesmo (10), seu efeito no resultado da função `rep()`` muda drasticamente. Aqui também é importante destacar um ponto: i) podemos informar os argumentos sequencialmente, sem explicitar seus nomes, ou ii) independente da ordem, mas explicitando seus nomes. Entretanto, como no exemplo abaixo, devemos informar o nome do argumento (i.e., parâmetro), para que seu efeito seja o que desejamos.
+Vamos ver agora alguns exemplos de argumentos usados como parâmetros. Note que apesar do valor do argumento ser o mesmo (10), seu efeito no resultado da função `rep()` muda drasticamente. Aqui também é importante destacar um ponto: i) podemos informar os argumentos sequencialmente, sem explicitar seus nomes, ou ii) independente da ordem, mas explicitando seus nomes. Entretanto, como no exemplo abaixo, devemos informar o nome do argumento (i.e., parâmetro), para que seu efeito seja o que desejamos.
 
 ```{r}
 ## Funções - argumentos como parâmetros
@@ -466,7 +466,7 @@ Um importante passo para melhorar a usabilidade e ter mais familiaridade com a l
 -   **See also**: funções relacionadas
 -   **Examples**: exemplos do uso da função. Às vezes pode ser útil copiar esse trecho e colar no R para ver como funciona e como usar a função.
 
-Vamos realizar um exemplo, buscando o `help` da função `aov()`, que realiza uma análise de variância (veja detalhes no Capítulo \@ref(cap8)).
+Vamos realizar um exemplo, buscando o `help` da função `aov()`, que realiza uma análise de variância (veja detalhes no Capítulo \@ref(cap7)).
 
 ```{r eval=FALSE}
 ## Ajuda
@@ -593,7 +593,7 @@ knitr::write_bib("vegan", file = "vegan_ex.bib")
 
 Errar quando está começando a usar o R é muito comum e faz parte do aprendizado. Entretanto, os erros nunca devem ser encarados como uma forma de desestímulo, mas sim como um desafio para continuar tentando. Todos nós, autores desse livro, e provavelmente usuários mais ou menos experientes, já passaram por um momento em que se quer desistir de tudo. Jovem aprendiz de R, a única diferença entre você que está iniciando agora e nós que usamos há mais tempo são as horas a mais de uso (e ódio). O que temos a mais é experiência para olhar o erro, lê-lo e conseguir interpretar o que está errado e saber buscar ajuda.
 
-Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descance, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como [Debug com Pato de Borracha](https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha)), logo a solução deve aparecer.
+Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descanse, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como [Debug com Pato de Borracha](https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha)), logo a solução deve aparecer.
 
 Listaremos aqui o que consideramos os principais erros dos iniciantes no R.
 
@@ -706,7 +706,7 @@ attributes(dune)
 
 A depender da natureza dos elementos que compõem os dados e que foram atribuídos aos objetos, esses objetos podem ser, de forma simples um dos cinco modos: numérico do tipo inteiro (*integer*), numérico do tipo flutuante (*double*), texto (*character*), lógico (*logical*) ou complexo (*complex*).
 
-A atribuição de números no R podem gerar dois tipos de modos: integer para números inteiros e double para números flutuantes ou com decimais.
+A atribuição de números no R pode gerar dois tipos de modos: **integer** para números inteiros e **double** para números flutuantes ou com decimais.
 
 ```{r}
 ## Numérico double
@@ -987,7 +987,7 @@ lista_nome
 
 Uma última estrutura de objetos criados no R são as funções. Elas são objetos criados pelo usuário e reutilizados para fazer operações específicas. A criação de funções geralmente é um tópico tratado num segundo momento, quando o usuário de R adquire certo conhecimento da linguagem. Aqui abordaremos apenas seu funcionamento básico, diferenciando sua estrutura para entendimento e sua diferenciação das demais estruturas. 
 
-Vamos criar uma função simples que retorna a multiplicação de dois termos. Criaremos a função com o nome `multi`, à qual será atribuída uma função com o nome `function()`, com dois argumentos `x` e `y`. Depois disso abrimos chaves `{}`, que é onde iremos incluir nosso bloco de código. Nosso bloco de código é composto por duas linhas, a primeira contendo a operação de multiplicação dos argumento com a atribuição ao objeto `mu` e a sugunda contendo a função `return()` para retornar o valor da multiplicação.
+Vamos criar uma função simples que retorna a multiplicação de dois termos. Criaremos a função com o nome `multi`, à qual será atribuída uma função com o nome `function()`, com dois argumentos `x` e `y`. Depois disso abrimos chaves `{}`, que é onde iremos incluir nosso bloco de código. Nosso bloco de código é composto por duas linhas, a primeira contendo a operação de multiplicação dos argumento com a atribuição ao objeto `mu` e a segunda contendo a função `return()` para retornar o valor da multiplicação.
 
 ```{r}
 ## Criar uma função
@@ -1396,7 +1396,7 @@ download.file(url = "https://esajournals.onlinelibrary.wiley.com/action/download
 unzip(zipfile = "atlantic_amphibians.zip")
 ```
 
-Agora podemos importar a tabela de dados com a função `read.csv()`, atribuindo ao objeto `intror_anfibios_locais`. Devemos atentar para o argumento `encoding`, que selecionamos aqui como `latin1` para corrigir um erro de caracteres, que o autor dos dados cometeu quando publicou esse data paper. Geralmente não precisamos especificar esse tipo de informação, mas caso depois de importar os dados e na conferência, os caracteres como acento estiverem desformatados, procure especificar no argumento `encoding` um padrão para corrigir esse erro.
+Agora podemos importar a tabela de dados com a função `read.csv()`, atribuindo ao objeto `intror_anfibios_locais`. Devemos atentar para o argumento `encoding`, que selecionamos aqui como `latin1` para corrigir um erro de caracteres, que o autor dos dados cometeu quando publicou esse data paper. Geralmente não precisamos especificar esse tipo de informação, mas caso depois de importar os dados e na conferência, os caracteres como acento não estiverem formatados, procure especificar no argumento `encoding` um padrão para corrigir esse erro.
 
 ```{r}
 ## Importar a tabela de locais
