@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 1 Introdução | Análises Ecológicas no R</title>
+<meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
+<meta name="description" content="1.1 Histórico deste livro Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 1 Introdução | Análises Ecológicas no R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://analises-ecologicas.netlify.app/cap1.html">
+<meta property="og:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
+<meta property="og:description" content="1.1 Histórico deste livro Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 1 Introdução | Análises Ecológicas no R">
+<meta name="twitter:description" content="1.1 Histórico deste livro Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso...">
+<meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Análises Ecológicas no R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Sumário"><h2>Sumário</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bem-vindos</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
+<li><a class="" href="dedicat%C3%B3ria.html">Dedicatória</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="revisores-e-colaboradores.html">Revisores e colaboradores</a></li>
+<li><a class="active" href="cap1.html"><span class="header-section-number">1</span> Introdução</a></li>
+<li><a class="" href="cap2.html"><span class="header-section-number">2</span> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a></li>
+<li><a class="" href="cap3.html"><span class="header-section-number">3</span> Pré-requisitos</a></li>
+<li><a class="" href="cap4.html"><span class="header-section-number">4</span> Introdução ao R</a></li>
+<li><a class="" href="cap5.html"><span class="header-section-number">5</span> Tidyverse</a></li>
+<li><a class="" href="cap6.html"><span class="header-section-number">6</span> Visualização de dados</a></li>
+<li><a class="" href="cap7.html"><span class="header-section-number">7</span> Modelos lineares</a></li>
+<li><a class="" href="cap8.html"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></li>
+<li><a class="" href="cap9.html"><span class="header-section-number">9</span> Análises Multidimensionais</a></li>
+<li><a class="" href="cap10.html"><span class="header-section-number">10</span> Rarefação</a></li>
+<li><a class="" href="cap11.html"><span class="header-section-number">11</span> Estimadores de riqueza</a></li>
+<li><a class="" href="cap12.html"><span class="header-section-number">12</span> Diversidade Taxonômica</a></li>
+<li><a class="" href="cap13.html"><span class="header-section-number">13</span> Diversidade Filogenética</a></li>
+<li><a class="" href="cap14.html"><span class="header-section-number">14</span> Diversidade Funcional</a></li>
+<li><a class="" href="cap15.html"><span class="header-section-number">15</span> Dados geoespaciais</a></li>
+<li><a class="" href="gloss%C3%A1rio.html">Glossário</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap1" class="section level1" number="1">
+<h1>
+<span class="header-section-number">Capítulo 1</span> Introdução<a class="anchor" aria-label="anchor" href="#cap1"><i class="fas fa-link"></i></a>
+</h1>
+<div id="histórico-deste-livro" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Histórico deste livro<a class="anchor" aria-label="anchor" href="#hist%C3%B3rico-deste-livro"><i class="fas fa-link"></i></a>
+</h2>
+<p>Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso <em>Estatística aplicada à ecologia usando o R</em> no PPG em Biologia Animal da UNESP de São José Rio Preto/SP, em abril de 2011. Os três pesquisadores eram então alunos do PPG em Biologia Animal quando elaboraram o material disponibilizado na apostila <a href="https://cran.r-project.org/doc/contrib/Provete-Estatistica_aplicada.pdf">Estatística aplicada à ecologia usando o R</a>. A proposta de transformar a apostila em livro sempre foi um tópico recorrente desde 2011, e concretizado agora, um pouco mais de 10 anos depois.</p>
+<p>Neste período, Diogo, Fernando e Thiago foram contratados pela Universidade Federal de Mato Grosso do Sul, Universidade Federal de São Carlos campus Sorocaba, e Universidade Federal Rural de Pernambuco, respectivamente. Nestes anos eles ofertaram diferentes versões do curso <em>Estatística aplicada à ecologia usando o R</em> para alunos de graduação e pós-graduação em diferentes instituições do Brasil. A possibilidade da oferta destes novos cursos fortaleceu a ideia de trasformar a apostila em um livro com base nas experiências dos pesquisadores em sala de aula.</p>
+<p>Considerando que novas abordagens ecológicas vêm sendo descritas e criadas a uma taxa elevada nos últimos anos, era de se esperar que as informações disponíveis na apostila estivessem defasadas após uma década. Por este motivo, Diogo, Fernando e Thiago convidaram outros dois pesquisadores, Gustavo B. Paterno da Georg-August-University of Göttingen e Maurício H. Vancine do PPG em Ecologia, Evolução e Biodiversidade da UNESP de Rio Claro/SP, que são referências no uso de estatística em ecologia usando o R. Com o time completo, passaram mais de um ano realizando reuniões, compartilhando scripts e pagando cerveja para os coautores por capítulos atrasados até chegarem nesta primeira versão do livro.</p>
+</div>
+<div id="objetivo-deste-livro" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Objetivo deste livro<a class="anchor" aria-label="anchor" href="#objetivo-deste-livro"><i class="fas fa-link"></i></a>
+</h2>
+<p>Nossa proposta com este livro é traçar o melhor caminho, pelo menos do nosso ponto de vista, entre questões ecológicas e os métodos estatísticos mais robustos para testá-las. Guiar seus passos nesse caminho (nem sempre linear) necessita que você utilize um requisito básico: o de se esforçar para caminhar. O nosso esforço, em contrapartida, será o de indicar as melhores direções para que você adquira certa independência em análises ecológicas. Um dos nossos objetivos é mostrar que o conhecimento de teorias ecológicas e a formulação de questões apropriadas são o primeiro passo na caminhada rumo à compreensão da lógica estatística. Não deixe que a estatística se torne a “pedra no seu caminho.” Em nossa opinião, programas com ambiente de programação favorecem o entendimento da lógica estatística, uma vez que cada passo (lembre-se de que você está caminhando em uma estrada desconhecida e cheia de pedras) precisa ser coordenado, ou seja, as linhas de código (detalhes abaixo) precisam ser compreendidas para que você teste suas hipóteses. No entanto, tome cuidado ao copiar deliberadamente scripts sem entender cada um dos passos da análise ou gráfico realizado.</p>
+<p>A primeira parte deste livro pretende utilizar uma estratégia que facilita a escolha do teste estatístico apropriado, por meio da seleção de questões/hipóteses claras e da ligação dessas hipóteses com a teoria e o método (veja Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> no Capítulo <a href="cap2.html#cap2">2</a>). Enfatizamos que é fundamental ter em mente aonde se quer chegar, para poder escolher o que deve ser feito. Posteriormente à escolha de suas questões, é necessário transferir o contexto ecológico para um contexto meramente estatístico (hipótese nula/alternativa). A partir da definição de uma hipótese nula, partiremos para a aplicação de cada teste estatístico (de modelos lineares generalizados a análises multivariadas) utilizando a linguagem R.</p>
+<p>Antes de detalhar cada análise estatística, apresentaremos o funcionamento básico da utilização da linguagem R e os tipos de distribuição estatística que são essenciais para a compreensão dos testes estatísticos. Para isso, organizamos um esquema que chamamos de “estrutura lógica” que facilita a compreensão dos passos necessários para testar suas hipóteses (veja Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> no Capítulo <a href="cap2.html#cap2">2</a>) <span class="citation">(<a href="refer%C3%AAncias.html#ref-albuquerque_going_2019" role="doc-biblioref">Gonçalves-Souza, Provete, et al. 2019</a>)</span>.</p>
+</div>
+<div id="o-que-você-não-encontrará-neste-livro" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> O que você não encontrará neste livro<a class="anchor" aria-label="anchor" href="#o-que-voc%C3%AA-n%C3%A3o-encontrar%C3%A1-neste-livro"><i class="fas fa-link"></i></a>
+</h2>
+<p>Aprofundamento teórico, detalhes matemáticos e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Recomendamos aos leitores (as) que consultem os livros a seguir caso desejem maior aprofundamento teórico e prático.</p>
+</div>
+<div id="livros-que-recomendamos-para-aprofundamento-teórico" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Livros que recomendamos para aprofundamento teórico<a class="anchor" aria-label="anchor" href="#livros-que-recomendamos-para-aprofundamento-te%C3%B3rico"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p><strong>Hands-On Programming with R (Grolemund 2014):</strong> Esse livro é para quem quer se aprofundar e aprender a programar em R, com exemplos práticos. Nas palavras do autor, ele disse que escreveu o livro para não programadores, com o intuito de fornecer uma introdução amigável à linguagem R. Nele, é apresentado como carregar dados, montar e desmontar objetos de dados, navegar no sistema de ambiente do R, escrever funções e usar as ferramentas de programação do R para a solução de problemas práticos de ciência de dados. O livro está disponível nesse <a href="https://rstudio-education.github.io/hopr/index.html">link</a>.</p></li>
+<li><p><strong>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data (Wickham &amp; Grolemund 2017):</strong> Também conhecido como R4DS, esse livro é uma das primeiras referências sobre tidyverse e de Ciência de Dados no R. O livro aborda as principais etapas de importação, conversão, exploração e modelagem de dados e comunicação dos resultados. Ele apresenta uma compreensão do ciclo da ciência de dados, juntamente com as ferramentas básicas necessárias para gerenciar os detalhes sobre cada etapa do ciclo. Cada seção do livro é combinada com exercícios para ajudar na fixação do conteúdo. Os principais tópicos são: i) transformar conjuntos de dados em um formato conveniente para análise, ii) programação com ferramentas poderosas do R para resolver problemas de dados com maior clareza e facilidade, iii) examinar os dados, gerar hipóteses e testá-las rapidamente, iv) gerar modelos que forneçam um resumo dos dados e que capture “sinais” no conjunto de dados, e v) aprendar R Markdown para integrar texto, código e resultados. O livro está disponível nesse <a href="https://r4ds.had.co.nz/">link</a>.</p></li>
+<li><p><strong>A primer of ecological statistics, 2<sup>a</sup> edição (Gotelli &amp; Ellison 2012):</strong> Este livro traz um apanhado geral sobre desenhos amostrais voltados para experimentação e uma introdução à estatística multivariada. Existe uma tradução para o português da primeira edição, chamada “Princípios de Estatística em Ecologia” que saiu pela ed ArtMed em 2010. Este é uma excelente referência para quem quer começar a estudar estatística básica, especialmente com aplicações em ecologia.</p></li>
+<li><p><strong>Experimental Design and Data Analysis for Biologists (Quinn &amp; Keough 2002):</strong> Outro execelente livro introdutório sobre estatística com exemplos práticos para ecologia e um dos preferidos dos autores deste livro aqui. Ele aborda os modelos lineares mais comuns vistos em disciplinas de bioestatística, tais como regressão e ANOVA, mas também traz uma boa introdução sobre GLMs e métodos mais modernos de análise de dados. Mas o mais importante, a lógica de ensino dos métodos segue muito o que preconizamos neste livro e não podemos recomendá-lo o bastante para quem está começando a estudar estatística.</p></li>
+<li><p><strong>The R book, 2<sup>a</sup> edição (Crawley 2012):</strong> Livro que vai do básico ao avançado, tem informações sobre linguagem R, estatística univariada, multivariada e modelagem. Relativamente fácil de compreender. Capítulos trazem funções para criação e manipulação de gráficos passo-a-passo.</p></li>
+<li><p><strong>Numerical ecology, 3<sup>a</sup> edição (Legendre &amp; Legendre 2012):</strong> Este é o manual teórico essencial e leitura obrigatória para entender mais a fundo qualquer análise multivariada. Esta nova edição traz um capítulo novo sobre análises multiescalares em ecologia de comunidade, com exemplos de aplicação de Moran Eigenvector Maps (MEMs).</p></li>
+<li><p><strong>Biological Diversity: Frontiers in Measurement and Assessment (Magurran &amp; McGill 2012):</strong> Livro editado com vários capítulos sobre medidas tradicionais e alternativas de biodiversidade. Também atualiza medidas de estimativa de diversidade, uma revisão sobre diversidade funcional e filogenética. Esse é uma boa porta de entrada para entender os aspectos teóricos e meandros da análise de dados de biodiversidade.</p></li>
+<li><p><strong>Mixed effects models and extensions in ecology with R (Zuur et al. 2009):</strong> Este continua sendo a melhor introdução para modelos lineares generalizados (e de efeito misto), modelos de mínimos quadrados generalizados, Modelos Aditivos Generalizados para biólogos e ecólogos. O livro contém vários capítulos em que o funcionamento dos modelos é explicado de maneira bastante atraente, mantendo a matemática no mínimo. Todos os exemplos são com dados reais produzidor por ecólogos. Este é um bom livro intermediário para quem quer se aprofundar nas análises mais modernas feitas em ecologia.</p></li>
+<li><p>**Geocomputation with R (Lovelace et al. 2020): Esse livro tornou-se rapidamente a principal referência sobre manipulação, visualização, análise e modelagem de dados geoespaciais no R. O livro é dividido em três partes: i) fundamentos, ii) extensões e iii) aplicações. A parte um é voltada para a fundamentação dos dados geográficos no R, descrevendo a natureza dos conjuntos de dados espaciais e métodos para manipulá-los, assim como a importação/exportação de dados geográficos e a transformação de sistemas de referência de coordenadas. A Parte II representa métodos que se baseiam nessas fundações, abrange a criação de mapas avançados (incluindo mapeamento da web), “pontes” para GIS, compartilhamento de código reproduzível e como fazer validação cruzada na presença de autocorrelação espacial. A Parte III aplica o conhecimento adquirido para resolver problemas do mundo real, incluindo representação e modelagem de sistemas de transporte, localização ideal para lojas ou serviços e modelagem ecológica. Os exercícios no final de cada capítulo fornecem as habilidades necessárias para lidar com uma série de problemas geoespaciais. As soluções para cada capítulo e materiais complementares estão disponíveis nesse <a href="https://geocompr.github.io/geocompkg/articles/">link</a> e o livro nesse <a href="https://geocompr.robinlovelace.net/">link</a>.</p></li>
+</ul>
+<p>Recomendamos ainda para o amadurecimento em análises ecológicas as seguintes leituras: <span class="citation"><a href="refer%C3%AAncias.html#ref-manly_randomization_1991" role="doc-biblioref">Manly</a> (<a href="refer%C3%AAncias.html#ref-manly_randomization_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates</a> (<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">2000</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-scheiner_design_2001" role="doc-biblioref">Scheiner and Gurevitch</a> (<a href="refer%C3%AAncias.html#ref-scheiner_design_2001" role="doc-biblioref">2001</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-burnham_pvalues_2014" role="doc-biblioref">K. P. Burnham and Anderson</a> (<a href="refer%C3%AAncias.html#ref-burnham_pvalues_2014" role="doc-biblioref">2014</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-venables_modern_2002" role="doc-biblioref">Venables and Ripley</a> (<a href="refer%C3%AAncias.html#ref-venables_modern_2002" role="doc-biblioref">2002</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-zar_biostatistical_2010" role="doc-biblioref">Zar</a> (<a href="refer%C3%AAncias.html#ref-zar_biostatistical_2010" role="doc-biblioref">2010</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-zuur_analysing_2007" role="doc-biblioref">A. F. Zuur, Ieno, and Smith</a> (<a href="refer%C3%AAncias.html#ref-zuur_analysing_2007" role="doc-biblioref">2007</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-zuur_protocol_2009" role="doc-biblioref">A. F. Zuur, Ieno, and Elphick</a> (<a href="refer%C3%AAncias.html#ref-zuur_protocol_2009" role="doc-biblioref">2010</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-james_introduction_2013" role="doc-biblioref">G. James et al.</a> (<a href="refer%C3%AAncias.html#ref-james_introduction_2013" role="doc-biblioref">2013</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-fox_ecological_2015" role="doc-biblioref">Fox, Negrete-Yankelevich, and Sosa</a> (<a href="refer%C3%AAncias.html#ref-fox_ecological_2015" role="doc-biblioref">2015</a>)</span>, <span class="citation"><a href="refer%C3%AAncias.html#ref-thioulouse_multivariate_2018" role="doc-biblioref">Thioulouse et al.</a> (<a href="refer%C3%AAncias.html#ref-thioulouse_multivariate_2018" role="doc-biblioref">2018</a>)</span> e <span class="citation"><a href="refer%C3%AAncias.html#ref-touchon_applied_2021" role="doc-biblioref">Touchon</a> (<a href="refer%C3%AAncias.html#ref-touchon_applied_2021" role="doc-biblioref">2021</a>)</span>.</p>
+</div>
+<div id="por-que-usar-o-r" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Por que usar o R?<a class="anchor" aria-label="anchor" href="#por-que-usar-o-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Os criadores do R o chamam de uma linguagem e ambiente de programação estatística e gráfica <span class="citation">(<a href="refer%C3%AAncias.html#ref-venables_modern_2002" role="doc-biblioref">Venables and Ripley 2002</a>)</span>. A linguagem R também é chamada de programação “orientada ao objeto” (<em>object oriented programming</em>), o que significa que utilizar o R envolve basicamente a criação e manipulação de objetos em um terminal, em que o usuário tem de dizer exatamente o que deseja que o programa execute, ao invés de simplesmente clicar em botões. E vem daí uma das grandes vantagens em se usar o R: o usuário tem total controle sobre o que está acontecendo e também tem de compreender o que deseja antes de executar uma análise. Além disso, o R permite integração com outros programas escritos em Fortran, C++, Python e Java, permitindo que os usuários possam aplicar novas metodologias sem ter que aprender novas linguagens.</p>
+<p>Na página pessoal do Prof. Nicolas J. Gotelli (<a href="http://www.uvm.edu/~ngotelli/GradAdvice.html">link</a>) existem vários conselhos para um estudante iniciante de ecologia. Dentre esses conselhos, o Prof. Gotelli menciona que o domínio de uma linguagem de programação é uma das habilidades mais importantes, porque dá liberdade ao ecólogo para executar tarefas que vão além daquelas disponíveis em pacotes estatísticos comerciais. Além disso, a maioria das novas análises propostas nos mais reconhecidos periódicos em ecologia normalmente são implementadas na linguagem R, e os autores geralmente incluem o código fonte no material suplementar dos artigos, tornando a análise acessível e reprodutível. A partir do momento que essas análises ficam disponíveis (seja por código fornecido pelo autor ou por implementação em pacotes pré-existentes), é mais simples entendermos a lógica de análises complexas, especialmente as multivariadas, utilizando nossos próprios dados, realizando-as passo a passo. Sem a utilização do R, normalmente temos que contatar os autores que nem sempre são tão acessíveis.</p>
+<p>Especificamente em Ecologia, o uso da linguagem R para análise de dados cresceu enormemente nas duas últimas décadas. Em um artigo de revisão, Lai et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-lai_evaluating_2019" role="doc-biblioref">2019</a>)</span> analisaram mais de 60.000 artigos revisados por pares publicados em 30 periódicos de Ecologia durante um período de 10 anos. O número de estudos usando R aumentou linearmente de 11,4% em 2008 para 58,0% em 2017, e os 10 principais pacotes utilizados e ordenados por maior frequência de uso foram: <code>lme4</code>, <code>vegan</code>, <code>nlme</code>, <code>ape</code>, <code>MuMIn</code>, <code>MASS</code>, <code>mgcv</code>, <code>ade4</code>, <code>multcomp</code> e <code>car</code>. Os autores afirmam que a crescente popularidade do R promoveu a ciência aberta na pesquisa ecológica, melhorando a reprodutibilidade das análises e o fluxo de trabalho, principalmente quando scripts e códigos foram incluídos e compartilhados nos artigos. Eles finalizam dizendo que a partir dos resultados encontrados, a linguagem R é um componente significativo das análises no campo da Ecologia.</p>
+<p>Uma última vantagem é que por ser um software livre, a citação do R em artigos é permitida e até aconselhável. Para saber como citar o R, digite <code><a href="https://rdrr.io/r/utils/citation.html">citation()</a></code> na linha de comando. Para citar um pacote específico, digite <code><a href="https://rdrr.io/r/utils/citation.html">citation()</a></code> com o nome do pacote entre aspas dentro dos parênteses. Mais detalhes sobre citações podem ser vistos no Capítulo <a href="cap4.html#cap4">4</a>. Neste ponto, esperamos ter convencido você leitor(a), de que aprender a utilizar o R tem inúmeras vantagens. Entretanto, provavelmente vai ser difícil no começo, mas continue e perceberá que o investimento vai valer à pena no futuro.</p>
+</div>
+<div id="indo-além-da-linguagem-de-programação-para-a-ecologia" class="section level2" number="1.6">
+<h2>
+<span class="header-section-number">1.6</span> Indo além da linguagem de programação para a Ecologia<a class="anchor" aria-label="anchor" href="#indo-al%C3%A9m-da-linguagem-de-programa%C3%A7%C3%A3o-para-a-ecologia"><i class="fas fa-link"></i></a>
+</h2>
+<p>Um ponto em comum em que todos os autores deste livro concordaram em conversas durante sua estruturação, foi a dificuldade que todos tivemos quando estávamos aprendendo a linguagem:</p>
+<ol style="list-style-type: decimal">
+<li>Como transcrever os objetivos (manipulação de dados, análises e gráficos) em linguagem R</li>
+<li>Como interpretar os resultados das análises estatísticas do R para os objetivos ecológicos</li>
+</ol>
+<p>Num primeiro momento, quando estamos aprendendo a linguagem R é muito desafiador pensar em como estruturar nossos códigos para que eles façam o que precisamos: importar dados, selecionar linhas ou colunas, qual pacote ou função usar para uma certa análise ou como fazer um gráfico que nas nossas anotações são simples, mas no código parece impossível. Bem, não há um caminho fácil nesse sentido e ele depende muito da experiência e familiaridade adquirida com o tempo de uso da linguagem, assim como outra língua qualquer, como inglês ou espanhol. Entretanto, uma dica pode ajudar: estruture seus códigos antes de partir para o R. Por exemplo, escreva um papel os pontos que deseja executar em seus códigos, como se estivesse explicando para alguém os passos que precisa para realizar as tarefas. Depois disso, transcreva para o script (arquivo onde os códigos são escritos, mas não se preocupe, iremos explicar esse conceito no Capítulo <a href="cap4.html#cap4">4</a>) esses pontos em formato de texto. Por fim, traduza isso em linguagem R. Pode parecer massante e cansativo no começo, mas isso o ajudará a ter maior domínio da linguagem, sendo que esse passo se tornará desnecessário quando se adquire bastante experiência.</p>
+<p>Uma vez que esta barreira inicial foi transposta e você conseguiu obter os primeiros resultados de suas análises com valores de estatísticas, parâmetros estimados, valores de p e R², gráficos, e etc., como interpretamos à luz da teoria ecológica? Esse ponto é talvez um dos mais complicados. Com o tempo, ter um valor final de uma estatística ou gráfico à partir da linaguagem R é relativamente simples, mas o que esse valor ou gráfico significam para nossa hipótese ecológica é o ponto mais complexo. Essa dificuldade por ser por inexperiência teórica (ainda não lemos muito sobre um aspecto ecológico) ou inexperiência científica (ainda temos dificuldade para expandir nossos argumentos de forma indutiva). Destacamos esse ponto porque ele é fundamental no processo científico e talvez seja o principal aspecto que diferencia os cientistas de outros profissionais: sua capacidade de entendimento dos padrões à partir dos processos e mecanismos atrelados. Nesse ponto, quase sempre recorremos aos nossos orientadores ou colegas mais experientes para nos ajudar, mas é natural e faz parte do processo de aprendizado de uso da linguagem R junto à Ecologia como Ciência. Entretanto, contrapomos a importância dessa extrapolação para não nos tornarmos apenas especialistas em linguagem R sem a fundamental capacidade de entendimento do sistema ecológico que estamos estudando.</p>
+</div>
+<div id="como-usar-este-livro" class="section level2" number="1.7">
+<h2>
+<span class="header-section-number">1.7</span> Como usar este livro<a class="anchor" aria-label="anchor" href="#como-usar-este-livro"><i class="fas fa-link"></i></a>
+</h2>
+<p>Os conteúdos apresentados em cada capítulo são independentes entre si. Portanto, você pode utilizar este livro de duas formas. A primeira é seguir uma ordem sequencial (capítulos 1, 2, 3, …) que recomendamos, principalmente, para as pessoas que não possuem familiaridade com a linguagem R. A segunda forma, é selecionar o capítulo que contém a análise de seu interesse e mudar de um capítulo para outro sem seguir a sequência apresentada no livro.</p>
+<p>Com exceção dos capítulos 2, 3, 4, 5, 6 e 15, os outros capítulos foram elaborados seguindo a mesma estrutura, contendo uma descrição da análise estatística (aspectos teóricos) e exemplos relacionados com questões ecológicas que podem ser respondidas por esta análise e exercícios. Todos os exemplos são compostos por: i) uma descrição dos dados utilizados, ii) pergunta e predição do trabalho, iii) descrição das variáveis resposta(s) e preditora(s), e iv) descrição e explicação das linhas de código do R necessárias para realização das análises. A maioria dos exemplos utilizados são baseados em dados reais que já foram publicados em artigos científicos ou são dados coletados por um dos autores deste livro. Nós recomendamos que primeiro você utilize estes exemplos para se familiarizar com as análises e a formatação das linhas e colunas das planilhas. Em seguida, faça os exercícios propostos no final de cada capítulo, e por fim, utilize seus próprios dados para realizar as análises. Esta é a melhor maneira de se familiarizar com as linhas de código do R.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Além disso, optamos por manter a versão padrão em alguns gráficos utilizados nos Capítulos 7 e 15, principalmente aqueles gráficos que são “output” de análises como, por exemplo, visualização de normalidade de resíduos, homogeneidade de variâncias, entre outros. Em geral, esses gráficos são usados no processo de decisão de algum passo da análise e não possuem qualidade de publicação. Como o usuário vai obter o mesmo gráfico quando replicar as análises propostas aqui ou suas próprias análises, julgamos ser mais didático manter a versão original, em inglês.</p>
+</div>
+<p>Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muitos outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os leitores(as) adquiram independência e segurança para que possam caminhar sozinhos(as) na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.</p>
+</div>
+<div id="como-ensinar-e-aprender-com-esse-livro" class="section level2" number="1.8">
+<h2>
+<span class="header-section-number">1.8</span> Como ensinar e aprender com esse livro<a class="anchor" aria-label="anchor" href="#como-ensinar-e-aprender-com-esse-livro"><i class="fas fa-link"></i></a>
+</h2>
+<p>Uma forma bastante interessante de aprender ou aprofundar seu conhecimento sobre um tema é a partir de grupos de estudo. Aproveitando as dinâmicas de estudos que os próprios autores fizeram em seus laboratórios (seja como discente ou professor), sugerimos abaixo alguns formatos que podem ser usados por um grupo de discentes (sem a presença de um orientador) ou pelo laboratório. É importante ressaltar que esses formatos não são os únicos que podem ser testados. O leitor pode juntar ideias de diferentes propostas ou mesmo usar parte das propostas e inserir suas próprias ideias, tendo como base as características do grupo que irá se reunir.</p>
+<div id="em-laboratórios-ou-grupos-de-pesquisa" class="section level3" number="1.8.1">
+<h3>
+<span class="header-section-number">1.8.1</span> Em laboratórios ou grupos de pesquisa<a class="anchor" aria-label="anchor" href="#em-laborat%C3%B3rios-ou-grupos-de-pesquisa"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Líder aleatório</strong></p>
+<p>Cada capítulo é sorteado para um integrante do grupo que ficará responsável por estudar, apresentar e enviar outros materiais que julgar necessário. Neste formato, existem duas possibilidades interessantes. A primeira é de um grupo de estudantes que é iniciante em determinado tema (e.g., análise multivariada) e, desse modo, todos integrantes serão estimulados a participarem do processo de ensino e de aprendizagem. O segundo ponto interessante é para grupos heterogêneos onde pessoas diferentes possuem domínio de diferentes ferramentas. Neste caso, é importante que mesmo que determinado integrante seja especialista na análise X, ele poderá aleatoriamente ter que aprender e ensinar a análise Y. Como resultado, espera-se que os grupos de estudo neste formato tenham ampla discussão, uma vez que integrantes com baixo, médio ou alto conhecimento em determinada análise serão tanto professores como aprendizes.</p>
+<p><strong>Líder especialista I (discentes como líderes)</strong></p>
+<p>Cada capítulo é liderado pelo “maior especialista” naquele determinado assunto, que ficará responsável por organizar toda dinâmica do grupo. O ideal é que especialistas distintos liderem a discussão de diferentes capítulos, para que todos os membros do grupo sejam líderes em no mínimo um capítulo.</p>
+<p><strong>Líder especialista II (orientador ou pós-doc)</strong></p>
+<p>O orientador (ou pós-doc ou ambos) selecionam os capítulos sobre o assunto de interesse (ou todos os capítulos do livro) e se reúne regularmente para discussão com discentes. Além da leitura dos capítulos, o líder pode enviar atividades extras ou desafios para estimular que os discentes leiam o conteúdo e também executem comandos no R. Por exemplo, em cada capítulo, o desafio pode ser criar hipóteses sobre um tema de estudo, gerar dados fictícios (ou usar dados reais disponíveis) e analisar os dados com determinado teste estatístico no R.
+Líder especialista I ou II integrando com teoria (específico para capítulos 8 a 15):
+Esta proposta expande o Líder especialista I uma vez que não estará focada somente na análise estatística apresentada no livro. Além de inserir este componente analítico, o líder irá apresentar o arcabouço teórico ecológico que é geralmente usado em estudos que utilizaram determinada análise. Por exemplo, o capítulo que apresenta regressão linear seria combinado com a teoria de biogeografia de ilhas para entender a relação espécies-área. Desse modo, não seria apresentado somente as especificidades da regressão linear, mas também a teoria de biogeografia de ilhas.</p>
+</div>
+<div id="em-disciplinas-da-graduação-ou-pós-graduação" class="section level3" number="1.8.2">
+<h3>
+<span class="header-section-number">1.8.2</span> Em disciplinas da graduação ou pós-graduação<a class="anchor" aria-label="anchor" href="#em-disciplinas-da-gradua%C3%A7%C3%A3o-ou-p%C3%B3s-gradua%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Atividade em grupo em sala invertida</strong></p>
+<p>O professor pode sortear diferentes grupos que ficarão responsáveis por cada capítulo do livro (a depender do conteúdo da disciplina). Cada componente do grupo pode ficar responsável por diferentes partes do capítulo. Por exemplo, se a disciplina for de gráficos, um discente pode discutir a estrutura das funções do pacote <code>ggplot2</code>, outro discente pode apresentar a conexão entre tipos de variáveis e gráficos, enquanto um terceiro discente se responsabiliza por executar os comandos dos gráficos no R. As atividades devem ser realizadas e apresentadas antes da aula teórica/prática sobre aquela temática, e o docente ficará responsável por mediar as apresentações e discussões.</p>
+<p><strong>Sala convencional</strong></p>
+<p>O professor pode usar o livro como material didático seguindo o conteúdo de acordo com a disciplina em questão, seja ela da linguagem R, de análises univariadas, multivariadas ou espaciais. Além disso, o professor pode fornecer dados para os discentes (ou estimular que discentes usem os próprios dados) e replicar gráficos e análises usando os scripts fornecidos no livro.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="revisores-e-colaboradores.html">Revisores e colaboradores</a></div>
+<div class="next"><a href="cap2.html"><span class="header-section-number">2</span> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap1"><span class="header-section-number">1</span> Introdução</a></li>
+<li><a class="nav-link" href="#hist%C3%B3rico-deste-livro"><span class="header-section-number">1.1</span> Histórico deste livro</a></li>
+<li><a class="nav-link" href="#objetivo-deste-livro"><span class="header-section-number">1.2</span> Objetivo deste livro</a></li>
+<li><a class="nav-link" href="#o-que-voc%C3%AA-n%C3%A3o-encontrar%C3%A1-neste-livro"><span class="header-section-number">1.3</span> O que você não encontrará neste livro</a></li>
+<li><a class="nav-link" href="#livros-que-recomendamos-para-aprofundamento-te%C3%B3rico"><span class="header-section-number">1.4</span> Livros que recomendamos para aprofundamento teórico</a></li>
+<li><a class="nav-link" href="#por-que-usar-o-r"><span class="header-section-number">1.5</span> Por que usar o R?</a></li>
+<li><a class="nav-link" href="#indo-al%C3%A9m-da-linguagem-de-programa%C3%A7%C3%A3o-para-a-ecologia"><span class="header-section-number">1.6</span> Indo além da linguagem de programação para a Ecologia</a></li>
+<li><a class="nav-link" href="#como-usar-este-livro"><span class="header-section-number">1.7</span> Como usar este livro</a></li>
+<li>
+<a class="nav-link" href="#como-ensinar-e-aprender-com-esse-livro"><span class="header-section-number">1.8</span> Como ensinar e aprender com esse livro</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#em-laborat%C3%B3rios-ou-grupos-de-pesquisa"><span class="header-section-number">1.8.1</span> Em laboratórios ou grupos de pesquisa</a></li>
+<li><a class="nav-link" href="#em-disciplinas-da-gradua%C3%A7%C3%A3o-ou-p%C3%B3s-gradua%C3%A7%C3%A3o"><span class="header-section-number">1.8.2</span> Em disciplinas da graduação ou pós-graduação</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/01_introducao.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/01_introducao.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

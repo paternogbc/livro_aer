@@ -12,7 +12,7 @@ bookdown::clean_book()
 rmarkdown::clean_site(preview = FALSE)
 
 # Update ecodados
-#remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
+# remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
 
 # Render html -------------------------------------------------------------
 # tic()
@@ -24,12 +24,12 @@ tictoc::tic()
 rmarkdown::render_site(output_format = 'bookdown::bs4_book', encoding = 'UTF-8')
 tictoc::toc()
 
-# Render pdf
-tic()
-rmarkdown::render_site(output_format = 'bookdown::pdf_document2', encoding = 'UTF-8')
-toc()
+# Render pdf -------------------------------------------------------------
+# tictoc::tic()
+# rmarkdown::render_site(output_format = 'bookdown::pdf_document2', encoding = 'UTF-8')
+# tictoc::toc()
 
-# Render word
+# Render word -------------------------------------------------------------
 tictoc::tic()
 rmarkdown::render_site(output_format = 'bookdown::word_document2', encoding = 'UTF-8')
 tictoc::toc()
