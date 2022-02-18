@@ -202,8 +202,8 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <p>O resultado retorna o valor <code>12</code>, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação <code>1:42</code>, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o <code>[1]</code>, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, <code>[37]</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">42</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</span>
-<span class="co">#&gt; [41] 41 42</span></code></pre></div>
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39</span>
+<span class="co">#&gt; [40] 40 41 42</span></code></pre></div>
 <p>Podemos ver o histórico dos códigos executados no console na aba <strong>History</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 3).</p>
 </div>
 <div id="scripts" class="section level3" number="4.3.2">
@@ -211,9 +211,9 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <span class="header-section-number">4.3.2</span> Scripts<a class="anchor" aria-label="anchor" href="#scripts"><i class="fas fa-link"></i></a>
 </h3>
 <p>Scripts são arquivos de texto simples, criados com a extensão (terminação) <code>.R</code> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 1). Para criar um script, basta ir em <code>File &gt; New File &gt; R Script</code>, ou clicando no ícone com uma folha branca e um círculo verde com um sinal de <code>+</code>, logo abaixo de <code>File</code>, ou ainda usando o atalho <code>Ctrl + Shift + N</code>.</p>
-<p>Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em <strong>Source</strong> ou usando o atalho <code>Ctrl + Shift + Enter</code>; ou ii) apenas a linha onde o cursor estiver posicionado, independente de sua posição naquela linha, clicando em <strong>Run</strong> ou usando o atalho <code>Ctrl + Enter</code>.</p>
+<p>Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em <strong>Source</strong> ou usando o atalho <code>Ctrl + Shift + Enter</code>; ou ii) apenas a linha onde o cursor estiver posicionado, independentemente de sua posição naquela linha, clicando em <strong>Run</strong> ou usando o atalho <code>Ctrl + Enter</code>.</p>
 <p>Devemos sempre salvar nossos scripts, tomando por via de regra: primeiro criar o arquivo e depois ir salvando nesse mesmo arquivo a cada passo de desenvolvimento das análises (não é raro o RStudio fechar sozinho e você perder algum tempo de trabalho). Há diversos motivos para criar um script: continuar o desenvolvimento desse script em outro momento ou em outro computador, preservar trabalhos passados, ou ainda compartilhar seus códigos com outras pessoas. Para criar ou salvar um script basta ir em <code>File &gt; Save</code>, escolher um diretório e nome para o script e salvá-lo. Podemos ainda utilizar o atalho <code>Ctrl + S</code>.</p>
-<p>Em relação aos scripts, há ainda os comentários, representados pelos símbolos <code>#</code> (hash), <code>#'</code> (hash-linha) e <code>#&gt;</code> (hash-maior). A diferença entre eles é que para o segundo e terceiro, quando precionamos a tecla <code>Enter</code> o comentário <code>#'</code> e <code>#&gt;</code> são inseridos automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: i) descrever informações sobre dados ou funções e/ou ii) suprimir linhas de código.</p>
+<p>Em relação aos scripts, há ainda os comentários, representados pelos símbolos <code>#</code> (hash), <code>#'</code> (hash-linha) e <code>#&gt;</code> (hash-maior). A diferença entre eles é que para o segundo e terceiro, quando pressionamos a tecla <code>Enter</code> o comentário <code>#'</code> e <code>#&gt;</code> são inseridos automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: i) descrever informações sobre dados ou funções e/ou ii) suprimir linhas de código.</p>
 <p>É interessante ter no início de cada script um cabeçalho identificando o objetivo ou análise, autor e data para facilitar o compartilhamento e reprodutibilidade. Os comentários podem ser inseridos ou retirados das linhas com o atalho: <code>Ctrl + Shift + C</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#' ---</span>
@@ -235,7 +235,7 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <span class="va">name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">variables</span><span class="op">)</span> <span class="op">{</span>
     
 <span class="op">}</span></code></pre></div>
-<p>Uma aplicação bem interessante dos <em>Code Snippets</em> no script é o <code>ts</code>. Basta digitar esse código e em seguida completar um a tecla <code>Tab</code> para inserir rapidamente a data e horário atuais no script em forma de comentário.</p>
+<p>Uma aplicação bem interessante dos <em>Code Snippets</em> no script é o <code>ts</code>. Basta digitar esse código e em seguida pressionar a tecla <code>Tab</code> para inserir rapidamente a data e horário atuais no script em forma de comentário.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ts {snippet}</span>
 <span class="co"># Thu Nov 11 18:19:26 2021 ------------------------------</span></code></pre></div>
@@ -244,7 +244,325 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <h3>
 <span class="header-section-number">4.3.3</span> Operadores<a class="anchor" aria-label="anchor" href="#operadores"><i class="fas fa-link"></i></a>
 </h3>
-<p>No R, podemos agrupar os operadores em cinco tipos: aritméticos, relacionais, lógicos, atribuição e diversos. Grande parte deles são descritos na Tabela <a href="#tab:tab-operadores"><strong>??</strong></a>.</p>
+<p>No R, podemos agrupar os operadores em cinco tipos: aritméticos, relacionais, lógicos, atribuição e diversos. Grande parte deles são descritos na Tabela <a href="cap4.html#tab:tab-operadores">4.1</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tab-operadores">Tabela 4.1: </span>Principais operadores no R.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Operador
+</th>
+<th style="text-align:center;">
+Tipo
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<ul><li></ul>
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Adição
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<ul><li></ul>
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Subtração
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<ul><li></ul>
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Multiplicação
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+/
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+%%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Resto da divisão
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+%/%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão inteira
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+^ ou **
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&gt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&lt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&gt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior ou igual
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&lt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor ou igual
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+==
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Igualdade
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+!=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Diferença
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+!
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico NÃO
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico elementar E
+</td>
+</tr>
+<tr><td style="text-align:center;">
+<div class="line-block"></div>
+</td></tr>
+<tr>
+<td style="text-align:center;">
+&amp;&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico E
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+||
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico OU
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&lt;- ou =
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à esquerda
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+&lt;&lt;-
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à esquerda
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+-&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à direita
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+-&gt;&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à direita
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+:
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Sequência unitária
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+%in%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Elementos que pertencem a um vetor
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+%*%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Multiplicar matriz com sua transposta
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+%&gt;%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (pacote magrittr)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+|&gt;
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (R base nativo)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+%–%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Intervalo de datas (pacote lubridate)
+</td>
+</tr>
+</tbody>
+</table></div>
 <p>Como exemplo, podemos fazer operações simples usando os operadores aritméticos.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Operações aritméticas</span>
@@ -300,7 +618,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <li>nome de objetos só podem conter letras (<code>a-z</code> ou <code>A-Z</code>), números (<code>0-9</code>), underscores (<code>_</code>) ou pontos (<code>.</code>)</li>
 <li>R é <em>case-sensitive</em>, i.e., ele reconhece letras maiúsculas como diferentes de letras minúscula. Assim, um objeto chamado “resposta” é diferente do objeto “RESPOSTA”</li>
 <li>devemos evitar acentos ou cedilha (<code>ç</code>) para facilitar a memorização dos objetos e também para evitar erros de codificação (<em>encoding</em>) de caracteres</li>
-<li>nome de objetos não podem ser iguais a nomes especiais, reservados para programação (<code><a href="https://rdrr.io/r/base/Control.html">break</a></code>, <code>else</code>, <code>FALSE</code>, <code>for</code>, <code>function</code>, <code>if</code>, <code>Inf</code>, <code>NA</code>, <code>NaN</code>, <code><a href="https://rdrr.io/r/base/Control.html">next</a></code>, <code>repeat</code>, <code>return</code>, <code>TRUE</code>, <code>while</code>)</li>
+<li>nomes de objetos não podem ser iguais a nomes especiais, reservados para programação (<code><a href="https://rdrr.io/r/base/Control.html">break</a></code>, <code>else</code>, <code>FALSE</code>, <code>for</code>, <code>function</code>, <code>if</code>, <code>Inf</code>, <code>NA</code>, <code>NaN</code>, <code><a href="https://rdrr.io/r/base/Control.html">next</a></code>, <code>repeat</code>, <code>return</code>, <code>TRUE</code>, <code>while</code>)</li>
 </ul>
 <p>Podemos ainda utilizar objetos para fazer operações e criar objetos. Isso pode parecer um pouco confuso para os iniciantes, mas é fundamental aprender essa lógica para passar para os próximos passos.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -317,7 +635,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <h3>
 <span class="header-section-number">4.3.5</span> Funções<a class="anchor" aria-label="anchor" href="#fun%C3%A7%C3%B5es"><i class="fas fa-link"></i></a>
 </h3>
-<p>Funções são códigos preparados para realizar uma tarefa específica de modo simples. Outra forma de entender uma função é: códigos que realizam operações em argumentos. Devemos retomar ao conceito do ensino médio de funções: os dados de entrada são argumentos e a função realizá alguma operação para modificar esses dados de entrada. A estrutura de uma função é muito similar à sintaxe usada em planilhas eletrônicas, sendo composta por:</p>
+<p>Funções são códigos preparados para realizar uma tarefa específica de modo simples. Outra forma de entender uma função é: códigos que realizam operações em argumentos. Devemos retomar ao conceito do ensino médio de funções: os dados de entrada são argumentos e a função realizará alguma operação para modificar esses dados de entrada. A estrutura de uma função é muito similar à sintaxe usada em planilhas eletrônicas, sendo composta por:</p>
 <blockquote>
 <p>nome_da_função(argumento1, argumento2, …)</p>
 </blockquote>
@@ -347,7 +665,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <span class="co">## Funções - argumentos como objetos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">va1</span>, <span class="va">va2</span><span class="op">)</span>
 <span class="co">#&gt; [1] 12</span></code></pre></div>
-<p>Vamos ver agora alguns exemplos de argumentos usados como parâmetros. Note que apesar do valor do argumento ser o mesmo (10), seu efeito no resultado da função `rep()`` muda drasticamente. Aqui também é importante destacar um ponto: i) podemos informar os argumentos sequencialmente, sem explicitar seus nomes, ou ii) independente da ordem, mas explicitando seus nomes. Entretanto, como no exemplo abaixo, devemos informar o nome do argumento (i.e., parâmetro), para que seu efeito seja o que desejamos.</p>
+<p>Vamos ver agora alguns exemplos de argumentos usados como parâmetros. Note que apesar do valor do argumento ser o mesmo (10), seu efeito no resultado da função <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> muda drasticamente. Aqui também é importante destacar um ponto: i) podemos informar os argumentos sequencialmente, sem explicitar seus nomes, ou ii) independente da ordem, mas explicitando seus nomes. Entretanto, como no exemplo abaixo, devemos informar o nome do argumento (i.e., parâmetro), para que seu efeito seja o que desejamos.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Funções - argumentos como parâmetros</span>
 <span class="co">## Repetição - repete todos os elementos</span>
@@ -389,7 +707,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número atual de pacotes no CRAN</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 18956</span></code></pre></div>
+<span class="co">#&gt; [1] 18963</span></code></pre></div>
 <p>Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos verificar pacotes carregados pelo <em>R Base</em> utilizando a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar pacotes carregados</span>
@@ -541,7 +859,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <li>
 <strong>Examples</strong>: exemplos do uso da função. Às vezes pode ser útil copiar esse trecho e colar no R para ver como funciona e como usar a função.</li>
 </ul>
-<p>Vamos realizar um exemplo, buscando o <code>help</code> da função <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, que realiza uma análise de variância (veja detalhes no Capítulo <a href="cap8.html#cap8">8</a>).</p>
+<p>Vamos realizar um exemplo, buscando o <code>help</code> da função <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, que realiza uma análise de variância (veja detalhes no Capítulo <a href="cap7.html#cap7">7</a>).</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Ajuda</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">aov</span><span class="op">)</span>
@@ -646,9 +964,10 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'vegan' in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn, Peter R.</span>
-<span class="co">#&gt;   Minchin, R. B. O'Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs and Helene Wagner</span>
-<span class="co">#&gt;   (2020). vegan: Community Ecology Package. R package version 2.5-7. https://CRAN.R-project.org/package=vegan</span>
+<span class="co">#&gt;   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn, Peter</span>
+<span class="co">#&gt;   R. Minchin, R. B. O'Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs and Helene</span>
+<span class="co">#&gt;   Wagner (2020). vegan: Community Ecology Package. R package version 2.5-7.</span>
+<span class="co">#&gt;   https://CRAN.R-project.org/package=vegan</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -672,7 +991,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="header-section-number">4.3.10</span> Principais erros de iniciantes<a class="anchor" aria-label="anchor" href="#principais-erros-de-iniciantes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Errar quando está começando a usar o R é muito comum e faz parte do aprendizado. Entretanto, os erros nunca devem ser encarados como uma forma de desestímulo, mas sim como um desafio para continuar tentando. Todos nós, autores desse livro, e provavelmente usuários mais ou menos experientes, já passaram por um momento em que se quer desistir de tudo. Jovem aprendiz de R, a única diferença entre você que está iniciando agora e nós que usamos há mais tempo são as horas a mais de uso (e ódio). O que temos a mais é experiência para olhar o erro, lê-lo e conseguir interpretar o que está errado e saber buscar ajuda.</p>
-<p>Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descance, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como <a href="https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha">Debug com Pato de Borracha</a>), logo a solução deve aparecer.</p>
+<p>Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descanse, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como <a href="https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha">Debug com Pato de Borracha</a>), logo a solução deve aparecer.</p>
 <p>Listaremos aqui o que consideramos os principais erros dos iniciantes no R.</p>
 <p><strong>1. Esquecer de completar uma função ou bloco de códigos</strong></p>
 <p>Esquecer de completar uma função ou bloco de códigos é algo bem comum. Geralmente esquecemos de fechar aspas <code>""</code> ou parênteses <code>()</code>, mas geralmente o R nos informa isso, indicando um símbolo de <code>+</code> no console. Se você cometeu esse erro, lembre-se de apertar a tecla esc do seu computador clicando antes com o cursor do mouse no console do R.</p>
@@ -782,7 +1101,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; [1] "data.frame"</span></code></pre></div>
 <p><strong>Modo dos objetos</strong></p>
 <p>A depender da natureza dos elementos que compõem os dados e que foram atribuídos aos objetos, esses objetos podem ser, de forma simples um dos cinco modos: numérico do tipo inteiro (<em>integer</em>), numérico do tipo flutuante (<em>double</em>), texto (<em>character</em>), lógico (<em>logical</em>) ou complexo (<em>complex</em>).</p>
-<p>A atribuição de números no R podem gerar dois tipos de modos: integer para números inteiros e double para números flutuantes ou com decimais.</p>
+<p>A atribuição de números no R pode gerar dois tipos de modos: <strong>integer</strong> para números inteiros e <strong>double</strong> para números flutuantes ou com decimais.</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Numérico double</span>
 <span class="va">obj_numerico_double</span> <span class="op">&lt;-</span> <span class="fl">1</span>
@@ -928,8 +1247,8 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coerção</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">colar</span>, <span class="va">amostragem</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "amostra 1" "amostra 2" "amostra 3" "amostra 4" "amostra 5" "45"        "23"        "76"        "63"        "47"       </span>
-<span class="co">#&gt; [11] "31"        "68"        "73"        "69"        "5"</span>
+<span class="co">#&gt;  [1] "amostra 1" "amostra 2" "amostra 3" "amostra 4" "amostra 5" "45"        "23"        "76"        "63"       </span>
+<span class="co">#&gt; [10] "47"        "31"        "68"        "73"        "69"        "5"</span>
 
 <span class="co">## Conversão</span>
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">repeticao</span><span class="op">)</span>
@@ -952,7 +1271,8 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
                                    size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"baixa"</span>, <span class="st">"media"</span>, <span class="st">"alta"</span><span class="op">)</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">fator_ordinal</span>
-<span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media baixa baixa</span>
+<span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media baixa</span>
+<span class="co">#&gt; [20] baixa</span>
 <span class="co">#&gt; Levels: baixa &lt; media &lt; alta</span>
 
 <span class="co">## Conversão</span>
@@ -1124,7 +1444,7 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; [2,]    2    2</span></code></pre></div>
 <p><strong>Funções</strong></p>
 <p>Uma última estrutura de objetos criados no R são as funções. Elas são objetos criados pelo usuário e reutilizados para fazer operações específicas. A criação de funções geralmente é um tópico tratado num segundo momento, quando o usuário de R adquire certo conhecimento da linguagem. Aqui abordaremos apenas seu funcionamento básico, diferenciando sua estrutura para entendimento e sua diferenciação das demais estruturas.</p>
-<p>Vamos criar uma função simples que retorna a multiplicação de dois termos. Criaremos a função com o nome <code>multi</code>, à qual será atribuída uma função com o nome <code>function()</code>, com dois argumentos <code>x</code> e <code>y</code>. Depois disso abrimos chaves <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, que é onde iremos incluir nosso bloco de código. Nosso bloco de código é composto por duas linhas, a primeira contendo a operação de multiplicação dos argumento com a atribuição ao objeto <code>mu</code> e a sugunda contendo a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> para retornar o valor da multiplicação.</p>
+<p>Vamos criar uma função simples que retorna a multiplicação de dois termos. Criaremos a função com o nome <code>multi</code>, à qual será atribuída uma função com o nome <code>function()</code>, com dois argumentos <code>x</code> e <code>y</code>. Depois disso abrimos chaves <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, que é onde iremos incluir nosso bloco de código. Nosso bloco de código é composto por duas linhas, a primeira contendo a operação de multiplicação dos argumento com a atribuição ao objeto <code>mu</code> e a segunda contendo a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> para retornar o valor da multiplicação.</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criar uma função</span>
 <span class="va">multi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
@@ -1185,7 +1505,326 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">## Selecionar os valores acima de 1 no vetor ve</span>
 <span class="va">ve</span><span class="op">[</span><span class="va">ve</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; [1] 1.80 1.20 1.75 1.15 1.90</span></code></pre></div>
-<p>Além da indexação, temos algumas funções que nos auxiliam em algumas operações com objetos unidimensionais, listadas na Tabela <a href="#tab:tab-tab-funcoes-conf-uni"><strong>??</strong></a>.</p>
+<p>Além da indexação, temos algumas funções que nos auxiliam em algumas operações com objetos unidimensionais, listadas na Tabela <a href="cap4.html#tab:tab-tab-funcoes-conf-uni">4.2</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>
+</td>
+<td style="text-align:center;">
+Valor máximo
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>
+</td>
+<td style="text-align:center;">
+Valor mínimo
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/range.html">range()</a></code>
+</td>
+<td style="text-align:center;">
+Amplitude
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/length.html">length()</a></code>
+</td>
+<td style="text-align:center;">
+Comprimento
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>
+</td>
+<td style="text-align:center;">
+Soma
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code>
+</td>
+<td style="text-align:center;">
+Soma cumulativa
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code>
+</td>
+<td style="text-align:center;">
+Produto
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>
+</td>
+<td style="text-align:center;">
+Raiz quadrada
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>
+</td>
+<td style="text-align:center;">
+Valor absoluto
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code>
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log1p()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural mais 1 <em>log(x + 1)</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log2()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log10()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>
+</td>
+<td style="text-align:center;">
+Média
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code>mean.weighted()</code>
+</td>
+<td style="text-align:center;">
+Média ponderada
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>
+</td>
+<td style="text-align:center;">
+Variância
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>
+</td>
+<td style="text-align:center;">
+Desvio Padrão
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code>mediam()</code>
+</td>
+<td style="text-align:center;">
+Mediana
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/quantile.html">quantile()</a></code>
+</td>
+<td style="text-align:center;">
+Quantil
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">quarters()</a></code>
+</td>
+<td style="text-align:center;">
+Quartil
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/stats/IQR.html">IQR()</a></code>
+</td>
+<td style="text-align:center;">
+Amplitude interquartil
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>
+</td>
+<td style="text-align:center;">
+Arredondamento
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>
+</td>
+<td style="text-align:center;">
+Ordenação
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/order.html">order()</a></code>
+</td>
+<td style="text-align:center;">
+Posição ordenada
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/rev.html">rev()</a></code>
+</td>
+<td style="text-align:center;">
+Reverso
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/unique.html">unique()</a></code>
+</td>
+<td style="text-align:center;">
+Únicos
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>
+</td>
+<td style="text-align:center;">
+Resumo estatístico
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/cut.html">cut()</a></code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em fator
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/pretty.html">pretty()</a></code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em intervalos
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code>
+</td>
+<td style="text-align:center;">
+Padronização e centralização
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/grep.html">sub()</a></code>
+</td>
+<td style="text-align:center;">
+Substitui caracteres
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code>
+</td>
+<td style="text-align:center;">
+Posição de caracteres
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/any.html">any()</a></code>
+</td>
+<td style="text-align:center;">
+Algum valor?
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/all.html">all()</a></code>
+</td>
+<td style="text-align:center;">
+Todos os valores?
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/which.html">which()</a></code>
+</td>
+<td style="text-align:center;">
+Quais valores?
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/subset.html">subset()</a></code>
+</td>
+<td style="text-align:center;">
+Subconjunto
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>
+</td>
+<td style="text-align:center;">
+Operação condicional
+</td>
+</tr>
+</tbody>
+</table></div>
 <p>Para listas, também podemos usar a indexação <code>[]</code> para acessar ou retirar elementos.</p>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Lista</span>
@@ -1369,7 +2008,142 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; 8   sp8   8 floresta    1</span>
 <span class="co">#&gt; 9   sp9   9 floresta    0</span>
 <span class="co">#&gt; 10 sp10  10 floresta    1</span></code></pre></div>
-<p>Além disso, há uma série de funções para conferência e manipulação de dados que listamos na Tabela <a href="#tab:tab-funcoes-conf-multi"><strong>??</strong></a>.</p>
+<p>Além disso, há uma série de funções para conferência e manipulação de dados que listamos na Tabela <a href="cap4.html#tab:tab-funcoes-conf-multi">4.3</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra as primeiras 6 linhas
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/headtail.html">tail()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra as últimas 6 linhas
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/ncell.html">ncol()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra o número de colunas
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/dimensions.html">dim()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas e de colunas
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das linhas (locais)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das colunas (variáveis)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra as classes de cada coluna (estrutura)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra um resumo dos valores de cada coluna
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/rowSums.html">rowSums()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das linhas (horizontal)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/rowSums.html">colSums()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das colunas (vertical)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">rowMeans()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a média das linhas (horizontal)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colMeans()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a média das colunas (vertical)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/table.html">table()</a></code>
+</td>
+<td style="text-align:center;">
+Tabulação cruzada
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/transpose.html">t()</a></code>
+</td>
+<td style="text-align:center;">
+Matriz ou data frame transposto
+</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div id="valores-faltantes-e-especiais" class="section level3" number="4.4.4">
 <h3>
@@ -1503,7 +2277,7 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 
 <span class="co">## Unzip</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/unzip.html">unzip</a></span><span class="op">(</span>zipfile <span class="op">=</span> <span class="st">"atlantic_amphibians.zip"</span><span class="op">)</span></code></pre></div>
-<p>Agora podemos importar a tabela de dados com a função <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>, atribuindo ao objeto <code>intror_anfibios_locais</code>. Devemos atentar para o argumento <code>encoding</code>, que selecionamos aqui como <code>latin1</code> para corrigir um erro de caracteres, que o autor dos dados cometeu quando publicou esse data paper. Geralmente não precisamos especificar esse tipo de informação, mas caso depois de importar os dados e na conferência, os caracteres como acento estiverem desformatados, procure especificar no argumento <code>encoding</code> um padrão para corrigir esse erro.</p>
+<p>Agora podemos importar a tabela de dados com a função <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>, atribuindo ao objeto <code>intror_anfibios_locais</code>. Devemos atentar para o argumento <code>encoding</code>, que selecionamos aqui como <code>latin1</code> para corrigir um erro de caracteres, que o autor dos dados cometeu quando publicou esse data paper. Geralmente não precisamos especificar esse tipo de informação, mas caso depois de importar os dados e na conferência, os caracteres como acento não estiverem formatados, procure especificar no argumento <code>encoding</code> um padrão para corrigir esse erro.</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar a tabela de locais</span>
 <span class="va">intror_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv"</span>, encoding <span class="op">=</span> <span class="st">"latin1"</span><span class="op">)</span></code></pre></div>
@@ -1533,26 +2307,26 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
 <span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
 <span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span>
-<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span>
-<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span>
-<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span>
-<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span>
-<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span>
-<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span>
-<span class="co">#&gt;   precipitation</span>
-<span class="co">#&gt; 1           853</span>
-<span class="co">#&gt; 2          1318</span>
-<span class="co">#&gt; 3          1248</span>
-<span class="co">#&gt; 4          1376</span>
-<span class="co">#&gt; 5          1689</span>
-<span class="co">#&gt; 6          1249</span></code></pre></div>
+<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude</span>
+<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543</span>
+<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15</span>
+<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29</span>
+<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25</span>
+<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750</span>
+<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745</span>
+<span class="co">#&gt;   temperature precipitation</span>
+<span class="co">#&gt; 1       24.98           853</span>
+<span class="co">#&gt; 2       26.53          1318</span>
+<span class="co">#&gt; 3       26.45          1248</span>
+<span class="co">#&gt; 4       26.55          1376</span>
+<span class="co">#&gt; 5       21.35          1689</span>
+<span class="co">#&gt; 6       20.45          1249</span></code></pre></div>
 </div>
 <div id="conferência-dos-dados-importados" class="section level3" number="4.4.7">
 <h3>
 <span class="header-section-number">4.4.7</span> Conferência dos dados importados<a class="anchor" aria-label="anchor" href="#confer%C3%AAncia-dos-dados-importados"><i class="fas fa-link"></i></a>
 </h3>
-<p>Uma vez importados os dados para o R, geralmente antes de iniciarmos qualquer manipulação, visualização ou análise de dados, fazemos a conferência desses dados. Para isso, podemos utilizar as funções listadas na Tabela <a href="#tab:tab-funcoes-conf-multi"><strong>??</strong></a>.</p>
+<p>Uma vez importados os dados para o R, geralmente antes de iniciarmos qualquer manipulação, visualização ou análise de dados, fazemos a conferência desses dados. Para isso, podemos utilizar as funções listadas na Tabela <a href="cap4.html#tab:tab-funcoes-conf-multi">4.3</a>.</p>
 <p>Dentre todas essas funções de verificação, destacamos a importância destas funções apresentadas abaixo para saber se as variáveis foram importadas e interpretadas corretamente e reconhecer erros de digitação, por exemplo.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Primeiras linhas</span>
@@ -1571,20 +2345,20 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
 <span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
 <span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span>
-<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span>
-<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span>
-<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span>
-<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span>
-<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span>
-<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span>
-<span class="co">#&gt;   precipitation</span>
-<span class="co">#&gt; 1           853</span>
-<span class="co">#&gt; 2          1318</span>
-<span class="co">#&gt; 3          1248</span>
-<span class="co">#&gt; 4          1376</span>
-<span class="co">#&gt; 5          1689</span>
-<span class="co">#&gt; 6          1249</span>
+<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude</span>
+<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543</span>
+<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15</span>
+<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29</span>
+<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25</span>
+<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750</span>
+<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745</span>
+<span class="co">#&gt;   temperature precipitation</span>
+<span class="co">#&gt; 1       24.98           853</span>
+<span class="co">#&gt; 2       26.53          1318</span>
+<span class="co">#&gt; 3       26.45          1248</span>
+<span class="co">#&gt; 4       26.55          1376</span>
+<span class="co">#&gt; 5       21.35          1689</span>
+<span class="co">#&gt; 6       20.45          1249</span>
 
 <span class="co">## Últimas linhas</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">tail</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>

@@ -660,7 +660,194 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <span class="header-section-number">9.4.1</span> Análise de Componentes Principais (PCA)<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-de-componentes-principais-pca"><i class="fas fa-link"></i></a>
 </h3>
 <p>A Análise de Componentes Principais (<em>Principal Component Analysis</em> - PCA) é uma das ordenações mais utilizadas em diversas áreas do conhecimento. Em Ecologia, ela se popularizou por facilitar a visualização de dados complexos como de distribuição de espécies em diferentes localidades e de potenciais variáveis explicativas. Ao mesmo tempo que ganhou tamanha popularidade, a PCA tem sido empregada de maneira incorreta, uma vez que muitos estudos utilizam a visualização gráfica da ordenação (o biplot) para intepretar “relações” entre variáveis preditoras (ambientais) e dependentes (espécies). Porém, como informado anteriormente, as ordenações irrestritas utilizam a estrutura de covariância dos objetos para organizar suas relações de similaridade.</p>
-<p>Antes de explicar a análise, imagine que vamos usar uma matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes. A quantidade de indivíduos de cada espécie coletada em cada cidade será o valor de preenchimento desta matriz. Sendo assim, a matriz possui oito objetos (cidades, representando unidades amostrais) e cinco descritores (espécies), como na Tabela <a href="#tab:tab-pca-dados"><strong>??</strong></a>.</p>
+<p>Antes de explicar a análise, imagine que vamos usar uma matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes. A quantidade de indivíduos de cada espécie coletada em cada cidade será o valor de preenchimento desta matriz. Sendo assim, a matriz possui oito objetos (cidades, representando unidades amostrais) e cinco descritores (espécies), como na Tabela <a href="cap9.html#tab:tab-pca-dados">9.1</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tab-pca-dados">Tabela 9.1: </span>Matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Cidade
+</th>
+<th style="text-align:center;">
+Espécie.1
+</th>
+<th style="text-align:center;">
+Espécie.2
+</th>
+<th style="text-align:center;">
+Espécie.3
+</th>
+<th style="text-align:center;">
+Espécie.4
+</th>
+<th style="text-align:center;">
+Espécie.5
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Cidade 1
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 2
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 4
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 5
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 6
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 7
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Cidade 8
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+</tbody>
+</table></div>
 <p>O primeiro passo da PCA é obter uma matriz centralizada, onde cada valor é subtraído da média da coluna que aquele valor pertence. Esta centralização pode ser calculada com a função <code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code>.</p>
 <div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
@@ -2170,7 +2357,7 @@ Figura 9.24: Diagnose dos resíduos do modelo ajustado.
 <div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelo1</span>, p.uni <span class="op">=</span> <span class="st">"adjusted"</span><span class="op">)</span>
-<span class="co">#&gt; Time elapsed: 0 hr 0 min 7 sec</span>
+<span class="co">#&gt; Time elapsed: 0 hr 0 min 6 sec</span>
 <span class="co">#&gt; Analysis of Deviance Table</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model: abund_tr ~ grupos</span>
@@ -2275,7 +2462,7 @@ Na perspectiva de metacomunidades (Leibold et al., 2004), a dispersão dos organ
 <p><strong>9.4</strong>
 Carregue o pacote <code>MASS</code> para utilizar os dados <code>crabs</code>. Este conjunto traz medidas morfológicas de dois morfo-tipos da espécie de carangueijo <em>Leptograpsus variegatus</em> coletada em Fremantle, Austrália. Calcule uma PCA e veja se existe uma semelhança morfológica entre os dois morfo-tipos. Lembre-se de dar nome
 ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">biplot()</a></code> para plotar o resultado do teste. Dica: a projeção de um objeto perpendicular à seta do descritor fornece a posição aproximada do objeto ao longo desse descritor. A distância dos objetos no espaço cartesiano reflete a distância euclidiana entre eles.</p>
-<p><a href="https://exercicios-livro-aer.netlify.app/cap.-9---introdu%C3%A7%C3%A3o-ao-r.html">Soluções dos exercícios</a>.</p>
+<p><a href="https://exercicios-livro-aer.netlify.app/cap.-9---an%C3%A1lises-multivariadas.html">Soluções dos exercícios</a>.</p>
 
 </div>
 </div>
