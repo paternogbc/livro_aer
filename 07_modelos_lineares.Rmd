@@ -47,7 +47,7 @@ Estatísticas frequentistas como as que serão abordadas neste capítulo são ba
 
 ## Teste T (de Student) para duas amostras independentes
 
-Uma das perguntas mais comuns em estatística é saber se há diferença entre as médias de dois grupos ou tratamentos. Para responder a esta pergunta, William Sealy Gosset, químico da cervejaria Guinness, desenvolveu em 1908 o Teste T que é uma estátistica que segue uma distribuição t de Student para rejeitar ou não uma hipótese nula de médias iguais entre dois grupos.
+Uma das perguntas mais comuns em estatística é saber se há diferença entre as médias de dois grupos ou tratamentos. Para responder a esta pergunta, William Sealy Gosset, químico da cervejaria Guinness, desenvolveu em 1908 o Teste T que é uma estatística que segue uma distribuição t de *Student* para rejeitar ou não uma hipótese nula de médias iguais entre dois grupos.
 
 $$t = \frac{(\bar{X}_1 - \bar{X}_2)}{\sqrt{\frac{2S^2_p}{n}}}$$
 
@@ -76,7 +76,7 @@ Onde:
 
 Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura \@ref(fig:fig-homo-norm)) [@zuur_protocol_2009]. 
 
--   A homegeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura \@ref(fig:fig-homo-norm)A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). 
+-   A homogeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura \@ref(fig:fig-homo-norm)A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). 
 
 -   A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura \@ref(fig:fig-homo-norm)B).
 
@@ -96,7 +96,7 @@ Neste exemplo, avaliaremos o comprimento rostro-cloacal (CRC em milímetros) de 
 
 **Predições**
 
-- O CRC dos machos será maior na estação chuvosa porque há uma vantangem seletiva para os indivíduos maiores durante a atividade reprodutiva
+- O CRC dos machos será maior na estação chuvosa porque há uma vantagem seletiva para os indivíduos maiores durante a atividade reprodutiva
 
 **Variáveis**
 
@@ -125,7 +125,7 @@ residuos <- lm(CRC ~ Estacao, data = CRC_PN_macho)
 qqPlot(residuos)
 ```
 
-Os pontos estão próximos à reta, indicando que a distribuição dos resíduos é normal (\@ref(fig:fig-homo-norm)).
+Os pontos estão próximos à reta, indicando que a distribuição dos resíduos é normal (veja Figura \@ref(fig:fig-homo-norm)).
 
 Outra possibilidade é usar os testes de Shapiro-Wilk e Levene para verificar a normalidade e a homogeneidade da variância, respectivamente.
 
@@ -154,14 +154,14 @@ leveneTest(CRC ~ as.factor(Estacao), data = CRC_PN_macho)
 
 Percebam que a distribuição dos resíduos foi normal e homogênea na inspeção gráfica, assim como nos testes de Shapiro e Levene, respectivamente. Agora podemos realizar a análise sabendo que os dados seguem as premissas requeridas pelo Teste T.
 
-Vamos para os códigos da análise do Teste T para amostragens indenpendentes e variâncias iguais.
+Vamos para os códigos da análise do Teste T para amostragens independentes e variâncias iguais.
 
 ```{r}
 ## Análise Teste T 
 t.test(CRC ~ Estacao, data = CRC_PN_macho, var.equal = TRUE)
 ```
 
-Quatro valores devem ser apresentados ao leitores: i) estatística do teste - representada por **t = 4,15**, ii) valor de significância - representado por **p-value = 0,0001**, iii) graus de liberdade - representado por **df = 49**, e iv) diferença entre as médias. Veja abaixo como descrever os resultados no seu trabalho.
+Quatro valores devem ser apresentados aos leitores: i) estatística do teste - representada por **t = 4,15**, ii) valor de significância - representado por **p-value = 0,0001**, iii) graus de liberdade - representado por **df = 49**, e iv) diferença entre as médias. Veja abaixo como descrever os resultados no seu trabalho.
 
 Visualizar os resultados em gráfico (Figura \@ref(fig:fig-test-t-ind-var-igual)).
 
@@ -200,7 +200,7 @@ Os dados foram alterados em relação a publicação original para se enquadrare
 
 **Predições**
 
-- O CRC das fêmeas será maior na estação chuvosa porque há uma vantangem seletiva para os indivíduos maiores durante a atividade reprodutiva
+- O CRC das fêmeas será maior na estação chuvosa porque há uma vantagem seletiva para os indivíduos maiores durante a atividade reprodutiva
 
 **Variáveis**
 
@@ -221,7 +221,7 @@ Olhar os dados usando a função `head()`.
 head(CRC_LP_femea) 
 ```
 
-Vamos avaliar as premissas do teste. Començando com o teste de normalidade (Figura \@ref(fig:fig-qqplot-var-dif)).
+Vamos avaliar as premissas do teste. Começando com o teste de normalidade (Figura \@ref(fig:fig-qqplot-var-dif)).
 
 ```{r fig-qqplot-var-dif, fig.cap="Normalidade dos resíduos usando o QQ-plot."}
 ## Teste de normalidade usando QQ-plot
@@ -270,7 +270,7 @@ ggplot(data = CRC_LP_femea, aes(x = Estacao, y = CRC, color = Estacao)) +
 
 **Interpretação dos resultados**
 
-Os resultados mostram que as fêmeas de *L. podicipinus* coletadas na estação chuvosa não são maiores do que as fêmeas coletadas na estação seca, apesar de possuirem maior variância, o que pode ser biologicamente interessante.
+Os resultados mostram que as fêmeas de *L. podicipinus* coletadas na estação chuvosa não são maiores do que as fêmeas coletadas na estação seca, apesar de possuírem maior variância, o que pode ser biologicamente interessante.
 
 ## Teste T para amostras pareadas
 
@@ -306,7 +306,7 @@ Neste exemplo, avaliaremos a diferença na riqueza de espécies de artrópodes r
 
 - Variáveis resposta e preditoras
 
--   data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pre-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas
+-   data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pré-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas
 
 **Checklist**
 
@@ -364,7 +364,7 @@ knitr::include_graphics(path = "img/cap07_fig02.jpg")
 
 **Premissas da Correlação de Person**
 
--   As amostras devem ser independentes e pareadas (i.e. as duas variáveis devem ser medidas na mesma unidade amostral)
+-   As amostras devem ser independentes e pareadas (i.e., as duas variáveis devem ser medidas na mesma unidade amostral)
 -   As unidades amostrais são selecionadas aleatoriamente
 -   A relação entre as variáveis tem que ser linear
 
@@ -385,7 +385,7 @@ Neste exemplo, avaliaremos a correlação entre a altura do tronco e o tamanho d
 **Variáveis**
 
 -   Variáveis
--   data frame com os indivíduos (unidade amostral) nas linhas e altura do tronco e tamanho da raiz (duas variáveis tem que ser contínuas) como colunas
+-   data frame com os indivíduos (unidade amostral) nas linhas e altura do tronco e tamanho da raiz (duas variáveis têm que ser contínuas) como colunas
 
 **Checklist**
 
@@ -433,7 +433,7 @@ A linha de tendência tracejada no gráfico é apenas para ilustrar a relação 
 
 **Interpretação dos resultados**
 
-Os resultados mostram que o aumento na altura dos arbutos é acompanhado pelo aumento no tamanho da raiz.
+Os resultados mostram que o aumento na altura dos arbustos é acompanhado pelo aumento no tamanho da raiz.
 
 ## Regressão Linear Simples
 
@@ -462,11 +462,11 @@ Neste exemplo, avaliaremos a relação entre o gradiente de temperatura média a
 
 **Pergunta**
 
-- A temperatura afeta o tamanho do CRC de populações de Dendropsophus minutus?
+- A temperatura afeta o tamanho do CRC de populações de *Dendropsophus minutus*?
 
 **Predições**
 
-- O CRC das populações serão menores em localidades mais quentes do que em localidades mais frias de acordo com a Hipótese do Balanço de Calor [@olalla-tárraga2007]
+- Os CRC das populações serão menores em localidades mais quentes do que em localidades mais frias de acordo com a Hipótese do Balanço de Calor [@olalla-tárraga2007]
 
 **Variáveis**
 
@@ -563,11 +563,11 @@ Utilizaremos o mesmo exemplo da regressão linear simples. Contudo, além do gra
 
 **Pergunta**
 
-- O tamanho do CRC das populações de *D. minutus* é influênciado pela temperatura e precipitação das localidades onde os indivíduos ocorrem?
+- O tamanho do CRC das populações de *D. minutus* é influenciado pela temperatura e precipitação das localidades onde os indivíduos ocorrem?
 
 **Predições**
 
-- O CRC das populações serão menores em localidades com clima quente e chuvoso do que em localidades com clima frio e seco
+- Os CRC das populações serão menores em localidades com clima quente e chuvoso do que em localidades com clima frio e seco
 
 **Variáveis**
 
@@ -672,7 +672,7 @@ ANOVA refere-se a uma variedade de delineamentos experimentais nos quais a vari�
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-ANOVA de medidas repetidas e ANOVA *split-plot* são análises com desenhos experimentais que apresentam dependência entre as amostras, mas controlam esse depedência nas suas formulações matemáticas.
+ANOVA de medidas repetidas e ANOVA *split-plot* são análises com desenhos experimentais que apresentam dependência entre as amostras, mas controlam esse dependência nas suas formulações matemáticas.
 :::
 
 ### ANOVA de um fator
@@ -792,7 +792,7 @@ Neste exemplo hipotético, avaliaremos se o tempo que o corpo leva para eliminar
 
 **Predições**
 
-- O tempo de eliminação da droga vai ser mais rápido nas pacientes XX e jovens
+- O tempo de eliminação da droga vai ser mais rápido nos pacientes XX e jovens
 
 **Variáveis**
 
@@ -824,7 +824,7 @@ Modelo1 <- aov(Tempo ~ Pessoas * Idade, data = dados_dois_fatores)
 anova(Modelo1)
 ```
 
-Percebam que a interação não apresenta um efeito significativo (P \> 0.05). Assim, iremos retirar a interação e verificar, usando Likelihood-ratio test, se o modelo mais simples é melhor.
+Percebam que a interação não apresenta um efeito significativo (P \> 0.05). Assim, iremos retirar a interação e verificar, usando *Likelihood-ratio test*, se o modelo mais simples é melhor.
 
 ```{r}
 # Criando modelo sem interação.
@@ -834,7 +834,7 @@ Modelo2 <- aov(Tempo ~ Pessoas + Idade, data = dados_dois_fatores)
 lrtest(Modelo1, Modelo2)
 ```
 
-Analisando o resultado do teste (P \> 0.05), a interação não é importante. Então podemos seguir com o modelo mais simples. Vamos verficiar a normalidade e homogeneidade da variância (Figura \@ref(fig:fig-lm-anova-fat-pre)).
+Analisando o resultado do teste (P \> 0.05), a interação não é importante. Então podemos seguir com o modelo mais simples. Vamos verificar a normalidade e homogeneidade da variância (Figura \@ref(fig:fig-lm-anova-fat-pre)).
 
 ```{r fig-lm-anova-fat-pre, fig.cap="Gráficos mostrando as premissas da ANOVA fatorial."}
 # Verificando as premissas do teste.
@@ -848,7 +848,7 @@ Dois pontos estão fugindo da reta e chamam atenção sobre a normalidade da dis
 anova(Modelo2)
 ```
 
-Percebam que o resultado da ANOVA (Pr(\>F) \< 0.001) indica que devemos rejeitar a hipótese nula de que não há diferença entre as médias dos sistema XY e idade dos pacientes. Neste caso, não precisamos realizar testes de comparações múltiplas *post-hoc* porque os fatores apresentam apenas dois níveis. Contudo, se no seu delineamento experimental um dos fatores apresentar três ou mais níveis, você deverá utilizar os testes de comparações *post-hoc* para determinar as diferenças entre os grupos.
+Percebam que o resultado da ANOVA (Pr(\>F) \< 0.001) indica que devemos rejeitar a hipótese nula de que não há diferença entre as médias do sistema XY e idade dos pacientes. Neste caso, não precisamos realizar testes de comparações múltiplas *post-hoc* porque os fatores apresentam apenas dois níveis. Contudo, se no seu delineamento experimental um dos fatores apresentar três ou mais níveis, você deverá utilizar os testes de comparações *post-hoc* para determinar as diferenças entre os grupos.
 
 Vamos visualizar os resultados em gráfico (Figura \@ref(fig:fig-anova-fatorial)).
 
@@ -935,7 +935,7 @@ Os valores da riqueza de espécies foram alterados em relação a publicação o
 
 **Pergunta**
 
-- A distância da poça artifical ao fragmento florestal influencia a riqueza de espécies anuros?
+- A distância da poça artificial ao fragmento florestal influencia a riqueza de espécies anuros?
 
 **Predições**
 
@@ -1008,17 +1008,17 @@ Neste exemplo, rejeitamos a hipótese nula de que a distância das poças artifi
 
 ### Análise de covariância (ANCOVA)
 
-A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de uma variável contínua (covariável) medida em todas as unidades amostrais [@gotelli_primer_2012]. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo concentre-se nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.
+A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de uma variável contínua (covariável) medida em todas as unidades amostrais [@gotelli_primer_2012]. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo se concentre nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.
 
 **Exemplo prático 1 - ANCOVA**
 
 **Explicação dos dados**
 
-Neste exemplo hipotético, avaliaremos o efeito da herbivoria na biomassa dos frutos de uma espécie de árvore na Mata Atlântica. O delineamento experimental permitiu que alguns indivíduos sofressem herbivoria e outros não. Os pesquisadores também mediram o tamanho da raiz dos indíviduos para inseri-la como uma covariável no modelo.
+Neste exemplo hipotético, avaliaremos o efeito da herbivoria na biomassa dos frutos de uma espécie de árvore na Mata Atlântica. O delineamento experimental permitiu que alguns indivíduos sofressem herbivoria e outros não. Os pesquisadores também mediram o tamanho da raiz dos indivíduos para inseri-la como uma covariável no modelo.
 
 **Pergunta**
 
-- A herbivoria diminiu a biomassa dos frutos?
+- A herbivoria diminui a biomassa dos frutos?
 
 **Predições**
 
@@ -1028,7 +1028,7 @@ Neste exemplo hipotético, avaliaremos o efeito da herbivoria na biomassa dos fr
 
 -   Variáveis resposta e preditoras
 
--   data frame com as indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas
+-   data frame com os indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas
 
 **Checklist**
 
@@ -1061,7 +1061,7 @@ As premissas da ANCOVA estão adequadas. Vamos olhar os resultados do modelo.
 anova(modelo_ancova)
 ```
 
-Percebam que o resultado da ANCOVA (Pr(\>F) \< 0.001) indica que tanto a herbivoria como o tamanho da raiz (covariável) têm efeitos significativos na biomassa dos frutos. Contudo, a interação entre as variáveis não foi signigicativa. Vamos usar o Likelihood-ratio test (LRT) para ver se podemos seguir com um modelo mais simples (sem interação).
+Percebam que o resultado da ANCOVA (Pr(\>F) \< 0.001) indica que tanto a herbivoria como o tamanho da raiz (covariável) têm efeitos significativos na biomassa dos frutos. Contudo, a interação entre as variáveis não foi significativa. Vamos usar o *Likelihood-ratio test* para ver se podemos seguir com um modelo mais simples (sem interação).
 
 ```{r}
 ## Criando modelo sem interação
@@ -1093,7 +1093,7 @@ Neste exemplo, o tamanho da raiz (covariável) tem uma relação positiva com a 
 
 ## Generalized Least Squares (GLS)
 
-Em seu artigo clássico publicado em 1993, Pierre Legendre se pergunta se a autocorrelação espacial é um problema ou um novo paradigma [@legendre_spatial_1993]. Segundo o autor, estudar estruturas espaciais é tanto uma necessidade, quanto um desafio para pesquisadores da ecologia e conservação que lidam com dados espacialmente distribuídos. Uma vez que todas as variáveis tipicamente utilizadas em estudos de biodiversidade (populações, condições climáticas, diversidade) possuem algum tipo de estrutura espacial, é fundamental compreender os motivos de como incluir esta informação nos modelos analíticos. De fato, a Primeira Lei da Geografia postula que "todas as coisas estão relacionadas com todas as outras, porém coisas próximas estão mais relacionadas do que coisas distantes". Como resultado, os valores observados em uma localidade (e.g., composição de espécies) serão mais afetados pelo conjunto de espécies que ocorre nas localidades vizinhas e, desse modo, alguns pontos de coleta podem não ser estatisticamente independentes. Como vimos anteriormente, um dos pressupostos dos modelos lineares é a independência das unidades amostrais. Assim, a presença de autocorrelação espacial nos resíduos viola este pressuposto e, consequentemente, aumenta a taxa de Erro do Tipo I (rejeitar a hipótese nula quando ela é verdadeira) nos modelos. Uma das soluções para incorporar a dependência espacial dos resíduos é usar o método de Mínimos Quadrados Generalizados (*Generalized Least Squares* - GLS). Diferente dos modelos apresentados anteriormente, este método ajusta explicitamente modelos heteroscedásticos e com resíduos correlacionados [@pinheiro_mixed-effects_2000]. Para representar a estrutura espacial (e, assim, a dependência entre as observações) é necessário incluir variáveis espaciais (geralmente coordenadas geográficas, i.e., vetores bimensionais: *sensu* @pinheiro_mixed-effects_2000) no argumento `corStruct` na função `gls()` do pacote `nlme`. Este modelo basicamente assume que a estrutura de covariância é uma função da distância entre as localidades [@littell2006sas]. É importante ressaltar, todavia, que existem diferentes funções de covariância que são discutidas detalhadamente em @littell2006sas. Aqui, iremos nos
+Em seu artigo clássico publicado em 1993, Pierre Legendre se pergunta se a autocorrelação espacial é um problema ou um novo paradigma [@legendre_spatial_1993]. Segundo o autor, estudar estruturas espaciais é tanto uma necessidade, quanto um desafio para pesquisadores da ecologia e conservação que lidam com dados espacialmente distribuídos. Uma vez que todas as variáveis tipicamente utilizadas em estudos de biodiversidade (populações, condições climáticas, diversidade) possuem algum tipo de estrutura espacial, é fundamental compreender os motivos de como incluir esta informação nos modelos analíticos. De fato, a Primeira Lei da Geografia postula que "todas as coisas estão relacionadas com todas as outras, porém coisas próximas estão mais relacionadas do que coisas distantes". Como resultado, os valores observados em uma localidade (e.g., composição de espécies) serão mais afetados pelo conjunto de espécies que ocorre nas localidades vizinhas e, desse modo, alguns pontos de coleta podem não ser estatisticamente independentes. Como vimos anteriormente, um dos pressupostos dos modelos lineares é a independência das unidades amostrais. Assim, a presença de autocorrelação espacial nos resíduos viola este pressuposto e, consequentemente, aumenta a taxa de Erro do Tipo I (rejeitar a hipótese nula quando ela é verdadeira) nos modelos. Uma das soluções para incorporar a dependência espacial dos resíduos é usar o método de Mínimos Quadrados Generalizados (*Generalized Least Squares* - GLS). Diferente dos modelos apresentados anteriormente, este método ajusta explicitamente modelos heteroscedásticos e com resíduos correlacionados [@pinheiro_mixed-effects_2000]. Para representar a estrutura espacial (e, assim, a dependência entre as observações) é necessário incluir variáveis espaciais (geralmente coordenadas geográficas, i.e., vetores bidimensionais: *sensu* @pinheiro_mixed-effects_2000) no argumento `corStruct` na função `gls()` do pacote `nlme`. Este modelo basicamente assume que a estrutura de covariância é uma função da distância entre as localidades [@littell2006sas]. É importante ressaltar, todavia, que existem diferentes funções de covariância que são discutidas detalhadamente em @littell2006sas. Aqui, iremos nos
 concentrar nas seguintes funções.
 
 -   **Esférica**: `corSpher(form=\~lat+long)`
@@ -1148,7 +1148,7 @@ Como dito, dependendo da estrutura espacial de suas variáveis (dependentes, ind
 no_spat_gls <- gls(riqueza ~ agua, mite_dat, method = "REML")
 ```
 
-Uma maneira de identificar se os resíduos do modelo linear apresentam estrutura espacial é fazendo uma figura chamada **variograma**. O variograma possui três parâmetros: i) *nugget* , ii) *range* e iii) *sill* [@fortin_dale_2005]. O *nugget* é utilizado para quantificar a variabilidade observada nos valores menores (ou seja, em pequenas distâncias). O *range*, por sua vez, é usado para identificar a distância máxima em que a autocorrelação espacial está presente (Figura \@ref(fig:fig-variograma), pontos laranjas). Deste modo, os valores posicionados a partir do *range* (Figura \@ref(fig:fig-variograma), pontos verdes) representam pontos não correlacionados [@fortin_dale_2005]. A posição limiar que representa claramente a "pausa" no crescimento da curva (*range*) indica os pontos não correlacionados e representa o *sill* (Figura \@ref(fig:fig-variograma)). No exemplo da Figura \@ref(fig:fig-variograma), o *sill* é constante. Porém, é possível que os valores de *sill* não sejam constantes [@chiles_1999]. Um exemplo é o "efeito buraco" que é caracterizado por um ou mais picos (ou vales) no variograma que correspondem ao número de valores negativos na covariância. Esses valores sugerem que valores altos podem estar rodeados de valores baixos [@chiles_1999]. Porém, os detalhamentos desses comportamentos vai além do escopo deste livro.
+Uma maneira de identificar se os resíduos do modelo linear apresentam estrutura espacial é fazendo uma figura chamada **variograma**. O variograma possui três parâmetros: i) *nugget* , ii) *range* e iii) *sill* [@fortin_dale_2005]. O *nugget* é utilizado para quantificar a variabilidade observada nos valores menores (ou seja, em pequenas distâncias). O *range*, por sua vez, é usado para identificar a distância máxima em que a autocorrelação espacial está presente (Figura \@ref(fig:fig-variograma), pontos laranjas). Deste modo, os valores posicionados a partir do *range* (Figura \@ref(fig:fig-variograma), pontos verdes) representam pontos não correlacionados [@fortin_dale_2005]. A posição limiar que representa claramente a "pausa" no crescimento da curva (*range*) indica os pontos não correlacionados e representa o *sill* (Figura \@ref(fig:fig-variograma)). No exemplo da Figura \@ref(fig:fig-variograma), o *sill* é constante. Porém, é possível que os valores de *sill* não sejam constantes [@chiles_1999]. Um exemplo é o "efeito buraco" que é caracterizado por um ou mais picos (ou vales) no variograma que correspondem ao número de valores negativos na covariância. Esses valores sugerem que valores altos podem estar rodeados de valores baixos [@chiles_1999]. Porém, os detalhamentos desses comportamentos vão além do escopo deste livro.
 
 ```{r fig-variograma, fig.cap="Variograma representando a semi-variância *y(h)* em função do intervalor espacial *h*. Cada ponto representa a distância entre localidades e a linha a variação teórica a função de covariância esférica (veja abaixo). Adaptado de @fortin_dale_2005.", echo=FALSE}
 knitr::include_graphics(path = "img/cap07_fig03.png")
@@ -1203,7 +1203,7 @@ Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessá
 O valor de AIC por si só não tem significado. Ele precisa ser comparado com outro modelo. Contudo, um modelo só será considerado superior a outro quando a diferença entre os seus valores de AIC (i.e, *delta*) forem maiores do que 2. [@burnham2002]
 :::
 
-```{r fig-diag-ratio, fig.cap="Gráfico dos resíduos em relação aos dodos ajustados do modelo GLS Ratio."}
+```{r fig-diag-ratio, fig.cap="Gráfico dos resíduos em relação aos dados ajustados do modelo GLS Ratio."}
 ## Seleção de modelos
 aic_fit <- AIC(no_spat_gls, espher_model, expon_model, gauss_model, cor_linear_model, ratio_model)
 aic_fit %>% arrange(AIC)
@@ -1233,7 +1233,15 @@ Dessa forma, O valor mais apropriado da estatística t é de -4.33 (*ratio_model
 
 ## Para se aprofundar
 
--   Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis, ii) Gotelli & Ellison [-@gotelli_primer_2012] A primer of ecological statistics, iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists, iv) Zuur e colabodores [-@zuur_analysing_2007] Analysing Ecological Data e v) Touchon [-@touchon_applied_2021] Applied statistics with R: a practical guide for the life sciences.
+Listamos a seguir livros e links que recomendamos para seguir com sua aprendizagem em modelos lineares
+
+### Livros
+
+Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis, ii) Gotelli & Ellison [-@gotelli_primer_2012] A primer of ecological statistics, iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists, iv) Zuur e colabodores [-@zuur_analysing_2007] Analysing Ecological Data e v) Touchon [-@touchon_applied_2021] Applied statistics with R: a practical guide for the life sciences.
+
+### Links
+
+Recomendamos a página **Curso de Estatística para Pesquisa Científica**[http://estat.bio.br/] do pesquisador Thiago Rangel, Universidade Federal de Goiás. Nesta página, vocês irão encontrar exemplos e explicações detalhadas sobre as análises e a filosofia estatística.
 
 ## Exercícios
 
@@ -1250,7 +1258,7 @@ Avalie se existe correlação entre o número de filhotes nos ninhos de uma esp�
 Avalie se a relação entre o tamanho da área de diferentes ilhas e a riqueza de espécies de lagartos. Qual a sua interpretação dos resultados? Faça um gráfico mostrando a  relação predita pelo modelo. Use os dados `Cap7_exercicio4` disponível no pacote `ecodados`.
 
 **7.5**
-Avalie se existe relação entre a abundância de uma espécie de roedor com o tamanho da área dos fragmentos florestais e/ou a altitude. Faça uma regressão múltipla. Em seguida, crie diferentes modelos e selecione o mais parcimonioso com base no valores do teste de *Likelihood-ratio test* (LRT) e *Akaike information criterion* (AIC). Qual a sua interpretação? Use os dados `Cap7_exercicio5` disponível no pacote `ecodados`.
+Avalie se existe relação entre a abundância de uma espécie de roedor com o tamanho da área dos fragmentos florestais e/ou a altitude. Faça uma regressão múltipla. Em seguida, crie diferentes modelos e selecione o mais parcimonioso com base nos valores do teste de *Likelihood-ratio test* (LRT) e *Akaike information criterion* (AIC). Qual a sua interpretação? Use os dados `Cap7_exercicio5` disponível no pacote `ecodados`.
 
 **7.6**
 Avalie se o local que machos territoriais ocupam (pasto, cana, floresta) influência no peso dos indivíduos. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados `Cap7_exercicio6` disponível no pacote `ecodados`.
@@ -1259,10 +1267,10 @@ Avalie se o local que machos territoriais ocupam (pasto, cana, floresta) influê
 Avalie se a abundância de formigas está relacionada com o fato das domácias estarem abertas ou fechadas e com a idade das domácias. Verifique a interação entre os fatores. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados `Cap7_exercicio7` disponível no pacote `ecodados`.
 
 **7.8**
-Avalie se o número de parasitas está relacionado com o tamanho corporal de fêmeas de uma espécie de ave. Além disso, use a idade das aves como uma co-variável explicando o número de parasitas. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados `Cap7_exercicio8` disponível no pacote `ecodados`.
+Avalie se o número de parasitas está relacionado com o tamanho corporal de fêmeas de uma espécie de ave. Além disso, use a idade das aves como uma covariável explicando o número de parasitas. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados `Cap7_exercicio8` disponível no pacote `ecodados`.
 
 **7.9**
-Avalie se a presença ou ausência de predadores afeta a riqueza de macroinvertebrados em 10 lagos. Os tratamentos dos predadores foram realizados nos mesmos lagos. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados.Use os dados `Cap7_exercicio9` disponível no pacote `ecodados`.
+Avalie se a presença ou ausência de predadores afeta a riqueza de macroinvertebrados em 10 lagos. Os tratamentos dos predadores foram realizados nos mesmos lagos. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados `Cap7_exercicio9` disponível no pacote `ecodados`.
 
 **7.10**
 Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 localidades na Mata Atlântica. Use as coordenadas geográficas para controlar o efeito da autocorrelação espacial. Qual a sua interpretação dos resultados das análises com e sem levar em consideração a autocorrelação espacial? Use os dados `anuros_ambientais` disponível no pacote `ecodados`.
