@@ -1265,8 +1265,8 @@ Vamos verificar a correlação entre a distância geográfica em linha reta e a 
 mantel(Dist.km, dissimil.bocaina) 
 
 ## Preparar os dados para o gráfico
-matrix.dist.bocaina <- data.frame(x = melt(as.matrix(log(Dist.km)))$value, 
-                              y = melt(as.matrix(log(1-dissimil.bocaina)))$value)
+matrix.dist.bocaina <- data.frame(x = melt(as.matrix(Dist.km))$value, 
+                              y = melt(as.matrix(dissimil.bocaina))$value)
 
 ## Gráfico
 ggplot(matrix.dist.bocaina , aes(x, y)) +
