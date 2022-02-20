@@ -128,7 +128,7 @@ Neste histograma é possível entender que a maioria dos valores no objeto `dist
 
 **Versão padrão**
 
-Vamos utilizar o conjunto de dados *palmerpenguins* para construir um histograma da distribuição da variável *`flipper_length_mm`* com a função `geom_hitogram()`. Esta função utiliza uma variável contínua no eixo X e a frequência de cada categoria de intervalo de valores no eixo Y. O gráfico a seguir representa a frequência de uma variável (neste caso, a medida de todos os pinguins, independente da espécie) (Figura \@ref(fig:fig-hist-flipper)).
+Vamos utilizar o conjunto de dados *palmerpenguins* para construir um histograma da distribuição da variável *`comprimento_nadadeira`* com a função `geom_hitogram()`. Esta função utiliza uma variável contínua no eixo X e a frequência de cada categoria de intervalo de valores no eixo Y. O gráfico a seguir representa a frequência de uma variável (neste caso, a medida de todos os pinguins, independente da espécie) (Figura \@ref(fig:fig-hist-flipper)).
 
 ```{r fig-hist-flipper, fig.cap="Histograma da variável `comprimento_nadadeira`."}
 ## Histograma da coluna flipper_length_mm
@@ -154,7 +154,7 @@ ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
 
 **Comparando múltiplas categorias**
 
-Se quisermos comparar a distribuição de uma variável contínua entre diferentes categorias, podemos utilizar o argumento `fill` para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável X (`x = flipper_length_mm`) entre espécies diferentes (`fill = species`) (Figura \@ref(fig:fig-hist-cat)).
+Se quisermos comparar a distribuição de uma variável contínua entre diferentes categorias, podemos utilizar o argumento `fill` para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável X (`x = comprimento_nadadeira`) entre espécies diferentes (`fill = especies`) (Figura \@ref(fig:fig-hist-cat)).
 
 ```{r fig-hist-cat, fig.cap="Histograma da variável `comprimento_nadadeira` para diferentes espécies com e sem sobreposição."}
 ## Histograma com cores para diferentes categorias com sobreposição
@@ -201,7 +201,7 @@ Nesta seção aprenderemos a criar um [gráfico de densidade](https://www.data-t
 
 **Versão padrão**
 
-Vamos utilizar o conjunto de dados *palmerpenguins* para plotar a distribuição da variável *`flipper_length_mm`* em um gráfico de densidade. Utilizaremos a função `geom_density()` para plotar uma variável no eixo X (Figura \@ref(fig:fig-dens-flipper)).
+Vamos utilizar o conjunto de dados *palmerpenguins* para plotar a distribuição da variável *`comprimento_nadadeira`* em um gráfico de densidade. Utilizaremos a função `geom_density()` para plotar uma variável no eixo X (Figura \@ref(fig:fig-dens-flipper)).
 
 ```{r fig-dens-flipper, fig.cap="Gráfico de densidade da variável `comprimento_nadadeira`."}
 ## Gráfico de densidade
@@ -223,7 +223,7 @@ ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
 
 **Comparando múltiplas categorias**
 
-Em algumas situações queremos comparar a distribuição de uma variável contínua entre diferentes categorias. Dessa forma, podemos utilizar o argumento `fill` para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável x entre espécies diferentes (`fill = species`) (Figura \@ref(fig:fig-dens-flipper-cat)).
+Em algumas situações queremos comparar a distribuição de uma variável contínua entre diferentes categorias. Dessa forma, podemos utilizar o argumento `fill` para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável x entre espécies diferentes (`fill = especies`) (Figura \@ref(fig:fig-dens-flipper-cat)).
 
 ```{r fig-dens-flipper-cat, fig.cap="Gráfico de densidade da variável `comprimento_nadadeira` para diferentes espécies com e sem transparência."}
 ## O argumento fill preenche cada nível da coluna "especies" (sem transparência: alpha = 1)
@@ -273,7 +273,7 @@ Uma alternativa ao histograma e ao gráfico de densidade é o diagrama de pontos
 
 **Versão padrão**
 
-Vamos utilizar o conjunto de dados palmerpenguins para visualizar a distribuição da variável flipper_length_mm com o diagrama de pontos com a função `geom_dotplot()` (Figura \@ref(fig:fig-dot-flipper)).
+Vamos utilizar o conjunto de dados palmerpenguins para visualizar a distribuição da variável comprimento_nadadeira com o diagrama de pontos com a função `geom_dotplot()` (Figura \@ref(fig:fig-dot-flipper)).
 
 ```{r fig-dot-flipper, fig.cap="Diagrama de pontos da variável `comprimento_nadadeira`."}
 ## Gráfico de pontos
@@ -286,7 +286,7 @@ ggplot(data = penguins, aes(x = comprimento_nadadeira)) +
 Assim como nas funções `geom_histogram()` e `geom_density()`, é possível comparar categorias na função `geom_dotplot()` utilizando o argumento `fill`, bem como os argumentos `color`, `alpha` e `dotsize` (Figura \@ref(fig:fig-dot-flipper-cat)).
 
 ```{r fig-dot-flipper-cat, fig.cap="Diagrama de pontos da variável `comprimento_nadadeira` para diferentes espécies com e sem transparência."}
-## O argumento fill preenche cada nível da coluna "species" (sem transparência: alpha = 1)
+## O argumento fill preenche cada nível da coluna "especies" (sem transparência: alpha = 1)
 ggplot(data = penguins, aes(x = comprimento_nadadeira, fill = especies)) +
     geom_dotplot(dotsize = .9)
 
@@ -397,7 +397,7 @@ ggplot(data = penguins_count, aes(x = especies, y = n, fill = especies)) +
 
 Em algumas comparações, utilizar somente os valores absolutos pode não ser a visualização mais apropriada, como, por exemplo, em desenhos de ANOVA (Capítulo \@ref(cap7)). Desse modo, ao invés do valor máximo da barra representar o valor absoluto (e.g., número de indivíduos de uma espécie), ele vai representar o valor médio. Além disso, linhas adicionais (chamadas barras de erro) vão representar alguma medida de variação como desvio padrão, erro padrão, intervalo de confiança, entre outros (Figura \@ref(fig:fig-bar-species-sd))
 
-```{r fig-bar-species-sd, fig.cap="Gráfico de barras indicando os valores médios e o desvio padrão da variável `flipper_length_mm` para cada espécie de pinguim."}
+```{r fig-bar-species-sd, fig.cap="Gráfico de barras indicando os valores médios e o desvio padrão da variável `comprimento_nadadeira` para cada espécie de pinguim."}
 ## Calcular o desvio padrão por espécie
 penguins_media <- penguins %>% 
     dplyr::group_by(especies) %>% 
@@ -523,14 +523,14 @@ grid.arrange(g_bar_v, g_bar_h, g_pie, g_donut, nrow = 2)
 **Principais camadas utilizadas no gráfico de barras e de setores: `geom_bar()`**
 
 - `aes()`
-- Eixo X (`x`): variável categórica (`species`)
+- Eixo X (`x`): variável categórica (`especies`)
 - Eixo Y (`y`): variável contínua (`comprimento_nadadeira`)
 - Preenchimento (`fill`): a variável categórica (`especies`) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no `scale_fill_manual()`
 - `geom()`
 - `geom_bar()`: para que as variáveis categóricas sejam plotadas como gráficos de barra ou setores
 - Transparência das barras (`alpha`): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)
 - `stat`: é necessário usar o argumento `identity` quando os valores do eixo Y são adicionados pelo usuário
-- `geom_label()`: forma geométrica que adiciona rótulo dos valores absolutos das barras por categoria (`species`)
+- `geom_label()`: forma geométrica que adiciona rótulo dos valores absolutos das barras por categoria (`especies`)
 - `geom_errorbar()`: `ymin`e `ymax` delimitam os valores mínimos e máximos, respectivamente, das barras de erro. Tais valores são representados pelo valor da média menos (no caso do ymin) ou mais (no caso do ymax) o valor do intervalo de confiança, desvio ou erro padrão
 - `coord`
 - `coord_polar()`: sistema de coordenadas para gerar barras circulares sobrepostas (*stacked*) que são usadas nos gráficos de setores (*pie chart* e *donut chart*)
@@ -584,7 +584,7 @@ ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies)) +
 
 **Comparando múltiplas categorias**
 
-No exemplo abaixo, utilizamos cores diferentes para ilustrar espécies diferentes através do argumento `fill = species` (Figura \@ref(fig:fig-boxplot-cat)).
+No exemplo abaixo, utilizamos cores diferentes para ilustrar espécies diferentes através do argumento `fill = especies` (Figura \@ref(fig:fig-boxplot-cat)).
 
 ```{r fig-boxplot-cat, fig.cap="Gráfico de caixa para a variável `comprimento_nadadeira` para cada espécie de pinguim, com preenchimentos diferentes."}
 ## Modificando o preenchimento
@@ -597,7 +597,7 @@ ggplot(data = penguins,
 
 Podemos ainda acrescentar pontos para mostrar a distribuição dos dados, fazendo uma "agitação" (*jitter*) dos pontos sobre as caixas (Figura \@ref(fig:fig-boxplot-jitter)).
 
-```{r fig-boxplot-jitter, fig.cap="Gráfico de caixa para a variável `flipper_length_mm` para cada espécie de penguim, com distribuição dos dados."}
+```{r fig-boxplot-jitter, fig.cap="Gráfico de caixa para a variável `comprimento_nadadeira` para cada espécie de penguim, com distribuição dos dados."}
 ## Boxplot com jitters
 ggplot(data = penguins, aes(y = comprimento_nadadeira, 
                             x = especies, 
@@ -682,7 +682,7 @@ O [gráfico de dispersão](https://datavizproject.com/data-type/scatter-plot/) (
 Vamos utilizar o conjunto de dados *palmerpenguins* para construir um gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` com a função `geom_point()`. Esta função utiliza variável contínuas no eixo X e no Y. O gráfico mostra os pares ordenados das medidas das duas variáveis (Figura \@ref(fig:fig-scatter)).
 
 ```{r fig-scatter, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira`."}
-## Gráfico de dispersão das coluna flipper_length_mm e bill_length_mm
+## Gráfico de dispersão das coluna comprimento_nadadeira e comprimento_bico
 ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point()
 ```
@@ -738,7 +738,7 @@ ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
 
 **Ajustes finos (versão personalizada)**
 
-```{r fig-scatter-fino, fig.cap="Gráfico de dispersão relacionando as variáveis `bill_length_mm` e `flipper_length_mm` para cada espécie de penguim, com ajustes finos."}
+```{r fig-scatter-fino, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos."}
 ## Gráfico de dispersão exemplo
 ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira,
                             color = especies, shape = especies)) +
@@ -773,7 +773,7 @@ Muitas vezes precisamos plotar a relação de mais de uma variável, e muitas ve
 
 **Gráfico pareado com variáveis contínuas**
 
-A função `ggpairs()`do pacote `GGally` permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, `species`) (Figura \@ref(fig:fig-pairs-cont)).
+A função `ggpairs()`do pacote `GGally` permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, `especies`) (Figura \@ref(fig:fig-pairs-cont)).
 
 ```{r fig-pairs-cont, fig.cap="Gráfico pareado relacionando várias variáveis contínuas para as espécies de penguins."}
 ## Gráfico pareado com variáveis contínuas
