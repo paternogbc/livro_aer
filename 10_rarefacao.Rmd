@@ -31,7 +31,9 @@ dados_amostras <- ecodados::morcegos_rarefacao_amostras
 
 Uma das grandes dificuldades na comparação da riqueza de espécies (número de espécies) entre comunidades é decorrente da diferença no esforço amostral (e.g. diferença no número de indivíduos, discrepância na quantidade de unidades amostrais ou área amostrada) que inevitavelmente influenciará no número de espécies observadas [@gotelli_primer_2012; @roswell2021]. O método de rarefação nos permite comparar o número de espécies entre comunidades quando o tamanho da amostra (e.g. número de unidades amostrais), o esforço amostral (e.g. tempo de amostragem) ou a número de indivíduos não são iguais. A rarefação calcula o número esperado de espécies em cada comunidade tendo como base comparativa um valor em que todas as amostras atinjam um tamanho padrão. Gotelli & Colwell [-@gotelli2001] descrevem dois tipos de curvas de rarefação: i) baseada em indivíduos (*individual-based*) - as comparações são feitas considerando a abundância da comunidade padronizada pelo menor número de indivíduos, e ii) baseada na amostra (*sampled-based*) - as comparações são padronizadas pela comunidade com menor número de amostragens.
 
-O método foi formulado considerando a seguinte pergunta: Se considerarmos *n* indivíduos ou amostras (*n* \< N) para cada comunidade, quantas espécies registraríamos nas comunidades considerando o mesmo número de indivíduos ou amostras? Gotelli & Colwell [-@gotelli2001] descrevem este método e discutem em detalhes as restrições sobre seu uso na ecologia.
+O método foi formulado considerando a seguinte pergunta: Se considerarmos *n* indivíduos ou amostras (*n* \< N) para cada comunidade, quantas espécies registraríamos nas comunidades considerando o mesmo número de indivíduos ou amostras? 
+
+Gotelli & Colwell [-@gotelli2001] descrevem este método e discutem em detalhes as restrições sobre seu uso na ecologia.
 
 -   As amostras a serem comparadas devem ser consistentes do ponto de vista taxonômico, ou seja, todos os indivíduos devem pertencer ao mesmo grupo taxonômico
 -   As comparações devem ser realizadas somente entre amostras com as mesmas técnicas de coleta. Por exemplo, não é recomendado comparar amostras onde a riqueza de espécies de anuros de uma amostra foi estimada utilizando armadilhas de interceptação e queda e a outra foi estimada por vocalizações em sítios de reprodução
@@ -81,7 +83,7 @@ head(dados_rarefacao)
 colSums(dados_rarefacao)
 ```
 
-Usaremos as funções do pacote `iNEXT` (iNterpolation e EXTrapolation) para o cálculo da rarefação [@hsieh_inext_2016]. Esta função permite estimar a riqueza de espécies utilizando a família *Hill-numbers* (Hill 1973; explicação dos conceitos da família *Hill-numbers* está detalhada no Capítulo \@ref(cap12). O argumento `q` refere-se a família Hill-numbers onde: 0 = riqueza de espécies, 1 = diversidade de Shannon e 2 = diversidade de Simpson. No exemplo abaixo, utilizamos somente q = 0.
+Usaremos as funções do pacote `iNEXT` (iNterpolation e EXTrapolation) para o cálculo da rarefação [@hsieh_inext_2016]. Esta função permite estimar a riqueza de espécies utilizando a família *Hill-numbers* (Hill 1973; explicação dos conceitos da família *Hill-numbers* está detalhada no Capítulo \@ref(cap12). O argumento `q` refere-se a família Hill-numbers onde: `0` = riqueza de espécies, `1` = diversidade de Shannon e `2` = diversidade de Simpson. No exemplo abaixo, utilizamos somente `q = 0`.
 
 ```{r}
 ## Rarefação
@@ -287,7 +289,7 @@ ggiNEXT(res_rarefacao_amostras, type = 3, color.var = "site") +
 
 **Explicação dos dados**
 
-Neste exemplo, iremos refazer o exercício do Capítulo \@ref(cap7) onde usamos Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza rarefeita para controlar o efeito da amostragem (i.e. diferentes abundâncias entre as comunidades). Os dados que usaremos estão disponíveis no pacote `vegan` e representam a composição de espécies de ácaros amostradas em 70 amostras.
+Neste exemplo, iremos refazer o exercício do Capítulo \@ref(cap7) onde usamos *Generalized Least Squares* (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza rarefeita para controlar o efeito da amostragem (i.e. diferentes abundâncias entre as comunidades). Os dados que usaremos estão disponíveis no pacote `vegan` e representam a composição de espécies de ácaros amostradas em 70 amostras.
 
 **Pergunta**
 
@@ -426,7 +428,7 @@ A concentração de água no substrato explica 29,9% da variação na riqueza ra
 ### Links
 -   Recomendamos também que acessem a página do [EstimateS software](http://viceroy.eeb.uconn.edu/estimates) e baixem o manual do usuário que contém informações detalhadas sobre os índices de rarefação. Este site foi criado e é mantido pelo Dr. Robert K. Colwell, um dos maiores especialistas do mundo em estimativas da biodiversidade
 
--   Recomendamos a página pessoal da pesquisadora [Anne Chao](http://chao.stat.nthu.edu.tw/wordpress/software_download/inext-online/) que é uma das responsáveis pelo desenvolvimento da metodologia e do pacote iNEXT. Nesta página, vocês irão encontrar exemplos e explicações detalhadas sobre as análises
+-   Recomendamos a página pessoal da pesquisadora [Anne Chao](http://chao.stat.nthu.edu.tw/wordpress/software_download/inext-online/) que é uma das responsáveis pelo desenvolvimento da metodologia e do pacote `iNEXT`. Nesta página, vocês irão encontrar exemplos e explicações detalhadas sobre as análises
 
 
 ## Exercícios
@@ -438,6 +440,6 @@ Usando os dados `Cap10_exercicio1` disponível no pacote `ecodados`, avalie se d
 O estudo é o mesmo do exercício anterior. Contudo, ao invés da rarefação baseada na abundância, faça rarefações baseadas no número de amostras. Qual a sua interpretação considerando os resultados do exercício 1? Faça um gráfico com os resultados.
 
 **10.3**
-Use os dados dos exercícios anteriores e calcule a rarefação baseada na cobertura de amostragem (coverage-based). Qual a sua interpretação considerando os resultados anteriores? Faça um gráfico com os resultados. 
+Use os dados dos exercícios anteriores e calcule a rarefação baseada na cobertura de amostragem (*coverage-based*). Qual a sua interpretação considerando os resultados anteriores? Faça um gráfico com os resultados. 
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-10---rarefa%C3%A7%C3%A3o.html).
