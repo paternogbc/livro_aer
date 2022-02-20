@@ -164,7 +164,7 @@ Não há uma relação positiva entre o índice de Menhinick e a precipitação 
 
 Com base nos resultados, vamos plotar apenas o gráfico com os resultados da riqueza de espécies ao longo do gradiente de precipitação anual (Figura \@ref(fig:fig-alfa-model)).
 
-```{r fig-alfa-model, fig.cap="Gráfico do modelo linear da relação entre riqeuza e precipitação."}
+```{r fig-alfa-model, fig.cap="Gráfico do modelo linear da relação entre riqueza e precipitação."}
 ## Gráfico
 ggplot(data = dados, aes(x= Precipitacao, y= Riqueza)) + 
     labs(x = "Precipitação anual (mm)", y = "Riqueza de espécies") +
@@ -195,14 +195,14 @@ Os dois índices de diversidade mais usados em Ecologia são:
 
 **1. Índice de Shannon-Wiener**
 
-Quantifica a incerteza associada em predizer a identidade de uma espécie dado o número de espécies e a distribuição de abundância para cada espécie. Este índice é mais sensível à mudanças nas espécies raras da comunidade.
+Quantifica a incerteza associada em predizer a identidade de uma espécie dado o número de espécies e a distribuição de abundância para cada espécie. Este índice é mais sensível às mudanças nas espécies raras da comunidade.
 
 $$H' = -\sum_{i=1}^{S}p_i * ln p_i$$
 
 onde:
 
 -   p~i~ = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade
--   ln = logaritmo natural, mas outras bases logarítmas podem ser utilizadas
+-   ln = logaritmo natural, mas outras bases logarítmicas podem ser utilizadas
 -   H' = não tem um valor máximo e sua interpretação é comparativa, com valores maiores indicando maior diversidade
 
 **2. Índice de Simpson**
@@ -225,7 +225,7 @@ Usaremos os mesmos dados simulados do exemplo prático 1.
 
 **Pergunta**
 
-- A variação espacial na diversidade de espécies das comunidades está associado com o gradiente de precipitação?
+- A variação espacial na diversidade de espécies das comunidades está associada com o gradiente de precipitação?
 
 **Predições**
 
@@ -253,7 +253,7 @@ simpson_res
 
 **Interpretação dos resultados**
 
-A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies (Shannon-Wiener = 2,3 e Gini-Simpson = 0.9), enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade (Shannon-Wiener = 0,5 e Gini-Simpson = 0,17). Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas o padrão de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade. 
+A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies (Shannon-Wiener = 2,3 e Gini-Simpson = 0.9), enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade (Shannon-Wiener = 0,5 e Gini-Simpson = 0,17). Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas os padrões de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade. 
 
 Dentro desta perspectiva, alguns índices fornecem uma estimativa sobre a equitabilidade da distribuição da abundância nas comunidades. Entre eles, o mais conhecido foi proposto por Pielou [-@pielou1966].
 
@@ -383,7 +383,7 @@ plot(curvas_dominancia_com2,
 
 **Interpretação dos resultados**
 
-Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matématicos. Com base nos valores de AIC (veja Capítulo \@ref(cap7)), o modelo **Zipf** é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.
+Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matemáticos. Com base nos valores de AIC (veja Capítulo \@ref(cap7)), o modelo **Zipf** é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.
 
 Agora vamos analisar os dados considerando todas as comunidades (Figura \@ref(fig:fig-whittaker-testes)).
 
@@ -417,13 +417,13 @@ $$^qD = (\sum_{i=1}^{S}p_i^q)^{1/(1-q)}$$
 
 Onde:
 
-- q = é um parâmetro conhecido como ordem da diversidade e é usado para dar peso às espécies comuns ou raras. q = 0 não considera a frequência das espécies e representa a riqueza observada de espécies, q = 1 equivale a transformação do índice de Shannon-Wiener (i.e. exp(H')) e atribui pesos às espécies com base na proporção das suas frequências e, q = 2 equivale à transformação do índice de Gini-Simpson (i.e. 1/(1-D)) e atribui peso às espécies mais comuns. Valores de q \<1 favorecem espécies raras, enquanto valores de q \> 1 favorecem espécies comuns.
+- `q` = é um parâmetro conhecido como ordem da diversidade e é usado para dar peso às espécies comuns ou raras. `q = 0` não considera a frequência das espécies e representa a riqueza observada de espécies, `q = 1` equivale a transformação do índice de Shannon-Wiener (i.e. `exp(H')`) e atribui pesos às espécies com base na proporção das suas frequências e, `q = 2` equivale à transformação do índice de Gini-Simpson (i.e. `1/(1-D)`) e atribui peso às espécies mais comuns. Valores de `q \<1` favorecem espécies raras, enquanto valores de `q \> 1` favorecem espécies comuns.
 
 - p~i~ = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade
 
 Vamos calcular o Número de Hill para as comunidades do nosso exemplo.
 
-Calculando o Número de Hill com q = 0.
+Calculando o Número de Hill com `q = 0`.
 
 ```{r}
 ## Número de Hill para q = 0
@@ -431,7 +431,7 @@ hill_res_q_0 <- hill_taxa(composicao_especies, q  = 0)
 hill_res_q_0
 ```
 
-Calculando o Número de Hill com q = 1.
+Calculando o Número de Hill com `q = 1`.
 
 ```{r}
 ## Número de Hill para q = 1
@@ -439,7 +439,7 @@ hill_res_q_1 <- hill_taxa(composicao_especies, q  = 1)
 hill_res_q_1
 ```
 
-Calculando o Número de Hill com q = 2.
+Calculando o Número de Hill com `q = 2`.
 
 ```{r}
 ## Número de Hill para q = 2
@@ -469,9 +469,9 @@ Neste ponto, esperamos que tenha ficado claro que mais do que a riqueza de espé
 
 O termo diversidade beta foi proposto por Whittker [-@whittaker1960] e foi definido como a razão entre a diversidade gama e a diversidade alfa (i.e. diversidade beta multiplicativa), quantificando não só a relação entre a diversidade regional e local, mas também o grau de diferenciação entre as comunidades. Para demonstrar como a diversidade beta varia entre comunidades locais dentro de uma região usaremos a explicação do Baselga (<http://webspersoais.usc.es/persoais/andres.baselga/beta.html>). Imagine três comunidades, cada comunidade abrigando as mesmas cinco espécies. Neste caso, a média da diversidade alfa = 5, a diversidade gama = 5 e a razão entre elas (gama/alfa) indica uma diversidade beta = 1. Isso significa que na região existe apenas uma unidade distinta de composição. Quando a composição de espécies das três comunidades é completamente diferente (i.e. diferenciação máxima), temos que a média da diversidade alfa = 5, a diversidade gama = 15 e a razão entre elas indica uma diversidade beta = 3. Neste caso, existem três unidades distintas dentro da região. Assim, a diversidade beta multiplicativa varia de 1 até o número de comunidades dentro da região. 
 
-A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de Jaccard e Sørensen) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância [@legendre_numerical_2012] e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (*turnover*) entre comunidades. Contudo, índices de (dis)similaridade como Jaccard e Sørensen geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga [-@baselga2009; -@baselga2012] propôs uma abordagem que particiona a diversidade beta total ($\beta$~jac~) em dois componentes: o componente resultante da substituição de espécies (*turnover* - $\beta$~tur~) e o componente resultante do aninhamento (*nestedness*, i.e. diferença na riqueza de espécies - $\beta$~nes~). Vejam a (Figura \@ref(fig:fig-div-beta)) onde temos 3 comunidades (X, Y e Z). No primeiro exemplo, temos apenas diferença no número de espécies entre as comunidades. Neste caso, o componente subsituição de espécies ($\beta$~tur~) é zero porque as espécies na comunidade Z são um sub-grupo das espécies nas comunidades X e Y. O mesmo para as espécies na comunidade Y que são um sub-grupo das espécies da comunidade X. No segundo exemplo, temos o cenário oposto com as comunidades abrigando a mesma riqueza de espécies e assim, o componente resultante do aninhamento ($\beta$~nes~) é zero, temos um valor máximo para o $\beta$~tur~. Percebam que somando $\beta$~tur~ com $\beta$~nes~ temos o valor da diversidade beta total ($\beta$~jac~). Baselga [-@baselga2013] também propôs a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies *versus* perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes [@baselga2009; @baselga2012; @baselga2013].
+A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de *Jaccard* e *Sørensen*) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância [@legendre_numerical_2012] e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (*turnover*) entre comunidades. Contudo, índices de (dis)similaridade como *Jaccard* e *Sørensen* geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga [-@baselga2009; -@baselga2012] propôs uma abordagem que particiona a diversidade beta total ($\beta$~jac~) em dois componentes: o componente resultante da substituição de espécies (*turnover* - $\beta$~tur~) e o componente resultante do aninhamento (*nestedness*, i.e. diferença na riqueza de espécies - $\beta$~nes~). Vejam a (Figura \@ref(fig:fig-div-beta)) onde temos 3 comunidades (X, Y e Z). No primeiro exemplo, temos apenas diferença no número de espécies entre as comunidades. Neste caso, o componente subsituição de espécies ($\beta$~tur~) é zero porque as espécies na comunidade Z são um sub-grupo das espécies nas comunidades X e Y. O mesmo para as espécies na comunidade Y que são um sub-grupo das espécies da comunidade X. No segundo exemplo, temos o cenário oposto com as comunidades abrigando a mesma riqueza de espécies e assim, o componente resultante do aninhamento ($\beta$~nes~) é zero, temos um valor máximo para o $\beta$~tur~. Percebam que somando $\beta$~tur~ com $\beta$~nes~ temos o valor da diversidade beta total ($\beta$~jac~). Baselga [-@baselga2013] também propôs a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies *versus* perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes [@baselga2009; @baselga2012; @baselga2013].
 
-```{r fig-div-beta, fig.cap="Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.", echo=FALSE}
+```{r fig-div-beta, fig.cap="Partição da diversidade beta taxonômica. Os três cenários apresentados representam a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.", echo=FALSE}
 knitr::include_graphics(path = "img/cap12_fig01.png")
 ```
 
@@ -495,8 +495,8 @@ resultado_PA <- beta.pair(composicao_PA, index.family = "sorensen")
 <strong> 📝 Importante </strong>\
 A função `beta.pair()` gera três listas com matrizes triangulares:
 
--   **Diversidade beta total** = índice de Sørensen (beta.sor)
--   **Componente de substituição** = índice de Simpson (beta.sim)
+-   **Diversidade beta total** = índice de *Sørensen* (beta.sor)
+-   **Componente de substituição** = índice de *Simpson* (beta.sim)
 -   **Componente de aninhamento** = diferença na riqueza (beta.sne)
 :::
 
@@ -507,7 +507,7 @@ Vamos olhar os resultados da diversidade beta total.
 resultado_PA$beta.sor
 ```
 
-Vamos montar um data.frame com os resultados
+Vamos montar um data frame com os resultados
 
 ```{r}
 ## Data frame com os resultados
@@ -520,7 +520,7 @@ head(data.frame_PA)
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-Percebam que a primeira linha e primeira coluna do data frame (i.e., 0.00) representa a dissimilaridade de Sørensen entre a Com1 e Com2 (compare com os valores da matriz triangular acima). As linhas subsequentes representam a dissimilaridade da Com1 com todas as outras comunidades, depois da Com2 com todas as comunidades e assim sucessivamente. Lembrem-se que os componentes, subsituição (Simpson) e aninhamento (beta.sor - beta.sim), são um desdobramento da diversidade beta total (Sørensen). Assim, a soma da dissimilaridade de Simpson e aninhamento é igual ao valor de dissimilaridade de Sørensen [@baselga2009; @baselga2012].
+Percebam que a primeira linha e primeira coluna do data frame (i.e., 0.00) representa a dissimilaridade de *Sørensen* entre a Com1 e Com2 (compare com os valores da matriz triangular acima). As linhas subsequentes representam a dissimilaridade da Com1 com todas as outras comunidades, depois da Com2 com todas as comunidades e assim sucessivamente. Lembrem-se que os componentes, subsituição (*Simpson*) e aninhamento, são um desdobramento da diversidade beta total (*Sørensen*). Assim, a soma da dissimilaridade de *Simpson* e aninhamento é igual ao valor de dissimilaridade de *Sørensen* [@baselga2009; @baselga2012].
 :::
 
 Vamos calcular a dissimilaridade entre a precipitação anual das comunidades usando o índice de distância euclidiana. Vejam a ajuda da função `vegdist()` que calcula 17 índices diferentes de dissimilaridade.
@@ -546,7 +546,7 @@ dados_dis <- data.frame(dados_prec, data.frame_PA)
 head(dados_dis)
 ```
 
-Vamos testar a relação entre as diferença na composição de espécies e
+Vamos testar a relação entre as diferenças na composição de espécies e
 precipitação nas comunidades.
 
 ```{r}
@@ -567,7 +567,7 @@ anova(anova_anin)
 
 **Interpretação dos resultados**
 
-Há uma relação positiva entre o componente aninhado da diversidade beta e a diferença na precipitação entre as comunidades (F~1,43~ = 6,4, P = 0,01). Contudo, não há relação entre a diversidade beta total (Sørensen) e o componente substituição de espécies (Simpson) com a precipitação (P \> 0,05).
+Há uma relação positiva entre o componente aninhado da diversidade beta e a diferença na precipitação entre as comunidades (F~1,43~ = 6,4, P = 0,01). Contudo, não há relação entre a diversidade beta total (*Sørensen*) e o componente substituição de espécies (*Simpson*) com a precipitação (P \> 0,05).
 
 Agora vamos fazer um gráfico com o componente aninhamento da diversidade
 beta (Figura \@ref(fig:fig-beta-model)).
@@ -591,7 +591,7 @@ Agora vamos fazer um exemplo considerando os dados de abundância das espécies.
 ::: {.alert .alert-info}
 A função `beta.pair.abund()` gera três listas com matrizes triangulares:
 
--   **Diversidade beta total** = índice de Bray-Curtis (beta.bray)
+-   **Diversidade beta total** = índice de *Bray-Curtis* (beta.bray)
 -   **Componente variação balanceada (beta.bray.bal)**
 -   **Componente gradiente de abundância (beta.bray.gra)**
 :::
@@ -652,7 +652,7 @@ ggplot(data = dados_dis_AB, aes(x = dados_prec, y = Balanceada)) +
 
 **Interpretação dos resultados**
 
-Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente variação balanceada indica que há uma tendência das espécies com maiores abundâncias não serem as mesmas quando comparamos duas comunidades (i.e. maiores valores de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente variação balanceada é baixo, indicando que as mesmas espécies estão dominando a abundância nas comunidades comparadas.
+Olhando o início do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente variação balanceada indica que há uma tendência das espécies com maiores abundâncias não serem as mesmas quando comparamos duas comunidades (i.e. maiores valores de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente variação balanceada é baixo, indicando que as mesmas espécies estão dominando a abundância nas comunidades comparadas.
 
 Vamos fazer agora um gráfico para a variação gradiente da diversidade beta (Figura \@ref(fig:fig-beta-abund-grad-model)).
 
@@ -667,12 +667,12 @@ ggplot(data = dados_dis_AB, aes(x = dados_prec, y = Gradiente)) +
 
 **Interpretação dos resultados**
 
-Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente gradiente indica que há uma tendência das espécies apresentarem abundâncias parecidas (i.e. menor valor de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente gradiente é alto, indicando que as mesmas espécies tem valores discrepantes de abundâncias entre as comunidades. 
+Olhando o início do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente gradiente indica que há uma tendência das espécies apresentarem abundâncias parecidas (i.e. menor valor de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente gradiente é alto, indicando que as mesmas espécies têm valores discrepantes de abundâncias entre as comunidades. 
 
 ## Para se aprofundar
 
 ### Livros
--   Recomendamos a leitura dos artigos citados no capítulo e os livros de Magurran & McGill [-@magurran_biological_2011] - Biological Diversity Frontiers in Measurement and Assessment, e Legendre & Legendre [-@legendre_numerical_2012] - Numerical Ecology.
+-   Recomendamos a leitura dos artigos citados no capítulo e os livros de Magurran & McGill [-@magurran_biological_2011] - *Biological Diversity Frontiers in Measurement and Assessment* e Legendre & Legendre [-@legendre_numerical_2012] - *Numerical Ecology*.
 
 ### Links
 
@@ -687,12 +687,12 @@ Recomendamos a página pessoal do pesquisador Lou Jost que apresenta e discute d
 ## Exercícios
 
 **12.1**
-Carregue os dados - `anuros_composicao` - que está no pacote `ecodados`. Este conjunto de dados representa a abundância de 211 espécies de anuros coletados em 44 localidades na Mata Atlântica. Calcule a riqueza de espécies para cada comunidade e os índices de Margalef, Menhinich, Shannon-Wiener, Gini-Simpson e Equitabilidade de Pielou. Salve todos os resultados em novo `data frame`. Faça uma gráfico usando o função `ggpairs` para ver a correlação entre as métricas. Qual a sua interpretação sobre os resultados?
+Carregue os dados - `anuros_composicao` - que está no pacote `ecodados`. Este conjunto de dados representa a abundância de 211 espécies de anuros coletados em 44 localidades na Mata Atlântica. Calcule a riqueza de espécies para cada comunidade e os índices de Margalef, Menhinich, Shannon-Wiener, Gini-Simpson e Equitabilidade de Pielou. Salve todos os resultados em novo `data frame`. Faça um gráfico usando o função `ggpairs` para ver a correlação entre as métricas. Qual a sua interpretação sobre os resultados?
 
 **12.2**
 Usando os resultados anteriores, selecione as duas comunidades com os maiores e menores valores de Shannon-Wiener. Em seguida, faça um Diagrama de Whittaker. Por fim, interprete as curvas considerando as curvas teóricas (i.e., geométrica, broken-stick, etc.) descritas nos livros de ecologia. 
 
 **12.3**
-Usando os dados - `anuros_composicao` - calcule a partição da diversidade beta considerando os dados de abundância e presença e ausência. a) Faça um gráfico boxplot com os resultados. Discuta se os resultados usando abundância ou presença e ausência são congruentes ou discrepantes. b) Calcule a distância geográfica (use a planilha `anuros_ambientais`) entre as localidaes (use a Distância Euclidiana). Em seguida, faça uma análise de regressão para verificar se as localidades que estão próximas apresentam maior similaridade na composição de espécies (use componente turnover - Bsim) do que as comunidades que estão distantes (e.g., Decaimento da similaridade).
+Usando os dados - `anuros_composicao` - calcule a partição da diversidade beta considerando os dados de abundância e presença e ausência. a) Faça um gráfico boxplot com os resultados. Discuta se os resultados usando abundância ou presença e ausência são congruentes ou discrepantes. b) Calcule a distância geográfica (use a planilha `anuros_ambientais`) entre as localidades (use a Distância Euclidiana). Em seguida, faça uma análise de regressão para verificar se as localidades que estão próximas apresentam maior similaridade na composição de espécies (use componente turnover - Bsim) do que as comunidades que estão distantes (e.g., Decaimento da similaridade).
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-12---diversidade-tax%C3%B4nomica.html).
