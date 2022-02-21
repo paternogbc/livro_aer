@@ -701,8 +701,7 @@ check_zeroinflation(pois_plain) # para diagnosticar se o modelo sofre de zero in
 check_overdispersion(pois_plain)
 ```
 
-A diagnose não só nos disse que o modelo possui *overdispersion*, como também de *zero-inflation*, como já esperávamos. Vejamos então como melhorar o nosso modelo para lidar com esses dois problemas. Especificamente, vamos utilizar um modelo *Hurdle* com binomial negativa truncada (ou seja, desconsiderando os zeros), e um outro modelo *zero-inflated* usando uma distribuição binomial negativa. 
-Aqui vamos utilizar o pacote `glmmTMB`.
+A diagnose não só nos disse que o modelo possui *overdispersion*, como também de *zero-inflation*, como já esperávamos. Vejamos então como melhorar o nosso modelo para lidar com esses dois problemas. Especificamente, vamos utilizar um modelo *Hurdle* com binomial negativa truncada (ou seja, desconsiderando os zeros), e dois outros modelos com *zero-inflated* usando distribuição binomial negativa e Poisson. Aqui vamos utilizar o pacote `glmmTMB`.
 
 ```{r}
 ## Modelos
