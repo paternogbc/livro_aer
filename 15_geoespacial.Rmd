@@ -861,7 +861,7 @@ Para exportar dados raster utilizamos geralmente a função `raster::writeRaster
 Arquivos raster escritos em discos geralmente ocupam bastante espaço, e dessa forma, há parâmetros específicos para certos tipos de dados, que detalharemos a seguir para contornar esse problema e comprimir os arquivos.
 :::
 
-Na função `raster::writeRaster()`, o argumento `x` diz respeito ao objeto raster no ambiente R. O argumento `filename` é nome do arquivo que será exportado do R, podendo ou não possuir a extensão que se pretende que o arquivo tenha. O argumento `format` é o formato do arquivo, sendo as principais possibilidades resumidas na Tabela \@ref(tab:tab-raster-formatos), e para saber das possibilidades suportadas, use a função `raster::writeFormats()`. O argumento `bylayer` diz se múltiplas camadas serão exportada em arquivos diferentes ou em apenas um arquivo.
+Na função `raster::writeRaster()`, o argumento `x` diz respeito ao objeto raster no ambiente R. O argumento `filename` é nome do arquivo que será exportado do R, podendo ou não possuir a extensão que se pretende que o arquivo tenha. O argumento `format` é o formato do arquivo, sendo as principais possibilidades resumidas na Tabela \@ref(tab:tab-raster-formatos), e para saber das possibilidades suportadas, use a função `raster::writeFormats()`. O argumento `bylayer` diz se múltiplas camadas serão exportadas em arquivos diferentes ou em apenas um arquivo.
 
 ```{r tab-raster-formatos, echo=FALSE}
 knitr::kable(
@@ -885,7 +885,7 @@ knitr::kable(
 )
 ```
 
-Outros argumentos de suporte são: `overwrite` para sobrescrever um arquivo que já exista, `progress` para mostrar uma barra de progresso da exportação como "text" ou "window", e `options` que permite opções do GDAL. Para esse último , quando exportar especificamente na extensão `GeoTIFF`, podemos utilizar `options = c("COMPRESS=DEFLATE", "TFW=YES")` para que haja compressão do arquivo, diminuindo consideravelmente seu tamanho (cerca de um terço), aliado à criação de um arquivo auxiliar `.tfw`, para ser carregado em softwares específicos de SIG, como o ArcGIS.
+Outros argumentos de suporte são: `overwrite` para sobrescrever um arquivo que já exista, `progress` para mostrar uma barra de progresso da exportação como "text" ou "window", e `options` que permite opções do GDAL. Para esse último, quando exportar especificamente na extensão `GeoTIFF`, podemos utilizar `options = c("COMPRESS=DEFLATE", "TFW=YES")` para que haja compressão do arquivo, diminuindo consideravelmente seu tamanho (cerca de um terço), aliado à criação de um arquivo auxiliar `.tfw`, para ser carregado em softwares específicos de SIG, como o ArcGIS.
 
 Para exportar apenas uma camada `RasterLayer`, podemos utilizar a função `raster::writeRaster()` em um formato mais simples.
 
@@ -903,7 +903,7 @@ raster::writeRaster(geo_raster_srtm,
                     overwrite = TRUE)
 ```
 
-Para mais de uma camada `RasterBrick` ou `RasterStack`, podemos utilizar a função `raster::writeRaster()` com mais s, como o `bylayer = TRUE`.
+Para mais de uma camada `RasterBrick` ou `RasterStack`, podemos utilizar a função `raster::writeRaster()` com o `bylayer = TRUE`.
 
 ```{r eval=FALSE}
 ## Exportar raster stack
