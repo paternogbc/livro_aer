@@ -79,7 +79,7 @@
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-8"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pacotes e dados que serão utilizados nesse capítulo.</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
@@ -157,7 +157,7 @@
 </ul>
 <p><strong>Análise</strong></p>
 <p>Abaixo, demonstramos os códigos no R para determinar a riqueza de espécies para cada comunidade a partir dos dados de composição de espécies. Os dados estão disponíveis no pacote <code>ecodados</code>.</p>
-<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Ver os dados das comunidades</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span>
 <span class="co">#&gt;       sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10</span>
@@ -168,21 +168,21 @@
 <span class="co">#&gt; Com_5   0   9   0   6   0  11   0   2  12    0</span>
 <span class="co">#&gt; Com_6   3   0   5   0  12   1   0  13  12    0</span></code></pre></div>
 <p>Vamos ver a riqueza de espécies para cada comunidade.</p>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Calculando a riqueza observada de espécies para cada comunidade</span>
 <span class="va">riqueza_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/diversity.html">specnumber</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span>
 <span class="va">riqueza_sp</span>
 <span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span>
 <span class="co">#&gt;     10     10      5      5      5      6      2      4      6      4</span></code></pre></div>
 <p>Vamos ver a abundância total de cada comunidade.</p>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Calculamos a abundância total para cada comunidade</span>
 <span class="va">abundancia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">composicao_especies</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span>
 <span class="va">abundancia</span>
 <span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span>
 <span class="co">#&gt;    100    100     36     81     40     46      4     20     15     11</span></code></pre></div>
 <p>Calculando o Índice de Margalef.</p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Índice de Margalef</span>
 <span class="co"># A função round é para limitar o resultado para duas casas decimais.</span>
 <span class="va">Margalef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="op">(</span><span class="va">riqueza_sp</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">abundancia</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>
@@ -190,14 +190,14 @@
 <span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span>
 <span class="co">#&gt;   1.95   1.95   1.12   0.91   1.08   1.31   0.72   1.00   1.85   1.25</span></code></pre></div>
 <p>Calculando o Índice de Menhinick.</p>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Índice de Menhinick</span>
 <span class="va">Menhinick</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">riqueza_sp</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">abundancia</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">Menhinick</span>
 <span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span>
 <span class="co">#&gt;   1.00   1.00   0.83   0.56   0.79   0.88   1.00   0.89   1.55   1.21</span></code></pre></div>
 <p>Agora vamos analisar a relação entre a riqueza de espécies e a precipitação anual.</p>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Juntando todos os dados em um único data frame</span>
 <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">precipitacao</span><span class="op">$</span><span class="va">prec</span>, <span class="va">riqueza_sp</span>, <span class="va">Margalef</span>, <span class="va">Menhinick</span><span class="op">)</span>
 
@@ -217,7 +217,7 @@
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>Há uma relação positiva entre a riqueza de espécies e a precipitação anual (F<sub>1,8</sub> = 8,91, P = 0,01).</p>
 <p>Analisar a relação entre o Índice de Margalef e a precipitação anual.</p>
-<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="va">anova_marg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Margalef</span> <span class="op">~</span> <span class="va">Precipitacao</span>, data <span class="op">=</span> <span class="va">dados</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">anova_marg</span><span class="op">)</span>
@@ -229,7 +229,7 @@
 <span class="co">#&gt; Residuals     8 1.42879 0.17860</span></code></pre></div>
 <p>Não há uma relação positiva entre o índice de Margalef e a precipitação anual (F<sub>1,8</sub> = 2,12, P = 0,18).</p>
 <p>Agora vamos analisar a relação entre o índice de Menhinick e a precipitação anual.</p>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="va">anova_menh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Menhinick</span> <span class="op">~</span> <span class="va">Precipitacao</span>, data <span class="op">=</span> <span class="va">dados</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">anova_menh</span><span class="op">)</span>
@@ -241,7 +241,7 @@
 <span class="co">#&gt; Residuals     8 0.55503 0.069378</span></code></pre></div>
 <p>Não há uma relação positiva entre o índice de Menhinick e a precipitação anual (F<sub>1,8</sub> = 1,09, P = 0,32).</p>
 <p>Com base nos resultados, vamos plotar apenas o gráfico com os resultados da riqueza de espécies ao longo do gradiente de precipitação anual (Figura <a href="cap12.html#fig:fig-alfa-model">12.1</a>).</p>
-<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dados</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">Precipitacao</span>, y<span class="op">=</span> <span class="va">Riqueza</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Precipitação anual (mm)"</span>, y <span class="op">=</span> <span class="st">"Riqueza de espécies"</span><span class="op">)</span> <span class="op">+</span>
@@ -250,8 +250,8 @@
     <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-alfa-model"></span>
-<img src="livro_files/figure-html/fig-alfa-model-1.png" alt="Gráfico do modelo linear da relação entre riqeuza e precipitação." width="100%" height="100%"><p class="caption">
-Figura 12.1: Gráfico do modelo linear da relação entre riqeuza e precipitação.
+<img src="livro_files/figure-html/fig-alfa-model-1.png" alt="Gráfico do modelo linear da relação entre riqueza e precipitação." width="100%" height="100%"><p class="caption">
+Figura 12.1: Gráfico do modelo linear da relação entre riqueza e precipitação.
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
@@ -272,12 +272,12 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 </div>
 <p>Os dois índices de diversidade mais usados em Ecologia são:</p>
 <p><strong>1. Índice de Shannon-Wiener</strong></p>
-<p>Quantifica a incerteza associada em predizer a identidade de uma espécie dado o número de espécies e a distribuição de abundância para cada espécie. Este índice é mais sensível à mudanças nas espécies raras da comunidade.</p>
+<p>Quantifica a incerteza associada em predizer a identidade de uma espécie dado o número de espécies e a distribuição de abundância para cada espécie. Este índice é mais sensível às mudanças nas espécies raras da comunidade.</p>
 <p><span class="math display">\[H' = -\sum_{i=1}^{S}p_i * ln p_i\]</span></p>
 <p>onde:</p>
 <ul>
 <li>p<sub>i</sub> = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade</li>
-<li>ln = logaritmo natural, mas outras bases logarítmas podem ser utilizadas</li>
+<li>ln = logaritmo natural, mas outras bases logarítmicas podem ser utilizadas</li>
 <li>H’ = não tem um valor máximo e sua interpretação é comparativa, com valores maiores indicando maior diversidade</li>
 </ul>
 <p><strong>2. Índice de Simpson</strong></p>
@@ -293,7 +293,7 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 <p>Usaremos os mesmos dados simulados do exemplo prático 1.</p>
 <p><strong>Pergunta</strong></p>
 <ul>
-<li>A variação espacial na diversidade de espécies das comunidades está associado com o gradiente de precipitação?</li>
+<li>A variação espacial na diversidade de espécies das comunidades está associada com o gradiente de precipitação?</li>
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
@@ -301,7 +301,7 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 </ul>
 <p><strong>Análise</strong></p>
 <p>Abaixo demonstramos os códigos no R para determinar a diversidade de espécies para cada comunidade a partir da planilha de composição de espécies.</p>
-<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Índice de Shannon</span>
 <span class="co"># MARGIN = 1 significa que a função irá calcular o índice considerando </span>
 <span class="co"># as linhas do data.frame (comunidades).</span>
@@ -310,14 +310,14 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 <span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span>
 <span class="co">#&gt; 2.3025851 0.5002880 0.9580109 1.6068659 1.4861894 1.5607038 0.6931472 1.1058899 1.7140875 1.2636544</span></code></pre></div>
 <p>O argumento <code>index = "simpson"</code>, calcula o índice Gini-Simpson (1-D).</p>
-<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Índice de Simpson</span>
 <span class="va">simpson_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/diversity.html">diversity</a></span><span class="op">(</span><span class="va">composicao_especies</span>, index <span class="op">=</span> <span class="st">"simpson"</span>, MARGIN <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> 
 <span class="va">simpson_res</span>
 <span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span>
 <span class="co">#&gt; 0.9000000 0.1710000 0.4814815 0.7989636 0.7587500 0.7674858 0.5000000 0.5850000 0.8088889 0.6942149</span></code></pre></div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies (Shannon-Wiener = 2,3 e Gini-Simpson = 0.9), enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade (Shannon-Wiener = 0,5 e Gini-Simpson = 0,17). Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas o padrão de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade.</p>
+<p>A comunidade 1 foi a comunidade que apresentou a maior diversidade de espécies (Shannon-Wiener = <code>2,3</code> e Gini-Simpson = <code>0.9</code>), enquanto a comunidade 2 foi a comunidade que apresentou a menor diversidade (Shannon-Wiener = <code>0,5</code> e Gini-Simpson = <code>0,17</code>). Gostaríamos de chamar a atenção para a importância da distribuição da abundância relativa das espécies dentro das comunidades. Percebam que tanto a comunidade 1 quanto a comunidade 2 abrigam o mesmo número de espécies (10 espécies) e abundância total (100 indivíduos), mas os padrões de distribuição da abundância relativa entre as espécies dentro das comunidades são bem discrepantes. Na comunidade 1 as espécies apresentam abundâncias semelhantes entre elas (i.e. alta equitabilidade), enquanto na comunidade 2 uma espécie é dominante e as outras raras (i.e. baixa equitabilidade). Essa diferença na distribuição da abundância relativa entre as comunidades é um fator muito importante para os índices de diversidade.</p>
 <p>Dentro desta perspectiva, alguns índices fornecem uma estimativa sobre a equitabilidade da distribuição da abundância nas comunidades. Entre eles, o mais conhecido foi proposto por Pielou <span class="citation">(<a href="refer%C3%AAncias.html#ref-pielou1966" role="doc-biblioref">1966</a>)</span>.</p>
 <p><strong>Índice de Equabilidade (ou Equitabilidade) de Pielou</strong></p>
 <p>É uma métrica derivada do índice de Shannon-Wiener que descreve o padrão de distribuição da abundância relativa das espécies na comunidade.</p>
@@ -330,11 +330,11 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 <li>Se todas as espécies apresentam a mesma abundância relativa, então J = 1. Se uma espécie apresenta forte dominância, J aproxima-se de zero</li>
 </ul>
 <p>Não há uma função no R que calcule o índice de Pielou, mas ele pode facilmente ser calculado usando os valores de diversidade de Shannon-Wiener e o logaritmo da riqueza de espécies de cada comunidade.</p>
-<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Índice de Pielou</span>
 <span class="va">Pielou</span> <span class="op">&lt;-</span> <span class="va">shannon_res</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/diversity.html">specnumber</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Agora que temos uma ideia de como a riqueza de espécies e a distribuição da abundância relativa são importantes para quantificar os valores dos índices de diversidade, vamos testar se há alguma relação entre os índices de diversidade e precipitação anual nas comunidades.</p>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Juntando todos os dados em um único data frame</span>
 <span class="va">dados_div</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">precipitacao</span><span class="op">$</span><span class="va">prec</span>, <span class="va">shannon_res</span>, 
                         <span class="va">simpson_res</span>, <span class="va">Pielou</span><span class="op">)</span>
@@ -342,7 +342,7 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 <span class="co">## Renomeando as colunas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dados_div</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Precipitacao"</span>, <span class="st">"Shannon"</span>, <span class="st">"Simpson"</span>, <span class="st">"Pielou"</span><span class="op">)</span></code></pre></div>
 <p>Vamos realizar uma regressão simples para verificar a relação entre o índice de Shannon-Wiener e a precipitação anual nas comunidades.</p>
-<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="va">anova_shan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Shannon</span> <span class="op">~</span> <span class="va">Precipitacao</span>, data <span class="op">=</span> <span class="va">dados_div</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">anova_shan</span><span class="op">)</span>
@@ -353,7 +353,7 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 <span class="co">#&gt; Precipitacao  1 0.10989 0.10989  0.3627 0.5637</span>
 <span class="co">#&gt; Residuals     8 2.42366 0.30296</span></code></pre></div>
 <p>Agora, vamos realizar uma regressão simples para verificar a relação entre o índice de Simpson e a precipitação anual nas comunidades.</p>
-<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="va">anova_simp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Simpson</span> <span class="op">~</span> <span class="va">Precipitacao</span>, data <span class="op">=</span> <span class="va">dados_div</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">anova_simp</span><span class="op">)</span>
@@ -364,7 +364,7 @@ Ressaltamos que há várias críticas em relação ao uso dos índices de divers
 <span class="co">#&gt; Precipitacao  1 0.00132 0.001325  0.0252 0.8778</span>
 <span class="co">#&gt; Residuals     8 0.42064 0.052580</span></code></pre></div>
 <p>Por fim, vamos fazer regressão simples para verificar a relação entre o índice de Pielou e a precipitação anual nas comunidades.</p>
-<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="va">anova_piel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Pielou</span> <span class="op">~</span> <span class="va">Precipitacao</span>, data <span class="op">=</span> <span class="va">dados_div</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">anova_piel</span><span class="op">)</span>
@@ -387,7 +387,7 @@ As análises acima são apenas ilustrativas. Não estamos avaliando as premissas
 </h3>
 <p>Embora os índices de diversidade de espécies englobem os componentes de riqueza e abundância relativa das espécies nas suas estimativas, não é possível conhecer o número de espécies ou quais são as espécies dominantes ou raras dentro das comunidades. Por exemplo, duas comunidades podem ter o mesmo valor de diversidade e ainda assim apresentarem diferenças na riqueza e equitabilidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-melo2008" role="doc-biblioref">Melo 2008</a>)</span>. O <strong>Diagrama de Whittaker</strong> é um método que lida com essas questões utilizando informações visuais do número de espécies e abundância relativa de cada espécie nas comunidades. Este método plota as espécies ranqueadas no eixo X da mais abundante para a menos abundante, enquanto no eixo Y as abundâncias relativas das espécies são plotadas em escala logarítmica (log<sub>10</sub>). Este gráfico permite ao leitor reconhecer: i) a riqueza de espécies observando o eixo X, ii) a equitabilidade da abundância relativa das espécies pela inclinação da reta, e iii) quais são as espécies dominantes, intermediárias e raras nas comunidades através da observação em relação ao eixo Y. A partir destas curvas, vários autores propuseram modelos matemáticos para explicar a distribuição de abundância das espécies gerando diferentes modelos teóricos (e.g. série geométrica, <em>broken-stick</em>, log-series e log-normal). Cada modelo possui predições distintas: o modelo geométrico prediz distribuição de abundâncias desiguais, <em>broken-stick</em> prediz distribuição de abundâncias uniformes, enquanto log-normal e log-series são intermediárias com predições distintas sobre as proporções de espécies raras - alta em log-series, baixa em log-normal (veja McGill et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-mcgill2007" role="doc-biblioref">2007</a>)</span> para revisão).</p>
 <p>Para análises exploratórias onde você tem interesse em visualizar o padrão da distribuição relativa das espécies por comunidade, a função <code>rankabundance</code> do pacote <code>BiodiversityR</code> é uma opção interessante (Figura <a href="cap12.html#fig:fig-whittaker">12.2</a>).</p>
-<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cálculo da curva para as comunidades 2 e 3</span>
 <span class="va">rank_com2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/rankabundance.html">rankabundance</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">[</span><span class="fl">2</span>, <span class="va">composicao_especies</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span>
 <span class="va">rank_com3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/rankabundance.html">rankabundance</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">[</span><span class="fl">3</span>, <span class="va">composicao_especies</span><span class="op">[</span><span class="fl">3</span>,<span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span>
@@ -426,7 +426,7 @@ Figura 12.2: Diagramas de Whittaker para duas comunidades.
 </div>
 <p>Você pode realizar as análises separadamente para cada comunidade ou para todas as comunidades ao mesmo tempo.</p>
 <p>Vamos começar avaliando separadamente a Comunidade 2.</p>
-<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Teste das curvas de distribuição de abundâncias</span>
 <span class="va">curvas_dominancia_com2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/radfit.html">radfit</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span><span class="op">)</span>
 <span class="va">curvas_dominancia_com2</span>
@@ -441,7 +441,7 @@ Figura 12.2: Diagramas de Whittaker para duas comunidades.
 <span class="co">#&gt; Zipf        0.83829 -3.0254              26.612   54.963  55.568</span>
 <span class="co">#&gt; Mandelbrot  0.83829 -3.0254  1.6448e-07  26.612   56.963  57.871</span></code></pre></div>
 <p>Agora vamos fazer um gráfico com as predições dos modelos (Figura <a href="cap12.html#fig:fig-whittaker-teste">12.3</a>).</p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">curvas_dominancia_com2</span>, 
      ylab <span class="op">=</span> <span class="st">"Abundância"</span>, 
      xlab <span class="op">=</span> <span class="st">"Ranqueamento das espécies"</span><span class="op">)</span></code></pre></div>
@@ -452,9 +452,9 @@ Figura 12.3: Teste de cinco Diagramas de Whittaker para a Comunidade 2.
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matématicos. Com base nos valores de AIC (veja Capítulo <a href="cap7.html#cap7">7</a>), o modelo <strong>Zipf</strong> é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.</p>
+<p>Os pontos brancos representam as espécies ranqueadas de acordo com a abundância e as linhas representam as predições dos modelos matemáticos. Com base nos valores de AIC (veja Capítulo <a href="cap7.html#cap7">7</a>), o modelo <strong>Zipf</strong> é o melhor modelo que explica a distribuição da abundância relativa das espécies na Comunidade 2.</p>
 <p>Agora vamos analisar os dados considerando todas as comunidades (Figura <a href="cap12.html#fig:fig-whittaker-testes">12.4</a>).</p>
-<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Teste das curvas de distribuição de abundâncias</span>
 <span class="va">curvas_dominancia_todas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/radfit.html">radfit</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span>
 <span class="va">curvas_dominancia_todas</span>
@@ -499,33 +499,33 @@ A ligação entre o modelo matemático e a explicação biológica precisa ser i
 <p><span class="math display">\[^qD = (\sum_{i=1}^{S}p_i^q)^{1/(1-q)}\]</span></p>
 <p>Onde:</p>
 <ul>
-<li><p>q = é um parâmetro conhecido como ordem da diversidade e é usado para dar peso às espécies comuns ou raras. q = 0 não considera a frequência das espécies e representa a riqueza observada de espécies, q = 1 equivale a transformação do índice de Shannon-Wiener (i.e. exp(H’)) e atribui pesos às espécies com base na proporção das suas frequências e, q = 2 equivale à transformação do índice de Gini-Simpson (i.e. 1/(1-D)) e atribui peso às espécies mais comuns. Valores de q &lt;1 favorecem espécies raras, enquanto valores de q &gt; 1 favorecem espécies comuns.</p></li>
+<li><p><code>q</code> = é um parâmetro conhecido como ordem da diversidade e é usado para dar peso às espécies comuns ou raras. <code>q = 0</code> não considera a frequência das espécies e representa a riqueza observada de espécies, <code>q = 1</code> equivale a transformação do índice de Shannon-Wiener (i.e. <code>exp(H')</code>) e atribui pesos às espécies com base na proporção das suas frequências e, <code>q = 2</code> equivale à transformação do índice de Gini-Simpson (i.e. <code>1/(1-D)</code>) e atribui peso às espécies mais comuns. Valores de <code>q \&lt;1</code> favorecem espécies raras, enquanto valores de <code>q \&gt; 1</code> favorecem espécies comuns.</p></li>
 <li><p>p<sub>i</sub> = abundância relativa de cada espécie, calculada pela proporção dos indivíduos de uma espécie pelo número total dos indivíduos na comunidade</p></li>
 </ul>
 <p>Vamos calcular o Número de Hill para as comunidades do nosso exemplo.</p>
-<p>Calculando o Número de Hill com q = 0.</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<p>Calculando o Número de Hill com <code>q = 0</code>.</p>
+<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número de Hill para q = 0</span>
 <span class="va">hill_res_q_0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/hillR/man/hill_taxa.html">hill_taxa</a></span><span class="op">(</span><span class="va">composicao_especies</span>, q  <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
 <span class="va">hill_res_q_0</span>
 <span class="co">#&gt;  Com_1  Com_2  Com_3  Com_4  Com_5  Com_6  Com_7  Com_8  Com_9 Com_10 </span>
 <span class="co">#&gt;     10     10      5      5      5      6      2      4      6      4</span></code></pre></div>
-<p>Calculando o Número de Hill com q = 1.</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<p>Calculando o Número de Hill com <code>q = 1</code>.</p>
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número de Hill para q = 1</span>
 <span class="va">hill_res_q_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/hillR/man/hill_taxa.html">hill_taxa</a></span><span class="op">(</span><span class="va">composicao_especies</span>, q  <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="va">hill_res_q_1</span>
 <span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span>
 <span class="co">#&gt; 10.000000  1.649196  2.606507  4.987156  4.420220  4.762172  2.000000  3.021912  5.551608  3.538328</span></code></pre></div>
-<p>Calculando o Número de Hill com q = 2.</p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<p>Calculando o Número de Hill com <code>q = 2</code>.</p>
+<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número de Hill para q = 2</span>
 <span class="va">hill_res_q_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/hillR/man/hill_taxa.html">hill_taxa</a></span><span class="op">(</span><span class="va">composicao_especies</span>, q  <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">hill_res_q_2</span>
 <span class="co">#&gt;     Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9    Com_10 </span>
 <span class="co">#&gt; 10.000000  1.206273  1.928571  4.974223  4.145078  4.300813  2.000000  2.409639  5.232558  3.270270</span></code></pre></div>
 <p>Criando um data frame com os três resultados anteriores.</p>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resultados</span>
 <span class="va">res_hill</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">hill_res_q_0</span>, <span class="va">hill_res_q_1</span>, <span class="va">hill_res_q_2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">res_hill</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"q=0"</span>, <span class="st">"q=1"</span>, <span class="st">"q=2"</span><span class="op">)</span>
@@ -550,20 +550,20 @@ Neste ponto, esperamos que tenha ficado claro que mais do que a riqueza de espé
 <span class="header-section-number">12.3</span> Diversidade beta<a class="anchor" aria-label="anchor" href="#diversidade-beta"><i class="fas fa-link"></i></a>
 </h2>
 <p>O termo diversidade beta foi proposto por Whittker <span class="citation">(<a href="refer%C3%AAncias.html#ref-whittaker1960" role="doc-biblioref">1960</a>)</span> e foi definido como a razão entre a diversidade gama e a diversidade alfa (i.e. diversidade beta multiplicativa), quantificando não só a relação entre a diversidade regional e local, mas também o grau de diferenciação entre as comunidades. Para demonstrar como a diversidade beta varia entre comunidades locais dentro de uma região usaremos a explicação do Baselga (<a href="http://webspersoais.usc.es/persoais/andres.baselga/beta.html" class="uri">http://webspersoais.usc.es/persoais/andres.baselga/beta.html</a>). Imagine três comunidades, cada comunidade abrigando as mesmas cinco espécies. Neste caso, a média da diversidade alfa = 5, a diversidade gama = 5 e a razão entre elas (gama/alfa) indica uma diversidade beta = 1. Isso significa que na região existe apenas uma unidade distinta de composição. Quando a composição de espécies das três comunidades é completamente diferente (i.e. diferenciação máxima), temos que a média da diversidade alfa = 5, a diversidade gama = 15 e a razão entre elas indica uma diversidade beta = 3. Neste caso, existem três unidades distintas dentro da região. Assim, a diversidade beta multiplicativa varia de 1 até o número de comunidades dentro da região.</p>
-<p>A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de Jaccard e Sørensen) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span> e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (<em>turnover</em>) entre comunidades. Contudo, índices de (dis)similaridade como Jaccard e Sørensen geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">2010</a>, <a href="refer%C3%AAncias.html#ref-baselga2012" role="doc-biblioref">2012</a>)</span> propôs uma abordagem que particiona a diversidade beta total (<span class="math inline">\(\beta\)</span><sub>jac</sub>) em dois componentes: o componente resultante da substituição de espécies (<em>turnover</em> - <span class="math inline">\(\beta\)</span><sub>tur</sub>) e o componente resultante do aninhamento (<em>nestedness</em>, i.e. diferença na riqueza de espécies - <span class="math inline">\(\beta\)</span><sub>nes</sub>). Vejam a (Figura <a href="cap12.html#fig:fig-div-beta">12.5</a>) onde temos 3 comunidades (X, Y e Z). No primeiro exemplo, temos apenas diferença no número de espécies entre as comunidades. Neste caso, o componente subsituição de espécies (<span class="math inline">\(\beta\)</span><sub>tur</sub>) é zero porque as espécies na comunidade Z são um sub-grupo das espécies nas comunidades X e Y. O mesmo para as espécies na comunidade Y que são um sub-grupo das espécies da comunidade X. No segundo exemplo, temos o cenário oposto com as comunidades abrigando a mesma riqueza de espécies e assim, o componente resultante do aninhamento (<span class="math inline">\(\beta\)</span><sub>nes</sub>) é zero, temos um valor máximo para o <span class="math inline">\(\beta\)</span><sub>tur</sub>. Percebam que somando <span class="math inline">\(\beta\)</span><sub>tur</sub> com <span class="math inline">\(\beta\)</span><sub>nes</sub> temos o valor da diversidade beta total (<span class="math inline">\(\beta\)</span><sub>jac</sub>). Baselga <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2013" role="doc-biblioref">2013</a>)</span> também propôs a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies <em>versus</em> perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>, <a href="refer%C3%AAncias.html#ref-baselga2012" role="doc-biblioref">2012</a>, <a href="refer%C3%AAncias.html#ref-baselga2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p>A maioria dos índices de (dis)similaridade utilizadas na ecologia (e.g. índices de <em>Jaccard</em> e <em>Sørensen</em>) são índices que padronizam a diversidade beta e geram valores independentes do número de comunidades. Eles podem ser calculados para dados de incidência (presença e ausência) ou abundância <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span> e considerando comparações par-a-par entre as comunidades ou comparação entre múltiplas comunidades (i.e. multiple-site). Por muito tempo, os valores de (dis)similaridade foram interpretados como sinônimo de substituição de espécies (<em>turnover</em>) entre comunidades. Contudo, índices de (dis)similaridade como <em>Jaccard</em> e <em>Sørensen</em> geram valores de (dis)similaridade para comunidades que não apresentam diferenças na composição de espécies, mas apresentam diferenças na riqueza de espécies (i.e. comunidades aninhadas). Pensando nestes fatores, Baselga <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">2010</a>, <a href="refer%C3%AAncias.html#ref-baselga2012" role="doc-biblioref">2012</a>)</span> propôs uma abordagem que particiona a diversidade beta total (<span class="math inline">\(\beta\)</span><sub>jac</sub>) em dois componentes: o componente resultante da substituição de espécies (<em>turnover</em> - <span class="math inline">\(\beta\)</span><sub>tur</sub>) e o componente resultante do aninhamento (<em>nestedness</em>, i.e. diferença na riqueza de espécies - <span class="math inline">\(\beta\)</span><sub>nes</sub>). Vejam a (Figura <a href="cap12.html#fig:fig-div-beta">12.5</a>) onde temos 3 comunidades (X, Y e Z). No primeiro exemplo, temos apenas diferença no número de espécies entre as comunidades. Neste caso, o componente subsituição de espécies (<span class="math inline">\(\beta\)</span><sub>tur</sub>) é zero porque as espécies na comunidade Z são um sub-grupo das espécies nas comunidades X e Y. O mesmo para as espécies na comunidade Y que são um sub-grupo das espécies da comunidade X. No segundo exemplo, temos o cenário oposto com as comunidades abrigando a mesma riqueza de espécies e assim, o componente resultante do aninhamento (<span class="math inline">\(\beta\)</span><sub>nes</sub>) é zero, temos um valor máximo para o <span class="math inline">\(\beta\)</span><sub>tur</sub>. Percebam que somando <span class="math inline">\(\beta\)</span><sub>tur</sub> com <span class="math inline">\(\beta\)</span><sub>nes</sub> temos o valor da diversidade beta total (<span class="math inline">\(\beta\)</span><sub>jac</sub>). Baselga <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2013" role="doc-biblioref">2013</a>)</span> também propôs a partição da diversidade beta para índices de dissimilaridade que lidam com dados de abundância. Neste caso os componentes da diversidade beta são chamados de variação balanceada na abundância (similar ao componente substituição de espécies) e gradiente de abundância (similar ao componente aninhamento). Reconhecer estes componentes da diversidade beta é importante porque eles apresentam padrões distintos (substituição de espécies <em>versus</em> perda ordenada de espécies), que provavelmente estão sendo gerados por processos ecológicos diferentes <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>, <a href="refer%C3%AAncias.html#ref-baselga2012" role="doc-biblioref">2012</a>, <a href="refer%C3%AAncias.html#ref-baselga2013" role="doc-biblioref">2013</a>)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-div-beta"></span>
-<img src="img/cap12_fig01.png" alt="Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois." width="100%" height="100%"><p class="caption">
-Figura 12.5: Partição da diversidade beta taxonômica. Os três cenários apresentados representama a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.
+<img src="img/cap12_fig01.png" alt="Partição da diversidade beta taxonômica. Os três cenários apresentados representam a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois." width="100%" height="100%"><p class="caption">
+Figura 12.5: Partição da diversidade beta taxonômica. Os três cenários apresentados representam a diversidade beta explicada somente por substituição, aninhamento e uma combinação dos dois.
 </p>
 </div>
 <p>Aqui, vamos demonstrar alguns exemplos de como calcular a partição da diversidade beta para os dados deste capítulo.</p>
 <p>Para isso, primeiro vamos transformar nossos dados de abundância em presença e ausência.</p>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Transformando dados em presencia e ausência.</span>
 <span class="va">composicao_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">composicao_especies</span>, method <span class="op">=</span> <span class="st">"pa"</span><span class="op">)</span></code></pre></div>
 <p>Calculando a diversidade beta par a par usando os dados de presença e ausência.</p>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diversidade beta</span>
 <span class="va">resultado_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/betapart/man/beta.pair.html">beta.pair</a></span><span class="op">(</span><span class="va">composicao_PA</span>, index.family <span class="op">=</span> <span class="st">"sorensen"</span><span class="op">)</span></code></pre></div>
 <div class="alert alert-info">
@@ -571,15 +571,15 @@ Figura 12.5: Partição da diversidade beta taxonômica. Os três cenários apre
 A função <code><a href="https://rdrr.io/pkg/betapart/man/beta.pair.html">beta.pair()</a></code> gera três listas com matrizes triangulares:</p>
 <ul>
 <li>
-<strong>Diversidade beta total</strong> = índice de Sørensen (beta.sor)</li>
+<strong>Diversidade beta total</strong> = índice de <em>Sørensen</em> (beta.sor)</li>
 <li>
-<strong>Componente de substituição</strong> = índice de Simpson (beta.sim)</li>
+<strong>Componente de substituição</strong> = índice de <em>Simpson</em> (beta.sim)</li>
 <li>
 <strong>Componente de aninhamento</strong> = diferença na riqueza (beta.sne)</li>
 </ul>
 </div>
 <p>Vamos olhar os resultados da diversidade beta total.</p>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resultados</span>
 <span class="va">resultado_PA</span><span class="op">$</span><span class="va">beta.sor</span>
 <span class="co">#&gt;            Com_1     Com_2     Com_3     Com_4     Com_5     Com_6     Com_7     Com_8     Com_9</span>
@@ -592,8 +592,8 @@ A função <code><a href="https://rdrr.io/pkg/betapart/man/beta.pair.html">beta.
 <span class="co">#&gt; Com_8  0.4285714 0.4285714 0.7777778 0.3333333 0.3333333 0.2000000 1.0000000                    </span>
 <span class="co">#&gt; Com_9  0.2500000 0.2500000 0.4545455 0.4545455 0.2727273 0.5000000 0.7500000 0.4000000          </span>
 <span class="co">#&gt; Com_10 0.4285714 0.4285714 0.3333333 0.7777778 0.5555556 0.4000000 0.6666667 0.7500000 0.6000000</span></code></pre></div>
-<p>Vamos montar um data.frame com os resultados</p>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
+<p>Vamos montar um data frame com os resultados</p>
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data frame com os resultados</span>
 <span class="va">data.frame_PA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultado_PA</span><span class="op">$</span><span class="va">beta.sor</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,
                             <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultado_PA</span><span class="op">$</span><span class="va">beta.sim</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,
@@ -609,10 +609,10 @@ A função <code><a href="https://rdrr.io/pkg/betapart/man/beta.pair.html">beta.
 <span class="co">#&gt; 6     0.67       0        0.67</span></code></pre></div>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
-Percebam que a primeira linha e primeira coluna do data frame (i.e., 0.00) representa a dissimilaridade de Sørensen entre a Com1 e Com2 (compare com os valores da matriz triangular acima). As linhas subsequentes representam a dissimilaridade da Com1 com todas as outras comunidades, depois da Com2 com todas as comunidades e assim sucessivamente. Lembrem-se que os componentes, subsituição (Simpson) e aninhamento (beta.sor - beta.sim), são um desdobramento da diversidade beta total (Sørensen). Assim, a soma da dissimilaridade de Simpson e aninhamento é igual ao valor de dissimilaridade de Sørensen <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>, <a href="refer%C3%AAncias.html#ref-baselga2012" role="doc-biblioref">2012</a>)</span>.</p>
+Percebam que a primeira linha e primeira coluna do data frame (i.e., 0.00) representa a dissimilaridade de <em>Sørensen</em> entre a Com1 e Com2 (compare com os valores da matriz triangular acima). As linhas subsequentes representam a dissimilaridade da Com1 com todas as outras comunidades, depois da Com2 com todas as comunidades e assim sucessivamente. Lembrem-se que os componentes, subsituição (<em>Simpson</em>) e aninhamento, são um desdobramento da diversidade beta total (<em>Sørensen</em>). Assim, a soma da dissimilaridade de <em>Simpson</em> e aninhamento é igual ao valor de dissimilaridade de <em>Sørensen</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-baselga2009" role="doc-biblioref">Baselga 2010</a>, <a href="refer%C3%AAncias.html#ref-baselga2012" role="doc-biblioref">2012</a>)</span>.</p>
 </div>
 <p>Vamos calcular a dissimilaridade entre a precipitação anual das comunidades usando o índice de distância euclidiana. Vejam a ajuda da função <code><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist()</a></code> que calcula 17 índices diferentes de dissimilaridade.</p>
-<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dissimilaridade</span>
 <span class="va">prec_dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">precipitacao</span>, method <span class="op">=</span> <span class="st">"euclidian"</span><span class="op">)</span>
 <span class="va">dados_prec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">prec_dis</span><span class="op">)</span> </code></pre></div>
@@ -622,7 +622,7 @@ Percebam que a primeira linha e primeira coluna do data frame (i.e., 0.00) repre
 As comunidades devem estar dispostas na mesma ordem nas duas planilhas (composição de espécies e precipitação) para que os resultados representem as dissimilaridades par a par para as mesmas comunidades no data frame.</p>
 </div>
 <p>Criando data frame.</p>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data frame</span>
 <span class="va">dados_dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">dados_prec</span>, <span class="va">data.frame_PA</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_dis</span><span class="op">)</span>
@@ -633,9 +633,9 @@ As comunidades devem estar dispostas na mesma ordem nas duas planilhas (composi�
 <span class="co">#&gt; 4        294     0.33       0        0.33</span>
 <span class="co">#&gt; 5        195     0.25       0        0.25</span>
 <span class="co">#&gt; 6       2270     0.67       0        0.67</span></code></pre></div>
-<p>Vamos testar a relação entre as diferença na composição de espécies e
+<p>Vamos testar a relação entre as diferenças na composição de espécies e
 precipitação nas comunidades.</p>
-<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="co"># Avaliar a relação entre os valores de diversidade beta total (Sørensen) e precipitação.</span>
 <span class="va">anova_sore</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Sorensen</span> <span class="op">~</span> <span class="va">dados_prec</span>, data <span class="op">=</span> <span class="va">dados_dis</span><span class="op">)</span>
@@ -669,10 +669,10 @@ precipitação nas comunidades.</p>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Há uma relação positiva entre o componente aninhado da diversidade beta e a diferença na precipitação entre as comunidades (F<sub>1,43</sub> = 6,4, P = 0,01). Contudo, não há relação entre a diversidade beta total (Sørensen) e o componente substituição de espécies (Simpson) com a precipitação (P &gt; 0,05).</p>
+<p>Há uma relação positiva entre o componente aninhado da diversidade beta e a diferença na precipitação entre as comunidades (F<sub>1,43</sub> = 6,4, P = 0,01). Contudo, não há relação entre a diversidade beta total (<em>Sørensen</em>) e o componente substituição de espécies (<em>Simpson</em>) com a precipitação (P &gt; 0,05).</p>
 <p>Agora vamos fazer um gráfico com o componente aninhamento da diversidade
 beta (Figura <a href="cap12.html#fig:fig-beta-model">12.6</a>).</p>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dados_dis</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dados_prec</span>, y <span class="op">=</span> <span class="va">Aninhamento</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">21</span>, fill <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
@@ -693,17 +693,17 @@ Figura 12.6: Relação entre o componente de aninhamento da diversidade beta e a
 <p>A função <code><a href="https://rdrr.io/pkg/betapart/man/beta.pair.abund.html">beta.pair.abund()</a></code> gera três listas com matrizes triangulares:</p>
 <ul>
 <li>
-<strong>Diversidade beta total</strong> = índice de Bray-Curtis (beta.bray)</li>
+<strong>Diversidade beta total</strong> = índice de <em>Bray-Curtis</em> (beta.bray)</li>
 <li><strong>Componente variação balanceada (beta.bray.bal)</strong></li>
 <li><strong>Componente gradiente de abundância (beta.bray.gra)</strong></li>
 </ul>
 </div>
 <p>Análise.</p>
-<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diversidade beta para abundância</span>
 <span class="va">resultado_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/betapart/man/beta.pair.abund.html">beta.pair.abund</a></span><span class="op">(</span><span class="va">composicao_especies</span>, index.family <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></code></pre></div>
 <p>Cria um data frame com os resultados.</p>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data frame</span>
 <span class="co"># Vamos montar um data.frame com os resultados.</span>
 <span class="va">data.frame_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">resultado_AB</span><span class="op">$</span><span class="va">beta.bray</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,
@@ -722,7 +722,7 @@ Figura 12.6: Relação entre o componente de aninhamento da diversidade beta e a
 <span class="co">## Agora vamos juntar os resultados com a precipitação</span>
 <span class="va">dados_dis_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">dados_prec</span>, <span class="va">data.frame_AB</span><span class="op">)</span></code></pre></div>
 <p>Testar a relação da dissimilaridade considerando a abundância com a diferença na precipitação entre as comunidades.</p>
-<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="co"># Avaliar a relação entre os valores de diversidade beta total e precipitação</span>
 <span class="va">anova_dis_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Bray</span> <span class="op">~</span> <span class="va">dados_prec</span>, data <span class="op">=</span> <span class="va">dados_dis_AB</span><span class="op">)</span>
@@ -760,7 +760,7 @@ Figura 12.6: Relação entre o componente de aninhamento da diversidade beta e a
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Há uma relação positiva entre os componentes variação balanceada (F<sub>1,43</sub> = 7,07, P = 0,01) e gradiente (F<sub>1,43</sub> = 18,7, P &lt; 0,001) de abundância da diversidade beta com a diferença na precipitação entre as comunidades. Contudo, não há relação entre a diversidade beta total (Bray) com a precipitação (F<sub>1,43</sub> = 0,84, P = 0,36).</p>
 <p>Vamos fazer um gráfico para a variação balanceada da diversidade beta (Figura <a href="cap12.html#fig:fig-beta-abund-balan-model">12.7</a>).</p>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dados_dis_AB</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dados_prec</span>, y <span class="op">=</span> <span class="va">Balanceada</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">21</span>, fill <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
@@ -774,9 +774,9 @@ Figura 12.7: Relação entre o componente variação balanceada da diversidade b
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente variação balanceada indica que há uma tendência das espécies com maiores abundâncias não serem as mesmas quando comparamos duas comunidades (i.e. maiores valores de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente variação balanceada é baixo, indicando que as mesmas espécies estão dominando a abundância nas comunidades comparadas.</p>
+<p>Olhando o início do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente variação balanceada indica que há uma tendência das espécies com maiores abundâncias não serem as mesmas quando comparamos duas comunidades (i.e. maiores valores de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente variação balanceada é baixo, indicando que as mesmas espécies estão dominando a abundância nas comunidades comparadas.</p>
 <p>Vamos fazer agora um gráfico para a variação gradiente da diversidade beta (Figura <a href="cap12.html#fig:fig-beta-abund-grad-model">12.8</a>).</p>
-<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dados_dis_AB</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dados_prec</span>, y <span class="op">=</span> <span class="va">Gradiente</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">21</span>, fill <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
@@ -790,23 +790,23 @@ Figura 12.8: Relação entre o componente variação gradiente da diversidade be
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Olhando o ínicio do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente gradiente indica que há uma tendência das espécies apresentarem abundâncias parecidas (i.e. menor valor de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente gradiente é alto, indicando que as mesmas espécies tem valores discrepantes de abundâncias entre as comunidades.</p>
+<p>Olhando o início do eixo X onde as comunidades apresentam precipitação anual similares (i.e. baixa diferença na precipitação), o componente gradiente indica que há uma tendência das espécies apresentarem abundâncias parecidas (i.e. menor valor de dissimilaridade). Por outro lado, quando a diferença na precipitação entre duas comunidades é alta, o componente gradiente é alto, indicando que as mesmas espécies têm valores discrepantes de abundâncias entre as comunidades.</p>
 </div>
 <div id="para-se-aprofundar-8" class="section level2" number="12.4">
 <h2>
 <span class="header-section-number">12.4</span> Para se aprofundar<a class="anchor" aria-label="anchor" href="#para-se-aprofundar-8"><i class="fas fa-link"></i></a>
 </h2>
-<div id="livros-6" class="section level3" number="12.4.1">
+<div id="livros-7" class="section level3" number="12.4.1">
 <h3>
-<span class="header-section-number">12.4.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.4.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-7"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
-<li>Recomendamos a leitura dos artigos citados no capítulo e os livros de Magurran &amp; McGill <span class="citation">(<a href="refer%C3%AAncias.html#ref-magurran_biological_2011" role="doc-biblioref">2011</a>)</span> - Biological Diversity Frontiers in Measurement and Assessment, e Legendre &amp; Legendre <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">2012</a>)</span> - Numerical Ecology.</li>
+<li>Recomendamos a leitura dos artigos citados no capítulo e os livros de Magurran &amp; McGill <span class="citation">(<a href="refer%C3%AAncias.html#ref-magurran_biological_2011" role="doc-biblioref">2011</a>)</span> - <em>Biological Diversity Frontiers in Measurement and Assessment</em> e Legendre &amp; Legendre <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">2012</a>)</span> - <em>Numerical Ecology</em>.</li>
 </ul>
 </div>
-<div id="links-7" class="section level3" number="12.4.2">
+<div id="links-8" class="section level3" number="12.4.2">
 <h3>
-<span class="header-section-number">12.4.2</span> Links<a class="anchor" aria-label="anchor" href="#links-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.4.2</span> Links<a class="anchor" aria-label="anchor" href="#links-8"><i class="fas fa-link"></i></a>
 </h3>
 <p>Recomendamos a página pessoal do pesquisador Lou Jost que apresenta e discute diversas medidas de diversidade taxonômica:</p>
 <ul>
@@ -822,11 +822,11 @@ Figura 12.8: Relação entre o componente variação gradiente da diversidade be
 <span class="header-section-number">12.5</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-8"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>12.1</strong>
-Carregue os dados - <code>anuros_composicao</code> - que está no pacote <code>ecodados</code>. Este conjunto de dados representa a abundância de 211 espécies de anuros coletados em 44 localidades na Mata Atlântica. Calcule a riqueza de espécies para cada comunidade e os índices de Margalef, Menhinich, Shannon-Wiener, Gini-Simpson e Equitabilidade de Pielou. Salve todos os resultados em novo <code>data frame</code>. Faça uma gráfico usando o função <code>ggpairs</code> para ver a correlação entre as métricas. Qual a sua interpretação sobre os resultados?</p>
+Carregue os dados - <code>anuros_composicao</code> - que está no pacote <code>ecodados</code>. Este conjunto de dados representa a abundância de 211 espécies de anuros coletados em 44 localidades na Mata Atlântica. Calcule a riqueza de espécies para cada comunidade e os índices de Margalef, Menhinich, Shannon-Wiener, Gini-Simpson e Equitabilidade de Pielou. Salve todos os resultados em novo <code>data frame</code>. Faça um gráfico usando o função <code>ggpairs</code> para ver a correlação entre as métricas. Qual a sua interpretação sobre os resultados?</p>
 <p><strong>12.2</strong>
 Usando os resultados anteriores, selecione as duas comunidades com os maiores e menores valores de Shannon-Wiener. Em seguida, faça um Diagrama de Whittaker. Por fim, interprete as curvas considerando as curvas teóricas (i.e., geométrica, broken-stick, etc.) descritas nos livros de ecologia.</p>
 <p><strong>12.3</strong>
-Usando os dados - <code>anuros_composicao</code> - calcule a partição da diversidade beta considerando os dados de abundância e presença e ausência. a) Faça um gráfico boxplot com os resultados. Discuta se os resultados usando abundância ou presença e ausência são congruentes ou discrepantes. b) Calcule a distância geográfica (use a planilha <code>anuros_ambientais</code>) entre as localidaes (use a Distância Euclidiana). Em seguida, faça uma análise de regressão para verificar se as localidades que estão próximas apresentam maior similaridade na composição de espécies (use componente turnover - Bsim) do que as comunidades que estão distantes (e.g., Decaimento da similaridade).</p>
+Usando os dados - <code>anuros_composicao</code> - calcule a partição da diversidade beta considerando os dados de abundância e presença e ausência. a) Faça um gráfico boxplot com os resultados. Discuta se os resultados usando abundância ou presença e ausência são congruentes ou discrepantes. b) Calcule a distância geográfica (use a planilha <code>anuros_ambientais</code>) entre as localidades (use a Distância Euclidiana). Em seguida, faça uma análise de regressão para verificar se as localidades que estão próximas apresentam maior similaridade na composição de espécies (use componente turnover - Bsim) do que as comunidades que estão distantes (e.g., Decaimento da similaridade).</p>
 <p><a href="https://exercicios-livro-aer.netlify.app/cap.-12---diversidade-tax%C3%B4nomica.html">Soluções dos exercícios</a>.</p>
 
 </div>
@@ -852,8 +852,8 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 <li><a class="nav-link" href="#diversidade-beta"><span class="header-section-number">12.3</span> Diversidade beta</a></li>
 <li>
 <a class="nav-link" href="#para-se-aprofundar-8"><span class="header-section-number">12.4</span> Para se aprofundar</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#livros-6"><span class="header-section-number">12.4.1</span> Livros</a></li>
-<li><a class="nav-link" href="#links-7"><span class="header-section-number">12.4.2</span> Links</a></li>
+<li><a class="nav-link" href="#livros-7"><span class="header-section-number">12.4.1</span> Livros</a></li>
+<li><a class="nav-link" href="#links-8"><span class="header-section-number">12.4.2</span> Links</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#exerc%C3%ADcios-8"><span class="header-section-number">12.5</span> Exercícios</a></li>
@@ -874,7 +874,7 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-17.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

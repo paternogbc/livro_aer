@@ -122,7 +122,7 @@ Estatísticas frequentistas como as que serão abordadas neste capítulo são ba
 <h2>
 <span class="header-section-number">7.1</span> Teste T (de Student) para duas amostras independentes<a class="anchor" aria-label="anchor" href="#teste-t-de-student-para-duas-amostras-independentes"><i class="fas fa-link"></i></a>
 </h2>
-<p>Uma das perguntas mais comuns em estatística é saber se há diferença entre as médias de dois grupos ou tratamentos. Para responder a esta pergunta, William Sealy Gosset, químico da cervejaria Guinness, desenvolveu em 1908 o Teste T que é uma estátistica que segue uma distribuição t de Student para rejeitar ou não uma hipótese nula de médias iguais entre dois grupos.</p>
+<p>Uma das perguntas mais comuns em estatística é saber se há diferença entre as médias de dois grupos ou tratamentos. Para responder a esta pergunta, William Sealy Gosset, químico da cervejaria Guinness, desenvolveu em 1908 o Teste T que é uma estatística que segue uma distribuição t de <em>Student</em> para rejeitar ou não uma hipótese nula de médias iguais entre dois grupos.</p>
 <p><span class="math display">\[t = \frac{(\bar{X}_1 - \bar{X}_2)}{\sqrt{\frac{2S^2_p}{n}}}\]</span></p>
 <p>Onde:</p>
 <ul>
@@ -149,7 +149,7 @@ Estatísticas frequentistas como as que serão abordadas neste capítulo são ba
 <p><strong>Avaliação das premissas</strong></p>
 <p>Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>) <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_protocol_2009" role="doc-biblioref">A. F. Zuur, Ieno, and Elphick 2010</a>)</span>.</p>
 <ul>
-<li><p>A homegeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil).</p></li>
+<li><p>A homogeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil).</p></li>
 <li><p>A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>B).</p></li>
 </ul>
 <div class="figure" style="text-align: center">
@@ -167,7 +167,7 @@ Figura 7.1: Inspeção gráfica da homogeneidade da variância (A) e normalidade
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
-<li>O CRC dos machos será maior na estação chuvosa porque há uma vantangem seletiva para os indivíduos maiores durante a atividade reprodutiva</li>
+<li>O CRC dos machos será maior na estação chuvosa porque há uma vantagem seletiva para os indivíduos maiores durante a atividade reprodutiva</li>
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
@@ -202,7 +202,7 @@ Figura 7.1: Inspeção gráfica da homogeneidade da variância (A) e normalidade
 Figura 7.2: Normalidade dos resíduos usando o QQ-plot.
 </p>
 </div>
-<p>Os pontos estão próximos à reta, indicando que a distribuição dos resíduos é normal (<a href="cap7.html#fig:fig-homo-norm">7.1</a>).</p>
+<p>Os pontos estão próximos à reta, indicando que a distribuição dos resíduos é normal (veja Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>).</p>
 <p>Outra possibilidade é usar os testes de Shapiro-Wilk e Levene para verificar a normalidade e a homogeneidade da variância, respectivamente.</p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
@@ -231,7 +231,7 @@ A Hipótese Nula (H<sub>0</sub>) destes testes é que a distribuição é normal
 <span class="co">#&gt; group  1  1.1677 0.2852</span>
 <span class="co">#&gt;       49</span></code></pre></div>
 <p>Percebam que a distribuição dos resíduos foi normal e homogênea na inspeção gráfica, assim como nos testes de Shapiro e Levene, respectivamente. Agora podemos realizar a análise sabendo que os dados seguem as premissas requeridas pelo Teste T.</p>
-<p>Vamos para os códigos da análise do Teste T para amostragens indenpendentes e variâncias iguais.</p>
+<p>Vamos para os códigos da análise do Teste T para amostragens independentes e variâncias iguais.</p>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise Teste T </span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">CRC</span> <span class="op">~</span> <span class="va">Estacao</span>, data <span class="op">=</span> <span class="va">CRC_PN_macho</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -246,7 +246,7 @@ A Hipótese Nula (H<sub>0</sub>) destes testes é que a distribuição é normal
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean in group Chuvosa    mean in group Seca </span>
 <span class="co">#&gt;              3.695357              3.260870</span></code></pre></div>
-<p>Quatro valores devem ser apresentados ao leitores: i) estatística do teste - representada por <strong>t = 4,15</strong>, ii) valor de significância - representado por <strong>p-value = 0,0001</strong>, iii) graus de liberdade - representado por <strong>df = 49</strong>, e iv) diferença entre as médias. Veja abaixo como descrever os resultados no seu trabalho.</p>
+<p>Quatro valores devem ser apresentados aos leitores: i) estatística do teste - representada por <strong>t = 4,15</strong>, ii) valor de significância - representado por <strong>p-value = 0,0001</strong>, iii) graus de liberdade - representado por <strong>df = 49</strong>, e iv) diferença entre as médias. Veja abaixo como descrever os resultados no seu trabalho.</p>
 <p>Visualizar os resultados em gráfico (Figura <a href="cap7.html#fig:fig-test-t-ind-var-igual">7.3</a>).</p>
 <div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
@@ -281,7 +281,7 @@ Os dados foram alterados em relação a publicação original para se enquadrare
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
-<li>O CRC das fêmeas será maior na estação chuvosa porque há uma vantangem seletiva para os indivíduos maiores durante a atividade reprodutiva</li>
+<li>O CRC das fêmeas será maior na estação chuvosa porque há uma vantagem seletiva para os indivíduos maiores durante a atividade reprodutiva</li>
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
@@ -304,7 +304,7 @@ Os dados foram alterados em relação a publicação original para se enquadrare
 <span class="co">#&gt; 4 1.50 Chuvosa</span>
 <span class="co">#&gt; 5 3.90 Chuvosa</span>
 <span class="co">#&gt; 6 4.00 Chuvosa</span></code></pre></div>
-<p>Vamos avaliar as premissas do teste. Començando com o teste de normalidade (Figura <a href="cap7.html#fig:fig-qqplot-var-dif">7.4</a>).</p>
+<p>Vamos avaliar as premissas do teste. Começando com o teste de normalidade (Figura <a href="cap7.html#fig:fig-qqplot-var-dif">7.4</a>).</p>
 <div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Teste de normalidade usando QQ-plot</span>
 <span class="va">residuos_LP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">CRC</span> <span class="op">~</span> <span class="va">Estacao</span>, data <span class="op">=</span> <span class="va">CRC_LP_femea</span><span class="op">)</span>
@@ -371,7 +371,7 @@ Figura 7.5: Boxplot da análise do Teste T para duas amostras independentes com 
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Os resultados mostram que as fêmeas de <em>L. podicipinus</em> coletadas na estação chuvosa não são maiores do que as fêmeas coletadas na estação seca, apesar de possuirem maior variância, o que pode ser biologicamente interessante.</p>
+<p>Os resultados mostram que as fêmeas de <em>L. podicipinus</em> coletadas na estação chuvosa não são maiores do que as fêmeas coletadas na estação seca, apesar de possuírem maior variância, o que pode ser biologicamente interessante.</p>
 </div>
 <div id="teste-t-para-amostras-pareadas" class="section level2" number="7.2">
 <h2>
@@ -402,7 +402,7 @@ Figura 7.5: Boxplot da análise do Teste T para duas amostras independentes com 
 <p><strong>Variáveis</strong></p>
 <ul>
 <li><p>Variáveis resposta e preditoras</p></li>
-<li><p>data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pre-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas</p></li>
+<li><p>data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pré-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas</p></li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -474,7 +474,7 @@ Figura 7.7: Exemplo de correlações negativa (A), positiva (B) e nula (C) e var
 </div>
 <p><strong>Premissas da Correlação de Person</strong></p>
 <ul>
-<li>As amostras devem ser independentes e pareadas (i.e. as duas variáveis devem ser medidas na mesma unidade amostral)</li>
+<li>As amostras devem ser independentes e pareadas (i.e., as duas variáveis devem ser medidas na mesma unidade amostral)</li>
 <li>As unidades amostrais são selecionadas aleatoriamente</li>
 <li>A relação entre as variáveis tem que ser linear</li>
 </ul>
@@ -492,7 +492,7 @@ Figura 7.7: Exemplo de correlações negativa (A), positiva (B) e nula (C) e var
 <p><strong>Variáveis</strong></p>
 <ul>
 <li>Variáveis</li>
-<li>data frame com os indivíduos (unidade amostral) nas linhas e altura do tronco e tamanho da raiz (duas variáveis tem que ser contínuas) como colunas</li>
+<li>data frame com os indivíduos (unidade amostral) nas linhas e altura do tronco e tamanho da raiz (duas variáveis têm que ser contínuas) como colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -562,7 +562,7 @@ Figura 7.8: Gráfico mostrando a relação entre as variáveis e uma linha de te
 A linha de tendência tracejada no gráfico é apenas para ilustrar a relação positiva entre as variáveis. Ela não é gerada pela análise de correlação.</p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Os resultados mostram que o aumento na altura dos arbutos é acompanhado pelo aumento no tamanho da raiz.</p>
+<p>Os resultados mostram que o aumento na altura dos arbustos é acompanhado pelo aumento no tamanho da raiz.</p>
 </div>
 <div id="regressão-linear-simples" class="section level2" number="7.4">
 <h2>
@@ -591,11 +591,11 @@ A linha de tendência tracejada no gráfico é apenas para ilustrar a relação 
 <p>Neste exemplo, avaliaremos a relação entre o gradiente de temperatura média anual (°C) e o tamanho médio do comprimento rostro-cloacal (CRC em mm) de populações de <em>Dendropsophus minutus</em> (Anura:Hylidae) amostradas em 109 localidades no Brasil <span class="citation">(<a href="refer%C3%AAncias.html#ref-boaratti2015" role="doc-biblioref">Boaratti and Da Silva 2015</a>)</span>.</p>
 <p><strong>Pergunta</strong></p>
 <ul>
-<li>A temperatura afeta o tamanho do CRC de populações de Dendropsophus minutus?</li>
+<li>A temperatura afeta o tamanho do CRC de populações de <em>Dendropsophus minutus</em>?</li>
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
-<li>O CRC das populações serão menores em localidades mais quentes do que em localidades mais frias de acordo com a Hipótese do Balanço de Calor <span class="citation">(<a href="refer%C3%AAncias.html#ref-olalla-t%C3%A1rraga2007" role="doc-biblioref">Olalla-Tárraga and Rodríguez 2007</a>)</span>
+<li>Os CRC das populações serão menores em localidades mais quentes do que em localidades mais frias de acordo com a Hipótese do Balanço de Calor <span class="citation">(<a href="refer%C3%AAncias.html#ref-olalla-t%C3%A1rraga2007" role="doc-biblioref">Olalla-Tárraga and Rodríguez 2007</a>)</span>
 </li>
 </ul>
 <p><strong>Variáveis</strong></p>
@@ -723,11 +723,11 @@ Figura 7.10: Gráfico mostrando a relação entre as variáveis e modelo linear 
 <p>Utilizaremos o mesmo exemplo da regressão linear simples. Contudo, além do gradiente de temperatura média anual (°C), incluiremos o gradiente de precipitação anual (mm) como outra variável preditora do tamanho médio do comprimento rostro-cloacal (CRC em mm) de populações de <em>Dendropsophus minutus</em> (Anura:Hylidae) amostradas em 109 localidades no Brasil <span class="citation">(<a href="refer%C3%AAncias.html#ref-boaratti2015" role="doc-biblioref">Boaratti and Da Silva 2015</a>)</span>.</p>
 <p><strong>Pergunta</strong></p>
 <ul>
-<li>O tamanho do CRC das populações de <em>D. minutus</em> é influênciado pela temperatura e precipitação das localidades onde os indivíduos ocorrem?</li>
+<li>O tamanho do CRC das populações de <em>D. minutus</em> é influenciado pela temperatura e precipitação das localidades onde os indivíduos ocorrem?</li>
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
-<li>O CRC das populações serão menores em localidades com clima quente e chuvoso do que em localidades com clima frio e seco</li>
+<li>Os CRC das populações serão menores em localidades com clima quente e chuvoso do que em localidades com clima frio e seco</li>
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
@@ -856,7 +856,7 @@ A Hipótese Nula (H<sub>0</sub>) do teste <em>Likelihood-ratio test (LRT)</em> �
 </ul>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
-ANOVA de medidas repetidas e ANOVA <em>split-plot</em> são análises com desenhos experimentais que apresentam dependência entre as amostras, mas controlam esse depedência nas suas formulações matemáticas.</p>
+ANOVA de medidas repetidas e ANOVA <em>split-plot</em> são análises com desenhos experimentais que apresentam dependência entre as amostras, mas controlam essa dependência nas suas formulações matemáticas.</p>
 </div>
 <div id="anova-de-um-fator" class="section level3" number="7.6.1">
 <h3>
@@ -996,7 +996,7 @@ Figura 7.12: Gráfico de caixa mostrando o resultado da ANOVA de um fator.
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
-<li>O tempo de eliminação da droga vai ser mais rápido nas pacientes XX e jovens</li>
+<li>O tempo de eliminação da droga vai ser mais rápido nos pacientes XX e jovens</li>
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
@@ -1037,7 +1037,7 @@ Figura 7.12: Gráfico de caixa mostrando o resultado da ANOVA de um fator.
 <span class="co">#&gt; Residuals     36  144.26    4.01                       </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
-<p>Percebam que a interação não apresenta um efeito significativo (P &gt; 0.05). Assim, iremos retirar a interação e verificar, usando Likelihood-ratio test, se o modelo mais simples é melhor.</p>
+<p>Percebam que a interação não apresenta um efeito significativo (P &gt; 0.05). Assim, iremos retirar a interação e verificar, usando <em>Likelihood-ratio test</em>, se o modelo mais simples é melhor.</p>
 <div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Criando modelo sem interação.</span>
 <span class="va">Modelo2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Tempo</span> <span class="op">~</span> <span class="va">Pessoas</span> <span class="op">+</span> <span class="va">Idade</span>, data <span class="op">=</span> <span class="va">dados_dois_fatores</span><span class="op">)</span> 
@@ -1051,7 +1051,7 @@ Figura 7.12: Gráfico de caixa mostrando o resultado da ANOVA de um fator.
 <span class="co">#&gt;   #Df  LogLik Df  Chisq Pr(&gt;Chisq)</span>
 <span class="co">#&gt; 1   5 -82.413                     </span>
 <span class="co">#&gt; 2   4 -83.063 -1 1.3012      0.254</span></code></pre></div>
-<p>Analisando o resultado do teste (P &gt; 0.05), a interação não é importante. Então podemos seguir com o modelo mais simples. Vamos verficiar a normalidade e homogeneidade da variância (Figura <a href="cap7.html#fig:fig-lm-anova-fat-pre">7.13</a>).</p>
+<p>Analisando o resultado do teste (P &gt; 0.05), a interação não é importante. Então podemos seguir com o modelo mais simples. Vamos verificar a normalidade e homogeneidade da variância (Figura <a href="cap7.html#fig:fig-lm-anova-fat-pre">7.13</a>).</p>
 <div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Verificando as premissas do teste.</span>
 <span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_model.html">plot_model</a></span><span class="op">(</span><span class="va">Modelo2</span>, type <span class="op">=</span> <span class="st">"diag"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -1074,7 +1074,7 @@ Figura 7.13: Gráficos mostrando as premissas da ANOVA fatorial.
 <span class="co">#&gt; Residuals 37  149.03    4.03                      </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
-<p>Percebam que o resultado da ANOVA (Pr(&gt;F) &lt; 0.001) indica que devemos rejeitar a hipótese nula de que não há diferença entre as médias dos sistema XY e idade dos pacientes. Neste caso, não precisamos realizar testes de comparações múltiplas <em>post-hoc</em> porque os fatores apresentam apenas dois níveis. Contudo, se no seu delineamento experimental um dos fatores apresentar três ou mais níveis, você deverá utilizar os testes de comparações <em>post-hoc</em> para determinar as diferenças entre os grupos.</p>
+<p>Percebam que o resultado da ANOVA (Pr(&gt;F) &lt; 0.001) indica que devemos rejeitar a hipótese nula de que não há diferença entre as médias do sistema XY e idade dos pacientes. Neste caso, não precisamos realizar testes de comparações múltiplas <em>post-hoc</em> porque os fatores apresentam apenas dois níveis. Contudo, se no seu delineamento experimental um dos fatores apresentar três ou mais níveis, você deverá utilizar os testes de comparações <em>post-hoc</em> para determinar as diferenças entre os grupos.</p>
 <p>Vamos visualizar os resultados em gráfico (Figura <a href="cap7.html#fig:fig-anova-fatorial">7.14</a>).</p>
 <div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
@@ -1171,7 +1171,7 @@ Os valores da riqueza de espécies foram alterados em relação a publicação o
 </div>
 <p><strong>Pergunta</strong></p>
 <ul>
-<li>A distância da poça artifical ao fragmento florestal influencia a riqueza de espécies anuros?</li>
+<li>A distância da poça artificial ao fragmento florestal influencia a riqueza de espécies anuros?</li>
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
@@ -1276,13 +1276,13 @@ Figura 7.16: Gráfico de caixa mostrando o resultado da ANOVA de blocos aleatori
 <h3>
 <span class="header-section-number">7.6.4</span> Análise de covariância (ANCOVA)<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-de-covari%C3%A2ncia-ancova"><i class="fas fa-link"></i></a>
 </h3>
-<p>A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de uma variável contínua (covariável) medida em todas as unidades amostrais <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">Gotelli and Ellison 2012</a>)</span>. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo concentre-se nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.</p>
+<p>A ANCOVA pode ser compreendida como uma extensão da ANOVA com a adição de uma variável contínua (covariável) medida em todas as unidades amostrais <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">Gotelli and Ellison 2012</a>)</span>. A ideia é que a covariável também afete os valores da variável resposta. Não incluir a covariável irá fazer com que a variação não explicada pelo modelo se concentre nos resíduos. Incluindo a covariável, o tamanho do resíduo é menor e o teste para avaliar as diferenças nos tratamentos, que é o interesse do pesquisador, terá mais poder estatístico.</p>
 <p><strong>Exemplo prático 1 - ANCOVA</strong></p>
 <p><strong>Explicação dos dados</strong></p>
-<p>Neste exemplo hipotético, avaliaremos o efeito da herbivoria na biomassa dos frutos de uma espécie de árvore na Mata Atlântica. O delineamento experimental permitiu que alguns indivíduos sofressem herbivoria e outros não. Os pesquisadores também mediram o tamanho da raiz dos indíviduos para inseri-la como uma covariável no modelo.</p>
+<p>Neste exemplo hipotético, avaliaremos o efeito da herbivoria na biomassa dos frutos de uma espécie de árvore na Mata Atlântica. O delineamento experimental permitiu que alguns indivíduos sofressem herbivoria e outros não. Os pesquisadores também mediram o tamanho da raiz dos indivíduos para inseri-la como uma covariável no modelo.</p>
 <p><strong>Pergunta</strong></p>
 <ul>
-<li>A herbivoria diminiu a biomassa dos frutos?</li>
+<li>A herbivoria diminui a biomassa dos frutos?</li>
 </ul>
 <p><strong>Predições</strong></p>
 <ul>
@@ -1291,7 +1291,7 @@ Figura 7.16: Gráfico de caixa mostrando o resultado da ANOVA de blocos aleatori
 <p><strong>Variáveis</strong></p>
 <ul>
 <li><p>Variáveis resposta e preditoras</p></li>
-<li><p>data frame com as indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas</p></li>
+<li><p>data frame com os indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas</p></li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -1337,7 +1337,7 @@ Figura 7.17: Gráficos de diagnóstico dos resíduos da ANCOVA.
 <span class="co">#&gt; Residuals       36  1991.7    55.3                      </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
-<p>Percebam que o resultado da ANCOVA (Pr(&gt;F) &lt; 0.001) indica que tanto a herbivoria como o tamanho da raiz (covariável) têm efeitos significativos na biomassa dos frutos. Contudo, a interação entre as variáveis não foi signigicativa. Vamos usar o Likelihood-ratio test (LRT) para ver se podemos seguir com um modelo mais simples (sem interação).</p>
+<p>Percebam que o resultado da ANCOVA (Pr(&gt;F) &lt; 0.001) indica que tanto a herbivoria como o tamanho da raiz (covariável) têm efeitos significativos na biomassa dos frutos. Contudo, a interação entre as variáveis não foi significativa. Vamos usar o <em>Likelihood-ratio test</em> para ver se podemos seguir com um modelo mais simples (sem interação).</p>
 <div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criando modelo sem interação</span>
 <span class="va">modelo_ancova2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Biomassa</span> <span class="op">~</span> <span class="va">Herbivoria</span> <span class="op">+</span> <span class="va">Raiz</span>, data <span class="op">=</span> <span class="va">dados_ancova</span><span class="op">)</span>
@@ -1377,7 +1377,7 @@ Figura 7.18: Gráfico de caixa mostrando o resultado da ANCOVA.
 <h2>
 <span class="header-section-number">7.7</span> Generalized Least Squares (GLS)<a class="anchor" aria-label="anchor" href="#generalized-least-squares-gls"><i class="fas fa-link"></i></a>
 </h2>
-<p>Em seu artigo clássico publicado em 1993, Pierre Legendre se pergunta se a autocorrelação espacial é um problema ou um novo paradigma <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_spatial_1993" role="doc-biblioref">Legendre 1993</a>)</span>. Segundo o autor, estudar estruturas espaciais é tanto uma necessidade, quanto um desafio para pesquisadores da ecologia e conservação que lidam com dados espacialmente distribuídos. Uma vez que todas as variáveis tipicamente utilizadas em estudos de biodiversidade (populações, condições climáticas, diversidade) possuem algum tipo de estrutura espacial, é fundamental compreender os motivos de como incluir esta informação nos modelos analíticos. De fato, a Primeira Lei da Geografia postula que “todas as coisas estão relacionadas com todas as outras, porém coisas próximas estão mais relacionadas do que coisas distantes.” Como resultado, os valores observados em uma localidade (e.g., composição de espécies) serão mais afetados pelo conjunto de espécies que ocorre nas localidades vizinhas e, desse modo, alguns pontos de coleta podem não ser estatisticamente independentes. Como vimos anteriormente, um dos pressupostos dos modelos lineares é a independência das unidades amostrais. Assim, a presença de autocorrelação espacial nos resíduos viola este pressuposto e, consequentemente, aumenta a taxa de Erro do Tipo I (rejeitar a hipótese nula quando ela é verdadeira) nos modelos. Uma das soluções para incorporar a dependência espacial dos resíduos é usar o método de Mínimos Quadrados Generalizados (<em>Generalized Least Squares</em> - GLS). Diferente dos modelos apresentados anteriormente, este método ajusta explicitamente modelos heteroscedásticos e com resíduos correlacionados <span class="citation">(<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates 2000</a>)</span>. Para representar a estrutura espacial (e, assim, a dependência entre as observações) é necessário incluir variáveis espaciais (geralmente coordenadas geográficas, i.e., vetores bimensionais: <em>sensu</em> <span class="citation"><a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates</a> (<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">2000</a>)</span>) no argumento <code>corStruct</code> na função <code><a href="https://rdrr.io/pkg/nlme/man/gls.html">gls()</a></code> do pacote <code>nlme</code>. Este modelo basicamente assume que a estrutura de covariância é uma função da distância entre as localidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-littell2006sas" role="doc-biblioref">Littell et al. 2006</a>)</span>. É importante ressaltar, todavia, que existem diferentes funções de covariância que são discutidas detalhadamente em <span class="citation"><a href="refer%C3%AAncias.html#ref-littell2006sas" role="doc-biblioref">Littell et al.</a> (<a href="refer%C3%AAncias.html#ref-littell2006sas" role="doc-biblioref">2006</a>)</span>. Aqui, iremos nos
+<p>Em seu artigo clássico publicado em 1993, Pierre Legendre se pergunta se a autocorrelação espacial é um problema ou um novo paradigma <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_spatial_1993" role="doc-biblioref">Legendre 1993</a>)</span>. Segundo o autor, estudar estruturas espaciais é tanto uma necessidade, quanto um desafio para pesquisadores da ecologia e conservação que lidam com dados espacialmente distribuídos. Uma vez que todas as variáveis tipicamente utilizadas em estudos de biodiversidade (populações, condições climáticas, diversidade) possuem algum tipo de estrutura espacial, é fundamental compreender os motivos de como incluir esta informação nos modelos analíticos. De fato, a Primeira Lei da Geografia postula que “todas as coisas estão relacionadas com todas as outras, porém coisas próximas estão mais relacionadas do que coisas distantes.” Como resultado, os valores observados em uma localidade (e.g., composição de espécies) serão mais afetados pelo conjunto de espécies que ocorre nas localidades vizinhas e, desse modo, alguns pontos de coleta podem não ser estatisticamente independentes. Como vimos anteriormente, um dos pressupostos dos modelos lineares é a independência das unidades amostrais. Assim, a presença de autocorrelação espacial nos resíduos viola este pressuposto e, consequentemente, aumenta a taxa de Erro do Tipo I (rejeitar a hipótese nula quando ela é verdadeira) nos modelos. Uma das soluções para incorporar a dependência espacial dos resíduos é usar o método de Mínimos Quadrados Generalizados (<em>Generalized Least Squares</em> - GLS). Diferente dos modelos apresentados anteriormente, este método ajusta explicitamente modelos heteroscedásticos e com resíduos correlacionados <span class="citation">(<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates 2000</a>)</span>. Para representar a estrutura espacial (e, assim, a dependência entre as observações) é necessário incluir variáveis espaciais (geralmente coordenadas geográficas, i.e., vetores bidimensionais: <em>sensu</em> <span class="citation"><a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates</a> (<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">2000</a>)</span>) no argumento <code>corStruct</code> na função <code><a href="https://rdrr.io/pkg/nlme/man/gls.html">gls()</a></code> do pacote <code>nlme</code>. Este modelo basicamente assume que a estrutura de covariância é uma função da distância entre as localidades <span class="citation">(<a href="refer%C3%AAncias.html#ref-littell2006sas" role="doc-biblioref">Littell et al. 2006</a>)</span>. É importante ressaltar, todavia, que existem diferentes funções de covariância que são discutidas detalhadamente em <span class="citation"><a href="refer%C3%AAncias.html#ref-littell2006sas" role="doc-biblioref">Littell et al.</a> (<a href="refer%C3%AAncias.html#ref-littell2006sas" role="doc-biblioref">2006</a>)</span>. Aqui, iremos nos
 concentrar nas seguintes funções.</p>
 <ul>
 <li>
@@ -1439,7 +1439,7 @@ Figura 7.19: Gráficos mostrando as premissas da regressão linear simples.
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelo gls sem estrutura espacial</span>
 <span class="va">no_spat_gls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/gls.html">gls</a></span><span class="op">(</span><span class="va">riqueza</span> <span class="op">~</span> <span class="va">agua</span>, <span class="va">mite_dat</span>, method <span class="op">=</span> <span class="st">"REML"</span><span class="op">)</span></code></pre></div>
-<p>Uma maneira de identificar se os resíduos do modelo linear apresentam estrutura espacial é fazendo uma figura chamada <strong>variograma</strong>. O variograma possui três parâmetros: i) <em>nugget</em> , ii) <em>range</em> e iii) <em>sill</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-fortin_dale_2005" role="doc-biblioref">Fortin and Dale 2005</a>)</span>. O <em>nugget</em> é utilizado para quantificar a variabilidade observada nos valores menores (ou seja, em pequenas distâncias). O <em>range</em>, por sua vez, é usado para identificar a distância máxima em que a autocorrelação espacial está presente (Figura <a href="cap7.html#fig:fig-variograma">7.20</a>, pontos laranjas). Deste modo, os valores posicionados a partir do <em>range</em> (Figura <a href="cap7.html#fig:fig-variograma">7.20</a>, pontos verdes) representam pontos não correlacionados <span class="citation">(<a href="refer%C3%AAncias.html#ref-fortin_dale_2005" role="doc-biblioref">Fortin and Dale 2005</a>)</span>. A posição limiar que representa claramente a “pausa” no crescimento da curva (<em>range</em>) indica os pontos não correlacionados e representa o <em>sill</em> (Figura <a href="cap7.html#fig:fig-variograma">7.20</a>). No exemplo da Figura <a href="cap7.html#fig:fig-variograma">7.20</a>, o <em>sill</em> é constante. Porém, é possível que os valores de <em>sill</em> não sejam constantes <span class="citation">(<a href="refer%C3%AAncias.html#ref-chiles_1999" role="doc-biblioref">Chiles and Delfiner 1999</a>)</span>. Um exemplo é o “efeito buraco” que é caracterizado por um ou mais picos (ou vales) no variograma que correspondem ao número de valores negativos na covariância. Esses valores sugerem que valores altos podem estar rodeados de valores baixos <span class="citation">(<a href="refer%C3%AAncias.html#ref-chiles_1999" role="doc-biblioref">Chiles and Delfiner 1999</a>)</span>. Porém, os detalhamentos desses comportamentos vai além do escopo deste livro.</p>
+<p>Uma maneira de identificar se os resíduos do modelo linear apresentam estrutura espacial é fazendo uma figura chamada <strong>variograma</strong>. O variograma possui três parâmetros: i) <em>nugget</em>, ii) <em>range</em> e iii) <em>sill</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-fortin_dale_2005" role="doc-biblioref">Fortin and Dale 2005</a>)</span>. O <em>nugget</em> é utilizado para quantificar a variabilidade observada nos valores menores (ou seja, em pequenas distâncias). O <em>range</em>, por sua vez, é usado para identificar a distância máxima em que a autocorrelação espacial está presente (Figura <a href="cap7.html#fig:fig-variograma">7.20</a>, pontos laranjas). Deste modo, os valores posicionados a partir do <em>range</em> (Figura <a href="cap7.html#fig:fig-variograma">7.20</a>, pontos verdes) representam pontos não correlacionados <span class="citation">(<a href="refer%C3%AAncias.html#ref-fortin_dale_2005" role="doc-biblioref">Fortin and Dale 2005</a>)</span>. A posição limiar que representa claramente a “pausa” no crescimento da curva (<em>range</em>) indica os pontos não correlacionados e representa o <em>sill</em> (Figura <a href="cap7.html#fig:fig-variograma">7.20</a>). No exemplo da Figura <a href="cap7.html#fig:fig-variograma">7.20</a>, o <em>sill</em> é constante. Porém, é possível que os valores de <em>sill</em> não sejam constantes <span class="citation">(<a href="refer%C3%AAncias.html#ref-chiles_1999" role="doc-biblioref">Chiles and Delfiner 1999</a>)</span>. Um exemplo é o “efeito buraco” que é caracterizado por um ou mais picos (ou vales) no variograma que correspondem ao número de valores negativos na covariância. Esses valores sugerem que valores altos podem estar rodeados de valores baixos <span class="citation">(<a href="refer%C3%AAncias.html#ref-chiles_1999" role="doc-biblioref">Chiles and Delfiner 1999</a>)</span>. Porém, os detalhamentos desses comportamentos vão além do escopo deste livro.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-variograma"></span>
 <img src="img/cap07_fig03.png" alt="Variograma representando a semi-variância *y(h)* em função do intervalor espacial *h*. Cada ponto representa a distância entre localidades e a linha a variação teórica a função de covariância esférica (veja abaixo). Adaptado de @fortin_dale_2005." width="100%" height="100%"><p class="caption">
@@ -1520,8 +1520,8 @@ O valor de AIC por si só não tem significado. Ele precisa ser comparado com ou
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">ratio_model</span>, type <span class="op">=</span> <span class="st">"normalized"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">ratio_model</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-diag-ratio"></span>
-<img src="livro_files/figure-html/fig-diag-ratio-1.png" alt="Gráfico dos resíduos em relação aos dodos ajustados do modelo GLS Ratio." width="100%" height="100%"><p class="caption">
-Figura 7.22: Gráfico dos resíduos em relação aos dodos ajustados do modelo GLS Ratio.
+<img src="livro_files/figure-html/fig-diag-ratio-1.png" alt="Gráfico dos resíduos em relação aos dados ajustados do modelo GLS Ratio." width="100%" height="100%"><p class="caption">
+Figura 7.22: Gráfico dos resíduos em relação aos dados ajustados do modelo GLS Ratio.
 </p>
 </div>
 <p>O variograma ajustado pelo modelo razão quadrática (<em>ratio_model</em>) demonstra que o <em>range</em> não é crescente (indicando correlação espacial entre localidades próximas) e, desse modo, sugere que é mais apropriado usar o modelo GLS do que um modelo linear desconsiderando a estrutura espacial (Figura <a href="cap7.html#fig:fig-variog-ratio">7.23</a>).</p>
@@ -1555,9 +1555,19 @@ Figura 7.23: Variogramas para os resíduos do modelo GLS Normal e Ratio.
 <h2>
 <span class="header-section-number">7.8</span> Para se aprofundar<a class="anchor" aria-label="anchor" href="#para-se-aprofundar-3"><i class="fas fa-link"></i></a>
 </h2>
-<ul>
-<li>Recomendamos aos interessados os livros: i) Zar <span class="citation">(<a href="refer%C3%AAncias.html#ref-zar_biostatistical_2010" role="doc-biblioref">2010</a>)</span> Biostatiscal analysis, ii) Gotelli &amp; Ellison <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">2012</a>)</span> A primer of ecological statistics, iii) Quinn &amp; Keough <span class="citation">(<a href="refer%C3%AAncias.html#ref-quinn_experimental_2002" role="doc-biblioref">2002</a>)</span> Experimental design and data analysis for biologists, iv) Zuur e colabodores <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_analysing_2007" role="doc-biblioref">2007</a>)</span> Analysing Ecological Data e v) Touchon <span class="citation">(<a href="refer%C3%AAncias.html#ref-touchon_applied_2021" role="doc-biblioref">2021</a>)</span> Applied statistics with R: a practical guide for the life sciences.</li>
-</ul>
+<p>Listamos a seguir livros e links que recomendamos para seguir com sua aprendizagem em modelos lineares</p>
+<div id="livros-3" class="section level3" number="7.8.1">
+<h3>
+<span class="header-section-number">7.8.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Recomendamos aos interessados os livros: i) Zar <span class="citation">(<a href="refer%C3%AAncias.html#ref-zar_biostatistical_2010" role="doc-biblioref">2010</a>)</span> Biostatiscal analysis, ii) Gotelli &amp; Ellison <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">2012</a>)</span> A primer of ecological statistics, iii) Quinn &amp; Keough <span class="citation">(<a href="refer%C3%AAncias.html#ref-quinn_experimental_2002" role="doc-biblioref">2002</a>)</span> Experimental design and data analysis for biologists, iv) Zuur e colabodores <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_analysing_2007" role="doc-biblioref">2007</a>)</span> Analysing Ecological Data e v) Touchon <span class="citation">(<a href="refer%C3%AAncias.html#ref-touchon_applied_2021" role="doc-biblioref">2021</a>)</span> Applied statistics with R: a practical guide for the life sciences.</p>
+</div>
+<div id="links-4" class="section level3" number="7.8.2">
+<h3>
+<span class="header-section-number">7.8.2</span> Links<a class="anchor" aria-label="anchor" href="#links-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Recomendamos a página <strong>Curso de Estatística para Pesquisa Científica</strong>[<a href="http://estat.bio.br/" class="uri">http://estat.bio.br/</a>] do pesquisador Thiago Rangel, Universidade Federal de Goiás. Nesta página, vocês irão encontrar exemplos e explicações detalhadas sobre as análises e a filosofia estatística.</p>
+</div>
 </div>
 <div id="exercícios-3" class="section level2" number="7.9">
 <h2>
@@ -1572,15 +1582,15 @@ Avalie se existe correlação entre o número de filhotes nos ninhos de uma esp�
 <p><strong>7.4</strong>
 Avalie se a relação entre o tamanho da área de diferentes ilhas e a riqueza de espécies de lagartos. Qual a sua interpretação dos resultados? Faça um gráfico mostrando a relação predita pelo modelo. Use os dados <code>Cap7_exercicio4</code> disponível no pacote <code>ecodados</code>.</p>
 <p><strong>7.5</strong>
-Avalie se existe relação entre a abundância de uma espécie de roedor com o tamanho da área dos fragmentos florestais e/ou a altitude. Faça uma regressão múltipla. Em seguida, crie diferentes modelos e selecione o mais parcimonioso com base no valores do teste de <em>Likelihood-ratio test</em> (LRT) e <em>Akaike information criterion</em> (AIC). Qual a sua interpretação? Use os dados <code>Cap7_exercicio5</code> disponível no pacote <code>ecodados</code>.</p>
+Avalie se existe relação entre a abundância de uma espécie de roedor com o tamanho da área dos fragmentos florestais e/ou a altitude. Faça uma regressão múltipla. Em seguida, crie diferentes modelos e selecione o mais parcimonioso com base nos valores do teste de <em>Likelihood-ratio test</em> (LRT) e <em>Akaike information criterion</em> (AIC). Qual a sua interpretação? Use os dados <code>Cap7_exercicio5</code> disponível no pacote <code>ecodados</code>.</p>
 <p><strong>7.6</strong>
 Avalie se o local que machos territoriais ocupam (pasto, cana, floresta) influência no peso dos indivíduos. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados <code>Cap7_exercicio6</code> disponível no pacote <code>ecodados</code>.</p>
 <p><strong>7.7</strong>
 Avalie se a abundância de formigas está relacionada com o fato das domácias estarem abertas ou fechadas e com a idade das domácias. Verifique a interação entre os fatores. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados <code>Cap7_exercicio7</code> disponível no pacote <code>ecodados</code>.</p>
 <p><strong>7.8</strong>
-Avalie se o número de parasitas está relacionado com o tamanho corporal de fêmeas de uma espécie de ave. Além disso, use a idade das aves como uma co-variável explicando o número de parasitas. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados <code>Cap7_exercicio8</code> disponível no pacote <code>ecodados</code>.</p>
+Avalie se o número de parasitas está relacionado com o tamanho corporal de fêmeas de uma espécie de ave. Além disso, use a idade das aves como uma covariável explicando o número de parasitas. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados <code>Cap7_exercicio8</code> disponível no pacote <code>ecodados</code>.</p>
 <p><strong>7.9</strong>
-Avalie se a presença ou ausência de predadores afeta a riqueza de macroinvertebrados em 10 lagos. Os tratamentos dos predadores foram realizados nos mesmos lagos. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados.Use os dados <code>Cap7_exercicio9</code> disponível no pacote <code>ecodados</code>.</p>
+Avalie se a presença ou ausência de predadores afeta a riqueza de macroinvertebrados em 10 lagos. Os tratamentos dos predadores foram realizados nos mesmos lagos. Qual a sua interpretação dos resultados? Faça um gráfico com os resultados. Use os dados <code>Cap7_exercicio9</code> disponível no pacote <code>ecodados</code>.</p>
 <p><strong>7.10</strong>
 Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 localidades na Mata Atlântica. Use as coordenadas geográficas para controlar o efeito da autocorrelação espacial. Qual a sua interpretação dos resultados das análises com e sem levar em consideração a autocorrelação espacial? Use os dados <code>anuros_ambientais</code> disponível no pacote <code>ecodados</code>.</p>
 <p><a href="https://exercicios-livro-aer.netlify.app/cap.-7---modelos-lineares.html">Soluções dos exercícios</a>.</p>
@@ -1609,7 +1619,12 @@ Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 lo
 </ul>
 </li>
 <li><a class="nav-link" href="#generalized-least-squares-gls"><span class="header-section-number">7.7</span> Generalized Least Squares (GLS)</a></li>
-<li><a class="nav-link" href="#para-se-aprofundar-3"><span class="header-section-number">7.8</span> Para se aprofundar</a></li>
+<li>
+<a class="nav-link" href="#para-se-aprofundar-3"><span class="header-section-number">7.8</span> Para se aprofundar</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#livros-3"><span class="header-section-number">7.8.1</span> Livros</a></li>
+<li><a class="nav-link" href="#links-4"><span class="header-section-number">7.8.2</span> Links</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#exerc%C3%ADcios-3"><span class="header-section-number">7.9</span> Exercícios</a></li>
 </ul>
 
@@ -1628,7 +1643,7 @@ Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 lo
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-17.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

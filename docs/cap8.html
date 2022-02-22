@@ -114,10 +114,10 @@
 <h2>
 <span class="header-section-number">8.1</span> Introdução<a class="anchor" aria-label="anchor" href="#introdu%C3%A7%C3%A3o-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>No Capítulo <a href="cap7.html#cap7">7</a>, descrevemos sobre os modelos lineares (também chamados de Modelos Lineares Gerais) que podem ser descritos pelo mesmo modelo matemático de uma equação da reta do tipo::</p>
+<p>No Capítulo <a href="cap7.html#cap7">7</a>, descrevemos sobre os modelos lineares (também chamados de Modelos Lineares Gerais) que podem ser descritos pelo mesmo modelo matemático de uma equação da reta do tipo:</p>
 <p><span class="math display">\[Y = \beta_0 + \beta_{1}X_i + \epsilon_i\]</span></p>
-<p>Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x<sub>i</sub>, variável contínua para a regressão lineare e variável categórica no caso da ANOVA (que é codificada numa matriz <em>design</em> para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de <span class="citation">(<a href="refer%C3%AAncias.html#ref-fox_ecological_2015" role="doc-biblioref">Fox, Negrete-Yankelevich, and Sosa 2015</a>)</span>. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logarítmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O’Hara &amp; Kotze <span class="citation">(<a href="refer%C3%AAncias.html#ref-ohara2010" role="doc-biblioref">2010</a>)</span>, Ives <span class="citation">(<a href="refer%C3%AAncias.html#ref-ives2015" role="doc-biblioref">2015</a>)</span> e Warton <span class="citation">(<a href="refer%C3%AAncias.html#ref-warton2018" role="doc-biblioref">2018</a>)</span> para mais detalhes.</p>
-<p>Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar Cumulative Link Models para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.</p>
+<p>Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x<sub>i</sub>, variável contínua para a regressão linear e variável categórica no caso da ANOVA (que é codificada numa matriz <em>design</em> para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de <span class="citation">(<a href="refer%C3%AAncias.html#ref-fox_ecological_2015" role="doc-biblioref">Fox, Negrete-Yankelevich, and Sosa 2015</a>)</span>. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logaritmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O’Hara &amp; Kotze <span class="citation">(<a href="refer%C3%AAncias.html#ref-ohara2010" role="doc-biblioref">2010</a>)</span>, Ives <span class="citation">(<a href="refer%C3%AAncias.html#ref-ives2015" role="doc-biblioref">2015</a>)</span> e Warton <span class="citation">(<a href="refer%C3%AAncias.html#ref-warton2018" role="doc-biblioref">2018</a>)</span> para mais detalhes.</p>
+<p>Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar <em>Cumulative Link Models</em> para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.</p>
 </div>
 <div id="como-um-glm-funciona" class="section level2" number="8.2">
 <h2>
@@ -148,7 +148,7 @@
 </h3>
 <p>Se Y é binário (e.g., vivo ou morto), a distribuição de probabilidade deve ser <strong>binomial</strong>.</p>
 <p>Se Y é uma contagem (e.g., abundância ou riqueza de espécies), então a distribuição de probabilidade deve ser <strong>Poisson ou binomial negativa</strong>. Existem também correções dessas distribuições quando apresentam sobredispersão (<em>overdispersion</em>), tais como quasi-Poisson ou quasi-Negative binomial. Falaremos delas no momento certo.</p>
-<p>Para distribuições tais como binomial e Poisson, a variância deve ser igual à media e o parâmetro de dispersão é sempre 1. Na maioria dos dados ecológicos esse pressuposto não é cumprido, veremos estratégias para lidar com isso logo à frente.</p>
+<p>Para distribuições tais como binomial e Poisson, a variância deve ser igual à média e o parâmetro de dispersão é sempre 1. Na maioria dos dados ecológicos esse pressuposto não é cumprido, veremos estratégias para lidar com isso logo à frente.</p>
 <p>As funções <code><a href="https://rdrr.io/pkg/vcd/man/Ord_plot.html">Ord_plot()</a></code> e <code><a href="https://rdrr.io/pkg/vcd/man/goodfit.html">goodfit()</a></code> do pacote <code>vcd</code> podem auxiliar na escolha da distribuição para dados de contagem.</p>
 </div>
 </div>
@@ -220,7 +220,7 @@
 <span class="co">#&gt; $ dwater2     &lt;dbl&gt; 1.166645, 0.864035, -0.299232, -0.270350, -0.042156, -0.299232, -0.270350, -1.045428, -0.088840, -0.3…</span>
 <span class="co">#&gt; $ X           &lt;dbl&gt; -49.9376, -49.9353, -49.9348, -49.9334, -49.9270, -49.9271, -49.2742, -49.3303, -49.3084, -49.3179, -…</span>
 <span class="co">#&gt; $ Y           &lt;dbl&gt; -20.7408, -20.7410, -20.7419, -20.7462, -20.7453, -20.7451, -21.5187, -21.5282, -21.5024, -21.5148, -…</span></code></pre></div>
-<p>Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com “2” indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (<code>Riqueza_HB</code>) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma idéia da relação entre as variáveis (Figura <a href="cap8.html#fig:fig-mod-poi-pre">8.1</a>).</p>
+<p>Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com “2” indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (<code>Riqueza_HB</code>) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma ideia da relação entre as variáveis (Figura <a href="cap8.html#fig:fig-mod-poi-pre">8.1</a>).</p>
 <div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">fragmentos</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dfrag</span>, <span class="va">Riqueza_obs</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -257,7 +257,7 @@ Figura 8.1: Gráfico pareado para explorar as variáveis.
 <li>Sobredispersão (<em>Overdispersion</em>)</li>
 <li>Inflação de zeros (<em>Zero-inflation</em>)</li>
 </ol>
-<p>Vamos começar avaliando as homogeneidade da variância e normalidade dos resíduos (Figura <a href="cap8.html#fig:fig-mod-poi-diag-bas">8.2</a>).</p>
+<p>Vamos começar avaliando a homogeneidade da variância e a normalidade dos resíduos (Figura <a href="cap8.html#fig:fig-mod-poi-diag-bas">8.2</a>).</p>
 <div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose básica</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
@@ -302,8 +302,8 @@ Figura 8.3: Diagnose avançada dos resíduos do modelo GLM Poisson.
 Figura 8.4: Teste de overdispersion do pacote <code>DHARMa</code>.
 </p>
 </div>
-<p>Aqui temos um gráfico e o resultado novamente do teste de <em>overdispersion</em> (que já aparecia no gráfico anterior) mostrando que de fato há <em>overdispersion</em>: perceba que o valor de <em>P</em> é significativo. O gráfico nos mostra em cinza a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica <em>overdispersion</em>, se estivese à esquerda seria o caso de <em>underdispersion</em>.</p>
-<p>Agora vamos utilizar a função <code>check_overdisperion()</code> que utiliza uma distribuição qui-quadradado e o valor de <em>dispersion ratio</em> para testar a presença de <em>overdispersion</em> no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento <code>type="PearsonChisq"</code>.</p>
+<p>Aqui temos um gráfico e o resultado novamente do teste de <em>overdispersion</em> (que já aparecia no gráfico anterior) mostrando que de fato há <em>overdispersion</em>: perceba que o valor de <em>P</em> é significativo. O gráfico nos mostra em cinza a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica <em>overdispersion</em>, se estivesse à esquerda seria o caso de <em>underdispersion</em>.</p>
+<p>Agora vamos utilizar a função <code>check_overdisperion()</code> que utiliza uma distribuição chi-quadrado e o valor de <em>dispersion ratio</em> para testar a presença de <em>overdispersion</em> no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento <code>type="PearsonChisq"</code>.</p>
 <div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Testar a presença de overdispersion</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/check_overdispersion.html">check_overdispersion</a></span><span class="op">(</span><span class="va">mod_pois</span><span class="op">)</span> <span class="co"># modelo tem overdispersion</span>
@@ -371,7 +371,7 @@ Figura 8.5: Teste de inflação de zeros do pacote <code>DHARMa</code>.
 <p>Tanto a função do <code>DHARMa</code> quanto do <code>performance</code> conseguiram detectar que o modelo tem problemas com <em>overdispersion</em>, mas isso não é causado pelo excesso de zeros. Como já dissemos acima, no caso da distribuição Poisson, tanto a média quanto a variância são modeladas pelo mesmo parâmetro (<span class="math inline">\(\lambda\)</span>). Isso faz com que esta distribuição não seja muito útil para modelar dados de contagem em que haja muita variância em torno da média. Esse infelizmente é o caso da grande maioria dos dados ecológicos.</p>
 <p>Por estes motivos, não podemos fazer inferência com este modelo porque os parâmetros estimados não são confiáveis. Mas vejamos como seria feita essa inferência <em>caso este modelo fosse adequado</em>.</p>
 <p><strong>Inferência</strong></p>
-<p>Aqui iremos apresentar várias funções para calcular o coeficiente de determinação (R<sup>2</sup>). No caso de GLM(M)s, não há um consenso sobre como se calcula este coeficiente, havendo várias propostas que utilizam maneiras diferentes de estimar a homogeneidade de variância e covariância entre observações dos resíduos, veja <span class="citation">(<a href="refer%C3%AAncias.html#ref-nakagawa2017" role="doc-biblioref">Nakagawa, Johnson, and Schielzeth 2017</a>)</span> e <span class="citation">(<a href="refer%C3%AAncias.html#ref-ives2015" role="doc-biblioref">Ives 2015</a>)</span> para maiores detalhes, assim como o <em>help</em> das respectivas funções.</p>
+<p>Aqui iremos apresentar várias funções para calcular o coeficiente de determinação (R<sup>2</sup>). No caso de GLM(M)s, não há um consenso sobre como se calcula este coeficiente, havendo várias propostas que utilizam maneiras diferentes de estimar a homogeneidade de variância e covariância entre observações dos resíduos, veja Nakagawa et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-nakagawa2017" role="doc-biblioref">2017</a>)</span> e Ives <span class="citation">(<a href="refer%C3%AAncias.html#ref-ives2015" role="doc-biblioref">2015</a>)</span> para maiores detalhes, assim como o <em>help</em> das respectivas funções.</p>
 <div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficientes estimados pelo modelo</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_pois</span><span class="op">)</span>
@@ -411,7 +411,7 @@ Figura 8.5: Teste de inflação de zeros do pacote <code>DHARMa</code>.
 <span class="fu"><a href="https://easystats.github.io/performance/reference/r2.html">r2</a></span><span class="op">(</span><span class="va">mod_pois</span><span class="op">)</span>
 <span class="co">#&gt; # R2 for Generalized Linear Regression</span>
 <span class="co">#&gt;   Nagelkerke's R2: 0.059</span></code></pre></div>
-<p>Podemos ver que os valores de R<sup>2</sup> são bem baixos (em torno de 4 - 5%), independente do método que usamos pra calculá-lo.</p>
+<p>Podemos ver que os valores de R<sup>2</sup> são bem baixos (em torno de 4 - 5%), independentemente do método que usamos pra calculá-lo.</p>
 <p><strong>Plot do modelo predito</strong></p>
 <p>Vamos realizar a visualização do ajusto do modelo Poisson (Figura <a href="cap8.html#fig:fig-mod-poi-model">8.6</a>).</p>
 <div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
@@ -462,7 +462,7 @@ Figura 8.6: Gráfico do GLM Poisson.
 <li>Usar um modelo com correção de erro da sobredispersão, caso 1.5 &lt; <em>dispersion</em> &gt; 15</li>
 </ol>
 <p>Geralmente, dados de contagem em estudos ecológicos não seguem uma distribuição Poisson, pois há muita dispersão (variância) nos dados. Logo, o pressuposto da distribuição Poisson, i.e., de que a média e variância são descritas por um mesmo parâmetro (<span class="math inline">\(\lambda\)</span>) é quebrado.</p>
-<p>Como vimos, <em>overdispersion</em> é um problema comum ao analisar dados ecológicos e deve necessariamente ser diagnosticado no modelo. Uma maneira de lidar com esse tipo de problema é utilizar uma outra distribuição diferente da Poisson. A binomial negativa pode ser entendida como uma mistura da distibuição Poisson e Gamma, ou seja, ela aceita dados de contagem que sejam positivos, mas sem zero. A grande vantagem desta distribuição é que, diferentemente da Poisson, ela tem um parâmetro para modelar a média (<span class="math inline">\(\lambda\)</span>) e outro para modelar a variância (<em>k</em>). Logo, ela permite modelar dados em que a média é diferente da variância. Vejamos um exemplo.</p>
+<p>Como vimos, <em>overdispersion</em> é um problema comum ao analisar dados ecológicos e deve necessariamente ser diagnosticado no modelo. Uma maneira de lidar com esse tipo de problema é utilizar uma outra distribuição diferente da Poisson. A binomial negativa pode ser entendida como uma mistura das distribuições Poisson e Gamma, ou seja, ela aceita dados de contagem que sejam positivos, mas sem zero. A grande vantagem desta distribuição é que, diferentemente da Poisson, ela tem um parâmetro para modelar a média (<span class="math inline">\(\lambda\)</span>) e outro para modelar a variância (<em>k</em>). Logo, ela permite modelar dados em que a média é diferente da variância. Vejamos um exemplo.</p>
 <p>Aqui vamos continuar com estes dados para ver como o modelo se comporta com essa nova distribuição especificada. Para isso vamos utilizar a função <code>glm.nb</code> do pacote <code>MASS</code>.</p>
 <p><strong>Modelagem</strong></p>
 <div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
@@ -535,7 +535,7 @@ Figura 8.8: Diagnose avançada dos resíduos do modelo GLM binomial Negativo.
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  2 x log-likelihood:  -225.68</span></code></pre></div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Aqui vemos que a interpretação do resultado em termos de valor de <em>P</em> não mudou, ou seja, a distância para o fragmento mais próximo não foi significativo. Mas vejam que o coeficiente (slope) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).</p>
+<p>Aqui vemos que a interpretação do resultado em termos de valor de <em>P</em> não mudou, ou seja, a distância para o fragmento mais próximo não foi significativa. Mas vejam que o coeficiente (<em>slope</em>) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).</p>
 <p><strong>Plot do modelo predito</strong></p>
 <p>Vamos realizar a visualização do ajusto do modelo binomial Negativo (Figura <a href="cap8.html#fig:fig-mod-nb-model">8.9</a>).</p>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
@@ -566,7 +566,7 @@ Figura 8.9: Gráfico do GLM binomial Negativo.
 <code class="sourceCode R"><span class="co">## Modelo</span>
 <span class="va">mod_quasipois</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Riqueza_obs</span> <span class="op">~</span> <span class="va">dfrag</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">quasipoisson</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">fragmentos</span><span class="op">)</span></code></pre></div>
 <p><strong>Diagnose dos resíduos</strong></p>
-<p>A função <code>resid</code> não leva em conta a sobredispersão e temos de calcular manualmente o parâmetro de dispersão e inclui-lo no plot. Portanto, não podemos realizar a diagnose de modelos quasi-Poisson apenas com a função <code>plot</code> como fazíamos até então. Então, calculamos primeiramente os resíduos de Pearson e depois dividindo-o pela raiz quadrada do parâmetro de dispersão (Figura <a href="cap8.html#fig:fig-mod-quasi-poi-diag">8.10</a>).</p>
+<p>A função <code>resid</code> não leva em conta a sobredispersão e temos de calcular manualmente o parâmetro de dispersão e inclui-lo no plot. Portanto, não podemos realizar a diagnose de modelos quasi-Poisson apenas com a função <code>plot</code> como fazíamos até agora. Então, calculamos primeiramente os resíduos de Pearson e depois dividindo-o pela raiz quadrada do parâmetro de dispersão (Figura <a href="cap8.html#fig:fig-mod-quasi-poi-diag">8.10</a>).</p>
 <div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose dos resíduos</span>
 <span class="va">EP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">resid</a></span><span class="op">(</span><span class="va">mod_quasipois</span>, type <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span>
@@ -602,7 +602,7 @@ Figura 8.10: Diagnose dos resíduos do modelo GLM Quasi-Poisson.
 <p><strong>Explicação dos dados</strong></p>
 <p>Este conjunto de dados foi coletado por <span class="citation">(<a href="refer%C3%AAncias.html#ref-Franco-Belussi2018a" role="doc-biblioref">Franco-Belussi, De Oliveira, and Sköld 2018</a>)</span>. Os autores utilizaram um desenho experimental típico de uma 2x5 ANOVA fatorial (ou <em>two-way</em> ANOVA) em que temos dois tratamentos (fatores): pigmentação do girino com dois níveis (Yes e No) e Tempo de exposição com cinco níveis (controle sem UV, 6 h, 12 h, 18 h e 24 h de exposição à UV).</p>
 <p><strong>Pergunta</strong></p>
-<p>A melanina proteje girinos contra os efeitos da radiação ultravioleta?</p>
+<p>A melanina protege girinos contra os efeitos da radiação ultravioleta?</p>
 <p><strong>Predições</strong></p>
 <p>Como a melanina participa do sistema imune inato, ela desempenharia um papel na resposta do organismo à radiação UV, auxiliando as células imunes a combater os seus efeitos deletérios.</p>
 <p><strong>Variáveis</strong></p>
@@ -656,7 +656,7 @@ Figura 8.11: Gráfico para explorar as relações entre as variáveis.
 </div>
 <p>Aqui vemos que a quantidade de eosinófilos é muito maior nos girinos sem pigmentação (“albinos”). Já que estes animais não têm pigmentação melânica, as células brancas do sangue são a única ferramenta de combate aos efeitos deletérios da UV.</p>
 <p><strong>Modelagem</strong></p>
-<p>Aqui vamos usar o <code>cbind</code> no argumento <code>formula</code> para dizer que queremos modelar a contagem de eosinófilos em relação ao número total de células, ou seja, sua proporção. Aqui temos a contagem do número de eusinófilos (um tipo de célula da série branca do sangue) em lâminas histológicas de girinos da rã-touro (<em>Lithobates catesbeianus</em>) num total de 1000 células.</p>
+<p>Aqui vamos usar o <code>cbind</code> no argumento <code>formula</code> para dizer que queremos modelar a contagem de eosinófilos em relação ao número total de células, ou seja, sua proporção. Aqui temos a contagem do número de eosinófilos (um tipo de célula da série branca do sangue) em lâminas histológicas de girinos da rã-touro (<em>Lithobates catesbeianus</em>) num total de 1000 células.</p>
 <div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelo</span>
 <span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">eosinofilo</span>, <span class="va">n_celulas</span><span class="op">)</span> <span class="op">~</span> <span class="va">UV</span> <span class="op">*</span> <span class="va">Pigmentacao</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">uv_cells</span><span class="op">)</span></code></pre></div>
@@ -676,19 +676,28 @@ Figura 8.12: Diagnose básica dos resíduos do modelo GLM binomial.
 <p>Parece que os resíduos não sofrem de heterogeneidade de variância (linha vermelha está reta), mas parece haver um pequeno desvio da normalidade (veja pontos 19, 29 e 32 destacados no plot de quantis e no de outliers). Vejamos o que o <code>DHARMa</code> nos diz (Figura <a href="cap8.html#fig:fig-mod-quasi-bin-diag-avan">8.13</a>).</p>
 <div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose avançada</span>
-<span class="va">simulationBion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod1</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">simulationBion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod1</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-mod-quasi-bin-diag-avan"></span>
+<img src="livro_files/figure-html/fig-mod-quasi-bin-diag-avan-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial." width="100%" height="100%"><p class="caption">
+Figura 8.13: Diagnose avançada dos resíduos do modelo GLM binomial.
+</p>
+</div>
+<p>Agora vamos checar a qualidade do modelo com base na distribuição dos resíduos (Figura <a href="cap8.html#fig:fig-mod-quasi-bin-diag-avan1">8.14</a>).</p>
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Diagnose avançada</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/binned_residuals.html">binned_residuals</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Probably bad model fit. Only about 29% of the residuals are inside the error bounds.</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fig-mod-quasi-bin-diag-avan"></span>
-<img src="livro_files/figure-html/fig-mod-quasi-bin-diag-avan-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-quasi-bin-diag-avan-2.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial." width="100%" height="100%"><p class="caption">
-Figura 8.13: Diagnose avançada dos resíduos do modelo GLM binomial.
+<span style="display:block;" id="fig:fig-mod-quasi-bin-diag-avan1"></span>
+<img src="livro_files/figure-html/fig-mod-quasi-bin-diag-avan1-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial." width="100%" height="100%"><p class="caption">
+Figura 8.14: Diagnose avançada dos resíduos do modelo GLM binomial.
 </p>
 </div>
 <p>Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com heterogeneidade de variância, quanto <em>overdispersion</em> e problemas com <em>outliers</em>. Provavelmente o problema com <em>outliers</em> ocorreu por conta do pequeno tamanho amostral.</p>
 <p><strong>Inferência</strong></p>
 <p>Sabemos que o modelo não parece ser adequado para os dados, mas vamos interpretá-lo mesmo assim para que possamos entender a saída da função <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> e os contrastes entre os níveis dos fatores.</p>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficientes estimados pelo modelo</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -738,7 +747,7 @@ Figura 8.13: Diagnose avançada dos resíduos do modelo GLM binomial.
 <span class="co">#&gt; Pigmentacao     1  235.682        44     475.64</span>
 <span class="co">#&gt; UV:Pigmentacao  4   14.789        40     460.85</span></code></pre></div>
 <p>Aqui temos tanto a tabela com os resultados por níveis dos fatores (<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>), quanto a tabela com a <em>Deviance</em> que mostra os fatores e suas interações (<code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>). Vemos que nenhum fator foi significativo. Caso houvesse algum fator significativo, poderíamos testar a significância de cada nível dos fatores usando contrastes, desta forma.</p>
-<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Parâmetros</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html">emmeans</a></span><span class="op">(</span><span class="va">mod1</span>, <span class="op">~</span> <span class="va">UV</span><span class="op">|</span><span class="va">Pigmentacao</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Pigmentacao = nao:</span>
@@ -771,8 +780,8 @@ Figura 8.13: Diagnose avançada dos resíduos do modelo GLM binomial.
 <span class="co">#&gt; P value adjustment: tukey method for comparing a family of 5 estimates</span></code></pre></div>
 <p>Aqui temos o valor de cada combinação de níveis dos fatores, com seu respectivo valor de contraste e o valor de <em>P</em>. Vemos que para girinos sem pigmentação, apenas três contrastes foram significativos.</p>
 <p><strong>Plot do modelo predito</strong></p>
-<p>Vamos realizar a visualização do ajusto do modelo binomial (Figura <a href="cap8.html#fig:fig-mod-bin-model">8.14</a>).</p>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<p>Vamos realizar a visualização do ajusto do modelo binomial (Figura <a href="cap8.html#fig:fig-mod-bin-model">8.15</a>).</p>
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">uv_cells</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UV</span>, <span class="va">eosinofilo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Pigmentacao</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">16</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html">position_jitter</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
@@ -781,7 +790,7 @@ Figura 8.13: Diagnose avançada dos resíduos do modelo GLM binomial.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-bin-model"></span>
 <img src="livro_files/figure-html/fig-mod-bin-model-1.png" alt="Gráfico do GLM binomial." width="100%" height="100%"><p class="caption">
-Figura 8.14: Gráfico do GLM binomial.
+Figura 8.15: Gráfico do GLM binomial.
 </p>
 </div>
 <p>Usando o <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin()</a></code>, podemos perceber que existe uma dispersão maior nos tratamentos que utilizaram girinos sem pigmentação do que nos tratamentos com girinos pigmentados.</p>
@@ -794,7 +803,7 @@ Figura 8.14: Gráfico do GLM binomial.
 <p>Uma outra aplicação da distribuição binomial é quando temos dados de incidência, ou seja, presença ou ausência, de alguma variável. Por exemplo, presença ou ausência de uma espécie ou indivíduo num local. Neste caso a <code>formula</code> é diferente e o modelo é similar a uma regressão logística, vejamos.</p>
 <p>Aqui vamos utilizar os dados sobre autotomia da cauda de lagartos da espécie <em>Coleodactylus meridionalis</em> observados em fragmentos florestais da Mata Atlântica no estado de Pernambuco <span class="citation">(<a href="refer%C3%AAncias.html#ref-oliveira2020" role="doc-biblioref">C. N. Oliveira et al. 2020</a>)</span>.</p>
 <p><strong>Pergunta</strong></p>
-<p>A probabilidade de lagartos da espécie <em>Coleodactylus meridionalis</em> perderem (autotomizarem) a cauda aumenta com o tamanho do corpo e de acordo com o sexo dos lagarto?</p>
+<p>A probabilidade de lagartos da espécie <em>Coleodactylus meridionalis</em> perderem (autotomizarem) a cauda aumenta com o tamanho do corpo e de acordo com o sexo dos lagartos?</p>
 <p><strong>Predições</strong></p>
 <p>Quanto maior o lagarto, maior a probabilidade de autotomia da cauda e que esta resposta poderia também diferir entre sexos devido ao dimorfismo sexual.</p>
 <p><strong>Variáveis</strong></p>
@@ -802,8 +811,8 @@ Figura 8.14: Gráfico do GLM binomial.
 <li>Variável resposta: Presença ou ausência de cauda autotomizada em lagartos encontrados por busca ativa</li>
 </ul>
 <p><strong>Exploração dos dados</strong></p>
-<p>Este conjunto de dados possui muitas entradas faltantes (codificadas como <code>NA</code>). Primeiro vamos visualizar o conjunto de dados e depois precisamos remover as linhas que contêm dados faltantes. Aqui podemos usar a função interna do <code><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">ggplot2::remove_missing()</a></code> para remover linhas cujas variáveis informadas no argumento estejam faltando, vejamos (Figura <a href="cap8.html#fig:fig-mod-inc-na">8.15</a>).</p>
-<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<p>Este conjunto de dados possui muitas entradas faltantes (codificadas como <code>NA</code>). Primeiro vamos visualizar o conjunto de dados e depois precisamos remover as linhas que contêm dados faltantes. Aqui podemos usar a função interna do <code><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">ggplot2::remove_missing()</a></code> para remover linhas cujas variáveis informadas no argumento estejam faltando, vejamos (Figura <a href="cap8.html#fig:fig-mod-inc-na">8.16</a>).</p>
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">## Traduzir nomes das colunas e níveis de pigmentação </span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lagartos</span><span class="op">)</span>
@@ -816,22 +825,29 @@ Figura 8.14: Gráfico do GLM binomial.
 <span class="co">#&gt; 6     22   &lt;NA&gt; 20.59                 NA                   12.46          0</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">lagartos</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"numero"</span>, <span class="st">"sexo"</span>, <span class="st">"SVL"</span>, <span class="st">"comprimento_cauda"</span>, <span class="st">"cauda_autotomizada"</span>, <span class="st">"estado_cauda"</span><span class="op">)</span>
 
-
 <span class="co">## Dados faltantes</span>
-<span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_dat.html">vis_dat</a></span><span class="op">(</span><span class="va">lagartos</span><span class="op">)</span>
-<span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">lagartos</span>, cluster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># 22.9% dos dados estão faltando</span>
-<span class="va">dados_semNA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">remove_missing</a></span><span class="op">(</span><span class="va">lagartos</span>, vars <span class="op">=</span> <span class="st">"sexo"</span><span class="op">)</span> <span class="co"># excluindo linhas com dados faltantes para a variável Sex</span>
-<span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">dados_semNA</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/dimensions.html">dim</a></span><span class="op">(</span><span class="va">dados_semNA</span><span class="op">)</span> <span class="co"># verificar as dimensões da tabela depois que os dados tiverem sido excluídos</span>
-<span class="co">#&gt; [1] 139   6</span></code></pre></div>
+<span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">lagartos</span>, cluster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-inc-na"></span>
-<img src="livro_files/figure-html/fig-mod-inc-na-1.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-inc-na-2.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-inc-na-3.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><p class="caption">
-Figura 8.15: Gráficos para explorar os dados faltantes.
+<img src="livro_files/figure-html/fig-mod-inc-na-1.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><p class="caption">
+Figura 8.16: Gráficos para explorar os dados faltantes.
 </p>
 </div>
-<p>Agora, seguindo o que já estamos acostumados a fazer, vamos vizualisar os dados com a nossa hipótese (Figura <a href="cap8.html#fig:fig-mod-inc-pre">8.16</a>).</p>
-<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<p>Reparem que estão faltando 22.9% dos dados. Vamos excluir as linhas com os dados faltantes para a variável <code>sex</code> (Figura <a href="cap8.html#fig:fig-mod-inc-na1">8.17</a>).</p>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Removendo dados faltantes</span>
+<span class="va">dados_semNA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">remove_missing</a></span><span class="op">(</span><span class="va">lagartos</span>, vars <span class="op">=</span> <span class="st">"sexo"</span><span class="op">)</span> 
+
+<span class="co">## Visualizar</span>
+<span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">dados_semNA</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-mod-inc-na1"></span>
+<img src="livro_files/figure-html/fig-mod-inc-na1-1.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><p class="caption">
+Figura 8.17: Gráficos para explorar os dados faltantes.
+</p>
+</div>
+<p>Agora, seguindo o que já estamos acostumados a fazer, vamos visualisar os dados com a nossa hipótese (Figura <a href="cap8.html#fig:fig-mod-inc-pre">8.18</a>).</p>
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_semNA</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">SVL</span>, <span class="va">estado_cauda</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="va">sexo</span>, colour <span class="op">=</span> <span class="va">sexo</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
@@ -841,12 +857,12 @@ Figura 8.15: Gráficos para explorar os dados faltantes.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-inc-pre"></span>
 <img src="livro_files/figure-html/fig-mod-inc-pre-1.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%"><p class="caption">
-Figura 8.16: Gráfico para explorar as relações entre as variáveis.
+Figura 8.18: Gráfico para explorar as relações entre as variáveis.
 </p>
 </div>
 <p><strong>Modelagem</strong></p>
-<p>Aqui vamos construir dois modelos com a mesma distribuição binomial, mas com dois <em>link function</em>: logit e probit. A função logit possui caudas um pouco mais achatadas, isto é, a curva probit se aproxima dos eixos mais rapidamente que a logit. Geralmente não há muita diferença entre elas. Como não temos nenhuma expectativa de qual dos dois link function é o melhor, podemos fazer uma seleção de modelos.</p>
-<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<p>Aqui vamos construir dois modelos com a mesma distribuição binomial, mas com dois <em>link function</em>: logit e probit. A função logit possui caudas um pouco mais achatadas, isto é, a curva probit se aproxima dos eixos mais rapidamente que a logit. Geralmente não há muita diferença entre elas. Como não temos nenhuma expectativa de qual <em>link function</em> é o melhor, podemos fazer uma seleção de modelos.</p>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelos</span>
 <span class="va">mod_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">estado_cauda</span> <span class="op">~</span> <span class="va">SVL</span> <span class="op">*</span> <span class="va">sexo</span>, data <span class="op">=</span> <span class="va">dados_semNA</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">mod_pro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">estado_cauda</span> <span class="op">~</span> <span class="va">SVL</span> <span class="op">*</span> <span class="va">sexo</span>, data <span class="op">=</span> <span class="va">dados_semNA</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span><span class="op">)</span>
@@ -858,21 +874,30 @@ Figura 8.16: Gráfico para explorar as relações entre as variáveis.
 <span class="co">#&gt; mod_log 0.1   4</span></code></pre></div>
 <p>Existe pouca diferença entre o modelo probit e logit. Como o modelo logit é mais simples vamos interpretá-lo apenas.</p>
 <p><strong>Diagnose dos resíduos do modelo</strong></p>
-<p>Vamos fazer a diagnose dos resíduos do modelo (Figura <a href="cap8.html#fig:fig-mod-inc-diag">8.17</a>).</p>
-<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<p>Vamos fazer a diagnose dos resíduos do modelo (Figura <a href="cap8.html#fig:fig-mod-inc-diag">8.19</a>).</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnóse avançada</span>
-<span class="va">simulationBion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod_log</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">simulationBion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod_log</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-mod-inc-diag"></span>
+<img src="livro_files/figure-html/fig-mod-inc-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial de incidência." width="100%" height="100%"><p class="caption">
+Figura 8.19: Diagnose avançada dos resíduos do modelo GLM binomial de incidência.
+</p>
+</div>
+<p>Vamos realizar a visualização do ajusto do modelo (Figura <a href="cap8.html#fig:fig-mod-inc-diag1">8.20</a>).</p>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Diagnóse avançada</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/binned_residuals.html">binned_residuals</a></span><span class="op">(</span><span class="va">mod_log</span><span class="op">)</span>
 <span class="co">#&gt; Warning: About 92% of the residuals are inside the error bounds (~95% or higher would be good).</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fig-mod-inc-diag"></span>
-<img src="livro_files/figure-html/fig-mod-inc-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial de incidência." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-inc-diag-2.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial de incidência." width="100%" height="100%"><p class="caption">
-Figura 8.17: Diagnose avançada dos resíduos do modelo GLM binomial de incidência.
+<span style="display:block;" id="fig:fig-mod-inc-diag1"></span>
+<img src="livro_files/figure-html/fig-mod-inc-diag1-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial de incidência." width="100%" height="100%"><p class="caption">
+Figura 8.20: Diagnose avançada dos resíduos do modelo GLM binomial de incidência.
 </p>
 </div>
 <p><strong>Inferência</strong></p>
 <p>Para modelos com parâmetro de dispersão conhecida (e.g., binomial e Poisson), o chi-quadrado é a estatística mais apropriada.</p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficientes estimados pelo modelo</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod_log</span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -927,7 +952,7 @@ Figura 8.17: Diagnose avançada dos resíduos do modelo GLM binomial de incidên
 <p>Quando se analisa a abundância ou riqueza de espécies é comum que tenhamos dados com muitos zeros. Esse fenômeno pode ser causado por vários processos ecológicos, tais como locais fora do nicho da espécie, falha na detecção, amostras feitas fora do habitat ou em locais onde não se espera encontrar a espécie <span class="citation">(<a href="refer%C3%AAncias.html#ref-blascomoreno2019" role="doc-biblioref">Blasco‐Moreno et al. 2019</a>)</span>. Esse tipo de dado é problemático porque rompe com os pressupostos da distribuição Poisson e binomial negativa, podendo inclusive ser uma das causas da <em>overdispersion</em>.</p>
 <p>Nesses casos, temos de ajustar modelos que levam em conta esse excesso de zeros nos dados. Esses modelos são chamados de <strong>zero-inflated</strong> e <strong>hurdle models</strong> (também chamados de <em>zero-altered models</em>), dependendo de como o processo que causou os zeros é modelado.</p>
 <p><em>Hurdle models</em> (ou <em>zero-altered models</em>) modelam os dados dividindo-os em dois subconjuntos: um no qual reduzimos os dados à presença-ausência, ou seja, todos os dados maiores que 1 são transformados em 1 e usamos, por exemplo, uma distribuição binomial; e uma outra parte que só considera os valores positivos sem zero, utilizando uma Poisson ou binomial negativa truncadas. Ao fazer isso, a distribuição truncada assume que os zeros são gerados tanto por processos ecológicos, quanto erros de amostragem (ou seja, é impossível distinguir entre essas duas fontes). Portanto, esses zeros são excluídos da distribuição com dados de contagem. Por exemplo, se uma distribuição binomial negativa for usada para modelar a parte quantitativa, chamamos o modelo de <em>Zero-altered Negative binomial</em>. A interpretação dos modelos deve ser feita de forma conjunta.</p>
-<p>Modelos com zero inflados funcionam de maneira similar, mas permitem que a distribuição Poisson contenha zeros, ou seja, <em>não é utilizada uma distribuição truncada</em>. Ao fazer isso, esta distribuição de Poisson pressupõe que os zeros foram gerados por um processo ecológico real, tal como, ausência de habitat adequado.</p>
+<p>Modelos com zero inflados funcionam de maneira similar, mas permitem que a distribuição Poisson contenha zeros, ou seja, <em>não é utilizada uma distribuição truncada</em>. Ao fazer isso, está distribuição de Poisson pressupõe que os zeros foram gerados por um processo ecológico real, tal como, ausência de habitat adequado.</p>
 <p>Para ilustrar como podemos lidar com conjuntos de dados complexos, vamos utilizar os dados do parasita <em>Raillietiella mottae</em> infectando duas espécies de lagartos que ocorrem no Nordeste Brasileiro <span class="citation">(<a href="refer%C3%AAncias.html#ref-lima2018" role="doc-biblioref">Lima et al. 2018</a>)</span>. Ao todo, 63 indivíduos de <em>Hemidactylus agrius</em> e 132 de <em>Phyllopezus pollicaris</em> foram amostrados.</p>
 <p><strong>Pergunta</strong></p>
 <p>Quais atributos de história de vida dos lagartos são relacionados com o volume (<em>load</em>) de infecção, tais como tamanho e sexo?</p>
@@ -937,7 +962,7 @@ Figura 8.17: Diagnose avançada dos resíduos do modelo GLM binomial de incidên
 <ul>
 <li>Variável resposta: número do parasita <em>Raillietiella mottae</em>, que é um crustáceo parasita, infectando o aparelho respiratório e intestinal de lagartos.</li>
 </ul>
-<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">parasitas</span><span class="op">)</span>
 <span class="co">#&gt;                     Especie Sexo CRC Raillietiella_mottae</span>
@@ -947,8 +972,8 @@ Figura 8.17: Diagnose avançada dos resíduos do modelo GLM binomial de incidên
 <span class="co">#&gt; W128 Phyllopezus_pollicaris    M  48                    0</span>
 <span class="co">#&gt; W129 Phyllopezus_pollicaris    F  40                    0</span>
 <span class="co">#&gt; W130 Phyllopezus_pollicaris    M  62                    0</span></code></pre></div>
-<p>Vamos explorar os dados (Figura <a href="cap8.html#fig:fig-mod-zero-pre">8.18</a>).</p>
-<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<p>Vamos explorar os dados (Figura <a href="cap8.html#fig:fig-mod-zero-pre">8.21</a>).</p>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráficos</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">parasitas</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span>, fill <span class="op">=</span> <span class="va">Especie</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
@@ -967,46 +992,51 @@ Figura 8.17: Diagnose avançada dos resíduos do modelo GLM binomial de incidên
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-pre"></span>
 <img src="livro_files/figure-html/fig-mod-zero-pre-1.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-zero-pre-2.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%"><p class="caption">
-Figura 8.18: Gráfico para explorar as relações entre as variáveis.
+Figura 8.21: Gráfico para explorar as relações entre as variáveis.
 </p>
 </div>
 <p>Os gráfico acima mostram a contagem do parasita <em>Raillietiella mottae</em> nos dois sexos (F e M para fêmea e macho) nas duas espécies de lagartos (<em>Hemidactylus agrius</em> e <em>Phyllopezus pollicaris</em>), tanto na forma de uma distribuição de densidade, quanto de gráfico de dispersão. Aqui podemos ver que de fato existe um excesso de zeros principalmente em <em>P. pollicaris</em>.</p>
 <p>Quando nos deparamos com dados complexos assim, a estratégia é sempre começar com um modelo simples e depois adicionar mais parâmetros. Portanto, vamos iniciar com um modelo Poisson, mesmo sabendo que ele muito provavelmente não será adequado para modelar estes dados.</p>
 <p><strong>Modelagem</strong></p>
 <p>Ajuste do modelo Poisson.</p>
-<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelo</span>
 <span class="va">pois_plain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span></code></pre></div>
 <p><strong>Diagnose</strong></p>
-<p>Aqui vamos utilizar as funções do pacote <code>performance</code> novamente (Figura <a href="#fig:fig-mod-pois-zero-diag"><strong>??</strong></a>) para o GLM Poisson.</p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<p>Aqui vamos utilizar as funções do pacote <code>performance</code> para o GLM Poisson.</p>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose avançada</span>
+<span class="co"># Verificar zero inflation</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/check_zeroinflation.html">check_zeroinflation</a></span><span class="op">(</span><span class="va">pois_plain</span><span class="op">)</span> <span class="co"># para diagnosticar se o modelo sofre de zero inflation</span>
 <span class="co">#&gt; # Check for zero-inflation</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;    Observed zeros: 156</span>
 <span class="co">#&gt;   Predicted zeros: 140</span>
 <span class="co">#&gt;             Ratio: 0.90</span>
+
+<span class="co"># Verificar overdispersion</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/check_overdispersion.html">check_overdispersion</a></span><span class="op">(</span><span class="va">pois_plain</span><span class="op">)</span>
 <span class="co">#&gt; # Overdispersion test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;        dispersion ratio =   1.932</span>
 <span class="co">#&gt;   Pearson's Chi-Squared = 367.133</span>
 <span class="co">#&gt;                 p-value = &lt; 0.001</span></code></pre></div>
-<p>A diagnose não só nos disse que o modelo possui <em>overdispersion</em>, como também de <em>zero-inflation</em>, como já esperávamos. Vejamos então como melhorar o nosso modelo para lidar com esses dois problemas. Especificamente, vamos utilizar um modelo <em>Hurdle</em> com binomial negativa truncada (ou seja, desconsiderando os zeros), e um outro modelo <em>zero-inflated</em> usando uma distribuição binomial negativa.
-Aqui vamos utilizar o pacote <code>glmmTMB</code>.</p>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<p>A diagnose não só nos disse que o modelo possui <em>overdispersion</em>, como também de <em>zero-inflation</em>, como já esperávamos. Vejamos então como melhorar o nosso modelo para lidar com esses dois problemas. Especificamente, vamos utilizar um modelo <em>Hurdle</em> com binomial negativa truncada (ou seja, desconsiderando os zeros), e dois outros modelos com <em>zero-inflated</em> usando distribuição binomial negativa e Poisson. Aqui vamos utilizar o pacote <code>glmmTMB</code>.</p>
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelos</span>
-<span class="va">hur_NB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, zi <span class="op">=</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="va">truncated_nbinom2</span><span class="op">)</span> <span class="co"># Hurdle model</span>
+<span class="co"># Hurdle model</span>
+<span class="va">hur_NB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, zi <span class="op">=</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="va">truncated_nbinom2</span><span class="op">)</span> 
 
-<span class="va">ziNB_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, zi <span class="op">=</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="va">nbinom2</span><span class="op">)</span> <span class="co"># zero-inflated Poisson</span>
+<span class="co"># zero-inflated Poisson</span>
+<span class="va">ziNB_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, zi <span class="op">=</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="va">nbinom2</span><span class="op">)</span> 
 
-<span class="va">ziP_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, zi <span class="op">=</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="va">poisson</span><span class="op">)</span> <span class="co"># zero-inflated Negative binomial</span></code></pre></div>
+<span class="co"># zero-inflated Negative binomial</span>
+<span class="va">ziP_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span> <span class="op">~</span> <span class="va">CRC</span> <span class="op">+</span> <span class="va">Sexo</span> <span class="op">*</span> <span class="va">Especie</span>, zi <span class="op">=</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">parasitas</span>, family <span class="op">=</span> <span class="va">poisson</span><span class="op">)</span> </code></pre></div>
 <p><strong>Diagnose</strong></p>
 <p>Vamos fazer a diagnose desses três modelos ajustados anteriormente.</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose de inflação de zeros</span>
-<span class="fu"><a href="https://easystats.github.io/performance/reference/check_zeroinflation.html">check_zeroinflation</a></span><span class="op">(</span><span class="va">hur_NB</span><span class="op">)</span> <span class="co"># prediz melhor os zeros</span>
+<span class="fu"><a href="https://easystats.github.io/performance/reference/check_zeroinflation.html">check_zeroinflation</a></span><span class="op">(</span><span class="va">hur_NB</span><span class="op">)</span> 
 <span class="co">#&gt; # Check for zero-inflation</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;    Observed zeros: 156</span>
@@ -1025,7 +1055,7 @@ Aqui vamos utilizar o pacote <code>glmmTMB</code>.</p>
 <span class="co">#&gt;   Predicted zeros: 142</span>
 <span class="co">#&gt;             Ratio: 0.91</span></code></pre></div>
 <p>Aqui vemos que o modelo zero-altered (Hurdle Model) conseguiu predizer exatamente a quantidade de zeros observada, fazendo com que o modelo seja suficiente para usarmos com esses dados.</p>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Seleção de modelos</span>
 <span class="fu"><a href="https://rdrr.io/pkg/bbmle/man/ICtab.html">ICtab</a></span><span class="op">(</span><span class="va">pois_plain</span>, <span class="va">hur_NB</span>, <span class="va">ziP_mod2</span>, <span class="va">ziNB_mod2</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AICc"</span><span class="op">)</span>, weights <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;            dAICc df weight</span>
@@ -1034,22 +1064,41 @@ Aqui vamos utilizar o pacote <code>glmmTMB</code>.</p>
 <span class="co">#&gt; hur_NB      3.6  11 0.10  </span>
 <span class="co">#&gt; pois_plain 44.6  5  &lt;0.001</span></code></pre></div>
 <p>Mas quando comparamos o AICc entre modelos, os modelos zero-inflated (tanto Poisson, quanto binomial negativa) que tem menos parâmetros, são ranqueados ligeiramente melhor do que o modelo binomial negativa zero-altered (ou hurdle). Não podemos distinguir entre os dois modelos com zero-inflated porque o dAICc &lt; 2, ou seja, o ajuste deles aos dados são praticamente iguais. Vejam que a diferença de Akaike Weights entre os dois primeiros modelos e o hurdle é bastante substancial (0.34 e 0.52). Além disso, vemos que os modelos que levam em conta o excesso de zeros se ajustam bem melhor aos dados do que o modelo simples com distribuição Poisson.
-Vamos ver como os modelos se saem em relação aos outros pressupostos (Figura <a href="cap8.html#fig:fig-mod-zero-diag">8.19</a>).</p>
-<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+Vamos ver como os modelos se saem em relação aos outros pressupostos.</p>
+<p>Modelo <em>Hurdle</em> (Figura <a href="cap8.html#fig:fig-mod-zero-diag">8.22</a>).</p>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnoses</span>
-<span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">hur_NB</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">ziP_mod2</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">ziNB_mod2</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="co"># tem um outlier nos resíduos (asterisco vermelho)</span></code></pre></div>
+<span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">hur_NB</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-diag"></span>
-<img src="livro_files/figure-html/fig-mod-zero-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM Hurdle e zero-inflated binomial negativa." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-zero-diag-2.png" alt="Diagnose avançada dos resíduos do modelo GLM Hurdle e zero-inflated binomial negativa." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-zero-diag-3.png" alt="Diagnose avançada dos resíduos do modelo GLM Hurdle e zero-inflated binomial negativa." width="100%" height="100%"><p class="caption">
-Figura 8.19: Diagnose avançada dos resíduos do modelo GLM Hurdle e zero-inflated binomial negativa.
+<img src="livro_files/figure-html/fig-mod-zero-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM Hurdle." width="100%" height="100%"><p class="caption">
+Figura 8.22: Diagnose avançada dos resíduos do modelo GLM Hurdle.
+</p>
+</div>
+<p>Modelo <em>zero-inflated</em> Poisson (Figura <a href="cap8.html#fig:fig-mod-zero-diag1">8.23</a>).</p>
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Diagnoses</span>
+<span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">ziP_mod2</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-mod-zero-diag1"></span>
+<img src="livro_files/figure-html/fig-mod-zero-diag1-1.png" alt="Diagnose avançada dos resíduos do modelo GLM zero-inflated Poisson." width="100%" height="100%"><p class="caption">
+Figura 8.23: Diagnose avançada dos resíduos do modelo GLM zero-inflated Poisson.
+</p>
+</div>
+<p>Modelo <em>zero-inflated negative binomial</em> (Figura <a href="cap8.html#fig:fig-mod-zero-diag2">8.24</a>).</p>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Diagnoses</span>
+<span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">ziNB_mod2</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig-mod-zero-diag2"></span>
+<img src="livro_files/figure-html/fig-mod-zero-diag2-1.png" alt="Diagnose avançada dos resíduos do modelo GLM zero-inflated negative binomial." width="100%" height="100%"><p class="caption">
+Figura 8.24: Diagnose avançada dos resíduos do modelo GLM zero-inflated negative binomial.
 </p>
 </div>
 <p>Os gráficos de diagnose do <code>DHARMa</code> são outra evidência de que tanto o modelo hurdle quanto o zero-inflated Poisson são adequados para os dados, em termos de homogeneidade de variância, <em>outliers</em> e <em>overdispersion</em>.</p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Apesar de não ter um ajuste tão bom aos dados, o modelo hurdle prediz melhor a quantidade de zeros. Portanto, vamos interpretar os coeficientes apenas deste modelo.</p>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficientes estimados pelo modelo</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">hur_NB</span><span class="op">)</span>
 <span class="co">#&gt;  Family: truncated_nbinom2  ( log )</span>
@@ -1083,8 +1132,8 @@ Figura 8.19: Diagnose avançada dos resíduos do modelo GLM Hurdle e zero-inflat
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>Para maiores detalhes na interpretação deste tipo de modelo, sugerimos fortemente consultar p. 382-3 de Brooks et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-brooks2017a" role="doc-biblioref">2017</a>)</span>. Para fatores com mais de um nível, o <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> mostra os resultados usando contraste, para isto toma como referência um dos níveis do fator (o primeiro em ordem alfabética) e o compara com os outros. Note que na parte com excesso de zeros, o contraste é positivo para Espécie. Ou seja, o <em>P. pollicaris</em> tem maior chance de ter ausência de parasitas que <em>H. agrius</em>. O contraste para espécie continua sendo positivo na parte condicional do modelo, mas o valor do parâmetro não é tão alto. Isso quer dizer que <em>P. pollicaris</em> tem abundância de parasitas em média ligeiramente maior que <em>H. agrius</em>. Vemos que a interação é significativa entre sexo e espécie na parte do modelo com excesso de zeros, mas apenas marginalmente significativa na parte condicional. Portanto, a influência do sexo na incidência, mas não na abundância do parasita depende conjuntamente da espécie. No entanto, o CRC só passa a ser significativo na parte de excesso de zeros, ou seja, quando modelamos apenas a incidência (presença-ausência) do parasita. Portanto, o <em>CRC determina se o lagarto vai ou não ser infectado, mas não <bold>o quanto</bold> vai receber de parasitas</em>. Já tanto o sexo quanto a espécie foram significativas em ambas as partes do modelo, ou seja, esses fatores não influenciam diferentemente a infecção e a quantidade de parasitas.
-Agora vejamos como podemos plotar as predições deste modelo (Figura <a href="cap8.html#fig:fig-mod-zero-model">8.20</a>).</p>
-<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
+Agora vejamos como podemos plotar as predições deste modelo (Figura <a href="cap8.html#fig:fig-mod-zero-model">8.25</a>).</p>
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="va">parasitas</span><span class="op">$</span><span class="va">phat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">hur_NB</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>
 <span class="va">parasitas</span> <span class="op">&lt;-</span> <span class="va">parasitas</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">parasitas</span>, <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">Sexo</span>, <span class="va">Especie</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span>
@@ -1102,7 +1151,7 @@ Agora vejamos como podemos plotar as predições deste modelo (Figura <a href="c
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-model"></span>
 <img src="livro_files/figure-html/fig-mod-zero-model-1.png" alt="Gráfico do GLM Hurdle." width="100%" height="100%"><p class="caption">
-Figura 8.20: Gráfico do GLM Hurdle.
+Figura 8.25: Gráfico do GLM Hurdle.
 </p>
 </div>
 </div>
@@ -1112,7 +1161,7 @@ Figura 8.20: Gráfico do GLM Hurdle.
 </h2>
 <p>Uma outra maneira de codificarmos os dados é utilizando categorias ordenadas, tais como ranques. Exemplos incluem a escala de Likert, scores e intervalos (e.g., de idade).</p>
 <p>Para este exemplo, iremos utilizar um outro conjunto de dados do artigo de <span class="citation">(<a href="refer%C3%AAncias.html#ref-Franco-Belussi2018a" role="doc-biblioref">Franco-Belussi, De Oliveira, and Sköld 2018</a>)</span> que manipulou <em>in vitro</em> a concentração do hormônio noradrenalina nos olhos de peixes esgana-gato (<em>Gasterosteus aculeatus</em>) e avaliaram a expressão de várias cores conferidas por tipos de células (cromatóforos). Aqui vamos usar os dados do efeito da noradrenalina na cor vermelha em machos.
-Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao longo do tempo (que é um dos fatores deste experimento). Portanto, para não incorrer no risco de pseudoréplicas deveríamos incluir esta informação no modelo. A maneira mais simples de fazê-lo é criar um modelo de efeito misto em que teríamos uma parte fixa (o que de fato estamos interessados em testar) e outra aleatória (variáveis que precisamos controlar). Portanto, <code>Animal</code> será incluído como um um fator aleatório, tendo um intercepto estimado separadamente para cada animal no modelo. Não iremos entrar em detalhes sobre modelos de efeito misto porque necessitaríamos de um outro capítulo para isso, dada a complexidade do assunto. No entanto, recomendamos aos leitores dois artigos intródutórios muito bons - Harisson <span class="citation">(<a href="refer%C3%AAncias.html#ref-Harrison" role="doc-biblioref">2018</a>)</span> e Bolker et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-BOLKER2009127" role="doc-biblioref">2009</a>)</span>.</p>
+Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao longo do tempo (que é um dos fatores deste experimento). Portanto, para não incorrer no risco de pseudoréplicas deveríamos incluir esta informação no modelo. A maneira mais simples de fazê-lo é criar um modelo de efeito misto em que teríamos uma parte fixa (o que de fato estamos interessados em testar) e outra aleatória (variáveis que precisamos controlar). Portanto, <code>Animal</code> será incluído como um fator aleatório, tendo um intercepto estimado separadamente para cada animal no modelo. Não iremos entrar em detalhes sobre modelos de efeito misto porque necessitaríamos de um outro capítulo para isso, dada a complexidade do assunto. No entanto, recomendamos aos leitores dois artigos introdutórios muito bons - Harisson <span class="citation">(<a href="refer%C3%AAncias.html#ref-Harrison" role="doc-biblioref">2018</a>)</span> e Bolker et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-BOLKER2009127" role="doc-biblioref">2009</a>)</span>.</p>
 <p><strong>Pergunta</strong></p>
 <p>A noradrenalina causa uma diminuição da coloração vermelha, via agregação dos pigmentos?</p>
 <p><strong>Predições</strong></p>
@@ -1121,7 +1170,7 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <ul>
 <li>Variável resposta: escala de intensidade de cor. Para mais detalhes veja o artigo original <span class="citation">(<a href="refer%C3%AAncias.html#ref-Franco-Belussi2018a" role="doc-biblioref">Franco-Belussi, De Oliveira, and Sköld 2018</a>)</span>.</li>
 </ul>
-<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados</span>
 <span class="va">cores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv2</a></span><span class="op">(</span><span class="st">"https://ndownloader.figshare.com/files/10250700"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cores</span><span class="op">)</span>
@@ -1147,7 +1196,7 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <span class="co">#&gt; 5      2         CT    0h    M     5        4</span>
 <span class="co">#&gt; 6      2         CT    1h    M     5        4</span></code></pre></div>
 <p>Esses dados, no entanto, têm de ser codificados como um fator ordenado antes de entrarmos com eles no modelo.</p>
-<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Fator</span>
 <span class="va">macho_verm</span><span class="op">$</span><span class="va">animal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">macho_verm</span><span class="op">$</span><span class="va">animal</span><span class="op">)</span>
 <span class="va">macho_verm</span><span class="op">$</span><span class="va">vermelho_ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">macho_verm</span><span class="op">$</span><span class="va">vermelho</span>, 
@@ -1165,12 +1214,12 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <p>Repare que a classe do objeto muda e temos agora que Red é um <code>Ordered factor</code>.</p>
 <p><strong>Modelagem</strong></p>
 <p>Vamos ajustar um modelo cumulative link, utilizando a função <code><a href="https://rdrr.io/pkg/ordinal/man/clmm.html">clmm()</a></code> do pacote <code>ordinal</code>.</p>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelo</span>
 <span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ordinal/man/clmm.html">clmm</a></span><span class="op">(</span><span class="va">vermelho_ord</span> <span class="op">~</span> <span class="va">tratamento</span> <span class="op">+</span> <span class="va">tempo</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">animal</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">macho_verm</span>, threshold <span class="op">=</span> <span class="st">"equidistant"</span><span class="op">)</span></code></pre></div>
 <p><strong>Diagnose</strong></p>
 <p>Infelizmente, o pacote <code>ordinal</code> não fornece métodos para lidar com modelos mistos, como o nosso. Então, montamos um modelo fixo apenas para entrar nas duas funções de diagnose. Essas duas funções <code><a href="https://rdrr.io/pkg/ordinal/man/nominal.test.html">scale_test()</a></code> e <code><a href="https://rdrr.io/pkg/ordinal/man/nominal.test.html">nominal_test()</a></code> testam a qualidade do ajuste (<em>goodness-of-fit</em>) do modelo, similar aos <em>likelihood-ratio test</em>, só que para dados ordinais.</p>
-<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose</span>
 <span class="va">assumption3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ordinal/man/clm.html">clm</a></span><span class="op">(</span><span class="va">vermelho_ord</span> <span class="op">~</span> <span class="va">tratamento</span> <span class="op">+</span> <span class="va">tempo</span>, data <span class="op">=</span> <span class="va">macho_verm</span>, threshold <span class="op">=</span> <span class="st">"equidistant"</span><span class="op">)</span>
 
@@ -1196,7 +1245,7 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <p>Isto provavelmente se deve ao baixo tamanho amostral. Por questão de brevidade vamos apenas ignorar este aspecto e interpretar o resultado do modelo mesmo assim. Mas se o seu modelo apresentar este problema, a solução deve ser realizar regressões logísticas separadamente.</p>
 <p><strong>Inferência</strong></p>
 <p>Vamos analisar os parâmetros do modelo.</p>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficientes estimados pelo modelo</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod3</span><span class="op">)</span>
 <span class="co">#&gt; Cumulative Link Mixed Model fitted with the Laplace approximation</span>
@@ -1251,8 +1300,8 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <span class="co">#&gt;  CT - NA10uM      4.6 1.23 Inf   3.748  0.0002</span></code></pre></div>
 <p>Aqui vemos que tanto o tratamento, quanto o tempo de exposição foram significativos.</p>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Vamos analisar a predição do modelo (Figura <a href="cap8.html#fig:fig-mod-ord-model">8.21</a>).</p>
-<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<p>Vamos analisar a predição do modelo (Figura <a href="cap8.html#fig:fig-mod-ord-model">8.26</a>).</p>
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 
 <span class="co"># Calcular média e erro padrão</span>
@@ -1278,7 +1327,7 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-ord-model"></span>
 <img src="livro_files/figure-html/fig-mod-ord-model-1.png" alt="Gráfico do modelo cumulative link." width="100%" height="100%"><p class="caption">
-Figura 8.21: Gráfico do modelo cumulative link.
+Figura 8.26: Gráfico do modelo cumulative link.
 </p>
 </div>
 <p>Neste gráfico vemos que o grupo tratado com o hormônio começa com um índice de eritróforo ligeiramente maior do que o controle, mas logo tem uma brusca redução com uma hora de exposição, passando a ter índice 2, demonstrando que houve uma mudança de cor induzida pela dispersão dos cromatóforos. Já no controle, o índice não muda em relação ao tempo de exposição. Logo, podemos ver que há uma interação entre os fatores devido a esta queda do índice no grupo tratado e a ausência de efeito no controle.</p>
@@ -1287,8 +1336,8 @@ Figura 8.21: Gráfico do modelo cumulative link.
 <h2>
 <span class="header-section-number">8.10</span> Dados contínuos: distribuição beta<a class="anchor" aria-label="anchor" href="#dados-cont%C3%ADnuos-distribui%C3%A7%C3%A3o-beta"><i class="fas fa-link"></i></a>
 </h2>
-<p>Aqui vamos utilizar como exemplo os dados do artigo de <span class="citation">(<a href="refer%C3%AAncias.html#ref-Franco-Belussi2018a" role="doc-biblioref">2018</a>)</span>. Os pesquisadores fizeram um experimento <em>in vivo</em> com peixes esgana-gato (<em>Gasterosteus aculeatus</em>) para testar como a coloração dos animais respondem ao fármaco ioimbina (YOH), que bloqueia a coloração típica que os machos exibem na época de acasalamento, e o tempo de exposição ao mesmo (além de um controle), num desenho de ANOVA fatorial. Como as medidas foram feitas repetidamente no mesmo animal, iremos incluir o <code>Animal</code> como um fator aleatório no modelo.</p>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<p>Aqui vamos utilizar como exemplo os dados do artigo de Franco-Belussi et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-Franco-Belussi2018a" role="doc-biblioref">2018</a>)</span>. Os pesquisadores fizeram um experimento <em>in vivo</em> com peixes esgana-gato (<em>Gasterosteus aculeatus</em>) para testar como a coloração dos animais respondem ao fármaco ioimbina (YOH), que bloqueia a coloração típica que os machos exibem na época de acasalamento, e o tempo de exposição ao mesmo (além de um controle), num desenho de ANOVA fatorial. Como as medidas foram feitas repetidamente no mesmo animal, iremos incluir o <code>Animal</code> como um fator aleatório no modelo.</p>
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fish</span><span class="op">)</span>
 <span class="co">#&gt;   Animal Treatment Time Sex Darkness Redness</span>
 <span class="co">#&gt; 1      1        CT   0h   M    56.42  131.17</span>
@@ -1309,8 +1358,8 @@ Figura 8.21: Gráfico do modelo cumulative link.
 <ul>
 <li>Variável resposta: a intensidade de coloração escura em peixes machos. Esses dados são expressos em termos de porcentagem e variam continuamente de 0 a 100%. Para facilitar a modelagem e nos adequarmos à maneira com que a função requer os dados, vamos simplesmente dividir por 100 para que os dados variem entre 0 e 1</li>
 </ul>
-<p>Para modelar os dados vamos utilizar a função <code>glmmTMB</code>. Antes disso, vamos analisar graficamente os dados (Figura <a href="cap8.html#fig:fig-mod-beta-pre">8.22</a>). Vamos usar apenas os dados dos machos para este exemplo.</p>
-<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
+<p>Para modelar os dados vamos utilizar a função <code>glmmTMB</code>. Antes disso, vamos analisar graficamente os dados (Figura <a href="cap8.html#fig:fig-mod-beta-pre">8.27</a>). Vamos usar apenas os dados dos machos para este exemplo.</p>
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Filtrando os dados</span>
 <span class="va">fish</span><span class="op">$</span><span class="va">animal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fish</span><span class="op">$</span><span class="va">animal</span><span class="op">)</span>
 <span class="va">fish</span><span class="op">$</span><span class="va">sexo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fish</span><span class="op">$</span><span class="va">sexo</span><span class="op">)</span>
@@ -1325,31 +1374,31 @@ Figura 8.21: Gráfico do modelo cumulative link.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-beta-pre"></span>
 <img src="livro_files/figure-html/fig-mod-beta-pre-1.png" alt="Gráfico para explorar a distribuição da variável resposta." width="100%" height="100%"><p class="caption">
-Figura 8.22: Gráfico para explorar a distribuição da variável resposta.
+Figura 8.27: Gráfico para explorar a distribuição da variável resposta.
 </p>
 </div>
 <p>No histograma podemos ver que os dados de fato variam continuamente no intervalo entre 0 e 1, tendo uma distribuição notadamente bimodal.</p>
 <p><strong>Modelagem</strong></p>
 <p>Vamos ajustar um GLM Beta.</p>
-<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelo</span>
 <span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">preto</span><span class="op">/</span><span class="fl">100</span> <span class="op">~</span> <span class="va">tratamento</span> <span class="op">*</span> <span class="va">tempo</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">animal</span><span class="op">)</span>, family <span class="op">=</span> <span class="va">beta_family</span>, data <span class="op">=</span> <span class="va">macho_preto</span><span class="op">)</span></code></pre></div>
 <p><strong>Diagnose</strong></p>
 <p>Aqui utilizaremos o mesmo pacote <code>DHARMa</code> para realizar a diagnose do modelo
-(Figura <a href="cap8.html#fig:fig-mod-beta-diag">8.23</a>).</p>
-<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+(Figura <a href="cap8.html#fig:fig-mod-beta-diag">8.28</a>).</p>
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnóse</span>
 <span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod2</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-beta-diag"></span>
 <img src="livro_files/figure-html/fig-mod-beta-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM Beta." width="100%" height="100%"><p class="caption">
-Figura 8.23: Diagnose avançada dos resíduos do modelo GLM Beta.
+Figura 8.28: Diagnose avançada dos resíduos do modelo GLM Beta.
 </p>
 </div>
 <p>Podemos ver que o modelo não sofre de heterogeneidade de dispersão, overdispersion, nem problemas com <em>outlier</em>.</p>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Agora que podemos interpretar a saída do modelo ajustado com confiança, vamos obter a tabela de anova em que teremos os testes de cada fator do modelo.</p>
-<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficientes estimados pelo modelo</span>
 <span class="fu"><a href="https://rdrr.io/pkg/car/man/Anova.html">Anova</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span>
 <span class="co">#&gt; Analysis of Deviance Table (Type II Wald chisquare tests)</span>
@@ -1362,7 +1411,7 @@ Figura 8.23: Diagnose avançada dos resíduos do modelo GLM Beta.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>Aqui vemos que a interação é significativa. Portanto, temos de interpretar os níveis do fator da combinação, fazemos isso no pacote <code>emmeans</code> colocando a barra |.</p>
-<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## níveis do fator da combinação</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html">emmeans</a></span><span class="op">(</span><span class="va">mod2</span>, <span class="op">~</span> <span class="va">tratamento</span><span class="op">|</span><span class="va">tempo</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; tempo = 0h:</span>
@@ -1383,8 +1432,8 @@ Figura 8.23: Diagnose avançada dos resíduos do modelo GLM Beta.
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Results are given on the log odds ratio (not the response) scale.</span></code></pre></div>
 <p>Agora podemos perceber que a diferença entre o controle e o tratado só passa a ser significativa depois de 1 h de exposição.</p>
-<p>Isso fica mais evidente quando plotamos os dados (Figura <a href="cap8.html#fig:fig-mod-beta-model">8.24</a>).</p>
-<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<p>Isso fica mais evidente quando plotamos os dados (Figura <a href="cap8.html#fig:fig-mod-beta-model">8.29</a>).</p>
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="va">escuridao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Rmisc/man/summarySE.html">summarySE</a></span><span class="op">(</span><span class="va">macho_preto</span>, 
                         measurevar <span class="op">=</span> <span class="st">"preto"</span>,
@@ -1408,7 +1457,7 @@ Figura 8.23: Diagnose avançada dos resíduos do modelo GLM Beta.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-beta-model"></span>
 <img src="livro_files/figure-html/fig-mod-beta-model-1.png" alt="Gráfico do modelo GLM beta." width="100%" height="100%"><p class="caption">
-Figura 8.24: Gráfico do modelo GLM beta.
+Figura 8.29: Gráfico do modelo GLM beta.
 </p>
 </div>
 </div>
@@ -1416,42 +1465,26 @@ Figura 8.24: Gráfico do modelo GLM beta.
 <h2>
 <span class="header-section-number">8.11</span> Para se aprofundar<a class="anchor" aria-label="anchor" href="#para-se-aprofundar-4"><i class="fas fa-link"></i></a>
 </h2>
-<p>Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros “Mixed effects models and extensions in ecology with R” de Zurr et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_mixed_2009" role="doc-biblioref">2009</a>)</span> e “Mixed-Effects Models in S and S-PLUS” de Pinheiro et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates 2000</a>)</span> que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros “Analysis of ordinal categorical data” de Agresti <span class="citation">(<a href="refer%C3%AAncias.html#ref-agresti2010" role="doc-biblioref">2010</a>)</span> e “Categorical Data Analysis,” do mesmo autor, Agresti <span class="citation">(<a href="refer%C3%AAncias.html#ref-agresti_categorical_2012" role="doc-biblioref">2012</a>)</span>.</p>
+<p>Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros - Zurr et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_mixed_2009" role="doc-biblioref">2009</a>)</span> <em>Mixed effects models and extensions in ecology with R</em> e Pinheiro &amp; Bates <span class="citation">(<a href="refer%C3%AAncias.html#ref-pinheiro_mixed-effects_2000" role="doc-biblioref">Pinheiro and Bates 2000</a>)</span> <em>Mixed-Effects Models in S and S-PLUS</em> - que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros - Agresti <span class="citation">(<a href="refer%C3%AAncias.html#ref-agresti2010" role="doc-biblioref">2010</a>)</span> <em>Analysis of ordinal categorical data</em> e Agresti <span class="citation">(<a href="refer%C3%AAncias.html#ref-agresti_categorical_2012" role="doc-biblioref">2012</a>)</span> <em>Categorical Data Analysis</em>.</p>
 </div>
 <div id="exercícios-4" class="section level2" number="8.12">
 <h2>
 <span class="header-section-number">8.12</span> Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-4"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>8.1</strong>
-Baixe <a href="https://www.stat.berkeley.edu/~statlabs/labs.html#video">estes dados</a> que foram coletados numa pesquisa de opinião sobre uso de vídeo games por 91 estudantes de graduação no outono de 1994. Utilizando estes dados, constra um modelo: 1) Predizer a frequência com que uma pessoa joga vídeo game em função da idade; 2) Predizer a nota do estudante em função do tempo que jogou na semana antes da entrevista. Dica: esses são dados ordinais!</p>
+Baixe <a href="https://www.stat.berkeley.edu/~statlabs/labs.html#video">estes dados</a> que foram coletados numa pesquisa de opinião sobre uso de vídeo games por 91 estudantes de graduação no outono de 1994. Utilizando estes dados, construa um modelo para: 1) Predizer a frequência com que uma pessoa joga vídeo game em função da idade; 2) Predizer a nota do estudante em função do tempo que jogou na semana antes da entrevista. Dica: esses são dados ordinais!</p>
 <p><strong>8.2</strong>
 Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sobre a abundância de morcegos em paisagens agroecológicas desenvolveu uma simulação para gerar dados parecidos com o que irá coletar em breve no campo. Ela utilizou uma abordagem que simula a abundância de uma espécie sob deriva ecológica segundo a Teoria Neutra da Biodiversidade. A simulação gerou os seguintes dados:</p>
-<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
 <span class="va">J</span> <span class="op">&lt;-</span> <span class="fl">5000</span> <span class="co"># número de indivíduos na comunidade local</span>
 <span class="va">theta</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="co">#número fundamental da biodiversidade</span>
 <span class="va">m</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co">#taxa de dispersão</span>
 <span class="va">comm1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ecolottery/man/coalesc.html">coalesc</a></span><span class="op">(</span><span class="va">J</span>, <span class="va">m</span>, <span class="va">theta</span><span class="op">)</span> <span class="co">#simulação</span>
-<span class="va">abund1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ecolottery/man/abund.html">abund</a></span><span class="op">(</span><span class="va">comm1a</span><span class="op">)</span> <span class="co">#extração de dados de abundância local</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">abund1a</span><span class="op">$</span><span class="va">com</span><span class="op">)</span> <span class="co">#dados da comunidade local</span>
-<span class="co">#&gt;   sp  ab  relab</span>
-<span class="co">#&gt; 1  1 161 0.0322</span>
-<span class="co">#&gt; 2  2  93 0.0186</span>
-<span class="co">#&gt; 3  3 185 0.0370</span>
-<span class="co">#&gt; 4  4  86 0.0172</span>
-<span class="co">#&gt; 5  5  35 0.0070</span>
-<span class="co">#&gt; 6  6  69 0.0138</span>
-
-<span class="co">#histograma da abundância</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">abund1a</span><span class="op">$</span><span class="va">com</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">ab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col<span class="op">=</span><span class="st">"red"</span>, fill<span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"non"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="livro_files/figure-html/unnamed-chunk-269-1.png" width="100%" height="100%" style="display: block; margin: auto;"></div>
+<span class="va">abund1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ecolottery/man/abund.html">abund</a></span><span class="op">(</span><span class="va">comm1a</span><span class="op">)</span> <span class="co">#extração de dados de abundância local</span></code></pre></div>
 <p>Além disso, a pesquisadora também simulou dados que representam a porcentagem do solo destinado à agricultura:</p>
-<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">porc_solo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">abund1a</span><span class="op">$</span><span class="va">com</span><span class="op">$</span><span class="va">ab</span><span class="op">)</span>, <span class="fl">10</span>, <span class="fl">90</span><span class="op">)</span> <span class="co">#simulação uso do solo para agricultura</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">porc_solo</span><span class="op">)</span>
 
 <span class="va">dados_finais</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>abund<span class="op">=</span><span class="va">abund1a</span><span class="op">$</span><span class="va">com</span><span class="op">$</span><span class="va">ab</span>, solo<span class="op">=</span><span class="va">porc_solo</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_finais</span><span class="op">)</span>
@@ -1461,11 +1494,7 @@ Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sob
 <span class="co">#&gt; 3   185 0.05718937</span>
 <span class="co">#&gt; 4    86 0.06134667</span>
 <span class="co">#&gt; 5    35 0.18910965</span>
-<span class="co">#&gt; 6    69 0.12660113</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_finais</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">solo</span>, <span class="va">abund</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-270-1.png" width="100%" height="100%" style="display: block; margin: auto;"><img src="livro_files/figure-html/unnamed-chunk-270-2.png" width="100%" height="100%" style="display: block; margin: auto;"></p>
+<span class="co">#&gt; 6    69 0.12660113</span></code></pre></div>
 <p>Agora com esses dados ela pode ter uma idéia do que esperar quando for pra campo. Ajude a pesquisadora a construir um modelo linear generalizado que seja adequado para modelar a abundância desta espécie de morcego em função da porcentagem de agricultura. Lembre-se de que ela vai precisar diagnosticar o modelo antes de utilizá-lo para fazer uma inferência. Por fim, interprete os resultados e sugira uma possível interpretação para a pesquisadora.</p>
 <p><a href="https://exercicios-livro-aer.netlify.app/cap.-8---modelos-lineares-generalizados.html">Soluções dos exercícios</a>.</p>
 
@@ -1520,7 +1549,7 @@ Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sob
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-17.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

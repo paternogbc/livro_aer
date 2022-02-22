@@ -1302,7 +1302,7 @@ Para isto temos de realizar um teste de Mantel Parcial.
 
 ```{r}
 ## Mantel Parcial
-mantel.partial(simil.bocaina, simil.env, Dist.km) #comp. vs. ambiente controlando o espaço
+mantel.partial(dissimil.bocaina, dissimil.env, Dist.km) #comp. vs. ambiente controlando o espaço
 ```
 
 Agora sim, vimos que a relação entre ambiente e espécies se mantém, mas que a força dessa relação diminuiu bastante (veja o valor de r) quando controlamos o espaço.
@@ -1317,7 +1317,7 @@ Primeiro precisamos construir um objeto com as duas matrizes que desejamos testa
 
 ```{r}
 ## Mantel
-compos_espac <- mantel.randtest(sqrt(simil.bocaina), Dist.km)
+compos_espac <- mantel.randtest(sqrt(dissimil.bocaina), Dist.km)
 compos_espac
 ```
 
