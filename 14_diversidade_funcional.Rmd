@@ -96,7 +96,12 @@ plot_trait_cont
 
 **Exemplo 2: variáveis categóricas**
 
-Ao contrário dos dados contínuos, para dados categóricos não é possível utilizar PCA. No próximo exemplo, utilizamos atributos funcionais de besouros distribuídos na Europa [@barbaro_linking_2009]. Esses dados são categóricos e incluem atributos como período de atividade (noturno, diurno, dioturno), tendência da população na europa (estável, aumentando, diminuindo) entre outros.
+No próximo exemplo, utilizamos atributos funcionais de besouros distribuídos na Europa [@barbaro_linking_2009]. Esses dados são categóricos e incluem atributos como período de atividade (noturno, diurno, dioturno), tendência da população na europa (estável, aumentando, diminuindo) entre outros.
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+Ao contrário dos dados contínuos, para dados categóricos não é possível utilizar PCA.
+:::
 
 **Pergunta**
 
@@ -239,6 +244,8 @@ Qual a relação entre riqueza de espécies e diversidade funcional? Todos os í
 
 **Análises**
 
+Vamos começar olhando os dados de dissimilaridade das espécies (`dist_mist`) e os dados de composição (`comun_dat`)
+
 ```{r message=FALSE, warning=FALSE}
 ## Estrutura dos dados
 # matriz de distância: distância entre as seis primeiras espécies
@@ -246,16 +253,19 @@ as.matrix(dist_mist)[1:6, 1:6]
 
 # composição de espécies: seis primeiras espécies nas seis primeiras localidades
 head(comun_dat)[1:6, 1:6]
+```
 
-## Antes de calcular as métricas de diversidade funcional, vamos calcular 
-# a riqueza de espécies com intuito de comparação entre métricas.
+Agora vamos calcular a riqueza de espécies por comunidade
+
+```{r message=FALSE, warning=FALSE}
+## Riqueza de espécies
 richness <- dbFD(dist_mist, comun_dat)$nbsp 
 head(richness)
+```
+Vamos calcular a Riqueza (`FRic`) e Diversidade funcional usando o pacote `dbFD`. 
 
-## É preciso definir uma distância apropriada (veja descrição anterior) para os cálculos abaixo
-
-# O índice "Functional Richness" só funciona para comunidades com 3 ou mais espécies.
-# Caso você tenha comunidades com 1 ou 2 espécies, o valor será NA.
+```{r message=FALSE, warning=FALSE}
+# Functional Richness
 fric <- dbFD(dist_mist, comun_dat)$FRic
 head(fric)
 
@@ -271,42 +281,53 @@ FD <- pd(comun_dat, tree_dend)$PD
 head(FD)
 ```
 
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+O índice *Functional Richness* só funciona para comunidades com 3 ou mais espécies. Caso você tenha comunidades com 1 ou 2 espécies, o valor será `NA`
+:::
+
 Os valores da Riqueza Funcional (FRic) variam entre 0 e +∞, sendo o valor máximo limitado pelo número de espécies em uma comunidade. Desse modo, os valores de FRic basicamente são uma representação da riqueza de espécies (e seus atributos funcionais) de uma comunidade [@villeger_new_2008]. Ou seja, quanto maior o número de espécies, maior será o espaço funcional ocupado por essas espécies. No pacote ‘dbFD’ o valor de FRic é dividido pelo valor de FRic global (ou seja, pela riqueza funcional de todas as comunidades combinadas). Como resultado, ele limita a variação entre 0 e 1, onde valores próximos a 1 indicam que uma determinada comunidade tem riqueza funcional tão alta quanto a riqueza funcional de todas as comunidades juntas. Neste exemplo, as localidades 21 e 89 possuem, respectivamente, a maior e menor Riqueza Funcional. 
 
 ### Divergência funcional
 
 A divergência funcional é uma medida que descreve a irregularidade na distribuição dos valores dos atributos no volume do espaço funcional ocupado por todas as espécies de uma certa comunidade [@garnier_plant_2015]. Para obter os valores de divergência, o espaço funcional é calculado através do método *Convex Hull* (*Functional Divergence*) ou do espaço multidimensional calculado com um PCoA (*Functional Dispersion*). Nos dois casos, o valor da métrica representa a distância média das espécies para o centro de gravidade ou centroide do espaço funcional, ponderado pela abundância relativa das espécies [@villeger_new_2008; @laliberte_distance-based_2010]. Desse modo, a divergência funcional é uma medida que calcula o grau de diferenciação em que a distribuição da abundância maximiza a divergência entre os atributos funcionais [@mason_functional_2013]. Em geral, estudos que usam esses índices buscam entender o grau de diferenciação de recursos de espécies que coexistem em uma comunidade [@garnier_plant_2015].
 
+Vamos calcular a divergência funcional (`FDiv`) e dispersão funcional (`FDis`) usando o pacote dbFD. Para isso, usaremos a matriz de distância obtida dos dados `trait_dat` (variáveis categóricas e ordinais) e nomeada como `dist_mist`
+
 ```{r message=FALSE, warning=FALSE}
-
-## Aqui, iremos utilizar a matriz de distância obtida dos dados 
-# trait_dat (variáveis categóricas e ordinais) e nomeada como dist_mist.
-
-## O índice "Functional Divergence" só é calculado para comunidades com 3 ou mais espécies
-# Caso você tenha comunidades com 1 ou 2 espécies, a análise irá retornar o valor "NA"
+## "Functional Divergence" s
 fdiv <- dbFD(dist_mist, comun_dat)$FDiv
 head(fdiv)
 
-# O índice "Functional Dispersion" atribui valor 0 para comunidades com 1 ou 2 espécies
+# "Functional Dispersion" 
 fdis <- dbFD(dist_mist, comun_dat)$FDis
 head(fdis)
 ```
 
-Os valores da Divergência Funcional (FDiv) variam entre 0 e 1. Valores que se aproximam de zero indicam que a espécie mais abundante está muito próxima do valor do atributo médio da comunidade, ao passo que valores próximos a 1 indicam que a espécie mais abundante está muito distante (ou seja, é muito diferente) do valor médio da comunidade [@villeger_new_2008]. Neste exemplo, as localidades 159 e 6 possuem, respectivamente, a maior e menor Divergência Funcional.
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+- O índice *Functional divergence* só funciona para comunidades com 3 ou mais espécies. Caso você tenha comunidades com 1 ou 2 espécies, o valor será `NA`
+
+- O índice *Functional Dispersion* só funciona para comunidades com 3 ou mais espécies. Caso você tenha comunidades com 1 ou 2 espécies, o valor será zero
+:::
+
+Os valores da Divergência Funcional (`FDiv`) variam entre 0 e 1. Valores que se aproximam de zero indicam que a espécie mais abundante está muito próxima do valor do atributo médio da comunidade, ao passo que valores próximos a 1 indicam que a espécie mais abundante está muito distante (ou seja, é muito diferente) do valor médio da comunidade [@villeger_new_2008]. Neste exemplo, as localidades 159 e 6 possuem, respectivamente, a maior e menor Divergência Funcional.
 
 ### Regularidade funcional
 
-A regularidade funcional (do inglês *Functional Evenness*) mede o quão regular é a distribuição da abundância dos valores dos atributos funcionais no espaço funcional. Diferente dos outros métodos, a versão multidimensional deste índice utiliza um método chamado *Minimum Spanning Tree* (MST) para conectar todas espécies no espaço funcional. A distância par apar das espécies na MST é ponderada pela abundância relativa das espécies e, desse modo, o valor final da regularidade funcional (FEve) vai variar de 0 (máxima irregularidade da distribuição da abundância ou distância funcional das espécies) a 1 (máxima regularidade).
+A regularidade funcional (do inglês *Functional Evenness* - `FEve`) mede o quão regular é a distribuição da abundância dos valores dos atributos funcionais no espaço funcional. Diferente dos outros métodos, a versão multidimensional deste índice utiliza um método chamado *Minimum Spanning Tree* (MST) para conectar todas espécies no espaço funcional. A distância par apar das espécies na MST é ponderada pela abundância relativa das espécies e, desse modo, o valor final da regularidade funcional (FEve) vai variar de 0 (máxima irregularidade da distribuição da abundância ou distância funcional das espécies) a 1 (máxima regularidade).
+
+Vamos calcular a Regularidade Funcional (`FEve`) usando o pacote `dbFD`. Para isso, usaremos a matriz de distância obtida dos dados `trait_dat` (variáveis categóricas e ordinais) e nomeada como `dist_mist`
 
 ```{r message=FALSE, warning=FALSE}
-
-## Aqui, iremos utilizar a matriz de distância obtida dos dados trait_dat (variáveis categóricas e ordinais) e nomeada como dist_mist
-
-## O índice "Functional evenness" só funciona para comunidades com 3 ou mais espécies
-# Caso você tenha comunidades com 1 ou 2 espécies, a análise irá retornar o valor NA
+## "Functional evenness" 
 feve <- dbFD(dist_mist, comun_dat)$FEve
 head(feve)
 ```
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+O índice *Functional evenness* só funciona para comunidades com 3 ou mais espécies. Caso você tenha comunidades com 1 ou 2 espécies, o valor será `NA`
+:::
 
 Os valores da Regularidade Funcional (FEve) variam entre 0 e 1 (máxima regularidade ou regularidade perfeita). A diminuição do valor de FEve em direção a zero indica que uma redução da regularidade da distribuição da abundância ou distância funcional entre as espécies [@villeger_new_2008]. Neste exemplo, as localidades 197 e 175 possuem, respectivamente, a maior e menor Regularidade Funcional. 
 
