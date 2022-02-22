@@ -47,7 +47,7 @@ Nesta seção, iremos descrever os códigos em R para carregar, plotar, acessar 
 Mas antes, vamos entender as principais terminologias de uma filogenia e analisá-las graficamente (Figura \@ref(fig:fig-filo)).
 
 ::: {.alert .alert-info}
--   **Árvore filogenética**: são hipóteses que representam o relação de parentesco entre as espécies (pode ser também indivíduos, genes, etc.) com informações sobre quais espécies compartilham um ancestral comum e a distância (tempo, genética, ou diferenças nos caracteres) que as separam
+-   **Árvore filogenética**: são hipóteses que representam a relação de parentesco entre as espécies (pode ser também indivíduos, genes, etc.) com informações sobre quais espécies compartilham um ancestral comum e a distância (tempo, genética, ou diferenças nos caracteres) que as separam
 
 -   **Nó**: o ponto onde uma linhagem dá origem a duas ou mais linhagens descendentes
 
@@ -86,11 +86,11 @@ plot.phylo (minha_arvore, type = "fan", show.tip.label = TRUE,
             tip.color = "black", cex = 0.45, label.offset = 2) 
 ```
 
-Percebam que existem vários argumentos para modificar a largura e cor dos ramos, tamanho da fonte, distância entre a filogenia e o nomes da espécies e muito mais. Uma sugestão é visitar o blog do professor Liam Revell (<http://blog.phytools.org/>) que é o criador e mantenedor do pacote `phytools` no R.
+Percebam que existem vários argumentos para modificar a largura e cor dos ramos, tamanho da fonte, distância entre a filogenia e os nomes das espécies e muito mais. Uma sugestão é visitar o blog do professor Liam Revell (<http://blog.phytools.org/>) que é o criador e mantenedor do pacote `phytools` no R.
 
 **Acessar informações da filogenia**
 
-Um das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função `names()`.
+Uma das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função `names()`.
 
 ```{r}
 ## Nomes
@@ -129,8 +129,8 @@ Outra situação bem comum é quando precisamos inserir espécies que foram amos
 O comprimento do ramo que a espécie irá receber dependerá de onde você indicar a inserção da espécie.
 
 As opções são:
--   **root**: insere a espécie no ancestral comum mais recente (MRCA) de todas as espécies do gênero (*default*)
--  **random**: insere a espécie aleatoriamente dentro do clado do MRCA contendo todos as espécies do gênero
+-   `root`: insere a espécie no ancestral comum mais recente (MRCA) de todas as espécies do gênero (*default*)
+-  `random`: insere a espécie aleatoriamente dentro do clado do MRCA contendo todos as espécies do gênero
 :::
 
 ```{r message = FALSE}
@@ -237,12 +237,14 @@ Vamos conferir se os nomes das espécies de aves no data frame de composição s
 ```{r}
 ## Conferir os nomes das espécies
 name.check(filogenia_aves, t(composicao_especies))
+```
 
+Agora vamos colocar os nomes das espécies do data frame na mesma ordem que os nomes aparecem na filogenia. Isso é obrigatório para algumas funções.
+
+```{r}
 ## Colocar os nomes das espécies do data frame na mesma ordem que aparecem na filogenia
 composicao_especies_P <- match.phylo.comm(phy = filogenia_aves, comm = composicao_especies)$comm
 ```
-
-Os nomes das espécies que estão na planilha são iguais e estão na mesma ordem dos nomes das espécies que estão na filogenia. Agora podemos continuar as análises.
 
 Abaixo, demonstramos os códigos no R para o cálculo de PD para as comunidades de aves.
 
@@ -255,7 +257,7 @@ resultados_PD <- pd(composicao_especies_P, filogenia_aves)
 resultados_PD
 ```
 
-A comunidade 2 abriga a maior diversidade filogenética com a composicação de espécies contemplando 1293,15 milhões de anos (i.e. soma do comprimento dos ramos ligando todas as espécies da comunidade). Por outro lado, a comunidade 10 abriga a menor diversidade filogenética contemplando 599,69 milhões de anos.
+A comunidade 2 abriga a maior diversidade filogenética com a composição de espécies contemplando `1293,15` milhões de anos (i.e. soma do comprimento dos ramos ligando todas as espécies da comunidade). Por outro lado, a comunidade 10 abriga a menor diversidade filogenética contemplando `599,69` milhões de anos.
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -298,11 +300,11 @@ resultados_PE <- phylo_endemism(dados_matriz, filogenia_aves,
 resultados_PE 
 ```
 
-O índice PE considera as 10 comunidades como o range espacial máximo. Se todas as espécies ocorressem nas 10 comunidades, o valor de PE seria 1, indicando baixo endemismo filogenético. A comunidade 2 abriga um conjunto de espécies cujo os ramos com distribuição espacial restrita contemplam 272,6 milhões de anos. Por outro lado, a comunidade 10 abriga um conjunto de espécies cujo os ramos com distribuição espacial restrita contemplam 68,5 milhões de anos. Assim, as comunidades 1, 2 e 4 são as áreas que abrigam os maiores endemismo filogenéticos.
+O índice PE considera as 10 comunidades como o range espacial máximo. Se todas as espécies ocorressem nas 10 comunidades, o valor de PE seria 1, indicando baixo endemismo filogenético. A comunidade 2 abriga um conjunto de espécies cujo os ramos com distribuição espacial restrita contemplam `272,6` milhões de anos. Por outro lado, a comunidade 10 abriga um conjunto de espécies cujo os ramos com distribuição espacial restrita contemplam `68,5` milhões de anos. Assim, as comunidades 1, 2 e 4 são as áreas que abrigam os maiores endemismo filogenéticos.
 
 **Species Evolutionary Distinctiveness (ED)**
 
-Esta métrica calcula qual é a fração da árvore filogenética que é atribuída para uma espécie. ED reflete quão evolutivamente isolada uma espécie é comparada com as outras espécies na filogenia [@redding2006]. ED é uma métrica proposta para auxiliar estudos de conservação estabelecendo critérios para priorizar as espécies a serem conservadas com base na sua importância evolutiva (exclusividade do comprimento do ramo) que não é comportilhada com outras espécies. Portanto, apenas as informações da filogenia são utilizadas para o cálculo de ED.
+Esta métrica calcula qual é a fração da árvore filogenética que é atribuída para uma espécie. ED reflete quão evolutivamente isolada uma espécie é comparada com as outras espécies na filogenia [@redding2006]. ED é uma métrica proposta para auxiliar estudos de conservação estabelecendo critérios para priorizar as espécies a serem conservadas com base na sua importância evolutiva (exclusividade do comprimento do ramo) que não é compartilhada com outras espécies. Portanto, apenas as informações da filogenia são utilizadas para o cálculo de ED.
 
 Abaixo, demonstramos os códigos no R para o cálculo do ED utilizando os dados das comunidades de aves.
 
@@ -315,7 +317,7 @@ resultados_ED <- evol.distinct(filogenia_aves)
 head(resultados_ED)
 ```
 
-Com base na filogenia estudada, *Tinamus solitarius* (112,58 milhões de anos), *Ortalis guttata* (108,39 m.a.) e *Aramides saracura* (96,86 m.a.) são as espécies com maior distinção evolutiva devido a elevada fração dos ramos não compartilhado com as outras espécies. 
+Com base na filogenia estudada, *Tinamus solitarius* (`112,58` milhões de anos), *Ortalis guttata* (`108,39` m.a.) e *Aramides saracura* (`96,86` m.a.) são as espécies com maior distinção evolutiva devido a elevada fração dos ramos não compartilhado com as outras espécies. 
 
 ### Divergência da diversidade alfa filogenética
 
@@ -339,7 +341,7 @@ resultados_MPD_PA <- mpd(composicao_especies_P, cophenetic(filogenia_aves),
 resultados_MPD_PA 
 ```
 
-A comunidade 9 abriga a composição de espécies mais aparentada (i.e. menor diversidade filogenética) com distância média entre as espécies de 139,62 milhões de anos. Por outro lado, a comunidade 2 abriga a composição de espécies menos aparentada (i.e. maior diversidade filogenética) com distância média de 157,31 milhões anos.
+A comunidade 9 abriga a composição de espécies mais aparentada (i.e. menor diversidade filogenética) com distância média entre as espécies de `139,62` milhões de anos. Por outro lado, a comunidade 2 abriga a composição de espécies menos aparentada (i.e. maior diversidade filogenética) com distância média de `157,31` milhões anos.
 
 Vamos refazer a análise do MPD, mas desta vez, considerando a abundância das espécies de aves nas comunidades. Para isso, alteramos o argumento `abundance.weighted = TRUE`.
 
@@ -353,7 +355,7 @@ resultados_MPD_AB <- mpd(composicao_especies_P, cophenetic(filogenia_aves),
 resultados_MPD_AB 
 ```
 
-Percebam que pesando o comprimento do ramo pela abundância das espécies altera-se os valores do índice de diversidade filogenética. Neste caso, a comunidade 10 passa a ser a comunidade que abriga a composição de espécies mais aparentada (i.e. menor diversidade filogenética) com distância média entre as espécies de 117,88 milhões de anos.
+Percebam que pesando o comprimento do ramo pela abundância das espécies altera-se os valores do índice de diversidade filogenética. Neste caso, a comunidade 10 passa a ser a comunidade que abriga a composição de espécies mais aparentada (i.e. menor diversidade filogenética) com distância média entre as espécies de `117,88` milhões de anos.
 
 **Mean Nearest Taxon Distance (MNTD)**
 
@@ -371,7 +373,7 @@ resultados_MNTD_PA <- mntd(composicao_especies_P, cophenetic(filogenia_aves),
 resultados_MNTD_PA 
 ```
 
-A comunidade 9 abriga a composição de espécies com distância média do vizinho mais próximo de 62,34 milhões de anos. Esse resultado indica que as espécies terminais são mais aparentada (e.g. espécies do mesmo gênero) do que a composição de espécies da comunidade 10 onde a distância média do vizinho mais próximo é 112,23 milhões de anos (e.g. espécies de gêneros diferentes).
+A comunidade 9 abriga a composição de espécies com distância média do vizinho mais próximo de `62,34` milhões de anos. Esse resultado indica que as espécies terminais são mais aparentadas (e.g. espécies do mesmo gênero) do que a composição de espécies da comunidade 10 onde a distância média do vizinho mais próximo é `112,23` milhões de anos (e.g. espécies de gêneros diferentes).
 
 Vamos refazer a análise do MNTD, mas desta vez, considerando a abundância das espécies de aves nas comunidades.
 
@@ -393,7 +395,7 @@ Perceba que ao determinar as análises com base na incidência ou abundância da
 
 **Phylogenetic Species Variability (PSV)**
 
-Esta métrica estima a quantidade relativa dos comprimentos dos ramos não compartilhados entre as comunidades. Quando todas as espécies em uma amostra não são aparentadas (i.e. filogenia em estrela), o valor do PSV é 1 (um), indicando máxima variabilidade. Quando as espécies tornando-se mais aparentadas, o valor de PSV aproxima-se de 0 (zero), indicando reduzida variabilidade. Os valores esperados de PSV são estatisticamente independentes da riqueza de espécies [@helmus2007]. 
+Esta métrica estima a quantidade relativa dos comprimentos dos ramos não compartilhados entre as comunidades. Quando todas as espécies em uma amostra não são aparentadas (i.e. filogenia em estrela), o valor do PSV é 1 (um), indicando máxima variabilidade. Quando as espécies tornam-se mais aparentadas, o valor de PSV aproxima-se de 0 (zero), indicando reduzida variabilidade. Os valores esperados de PSV são estatisticamente independentes da riqueza de espécies [@helmus2007]. 
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -411,7 +413,7 @@ resultados_PSV <- psv(composicao_especies_P,filogenia_aves)
 resultados_PSV 
 ```
 
-A comunidade 2 abriga o maior variabilidade filogenética (0,69) enquanto a comunidade 9 abriga a menor variabilidade (0,62). Perceba que os valores de PSV não são correlacionados com número de espécies nas comunidades (r = 0,59, p = 0,07).
+A comunidade 2 abriga a maior variabilidade filogenética (`0,69`) enquanto a comunidade 9 abriga a menor variabilidade (`0,62`). Perceba que os valores de PSV não são correlacionados com número de espécies nas comunidades (r = 0,59, p = 0,07).
 
 ### Regularidade da diversidade alfa filogenética
 
@@ -438,7 +440,7 @@ resultados_VPD <- .vpd(dados, cophenetic(filogenia_aves))
 resultados_VPD 
 ```
 
-A comunidade 2 abriga a maior variância na distância filogenética entre pares de espécies dentro da comunidade (1828,19 milhões de anos) enquanto a comunidade 7 abriga a menor variância entre os pares de espécies (825,53 m.a.). 
+A comunidade 2 abriga a maior variância na distância filogenética entre pares de espécies dentro da comunidade (`1828,19` milhões de anos) enquanto a comunidade 7 abriga a menor variância entre os pares de espécies (`825,53` m.a.). 
 
 ### Correlação entre as métricas de diversidade alfa filogenética
 
@@ -463,7 +465,7 @@ ggpairs(metricas_riqueza, upper = list(continuous = wrap("cor", size = 4))) +
 
 Percebam que as três métricas apresentam correlações pareadas acima de 94%. Isso indica que as métricas são redundantes. Portanto, não há necessidade de calcular mais de uma métrica dentro da dimensão da riqueza filogenética. Além disso, as três métricas de diversidade alfa filogenética também apresentam alta correlação com a riqueza de espécies. Veja abaixo na seção de modelos nulos como controlar o efeito da riqueza de espécies nas métricas de diversidade filogenética.
 
-Vamos avaliar a correlação entre os valores das métricas de diversidade alfa filogénetica para a dimensão divergência (Figura \@ref(fig:fig-filo-alfa-cor-metricas-div)).
+Vamos avaliar a correlação entre os valores das métricas de diversidade alfa filogenética para a dimensão divergência (Figura \@ref(fig:fig-filo-alfa-cor-metricas-div)).
 
 ```{r fig-filo-alfa-cor-metricas-div, fig.cap="Correlação entre as métricas de divergência da diversidade alfa filogenética."}
 ## Data frame
@@ -523,7 +525,7 @@ ggarrange(MPD_PA_plot, MPD_AB_plot, MNTD_AP_plot, MNTD_AB_plot,
           ncol = 2, nrow = 2)
 ```
 
-O MPD, que avalia as relações de parentesco mais internas da filogenia (i.e. relações entre espécies de famílias diferentes) não apresentou associação com o gradiente de precipitação. Por outro lado, o MNTD que avalia as relações mais terminais da filogenia (i.e. espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação. Interessante que a associação só foi significativa quando pesamos a análise pela abundância das espécies nas comunidades. Esses resultados demonstram a importância da seleção das métricas de diversidade filogenética e tipos de dados (e.g. incidência ou abundância) utilizados na interpretação dos padrões observados na natureza.
+O MPD, que avalia as relações de parentesco mais internas da filogenia (i.e., relações entre espécies de famílias diferentes) não apresentou associação com o gradiente de precipitação. Por outro lado, o MNTD que avalia as relações mais terminais da filogenia (i.e., espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação. Interessante que a associação só foi significativa quando pesamos a análise pela abundância das espécies nas comunidades. Esses resultados demonstram a importância da seleção das métricas de diversidade filogenética e tipos de dados (e.g., incidência ou abundância) utilizados na interpretação dos padrões observados na natureza.
 
 Vamos ver os gráficos das métricas da dimensão riqueza da diversidade alfa filogenética (Figura \@ref(fig:fig-filo-alfa-metricas-riq-amb)).
 
@@ -588,7 +590,7 @@ resultados_Comdist_PA <- comdist(composicao_especies_P,
 resultados_Comdist_PA
 ```
 
-As comunidades 8 e 10 apresentaram a menor média na distância filogenética (130,06 m.a. - espécies de linhagens mais próximas) entre as espécies presente em cada comunidade, enquanto as comunidades 2 e 4 apresentaram a maior média na distância filogenética (153.29 m.a. - espécies de linhagens mais distintas).
+As comunidades 8 e 10 apresentaram a menor média na distância filogenética (`130,06` m.a. - espécies de linhagens mais próximas) entre as espécies presente em cada comunidade, enquanto as comunidades 2 e 4 apresentaram a maior média na distância filogenética (`153.29` m.a. - espécies de linhagens mais distintas).
 
 Vamos refazer a análise do COMDIST, mas desta vez, considerando a abundância das espécies de aves nas comunidades.
 
@@ -600,7 +602,7 @@ resultados_Comdist_AB <- comdist(composicao_especies_P,
                                  abundance.weighted = TRUE)
 ```
 
-Como no caso do MPD, pensar a abundância das espécies altera o padrão de distribuição dos valores de COMDIST. Neste caso, ao invés das comunidades 2 e 4, as comunidades 2 e 10 apresentam a maior média na distância filogenética (155,85 m.a.).
+Como no caso do MPD, pensar a abundância das espécies altera o padrão de distribuição dos valores de COMDIST. Neste caso, ao invés das comunidades 2 e 4, as comunidades 2 e 10 apresentam a maior média na distância filogenética (`155,85` m.a.).
 
 **Community Mean Nearest Taxon Distance (COMDISTNT)**
 
@@ -617,7 +619,7 @@ resultados_Comdistnt_PA <- comdistnt(composicao_especies_P,
 resultados_Comdistnt_PA
 ```
 
-As comunidades 8 e 9 apresentaram a menor média na distância do vizinho mais próximo (10,69 m.a. - espécies do mesmo gênero ou gêneros irmãos) entre as espécies presente em cada comunidade, enquanto as comunidades 7 e 10 apresentaram a maior média na distância entre vizinhos (60,24 m.a. - espécies de linhagens distintas).
+As comunidades 8 e 9 apresentaram a menor média na distância do vizinho mais próximo (`10,69` m.a. - espécies do mesmo gênero ou gêneros irmãos) entre as espécies presente em cada comunidade, enquanto as comunidades 7 e 10 apresentaram a maior média na distância entre vizinhos (`60,24` m.a. - espécies de linhagens distintas).
 
 Vamos refazer a análise do COMDISTNT, mas desta vez, considerando a abundância das espécies de aves nas comunidades.
 
@@ -629,7 +631,7 @@ resultados_Comdistnt_AB <- comdistnt(composicao_especies_P,
                                      abundance.weighted = TRUE)
 ```
 
-As comunidades 8 e 10 apresentaram a menor média na distância do vizinho mais próximo (5,64 m.a.) entre as espécies presente em cada comunidade, enquanto as comunidades 6 e 10 apresentaram a maior média na distância entre vizinhos (82,62 m.a.).
+As comunidades 8 e 10 apresentaram a menor média na distância do vizinho mais próximo (`5,64` m.a.) entre as espécies presente em cada comunidade, enquanto as comunidades 6 e 10 apresentaram a maior média na distância entre vizinhos (`82,62` m.a.).
 
 ### Correlação entre as métricas de diversidade beta filogenética
 
@@ -701,7 +703,7 @@ ggarrange(COMDIST_PA_plot, COMDIST_AB_plot, COMDISTNT_PA_plot,
           COMDISTNT_AB_plot, ncol = 2, nrow = 2)
 ```
 
-O COMDIST que avalia as relações de parentesco mais internas da filogenia (i.e. relações entre espécies de famílias diferentes) apresentou associação com o gradiente de precipitação quando avaliado pesado pela abundância das espécies. Por outro lado, o COMDISTNT que avalia as relações mais terminais da filogenia (i.e. espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação quando avaliado usando a incidência das espécies.
+O COMDIST que avalia as relações de parentesco mais internas da filogenia (i.e., relações entre espécies de famílias diferentes) apresentou associação com o gradiente de precipitação quando avaliado pesado pela abundância das espécies. Por outro lado, o COMDISTNT que avalia as relações mais terminais da filogenia (i.e., espécies dentro do mesmo gênero) apresentou uma relação negativa com o gradiente de precipitação quando avaliado usando a incidência das espécies.
 
 ### Riqueza da diversidade beta filogenética
 
@@ -753,7 +755,11 @@ ggpairs(metricas_riqueza_beta, upper=list(continuous = wrap("cor", size = 4))) +
     tema_livro()
 ```
 
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+
 Os valores de Phylosor e UniFrac apresenta 99% de correlação entre eles. Portanto, essas duas métricas identificam padrões idênticos e não devem ser utilizadas simultaneamente.
+:::
 
 ### Associação entre a riqueza da diversidade beta filogenética e o ambiente
 
@@ -864,9 +870,9 @@ Percebam que o componente substituição é maior entre comunidades que apresent
 
 Em muitos casos, os valores de diversidade filogenética são correlacionados com a riqueza de espécies nas comunidades. Por exemplo, se um pesquisador relata que duas comunidades apresentam diferentes valores de PD, é impossível saber se esta diferença é simplesmente porque elas têm diferentes valores de riqueza de espécies ou se há algum fator fundamental sobre a informação filogenética que é importante. Outra questão abordada nos estudos de montagem das comunidades é saber se os valores observados para as métricas (e.g. MPD ou MNTD) relacionadas com a estrutura filogenética das comunidades seriam diferentes se a colonização das espécies do *pool* regional fosse aleatória? Os modelos nulos respondem a estas perguntas. Contudo, a definição do *pool* regional não é uma tarefa trivial [@lessard2012; @carstensen2013].
 
-Os modelos nulos são construídos considerando processos ecológicos ou evolutivos de interesse. Eles geram padrões que são baseados na aleatorização dos dados ecológicos ou amostragens aleatórias de uma distribuição conhecida ou hipótetica [@gotelli1996]. Neste caso, alguns elementos dos dados (como colunas ou linhas) são mantidos constantes, e outros são permitidos variar aleatoriamente para criar novos padrões. O principal motivo para a construção de modelos nulos é produzir um padrão que seria esperado na ausência de um mecanismo ecológico específico [@gotelli1996]. Contudo, ressaltamos que os modelos nulos podem revelar padrões não comuns, mas eles não podem determinar os mecanismos responsáveis por gerar estes padrões [@gotelli1996].
+Os modelos nulos são construídos considerando processos ecológicos ou evolutivos de interesse. Eles geram padrões que são baseados na aleatorização dos dados ecológicos ou amostragens aleatórias de uma distribuição conhecida ou hipotética [@gotelli1996]. Neste caso, alguns elementos dos dados (como colunas ou linhas) são mantidos constantes, e outros são permitidos variar aleatoriamente para criar novos padrões. O principal motivo para a construção de modelos nulos é produzir um padrão que seria esperado na ausência de um mecanismo ecológico específico [@gotelli1996]. Contudo, ressaltamos que os modelos nulos podem revelar padrões não comuns, mas eles não podem determinar os mecanismos responsáveis por gerar estes padrões [@gotelli1996].
 
-Os modelos nulos empregados para contrapor os padrões observados pelas métricas de diversidade filogenética utilizam a aleatorização dos dados de duas formas principais: i) aleatorizando o nome das espécies na árvore filogenética mantendo a estrutura e composição da matriz de co-ocorrência das espécies e o comprimento dos ramos da árvore inalterados; e ii) aleatorizando as linhas e/ou colunas da matriz de co-ocorrência das espécies [@gotelli2000; @ulrich2010]. De forma geral, nas análises de diversidade filogenética as aleatorizações são repetidas 999 vezes (pode ser mais ou menos, a critério do pesquisador) e calcula-se a média e o desvio padrão dos valores gerados pelo modelos. Com estes dados, calcula-se o tamanho do efeito padronizado (do inglês *Standardized Effect Size* - SES) utilizando a seguinte fórmula:
+Os modelos nulos empregados para contrapor os padrões observados pelas métricas de diversidade filogenética utilizam a aleatorização dos dados de duas formas principais: i) aleatorizando o nome das espécies na árvore filogenética mantendo a estrutura e composição da matriz de co-ocorrência das espécies e o comprimento dos ramos da árvore inalterados; e ii) aleatorizando as linhas e/ou colunas da matriz de co-ocorrência das espécies [@gotelli2000; @ulrich2010]. De forma geral, nas análises de diversidade filogenética as aleatorizações são repetidas 999 vezes (pode ser mais ou menos, a critério do pesquisador) e calcula-se a média e o desvio padrão dos valores gerados pelos modelos. Com estes dados, calcula-se o tamanho do efeito padronizado (do inglês *Standardized Effect Size* - SES) utilizando a seguinte fórmula:
 
 - SES = (valor observado - média dos valores gerados na aleatorização)/ desvio padrão dos valores gerados na aleatorização
 
@@ -892,7 +898,7 @@ resultados_SES_MPD <- ses.mpd(composicao_especies_P, cophenetic(filogenia_aves),
 head(resultados_SES_MPD)
 ```
 
-Somente as comunidades 5 e 6 apresentaram valores de p < 0.05 indicando que os resultados observados de MPD são menores que o esperado ao acaso (i.e. valores simulados). Neste caso, a composição de espécies presentes nessas duas comunidades apresenta agrupamento filogenético. Por outro lado, os valores de MPD observados para as outras comunidades são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia.
+Somente as comunidades 5 e 6 apresentaram valores de p < 0.05 indicando que os resultados observados de MPD são menores que o esperado ao acaso (i.e., valores simulados). Neste caso, a composição de espécies presentes nessas duas comunidades apresenta agrupamento filogenético. Por outro lado, os valores de MPD observados para as outras comunidades são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia.
 
 **Nearest Taxon Index (NTI) ou Standardized Effect Size of MNTD**
 
@@ -910,7 +916,7 @@ resultados_SES_MNTD <- ses.mntd(composicao_especies_P, cophenetic(filogenia_aves
 head(resultados_SES_MNTD)
 ```
 
-Somente a comunidade 9 apresentou valor de p < 0.05 indicando que o resultado observado de MNTD foi menor que o esperado ao acaso (i.e. valores simulados). Neste caso, a composição de espécies presente nessa comunidade apresenta agrupamento filogenético. Por outro lado, os valores de MNTD observados para as outras comunidades são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia. 
+Somente a comunidade 9 apresentou valor de p < 0.05 indicando que o resultado observado de MNTD foi menor que o esperado ao acaso (i.e., valores simulados). Neste caso, a composição de espécies presente nessa comunidade apresenta agrupamento filogenético. Por outro lado, os valores de MNTD observados para as outras comunidades são similares aos valores obtidos para comunidades simuladas com a redistribuição dos nomes das espécies na filogenia. 
 
 **Standardized Effect Size of PD**
 
@@ -970,7 +976,7 @@ Nenhum valor de similaridade entre pares comunidade apresentou valor de p < 0.05
 ## Para se aprofundar
 
 ### Livros
--   Recomendamos aos interessados os livros: i) Swenson [-@swenson2014] Functional and Phylogenetic Ecology in R; ii) Paradis [-@paradis2012] Analysis of Phylogenetics and Evolution in R; iii) Cadotte & Davies [-@cadotte2016] Phylogenies in Ecology, iv) Gotelli & Graves [-@gotelli1996] Null Models in Ecology; e v) Magurran & McGill [-@magurran_biological_2011] Biological Diversity Frontiers in Measurement and Assessment.
+-   Recomendamos aos interessados os livros: i) Swenson [-@swenson2014] *Functional and Phylogenetic Ecology in R*; ii) Paradis [-@paradis2012] *Analysis of Phylogenetics and Evolution in R*; iii) Cadotte & Davies [-@cadotte2016] *Phylogenies in Ecology*, iv) Gotelli & Graves [-@gotelli1996] *Null Models in Ecology*; e v) Magurran & McGill [-@magurran_biological_2011] *Biological Diversity Frontiers in Measurement and Assessment*.
 
 ### Links
 

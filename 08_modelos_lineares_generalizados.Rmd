@@ -38,13 +38,13 @@ uv_cells <- ecodados::uv_cells
 
 ## Introdução
 
-No Capítulo \@ref(cap7), descrevemos sobre os modelos lineares (também chamados de Modelos Lineares Gerais) que podem ser descritos pelo mesmo modelo matemático de uma equação da reta do tipo::
+No Capítulo \@ref(cap7), descrevemos sobre os modelos lineares (também chamados de Modelos Lineares Gerais) que podem ser descritos pelo mesmo modelo matemático de uma equação da reta do tipo:
 
 $$Y = \beta_0 + \beta_{1}X_i + \epsilon_i$$
 
-Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para a regressão lineare e variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de [@fox_ecological_2015]. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logarítmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
+Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para a regressão linear e variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de [@fox_ecological_2015]. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logaritmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
 
-Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar Cumulative Link Models para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.
+Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar *Cumulative Link Models* para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.
 
 ## Como um GLM funciona?
 
@@ -72,7 +72,7 @@ Se Y é binário (e.g., vivo ou morto), a distribuição de probabilidade deve s
 
 Se Y é uma contagem (e.g., abundância ou riqueza de espécies), então a distribuição de probabilidade deve ser **Poisson ou binomial negativa**. Existem também correções dessas distribuições quando apresentam sobredispersão (*overdispersion*), tais como quasi-Poisson ou quasi-Negative binomial. Falaremos delas no momento certo.
 
-Para distribuições tais como binomial e Poisson, a variância deve ser igual à media e o parâmetro de dispersão é sempre 1. Na maioria dos dados ecológicos esse pressuposto não é cumprido, veremos estratégias para lidar com isso logo à frente.
+Para distribuições tais como binomial e Poisson, a variância deve ser igual à média e o parâmetro de dispersão é sempre 1. Na maioria dos dados ecológicos esse pressuposto não é cumprido, veremos estratégias para lidar com isso logo à frente.
 
 As funções `Ord_plot()` e `goodfit()` do pacote `vcd` podem auxiliar na escolha da distribuição para dados de contagem.
 
@@ -112,7 +112,7 @@ Antes de começar com a análise, vamos primeiro explorar os dados.
 glimpse(fragmentos)
 ```
 
-Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com "2" indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (`Riqueza_HB`) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma idéia da relação entre as variáveis (Figura \@ref(fig:fig-mod-poi-pre)).
+Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com "2" indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (`Riqueza_HB`) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma ideia da relação entre as variáveis (Figura \@ref(fig:fig-mod-poi-pre)).
 
 ```{r fig-mod-poi-pre, fig.cap="Gráfico pareado para explorar as variáveis."}
 ## Gráfico
@@ -151,7 +151,7 @@ Iremos realizar três diagnoses básicas dos GLMs, avaliando diferentes aspectos
 2.  Sobredispersão (*Overdispersion*)
 3.  Inflação de zeros (*Zero-inflation*)
 
-Vamos começar avaliando as homogeneidade da variância e normalidade dos resíduos (Figura \@ref(fig:fig-mod-poi-diag-bas)).
+Vamos começar avaliando a homogeneidade da variância e a normalidade dos resíduos (Figura \@ref(fig:fig-mod-poi-diag-bas)).
 
 ```{r fig-mod-poi-diag-bas, fig.cap="Diagnose básica dos resíduos do modelo GLM Poisson."}
 ## Diagnose básica
@@ -188,9 +188,9 @@ par(mfrow = c(1, 1))
 testDispersion(mod_pois) # modelo tem overdispersion
 ```
 
-Aqui temos um gráfico e o resultado novamente do teste de *overdispersion* (que já aparecia no gráfico anterior) mostrando que de fato há *overdispersion*: perceba que o valor de *P* é significativo. O gráfico nos mostra em cinza a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica *overdispersion*, se estivese à esquerda seria o caso de *underdispersion*.
+Aqui temos um gráfico e o resultado novamente do teste de *overdispersion* (que já aparecia no gráfico anterior) mostrando que de fato há *overdispersion*: perceba que o valor de *P* é significativo. O gráfico nos mostra em cinza a distribuição dos resíduos aleatorizados e a linha vermelha o valor observado da estatística. Já que a linha está bem à direita da distribuição, isso indica *overdispersion*, se estivesse à esquerda seria o caso de *underdispersion*.
 
-Agora vamos utilizar a função `check_overdisperion()` que utiliza uma distribuição qui-quadradado e o valor de *dispersion ratio* para testar a presença de *overdispersion* no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento `type="PearsonChisq"`.
+Agora vamos utilizar a função `check_overdisperion()` que utiliza uma distribuição chi-quadrado e o valor de *dispersion ratio* para testar a presença de *overdispersion* no modelo. Esse teste também pode ser feito com a função acima ao se especificar o argumento `type="PearsonChisq"`.
 
 ```{r}
 ## Testar a presença de overdispersion
@@ -231,7 +231,7 @@ Por estes motivos, não podemos fazer inferência com este modelo porque os par�
 
 **Inferência**
 
-Aqui iremos apresentar várias funções para calcular o coeficiente de determinação (R^2^). No caso de GLM(M)s, não há um consenso sobre como se calcula este coeficiente, havendo várias propostas que utilizam maneiras diferentes de estimar a homogeneidade de variância e covariância entre observações dos resíduos, veja [@nakagawa2017] e [@ives2015] para maiores detalhes, assim como o *help* das respectivas funções.
+Aqui iremos apresentar várias funções para calcular o coeficiente de determinação (R^2^). No caso de GLM(M)s, não há um consenso sobre como se calcula este coeficiente, havendo várias propostas que utilizam maneiras diferentes de estimar a homogeneidade de variância e covariância entre observações dos resíduos, veja Nakagawa et al. [-@nakagawa2017] e Ives [-@ives2015] para maiores detalhes, assim como o *help* das respectivas funções.
 
 ```{r}
 ## Coeficientes estimados pelo modelo
@@ -243,7 +243,7 @@ rsquared(mod_pois)
 r2(mod_pois)
 ```
 
-Podemos ver que os valores de R^2^ são bem baixos (em torno de 4 - 5%), independente do método que usamos pra calculá-lo.
+Podemos ver que os valores de R^2^ são bem baixos (em torno de 4 - 5%), independentemente do método que usamos pra calculá-lo.
 
 **Plot do modelo predito**
 
@@ -293,7 +293,7 @@ Depois de tentar corrigir possíveis más especificações, como as listadas aci
 
 Geralmente, dados de contagem em estudos ecológicos não seguem uma distribuição Poisson, pois há muita dispersão (variância) nos dados. Logo, o pressuposto da distribuição Poisson, i.e., de que a média e variância são descritas por um mesmo parâmetro ($\lambda$) é quebrado.
 
-Como vimos, *overdispersion* é um problema comum ao analisar dados ecológicos e deve necessariamente ser diagnosticado no modelo. Uma maneira de lidar com esse tipo de problema é utilizar uma outra distribuição diferente da Poisson. A binomial negativa pode ser entendida como uma mistura da distibuição Poisson e Gamma, ou seja, ela aceita dados de contagem que sejam positivos, mas sem zero. A grande vantagem desta distribuição é que, diferentemente da Poisson, ela tem um parâmetro para modelar a média ($\lambda$) e outro para modelar a variância (*k*). Logo, ela permite modelar dados em que a média é diferente da variância. Vejamos um exemplo.
+Como vimos, *overdispersion* é um problema comum ao analisar dados ecológicos e deve necessariamente ser diagnosticado no modelo. Uma maneira de lidar com esse tipo de problema é utilizar uma outra distribuição diferente da Poisson. A binomial negativa pode ser entendida como uma mistura das distribuições Poisson e Gamma, ou seja, ela aceita dados de contagem que sejam positivos, mas sem zero. A grande vantagem desta distribuição é que, diferentemente da Poisson, ela tem um parâmetro para modelar a média ($\lambda$) e outro para modelar a variância (*k*). Logo, ela permite modelar dados em que a média é diferente da variância. Vejamos um exemplo.
 
 Aqui vamos continuar com estes dados para ver como o modelo se comporta com essa nova distribuição especificada. Para isso vamos utilizar a função `glm.nb` do pacote `MASS`.
 
@@ -343,7 +343,7 @@ summary(mod_nb)
 
 **Interpretação dos resultados**
 
-Aqui vemos que a interpretação do resultado em termos de valor de _P_ não mudou, ou seja, a distância para o fragmento mais próximo não foi significativo. Mas vejam que o coeficiente (slope) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).
+Aqui vemos que a interpretação do resultado em termos de valor de _P_ não mudou, ou seja, a distância para o fragmento mais próximo não foi significativa. Mas vejam que o coeficiente (*slope*) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).
 
 
 **Plot do modelo predito**
@@ -377,7 +377,7 @@ mod_quasipois <- glm(Riqueza_obs ~ dfrag, family = quasipoisson(link = "log"), d
 
 **Diagnose dos resíduos**
 
-A função `resid` não leva em conta a sobredispersão e temos de calcular manualmente o parâmetro de dispersão e inclui-lo no plot. Portanto, não podemos realizar a diagnose de modelos quasi-Poisson apenas com a função `plot` como fazíamos até então. Então, calculamos primeiramente os resíduos de Pearson e depois dividindo-o pela raiz quadrada do parâmetro de dispersão (Figura \@ref(fig:fig-mod-quasi-poi-diag)).
+A função `resid` não leva em conta a sobredispersão e temos de calcular manualmente o parâmetro de dispersão e inclui-lo no plot. Portanto, não podemos realizar a diagnose de modelos quasi-Poisson apenas com a função `plot` como fazíamos até agora. Então, calculamos primeiramente os resíduos de Pearson e depois dividindo-o pela raiz quadrada do parâmetro de dispersão (Figura \@ref(fig:fig-mod-quasi-poi-diag)).
 
 ```{r fig-mod-quasi-poi-diag, fig.cap="Diagnose dos resíduos do modelo GLM Quasi-Poisson."}
 ## Diagnose dos resíduos
@@ -411,7 +411,7 @@ Este conjunto de dados foi coletado por [@Franco-Belussi2018a]. Os autores utili
 
 **Pergunta**
 
-A melanina proteje girinos contra os efeitos da radiação ultravioleta?
+A melanina protege girinos contra os efeitos da radiação ultravioleta?
 
 **Predições**
 
@@ -464,7 +464,7 @@ Aqui vemos que a quantidade de eosinófilos é muito maior nos girinos sem pigme
 
 **Modelagem**
 
-Aqui vamos usar o `cbind` no argumento `formula` para dizer que queremos modelar a contagem de eosinófilos em relação ao número total de células, ou seja, sua proporção. Aqui temos a contagem do número de eusinófilos (um tipo de célula da série branca do sangue) em lâminas histológicas de girinos da rã-touro (*Lithobates catesbeianus*) num total de 1000 células.
+Aqui vamos usar o `cbind` no argumento `formula` para dizer que queremos modelar a contagem de eosinófilos em relação ao número total de células, ou seja, sua proporção. Aqui temos a contagem do número de eosinófilos (um tipo de célula da série branca do sangue) em lâminas histológicas de girinos da rã-touro (*Lithobates catesbeianus*) num total de 1000 células.
 
 ```{r}
 ## Modelo
@@ -487,6 +487,11 @@ Parece que os resíduos não sofrem de heterogeneidade de variância  (linha ver
 ```{r fig-mod-quasi-bin-diag-avan, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial."}
 ## Diagnose avançada
 simulationBion <- simulateResiduals(fittedModel = mod1, plot = TRUE)
+```
+
+Agora vamos checar a qualidade do modelo com base na distribuição dos resíduos (Figura \@ref(fig:fig-mod-quasi-bin-diag-avan1)).
+```{r fig-mod-quasi-bin-diag-avan1, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial."}
+## Diagnose avançada
 binned_residuals(mod1)
 ```
 
@@ -533,7 +538,7 @@ Aqui vamos utilizar os dados sobre autotomia da cauda de lagartos da espécie *C
 
 **Pergunta**
 
-A probabilidade de lagartos da espécie *Coleodactylus meridionalis* perderem (autotomizarem) a cauda aumenta com o tamanho do corpo e de acordo com o sexo dos lagarto?
+A probabilidade de lagartos da espécie *Coleodactylus meridionalis* perderem (autotomizarem) a cauda aumenta com o tamanho do corpo e de acordo com o sexo dos lagartos?
 
 **Predições**
 
@@ -553,16 +558,20 @@ Este conjunto de dados possui muitas entradas faltantes (codificadas como `NA`).
 head(lagartos)
 colnames(lagartos) <- c("numero", "sexo", "SVL", "comprimento_cauda", "cauda_autotomizada", "estado_cauda")
 
-
 ## Dados faltantes
-vis_dat(lagartos)
-vis_miss(lagartos, cluster = TRUE) # 22.9% dos dados estão faltando
-dados_semNA <- remove_missing(lagartos, vars = "sexo") # excluindo linhas com dados faltantes para a variável Sex
+vis_miss(lagartos, cluster = TRUE) 
+```
+Reparem que estão faltando 22.9% dos dados. Vamos excluir as linhas com os dados faltantes para a variável `sex` (Figura \@ref(fig:fig-mod-inc-na1)).
+
+```{r fig-mod-inc-na1, fig.cap="Gráficos para explorar os dados faltantes."}
+## Removendo dados faltantes
+dados_semNA <- remove_missing(lagartos, vars = "sexo") 
+
+## Visualizar
 vis_miss(dados_semNA)
-dim(dados_semNA) # verificar as dimensões da tabela depois que os dados tiverem sido excluídos
 ```
 
-Agora, seguindo o que já estamos acostumados a fazer, vamos vizualisar os dados com a nossa hipótese (Figura \@ref(fig:fig-mod-inc-pre)).
+Agora, seguindo o que já estamos acostumados a fazer, vamos visualisar os dados com a nossa hipótese (Figura \@ref(fig:fig-mod-inc-pre)).
 
 ```{r fig-mod-inc-pre, fig.cap="Gráfico para explorar as relações entre as variáveis."}
 ## Gráfico
@@ -575,7 +584,7 @@ ggplot(dados_semNA, aes(SVL, estado_cauda)) +
 
 **Modelagem**
 
-Aqui vamos construir dois modelos com a mesma distribuição binomial, mas com dois *link function*: logit e probit. A função logit possui caudas um pouco mais achatadas, isto é, a curva probit se aproxima dos eixos mais rapidamente que a logit. Geralmente não há muita diferença entre elas. Como não temos nenhuma expectativa de qual dos dois link function é o melhor, podemos fazer uma seleção de modelos.
+Aqui vamos construir dois modelos com a mesma distribuição binomial, mas com dois *link function*: logit e probit. A função logit possui caudas um pouco mais achatadas, isto é, a curva probit se aproxima dos eixos mais rapidamente que a logit. Geralmente não há muita diferença entre elas. Como não temos nenhuma expectativa de qual *link function* é o melhor, podemos fazer uma seleção de modelos.
 
 ```{r}
 ## Modelos
@@ -595,6 +604,11 @@ Vamos fazer a diagnose dos resíduos do modelo (Figura \@ref(fig:fig-mod-inc-dia
 ```{r fig-mod-inc-diag, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial de incidência."}
 ## Diagnóse avançada
 simulationBion <- simulateResiduals(fittedModel = mod_log, plot = T)
+```
+
+Vamos realizar a visualização do ajusto do modelo (Figura \@ref(fig:fig-mod-inc-diag1)).
+```{r fig-mod-inc-diag1, fig.cap="Diagnose avançada dos resíduos do modelo GLM binomial de incidência."}
+## Diagnóse avançada
 binned_residuals(mod_log)
 ```
 
@@ -620,7 +634,7 @@ Nesses casos, temos de ajustar modelos que levam em conta esse excesso de zeros 
 
 *Hurdle models* (ou *zero-altered models*) modelam os dados dividindo-os em dois subconjuntos: um no qual reduzimos os dados à presença-ausência, ou seja, todos os dados maiores que 1 são transformados em 1 e usamos, por exemplo, uma distribuição binomial; e uma outra parte que só considera os valores positivos sem zero, utilizando uma Poisson ou binomial negativa truncadas. Ao fazer isso, a distribuição truncada assume que os zeros são gerados tanto por processos ecológicos, quanto erros de amostragem (ou seja, é impossível distinguir entre essas duas fontes). Portanto, esses zeros são excluídos da distribuição com dados de contagem. Por exemplo, se uma distribuição binomial negativa for usada para modelar a parte quantitativa, chamamos o modelo de *Zero-altered Negative binomial*. A interpretação dos modelos deve ser feita de forma conjunta.
 
-Modelos com zero inflados funcionam de maneira similar, mas permitem que a distribuição Poisson contenha zeros, ou seja, *não é utilizada uma distribuição truncada*. Ao fazer isso, esta distribuição de Poisson pressupõe que os zeros foram gerados por um processo ecológico real, tal como, ausência de habitat adequado.
+Modelos com zero inflados funcionam de maneira similar, mas permitem que a distribuição Poisson contenha zeros, ou seja, *não é utilizada uma distribuição truncada*. Ao fazer isso, está distribuição de Poisson pressupõe que os zeros foram gerados por um processo ecológico real, tal como, ausência de habitat adequado.
 
 Para ilustrar como podemos lidar com conjuntos de dados complexos, vamos utilizar os dados do parasita *Raillietiella mottae* infectando duas espécies de lagartos que ocorrem no Nordeste Brasileiro [@lima2018]. Ao todo, 63 indivíduos de *Hemidactylus agrius* e 132 de *Phyllopezus pollicaris* foram amostrados.
 
@@ -676,24 +690,29 @@ pois_plain <- glm(Raillietiella_mottae ~ CRC + Sexo * Especie, data = parasitas,
 
 **Diagnose**
 
-Aqui vamos utilizar as funções do pacote `performance` novamente (Figura \@ref(fig:fig-mod-pois-zero-diag)) para o GLM Poisson.
+Aqui vamos utilizar as funções do pacote `performance` para o GLM Poisson.
 
 ```{r fig-mod-poi-zero-diag, fig.cap="Diagnose avançada dos resíduos do modelo GLM Poisson."}
 ## Diagnose avançada
+# Verificar zero inflation
 check_zeroinflation(pois_plain) # para diagnosticar se o modelo sofre de zero inflation
+
+# Verificar overdispersion
 check_overdispersion(pois_plain)
 ```
 
-A diagnose não só nos disse que o modelo possui *overdispersion*, como também de *zero-inflation*, como já esperávamos. Vejamos então como melhorar o nosso modelo para lidar com esses dois problemas. Especificamente, vamos utilizar um modelo *Hurdle* com binomial negativa truncada (ou seja, desconsiderando os zeros), e um outro modelo *zero-inflated* usando uma distribuição binomial negativa. 
-Aqui vamos utilizar o pacote `glmmTMB`.
+A diagnose não só nos disse que o modelo possui *overdispersion*, como também de *zero-inflation*, como já esperávamos. Vejamos então como melhorar o nosso modelo para lidar com esses dois problemas. Especificamente, vamos utilizar um modelo *Hurdle* com binomial negativa truncada (ou seja, desconsiderando os zeros), e dois outros modelos com *zero-inflated* usando distribuição binomial negativa e Poisson. Aqui vamos utilizar o pacote `glmmTMB`.
 
 ```{r}
 ## Modelos
-hur_NB <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data = parasitas, family = truncated_nbinom2) # Hurdle model
+# Hurdle model
+hur_NB <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data = parasitas, family = truncated_nbinom2) 
 
-ziNB_mod2 <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data = parasitas, family = nbinom2) # zero-inflated Poisson
+# zero-inflated Poisson
+ziNB_mod2 <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data = parasitas, family = nbinom2) 
 
-ziP_mod2 <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data = parasitas, family = poisson) # zero-inflated Negative binomial
+# zero-inflated Negative binomial
+ziP_mod2 <- glmmTMB(Raillietiella_mottae ~ CRC + Sexo * Especie, zi = ~., data = parasitas, family = poisson) 
 ```
 
 **Diagnose**
@@ -702,7 +721,7 @@ Vamos fazer a diagnose desses três modelos ajustados anteriormente.
 
 ```{r}
 ## Diagnose de inflação de zeros
-check_zeroinflation(hur_NB) # prediz melhor os zeros
+check_zeroinflation(hur_NB) 
 check_zeroinflation(ziP_mod2)
 check_zeroinflation(ziNB_mod2)
 ```
@@ -715,13 +734,27 @@ ICtab(pois_plain, hur_NB, ziP_mod2, ziNB_mod2, type = c("AICc"), weights = TRUE)
 ```
 
 Mas quando comparamos o AICc entre modelos, os modelos zero-inflated (tanto Poisson, quanto binomial negativa) que tem menos parâmetros, são ranqueados ligeiramente melhor do que o modelo binomial negativa zero-altered (ou hurdle). Não podemos distinguir entre os dois modelos com zero-inflated porque o dAICc < 2, ou seja, o ajuste deles aos dados são praticamente iguais. Vejam que a diferença de Akaike Weights entre os dois primeiros modelos e o hurdle é bastante substancial (0.34 e 0.52). Além disso, vemos que os modelos que levam em conta o excesso de zeros se ajustam bem melhor aos dados do que o modelo simples com distribuição Poisson.
-Vamos ver como os modelos se saem em relação aos outros pressupostos (Figura \@ref(fig:fig-mod-zero-diag)).
+Vamos ver como os modelos se saem em relação aos outros pressupostos.
 
-```{r fig-mod-zero-diag, fig.cap="Diagnose avançada dos resíduos do modelo GLM Hurdle e zero-inflated binomial negativa."}
+Modelo *Hurdle* (Figura \@ref(fig:fig-mod-zero-diag)).
+
+```{r fig-mod-zero-diag, fig.cap="Diagnose avançada dos resíduos do modelo GLM Hurdle."}
 ## Diagnoses
 simulationOutput <- simulateResiduals(fittedModel = hur_NB, plot = T)
+```
+
+Modelo *zero-inflated* Poisson (Figura \@ref(fig:fig-mod-zero-diag1)).
+
+```{r fig-mod-zero-diag1, fig.cap="Diagnose avançada dos resíduos do modelo GLM zero-inflated Poisson."}
+## Diagnoses
 simulationOutput <- simulateResiduals(fittedModel = ziP_mod2, plot = T)
-simulationOutput <- simulateResiduals(fittedModel = ziNB_mod2, plot = T) # tem um outlier nos resíduos (asterisco vermelho)
+```
+
+Modelo *zero-inflated negative binomial* (Figura \@ref(fig:fig-mod-zero-diag2)).
+
+```{r fig-mod-zero-diag2, fig.cap="Diagnose avançada dos resíduos do modelo GLM zero-inflated negative binomial."}
+## Diagnoses
+simulationOutput <- simulateResiduals(fittedModel = ziNB_mod2, plot = T) 
 ```
 
 Os gráficos de diagnose do `DHARMa` são outra evidência de que tanto o modelo hurdle quanto o zero-inflated Poisson são adequados para os dados, em termos de homogeneidade de variância, *outliers* e *overdispersion*.
@@ -759,7 +792,7 @@ ggplot(parasitas, aes(x = CRC, y = phat, colour = Especie,
 Uma outra maneira de codificarmos os dados é utilizando categorias ordenadas, tais como ranques. Exemplos incluem a escala de Likert, scores e intervalos (e.g., de idade).
 
 Para este exemplo, iremos utilizar um outro conjunto de dados do artigo de [@Franco-Belussi2018a] que manipulou *in vitro* a concentração do hormônio noradrenalina nos olhos de peixes esgana-gato (*Gasterosteus aculeatus*) e avaliaram a expressão de várias cores conferidas por tipos de células (cromatóforos). Aqui vamos usar os dados do efeito da noradrenalina na cor vermelha em machos.
-Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao longo do tempo (que é um dos fatores deste experimento). Portanto, para não incorrer no risco de pseudoréplicas deveríamos incluir esta informação no modelo. A maneira mais simples de fazê-lo é criar um modelo de efeito misto em que teríamos uma parte fixa (o que de fato estamos interessados em testar) e outra aleatória (variáveis que precisamos controlar). Portanto, `Animal` será incluído como um um fator aleatório, tendo um intercepto estimado separadamente para cada animal no modelo. Não iremos entrar em detalhes sobre modelos de efeito misto porque necessitaríamos de um outro capítulo para isso, dada a complexidade do assunto. No entanto, recomendamos aos leitores dois artigos intródutórios muito bons - Harisson [-@Harrison] e Bolker et al. [-@BOLKER2009127].
+Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao longo do tempo (que é um dos fatores deste experimento). Portanto, para não incorrer no risco de pseudoréplicas deveríamos incluir esta informação no modelo. A maneira mais simples de fazê-lo é criar um modelo de efeito misto em que teríamos uma parte fixa (o que de fato estamos interessados em testar) e outra aleatória (variáveis que precisamos controlar). Portanto, `Animal` será incluído como um fator aleatório, tendo um intercepto estimado separadamente para cada animal no modelo. Não iremos entrar em detalhes sobre modelos de efeito misto porque necessitaríamos de um outro capítulo para isso, dada a complexidade do assunto. No entanto, recomendamos aos leitores dois artigos introdutórios muito bons - Harisson [-@Harrison] e Bolker et al. [-@BOLKER2009127].
 
 **Pergunta**
 
@@ -870,7 +903,7 @@ Neste gráfico vemos que o grupo tratado com o hormônio começa com um índice 
 
 ## Dados contínuos: distribuição beta
 
-Aqui vamos utilizar como exemplo os dados do artigo de [-@Franco-Belussi2018a]. Os pesquisadores fizeram um experimento *in vivo* com peixes esgana-gato (*Gasterosteus aculeatus*) para testar como a coloração dos animais respondem ao fármaco ioimbina (YOH), que bloqueia a coloração típica que os machos exibem na época de acasalamento, e o tempo de exposição ao mesmo (além de um controle), num desenho de ANOVA fatorial. Como as medidas foram feitas repetidamente no mesmo animal, iremos incluir o `Animal` como um fator aleatório no modelo.
+Aqui vamos utilizar como exemplo os dados do artigo de Franco-Belussi et al. [-@Franco-Belussi2018a]. Os pesquisadores fizeram um experimento *in vivo* com peixes esgana-gato (*Gasterosteus aculeatus*) para testar como a coloração dos animais respondem ao fármaco ioimbina (YOH), que bloqueia a coloração típica que os machos exibem na época de acasalamento, e o tempo de exposição ao mesmo (além de um controle), num desenho de ANOVA fatorial. Como as medidas foram feitas repetidamente no mesmo animal, iremos incluir o `Animal` como um fator aleatório no modelo.
 
 ```{r}
 head(fish)
@@ -977,12 +1010,12 @@ escuridao %>%
 
 ## Para se aprofundar
 
-Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros "Mixed effects models and extensions in ecology with R" de Zurr et al. [-@zuur_mixed_2009] e "Mixed-Effects Models in S and S-PLUS" de Pinheiro et al. [@pinheiro_mixed-effects_2000] que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros "Analysis of ordinal categorical data" de Agresti [-@agresti2010] e "Categorical Data Analysis", do mesmo autor, Agresti [-@agresti_categorical_2012].
+Neste capítulo apenas fizemos uma breve introdução aos modelos lineares generalizados. Para conhecer um pouco mais a fundo todos os detalhes, recomendamos a consulta dos livros - Zurr et al. [-@zuur_mixed_2009] *Mixed effects models and extensions in ecology with R* e Pinheiro & Bates [@pinheiro_mixed-effects_2000] *Mixed-Effects Models in S and S-PLUS* - que são as referências clássicas sobre GLM com aplicações em Ecologia. Para dados ordinais, sugerimos os livros -  Agresti [-@agresti2010] *Analysis of ordinal categorical data* e Agresti [-@agresti_categorical_2012] *Categorical Data Analysis*.
 
 ## Exercícios
 
 **8.1**
-Baixe [estes dados](https://www.stat.berkeley.edu/~statlabs/labs.html#video) que foram coletados numa pesquisa de opinião sobre uso de vídeo games por 91 estudantes de graduação no outono de 1994. Utilizando estes dados, constra um modelo: 1) Predizer a frequência com que uma pessoa joga vídeo game em função da idade; 2) Predizer a nota do estudante em função do tempo que jogou na semana antes da entrevista. Dica: esses são dados ordinais!
+Baixe [estes dados](https://www.stat.berkeley.edu/~statlabs/labs.html#video) que foram coletados numa pesquisa de opinião sobre uso de vídeo games por 91 estudantes de graduação no outono de 1994. Utilizando estes dados, construa um modelo para: 1) Predizer a frequência com que uma pessoa joga vídeo game em função da idade; 2) Predizer a nota do estudante em função do tempo que jogou na semana antes da entrevista. Dica: esses são dados ordinais!
 
 **8.2**
 Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sobre a abundância de morcegos em paisagens agroecológicas desenvolveu uma simulação para gerar dados parecidos com o que irá coletar em breve no campo. Ela utilizou uma abordagem que simula a abundância de uma espécie sob deriva ecológica segundo a Teoria Neutra da Biodiversidade. A simulação gerou os seguintes dados:
@@ -994,26 +1027,15 @@ theta <- 50 #número fundamental da biodiversidade
 m <- 0.05 #taxa de dispersão
 comm1a <- coalesc(J, m, theta) #simulação
 abund1a <- abund(comm1a) #extração de dados de abundância local
-
-head(abund1a$com) #dados da comunidade local
-
-#histograma da abundância
-ggplot(abund1a$com, aes(ab))+
-  geom_density(aes(col="red", fill="red"))+
-  theme(legend.position = "non")
 ```
 
 Além disso, a pesquisadora também simulou dados que representam a porcentagem do solo destinado à agricultura:
 
 ```{r}
 porc_solo <- rbeta(length(abund1a$com$ab), 10, 90) #simulação uso do solo para agricultura
-hist(porc_solo)
 
 dados_finais <- data.frame(abund=abund1a$com$ab, solo=porc_solo)
 head(dados_finais)
-
-ggplot(dados_finais, aes(solo, abund))+
-  geom_point()
 ```
 
 Agora com esses dados ela pode ter uma idéia do que esperar quando for pra campo. Ajude a pesquisadora a construir um modelo linear generalizado que seja adequado para modelar a abundância desta espécie de morcego em função da porcentagem de agricultura. Lembre-se de que ela vai precisar diagnosticar o modelo antes de utilizá-lo para fazer uma inferência. Por fim, interprete os resultados e sugira uma possível interpretação para a pesquisadora.

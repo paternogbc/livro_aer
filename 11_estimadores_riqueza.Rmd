@@ -85,7 +85,7 @@ Vamos olhar os dados.
 
 ```{r}
 ## Cabeçalho
-head(poca_anuros)
+head(dados_coleta)
 ```
 
 Cálculo do estimador de riqueza - Chao 1.
@@ -96,7 +96,7 @@ est_chao1 <- estaccumR(dados_coleta, permutations = 100)
 summary(est_chao1, display = "chao")
 ```
 
-Percebam que a função retorna: N = número de amostragens, Chao = valor médio da estimativa do índice de Chao, 2.5% e 97.5% = intervalo de confiança de 95%, e Std.Dev = desvio padrão. Essas dados são obtidos usando permutações, sem reposição, que alteram a ordem das amostragens. Neste exemplo, usamos 100 permutações.
+Percebam que a função retorna: `N` = número de amostragens, `Chao` = valor médio da estimativa do índice de Chao, `2.5%` e `97.5%` = intervalo de confiança de 95%, e `Std.Dev` = desvio padrão. Esses dados são obtidos usando permutações, sem reposição, que alteram a ordem das amostragens. Neste exemplo, usamos 100 permutações.
 
 Vamos visualizar os resultados com intervalo de confiança de 95% (Figura \@ref(fig:fig-chao1)).
 
@@ -357,7 +357,7 @@ onde:
 
 **Explicação dos dados**
 
-Usaremos os mesmos dados hipotéricos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.
+Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.
 
 **Análise**
 
@@ -422,7 +422,7 @@ Bootstrap é um método não paramétrico usado para estimar os parâmetros de u
 
 **Explicação dos dados**
 
-Usaremos os mesmos dados hipotéricos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.
+Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.
 
 **Análise**
 
@@ -505,7 +505,7 @@ ggiNEXT(resultados_abundancia, type = 1) +
 
 **Interpretação dos resultados**
 
-Veja que o ponto no final da linha contínua representa as 17 espécies de anuros (eixo Y) observadas entre os 304 individuos (eixo X). A extrapolação máxima (600 indivíduos no nosso exemplo) estima um aumento de até oito espécies (intervalo de confiança) caso amostrássemos mais 296 indivíduos.
+Veja que o ponto no final da linha contínua representa as 17 espécies de anuros (eixo Y) observadas entre os 304 indivíduos (eixo X). A extrapolação máxima (600 indivíduos no nosso exemplo) estima um aumento de até oito espécies (intervalo de confiança) caso amostrássemos mais 296 indivíduos.
 
 Cálculo da extrapolação da riqueza com base no número de amostras (Figura \@ref(fig:fig-boot-riq)).
 
@@ -533,7 +533,7 @@ Veja que o ponto no final da linha contínua representa as 17 espécies de anuro
 
 **Explicação dos dados**
 
-Neste exemplo, iremos refazer o exemplo do Capítulo \@ref(cap7) que usa Generalized Least Squares (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza extrapolada. Os dados que usaremos estão disponíveis no pacote `vegan` e representam a composição de espécies de ácaros amostradas em 70 comunidades/amostras.
+Neste exemplo, iremos refazer o exemplo do Capítulo \@ref(cap7) que usa *Generalized Least Squares* (GLS) para testar a relação da riqueza de ácaros com a quantidade de água no substrato. Contudo, ao invés de considerar a riqueza de espécies de ácaros observada como variável resposta, iremos utilizar a riqueza extrapolada. Os dados que usaremos estão disponíveis no pacote `vegan` e representam a composição de espécies de ácaros amostradas em 70 comunidades/amostras.
 
 **Pergunta**
 
@@ -584,7 +584,7 @@ resultados_comunidades_ext <- data.frame()
 # Criando um vetor vazio para salvar os resultados
 riqueza_extrapolada <- c()
 
-## Lopp
+## Loop
 # Loop repetindo as análises para as 70 comunidades
 # O objetivo é extrair a riqueza estimada extrapolada para 781 individuos
 for (i in 1:70){
@@ -631,7 +631,7 @@ ratio_model <- gls(riqueza_extrapolada ~ agua,
                    corRatio(form = ~lat + long, nugget = TRUE))
 ```
 
-Vamos usar a seleção de modelos por o AIC para selecionar o modelo mais "provável" explicando a distribuição da riqueza extrapolada das espécies de ácaros (Figura \@ref(fig:fig-ext-resi-acaros)).
+Vamos usar a seleção de modelos por AIC para selecionar o modelo mais "provável" explicando a distribuição da riqueza extrapolada das espécies de ácaros (Figura \@ref(fig:fig-ext-resi-acaros)).
 
 ```{r fig-ext-resi-acaros, fig.cap="Visualização dos resíduos do modelo selecionado."}
 ## Seleção dos modelos
@@ -664,7 +664,7 @@ ggplot(data = dados_combinado_ext, aes(x= agua, y= riqueza_extrapolada)) +
 
 **Interpretação dos resultados**
 
-A riqueza extrapolada das espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos. Contudo, apesar do modelo apresentar um relação significativa entre as variáveis, a concentração de água explica apenas 5,9% da variação da riqueza extrapolada das espécies de ácaros. O padrão observado, valor de P \< 0.05 e o baixo valor de R^2^, provavelmente está relacionado com as duas comunidades com altos valores de riqueza extapolada (e.g. *outilers*). Refaça as análises sem os dois pontos e vejam o padrão dos novos resultados.
+A riqueza extrapolada das espécies de ácaros foi maior em comunidades localizadas em áreas com substratos secos do que em áreas com substratos úmidos. Contudo, apesar do modelo apresentar uma relação significativa entre as variáveis, a concentração de água explica apenas 5,9% da variação da riqueza extrapolada das espécies de ácaros. O padrão observado, valor de P \< 0.05 e o baixo valor de R^2^, provavelmente está relacionado com as duas comunidades com altos valores de riqueza extrapolada (e.g. *outilers*). Refaça as análises sem os dois pontos e vejam o padrão dos novos resultados.
 
 ## Para se aprofundar
 
@@ -687,6 +687,6 @@ Carregue os dados - Cap11_exercicio1 - que está no pacote `ecodados`. Este conj
 Utilize o mesmo conjunto de dados do exercício anterior. Calcule os estimadores de riqueza - Jackknife 1 e bootstrap. Faça um gráfico contendo a riqueza observada e os dois estimadores de riqueza. Qual a sua interpretação sobre o esforço amostral? Compare com os resultados do exercício anterior que utilizam estimadores baseados na abundância das espécies. 
 
 **11.3** 
-Vamos refazer o exercício 10 do Capítulo 7 que usa Generalized Least Squares (GLS) para testar a relação da riqueza de anuros em 44 localidades na Mata Atlântica com a precipitação anual. Contudo, ao invés de considerar a riqueza de espécies de anuros observada como variável resposta, iremos utilizar a riqueza extrapolada. Utilize os dados "anuros_composicao" para estimar a riqueza extrapolada e o dados "anuros_ambientais" para acessar os dados de precipitação anual e coordenadas geográficas. Qual a sua interpretação dos resultados utilizando a riqueza observada e extrapolada? 
+Vamos refazer o exercício 10 do Capítulo 7 que usa *Generalized Least Squares* (GLS) para testar a relação da riqueza de anuros em 44 localidades na Mata Atlântica com a precipitação anual. Contudo, ao invés de considerar a riqueza de espécies de anuros observada como variável resposta, iremos utilizar a riqueza extrapolada. Utilize os dados `anuros_composicao` para estimar a riqueza extrapolada e o dados `anuros_ambientais` para acessar os dados de `precipitação anual` e `coordenadas geográficas`. Qual a sua interpretação dos resultados utilizando a riqueza observada e extrapolada? 
 
 [Soluções dos exercícios](https://exercicios-livro-aer.netlify.app/cap.-11---estimadores-de-riqueza.html).
