@@ -54,9 +54,9 @@ Esse capítulo segue parte da estrutura organizada por Lovelace et al. [-@lovela
 
 ## Vetor
 
-Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos).
+Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos)).
 
-```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de Olaya [-@olaya2020])."}
+```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de:Olaya [-@olaya2020])."}
 knitr::include_graphics("img/cap15_fig01.png")
 ```
 
@@ -95,9 +95,9 @@ plot(world[1], col = viridis::viridis(100), main = "Mapa do mundo")
 
 ## Raster
 
-Os dados no formato raster consistem em uma matriz (com linhas e colunas) em que os elementos representam células, geralmente igualmente espaçadas (pixels; Figura \@ref(fig:fig-raster). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura \@ref(fig:fig-raster) A) e; ii) valores das células (Figura \@ref(fig:fig-raster) B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura \@ref(fig:fig-raster) C). Além disso, valores ausentes ou não amostrados são representados por `NA`, ou seja, *not available* (Figura \@ref(fig:fig-raster) B e C).
+Os dados no formato raster consistem em uma matriz (com linhas e colunas) em que os elementos representam células, geralmente igualmente espaçadas (pixels; Figura \@ref(fig:fig-raster)). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura \@ref(fig:fig-raster) A) e; ii) valores das células (Figura \@ref(fig:fig-raster) B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura \@ref(fig:fig-raster) C). Além disso, valores ausentes ou não amostrados são representados por `NA`, ou seja, *not available* (Figura \@ref(fig:fig-raster) B e C).
 
-```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de Lovelace et al. [-@lovelace2019])."}
+```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de:Lovelace et al. [-@lovelace2019]."}
 library(gridExtra)
 
 # Dados
@@ -137,9 +137,9 @@ p_3 <- spplot(small_ras_val,
 grid.arrange(p_1, p_2, p_3, ncol = 3)
 ```
 
-Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos).
+Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos)).
 
-```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de Olaya [-@olaya2020])."}
+```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de:Olaya [-@olaya2020]."}
 knitr::include_graphics("img/cap15_fig02.png")
 ```
 
@@ -395,6 +395,7 @@ knitr::kable(
     tibble(
         Pacotes = c("[geobr](https://cran.r-project.org/web/packages/geobr/index.html)",
                     "[rnaturalearth](https://cran.r-project.org/web/packages/rnaturalearth/index.html)",
+                    "[geodata](https://cran.r-project.org/web/packages/geodata/index.html)",
                     "[rworldmap](https://cran.r-project.org/web/packages/rworldmap/index.html)",
                     "[spData](https://cran.r-project.org/web/packages/spData/index.html)",
                     "[OpenStreetMap](https://cran.r-project.org/web/packages/OpenStreetMap/index.html)",
@@ -414,6 +415,7 @@ knitr::kable(
                     "[smapr](https://cran.r-project.org/web/packages/smapr/index.html)"), 
         Descrição = c("Carrega Shapefiles de Conjuntos de Dados Espaciais Oficiais do Brasil", 
                       "Dados do mapa mundial da Natural Earth", 
+                      "Diversas bases de dados para o mundo", 
                       "Mapeando Dados Globais",
                       "Conjuntos de dados para análise espacial",
                       "Acesso para abrir imagens raster de mapas de ruas",
@@ -1125,7 +1127,7 @@ co110_sf_moll <- sf::st_transform(x = co110_sf, crs = "+proj=moll")
 plot(co110_sf_moll[1], col = "gray", main = "Projeção de Mollweide", graticule = TRUE)
 ```
 
-Ou ainda podemos utilizar a Projeção Azimutal de Lambert com alguns parâmetros ajustados para centralizar a projeção no Brasil (\@ref(fig:fig-vetor-mundo-laea)).
+Ou ainda podemos utilizar a Projeção Azimutal de Lambert com alguns parâmetros ajustados para centralizar a projeção no Brasil (Figura \@ref(fig:fig-vetor-mundo-laea)).
 
 ```{r}
 ## Projeção Azimutal de Lambert
@@ -1224,7 +1226,7 @@ São modificação de objetos geoespaciais baseado em informações não espacia
 
 As principais operações de atributos vetoriais são com respeito à tabela de atributos, sendo as principais: i) filtro, ii) junção, iii) agregação e iv) manipulação da tabela de atributos. A lista de possíveis operações é longa, dessa forma, apresentaremos algumas operações utilizando as principais funções e listamos as demais funções e suas operações, que dependerão de objetivos específicos.
 
-Quase todas as operações serão as mesmas realizadas pelo pacote `dplyr` em uma tabela de dados (ver o Capítulo \@ref(cap5)), sendo algumas operações específicas para alterar apenas campos da tabela de atributos e outras que refletem operações nas feições, ou seja, alterarão através da tabela de atributos as características das feições. Essas funções e suas operações são descritas com detalhes na Tabela (\@ref(tab:tab-vetor-operacoes-atributos)).
+Quase todas as operações serão as mesmas realizadas pelo pacote `dplyr` em uma tabela de dados (ver o Capítulo \@ref(cap5)), sendo algumas operações específicas para alterar apenas campos da tabela de atributos e outras que refletem operações nas feições, ou seja, alterarão através da tabela de atributos as características das feições. Essas funções e suas operações são descritas com detalhes na Tabela \@ref(tab:tab-vetor-operacoes-atributos).
 
 ```{r tab-vetor-operacoes-atributos, echo=FALSE}
 knitr::kable(
@@ -1462,7 +1464,7 @@ As principais operações espaciais para dados vetoriais são: i) filtro espacia
 
 **Filtro espacial**
 
-Filtros espaciais são operações que realizam seleção de feições espaciais entre dois objetos geoespaciais (x e y). Existe uma grande quantidade de funções para realizar filtros espaciais no R, como podemos ver na Tabela (\@ref(tab:tab-filtro-espacial)). Essas funções verificam se cada feição em x mantém sua relação em y. Ao especificar o parâmetro `sparse = FALSE`, as funções retornam uma matriz lógica (composta por `TRUE` e `FALSE`).
+Filtros espaciais são operações que realizam seleção de feições espaciais entre dois objetos geoespaciais (x e y). Existe uma grande quantidade de funções para realizar filtros espaciais no R, como podemos ver na Tabela \@ref(tab:tab-filtro-espacial). Essas funções verificam se cada feição em x mantém sua relação em y. Ao especificar o parâmetro `sparse = FALSE`, as funções retornam uma matriz lógica (composta por `TRUE` e `FALSE`).
 
 ```{r tab-filtro-espacial, echo=FALSE}
 knitr::kable(
@@ -1794,7 +1796,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s_cent$geom, cex = 3, pch = 20, add = T
 
 **Pontos aleatórios**
 
-Por vezes precisamos criar algum padrão aleatório dentro de um contexto espacial. Isso pode ser realizado de diversas formas. Uma delas é a criação de pontos aleatórios dentro de um polígono. Podemos realizar essa operação com a função `sf::st_sample()`. Para essa função, dois argumentos são utilizados: `x` uma geometria de entrada e o `size` indicando o número de pontos à seres criados. Outro argumento bastante interessante é o `type`, indicando o tipo de amostragem espacial (aleatório, regular ou triangular). Para nosso exemplo, vamos fixar a amostragem utilizando a função `set.seed()` e sortear 30 pontos para o limite do município de Rio Claro/SP (\@ref(fig:fig-vetor-pontos-aleatorios)). Para mais detalhes da função `set.seed()`, consultar o Capítulo \@ref(cap4).
+Por vezes precisamos criar algum padrão aleatório dentro de um contexto espacial. Isso pode ser realizado de diversas formas. Uma delas é a criação de pontos aleatórios dentro de um polígono. Podemos realizar essa operação com a função `sf::st_sample()`. Para essa função, dois argumentos são utilizados: `x` uma geometria de entrada e o `size` indicando o número de pontos à seres criados. Outro argumento bastante interessante é o `type`, indicando o tipo de amostragem espacial (aleatório, regular ou triangular). Para nosso exemplo, vamos fixar a amostragem utilizando a função `set.seed()` e sortear 30 pontos para o limite do município de Rio Claro/SP (Figura \@ref(fig:fig-vetor-pontos-aleatorios)). Para mais detalhes da função `set.seed()`, consultar o Capítulo \@ref(cap4).
 
 ```{r}
 ## Fixar amostragem
@@ -2184,7 +2186,7 @@ Por fim, podemos ainda fazer operações de conversão entre objetos vetoriais p
 
 A conversão de vetor para raster pode ser realizada de pontos, linhas ou polígonos para rasters. Nesse processo, podemos utilizar uma função para resumir os dados pontuais para os pixels do raster que criaremos. Para essa operação, podemos utilizar a função `raster::rasterize()`, com o argumento `x` sendo o vetor de pontos de entrada, `y` o raster base, `field` a coluna ou campo da tabela de atributos do objeto vetorial para os quais os valores serão utilizados e `fun` a função utilizada para agregação dos dados.
 
-Aqui, vamos contabilizar a quantidade de nascentes por pixel, utilizando como base o raster para o qual mudamos a resolução para 900 metros (\@ref(fig:fig-raster-rasterizacao-pontos)).
+Aqui, vamos contabilizar a quantidade de nascentes por pixel, utilizando como base o raster para o qual mudamos a resolução para 900 metros (Figura \@ref(fig:fig-raster-rasterizacao-pontos)).
 
 ```{r}
 ## Rasterizar pontos
@@ -2253,7 +2255,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = NA,
      border = "red", lwd = 2, add = TRUE)
 ```
 
-Nesse outro exemplo, vamos vetorizar o raster de elevação para Rio Claro/SP novamente, mas agora criando isolinhas \@ref(fig:fig-raster-vetorizacao-linhas)).
+Nesse outro exemplo, vamos vetorizar o raster de elevação para Rio Claro/SP novamente, mas agora criando isolinhas (Figura \@ref(fig:fig-raster-vetorizacao-linhas)).
 
 ```{r}
 ## Vetorização de linhas
@@ -2272,7 +2274,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom,
      col = NA, border = "red", lwd = 2, add = TRUE)
 ```
 
-Por fim, vamos vetorizar o raster de cobertura da terra criado anteriormente para Rio Claro/SP, criando polígonos não dissolvendo e dissolvidos \@ref(fig:fig-raster-vetorizacao-poligonos)).
+Por fim, vamos vetorizar o raster de cobertura da terra criado anteriormente para Rio Claro/SP, criando polígonos não dissolvendo e dissolvidos (Figura \@ref(fig:fig-raster-vetorizacao-poligonos)).
 
 ```{r}
 ## Vetorização de polígonos
@@ -2961,7 +2963,7 @@ tm_shape(geo_vetor_mata_atlantica,
     tm_borders()
 ```
 
-Podemos ser mais restritos e selecionar apenas os hexágonos dentro do limite do Bioma da Mata Atlântica utilizando o operador `st_within()` (Figura \@ref(fig:fig-vetor-aa-ma-sel-hex-total).
+Podemos ser mais restritos e selecionar apenas os hexágonos dentro do limite do Bioma da Mata Atlântica utilizando o operador `st_within()` (Figura \@ref(fig:fig-vetor-aa-ma-sel-hex-total)).
 
 ```{r}
 ## Selecionar os hexágonos totalmente dentro do limite da Mata Atlântica
@@ -3000,7 +3002,7 @@ geo_vetor_mata_atlantica_hex_especies_oco_riq <- geo_vetor_mata_atlantica_hex_es
                      riqueza = n_distinct(valid_name, na.rm = TRUE))
 ```
 
-Finalmente podemos compor os mapas finais, mostrando os hexágonos com cores e valores do número de ocorrências e de espécies \@ref(fig:fig-vetor-aa-ma-sel-hex-oco-riq)).
+Finalmente podemos compor os mapas finais, mostrando os hexágonos com cores e valores do número de ocorrências e de espécies (Figura \@ref(fig:fig-vetor-aa-ma-sel-hex-oco-riq)).
 
 ```{r eval=FALSE}
 ## Mudar o modo de exibição do tmap
