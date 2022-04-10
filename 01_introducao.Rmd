@@ -2,6 +2,11 @@
 
 ## Histórico deste livro
 
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+Este livro também pode ser acessado gratuitamente de forma online pelo link Análises Ecológicas no R. Da mesma forma, as respostas dos exercícios propostos em cada capítulo podem ser acessadas no link Análises Ecológicas no R: Exercícios e Soluções. Possíveis atualizações estarão disponíveis nestes links on-line. 
+:::
+
 Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso *Estatística aplicada à ecologia usando o R* no PPG em Biologia Animal da UNESP de São José Rio Preto/SP, em abril de 2011. Os três pesquisadores eram então alunos do PPG em Biologia Animal quando elaboraram o material disponibilizado na apostila [Estatística aplicada à ecologia usando o R](https://cran.r-project.org/doc/contrib/Provete-Estatistica_aplicada.pdf). A proposta de transformar a apostila em livro sempre foi um tópico recorrente desde 2011, e concretizado agora, um pouco mais de 10 anos depois.
 
 Neste período, Diogo, Fernando e Thiago foram contratados pela Universidade Federal de Mato Grosso do Sul, Universidade Federal de São Carlos campus Sorocaba, e Universidade Federal Rural de Pernambuco, respectivamente. Nestes anos eles ofertaram diferentes versões do curso *Estatística aplicada à ecologia usando o R* para alunos de graduação e pós-graduação em diferentes instituições do Brasil. A possibilidade da oferta destes novos cursos fortaleceu a ideia de transformar a apostila em um livro com base nas experiências dos pesquisadores em sala de aula.
@@ -18,7 +23,7 @@ Antes de detalhar cada análise estatística, apresentaremos o funcionamento bá
 
 ## O que você não encontrará neste livro
 
-Aprofundamento teórico, detalhes matemáticos e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Recomendamos aos leitores (as) que consultem os livros indicados no final deste capítulo caso desejem maior aprofundamento teórico e prático.
+Aprofundamento teórico, detalhes matemáticos e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Recomendamos aos (às) leitores (as) que consultem os livros indicados no final deste capítulo caso desejem maior aprofundamento teórico e prático.
 
 ## Por que usar o R?
 
@@ -49,10 +54,10 @@ Com exceção dos capítulos 2, 3, 4, 5, 6 e 15, os outros capítulos foram elab
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
-Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Além disso, optamos por manter a versão padrão em alguns gráficos utilizados nos Capítulos 7 e 15, principalmente aqueles gráficos que são "output" de análises como, por exemplo, visualização de normalidade de resíduos, homogeneidade de variâncias, entre outros. Em geral, esses gráficos são usados no processo de decisão de algum passo da análise e não possuem qualidade de publicação. Como o usuário vai obter o mesmo gráfico quando replicar as análises propostas aqui ou suas próprias análises, julgamos ser mais didático manter a versão original, em inglês.
+Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Além disso, optamos por manter a versão padrão em alguns gráficos utilizados nos Capítulos 7 ao 15, principalmente aqueles gráficos que são "output" de análises como, por exemplo, visualização de normalidade de resíduos, homogeneidade de variâncias, entre outros. Em geral, esses gráficos são usados no processo de decisão de algum passo da análise e não possuem qualidade de publicação. Como o usuário vai obter o mesmo gráfico quando replicar as análises propostas aqui ou suas próprias análises, julgamos ser mais didático manter a versão original, em inglês.
 :::
 
-Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muitos outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os leitores(as) adquiram independência e segurança para que possam caminhar sozinhos(as) na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.
+Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muitos outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os(as) leitores(as) adquiram independência e segurança para que possam caminhar sozinhos(as) na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.
 
 ## Como ensinar e aprender com esse livro
 
@@ -71,7 +76,8 @@ Cada capítulo é liderado pelo “maior especialista” naquele determinado ass
 **Líder especialista II (orientador ou pós-doc)**
 
 O orientador (ou pós-doc ou ambos) selecionam os capítulos sobre o assunto de interesse (ou todos os capítulos do livro) e se reúne regularmente para discussão com discentes. Além da leitura dos capítulos, o líder pode enviar atividades extras ou desafios para estimular que os discentes leiam o conteúdo e também executem comandos no R. Por exemplo, em cada capítulo, o desafio pode ser criar hipóteses sobre um tema de estudo, gerar dados fictícios (ou usar dados reais disponíveis) e analisar os dados com determinado teste estatístico no R. 
-Líder especialista I ou II integrando com teoria (específico para capítulos 8 a 15):
+
+**Líder especialista I ou II integrando com teoria (específico para capítulos 8 a 15)**
 Esta proposta expande o Líder especialista I uma vez que não estará focada somente na análise estatística apresentada no livro. Além de inserir este componente analítico, o líder irá apresentar o arcabouço teórico ecológico que é geralmente usado em estudos que utilizaram determinada análise. Por exemplo, o capítulo que apresenta regressão linear seria combinado com a teoria de biogeografia de ilhas para entender a relação espécies-área. Desse modo, não seria apresentado somente as especificidades da regressão linear, mas também a teoria de biogeografia de ilhas.
 
 ### Em disciplinas da graduação ou pós-graduação
