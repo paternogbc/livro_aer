@@ -42,7 +42,7 @@ No Capítulo \@ref(cap7), descrevemos sobre os modelos lineares (também chamado
 
 $$Y = \beta_0 + \beta_{1}X_i + \epsilon_i$$
 
-Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para a regressão linear e variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de [@fox_ecological_2015]. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logaritmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
+Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x~i~, variável contínua para a regressão linear e variável categórica no caso da ANOVA (que é codificada numa matriz *design* para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes sobre como modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de Fox et al. [-@fox_ecological_2015]. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logaritmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O'Hara & Kotze [-@ohara2010], Ives [-@ives2015] e Warton [-@warton2018] para mais detalhes.
 
 Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar *Cumulative Link Models* para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.
 
@@ -64,7 +64,9 @@ Logo, um modelo linear pode ser visto como um caso particular de um GLM em que u
 
 ### Para dados contínuos
 
-Se Y é uma variável contínua, a sua distribuição de probabilidade deve ser normal. Nesses casos as distribuições recomendadas são a **Gaussiana (Normal) ou Gamma**. Para essas distribuições, o parâmetro de dispersão é estimado separadamente da média e é às vezes, chamado de *nuisance parameter*. Uma particularidade da distribuição Gamma é que ela só aceita valores contínuos positivos.
+Se Y é uma variável contínua, a sua distribuição de probabilidade deve ser normal. Nesses casos as distribuições recomendadas são a **Gaussiana (Normal) ou Gamma**. Para essas distribuições, o parâmetro de dispersão é estimado separadamente da média e é às vezes, chamado de *nuisance parameter*. Uma particularidade da distribuição Gamma é que ela só aceita valores contínuos positivos maiores que zero. 
+
+Se Y é uma variável de proporção que varia continuamente entre 0 e 1 ou 0 e 100, mas não inclui 0 nem 1, a distribuição recomendada é a beta. Um exemplo é a área (Km^2) de floresta numa imagem de satélite, cuja área total é conhecida. Caso a variável inclua 0 e 1 (e.g., 100% da imagem é composta por floresta), deve-se realizar uma [transformação nos dados](https://doi.apa.org/doiLanding?doi=10.1037%2F1082-989X.11.1.54).
 
 ### Para dados de contagem
 
@@ -114,7 +116,7 @@ glimpse(fragmentos)
 
 Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com "2" indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (`Riqueza_HB`) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma ideia da relação entre as variáveis (Figura \@ref(fig:fig-mod-poi-pre)).
 
-```{r fig-mod-poi-pre, fig.cap="Gráfico pareado para explorar as variáveis."}
+```{r fig-mod-poi-pre, fig.cap="Gráfico de dispersão para explorar as variáveis."}
 ## Gráfico
 ggplot(fragmentos, aes(dfrag, Riqueza_obs)) +
     geom_point(size = 4, alpha = 0.7) +
@@ -348,7 +350,7 @@ Aqui vemos que a interpretação do resultado em termos de valor de _P_ não mud
 
 **Plot do modelo predito**
 
-Vamos realizar a visualização do ajusto do modelo binomial Negativo (Figura \@ref(fig:fig-mod-nb-model)).
+Vamos realizar a visualização do ajuste do modelo binomial Negativo (Figura \@ref(fig:fig-mod-nb-model)).
 
 ```{r fig-mod-nb-model, fig.cap="Gráfico do GLM binomial Negativo."}
 ## Gráfico
@@ -507,7 +509,7 @@ summary(mod1)
 anova(mod1)
 ```
 
-Aqui temos tanto a tabela com os resultados por níveis dos fatores (`summary()`), quanto a tabela com a *Deviance* que mostra os fatores e suas interações (`anova()`). Vemos que nenhum fator foi significativo. Caso houvesse algum fator significativo, poderíamos testar a significância de cada nível dos fatores usando contrastes, desta forma.
+Aqui temos tanto a tabela com os resultados por níveis dos fatores (`summary()`), quanto a tabela com a *Deviance* que mostra os fatores e suas interações (`anova()`). Vemos que nenhum fator foi significativo. Caso houvesse algum fator significativo, poderíamos testar a significância de cada nível dos fatores usando contrastes, desta forma:
 
 ```{r}
 ## Parâmetros
@@ -518,7 +520,7 @@ Aqui temos o valor de cada combinação de níveis dos fatores, com seu respecti
 
 **Plot do modelo predito**
 
-Vamos realizar a visualização do ajusto do modelo binomial (Figura \@ref(fig:fig-mod-bin-model)).
+Vamos realizar a visualização do ajuste do modelo binomial (Figura \@ref(fig:fig-mod-bin-model)).
 
 ```{r fig-mod-bin-model, fig.cap="Gráfico do GLM binomial."}
 ggplot(uv_cells, aes(UV, eosinofilo)) +

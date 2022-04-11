@@ -2,7 +2,7 @@
 
 ## Pré-requisitos do capítulo {-}
 
-Pacotes e dados que serão utilizados nesse capítulo.
+Pacotes e dados que serão utilizados neste capítulo.
 
 ```{r}
 ## Pacotes
@@ -54,9 +54,9 @@ Esse capítulo segue parte da estrutura organizada por Lovelace et al. [-@lovela
 
 ## Vetor
 
-Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos)).
+Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizadas espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar filtros ou agregações dos dados de cada feição (Figura \@ref(fig:fig-vetor-tipos)).
 
-```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de:Olaya [-@olaya2020])."}
+```{r fig-vetor-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de: Olaya [-@olaya2020]."}
 knitr::include_graphics("img/cap15_fig01.png")
 ```
 
@@ -97,7 +97,7 @@ plot(world[1], col = viridis::viridis(100), main = "Mapa do mundo")
 
 Os dados no formato raster consistem em uma matriz (com linhas e colunas) em que os elementos representam células, geralmente igualmente espaçadas (pixels; Figura \@ref(fig:fig-raster)). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura \@ref(fig:fig-raster) A) e; ii) valores das células (Figura \@ref(fig:fig-raster) B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura \@ref(fig:fig-raster) C). Além disso, valores ausentes ou não amostrados são representados por `NA`, ou seja, *not available* (Figura \@ref(fig:fig-raster) B e C).
 
-```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de:Lovelace et al. [-@lovelace2019]."}
+```{r fig-raster, echo=FALSE, fig.cap="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de: Lovelace et al. [-@lovelace2019]."}
 library(gridExtra)
 
 # Dados
@@ -137,9 +137,9 @@ p_3 <- spplot(small_ras_val,
 grid.arrange(p_1, p_2, p_3, ncol = 3)
 ```
 
-Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos)).
+Podemos ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura \@ref(fig:fig-vetor-tipos), mas agora no formato raster (Figura \@ref(fig:fig-raster-tipos)).
 
-```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de:Olaya [-@olaya2020]."}
+```{r fig-raster-tipos, echo=FALSE, fig.cap="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de: Olaya [-@olaya2020]."}
 knitr::include_graphics("img/cap15_fig02.png")
 ```
 
@@ -182,7 +182,7 @@ Um mapa simples do objeto raster pode ser obtido utilizando a função `plot()`,
 plot(raster_layer, col = viridis::viridis(n = 100))
 ```
 
-Além da classe `RasterLayer`, há mais duas classes que trabalham com múltiplas camadas: `RasterBrick` e `RasterStack`. Elas diferem em relação ao número de formatos de arquivo suportados, tipo de representação interna e velocidade de processamento.
+Além da classe `RasterLayer`, há mais duas classes que trabalham com múltiplas camadas: `RasterBrick` e `RasterStack`. Elas diferem em relação ao formato dos arquivos suportados, tipo de representação interna e velocidade de processamento.
 
 A classe `RasterBrick` geralmente corresponde à importação de um único arquivo de imagem de satélite multiespectral (multicamadas) ou a um único objeto com várias camadas na memória. A função `raster::brick()` cria um objeto `RasterBrick`.
 
@@ -232,11 +232,11 @@ plot(raster_stack, col = viridis::viridis(n = 25), main = "")
 
 ## Sistema de Referência de Coordenadas e Unidades
 
-Os dados geoespaciais (vetor e raster) possuem ainda um outro componente fundamental que é o Sistema de Referência de Coordenadas, ou do inglês *Coordinate Reference System (CRS)*. Esse componente define a referência espacial dos elementos geoespaciais (vetor e raster) na superfície da Terra. Esse componente é composto por dois principais conceitos: primeiro, que tipos de unidades estão sendo utilizadas para a representação geográfica, podendo assumir dois tipos - ângulos ou metros, que definem o Sistema de Coordenadas Geográficas e o Sistema de Coordenadas Projetadas, respectivamente. O segundo componente é o *datum*, que é a relação do sistema de coordenadas (geográfica ou projetada) com a superfície da Terra. Esse último componente faz parte de uma área da Cartografia denominada Geodésia que estuda a forma e dimensões da Terra, campo gravitacional e a localização de pontos fixos e sistemas de coordenadas. O livro de Lapaine & Usery [-@lapaine2017] é um excelente material para se aprofundar nesse assunto.
+Os dados geoespaciais (vetor e raster) possuem ainda um outro componente fundamental que é o Sistema de Referência de Coordenadas, ou do inglês *Coordinate Reference System (CRS)*. Esse componente define a referência espacial dos elementos geoespaciais (vetor e raster) na superfície da Terra. Ele é composto por dois principais conceitos: primeiro, que tipos de unidades estão sendo utilizadas para a representação geográfica, podendo assumir dois tipos - ângulos ou metros, que definem o Sistema de Coordenadas Geográficas e o Sistema de Coordenadas Projetadas, respectivamente. O segundo componente é o *datum*, que é a relação do sistema de coordenadas (geográfica ou projetada) com a superfície da Terra. Esse último componente faz parte de uma área da Cartografia denominada Geodésia que estuda a forma e dimensões da Terra, campo gravitacional e a localização de pontos fixos e sistemas de coordenadas. O livro de Lapaine & Usery [-@lapaine2017] é um excelente material para se aprofundar nesse assunto.
 
 ### Sistema de Coordenadas Geográficas
 
-O Sistema de Coordenadas Geográficas utiliza ângulos (graus) para representar feições na superfície da Terra através de dois valores: longitude e latitude. A longitude representa o eixo Leste-Oeste e a latitude o eixo Norte-Sul. Nesse sistema, a superfície da Terra é representada geralmente por uma superfície elipsoidal, pois a Terra é ligeiramente achatada nos polos devido ao seu movimento no entorno do seu eixo.
+O Sistema de Coordenadas Geográficas utiliza ângulos (graus) para representar feições na superfície da Terra através de dois valores: longitude e latitude. A longitude representa o eixo Leste-Oeste e a latitude o eixo Norte-Sul. Nesse sistema, a superfície da Terra é representada geralmente por uma superfície elipsoidal, pois a Terra é ligeiramente achatada nos polos devido ao movimento de rotação.
 
 ### Sistema de Coordenadas Projetadas
 
@@ -252,7 +252,7 @@ No Brasil, desde 2015, o [Instituto Brasileiro de Geografia e Estatística (IBGE
 
 ### Sistema de Referência de Coordenadas (CRS) no R
 
-No R, há duas formas principais de representar um Sistema de Referência de Coordenadas: i) código `epsg` e ii) `proj4string`. O código EPSG (*European Petroleum Survey Group*) é uma sequência de números curta, referindo-se apenas a um CRS. O site [epsg.io](http://epsg.io/) permite consultar diversas informações sobre um código, como procurar por um código, representação de mapas e fazer transformações de CRS.
+No R, há duas formas principais de representar um Sistema de Referência de Coordenadas: i) código `epsg` e ii) `proj4string`. O código EPSG (*European Petroleum Survey Group*) é uma sequência de números curta, referindo-se apenas a um CRS. O site [epsg.io](http://epsg.io/) permite consultar diversas informações como procurar por um código, representação de mapas e fazer transformações de CRS.
 
 Já o `proj4string` permite mais flexibilidade para especificar diferentes parâmetros, como o tipo de projeção, *datum* e elipsoide. Dessa forma, é possível especificar muitas projeções, ou mesmo modificar as projeções existentes, tornando a representação `proj4string` mais complexa e flexível.
 
@@ -316,7 +316,7 @@ knitr::kable(
                       "Dados de pastagens e gado para o Brasil",
                       "Dados de cana-de-açúcar para o Brasil",
                       "Diversos dados vetoriais e raster para o Brasil",
-                      "Dados de biorregiões e geo_vetor_biomas do mundo",
+                      "Dados de biorregiões e biomas do mundo",
                       "Diversas bases de dados para o mundo",
                       "Dados dos limites dos Hotspots de Biodiversidade",
                       "Dados dos limites das distribuições das espécies para o mundo",
@@ -341,7 +341,7 @@ Dentre as bases raster, destacamos as seguintes na Tabela \@ref(tab:tab-raster-b
 
 ```{r tab-raster-bases, echo=FALSE}
 knitr::kable(tibble(
-    `Bases de dados` = c("[Mapgeo_vetor_biomas](https://mapgeo_vetor_biomas.org/)",
+    `Bases de dados` = c("[MapBiomas](https://mapgeo_vetor_biomas.org/)",
                          "[Bahlu](ftp://madeira.dea.ufv.br/bdados/bhalu/)",
                          "[USGS](https://www.usgs.gov/)",
                          "[SRTM](http://srtm.csi.cgiar.org/)",
@@ -361,7 +361,7 @@ knitr::kable(tibble(
                          "[Global Surface Water Explorer](https://global-surface-water.appspot.com/#)",
                          "[MARSPEC](http://www.marspec.org/)",
                          "[Bio-ORACLE](http://www.oracle.ugent.be/)"), 
-    Descrição = c("Uso e cobertura da terra para o Brasil, Panamazonia Legal e Chaco, de 1985 a 2019", 
+    Descrição = c("Uso e cobertura da terra para o Brasil, Panamazonia Legal, Chaco e Mata Atlântica de 1985 a 2020", 
                   "Distribuições históricas de terras agrícolas e pastagens para todo o Brasil de 1940 a 2012", 
                   "Dados de diversos satélites livres para o mundo",
                   "Dados de elevação para o mundo",
@@ -416,22 +416,22 @@ knitr::kable(
         Descrição = c("Carrega Shapefiles de Conjuntos de Dados Espaciais Oficiais do Brasil", 
                       "Dados do mapa mundial da Natural Earth", 
                       "Diversas bases de dados para o mundo", 
-                      "Mapeando Dados Globais",
+                      "Visualização de dados globais",
                       "Conjuntos de dados para análise espacial",
                       "Acesso para abrir imagens raster de mapas de ruas",
-                      "Baixe e importe dados do OpenStreetMap",
+                      "Baixa e importa dados do OpenStreetMap",
                       "Interface para o serviço da Web de consulta espacial 'Geonames'",
                       "Interface para o Global 'Biodiversity' Information Facility API",
                       "Ferramentas para lidar com objetos geoespaciais",
                       "Importar, traçar e analisar dados batimétricos e topográficos",
                       "Fonte e processamento de dados oceanográficos",
-                      "Geração de Variáveis ENVIREM",
+                      "Geração de variáveis ENVIREM",
                       "Conjuntos de dados preditor de modelagem de distribuição de espécies",
-                      "Encontre, Mapeie e Colete Dados e Metadados Ambientais",
+                      "Encontra, mapeia e coleta dados e metadados ambientais",
                       "Biblioteca de redução de escala do clima para a produção diária do modelo climático",
                       "Acessa dados climáticos do Banco Mundial",
                       "Dados meteorológicos 'NOAA' de R",
-                      "Obtenha, organize e visualize dados meteorológicos NCEP",
+                      "Obtém, organiza e visualiza dados meteorológicos NCEP",
                       "Aquisição e processamento de dados ativos-passivos (SMAP) de umidade do solo da NASA")),
     caption = "Principais pacotes no R para download de dados vetoriais e raster.",
     booktabs = TRUE
@@ -492,7 +492,7 @@ Para importar vetores existentes para o R, utilizaremos a função `sf::st_read(
 
 Para quase todas as operações vetoriais nesse capítulo, usaremos os dados disponíveis para o município de Rio Claro/SP. Primeiramente, baixaremos esses dados da [FBDS (Fundação Brasileira para o Desenvolvimento Sustentável)](https://www.fbds.org.br/), através desse [repositório de dados](http://geo.fbds.org.br/). Em 2013, a FBDS deu início ao Projeto de Mapeamento em Alta Resolução dos Biomas Brasileiros, mapeando a cobertura da terra, hidrografia (nascentes, rios e lagos) e Áreas de Preservação Permanente (APPs). O mapeamento foi concluído para os municípios dos Biomas Mata Atlântica e Cerrado, e mais recentemente para os outros biomas. Para fazer o download dos arquivos de interesse, utilizaremos o R, através da função `download.file()`.
 
-Primeiramente, criaremos um diretório com a função `create.dir()`, usando a função `here::here()` para indicar o repositório (ver o Capítulo \@ref(cap5)).
+Primeiramente, criaremos um diretório com a função `dir.create()`, usando a função `here::here()` para indicar o repositório (ver o Capítulo \@ref(cap5)).
 
 ```{r eval=TRUE}
 ## Criar diretório
@@ -802,7 +802,7 @@ Caso o download não funcione ou haja problemas com a importação, disponibiliz
 ecodados::geo_raster_bioclim
 ```
 
-Para importar essa série de camadas, primeiramente listaremos os arquivos e depois importar no formato `RasterStack` (Figura \@ref(fig:fig-raster-wc)).
+Para importar essa série de camadas, primeiramente listaremos os arquivos e depois importaremos no formato `RasterStack` (Figura \@ref(fig:fig-raster-wc)).
 
 ```{r}
 ## Listar arquivos
@@ -1110,7 +1110,7 @@ gridExtra::grid.arrange(p1, p2, nrow = 1)
 
 Podemos ainda utilizar o formato `proj4string` no argumento `crs` para fazer a transformação. Vamos primeiramente plotar o mundo em WGS84/Geográfico (Figura \@ref(fig:fig-vetor-mundo-wgs84)).
 
-```{r fig-vetor-mundo-wgs84, fig.cap="Camada BIO01 para o mundo com CRS geográfico e datum WGS84."}
+```{r fig-vetor-mundo-wgs84, fig.cap="Limite dos países do mundo com CRS geográfico e datum WGS84."}
 ## Plot
 plot(co110_sf[1], col = "gray",  main = "WGS84/Geográfio", graticule = TRUE)
 ```
@@ -1122,7 +1122,7 @@ Agora, reprojetaremos utilizando a Projeção de Mollweide (Figura \@ref(fig:fig
 co110_sf_moll <- sf::st_transform(x = co110_sf, crs = "+proj=moll")
 ```
 
-```{r fig-vetor-mundo-moll, fig.cap="Camada BIO01 para o mundo com CRS Projeção de Mollweide."}
+```{r fig-vetor-mundo-moll, fig.cap="Limite dos países do mundo com CRS Projeção de Mollweide."}
 ## Plot
 plot(co110_sf_moll[1], col = "gray", main = "Projeção de Mollweide", graticule = TRUE)
 ```
@@ -1135,16 +1135,16 @@ co110_sf_laea <- sf::st_transform(x = co110_sf,
                                   crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
 ```
 
-```{r fig-vetor-mundo-laea, fig.cap="amada BIO01 para o mundo com CRS Projeção Azimutal de Lambert centrado no Brasil."}
+```{r fig-vetor-mundo-laea, fig.cap="Limite dos países do mundo com CRS Projeção Azimutal de Lambert centrado no Brasil."}
 ## Plot
 plot(co110_sf_laea[1], col = "gray", main = "Projeção Azimutal de Lambert", graticule = TRUE)
 ```
 
 ### Raster
 
-A reprojeção de objetos raster não é uma tarefa tão simples quanto a reprojeção de vetores. Em vetores, a reprojeção altera as coordenadas de cada vértice. Entretanto, como rasters são compostos de células retangulares do mesmo tamanho, a reprojeção do raster envolve a criação de um novo objeto raster, envolvendo duas operações espaciais separadas: i) reprojeção vetorial dos centroides celulares para outro CRS (i.e., muda a posição e tamanho do pixel) e, ii) cálculo de novos valores do pixel por meio de reamostragem (i.e., muda o valor do pixel).
+A reprojeção de objetos raster não é uma tarefa tão simples quanto a reprojeção de vetores. Em vetores, a reprojeção altera as coordenadas de cada vértice. Entretanto, como rasters são compostos de células retangulares do mesmo tamanho,a reprojeção do raster envolve a criação de um novo objeto raster, com duas operações espaciais separadas: i) reprojeção vetorial dos centroides celulares para outro CRS (i.e., muda a posição e tamanho do pixel) e, ii) cálculo de novos valores do pixel por meio de reamostragem (i.e., muda o valor do pixel).
 
-A função `raster::projectRaster()` possui alguns parâmetros que necessitam de algumas especificações. O argumento `from` que é o objeto raster de entrada que sofre a reprojeção. O argumento `to` é um objeto raster do qual todas as propriedades dos CRSs, como extensão e resolução serão associadas ao objeto raster indicado no argumento `from`. O argumento `res` permite ajustar a resolução do pixel de saída do objeto raster reprojetado.
+A função `raster::projectRaster()` possui alguns parâmetros que necessitam de algumas especificações. O argumento `from` é o objeto raster de entrada que sofre a reprojeção. O argumento `to` é um objeto raster do qual todas as propriedades dos CRSs, como extensão e resolução serão associadas ao objeto raster indicado no argumento `from`. O argumento `res` permite ajustar a resolução do pixel de saída do objeto raster reprojetado.
 
 O argumento `crs` aceita apenas as definições de `proj4string` extensas de um CRS em vez de códigos EPSG concisos. Contudo, é possível usar um código `EPSG` em uma definição de `proj4string` com `+init=epsg:EPSG`. Por exemplo, pode-se usar a definição `+init=epsg:4326` para definir CRS para WGS84 (código EPSG de 4326). A biblioteca `PROJ` adiciona automaticamente o resto dos parâmetros e os converte em `+init=epsg:4326 +proj=longlat +datum=WGS84 + no_defs + ellps=WGS84 + towgs84=0,0,0`.
 
@@ -1220,7 +1220,7 @@ Nesta seção veremos as principais funções para realizar operações com dado
 
 ### Operações de atributos
 
-São modificação de objetos geoespaciais baseado em informações não espaciais associadas a dados geoespaciais, como a tabela de atributos ou valores das células e nome das camadas dos rasters.
+São modificação de objetos geoespaciais baseado em informações não espaciais, como a tabela de atributos ou valores das células e nome das camadas dos rasters.
 
 **Vetor**
 
@@ -1544,7 +1544,7 @@ plot(geo_vetor_cobertura_floresta$geometry, col = "forestgreen", add = TRUE)
 plot(geo_vetor_nascentes_floresta_int$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
 ```
 
-Entretanto, muitas vezes queremos fazer o filtro de feições que estão fora de feições de outro objeto espacial. Para isso, podemos usar a função `sf::st_disjoint()` ou ainda utilizando o operador `[]`, mas com o argumento `op`, nesse caso utilizando a mesma função `sf::st_disjoint()` como operação (Figura \@ref(fig:fig-vetor-filtro-espacial-externo)). Atentar o segundo vazio nesse filtro.
+Entretanto, muitas vezes queremos fazer o filtro de feições que estão fora de feições de outro objeto espacial. Para isso, podemos usar a função `sf::st_disjoint()` ou ainda utilizando o operador `[]`, mas com o argumento `op`, nesse caso utilizando a mesma função `sf::st_disjoint()` como operação (Figura \@ref(fig:fig-vetor-filtro-espacial-externo)). Atentar o segundo argumento vazio nessa operação.
 
 ```{r}
 ## Filtro espacial - externo
@@ -1603,7 +1603,7 @@ plot(geo_vetor_cobertura_nas_agre[1], axes = TRUE, graticule = TRUE, main = NA)
 
 **Distância espacial**
 
-A distância espacial é a distância calculada em duas dimensões (2D) entre um objeto espacial x e y baseado no CRS e para cada feição dos objetos geoespaciais. Para realizar esse cálculo, utilizamos a função `sf::st_distance()`. Em nosso exemplo, vamos calcular a distância das nascentes até a floresta mais próxima, e adicionando essa informação para cada ponto na tabela de atributos com a função `dplyr::mutate()`, para o município de Rio Claro/SP (Figura \@ref(fig:fig-vetor-distancia-espacial)).
+A distância espacial é a distância calculada em duas dimensões (2D) entre um objeto espacial x e y baseado no CRS e para cada feição dos objetos geoespaciais. Para realizar esse cálculo, utilizamos a função `sf::st_distance()`. Em nosso exemplo, vamos calcular a distância das nascentes até a floresta mais próxima, e adicionar essa informação para cada ponto na tabela de atributos com a função `dplyr::mutate()`, para o município de Rio Claro/SP (Figura \@ref(fig:fig-vetor-distancia-espacial)).
 
 ```{r}
 ## Distância espacial
@@ -1622,7 +1622,7 @@ As principais operações espaciais para dados raster podem ser classificas, seg
 
 **Operações locais**
 
-As operações locais contemplam todas as operações realizadas célula a célula em uma ou várias camadas de um objeto raster. A álgebra de raster é uma das mais comuns, simples e poderosas operações no R envolvendo rasters. Com ela podemos fazer operações simples através de operadores aritméticos (soma, subtração, multiplicação, divisão ou potenciação) entre dois ou mais objetos raster, ou utilizar funções para alterar todos os valores dos pixels como, por exemplo, as funções `lo10()` ou `sqrt()`, ou ainda a função `raster::scale()` para padronizar ou centralizar os valores dos rasters (Figura \@ref(fig:fig-raster-local-aritmetico)).
+As operações locais contemplam todas as operações realizadas célula a célula em uma ou várias camadas de um objeto raster. A álgebra de raster é uma das mais comuns, simples e poderosas operações no R envolvendo rasters. Com ela podemos fazer operações simples através de operadores aritméticos (soma, subtração, multiplicação, divisão ou potenciação) entre dois ou mais objetos raster, ou utilizar funções para alterar todos os valores dos pixels como, por exemplo, as funções `log10()` ou `sqrt()`, ou ainda a função `raster::scale()` para padronizar ou centralizar os valores dos rasters (Figura \@ref(fig:fig-raster-local-aritmetico)).
 
 ```{r}
 ## Soma
@@ -1643,7 +1643,7 @@ plot(geo_vetor_rio_claro$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 par(old_par)
 ```
 
-Além das operações aritméticas, a álgebra de rasters também permite operações lógicas, como criar um raster (binário - composto por 1 quando a operação lógica é verdadeira, e 0 quanto é falsa). Em nosso caso, buscamos todos os pixels acima de 600 metros para o raster de elevação de Rio Claro/SP (Figura \@ref(fig:fig-raster-local-logico)).
+Além das operações aritméticas, a álgebra de rasters também permite operações lógicas, como criar um raster binário (composto por 1 quando a operação lógica é verdadeira, e 0 quanto é falsa). Em nosso caso, buscamos todos os pixels acima de 600 metros para o raster de elevação de Rio Claro/SP (Figura \@ref(fig:fig-raster-local-logico)).
 
 ```{r}
 ## Acima de 600
@@ -1670,7 +1670,7 @@ plot(geo_raster_srtm_rio_claro_prod, col = viridis::viridis(10))
 plot(geo_vetor_rio_claro$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 ```
 
-A predição de objetos raster (utilizando a função `raster::predict()`) é outra aplicação extremamente útil em operações locais, nós a veremos mais à frente nesse capítulo. Essa função possui basicamente dois argumentos: `object` que é os rasters preditores e `model` com o modelo ajustado para o qual os valores serão preditos com base nos valores dos rasters. A partir da relação entre variáveis respostas (e.g, pontos no espaço, como ocorrência ou riqueza de espécies), e variáveis preditoras (rasters contínuos de elevação, pH, precipitação, temperatura, cobertura da terra ou classe de solo), criamos modelos usando funções como `lm()`, `glm()`, `gam()` ou uma técnica de aprendizado de máquina, e fazemos predições espaciais aplicando os coeficientes estimados aos valores dos raster preditores (consulte od Capítulos \@ref(cap7) e \@ref(cap8)).
+A predição de objetos raster (utilizando a função `raster::predict()`) é outra aplicação extremamente útil em operações locais, nós a veremos mais à frente neste capítulo. Essa função possui basicamente dois argumentos: `object` que é os rasters preditores e `model` com o modelo ajustado para o qual os valores serão preditos com base nos valores dos rasters. A partir da relação entre variáveis respostas (e.g, pontos no espaço, como ocorrência ou riqueza de espécies), e variáveis preditoras (rasters contínuos de elevação, pH, precipitação, temperatura, cobertura da terra ou classe de solo), criamos modelos usando funções como `lm()`, `glm()`, `gam()` ou uma técnica de aprendizado de máquina, e fazemos predições espaciais aplicando os coeficientes estimados aos valores dos raster preditores (consulte od Capítulos \@ref(cap7) e \@ref(cap8)).
 
 Por fim, a reclassificação de rasters é outra operação muito comum quando trabalhamos com rasters. Nela é realizada a classificação de intervalos de valores numéricos em grupos, e.g. agrupar um modelo digital de elevação em classes de valores. A função que faz essa operação é a `raster::reclassify()`. Ela possui dois argumentos: `x` que é o raster a ser reclassificado, e o segundo `rcl` para o qual devemos construir uma matriz de reclassificação, onde a primeira coluna é a extremidade inferior, a segunda coluna é a extremidade superior, e a terceira coluna representa o novo valor para os intervalos das colunas um e dois. Vamos reclassificar o raster de elevação de Rio Claro/SP para os intervalos 400--600, 600--800 e 800--1000 que são reclassificados para os valores 1, 2 e 3, respectivamente (Figura \@ref(fig:fig-raster-local-reclassificacao)).
 
@@ -1759,7 +1759,7 @@ As operações geométricas realizam modificações em objetos geoespaciais base
 
 **Vetor**
 
-Como dissemos, as operações geométricas em vetores criarão ou alterar a geometria de objetos da classe `sf`, podendo fazer alterações em única geometria (unárias): i) simplificação, ii) centroides, iii) pontos aleatórios, iv) buffers, v) polígono convexo, vi) polígonos de Voronoi, vii) quadrículas e hexágonos; ou modificar uma geometria com base na forma de outra geometria (binárias), viii) união e ix) recortes; ou ainda fazer transformações de tipo de geometrias.
+Como dissemos, as operações geométricas em vetores criam ou alteraram a geometria de objetos da classe `sf`, podendo fazer alterações em única geometria (unárias): i) simplificação, ii) centroides, iii) pontos aleatórios, iv) buffers, v) polígono convexo, vi) polígonos de Voronoi, vii) quadrículas e hexágonos; ou modificar uma geometria com base na forma de outra geometria (binárias), viii) união e ix) recortes; ou ainda fazer transformações de tipo de geometrias.
 
 Para exemplificar as operações geométricas com vetores, vamos utilizar os dados do limite, nascentes, hidrologia e cobertura da terra para o município de Rio Claro/SP.
 
@@ -1772,7 +1772,7 @@ A simplificação possui o intuito de generalizar linhas ou polígonos, diminuin
 geo_vetor_hidrografia_simplificado <- sf::st_simplify(x = geo_vetor_hidrografia, dTolerance = 1000)
 ```
 
-```{r fig-vetor-simplificacao, fig.cap="Simplificação da hidrografia para Rio Claro/SP."}
+```{r fig-vetor-simplificacao, fig.cap="Simplificação da hidrografia para Rio Claro/SP. As linhas em azul é a hidrografia original e as linhas em preto mostram a simplificação."}
 ## Plot
 plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(geo_vetor_hidrografia$geometry, col = "steelblue", lwd = 2, add = TRUE)
@@ -1849,7 +1849,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1,
 
 **Polígono convexo**
 
-Uma análise bastante comum, principalmente realizada pela IUCN, é a criação de polígonos convexos, para definir a extensão de ocorrência de uma espécie (*Extent of occurrence* - EOO). Nesse sentido, essa operação ligará os pontos externos de um conjunto de pontos e cria um polígono a partir deles. Podemos criar esse polígono com a função `sf::st_convex_hull()`. Um único passo que precisamos adiantar é utilizar a função `sf::st_union()` para unir todos os pontos e criar um objeto `sf` `MULTIPOINT`, já iremos explicar com mais detalhes adiante. Vamos utilizar os pontos aleatórios que criamos anteriormente para criar o polígono convexo (Figura \@ref(fig:fig-vetor-convexo)).
+Uma análise bastante comum, principalmente realizada pela IUCN, é a criação de polígonos convexos, para definir a extensão de ocorrência de uma espécie (*Extent of occurrence* - EOO). Nesse sentido, essa operação liga os pontos externos de um conjunto de pontos e cria um polígono a partir deles. Podemos criar esse polígono com a função `sf::st_convex_hull()`. Um único passo que precisamos adiantar é utilizar a função `sf::st_union()` para unir todos os pontos e criar um objeto `sf` `MULTIPOINT`, já iremos explicar com mais detalhes adiante. Vamos utilizar os pontos aleatórios que criamos anteriormente para criar o polígono convexo (Figura \@ref(fig:fig-vetor-convexo)).
 
 ```{r}
 ## Polígono convexo
@@ -1948,13 +1948,13 @@ Nesta seção, vamos utilizar a função `sf::st_union()` para unir diversas fei
 geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao <- sf::st_union(geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios_buffer)
 ```
 
-```{r fig-vetor-uniao, fig.cap="União - dissolução - dos buffers criados a partir de pontos aleatórios para Rio Claro/SP."}
+```{r fig-vetor-uniao, fig.cap="União - dissolução - dos buffers criados a partir dos 30 pontos aleatórios para Rio Claro/SP."}
 ## Plot
 plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
 ```
 
-**Recorte e apagar ("clipar" e "erase")**
+**Recorte e apagar ("clip" e "erase")**
 
 O recorte realiza um subconjunto espacial envolvendo dois objetos geoespaciais. O recorte é aplicado somente a linhas e polígonos, ou seja, usaremos linhas e polígonos para recortar linhas ou polígonos. Esse recorte pode ser realizado de três formas: i) intersecção (subconjunto das geometrias sobrepostas entre os dois objetos), ii) diferença (subconjunto das geometrias do primeiro objeto sem sobreposição com o segundo objeto), e iii) diferença simétrica (apenas as geometrias não sobrepostas entre os dois objetos). Respectivamente para cada uma dessas operações temos funções específicas: `sf::st_intersection()`, `sf::st_difference()` e `sf::st_sym_difference()`.
 
@@ -1965,7 +1965,7 @@ Para nosso exemplo, faremos o recorte da hidrografia em relação aos buffers cr
 geo_vetor_hidrografia_interseccao <- sf::st_intersection(x = geo_vetor_hidrografia, y = geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao)
 ```
 
-```{r fig-vetor-interseccao, fig.cap="Recorte da hidrografia para dentro dos buffers dos 30 aleatórios para Rio Claro/SP."}
+```{r fig-vetor-interseccao, fig.cap="Recorte da hidrografia para fora dos buffers dos 30 pontos aleatórios para Rio Claro/SP."}
 ## Plot
 plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
@@ -2018,7 +2018,7 @@ Para exemplificar as operações geométricas com rasters, vamos utilizar os dad
 
 **Agregação**
 
-Na agregação de rasters, aumentaremos o tamanho dos pixels (diminuindo a resolução), agregando os valores dos pixels em um pixel maior. Podemos realizar essa operação com a função `raster::aggregate()`, que possui três argumentos: `x` corresponde ao objeto raster de entrada, `fact` é o fator de agregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de agregação de 10 fará com o novo raster tenha a resolução de 900 m), e `fun` é a função utilizada para realizar a agregação dos pixels (Figura \@ref(fig:fig-raster-agregacao)).
+Na agregação de rasters, aumentamos o tamanho dos pixels (diminuindo a resolução), agregando os valores dos pixels em um pixel maior. Podemos realizar essa operação com a função `raster::aggregate()`, que possui três argumentos: `x` corresponde ao objeto raster de entrada, `fact` é o fator de agregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de agregação de 10 fará com o novo raster tenha a resolução de 900 m), e `fun` é a função utilizada para realizar a agregação dos pixels (Figura \@ref(fig:fig-raster-agregacao)).
 
 Em nosso exemplo, vamos aumentar o tamanho dos pixels para 900 metros do raster de elevação para Rio Claro/SP.
 
@@ -2036,7 +2036,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = NA, border = "red", lwd =
 
 **Desagregação**
 
-De modo contrário, na desagregação de rasters, diminuiremos o tamanho dos pixels (aumentando a resolução), preenchendo com novos valores. Podemos realizar essa operação com a função `raster::desaggregate()`, que assim como a função anterior, possui três argumentos: `x` corresponde ao objeto raster de entrada, `fact` é o fator de desagregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de desagregação de 2 fará com que o novo raster tenha a resolução de 45 m), e `method` é a função utilizada para realizar a desagregação dos pixels (Figura \@ref(fig:fig-raster-desagregacao)).
+De modo contrário, na desagregação de rasters, diminuímos o tamanho dos pixels (aumentando a resolução), preenchendo com novos valores. Podemos realizar essa operação com a função `raster::desaggregate()`, que assim como a função anterior, possui três argumentos: `x` corresponde ao objeto raster de entrada, `fact` é o fator de desagregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de desagregação de 2 fará com que o novo raster tenha a resolução de 45 m), e `method` é a função utilizada para realizar a desagregação dos pixels (Figura \@ref(fig:fig-raster-desagregacao)).
 
 Nesse exemplo, vamos diminuir o tamanho dos pixels para 45 metros do raster de elevação para Rio Claro/SP.
 
@@ -2074,7 +2074,7 @@ plot(geo_vetor_rio_claro$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 **Interações raster-vetor**
 
-Podemos fazer operações da interação entre objetos vetoriais e raster, como ajustes da extensão e limite do raster para vetores (corte e máscara), extração dos valores dos pixels para vetores (pontos, linhas e polígonos), e estatísticas zonais dos valores dos pixels dos raster para um vetor (polígonos).
+Podemos fazer operações da interação entre objetos vetoriais e raster, como ajustes da extensão e limite do raster para vetores (corte e máscara), extração dos valores dos pixels para vetores (pontos, linhas e polígonos), e estatísticas zonais dos valores dos pixels dos raster para um vetor (linhas e polígonos).
 
 **Cortes e máscaras**
 
@@ -2180,11 +2180,11 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s_hex_alt["elev_mean"],
 
 **Conversões raster-vetor**
 
-Por fim, podemos ainda fazer operações de conversão entre objetos vetoriais para raster e vice-versa. Nessas operações, podemos resumir ou transformar objetos vetoriais (pontos, linhas ou polígonos) para rasters, escolhendo um raster previamente existente, processo denominado rasterização. Também podemos realizar o processo inverso, i.e., transformar o raster em um vetor, podendo esse vetor ser um gride pontos, linhas ou polígonos, operação chamada de vetorização.
+Por fim, podemos ainda fazer operações de conversão entre objetos vetoriais para raster e vice-versa. Nessas operações, podemos resumir ou transformar objetos vetoriais (pontos, linhas ou polígonos) para rasters, escolhendo um raster previamente existente, processo denominado rasterização. Também podemos realizar o processo inverso, i.e., transformar o raster em um vetor, podendo esse vetor ser pontos, linhas ou polígonos, operação chamada de vetorização.
 
 **Rasterização**
 
-A conversão de vetor para raster pode ser realizada de pontos, linhas ou polígonos para rasters. Nesse processo, podemos utilizar uma função para resumir os dados pontuais para os pixels do raster que criaremos. Para essa operação, podemos utilizar a função `raster::rasterize()`, com o argumento `x` sendo o vetor de pontos de entrada, `y` o raster base, `field` a coluna ou campo da tabela de atributos do objeto vetorial para os quais os valores serão utilizados e `fun` a função utilizada para agregação dos dados.
+A conversão de vetor para raster pode ser realizada de pontos, linhas ou polígonos para rasters. Nesse processo, podemos utilizar uma função para resumir os dados pontuais para os pixels do raster que criaremos. Para essa operação, podemos utilizar a função `raster::rasterize()`, com o argumento `x` sendo o vetor de entrada, `y` o raster base, `field` a coluna ou campo da tabela de atributos do objeto vetorial para os quais os valores serão utilizados e `fun` a função utilizada para agregação dos dados.
 
 Aqui, vamos contabilizar a quantidade de nascentes por pixel, utilizando como base o raster para o qual mudamos a resolução para 900 metros (Figura \@ref(fig:fig-raster-rasterizacao-pontos)).
 
@@ -2217,7 +2217,7 @@ plot(geo_vetor_hidrografia_simplificado$geom, col = "gray", add = TRUE)
 plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 ```
 
-Podemos ainda rasterizar polígonos, de modo que cada pixel do raster a ser criado receberáo valor da tabela de atributos, ou uma análise pelo vizinho mais próximo no caso de um campo categórico, como a cobertura da terra, que também vai depender da resolução do raster base e do tamanho da feição do polígono. Para nosso exemplo, antes de criar o raster vamos transforma a coluna de classe de cobertura da terra em `factor` (Figura \@ref(fig:fig-raster-rasterizacao-poligonos)). Entretanto, essa operação de rasterização tende a demorar muito no caso de polígonos muito detalhados ou um raster com pixels muito pequenos, sendo que dois pacotes aceleram esse processamento (`fasterize` e `gdalUtils`), com suas respectivas funções: `fasterize::fasterize()` e `gdalUtils::gdal_rasterize()`.
+Podemos ainda rasterizar polígonos, de modo que cada pixel do raster a ser criado receberá o valor da tabela de atributos, ou uma análise pelo vizinho mais próximo no caso de um campo categórico, como a cobertura da terra, que também vai depender da resolução do raster base e do tamanho da feição do polígono. Para nosso exemplo, antes de criar o raster vamos transforma a coluna de classe de cobertura da terra em `factor` (Figura \@ref(fig:fig-raster-rasterizacao-poligonos)). Entretanto, essa operação de rasterização tende a demorar muito no caso de polígonos muito detalhados ou um raster com pixels muito pequenos, sendo que dois pacotes aceleram esse processamento (`fasterize` e `gdalUtils`), com suas respectivas funções: `fasterize::fasterize()` e `gdalUtils::gdal_rasterize()`.
 
 ```{r}
 ## Rasterizar polígonos
@@ -2255,7 +2255,7 @@ plot(geo_vetor_rio_claro_sirgas2000_utm23s$geom, col = NA,
      border = "red", lwd = 2, add = TRUE)
 ```
 
-Nesse outro exemplo, vamos vetorizar o raster de elevação para Rio Claro/SP novamente, mas agora criando isolinhas (Figura \@ref(fig:fig-raster-vetorizacao-linhas)).
+Neste outro exemplo, vamos vetorizar o raster de elevação para Rio Claro/SP novamente, mas agora criando isolinhas (Figura \@ref(fig:fig-raster-vetorizacao-linhas)).
 
 ```{r}
 ## Vetorização de linhas
@@ -2317,12 +2317,12 @@ Os principais elementos de um mapa geralmente são compostos por:
 2.  Mapa secundário (geralmente muito menor que o mapa principal e com o intuito de mostrar a localização do mapa principal num contexto mais amplo, como país ou continente)
 3.  Título (para resumir o intuito do mapa)
 4.  Legenda (apresentando as informações detalhadas das classes ou escala de valores, geralmente identificando as cores e/ou texturas),
-5.  Barra de escala (representando quantas unidades do mapa representam do mundo real)
+5.  Barra de escala (representando a relação entre as unidades do mapa e o mundo real)
 6.  Indicador de orientação (Norte) (indicando o norte geográfico, podendo ser representado por uma flecha, bússola ou compasso)
 7.  Gride de coordenadas (coordenadas presentes nas laterais)
-8.  Descrição do CRS (indicando qual o CRS)
+8.  Descrição do CRS (indicando qual o Sistema de Referência de Coordenadas)
 9.  Informações de origem (informações sobre a fonte dos dados representados no mapa)
-10. Além de outros elementos auxiliares (como elementos textuais e figuras extras)
+10. Outros elementos auxiliares (como elementos textuais e figuras extras)
 
 Podemos visualizar todos esses elementos resumidos na Figura \@ref(fig:fig-mapa-elementos).
 
@@ -2397,8 +2397,8 @@ knitr::kable(
                       "Crie cartogramas com R",
                       "Transforme polígonos geoespaciais em grades regulares ou hexagonais",
                       "'ggplot2' Utilitários de facetação para dados geoespaciais",
-                      "Plot 2D and 3D Views of the Earth, Including Major Coastline",
-                      "Line Maps")),
+                      "Mapas de visualização 2D e 3D da Terra, incluindo as linhas de costa",
+                      "Mapas de linhas")),
     caption = "Principais pacotes para composição de mapas no R."
 )
 ```
@@ -2411,7 +2411,7 @@ Neste tópico abordaremos funções simples para composição de mapas estático
 
 **Função `plot()`**
 
-A função genérica `plot()` é a maneira mais rápida de compor mapas estáticos utilizando objetos geoespaciais vetoriais e raster, funcionando para ambos os pacotes que apresentamos anteriormente (`sf` e `raster`). Apesar da simplicidade, essa função geralmente tende a criar mapas com relativa velocidade, nos auxiliando principalmente em fases iniciais de desenvolvimento de um projeto. Essa função oferece dezenas de argumentos em Base R, permitindo alguns ajustes limitados, com resultados bastante interessantes.
+A função genérica `plot()` é a maneira mais rápida de compor mapas estáticos utilizando objetos geoespaciais vetoriais e raster, funcionando para ambos os pacotes que apresentamos anteriormente (`sf` e `raster`). Apesar da simplicidade, essa função geralmente tende a criar mapas com relativa velocidade, nos auxiliando principalmente em fases iniciais de desenvolvimento de um projeto. Essa função oferece dezenas de argumentos em *R Base*, permitindo alguns ajustes limitados, com resultados bastante interessantes.
 
 Como dito anteriormente, a função `plot()` vai funcionar diferentemente dependendo da classe do objeto geoespacial. Para objetos geoespaciais `sf`, a função vai plotar um mapa para cada coluna da tabela de atributos. Vamos usar de exemplo nosso mapa de biomas mostrado com os principais elementos de um mapa, podendo inclusive selecionar apenas a coluna de características geoespaciais (`geom`).
 
@@ -2493,7 +2493,7 @@ A estrutura de composição das funções do pacote `ggplot2` vai funcionar pare
 
 Além dessas funções, podemos ainda fazer alterações nos mapas através das funções: `scale_*()` que vai alterar as características indicadas em `aes()`, `coord_*()` que vai alterar construção do mapa em relação às coordenadas, `facet_*()` que altera a disposição de vários mapas, e `theme_*()` e `theme()` que alterarão características relacionadas ao tema, como cores de fundo, fontes e legenda. Podemos ainda utilizar as funções `annotate()` para adicionar textos e `labs()` para alterar o texto do título, legenda e eixos.
 
-Vamos demonstrar esse funcionamento para compor o mapa de geo_vetor_biomas, apresentado no início desta seção (Figura \@ref(fig:fig-vetor-mapa-ggplot2)).
+Vamos demonstrar esse funcionamento para compor o mapa de biomas, apresentado no início desta seção (Figura \@ref(fig:fig-vetor-mapa-ggplot2)).
 
 ```{r fig-vetor-mapa-ggplot2, fig.cap="Mapa de Biomas do Brasil com o pacote `ggplot2`."}
 ## Plot
@@ -2518,7 +2518,7 @@ mapa_vetor_biomas_ggplot2 <- ggplot(data = geo_vetor_biomas) +
 mapa_vetor_biomas_ggplot2
 ```
 
-Para objetos raster, o uso do pacote `ggplot2` para compor mapas requer um passo preliminar. Primeiramente, vamos criar um `data frame` com os dados do raster, com as linhas sendo os pixels e as colunas sendo as coordenadas centrais da longitude e latitude, além dos valores de cada camada em cada coluna. Esse passo pode ser realizado com a função `raster::rasterToPoints()`.
+Para objetos raster, o uso do pacote `ggplot2` para compor mapas requer um passo preliminar. Primeiramente, vamos criar um `data frame` com os dados do raster, com as linhas sendo os pixels e as colunas sendo as coordenadas centrais da longitude e latitude, além dos valores de cada camada em cada coluna. Esse passo pode ser realizado com a função `raster::rasterToPoints()` ou `raster::as.data.frame()`.
 
 Uma vez que temos esses dados organizados, podemos utilizar as funções `ggplot()` para indicar o `data frame`, e as colunas com a função `aes()`. Em seguida, utilizamos a função `geom_raster()` para indicar que trata-se de um objeto raster. Além dessas funções, podemos ainda utilizar as demais funções para alterar as características do mapa, como comentamos acima. Entretanto, devemos nos atentar para a função `coord_*()` e escolher aquela que vai fazer a construção do mapa em relação à coordenadas e resolução das células.
 
@@ -2710,14 +2710,14 @@ mapa_brasil_tmap <- tm_shape(geo_vetor_brasil_anos) +
 mapa_brasil_tmap
 ```
 
-Uma solução é a composição de mapas animados. Apesar de dependerem da publicação digital, os mapas animados podem aprimorar relatórios físicos à medida que o vínculo a uma página da web contendo a versão animada torna-se simples. Existem várias maneiras de gerar animações em R, e uma forma é com o pacote `gganimate` e `ggplot2`. Entretanto, aqui veremos a criação de mapas animados com `tmap`.
+Uma solução é a composição de mapas animados. Apesar de dependerem da publicação digital, os mapas animados podem aprimorar relatórios físicos à medida que o vínculo a uma página da web contendo a versão animada torna-se simples. Existem várias maneiras de gerar animações em R, por exemplo, com o pacote `gganimate`. Entretanto, aqui veremos a criação de mapas animados com `tmap`.
 
 Podemos criar mapas animados alterando dois argumentos da função `tm_facets()`:
 
 -   trocando o `by = year` por `along = year`
 -   indicando o `free.coords = FALSE`
 
-Por fim, podemos exportar o mapa animado no formato de `.gif` utilizando a função `tmap::tmap_animation()`, indicando a taxa de atualização com o argumento `delay` (Figura \@ref(fig:fig-vetor-brasil-tmap-animated)). Alguns pacotes extras são requeridos dependendo do sistema operacional utilizado.
+Por fim, podemos exportar o mapa animado no formato de `.gif` utilizando a função `tmap::tmap_animation()`, indicando a taxa de atualização com o argumento `delay` (Figura \@ref(fig:fig-vetor-brasil-tmap-animated)). Para visualização do .gif animado, acessar o [livro on-line](https://paternogbc.github.io/livro_aer/cap15.html#mapas-animados). Alguns pacotes extras são requeridos dependendo do sistema operacional utilizado.
 
 ```{r eval=FALSE}
 ## Mudar o modo de exibição do tmap
@@ -2741,7 +2741,7 @@ knitr::include_graphics("img/cap15_fig75.gif")
 
 ### Mapas interativos
 
-Mapas interativos podem assumir muitas formas, sendo que a mais comum e útil é a capacidade de deslocar e ampliar qualquer parte de um conjunto de dados geoespaciais sobreposto em um "mapa da web". Diversos pacotes nos permitem criar esse tipo de mapa, sendo os mais comuns o `tmap`, `mapview` e `leaflet`.
+Mapas interativos podem assumir muitas formas, sendo que a mais comum e útil é a capacidade de deslocar e ampliar qualquer parte de um conjunto de dados geoespaciais sobreposto em um "mapa da web". Diversos pacotes nos permitem criar esse tipo de mapa, sendo os mais comuns o `tmap`, `mapview` e `leaflet`. Para visualização dos mapas interativos, acessar o [livro on-line](https://paternogbc.github.io/livro_aer/cap15.html#mapas-interativos).
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -2878,7 +2878,7 @@ geo_anfibios_especies_locais_vetor <- geo_anfibios_especies %>%
     sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
 ```
 
-Agora vamos baixar o limite do Bioma da Mata Atlântica para o Brasil, converter o GCS para WGS84/Geo e ajustar sua extensão para remover as ilhas no Oceano Atlântico.
+Agora vamos baixar o limite do Bioma da Mata Atlântica para o Brasil, converter o CRS para WGS84/Geo e ajustar sua extensão para remover as ilhas no Oceano Atlântico.
 
 ```{r warning=FALSE, message=FALSE}
 ## Download do Bioma da Mata Atlântica
@@ -3099,7 +3099,7 @@ geo_anfibios_locais_vetor_bioclim %>%
 
 Podemos ainda fazer alguns mapas para espacializar essas variáveis (Figura \@ref(fig:fig-vetor-aa-var)).
 
-```{r fig-vetor-aa-var, fig.cap="Mapa mostrando os valores das variáveis bioclimáticas (BIO01:BIO06) para os locais amostrados de comunidades de anfíbios para hexágonos no limite da Mata Atlântica."}
+```{r fig-vetor-aa-var, fig.cap="Mapa com os valores das variáveis bioclimáticas (BIO01:BIO06) para os locais amostrados de comunidades de anfíbios para o limite da Mata Atlântica."}
 ## Mudar o modo de exibição do tmap
 tmap::tmap_mode(mode = "plot")
 
@@ -3155,7 +3155,7 @@ ecodados::geo_raster_globcover_mata_atlantica
 ```
 
 ```{r fig-raster-globcover, fig.cap="Camada raster do GlobCover 2.3 para o Bioma da Mata Atlântica."}
-# Plot
+## Plot
 plot(geo_raster_globcover_mata_atlantica, col = viridis::viridis(n = 200))
 ```
 
@@ -3171,13 +3171,13 @@ geo_anfibios_especies_locais_vetor_mata_atlantica <- geo_anfibios_locais %>%
     dplyr::filter(sf::st_intersects(x = ., y = geo_vetor_mata_atlantica, sparse = FALSE)) %>% 
     dplyr::slice_sample(n = 50)
 
-## Buffers de ~1 km
+## Buffers de ~10 km
 geo_anfibios_especies_locais_vetor_mata_atlantica_buffer10km <-
-    sf::st_buffer(geo_anfibios_especies_locais_vetor_mata_atlantica,
-                  dist = 1000)
+sf::st_buffer(geo_anfibios_especies_locais_vetor_mata_atlantica,
+dist = 10000)
 ```
 
-Podemos conferir no mapa da Figura \@ref(fig:fig-vetor-aa-ma-buffer).
+Podemos conferir no mapa da Figura \@ref(fig:fig-vetor-aa-ma-buffer), atente para o aumento artificial do tamanho dos buffers para permitir a visualização.
 
 ```{r fig-vetor-aa-ma-buffer, fig.cap="Distribuição de 50 localidades aleatórios e buffers de ~1 km (fora de escala)."}
 ## Mudar o modo de exibição do tmap
@@ -3228,7 +3228,7 @@ geo_anfibios_locais_vetor_ma_buffer10km_ext_bind
 
 O pacote `raster` além de permitir realizar a manipulação e visualização de dados raster no R, também permite a extrapolação do ajuste de análises, como `LMs`, `GLMs`, `GAMs` dentre outras (Capítulos \@ref(cap7) e \@ref(cap8)). Aqui, faremos uma pequena demonstração utilizando a função `raster::predict()`, predizendo o resultado de dois ajustes de GLMs para a presença/ausência de uma espécie de anuro e a extrapolação do número de espécies de anfíbios para o Bioma da Mata Atlântica.
 
-Para ajustar um GLM para dados de presença/ausência, podemos usar a tabela já criada anteriormente, com as espécies e as coordenadas, e fazer uma junção com a última tabela que criamos com os dados bioclimáticos.
+Para ajustar um GLM para dados de presença/ausência, podemos usar o conjunto de dados já criado anteriormente, com as espécies e as coordenadas, e fazer uma junção com a última tabela que criamos com os dados bioclimáticos.
 
 ```{r}
 ## Junção dos dados ambientais aos dados de espécies
@@ -3260,7 +3260,7 @@ geo_anfibios_locais_especies_vetor_bioclim_hb_cor <- geo_anfibios_locais_especie
     dplyr::select(-c(corr))
 ```
 
-Agora sim, podemos ajustar um modelo simples da presença e ausência dessa espécie, utilizando as variáveis não correlacionadas, através de um GLM para a família binomial. Nosso intuito não analisar se o modelo atende à todos os pressupostos, e sim exemplificar a predição espacial, para esses detalhes, consulte o Capítulo \@ref(cap8).
+Agora sim, podemos ajustar um modelo simples da presença e ausência dessa espécie, utilizando as variáveis não correlacionadas, através de um GLM para a família binomial. Nosso intuito não é analisar se o modelo atende à todos os pressupostos, e sim exemplificar a predição espacial, para esses detalhes, consulte o Capítulo \@ref(cap8).
 
 ```{r}
 ## Ajustar um modelo GLM binomial
@@ -3311,9 +3311,9 @@ Por fim, no último passo podemos tornar esse modelo binário, ou seja, apenas c
 modelo_pa_pred_corte <- modelo_pa_pred >= .01
 ```
 
-Por fim, vamos produzir dois mapas mostrando os valores das predições, o mapa binário e as ocorrências da espécie (Figura \@ref(fig:fig-raster-pred-modelo-bin)).
+Por fim, vamos produzir dois mapas mostrando os valores das predições e o mapa binário da espécie (Figura \@ref(fig:fig-raster-pred-modelo-bin)).
 
-```{r fig-raster-pred-modelo-bin, fig.cap="Mapa da predição contínua e binária do modelo ajustado para a presença/ausência da espécie *Haddadus binotatus* na Mata Atlântica e suas ocorrências."}
+```{r fig-raster-pred-modelo-bin, fig.cap="Predição contínua e binária do modelo ajustado para a presença/ausência da espécie *Haddadus binotatus* na Mata Atlântica."}
 ## Mudar o modo de exibição do tmap
 tmap::tmap_mode(mode = "plot")
 
@@ -3333,7 +3333,7 @@ tm_shape(modelo_pa_pred) +
 Essa análise foi realizada com o intuito de exemplificar o funcionamento da função `raster::predict()`, para mais detalhes, consultar livros específicos da área de Modelagem de Distribuição de Espécies ou Modelagem de Nicho Ecológico [@franklin_mapping_2009; @peterson_ecological_2011; @guisan_habitat_2017 e @fletcher2018].
 :::
 
-Em nossa segunda análise, vamos predizer os dados de riqueza para todo o bioma da Mata Atlântica. Para isso, temos de retirar novamente as variáveis correlacionadas.
+Em nossa segunda análise, vamos predizer os dados de riqueza de anfíbios (i.e. número de espécies) para todo o bioma da Mata Atlântica. Para isso, temos de retirar novamente as variáveis correlacionadas.
 
 ```{r}
 ## Correlação
@@ -3350,7 +3350,7 @@ geo_anfibios_locais_bioclim_cor <- geo_anfibios_locais_vetor_bioclim %>%
     dplyr::select(-c(corr))
 ```
 
-Agora sim, podemos criar os GLMs com famílias de distribuição apropriadas para dados de contagem como Poisson e Binomial Negativa. Nosso intuito não analisar se o modelo atende à todos os pressupostos, e sim exemplificar a predição espacial, para esses detalhes, consulte o Capítulo \@ref(cap8).
+Agora sim, podemos criar os GLMs com famílias de distribuição apropriadas para dados de contagem como Poisson e Binomial Negativa. Novamente, nosso intuito não é analisar se o modelo atende a todos os pressupostos, e sim exemplificar a predição espacial; para esses detalhes, consulte o Capítulo \@ref(cap8).
 
 ```{r}
 ## Modelo Poisson
@@ -3409,7 +3409,7 @@ Essa análise foi realizada com o intuito de exemplificar o funcionamento da fun
 
 ### Livros
 
-Listamos aqui as principais referências sobre manipulação, visualização de dados geoespaciais e análises geoespaciais no R. Recomendamos aos interessados os livros: i) Lovelace, Nowosad & Muenchow [-@lovelace2019] [Geocomputation with R](https://geocompr.robinlovelace.net/), ii) Mas et al. [-@mas2019] [Análise espacial com R](https://bit.ly/2KpSI7C), iii) Olaya [-@olaya2020] [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/), iv) Moraga [-@moraga_geospatial_2019] [Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny](https://www.paulamoraga.com/book-geospatial/), v) Brunsdon & Comber [-@brunsdon_introduction_2015] [An Introduction to Spatial Analysis and Mapping in R](https://bookdown.org/lexcomber/brunsdoncomber2e/), vi) Wegmann, Leutner & Dech [-@wegmann2016] Remote Sensing and GIS for Ecologists: Using Open Source Software, vii)  Wegmann, Schwalb-Willmann & Dech [-@wegmann2020] An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, viii) Fletcher & Fortin [-@fletcher2018] Spatial ecology and conservation modeling: Applications with R, ix) Lapaine, Miljenko, Usery, E. Lynn [-@lapaine2017] Choosing a Map Projection.
+Listamos aqui as principais referências sobre manipulação, visualização de dados geoespaciais e análises geoespaciais no R. Recomendamos aos (às) interessados(as) os livros: i) Lovelace, Nowosad & Muenchow [-@lovelace2019] [Geocomputation with R](https://geocompr.robinlovelace.net/), ii) Mas et al. [-@mas2019] [Análise espacial com R](https://bit.ly/2KpSI7C), iii) Olaya [-@olaya2020] [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/), iv) Moraga [-@moraga_geospatial_2019] [Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny](https://www.paulamoraga.com/book-geospatial/), v) Brunsdon & Comber [-@brunsdon_introduction_2015] [An Introduction to Spatial Analysis and Mapping in R](https://bookdown.org/lexcomber/brunsdoncomber2e/), vi) Wegmann, Leutner & Dech [-@wegmann2016] Remote Sensing and GIS for Ecologists: Using Open Source Software, vii)  Wegmann, Schwalb-Willmann & Dech [-@wegmann2020] An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, viii) Fletcher & Fortin [-@fletcher2018] Spatial ecology and conservation modeling: Applications with R, ix) Lapaine, Miljenko, Usery, E. Lynn [-@lapaine2017] Choosing a Map Projection.
 
 ### Links
 

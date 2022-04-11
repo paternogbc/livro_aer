@@ -7,7 +7,7 @@
 <title>Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library (vegan) library(ggplot2) library(BiodiversityR)...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap12.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R">
 <meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library (vegan) library(ggplot2) library(BiodiversityR)...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -40,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -67,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -461,18 +487,18 @@ Figura 12.3: Teste de cinco Diagramas de Whittaker para a Comunidade 2.
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Deviance for RAD models:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;                  Com_1       Com_2       Com_3       Com_4       Com_5       Com_6       Com_7       Com_8</span>
-<span class="co">#&gt; Null        8.2193e+01  1.7524e+02  8.9085e+00  4.2265e+01  4.9719e+00  4.7099e+00  1.1507e+00  1.8998e+00</span>
-<span class="co">#&gt; Preemption  2.2878e+01  7.9560e+01  1.5423e+00  1.4332e+01  3.0438e+00  4.5536e+00  7.7259e-01  1.7847e+00</span>
-<span class="co">#&gt; Lognormal   1.7764e-15  4.7350e+01  1.0161e+00  2.9441e-02  1.9303e+00  4.8898e+00 -2.2053e-25  1.4556e+00</span>
-<span class="co">#&gt; Zipf       -1.7764e-15  2.6612e+01  2.1659e-01  1.5846e-02  3.6094e+00  8.3245e+00 -2.2073e-25  6.6938e-01</span>
-<span class="co">#&gt; Mandelbrot -1.7764e-15  2.6612e+01  2.0926e-01  1.1390e-02  1.8740e+00  4.1131e+00  0.0000e+00  6.6938e-01</span>
-<span class="co">#&gt;                  Com_9 Com_10</span>
-<span class="co">#&gt; Null        2.7703e+00 1.1146</span>
-<span class="co">#&gt; Preemption  9.2518e-01 0.7428</span>
-<span class="co">#&gt; Lognormal   2.0626e-01 0.5079</span>
-<span class="co">#&gt; Zipf        4.7931e-01 0.8730</span>
-<span class="co">#&gt; Mandelbrot  2.3634e-01 0.4456</span>
+<span class="co">#&gt;                  Com_1       Com_2       Com_3       Com_4       Com_5       Com_6       Com_7       Com_8       Com_9</span>
+<span class="co">#&gt; Null        8.2193e+01  1.7524e+02  8.9085e+00  4.2265e+01  4.9719e+00  4.7099e+00  1.1507e+00  1.8998e+00  2.7703e+00</span>
+<span class="co">#&gt; Preemption  2.2878e+01  7.9560e+01  1.5423e+00  1.4332e+01  3.0438e+00  4.5536e+00  7.7259e-01  1.7847e+00  9.2518e-01</span>
+<span class="co">#&gt; Lognormal   1.7764e-15  4.7350e+01  1.0161e+00  2.9441e-02  1.9303e+00  4.8898e+00 -2.2053e-25  1.4556e+00  2.0626e-01</span>
+<span class="co">#&gt; Zipf       -1.7764e-15  2.6612e+01  2.1659e-01  1.5846e-02  3.6094e+00  8.3245e+00 -2.2073e-25  6.6938e-01  4.7931e-01</span>
+<span class="co">#&gt; Mandelbrot -1.7764e-15  2.6612e+01  2.0926e-01  1.1390e-02  1.8740e+00  4.1131e+00  0.0000e+00  6.6938e-01  2.3634e-01</span>
+<span class="co">#&gt;            Com_10</span>
+<span class="co">#&gt; Null       1.1146</span>
+<span class="co">#&gt; Preemption 0.7428</span>
+<span class="co">#&gt; Lognormal  0.5079</span>
+<span class="co">#&gt; Zipf       0.8730</span>
+<span class="co">#&gt; Mandelbrot 0.4456</span>
 
 <span class="co"># Vamos fazer um gráfico para cada comunidade</span>
 <span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">curvas_dominancia_todas</span>, log <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span></code></pre></div>
@@ -835,7 +861,7 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 <div class="prev"><a href="cap11.html"><span class="header-section-number">11</span> Estimadores de riqueza</a></div>
 <div class="next"><a href="cap13.html"><span class="header-section-number">13</span> Diversidade Filogenética</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap12"><span class="header-section-number">12</span> Diversidade Taxonômica</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-8">Pré-requisitos do capítulo</a></li>
@@ -861,8 +887,8 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/12_diversidade_taxonomica.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/12_diversidade_taxonomica.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/12_diversidade_taxonomica.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/12_diversidade_taxonomica.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -874,11 +900,11 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>

@@ -7,7 +7,7 @@
 <title>Capítulo 1 Introdução | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="1.1 Histórico deste livro Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 1 Introdução | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap1.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 1 Introdução | Análises Ecológicas no R">
 <meta name="twitter:description" content="1.1 Histórico deste livro Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -40,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -67,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -82,6 +108,10 @@
 <p>Este livro foi estruturado a partir da apostila elaborada pelos pesquisadores Diogo B. Provete, Fernando R. da Silva e Thiago Gonçalves-Souza para ministrar o curso <em>Estatística aplicada à ecologia usando o R</em> no PPG em Biologia Animal da UNESP de São José Rio Preto/SP, em abril de 2011. Os três pesquisadores eram então alunos do PPG em Biologia Animal quando elaboraram o material disponibilizado na apostila <a href="https://cran.r-project.org/doc/contrib/Provete-Estatistica_aplicada.pdf">Estatística aplicada à ecologia usando o R</a>. A proposta de transformar a apostila em livro sempre foi um tópico recorrente desde 2011, e concretizado agora, um pouco mais de 10 anos depois.</p>
 <p>Neste período, Diogo, Fernando e Thiago foram contratados pela Universidade Federal de Mato Grosso do Sul, Universidade Federal de São Carlos campus Sorocaba, e Universidade Federal Rural de Pernambuco, respectivamente. Nestes anos eles ofertaram diferentes versões do curso <em>Estatística aplicada à ecologia usando o R</em> para alunos de graduação e pós-graduação em diferentes instituições do Brasil. A possibilidade da oferta destes novos cursos fortaleceu a ideia de transformar a apostila em um livro com base nas experiências dos pesquisadores em sala de aula.</p>
 <p>Considerando que novas abordagens ecológicas vêm sendo descritas e criadas a uma taxa elevada nos últimos anos, era de se esperar que as informações disponíveis na apostila estivessem defasadas após uma década. Por este motivo, Diogo, Fernando e Thiago convidaram outros dois pesquisadores, Gustavo B. Paterno da Georg-August-University of Göttingen e Maurício H. Vancine do PPG em Ecologia, Evolução e Biodiversidade da UNESP de Rio Claro/SP, que são referências no uso de estatística em ecologia usando o R. Com o time completo, passaram mais de um ano realizando reuniões, compartilhando scripts e pagando cerveja para os coautores por capítulos atrasados até chegarem nesta primeira versão do livro.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+Este livro também pode ser acessado gratuitamente de forma on-line pelo link <a href="https://paternogbc.github.io/livro_aer/">Análises Ecológicas no R</a>. Da mesma forma, as respostas dos exercícios propostos em cada capítulo podem ser acessadas no link <a href="https://exercicios-livro-aer.netlify.app/index.html">Análises Ecológicas no R: Exercícios e Soluções</a>. Possíveis atualizações estarão disponíveis nestes links on-line.</p>
+</div>
 </div>
 <div id="objetivo-deste-livro" class="section level2" number="1.2">
 <h2>
@@ -95,7 +125,7 @@
 <h2>
 <span class="header-section-number">1.3</span> O que você não encontrará neste livro<a class="anchor" aria-label="anchor" href="#o-que-voc%C3%AA-n%C3%A3o-encontrar%C3%A1-neste-livro"><i class="fas fa-link"></i></a>
 </h2>
-<p>Aprofundamento teórico, detalhes matemáticos e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Recomendamos aos leitores (as) que consultem os livros indicados no final deste capítulo caso desejem maior aprofundamento teórico e prático.</p>
+<p>Aprofundamento teórico, detalhes matemáticos e explicação dos algoritmos são informações que infelizmente não serão abordadas neste livro. O foco aqui é a explicação de como cada teste funciona (teoria e procedimentos matemáticos básicos) e sua aplicação em testes ecológicos usando scripts na linguagem R. Recomendamos aos (às) leitores (as) que consultem os livros indicados no final deste capítulo caso desejem maior aprofundamento teórico e prático.</p>
 </div>
 <div id="por-que-usar-o-r" class="section level2" number="1.4">
 <h2>
@@ -126,9 +156,9 @@
 <p>Com exceção dos capítulos 2, 3, 4, 5, 6 e 15, os outros capítulos foram elaborados seguindo a mesma estrutura, contendo uma descrição da análise estatística (aspectos teóricos) e exemplos relacionados com questões ecológicas que podem ser respondidas por esta análise e exercícios. Todos os exemplos são compostos por: i) uma descrição dos dados utilizados, ii) pergunta e predição do trabalho, iii) descrição das variáveis resposta(s) e preditora(s), e iv) descrição e explicação das linhas de código do R necessárias para realização das análises. A maioria dos exemplos utilizados são baseados em dados reais que já foram publicados em artigos científicos ou são dados coletados por um dos autores deste livro. Nós recomendamos que primeiro você utilize estes exemplos para se familiarizar com as análises e a formatação das linhas e colunas das planilhas. Em seguida, faça os exercícios propostos no final de cada capítulo, e por fim, utilize seus próprios dados para realizar as análises. Esta é a melhor maneira de se familiarizar com as linhas de código do R.</p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
-Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Além disso, optamos por manter a versão padrão em alguns gráficos utilizados nos Capítulos 7 e 15, principalmente aqueles gráficos que são “output” de análises como, por exemplo, visualização de normalidade de resíduos, homogeneidade de variâncias, entre outros. Em geral, esses gráficos são usados no processo de decisão de algum passo da análise e não possuem qualidade de publicação. Como o usuário vai obter o mesmo gráfico quando replicar as análises propostas aqui ou suas próprias análises, julgamos ser mais didático manter a versão original, em inglês.</p>
+Muitas das métricas ou índices apresentados neste livro não foram traduzidas para o português, porque seus acrônimos são clássicos e bem estabelecidos na literatura ecológica. Nestes casos, consideramos que a tradução poderia confundir as pessoas que estão começando a se familiarizar com a literatura específica. Além disso, optamos por manter a versão padrão em alguns gráficos utilizados nos Capítulos 7 ao 15, principalmente aqueles gráficos que são “output” de análises como, por exemplo, visualização de normalidade de resíduos, homogeneidade de variâncias, entre outros. Em geral, esses gráficos são usados no processo de decisão de algum passo da análise e não possuem qualidade de publicação. Como o usuário vai obter o mesmo gráfico quando replicar as análises propostas aqui ou suas próprias análises, julgamos ser mais didático manter a versão original, em inglês.</p>
 </div>
-<p>Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muitos outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os leitores(as) adquiram independência e segurança para que possam caminhar sozinhos(as) na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.</p>
+<p>Realçamos que não estamos abordando todas as possibilidades disponíveis, e existem muitos outros pacotes e funções no R que realizam as mesmas análises. Contudo, esperamos que o conteúdo apresentado permita que os(as) leitores(as) adquiram independência e segurança para que possam caminhar sozinhos(as) na exploração de novos pacotes e funções para responderem suas perguntas biológicas e ecológicas.</p>
 </div>
 <div id="como-ensinar-e-aprender-com-esse-livro" class="section level2" number="1.7">
 <h2>
@@ -144,9 +174,9 @@ Muitas das métricas ou índices apresentados neste livro não foram traduzidas 
 <p><strong>Líder especialista I (discentes como líderes)</strong></p>
 <p>Cada capítulo é liderado pelo “maior especialista” naquele determinado assunto, que ficará responsável por organizar toda dinâmica do grupo. O ideal é que especialistas distintos liderem a discussão de diferentes capítulos, para que todos os membros do grupo sejam líderes em no mínimo um capítulo.</p>
 <p><strong>Líder especialista II (orientador ou pós-doc)</strong></p>
-<p>O orientador (ou pós-doc ou ambos) selecionam os capítulos sobre o assunto de interesse (ou todos os capítulos do livro) e se reúne regularmente para discussão com discentes. Além da leitura dos capítulos, o líder pode enviar atividades extras ou desafios para estimular que os discentes leiam o conteúdo e também executem comandos no R. Por exemplo, em cada capítulo, o desafio pode ser criar hipóteses sobre um tema de estudo, gerar dados fictícios (ou usar dados reais disponíveis) e analisar os dados com determinado teste estatístico no R.
-Líder especialista I ou II integrando com teoria (específico para capítulos 8 a 15):
-Esta proposta expande o Líder especialista I uma vez que não estará focada somente na análise estatística apresentada no livro. Além de inserir este componente analítico, o líder irá apresentar o arcabouço teórico ecológico que é geralmente usado em estudos que utilizaram determinada análise. Por exemplo, o capítulo que apresenta regressão linear seria combinado com a teoria de biogeografia de ilhas para entender a relação espécies-área. Desse modo, não seria apresentado somente as especificidades da regressão linear, mas também a teoria de biogeografia de ilhas.</p>
+<p>O orientador (ou pós-doc ou ambos) selecionam os capítulos sobre o assunto de interesse (ou todos os capítulos do livro) e se reúne regularmente para discussão com discentes. Além da leitura dos capítulos, o líder pode enviar atividades extras ou desafios para estimular que os discentes leiam o conteúdo e também executem comandos no R. Por exemplo, em cada capítulo, o desafio pode ser criar hipóteses sobre um tema de estudo, gerar dados fictícios (ou usar dados reais disponíveis) e analisar os dados com determinado teste estatístico no R.</p>
+<p><strong>Líder especialista I ou II integrando com teoria (específico para capítulos 8 a 15)</strong></p>
+<p>Esta proposta expande o Líder especialista I uma vez que não estará focada somente na análise estatística apresentada no livro. Além de inserir este componente analítico, o líder irá apresentar o arcabouço teórico ecológico que é geralmente usado em estudos que utilizaram determinada análise. Por exemplo, o capítulo que apresenta regressão linear seria combinado com a teoria de biogeografia de ilhas para entender a relação espécies-área. Desse modo, não seria apresentado somente as especificidades da regressão linear, mas também a teoria de biogeografia de ilhas.</p>
 </div>
 <div id="em-disciplinas-da-graduação-ou-pós-graduação" class="section level3" number="1.7.2">
 <h3>
@@ -181,7 +211,7 @@ Esta proposta expande o Líder especialista I uma vez que não estará focada so
 <div class="prev"><a href="revisores-e-colaboradores.html">Revisores e colaboradores</a></div>
 <div class="next"><a href="cap2.html"><span class="header-section-number">2</span> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap1"><span class="header-section-number">1</span> Introdução</a></li>
 <li><a class="nav-link" href="#hist%C3%B3rico-deste-livro"><span class="header-section-number">1.1</span> Histórico deste livro</a></li>
@@ -201,8 +231,8 @@ Esta proposta expande o Líder especialista I uma vez que não estará focada so
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/01_introducao.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/01_introducao.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/01_introducao.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/01_introducao.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -214,11 +244,11 @@ Esta proposta expande o Líder especialista I uma vez que não estará focada so
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>

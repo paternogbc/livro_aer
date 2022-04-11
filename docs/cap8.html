@@ -7,7 +7,7 @@
 <title>Capítulo 8 Modelos Lineares Generalizados | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. library(ecodados) library(visdat) library(tidyverse) library(lattice) library(RVAideMemoire) library(DHARMa)...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 8 Modelos Lineares Generalizados | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap8.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 8 Modelos Lineares Generalizados | Análises Ecológicas no R">
 <meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. library(ecodados) library(visdat) library(tidyverse) library(lattice) library(RVAideMemoire) library(DHARMa)...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -40,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -67,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -116,7 +142,7 @@
 </h2>
 <p>No Capítulo <a href="cap7.html#cap7">7</a>, descrevemos sobre os modelos lineares (também chamados de Modelos Lineares Gerais) que podem ser descritos pelo mesmo modelo matemático de uma equação da reta do tipo:</p>
 <p><span class="math display">\[Y = \beta_0 + \beta_{1}X_i + \epsilon_i\]</span></p>
-<p>Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x<sub>i</sub>, variável contínua para a regressão linear e variável categórica no caso da ANOVA (que é codificada numa matriz <em>design</em> para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes como sobre modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de <span class="citation">(<a href="refer%C3%AAncias.html#ref-fox_ecological_2015" role="doc-biblioref">Fox, Negrete-Yankelevich, and Sosa 2015</a>)</span>. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logaritmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O’Hara &amp; Kotze <span class="citation">(<a href="refer%C3%AAncias.html#ref-ohara2010" role="doc-biblioref">2010</a>)</span>, Ives <span class="citation">(<a href="refer%C3%AAncias.html#ref-ives2015" role="doc-biblioref">2015</a>)</span> e Warton <span class="citation">(<a href="refer%C3%AAncias.html#ref-warton2018" role="doc-biblioref">2018</a>)</span> para mais detalhes.</p>
+<p>Nesse tipo de estrutura, o que difere uma regressão linear de uma análise de variância é a natureza do elemento x<sub>i</sub>, variável contínua para a regressão linear e variável categórica no caso da ANOVA (que é codificada numa matriz <em>design</em> para desenhos mais complexos). Nesse sentido, o que todos esses métodos têm em comum é a variável resposta Y que é um vetor numérico contínuo. Outro elemento em comum desses métodos é a distribuição de frequência do erro. Se quiser mais detalhes sobre como modelos lineares podem ser escritos na forma de matrizes, consulte a introdução de Fox et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-fox_ecological_2015" role="doc-biblioref">2015</a>)</span>. Todos os modelos lineares assumem que a distribuição do erro seja Gaussiana (ou Normal). Isso de certa forma limita o tipo de dado que pode ser usado como variável resposta por estas análises. Por exemplo, dados de contagem (e.g., riqueza e/ou abundância de espécies), frequência (e.g., frequência de ocorrência, porcentagem de cobertura vegetal), incidência (e.g., presença ou ausência de uma espécie) ou proporção (e.g., números de animais infectados a cada 1000 animais) não são adequados para serem utilizados como variáveis resposta em modelos lineares. Uma prática comum quando nossos dados não são Normais é transformar por logaritmo ou raiz quadrada. No entanto, para dados de contagem isso não é recomendado - veja O’Hara &amp; Kotze <span class="citation">(<a href="refer%C3%AAncias.html#ref-ohara2010" role="doc-biblioref">2010</a>)</span>, Ives <span class="citation">(<a href="refer%C3%AAncias.html#ref-ives2015" role="doc-biblioref">2015</a>)</span> e Warton <span class="citation">(<a href="refer%C3%AAncias.html#ref-warton2018" role="doc-biblioref">2018</a>)</span> para mais detalhes.</p>
 <p>Nestes casos, devemos recorrer a um conjunto de modelos chamados Modelos Lineares Generalizados (GLM). Nestes modelos, o usuário especifica a distribuição de frequência que deseja utilizar para modelar a variável resposta. Esta distribuição de frequência deve pertencer à família exponencial, que inclui a distribuição de Poisson, Gaussiana, binomial, binomial negativa, Gamma, Bernoulli e Beta. Ainda é possível utilizar <em>Cumulative Link Models</em> para modelar dados ordinais (fatores cuja ordem dos elementos importa, tais como muito baixo, baixo, alto e muito alto). Abaixo vamos ver um pouco sobre como um GLM funciona e exemplos com cada uma destas distribuições.</p>
 </div>
 <div id="como-um-glm-funciona" class="section level2" number="8.2">
@@ -140,7 +166,8 @@
 <h3>
 <span class="header-section-number">8.3.1</span> Para dados contínuos<a class="anchor" aria-label="anchor" href="#para-dados-cont%C3%ADnuos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Se Y é uma variável contínua, a sua distribuição de probabilidade deve ser normal. Nesses casos as distribuições recomendadas são a <strong>Gaussiana (Normal) ou Gamma</strong>. Para essas distribuições, o parâmetro de dispersão é estimado separadamente da média e é às vezes, chamado de <em>nuisance parameter</em>. Uma particularidade da distribuição Gamma é que ela só aceita valores contínuos positivos.</p>
+<p>Se Y é uma variável contínua, a sua distribuição de probabilidade deve ser normal. Nesses casos as distribuições recomendadas são a <strong>Gaussiana (Normal) ou Gamma</strong>. Para essas distribuições, o parâmetro de dispersão é estimado separadamente da média e é às vezes, chamado de <em>nuisance parameter</em>. Uma particularidade da distribuição Gamma é que ela só aceita valores contínuos positivos maiores que zero.</p>
+<p>Se Y é uma variável de proporção que varia continuamente entre 0 e 1 ou 0 e 100, mas não inclui 0 nem 1, a distribuição recomendada é a beta. Um exemplo é a área (Km^2) de floresta numa imagem de satélite, cuja área total é conhecida. Caso a variável inclua 0 e 1 (e.g., 100% da imagem é composta por floresta), deve-se realizar uma <a href="https://doi.apa.org/doiLanding?doi=10.1037%2F1082-989X.11.1.54">transformação nos dados</a>.</p>
 </div>
 <div id="para-dados-de-contagem" class="section level3" number="8.3.2">
 <h3>
@@ -180,46 +207,46 @@
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">fragmentos</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 40</span>
 <span class="co">#&gt; Columns: 40</span>
-<span class="co">#&gt; $ locality    &lt;chr&gt; "MAC", "MAC", "MAC", "MAC", "MAC", "MAC", "NOV", "NOV", "NOV", "NOV", "PIN", "PIN", "PIN", "PIN…</span>
-<span class="co">#&gt; $ site        &lt;chr&gt; "MacAc1", "MacAc2", "MacAc3", "MacAc4", "MacAc5", "MacBr1", "NovBr1", "NovBr2", "NovRe2", "NovR…</span>
-<span class="co">#&gt; $ Riqueza_obs &lt;int&gt; 3, 11, 10, 10, 3, 9, 2, 8, 9, 8, 6, 4, 8, 8, 6, 17, 15, 13, 8, 10, 12, 14, 14, 12, 8, 4, 10, 7,…</span>
-<span class="co">#&gt; $ Riqueza_HB  &lt;int&gt; 6, 13, 12, 13, 6, 12, 5, 11, 12, 11, 8, 7, 10, 11, 9, 18, 17, 15, 11, 13, 14, 16, 16, 13, 11, 7…</span>
-<span class="co">#&gt; $ Bsc         &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0,…</span>
-<span class="co">#&gt; $ Dne         &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Dnm         &lt;int&gt; 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Dnn         &lt;int&gt; 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Dns         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0,…</span>
-<span class="co">#&gt; $ Hal         &lt;int&gt; 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0,…</span>
-<span class="co">#&gt; $ Hra         &lt;int&gt; 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Lfu         &lt;int&gt; 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Lla         &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,…</span>
-<span class="co">#&gt; $ Lpo         &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Eun         &lt;int&gt; 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0,…</span>
-<span class="co">#&gt; $ Pce         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Pcu         &lt;int&gt; 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Pfa1        &lt;int&gt; 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1,…</span>
-<span class="co">#&gt; $ Ppa         &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Sfm         &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0,…</span>
-<span class="co">#&gt; $ Sfv         &lt;int&gt; 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Ebi         &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,…</span>
-<span class="co">#&gt; $ Esp         &lt;int&gt; 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,…</span>
-<span class="co">#&gt; $ hydrop      &lt;dbl&gt; -2.553590, 0.573255, 0.573255, 0.573255, -2.553590, 0.573255, 0.573255, 0.573255, 0.573255, 0.5…</span>
-<span class="co">#&gt; $ hydrop2     &lt;dbl&gt; -2.235730, 0.606300, 0.606300, 0.606300, -2.235730, 0.606300, 0.606300, 0.606300, 0.606300, 0.6…</span>
-<span class="co">#&gt; $ vegcov      &lt;dbl&gt; -1.461851, -1.145775, -0.987737, 0.908718, -1.461851, 1.382832, 1.382832, 1.698908, -0.829699, …</span>
-<span class="co">#&gt; $ nveg        &lt;dbl&gt; -1.965130, -0.158114, -1.061622, -0.158114, -1.965130, -0.158114, 0.745394, 1.648902, 0.745394,…</span>
-<span class="co">#&gt; $ fish        &lt;dbl&gt; -1.508310, 0.646419, -1.508310, 0.646419, -1.508310, -1.508310, 0.646419, 0.646419, 0.646419, 0…</span>
-<span class="co">#&gt; $ area        &lt;dbl&gt; -2.418270, 0.147353, -0.564022, -0.348279, -2.315159, -0.601947, 1.556190, -0.255774, 0.875432,…</span>
-<span class="co">#&gt; $ area2       &lt;dbl&gt; -1.884470, 0.019560, -0.699829, -0.497176, -1.844802, -0.734057, 1.877820, -0.406145, 0.907959,…</span>
-<span class="co">#&gt; $ depth       &lt;dbl&gt; -1.232668, 0.821168, -0.704539, 0.821168, -1.306019, -1.306019, -0.645858, -0.205750, 1.554680,…</span>
-<span class="co">#&gt; $ forcov      &lt;dbl&gt; -0.604596, -0.020849, -0.013816, -0.171663, 0.203364, 0.203364, 0.562496, -0.157193, -0.793258,…</span>
-<span class="co">#&gt; $ forcov2     &lt;dbl&gt; -0.672774, -0.152952, -0.146124, -0.296136, 0.071358, 0.071358, 0.459151, -0.282666, -0.820946,…</span>
-<span class="co">#&gt; $ forcov10    &lt;dbl&gt; -6.045965, -0.208489, -0.138159, -1.716633, 2.033643, 2.033643, 5.624958, -1.571928, -7.932582,…</span>
-<span class="co">#&gt; $ dfrag       &lt;dbl&gt; 0.410084, -0.097045, -1.242271, -1.242271, -0.471888, -1.242271, 1.307931, 1.557264, 0.479895, …</span>
-<span class="co">#&gt; $ dfrag2      &lt;dbl&gt; 0.166782, -0.381401, -1.059858, -1.059858, -0.688845, -1.059858, 1.510271, 1.967926, 0.254153, …</span>
-<span class="co">#&gt; $ dwater      &lt;dbl&gt; 1.198175, 0.970207, -0.121245, -0.087507, 0.162610, -0.121245, -0.087507, -1.355308, 0.113584, …</span>
-<span class="co">#&gt; $ dwater2     &lt;dbl&gt; 1.166645, 0.864035, -0.299232, -0.270350, -0.042156, -0.299232, -0.270350, -1.045428, -0.088840…</span>
-<span class="co">#&gt; $ X           &lt;dbl&gt; -49.9376, -49.9353, -49.9348, -49.9334, -49.9270, -49.9271, -49.2742, -49.3303, -49.3084, -49.3…</span>
-<span class="co">#&gt; $ Y           &lt;dbl&gt; -20.7408, -20.7410, -20.7419, -20.7462, -20.7453, -20.7451, -21.5187, -21.5282, -21.5024, -21.5…</span></code></pre></div>
+<span class="co">#&gt; $ locality    &lt;chr&gt; "MAC", "MAC", "MAC", "MAC", "MAC", "MAC", "NOV", "NOV", "NOV", "NOV", "PIN", "PIN", "PIN", "PIN", "…</span>
+<span class="co">#&gt; $ site        &lt;chr&gt; "MacAc1", "MacAc2", "MacAc3", "MacAc4", "MacAc5", "MacBr1", "NovBr1", "NovBr2", "NovRe2", "NovRe3",…</span>
+<span class="co">#&gt; $ Riqueza_obs &lt;int&gt; 3, 11, 10, 10, 3, 9, 2, 8, 9, 8, 6, 4, 8, 8, 6, 17, 15, 13, 8, 10, 12, 14, 14, 12, 8, 4, 10, 7, 13,…</span>
+<span class="co">#&gt; $ Riqueza_HB  &lt;int&gt; 6, 13, 12, 13, 6, 12, 5, 11, 12, 11, 8, 7, 10, 11, 9, 18, 17, 15, 11, 13, 14, 16, 16, 13, 11, 7, 13…</span>
+<span class="co">#&gt; $ Bsc         &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, …</span>
+<span class="co">#&gt; $ Dne         &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, …</span>
+<span class="co">#&gt; $ Dnm         &lt;int&gt; 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, …</span>
+<span class="co">#&gt; $ Dnn         &lt;int&gt; 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Dns         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, …</span>
+<span class="co">#&gt; $ Hal         &lt;int&gt; 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, …</span>
+<span class="co">#&gt; $ Hra         &lt;int&gt; 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Lfu         &lt;int&gt; 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Lla         &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, …</span>
+<span class="co">#&gt; $ Lpo         &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Eun         &lt;int&gt; 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, …</span>
+<span class="co">#&gt; $ Pce         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Pcu         &lt;int&gt; 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Pfa1        &lt;int&gt; 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, …</span>
+<span class="co">#&gt; $ Ppa         &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Sfm         &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, …</span>
+<span class="co">#&gt; $ Sfv         &lt;int&gt; 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ Ebi         &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, …</span>
+<span class="co">#&gt; $ Esp         &lt;int&gt; 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, …</span>
+<span class="co">#&gt; $ hydrop      &lt;dbl&gt; -2.553590, 0.573255, 0.573255, 0.573255, -2.553590, 0.573255, 0.573255, 0.573255, 0.573255, 0.57325…</span>
+<span class="co">#&gt; $ hydrop2     &lt;dbl&gt; -2.235730, 0.606300, 0.606300, 0.606300, -2.235730, 0.606300, 0.606300, 0.606300, 0.606300, 0.60630…</span>
+<span class="co">#&gt; $ vegcov      &lt;dbl&gt; -1.461851, -1.145775, -0.987737, 0.908718, -1.461851, 1.382832, 1.382832, 1.698908, -0.829699, 0.11…</span>
+<span class="co">#&gt; $ nveg        &lt;dbl&gt; -1.965130, -0.158114, -1.061622, -0.158114, -1.965130, -0.158114, 0.745394, 1.648902, 0.745394, 1.6…</span>
+<span class="co">#&gt; $ fish        &lt;dbl&gt; -1.508310, 0.646419, -1.508310, 0.646419, -1.508310, -1.508310, 0.646419, 0.646419, 0.646419, 0.646…</span>
+<span class="co">#&gt; $ area        &lt;dbl&gt; -2.418270, 0.147353, -0.564022, -0.348279, -2.315159, -0.601947, 1.556190, -0.255774, 0.875432, 1.2…</span>
+<span class="co">#&gt; $ area2       &lt;dbl&gt; -1.884470, 0.019560, -0.699829, -0.497176, -1.844802, -0.734057, 1.877820, -0.406145, 0.907959, 1.4…</span>
+<span class="co">#&gt; $ depth       &lt;dbl&gt; -1.232668, 0.821168, -0.704539, 0.821168, -1.306019, -1.306019, -0.645858, -0.205750, 1.554680, 1.5…</span>
+<span class="co">#&gt; $ forcov      &lt;dbl&gt; -0.604596, -0.020849, -0.013816, -0.171663, 0.203364, 0.203364, 0.562496, -0.157193, -0.793258, -0.…</span>
+<span class="co">#&gt; $ forcov2     &lt;dbl&gt; -0.672774, -0.152952, -0.146124, -0.296136, 0.071358, 0.071358, 0.459151, -0.282666, -0.820946, -0.…</span>
+<span class="co">#&gt; $ forcov10    &lt;dbl&gt; -6.045965, -0.208489, -0.138159, -1.716633, 2.033643, 2.033643, 5.624958, -1.571928, -7.932582, -3.…</span>
+<span class="co">#&gt; $ dfrag       &lt;dbl&gt; 0.410084, -0.097045, -1.242271, -1.242271, -0.471888, -1.242271, 1.307931, 1.557264, 0.479895, 0.96…</span>
+<span class="co">#&gt; $ dfrag2      &lt;dbl&gt; 0.166782, -0.381401, -1.059858, -1.059858, -0.688845, -1.059858, 1.510271, 1.967926, 0.254153, 0.94…</span>
+<span class="co">#&gt; $ dwater      &lt;dbl&gt; 1.198175, 0.970207, -0.121245, -0.087507, 0.162610, -0.121245, -0.087507, -1.355308, 0.113584, -0.1…</span>
+<span class="co">#&gt; $ dwater2     &lt;dbl&gt; 1.166645, 0.864035, -0.299232, -0.270350, -0.042156, -0.299232, -0.270350, -1.045428, -0.088840, -0…</span>
+<span class="co">#&gt; $ X           &lt;dbl&gt; -49.9376, -49.9353, -49.9348, -49.9334, -49.9270, -49.9271, -49.2742, -49.3303, -49.3084, -49.3179,…</span>
+<span class="co">#&gt; $ Y           &lt;dbl&gt; -20.7408, -20.7410, -20.7419, -20.7462, -20.7453, -20.7451, -21.5187, -21.5282, -21.5024, -21.5148,…</span></code></pre></div>
 <p>Percebam que o data frame contém 40 colunas. Neste conjunto de dados as variáveis preditoras já estão padronizadas com média 0 e desvio padrão 1. As variáveis com “2” indicam variáveis quadráticas (podem ser usadas para se testar relações não lineares). Também temos a riqueza observada e a estimada (<code>Riqueza_HB</code>) e as coordenadas geográficas (X e Y). Vamos agora explorar os dados e ver como é a relação entre riqueza e distância para a poça mais próxima. Sempre é recomendado visualizar os dados antes de efetivamente os modelar para se ter uma ideia da relação entre as variáveis (Figura <a href="cap8.html#fig:fig-mod-poi-pre">8.1</a>).</p>
 <div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
@@ -231,8 +258,8 @@
     <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-poi-pre"></span>
-<img src="livro_files/figure-html/fig-mod-poi-pre-1.png" alt="Gráfico pareado para explorar as variáveis." width="100%" height="100%"><p class="caption">
-Figura 8.1: Gráfico pareado para explorar as variáveis.
+<img src="livro_files/figure-html/fig-mod-poi-pre-1.png" alt="Gráfico de dispersão para explorar as variáveis." width="100%" height="100%"><p class="caption">
+Figura 8.1: Gráfico de dispersão para explorar as variáveis.
 </p>
 </div>
 <p>Aqui vemos que há de fato uma relação linear positiva entre as duas variáveis.</p>
@@ -537,7 +564,7 @@ Figura 8.8: Diagnose avançada dos resíduos do modelo GLM binomial Negativo.
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Aqui vemos que a interpretação do resultado em termos de valor de <em>P</em> não mudou, ou seja, a distância para o fragmento mais próximo não foi significativa. Mas vejam que o coeficiente (<em>slope</em>) mudou um pouco, antes era 0.0718 (SE=0.0507) e com binomial negativa passa a ser 0.07248 (SE=0.06571).</p>
 <p><strong>Plot do modelo predito</strong></p>
-<p>Vamos realizar a visualização do ajusto do modelo binomial Negativo (Figura <a href="cap8.html#fig:fig-mod-nb-model">8.9</a>).</p>
+<p>Vamos realizar a visualização do ajuste do modelo binomial Negativo (Figura <a href="cap8.html#fig:fig-mod-nb-model">8.9</a>).</p>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">fragmentos</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dfrag</span>, <span class="va">Riqueza_obs</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -683,17 +710,11 @@ Figura 8.12: Diagnose básica dos resíduos do modelo GLM binomial.
 Figura 8.13: Diagnose avançada dos resíduos do modelo GLM binomial.
 </p>
 </div>
-<p>Agora vamos checar a qualidade do modelo com base na distribuição dos resíduos (Figura <a href="cap8.html#fig:fig-mod-quasi-bin-diag-avan1">8.14</a>).</p>
+<p>Agora vamos checar a qualidade do modelo com base na distribuição dos resíduos (Figura <a href="#fig:fig-mod-quasi-bin-diag-avan1"><strong>??</strong></a>).</p>
 <div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose avançada</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/binned_residuals.html">binned_residuals</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Probably bad model fit. Only about 29% of the residuals are inside the error bounds.</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fig-mod-quasi-bin-diag-avan1"></span>
-<img src="livro_files/figure-html/fig-mod-quasi-bin-diag-avan1-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial." width="100%" height="100%"><p class="caption">
-Figura 8.14: Diagnose avançada dos resíduos do modelo GLM binomial.
-</p>
-</div>
+<span class="co">#&gt; Warning: Probably bad model fit. Only about 14% of the residuals are inside the error bounds.</span></code></pre></div>
 <p>Aqui já não resta dúvidas de que os resíduos deste modelo sofrem tanto com heterogeneidade de variância, quanto <em>overdispersion</em> e problemas com <em>outliers</em>. Provavelmente o problema com <em>outliers</em> ocorreu por conta do pequeno tamanho amostral.</p>
 <p><strong>Inferência</strong></p>
 <p>Sabemos que o modelo não parece ser adequado para os dados, mas vamos interpretá-lo mesmo assim para que possamos entender a saída da função <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> e os contrastes entre os níveis dos fatores.</p>
@@ -746,7 +767,7 @@ Figura 8.14: Diagnose avançada dos resíduos do modelo GLM binomial.
 <span class="co">#&gt; UV              4   26.034        45     711.32</span>
 <span class="co">#&gt; Pigmentacao     1  235.682        44     475.64</span>
 <span class="co">#&gt; UV:Pigmentacao  4   14.789        40     460.85</span></code></pre></div>
-<p>Aqui temos tanto a tabela com os resultados por níveis dos fatores (<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>), quanto a tabela com a <em>Deviance</em> que mostra os fatores e suas interações (<code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>). Vemos que nenhum fator foi significativo. Caso houvesse algum fator significativo, poderíamos testar a significância de cada nível dos fatores usando contrastes, desta forma.</p>
+<p>Aqui temos tanto a tabela com os resultados por níveis dos fatores (<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>), quanto a tabela com a <em>Deviance</em> que mostra os fatores e suas interações (<code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>). Vemos que nenhum fator foi significativo. Caso houvesse algum fator significativo, poderíamos testar a significância de cada nível dos fatores usando contrastes, desta forma:</p>
 <div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Parâmetros</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html">emmeans</a></span><span class="op">(</span><span class="va">mod1</span>, <span class="op">~</span> <span class="va">UV</span><span class="op">|</span><span class="va">Pigmentacao</span><span class="op">)</span><span class="op">)</span>
@@ -780,7 +801,7 @@ Figura 8.14: Diagnose avançada dos resíduos do modelo GLM binomial.
 <span class="co">#&gt; P value adjustment: tukey method for comparing a family of 5 estimates</span></code></pre></div>
 <p>Aqui temos o valor de cada combinação de níveis dos fatores, com seu respectivo valor de contraste e o valor de <em>P</em>. Vemos que para girinos sem pigmentação, apenas três contrastes foram significativos.</p>
 <p><strong>Plot do modelo predito</strong></p>
-<p>Vamos realizar a visualização do ajusto do modelo binomial (Figura <a href="cap8.html#fig:fig-mod-bin-model">8.15</a>).</p>
+<p>Vamos realizar a visualização do ajuste do modelo binomial (Figura <a href="cap8.html#fig:fig-mod-bin-model">8.14</a>).</p>
 <div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">uv_cells</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UV</span>, <span class="va">eosinofilo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Pigmentacao</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -790,7 +811,7 @@ Figura 8.14: Diagnose avançada dos resíduos do modelo GLM binomial.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-bin-model"></span>
 <img src="livro_files/figure-html/fig-mod-bin-model-1.png" alt="Gráfico do GLM binomial." width="100%" height="100%"><p class="caption">
-Figura 8.15: Gráfico do GLM binomial.
+Figura 8.14: Gráfico do GLM binomial.
 </p>
 </div>
 <p>Usando o <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin()</a></code>, podemos perceber que existe uma dispersão maior nos tratamentos que utilizaram girinos sem pigmentação do que nos tratamentos com girinos pigmentados.</p>
@@ -811,7 +832,7 @@ Figura 8.15: Gráfico do GLM binomial.
 <li>Variável resposta: Presença ou ausência de cauda autotomizada em lagartos encontrados por busca ativa</li>
 </ul>
 <p><strong>Exploração dos dados</strong></p>
-<p>Este conjunto de dados possui muitas entradas faltantes (codificadas como <code>NA</code>). Primeiro vamos visualizar o conjunto de dados e depois precisamos remover as linhas que contêm dados faltantes. Aqui podemos usar a função interna do <code><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">ggplot2::remove_missing()</a></code> para remover linhas cujas variáveis informadas no argumento estejam faltando, vejamos (Figura <a href="cap8.html#fig:fig-mod-inc-na">8.16</a>).</p>
+<p>Este conjunto de dados possui muitas entradas faltantes (codificadas como <code>NA</code>). Primeiro vamos visualizar o conjunto de dados e depois precisamos remover as linhas que contêm dados faltantes. Aqui podemos usar a função interna do <code><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">ggplot2::remove_missing()</a></code> para remover linhas cujas variáveis informadas no argumento estejam faltando, vejamos (Figura <a href="cap8.html#fig:fig-mod-inc-na">8.15</a>).</p>
 <div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">## Traduzir nomes das colunas e níveis de pigmentação </span>
@@ -830,10 +851,10 @@ Figura 8.15: Gráfico do GLM binomial.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-inc-na"></span>
 <img src="livro_files/figure-html/fig-mod-inc-na-1.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><p class="caption">
-Figura 8.16: Gráficos para explorar os dados faltantes.
+Figura 8.15: Gráficos para explorar os dados faltantes.
 </p>
 </div>
-<p>Reparem que estão faltando 22.9% dos dados. Vamos excluir as linhas com os dados faltantes para a variável <code>sex</code> (Figura <a href="cap8.html#fig:fig-mod-inc-na1">8.17</a>).</p>
+<p>Reparem que estão faltando 22.9% dos dados. Vamos excluir as linhas com os dados faltantes para a variável <code>sex</code> (Figura <a href="cap8.html#fig:fig-mod-inc-na1">8.16</a>).</p>
 <div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Removendo dados faltantes</span>
 <span class="va">dados_semNA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">remove_missing</a></span><span class="op">(</span><span class="va">lagartos</span>, vars <span class="op">=</span> <span class="st">"sexo"</span><span class="op">)</span> 
@@ -843,10 +864,10 @@ Figura 8.16: Gráficos para explorar os dados faltantes.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-inc-na1"></span>
 <img src="livro_files/figure-html/fig-mod-inc-na1-1.png" alt="Gráficos para explorar os dados faltantes." width="100%" height="100%"><p class="caption">
-Figura 8.17: Gráficos para explorar os dados faltantes.
+Figura 8.16: Gráficos para explorar os dados faltantes.
 </p>
 </div>
-<p>Agora, seguindo o que já estamos acostumados a fazer, vamos visualisar os dados com a nossa hipótese (Figura <a href="cap8.html#fig:fig-mod-inc-pre">8.18</a>).</p>
+<p>Agora, seguindo o que já estamos acostumados a fazer, vamos visualisar os dados com a nossa hipótese (Figura <a href="cap8.html#fig:fig-mod-inc-pre">8.17</a>).</p>
 <div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_semNA</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">SVL</span>, <span class="va">estado_cauda</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -857,7 +878,7 @@ Figura 8.17: Gráficos para explorar os dados faltantes.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-inc-pre"></span>
 <img src="livro_files/figure-html/fig-mod-inc-pre-1.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%"><p class="caption">
-Figura 8.18: Gráfico para explorar as relações entre as variáveis.
+Figura 8.17: Gráfico para explorar as relações entre as variáveis.
 </p>
 </div>
 <p><strong>Modelagem</strong></p>
@@ -874,27 +895,21 @@ Figura 8.18: Gráfico para explorar as relações entre as variáveis.
 <span class="co">#&gt; mod_log 0.1   4</span></code></pre></div>
 <p>Existe pouca diferença entre o modelo probit e logit. Como o modelo logit é mais simples vamos interpretá-lo apenas.</p>
 <p><strong>Diagnose dos resíduos do modelo</strong></p>
-<p>Vamos fazer a diagnose dos resíduos do modelo (Figura <a href="cap8.html#fig:fig-mod-inc-diag">8.19</a>).</p>
+<p>Vamos fazer a diagnose dos resíduos do modelo (Figura <a href="cap8.html#fig:fig-mod-inc-diag">8.18</a>).</p>
 <div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnóse avançada</span>
 <span class="va">simulationBion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod_log</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-inc-diag"></span>
 <img src="livro_files/figure-html/fig-mod-inc-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial de incidência." width="100%" height="100%"><p class="caption">
-Figura 8.19: Diagnose avançada dos resíduos do modelo GLM binomial de incidência.
+Figura 8.18: Diagnose avançada dos resíduos do modelo GLM binomial de incidência.
 </p>
 </div>
-<p>Vamos realizar a visualização do ajusto do modelo (Figura <a href="cap8.html#fig:fig-mod-inc-diag1">8.20</a>).</p>
+<p>Vamos realizar a visualização do ajusto do modelo (Figura <a href="#fig:fig-mod-inc-diag1"><strong>??</strong></a>).</p>
 <div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnóse avançada</span>
 <span class="fu"><a href="https://easystats.github.io/performance/reference/binned_residuals.html">binned_residuals</a></span><span class="op">(</span><span class="va">mod_log</span><span class="op">)</span>
 <span class="co">#&gt; Warning: About 92% of the residuals are inside the error bounds (~95% or higher would be good).</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fig-mod-inc-diag1"></span>
-<img src="livro_files/figure-html/fig-mod-inc-diag1-1.png" alt="Diagnose avançada dos resíduos do modelo GLM binomial de incidência." width="100%" height="100%"><p class="caption">
-Figura 8.20: Diagnose avançada dos resíduos do modelo GLM binomial de incidência.
-</p>
-</div>
 <p><strong>Inferência</strong></p>
 <p>Para modelos com parâmetro de dispersão conhecida (e.g., binomial e Poisson), o chi-quadrado é a estatística mais apropriada.</p>
 <div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
@@ -972,7 +987,7 @@ Figura 8.20: Diagnose avançada dos resíduos do modelo GLM binomial de incidên
 <span class="co">#&gt; W128 Phyllopezus_pollicaris    M  48                    0</span>
 <span class="co">#&gt; W129 Phyllopezus_pollicaris    F  40                    0</span>
 <span class="co">#&gt; W130 Phyllopezus_pollicaris    M  62                    0</span></code></pre></div>
-<p>Vamos explorar os dados (Figura <a href="cap8.html#fig:fig-mod-zero-pre">8.21</a>).</p>
+<p>Vamos explorar os dados (Figura <a href="cap8.html#fig:fig-mod-zero-pre">8.19</a>).</p>
 <div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráficos</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">parasitas</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Raillietiella_mottae</span>, fill <span class="op">=</span> <span class="va">Especie</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -992,7 +1007,7 @@ Figura 8.20: Diagnose avançada dos resíduos do modelo GLM binomial de incidên
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-pre"></span>
 <img src="livro_files/figure-html/fig-mod-zero-pre-1.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%"><img src="livro_files/figure-html/fig-mod-zero-pre-2.png" alt="Gráfico para explorar as relações entre as variáveis." width="100%" height="100%"><p class="caption">
-Figura 8.21: Gráfico para explorar as relações entre as variáveis.
+Figura 8.19: Gráfico para explorar as relações entre as variáveis.
 </p>
 </div>
 <p>Os gráfico acima mostram a contagem do parasita <em>Raillietiella mottae</em> nos dois sexos (F e M para fêmea e macho) nas duas espécies de lagartos (<em>Hemidactylus agrius</em> e <em>Phyllopezus pollicaris</em>), tanto na forma de uma distribuição de densidade, quanto de gráfico de dispersão. Aqui podemos ver que de fato existe um excesso de zeros principalmente em <em>P. pollicaris</em>.</p>
@@ -1065,34 +1080,34 @@ Figura 8.21: Gráfico para explorar as relações entre as variáveis.
 <span class="co">#&gt; pois_plain 44.6  5  &lt;0.001</span></code></pre></div>
 <p>Mas quando comparamos o AICc entre modelos, os modelos zero-inflated (tanto Poisson, quanto binomial negativa) que tem menos parâmetros, são ranqueados ligeiramente melhor do que o modelo binomial negativa zero-altered (ou hurdle). Não podemos distinguir entre os dois modelos com zero-inflated porque o dAICc &lt; 2, ou seja, o ajuste deles aos dados são praticamente iguais. Vejam que a diferença de Akaike Weights entre os dois primeiros modelos e o hurdle é bastante substancial (0.34 e 0.52). Além disso, vemos que os modelos que levam em conta o excesso de zeros se ajustam bem melhor aos dados do que o modelo simples com distribuição Poisson.
 Vamos ver como os modelos se saem em relação aos outros pressupostos.</p>
-<p>Modelo <em>Hurdle</em> (Figura <a href="cap8.html#fig:fig-mod-zero-diag">8.22</a>).</p>
+<p>Modelo <em>Hurdle</em> (Figura <a href="cap8.html#fig:fig-mod-zero-diag">8.20</a>).</p>
 <div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnoses</span>
 <span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">hur_NB</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-diag"></span>
 <img src="livro_files/figure-html/fig-mod-zero-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM Hurdle." width="100%" height="100%"><p class="caption">
-Figura 8.22: Diagnose avançada dos resíduos do modelo GLM Hurdle.
+Figura 8.20: Diagnose avançada dos resíduos do modelo GLM Hurdle.
 </p>
 </div>
-<p>Modelo <em>zero-inflated</em> Poisson (Figura <a href="cap8.html#fig:fig-mod-zero-diag1">8.23</a>).</p>
+<p>Modelo <em>zero-inflated</em> Poisson (Figura <a href="cap8.html#fig:fig-mod-zero-diag1">8.21</a>).</p>
 <div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnoses</span>
 <span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">ziP_mod2</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-diag1"></span>
 <img src="livro_files/figure-html/fig-mod-zero-diag1-1.png" alt="Diagnose avançada dos resíduos do modelo GLM zero-inflated Poisson." width="100%" height="100%"><p class="caption">
-Figura 8.23: Diagnose avançada dos resíduos do modelo GLM zero-inflated Poisson.
+Figura 8.21: Diagnose avançada dos resíduos do modelo GLM zero-inflated Poisson.
 </p>
 </div>
-<p>Modelo <em>zero-inflated negative binomial</em> (Figura <a href="cap8.html#fig:fig-mod-zero-diag2">8.24</a>).</p>
+<p>Modelo <em>zero-inflated negative binomial</em> (Figura <a href="cap8.html#fig:fig-mod-zero-diag2">8.22</a>).</p>
 <div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnoses</span>
 <span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">ziNB_mod2</span>, plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-diag2"></span>
 <img src="livro_files/figure-html/fig-mod-zero-diag2-1.png" alt="Diagnose avançada dos resíduos do modelo GLM zero-inflated negative binomial." width="100%" height="100%"><p class="caption">
-Figura 8.24: Diagnose avançada dos resíduos do modelo GLM zero-inflated negative binomial.
+Figura 8.22: Diagnose avançada dos resíduos do modelo GLM zero-inflated negative binomial.
 </p>
 </div>
 <p>Os gráficos de diagnose do <code>DHARMa</code> são outra evidência de que tanto o modelo hurdle quanto o zero-inflated Poisson são adequados para os dados, em termos de homogeneidade de variância, <em>outliers</em> e <em>overdispersion</em>.</p>
@@ -1132,7 +1147,7 @@ Figura 8.24: Diagnose avançada dos resíduos do modelo GLM zero-inflated negati
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>Para maiores detalhes na interpretação deste tipo de modelo, sugerimos fortemente consultar p. 382-3 de Brooks et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-brooks2017a" role="doc-biblioref">2017</a>)</span>. Para fatores com mais de um nível, o <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> mostra os resultados usando contraste, para isto toma como referência um dos níveis do fator (o primeiro em ordem alfabética) e o compara com os outros. Note que na parte com excesso de zeros, o contraste é positivo para Espécie. Ou seja, o <em>P. pollicaris</em> tem maior chance de ter ausência de parasitas que <em>H. agrius</em>. O contraste para espécie continua sendo positivo na parte condicional do modelo, mas o valor do parâmetro não é tão alto. Isso quer dizer que <em>P. pollicaris</em> tem abundância de parasitas em média ligeiramente maior que <em>H. agrius</em>. Vemos que a interação é significativa entre sexo e espécie na parte do modelo com excesso de zeros, mas apenas marginalmente significativa na parte condicional. Portanto, a influência do sexo na incidência, mas não na abundância do parasita depende conjuntamente da espécie. No entanto, o CRC só passa a ser significativo na parte de excesso de zeros, ou seja, quando modelamos apenas a incidência (presença-ausência) do parasita. Portanto, o <em>CRC determina se o lagarto vai ou não ser infectado, mas não <bold>o quanto</bold> vai receber de parasitas</em>. Já tanto o sexo quanto a espécie foram significativas em ambas as partes do modelo, ou seja, esses fatores não influenciam diferentemente a infecção e a quantidade de parasitas.
-Agora vejamos como podemos plotar as predições deste modelo (Figura <a href="cap8.html#fig:fig-mod-zero-model">8.25</a>).</p>
+Agora vejamos como podemos plotar as predições deste modelo (Figura <a href="cap8.html#fig:fig-mod-zero-model">8.23</a>).</p>
 <div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="va">parasitas</span><span class="op">$</span><span class="va">phat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">hur_NB</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>
@@ -1151,7 +1166,7 @@ Agora vejamos como podemos plotar as predições deste modelo (Figura <a href="c
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-zero-model"></span>
 <img src="livro_files/figure-html/fig-mod-zero-model-1.png" alt="Gráfico do GLM Hurdle." width="100%" height="100%"><p class="caption">
-Figura 8.25: Gráfico do GLM Hurdle.
+Figura 8.23: Gráfico do GLM Hurdle.
 </p>
 </div>
 </div>
@@ -1300,7 +1315,7 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <span class="co">#&gt;  CT - NA10uM      4.6 1.23 Inf   3.748  0.0002</span></code></pre></div>
 <p>Aqui vemos que tanto o tratamento, quanto o tempo de exposição foram significativos.</p>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Vamos analisar a predição do modelo (Figura <a href="cap8.html#fig:fig-mod-ord-model">8.26</a>).</p>
+<p>Vamos analisar a predição do modelo (Figura <a href="cap8.html#fig:fig-mod-ord-model">8.24</a>).</p>
 <div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 
@@ -1327,7 +1342,7 @@ Neste experimento, os autores realizaram medidas repetidas no mesmo animal ao lo
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-ord-model"></span>
 <img src="livro_files/figure-html/fig-mod-ord-model-1.png" alt="Gráfico do modelo cumulative link." width="100%" height="100%"><p class="caption">
-Figura 8.26: Gráfico do modelo cumulative link.
+Figura 8.24: Gráfico do modelo cumulative link.
 </p>
 </div>
 <p>Neste gráfico vemos que o grupo tratado com o hormônio começa com um índice de eritróforo ligeiramente maior do que o controle, mas logo tem uma brusca redução com uma hora de exposição, passando a ter índice 2, demonstrando que houve uma mudança de cor induzida pela dispersão dos cromatóforos. Já no controle, o índice não muda em relação ao tempo de exposição. Logo, podemos ver que há uma interação entre os fatores devido a esta queda do índice no grupo tratado e a ausência de efeito no controle.</p>
@@ -1358,7 +1373,7 @@ Figura 8.26: Gráfico do modelo cumulative link.
 <ul>
 <li>Variável resposta: a intensidade de coloração escura em peixes machos. Esses dados são expressos em termos de porcentagem e variam continuamente de 0 a 100%. Para facilitar a modelagem e nos adequarmos à maneira com que a função requer os dados, vamos simplesmente dividir por 100 para que os dados variem entre 0 e 1</li>
 </ul>
-<p>Para modelar os dados vamos utilizar a função <code>glmmTMB</code>. Antes disso, vamos analisar graficamente os dados (Figura <a href="cap8.html#fig:fig-mod-beta-pre">8.27</a>). Vamos usar apenas os dados dos machos para este exemplo.</p>
+<p>Para modelar os dados vamos utilizar a função <code>glmmTMB</code>. Antes disso, vamos analisar graficamente os dados (Figura <a href="cap8.html#fig:fig-mod-beta-pre">8.25</a>). Vamos usar apenas os dados dos machos para este exemplo.</p>
 <div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Filtrando os dados</span>
 <span class="va">fish</span><span class="op">$</span><span class="va">animal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fish</span><span class="op">$</span><span class="va">animal</span><span class="op">)</span>
@@ -1374,7 +1389,7 @@ Figura 8.26: Gráfico do modelo cumulative link.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-beta-pre"></span>
 <img src="livro_files/figure-html/fig-mod-beta-pre-1.png" alt="Gráfico para explorar a distribuição da variável resposta." width="100%" height="100%"><p class="caption">
-Figura 8.27: Gráfico para explorar a distribuição da variável resposta.
+Figura 8.25: Gráfico para explorar a distribuição da variável resposta.
 </p>
 </div>
 <p>No histograma podemos ver que os dados de fato variam continuamente no intervalo entre 0 e 1, tendo uma distribuição notadamente bimodal.</p>
@@ -1385,14 +1400,14 @@ Figura 8.27: Gráfico para explorar a distribuição da variável resposta.
 <span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span><span class="va">preto</span><span class="op">/</span><span class="fl">100</span> <span class="op">~</span> <span class="va">tratamento</span> <span class="op">*</span> <span class="va">tempo</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">animal</span><span class="op">)</span>, family <span class="op">=</span> <span class="va">beta_family</span>, data <span class="op">=</span> <span class="va">macho_preto</span><span class="op">)</span></code></pre></div>
 <p><strong>Diagnose</strong></p>
 <p>Aqui utilizaremos o mesmo pacote <code>DHARMa</code> para realizar a diagnose do modelo
-(Figura <a href="cap8.html#fig:fig-mod-beta-diag">8.28</a>).</p>
+(Figura <a href="cap8.html#fig:fig-mod-beta-diag">8.26</a>).</p>
 <div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnóse</span>
 <span class="va">simulationOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/simulateResiduals.html">simulateResiduals</a></span><span class="op">(</span>fittedModel <span class="op">=</span> <span class="va">mod2</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-beta-diag"></span>
 <img src="livro_files/figure-html/fig-mod-beta-diag-1.png" alt="Diagnose avançada dos resíduos do modelo GLM Beta." width="100%" height="100%"><p class="caption">
-Figura 8.28: Diagnose avançada dos resíduos do modelo GLM Beta.
+Figura 8.26: Diagnose avançada dos resíduos do modelo GLM Beta.
 </p>
 </div>
 <p>Podemos ver que o modelo não sofre de heterogeneidade de dispersão, overdispersion, nem problemas com <em>outlier</em>.</p>
@@ -1432,7 +1447,7 @@ Figura 8.28: Diagnose avançada dos resíduos do modelo GLM Beta.
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Results are given on the log odds ratio (not the response) scale.</span></code></pre></div>
 <p>Agora podemos perceber que a diferença entre o controle e o tratado só passa a ser significativa depois de 1 h de exposição.</p>
-<p>Isso fica mais evidente quando plotamos os dados (Figura <a href="cap8.html#fig:fig-mod-beta-model">8.29</a>).</p>
+<p>Isso fica mais evidente quando plotamos os dados (Figura <a href="cap8.html#fig:fig-mod-beta-model">8.27</a>).</p>
 <div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="va">escuridao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Rmisc/man/summarySE.html">summarySE</a></span><span class="op">(</span><span class="va">macho_preto</span>, 
@@ -1457,7 +1472,7 @@ Figura 8.28: Diagnose avançada dos resíduos do modelo GLM Beta.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-mod-beta-model"></span>
 <img src="livro_files/figure-html/fig-mod-beta-model-1.png" alt="Gráfico do modelo GLM beta." width="100%" height="100%"><p class="caption">
-Figura 8.29: Gráfico do modelo GLM beta.
+Figura 8.27: Gráfico do modelo GLM beta.
 </p>
 </div>
 </div>
@@ -1504,7 +1519,7 @@ Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sob
 <div class="prev"><a href="cap7.html"><span class="header-section-number">7</span> Modelos lineares</a></div>
 <div class="next"><a href="cap9.html"><span class="header-section-number">9</span> Análises Multidimensionais</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap8"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-4">Pré-requisitos do capítulo</a></li>
@@ -1536,8 +1551,8 @@ Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sob
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/08_modelos_lineares_generalizados.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/08_modelos_lineares_generalizados.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/08_modelos_lineares_generalizados.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/08_modelos_lineares_generalizados.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -1549,11 +1564,11 @@ Uma pesquisadora interessada em entender o efeito de diferentes usos de solo sob
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>

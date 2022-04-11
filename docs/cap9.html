@@ -7,7 +7,7 @@
 <title>Capítulo 9 Análises Multidimensionais | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ade4) library(ecodados) library(tidyverse) library(vegan) library(pvclust) library(BiodiversityR)...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 9 Análises Multidimensionais | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap9.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 9 Análises Multidimensionais | Análises Ecológicas no R">
 <meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ade4) library(ecodados) library(tidyverse) library(vegan) library(pvclust) library(BiodiversityR)...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -40,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -67,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -190,7 +216,7 @@ onde</p>
 </h2>
 <p>O objetivo da análise de agrupamento é agrupar objetos admitindo que haja um grau de similaridade entre eles. Esta análise pode ser utilizada ainda para classificar uma população em grupos homogêneos de acordo com uma característica de interesse. A grosso modo, uma análise de agrupamento tenta resumir uma grande quantidade de dados e apresentá-la de maneira fácil de visualizar e entender (em geral, na forma de um dendrograma). No entanto, os resultados da análise podem não refletir necessariamente toda a informação originalmente contida na matriz de dados. Para avaliar o quão bem uma análise de agrupamento representa os dados originais existe uma métrica — o coeficiente de correlação cofenético — o qual discutiremos em detalhes mais adiante.</p>
 <p>Antes de considerar algum método de agrupamento, pense porque você esperaria que houvesse uma descontinuidade nos dados; ou ainda, considere se existe algum ganho prático em dividir uma nuvem de objetos contínuos em grupos. O padrão apresentado pelo dendrograma depende do protocolo utilizado (método de agrupamento e índice de dissimilaridade); os grupos formados dependem do nível de corte escolhido.</p>
-<p>A matriz deve conter os objetos a serem agrupados (e.g., espécies) nas linhas e as variáveis (e.g., locais de coleta ou medidas morfológicas) nas colunas. A escolha do método de agrupamento é crítica para a escolha de um coeficiente de associação. É importante compreender as propriedades dos métodos de agrupamento para interpretar corretamente a estrutura ecológica que eles evidenciam <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span>. De acordo com a classificação de Sneath &amp; Sokal <span class="citation">(<a href="refer%C3%AAncias.html#ref-sneath_numerical_1973" role="doc-biblioref">1973</a>)</span>, existem cinco tipos de métodos: i) sequenciais ou simultâneos, ii) aglomerativo ou divisivo, iii) monotéticos ou politéticos, iv) hierárquico ou não hierárquicos e v) probabilístico. Sugerimos a leitura do artigo citado anteriormente para aprofundar seus conhecimentos sobre os diferentes métodos.</p>
+<p>A matriz deve conter os objetos a serem agrupados (e.g., espécies) nas linhas e as variáveis (e.g., locais de coleta ou medidas morfológicas) nas colunas. A escolha do método de agrupamento é crítica para a escolha de um coeficiente de associação. É importante compreender as propriedades dos métodos de agrupamento para interpretar corretamente a estrutura ecológica que eles evidenciam <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span>. De acordo com a classificação de Sneath &amp; Sokal <span class="citation">(<a href="refer%C3%AAncias.html#ref-sneath_numerical_1973" role="doc-biblioref">1973</a>)</span>, existem cinco tipos de métodos: i) sequenciais ou simultâneos, ii) aglomerativo ou divisivo, iii) monotéticos ou politéticos, iv) hierárquico ou não hierárquicos e v) probabilístico. Sugerimos a leitura do livro citado anteriormente para aprofundar seus conhecimentos sobre os diferentes métodos.</p>
 <div id="agrupamento-hierárquico" class="section level3" number="9.2.1">
 <h3>
 <span class="header-section-number">9.2.1</span> Agrupamento hierárquico<a class="anchor" aria-label="anchor" href="#agrupamento-hier%C3%A1rquico"><i class="fas fa-link"></i></a>
@@ -336,7 +362,7 @@ Figura 9.4: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
 <h3>
 <span class="header-section-number">9.2.2</span> Agrupamento não-hierárquico (<em>K-means</em>)<a class="anchor" aria-label="anchor" href="#agrupamento-n%C3%A3o-hier%C3%A1rquico-k-means"><i class="fas fa-link"></i></a>
 </h3>
-<p>Ao contrário do dendrograma, o <em>K-means</em> é um agrupamento não-hierárquico e, desse modo, não é otimizado para busca grupos menores aninhados em grupos maiores. Resumidamente, podemos calcular o <em>K-means</em> a partir de uma matriz quadrada ou de distância. Essa técnica procura particionar os objetos em <em>k</em> grupos de maneira a minimizar a soma de quadrados entre grupos e maximizá-la dentro dos grupos. Um critério similar ao de uma ANOVA (Capítulo <a href="cap7.html#cap7">7</a>). Um diferencial do <em>K-means</em> em relação aos agrupamentos hierárquicos é que o usuário pode escolher antecipadamente o número de grupos que deseja formar.</p>
+<p>Ao contrário do dendrograma, o <em>K-means</em> é um agrupamento não-hierárquico e, desse modo, não é otimizado para buscar grupos menores aninhados em grupos maiores. Resumidamente, podemos calcular o <em>K-means</em> a partir de uma matriz quadrada ou de distância. Essa técnica procura particionar os objetos em <em>k</em> grupos de maneira a minimizar a soma de quadrados entre grupos e maximizá-la dentro dos grupos. Um critério similar ao de uma ANOVA (Capítulo <a href="cap7.html#cap7">7</a>). Um diferencial do <em>K-means</em> em relação aos agrupamentos hierárquicos é que o usuário pode escolher antecipadamente o número de grupos que deseja formar.</p>
 <p><strong>Exemplo 1</strong></p>
 <p>Para este exemplo, iremos utilizar um conjunto de dados disponível no pacote <code>ade4</code> que contém dados de 27 espécies de peixes coletados em 30 pontos ao longo do Rio Doubs, na fronteira entre a França e Suíça.</p>
 <p><strong>Pergunta</strong></p>
@@ -391,16 +417,16 @@ Neste caso, estamos realizando uma análise exploratória e não temos uma predi
 <span class="co">#&gt; 2 0.10380209 0.542300691 0.50086515 0.43325916 0.114024105 0.075651573 0.00000000 0.00000000 0.06983991 0.1237394</span>
 <span class="co">#&gt; 3 0.06167791 0.122088022 0.26993915 0.35942538 0.032664966 0.135403325 0.06212775 0.21568957 0.25887226 0.2722562</span>
 <span class="co">#&gt; 4 0.00000000 0.000000000 0.00000000 0.00000000 0.000000000 0.000000000 0.05205792 0.00000000 0.07647191 0.3166705</span>
-<span class="co">#&gt;         Baba      Spbi       Gogo       Eslu       Pefl      Rham       Legi       Scer       Cyca       Titi</span>
-<span class="co">#&gt; 1 0.24327992 0.1326062 0.28386032 0.20630360 0.16920496 0.2214275 0.19066542 0.13171275 0.16019126 0.26230024</span>
-<span class="co">#&gt; 2 0.02385019 0.0000000 0.05670453 0.04722294 0.02949244 0.0000000 0.00000000 0.00000000 0.00000000 0.03833408</span>
-<span class="co">#&gt; 3 0.15647062 0.1574388 0.16822286 0.12276089 0.17261621 0.0793181 0.06190283 0.04516042 0.06190283 0.14539027</span>
-<span class="co">#&gt; 4 0.00000000 0.0000000 0.20500174 0.07647191 0.00000000 0.0000000 0.05205792 0.07647191 0.00000000 0.00000000</span>
-<span class="co">#&gt;         Abbr      Icme       Acce       Ruru       Blbj      Alal       Anan</span>
-<span class="co">#&gt; 1 0.19561641 0.1331835 0.26713081 0.32103755 0.22883055 0.3326939 0.18873077</span>
-<span class="co">#&gt; 2 0.00000000 0.0000000 0.00000000 0.01049901 0.00000000 0.0000000 0.00000000</span>
-<span class="co">#&gt; 3 0.01473139 0.0000000 0.03192175 0.32201597 0.01473139 0.1095241 0.04739636</span>
-<span class="co">#&gt; 4 0.00000000 0.0000000 0.18058775 0.31667052 0.05205792 0.7618709 0.00000000</span>
+<span class="co">#&gt;         Baba      Spbi       Gogo       Eslu       Pefl      Rham       Legi       Scer       Cyca       Titi       Abbr</span>
+<span class="co">#&gt; 1 0.24327992 0.1326062 0.28386032 0.20630360 0.16920496 0.2214275 0.19066542 0.13171275 0.16019126 0.26230024 0.19561641</span>
+<span class="co">#&gt; 2 0.02385019 0.0000000 0.05670453 0.04722294 0.02949244 0.0000000 0.00000000 0.00000000 0.00000000 0.03833408 0.00000000</span>
+<span class="co">#&gt; 3 0.15647062 0.1574388 0.16822286 0.12276089 0.17261621 0.0793181 0.06190283 0.04516042 0.06190283 0.14539027 0.01473139</span>
+<span class="co">#&gt; 4 0.00000000 0.0000000 0.20500174 0.07647191 0.00000000 0.0000000 0.05205792 0.07647191 0.00000000 0.00000000 0.00000000</span>
+<span class="co">#&gt;        Icme       Acce       Ruru       Blbj      Alal       Anan</span>
+<span class="co">#&gt; 1 0.1331835 0.26713081 0.32103755 0.22883055 0.3326939 0.18873077</span>
+<span class="co">#&gt; 2 0.0000000 0.00000000 0.01049901 0.00000000 0.0000000 0.00000000</span>
+<span class="co">#&gt; 3 0.0000000 0.03192175 0.32201597 0.01473139 0.1095241 0.04739636</span>
+<span class="co">#&gt; 4 0.0000000 0.18058775 0.31667052 0.05205792 0.7618709 0.00000000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Clustering vector:</span>
 <span class="co">#&gt;  1  2  3  4  5  6  7  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 </span>
@@ -443,7 +469,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <span class="header-section-number">9.2.3</span> Espécies indicadoras<a class="anchor" aria-label="anchor" href="#esp%C3%A9cies-indicadoras"><i class="fas fa-link"></i></a>
 </h3>
 <p>Uma pergunta normalmente feita por ecólogos é: qual espécie pode ser indicadora de uma determinada condição ambiental (e.g., poluição)?</p>
-<p>O índice IndVal mede dois aspectos das espécies: fidelidade e especificidade. Uma alta fidelidade significa que espécies ocorrem em todos os locais do grupo, e uma alta especificidade significa que as espécies ocorrem somente naquele grupo. Uma boa espécie indicadora é aquela na qual todos os indivíduos ocorrem em todas a amostras referentes a um grupo específico. A especificidade é dada pela divisão da abundância média da espécie no grupo pela somatória das abundâncias médias dos grupos. Fidelidade é igual ao número de lugares no grupo onde a espécie está presente dividido pelo número total de lugares do grupo <span class="citation">(<a href="refer%C3%AAncias.html#ref-dufrene_species_1997" role="doc-biblioref">Dufrêne and Legendre 1997</a>)</span>.</p>
+<p>O índice IndVal mede dois aspectos das espécies: fidelidade e especificidade. Uma alta fidelidade significa que espécies ocorrem em todos os locais do grupo, e uma alta especificidade significa que as espécies ocorrem somente naquele grupo. Uma boa espécie indicadora é aquela na qual todos os indivíduos ocorrem em todas as amostras referentes a um grupo específico. A especificidade é dada pela divisão da abundância média da espécie no grupo pela somatória das abundâncias médias dos grupos. Fidelidade é igual ao número de lugares no grupo onde a espécie está presente dividido pelo número total de lugares do grupo <span class="citation">(<a href="refer%C3%AAncias.html#ref-dufrene_species_1997" role="doc-biblioref">Dufrêne and Legendre 1997</a>)</span>.</p>
 <p>Espécies raras podem receber o mesmo valor de IndVal das espécies indicadoras, porém são chamadas de indicadoras assimétricas, uma vez que contribuem com a especificidade do habitat, mas não servem para predizer grupos. Ao contrário, as espécies indicadoras são verdadeiros indicadores simétricos e podem ser usadas para predizer grupos.</p>
 <p>A análise procede da seguinte forma:</p>
 <ol style="list-style-type: decimal">
@@ -542,7 +568,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <h2>
 <span class="header-section-number">9.3</span> Análises de Ordenação<a class="anchor" aria-label="anchor" href="#an%C3%A1lises-de-ordena%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
 </h2>
-<p>As análises de ordenação representam um conjunto de métodos e técnicas multivariadas que organizam objetos (e.g., localidades, indivíduos) em alguma ordem considerando o conjunto de descritores que podem estar mais ou menos relacionados entre si. Se os descritores estiverem bem relacionados, eles são redundantes e organizam os objetos de forma similar. Esse fenômeno é observado, por exemplo, quando queremos organizar um conjunto de unidades amostrais baseado em variáveis que indicam um mesmo processo: ver o padrão de similaridade geral de lagos usando várias variáveis relacionada com a produtividade do sistema: clorofila-a, concentração de fósforo, nitrogênio, entre outros. Por exemplo, tais métodos permitem identificar se existem grupo de espécies que ocorrem exclusivamente em um determinado hábitat. Ao buscar esta <em>ordem</em>, as técnicas de ordenação possuem três principais utilidades: i) reduzir a dimensionalidade e revelar padrões, ii) separar as variáveis mais e menos importantes em combinações complexas e iii) separar relações mais e menos fortes ao comparar variáveis preditoras e dependentes.</p>
+<p>As análises de ordenação representam um conjunto de métodos e técnicas multivariadas que organizam objetos (e.g., localidades, indivíduos) em alguma ordem considerando o conjunto de descritores que podem estar mais ou menos relacionados entre si. Se os descritores estiverem bem relacionados, eles são redundantes e organizam os objetos de forma similar. Esse fenômeno é observado, por exemplo, quando queremos organizar um conjunto de unidades amostrais baseado em variáveis que indicam um mesmo processo: ver o padrão de similaridade geral de lagos usando várias variáveis relacionadas com a produtividade do sistema: clorofila-a, concentração de fósforo, nitrogênio, entre outros. Por exemplo, tais métodos permitem identificar se existem grupo de espécies que ocorrem exclusivamente em um determinado hábitat. Ao buscar esta <em>ordem</em>, as técnicas de ordenação possuem três principais utilidades: i) reduzir a dimensionalidade e revelar padrões, ii) separar as variáveis mais e menos importantes em combinações complexas e iii) separar relações mais e menos fortes ao comparar variáveis preditoras e dependentes.</p>
 <p>Em geral, os métodos são divididos em ordenações irrestritas (ou análise de gradiente indireto) e restritas (ou análise de gradiente direto). <strong>As ordenações irrestritas</strong> organizam os objetos (e.g., espécies) de acordo com sua estrutura de covariância (ou correlação), o que demonstra que a proximidade (ou distância) dentro do espaço multidimensional representa semelhança (ou diferença) dos objetos. Por outro lado, <strong>as ordenações restritras</strong> posicionam os objetos (e.g., espécies) de acordo com sua relação linear com outras variáveis coletadas nas mesmas unidades amostrais (e.g., temperatura e precipitação). Ao passo que as ordenações irrestritas dependem somente de uma matriz (e.g., espécies por localidades), as ordenações restritas utilizam no mínimo duas matrizes (e.g., espécies por localidades e variáveis climáticas por localidade). Desse modo, fica claro esta diferença entre os dados utilizados que as análises irrestritas são mais exploratórias, enquanto análises restritas são ideais para testar hipóteses com dados multidimensionais. A tabela a seguir apresenta as principais análises utilizadas em ecologia.</p>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
@@ -954,7 +980,7 @@ Figura 9.8: Biplot da PCA ordenando os dados morfológicos de penguins.
 <span class="header-section-number">9.4.2</span> Análises de Coordenadas Principais (PCoA)<a class="anchor" aria-label="anchor" href="#an%C3%A1lises-de-coordenadas-principais-pcoa"><i class="fas fa-link"></i></a>
 </h3>
 <p>Diferentemente da PCA, a Análises de Coordenadas Principais (<em>Principal Coordinate Analysis</em> - PCoA) é uma análise de ordenação irrestrita que aceita dados de diferentes tipos, como contínuos, categóricos, ordinais, binários, entre outros. Assim, a PCoA é aplicada para casos em que a distância euclidiana não é aplicada (como na PCA). Desse modo, o primeiro passo da análise é calcular uma matriz de similaridade ou de distância (discutido acima). Depois, os passos para obter autovalores e autovetores são bastante parecidos com a PCA. Da mesma forma, os eixos da PCoA e os valores ou posições dos objetos nesses eixos representam a relação de semelhança (ou diferença) baseada nos descritores desses objetos. A diferença, neste caso, é que a PCoA representa um espaço não-euclidiano, que irá ser afetado pela escolha do método de similaridade.</p>
-<p>As utilizações mais comuns da PCoA são a ordenação: i) da matriz de composição de espécies usando a distância apropriada (<em>Jaccard</em>, <em>Sorensen</em>, <em>Bray-Curtis</em>), ii) da matriz de variáveis ambientais com mistos (contínuos, categóricos, circulares, etc.), e iii) da matriz filogenética <span class="citation">(método PVR <a href="refer%C3%AAncias.html#ref-diniz-filho_eigenvector_1998" role="doc-biblioref">Diniz-Filho, de Sant’Ana, and Bini 1998</a>)</span>. Abaixo, exemplificamos a ordenação da matriz de composição de espécies.</p>
+<p>As utilizações mais comuns da PCoA são a ordenação: i) da matriz de composição de espécies usando a distância apropriada (<em>Jaccard</em>, <em>Sorensen</em>, <em>Bray-Curtis</em>), ii) da matriz de variáveis ambientais com mistos (contínuos, categóricos, circulares, etc.), e iii) da matriz filogenética, método PVR <span class="citation">(<a href="refer%C3%AAncias.html#ref-diniz-filho_eigenvector_1998" role="doc-biblioref">Diniz-Filho, de Sant’Ana, and Bini 1998</a>)</span>. Abaixo, exemplificamos a ordenação da matriz de composição de espécies.</p>
 <p><strong>Checklist</strong></p>
 <ul>
 <li><p>Compare as dimensões das matrizes utilizadas para a PCoA. Com bastante frequência, a tentativa de combinar dados categóricos (algum descritor dos objetos) com os valores obtidos com a PCoA gera erros para plotar a figura ou para executar a análise. Verifique, então, se as linhas são as mesmas (nome das localidades ou indivíduos e quantidade)</p></li>
@@ -1039,7 +1065,7 @@ Figura 9.9: Biplot da PCoA ordenando as espécies de ácaros entre diferentes to
 <h3>
 <span class="header-section-number">9.4.3</span> Regressão de Componentes Principais (PCR)<a class="anchor" aria-label="anchor" href="#regress%C3%A3o-de-componentes-principais-pcr"><i class="fas fa-link"></i></a>
 </h3>
-<p>Uma maneira de testar hipóteses utilizando ordenações irrestritas é utilizando os resultados da ordenação (escores) como variáveis preditoras ou dependentes como, por exemplo, em modelos lineares (e.g., regressão múltipla Capítulo <a href="cap7.html#cap7">7</a>). O primeiro passo é utilizar uma ordenação, como a PCA, para gerar os “novos” dados que serão usados na análise. A utilização desses novos dados (que representam as coordenadas principais ou escores da PCA) vai depender da pergunta em questão. Por exemplo, pode ser que esses valores representem gradientes climáticos e, por este motivo, serão utilizados como variáveis preditoras em um modelo linear (e.g., regressão múltipla). Por outro lado, esses valores podem representar o espaço morfológicos de espécies de peixes e, como consequência, serão utilizados como variáveis dependentes para entender o efeito da presença de predador sobre a morfologia. É importante ressaltar que existem algumas limitações importantes na PCR como, por exemplo, as coordenadas principais (escores da PCA) utilizadas como variáveis preditoras podem não representam, biologicamente, as mais importantes para explicar a variação na variável resposta <span class="citation">(<a href="refer%C3%AAncias.html#ref-hadi_cautionary_1998" role="doc-biblioref">Hadi and Ling 1998</a>)</span>.</p>
+<p>Uma maneira de testar hipóteses utilizando ordenações irrestritas é utilizando os resultados da ordenação (escores) como variáveis preditoras ou dependentes como, por exemplo, em modelos lineares (e.g., regressão múltipla Capítulo <a href="cap7.html#cap7">7</a>). O primeiro passo é utilizar uma ordenação, como a PCA, para gerar os “novos” dados que serão usados na análise. A utilização desses novos dados (que representam as coordenadas principais ou escores da PCA) vai depender da pergunta em questão. Por exemplo, pode ser que esses valores representem gradientes climáticos e, por este motivo, serão utilizados como variáveis preditoras em um modelo linear (e.g., regressão múltipla). Por outro lado, esses valores podem representar o espaço morfológicos de espécies de peixes e, como consequência, serão utilizados como variáveis dependentes para entender o efeito da presença de predador sobre a morfologia. É importante ressaltar que existem algumas limitações importantes na PCR como, por exemplo, as coordenadas principais (escores da PCA) utilizadas como variáveis preditoras podem não representar, biologicamente, as mais importantes para explicar a variação na variável resposta <span class="citation">(<a href="refer%C3%AAncias.html#ref-hadi_cautionary_1998" role="doc-biblioref">Hadi and Ling 1998</a>)</span>.</p>
 <p><strong>Checklist</strong></p>
 <ul>
 <li><p>Compare as dimensões das matrizes utilizadas para a PCR. Com bastante frequência, a tentativa de combinar dados categóricos (algum descritor dos objetos) com os valores obtidos com a PCoA gera erros para plotar a figura ou para executar a análise. Verifique, então, se as linhas são as mesmas (nome das localidades ou indivíduos e quantidade)</p></li>
@@ -1107,7 +1133,7 @@ Figura 9.9: Biplot da PCoA ordenando as espécies de ácaros entre diferentes to
 
 <span class="co">## Passo 3: combinar os dois valores em um único data.frame</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">pred.env</span>, <span class="va">riqueza</span><span class="op">)</span> </code></pre></div>
-<p>Agora que os dados foram combinados em uma único data frame, podemos utilizar os códigos apresentados no Capítulo <a href="cap7.html#cap7">7</a> para testar nossa hipótese (Figura <a href="cap9.html#fig:fig-pcr-aves-diag">9.10</a>).</p>
+<p>Agora que os dados foram combinados em uma única data frame, podemos utilizar os códigos apresentados no Capítulo <a href="cap7.html#cap7">7</a> para testar nossa hipótese (Figura <a href="cap9.html#fig:fig-pcr-aves-diag">9.10</a>).</p>
 <div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Regressão múltipla</span>
 <span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">riqueza</span> <span class="op">~</span> <span class="va">Dim.1</span> <span class="op">+</span> <span class="va">Dim.2</span> <span class="op">+</span> <span class="va">Dim.3</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
@@ -1402,20 +1428,13 @@ Figura 9.15: Triplot da RDA.
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="co"># Matriz padronizada de composição de espécies. </span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">species.hel</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> 
-<span class="co">#&gt;     Fauvette_orphee Fauvette_des_jardins Fauvette_a_tete_noire Fauvette_babillarde Fauvette_grisette</span>
-<span class="co">#&gt; S01               0            0.3651484             0.3651484           0.2581989         0.2581989</span>
-<span class="co">#&gt; S02               0            0.3333333             0.3333333           0.2357023         0.2357023</span>
-<span class="co">#&gt; S03               0            0.3162278             0.3162278           0.3162278         0.2236068</span>
-<span class="co">#&gt; S04               0            0.4200840             0.3429972           0.2425356         0.0000000</span>
-<span class="co">#&gt; S05               0            0.3872983             0.3162278           0.2236068         0.3162278</span>
-<span class="co">#&gt; S06               0            0.3779645             0.3779645           0.2672612         0.0000000</span>
-<span class="co">#&gt;     Fauvette_pitchou</span>
-<span class="co">#&gt; S01                0</span>
-<span class="co">#&gt; S02                0</span>
-<span class="co">#&gt; S03                0</span>
-<span class="co">#&gt; S04                0</span>
-<span class="co">#&gt; S05                0</span>
-<span class="co">#&gt; S06                0</span>
+<span class="co">#&gt;     Fauvette_orphee Fauvette_des_jardins Fauvette_a_tete_noire Fauvette_babillarde Fauvette_grisette Fauvette_pitchou</span>
+<span class="co">#&gt; S01               0            0.3651484             0.3651484           0.2581989         0.2581989                0</span>
+<span class="co">#&gt; S02               0            0.3333333             0.3333333           0.2357023         0.2357023                0</span>
+<span class="co">#&gt; S03               0            0.3162278             0.3162278           0.3162278         0.2236068                0</span>
+<span class="co">#&gt; S04               0            0.4200840             0.3429972           0.2425356         0.0000000                0</span>
+<span class="co">#&gt; S05               0            0.3872983             0.3162278           0.2236068         0.3162278                0</span>
+<span class="co">#&gt; S06               0            0.3779645             0.3779645           0.2672612         0.0000000                0</span>
 
 <span class="co">## Latitude e longitude</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span>
@@ -1555,7 +1574,7 @@ Figura 9.15: Triplot da RDA.
 <span class="co">#&gt; </span>
 <span class="co">#&gt; statistic = 0.72714, observed rank = 1000, p-value = 0.001</span>
 <span class="co">#&gt; alternative hypothesis: greater</span></code></pre></div>
-<p>Como resultado, é possível que a variação ambiental espacialmente estruturada é o principal efeito sobre a composição de espécies. Uma maneira de visualizar a contribuição relativa de diferentes matrizes (ambiental e espacial, por exemplo) é utilizar o método de partição de variância. O resultado deste modelo indica que, de fato, não existe efeito direto das variáveis ambientais e sim do componente representado pela autocorrelação espacial dessas variáveis (Figura <a href="cap9.html#fig:fig-rda-parcial">9.16</a>).</p>
+<p>Como resultado, é possível que a variação ambiental espacialmente estruturada seja o principal efeito sobre a composição de espécies. Uma maneira de visualizar a contribuição relativa de diferentes matrizes (ambiental e espacial, por exemplo) é utilizar o método de partição de variância. O resultado deste modelo indica que, de fato, não existe efeito direto das variáveis ambientais e sim do componente representado pela autocorrelação espacial dessas variáveis (Figura <a href="cap9.html#fig:fig-rda-parcial">9.16</a>).</p>
 <div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Triplot da RDA</span>
 <span class="co"># Partição de variância.</span>
@@ -1606,19 +1625,19 @@ Para exemplificar como esta análise pode ser implementada no R, vamos usar o me
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
 <span class="co"># Em seguida, é possível identificar quais são as variáveis que contribuem ou que mais contribuem para a variação na composição de espécies </span>
-<span class="va">db.res.var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/anova.cca.html">anova.cca</a></span><span class="op">(</span><span class="va">rda.bird</span>, by <span class="op">=</span> <span class="st">"term"</span><span class="op">)</span> <span class="co">## Qual variável?</span>
+<span class="va">db.res.var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/anova.cca.html">anova.cca</a></span><span class="op">(</span><span class="va">dbrda.bird</span>, by <span class="op">=</span> <span class="st">"term"</span><span class="op">)</span> <span class="co">## Qual variável?</span>
 <span class="va">db.res.var</span>
-<span class="co">#&gt; Permutation test for rda under reduced model</span>
+<span class="co">#&gt; Permutation test for capscale under reduced model</span>
 <span class="co">#&gt; Terms added sequentially (first to last)</span>
 <span class="co">#&gt; Permutation: free</span>
 <span class="co">#&gt; Number of permutations: 999</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Model: rda(formula = species.hel ~ rain.jul + maxi.jul + altitude, data = env.pad.cat)</span>
-<span class="co">#&gt;          Df Variance      F Pr(&gt;F)    </span>
-<span class="co">#&gt; rain.jul  1 0.036514 9.5936  0.001 ***</span>
-<span class="co">#&gt; maxi.jul  1 0.011264 2.9596  0.015 *  </span>
-<span class="co">#&gt; altitude  2 0.019071 2.5053  0.011 *  </span>
-<span class="co">#&gt; Residual 18 0.068510                  </span>
+<span class="co">#&gt; Model: capscale(formula = dbeta ~ rain.jul + maxi.jul + altitude, data = env.pad.cat)</span>
+<span class="co">#&gt;          Df SumOfSqs       F Pr(&gt;F)    </span>
+<span class="co">#&gt; rain.jul  1 0.209981 12.9697  0.001 ***</span>
+<span class="co">#&gt; maxi.jul  1 0.041846  2.5847  0.070 .  </span>
+<span class="co">#&gt; altitude  2 0.094966  2.9328  0.012 *  </span>
+<span class="co">#&gt; Residual 18 0.291420                   </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
@@ -1688,7 +1707,7 @@ Para exemplificar como esta análise pode ser implementada no R, vamos usar o me
 Figura 9.17: Correlograma mostrando a correlação entre as variáveis.
 </p>
 </div>
-<p>Após selecionar as variáveis do modelo, vamos executar a PERMANOVA e entender as principais etapas para interpretar corretamente o teste. A função <code><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis()</a></code> do pacote <code>vegan</code> é uma boa opção. Porém, é importante referir o programa PRIMER e PERMANOVA+ como ótima opção para implementar a PERMANOVA e ter maior controle em desenhos complexos <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova+_2008" role="doc-biblioref">M. J. Anderson, Gorley, and Clarke 2008</a>)</span>. Assim como nos modelos lineares apresentados no Capítulo <a href="cap7.html#cap7">7</a>, os argumentos seguem o mesmo formato, com variável dependente separada por um “~” das variáveis preditoras. Porém, alguns autores demonstraram que a PERMANOVA (assim como Mantel e ANOSIM) não pode identificar se diferenças significativas do teste (usando a estatística <em>pseudo-F</em>) devem a diferenças no posição, na dispersão ou ambos. Ou seja, ao comparar grupos não é possível identificar se existe mudanças de composição (posição) ou a variação da composição de espécies dentro de um grupo (dispersão) é maior do que a variação dentro do outro grupo <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova_2013" role="doc-biblioref">M. J. Anderson and Walsh 2013</a>)</span>. Para solucionar este problema, é possível combinar a PERMANOVA com a análise PERMDISP (ou BETADISPER, como chamado no pacote <code>vegan</code> implementado através da função <code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper()</a></code>). Esta análise permite comparar se existe heterogeneidade nas variâncias entre grupos. Deste modo, com a presença de heterogeneidade de variâncias (valor do BETADISPER significativo), é possível saber que as diferenças entre os grupos ocorrem principalmente por diferenças na dispersão e não, necessariamente, de posição. Mais detalhes sobre a relevância de combinar essas duas análises estão disponíveis em Anderson &amp; Walsh <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova_2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p>Após selecionar as variáveis do modelo, vamos executar a PERMANOVA e entender as principais etapas para interpretar corretamente o teste. A função <code><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis()</a></code> do pacote <code>vegan</code> é uma boa opção. Porém, é importante referir o programa PRIMER e PERMANOVA+ como ótima opção para implementar a PERMANOVA e ter maior controle em desenhos complexos <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova+_2008" role="doc-biblioref">M. J. Anderson, Gorley, and Clarke 2008</a>)</span>. Assim como nos modelos lineares apresentados no Capítulo <a href="cap7.html#cap7">7</a>, os argumentos seguem o mesmo formato, com variável dependente separada por um “~” das variáveis preditoras. Porém, alguns autores demonstraram que a PERMANOVA (assim como Mantel e ANOSIM) não pode identificar se diferenças significativas do teste (usando a estatística <em>pseudo-F</em>) devem-se à diferenças no posição, na dispersão ou ambos. Ou seja, ao comparar grupos não é possível identificar se existe mudanças de composição (posição) ou se a variação da composição de espécies dentro de um grupo (dispersão) é maior do que a variação dentro do outro grupo <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova_2013" role="doc-biblioref">M. J. Anderson and Walsh 2013</a>)</span>. Para solucionar este problema, é possível combinar a PERMANOVA com a análise PERMDISP (ou BETADISPER, como chamado no pacote <code>vegan</code> implementado através da função <code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper()</a></code>). Esta análise permite comparar se existe heterogeneidade nas variâncias entre grupos. Deste modo, com a presença de heterogeneidade de variâncias (valor do BETADISPER significativo), é possível saber que as diferenças entre os grupos ocorrem principalmente por diferenças na dispersão e não, necessariamente, de posição. Mais detalhes sobre a relevância de combinar essas duas análises estão disponíveis em Anderson &amp; Walsh <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova_2013" role="doc-biblioref">2013</a>)</span>.</p>
 <div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## PERMANOVA</span>
 <span class="va">perm.aves</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis2</a></span><span class="op">(</span><span class="va">sps.dis</span> <span class="op">~</span> <span class="va">mini.jan</span> <span class="op">+</span> <span class="va">rain.tot</span> <span class="op">+</span> <span class="va">altitude</span>, data <span class="op">=</span> <span class="va">env2</span><span class="op">)</span>
@@ -2029,7 +2048,7 @@ Figura 9.21: Relação das matrizes de (dis)similaridade dos dados.
 <h2>
 <span class="header-section-number">9.8</span> Mantel espacial com modelo nulo restrito considerando autocorrelação espacial<a class="anchor" aria-label="anchor" href="#mantel-espacial-com-modelo-nulo-restrito-considerando-autocorrela%C3%A7%C3%A3o-espacial"><i class="fas fa-link"></i></a>
 </h2>
-<p>Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: Legendre et al. 2015 <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2015" role="doc-biblioref">2015</a>)</span>, Legendre &amp; Fortin 2010 <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2010" role="doc-biblioref">2010</a>)</span>, e Legendre <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2000" role="doc-biblioref">2000</a>)</span>.</p>
+<p>Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: Legendre et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2015" role="doc-biblioref">2015</a>)</span>, Legendre &amp; Fortin <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2010" role="doc-biblioref">2010</a>)</span>, e Legendre <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2000" role="doc-biblioref">2000</a>)</span>.</p>
 <p>No entanto, Crabot et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-crabot2019" role="doc-biblioref">2019</a>)</span> propuseram uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado <em>Moran Spectral Randomization</em> porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos <em>Moran Eigenvector Maps</em> (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.</p>
 <p>Primeiro precisamos construir um objeto com as duas matrizes que desejamos testar, no nosso caso composição de espécies e espaço. Depois precisamos construir explicitamente a nossa hipótese de relação espacial entre os locais por meio de uma rede de vizinhança. Esta rede é uma estrutura que nos dirá como (e eventualmente com qual intensidade) se há relação entre os locais. Aqui, entende-se que nos referimos à probabilidade de fluxo de indivíduos entre os locais.</p>
 <div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
@@ -2269,7 +2288,7 @@ Figura 9.26: Diagnose dos resíduos do modelo ajustado.
 <div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelo1</span>, p.uni <span class="op">=</span> <span class="st">"adjusted"</span><span class="op">)</span>
-<span class="co">#&gt; Time elapsed: 0 hr 0 min 7 sec</span>
+<span class="co">#&gt; Time elapsed: 0 hr 0 min 6 sec</span>
 <span class="co">#&gt; Analysis of Deviance Table</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model: abund_tr ~ grupos</span>
@@ -2290,34 +2309,34 @@ Figura 9.26: Diagnose dos resíduos do modelo ajustado.
 <span class="co">#&gt;                             Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)</span>
 <span class="co">#&gt; (Intercept)                                                                                            </span>
 <span class="co">#&gt; grupos                    2.197    0.707                 4.752    0.309                  2.197    0.707</span>
-<span class="co">#&gt;             Elachistocleis_cesari          Hypsiboas_albopunctatus          Hypsiboas_faber         </span>
-<span class="co">#&gt;                               Dev Pr(&gt;Dev)                     Dev Pr(&gt;Dev)             Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                         </span>
-<span class="co">#&gt; grupos                      2.012    0.762                   2.069    0.762           0.913    0.822</span>
-<span class="co">#&gt;             Hypsiboas_lundii          Hypsiboas_prasinus          Itapotihyla_langsdorffii         </span>
-<span class="co">#&gt;                          Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)                      Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                        </span>
-<span class="co">#&gt; grupos                 0.915    0.822              0.913    0.822                    0.911    0.836</span>
-<span class="co">#&gt;             Leptodactylus_fuscus          Leptodactylus_latrans          Leptodactylus_mystaceus         </span>
-<span class="co">#&gt;                              Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                     Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                              </span>
-<span class="co">#&gt; grupos                     4.652    0.309                 0.811    0.836                   1.869    0.783</span>
-<span class="co">#&gt;             Leptodactylus_mystacinus          Physalaemus_centralis          Physalaemus_cuvieri         </span>
-<span class="co">#&gt;                                  Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                 Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                              </span>
-<span class="co">#&gt; grupos                         9.772    0.045                 2.639    0.670               8.221    0.062</span>
-<span class="co">#&gt;             Physalaemus_marmoratus          Physalaemus_nattereri          Pseudis_paradoxa          Rhinella_ornata</span>
-<span class="co">#&gt;                                Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)              Dev Pr(&gt;Dev)             Dev</span>
-<span class="co">#&gt; (Intercept)                                                                                                         </span>
-<span class="co">#&gt; grupos                       1.622    0.783                17.131    0.014             2.67    0.540          11.961</span>
-<span class="co">#&gt;                      Rhinella_schneideri          Scinax_fuscomarginatus          Scinax_fuscovarius         </span>
-<span class="co">#&gt;             Pr(&gt;Dev)                 Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt;             Elachistocleis_cesari          Hypsiboas_albopunctatus          Hypsiboas_faber          Hypsiboas_lundii</span>
+<span class="co">#&gt;                               Dev Pr(&gt;Dev)                     Dev Pr(&gt;Dev)             Dev Pr(&gt;Dev)              Dev</span>
+<span class="co">#&gt; (Intercept)                                                                                                          </span>
+<span class="co">#&gt; grupos                      2.012    0.762                   2.069    0.762           0.913    0.822            0.915</span>
+<span class="co">#&gt;                      Hypsiboas_prasinus          Itapotihyla_langsdorffii          Leptodactylus_fuscus         </span>
+<span class="co">#&gt;             Pr(&gt;Dev)                Dev Pr(&gt;Dev)                      Dev Pr(&gt;Dev)                  Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                                                                                     </span>
+<span class="co">#&gt; grupos         0.822              0.913    0.822                    0.911    0.836                4.652    0.309</span>
+<span class="co">#&gt;             Leptodactylus_latrans          Leptodactylus_mystaceus          Leptodactylus_mystacinus         </span>
+<span class="co">#&gt;                               Dev Pr(&gt;Dev)                     Dev Pr(&gt;Dev)                      Dev Pr(&gt;Dev)</span>
 <span class="co">#&gt; (Intercept)                                                                                                  </span>
-<span class="co">#&gt; grupos         0.027               3.363    0.467                   2.64    0.622              1.655    0.783</span>
-<span class="co">#&gt;             Scinax_similis          Trachycephalus_typhonius         </span>
-<span class="co">#&gt;                        Dev Pr(&gt;Dev)                      Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                          </span>
-<span class="co">#&gt; grupos               2.646    0.622                    1.622    0.783</span>
+<span class="co">#&gt; grupos                      0.811    0.836                   1.869    0.783                    9.772    0.045</span>
+<span class="co">#&gt;             Physalaemus_centralis          Physalaemus_cuvieri          Physalaemus_marmoratus         </span>
+<span class="co">#&gt;                               Dev Pr(&gt;Dev)                 Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                                                                            </span>
+<span class="co">#&gt; grupos                      2.639    0.670               8.221    0.062                  1.622    0.783</span>
+<span class="co">#&gt;             Physalaemus_nattereri          Pseudis_paradoxa          Rhinella_ornata          Rhinella_schneideri</span>
+<span class="co">#&gt;                               Dev Pr(&gt;Dev)              Dev Pr(&gt;Dev)             Dev Pr(&gt;Dev)                 Dev</span>
+<span class="co">#&gt; (Intercept)                                                                                                      </span>
+<span class="co">#&gt; grupos                     17.131    0.014             2.67    0.540          11.961    0.027               3.363</span>
+<span class="co">#&gt;                      Scinax_fuscomarginatus          Scinax_fuscovarius          Scinax_similis         </span>
+<span class="co">#&gt;             Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)            Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                                                                             </span>
+<span class="co">#&gt; grupos         0.467                   2.64    0.622              1.655    0.783          2.646    0.622</span>
+<span class="co">#&gt;             Trachycephalus_typhonius         </span>
+<span class="co">#&gt;                                  Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                  </span>
+<span class="co">#&gt; grupos                         1.622    0.783</span>
 <span class="co">#&gt; Arguments:</span>
 <span class="co">#&gt;  Test statistics calculated assuming uncorrelated response (for faster computation) </span>
 <span class="co">#&gt; P-value calculated using 999 iterations via PIT-trap resampling.</span></code></pre></div>
@@ -2382,7 +2401,7 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 <div class="prev"><a href="cap8.html"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></div>
 <div class="next"><a href="cap10.html"><span class="header-section-number">10</span> Rarefação</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap9"><span class="header-section-number">9</span> Análises Multidimensionais</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-5">Pré-requisitos do capítulo</a></li>
@@ -2430,8 +2449,8 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/09_analises_multidimensionais.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/09_analises_multidimensionais.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/09_analises_multidimensionais.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/09_analises_multidimensionais.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -2443,11 +2462,11 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>

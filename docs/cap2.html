@@ -7,7 +7,7 @@
 <title>Capítulo 2 Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Capítulo originalmente publicado por Gonçalves-Souza, Provete, Garey, da Silva &amp; Albuquerque (2019), in Methods and Techniques in Ethnobiology and Ethnoecology (publicação autorizada por Springer,...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 2 Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap2.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 2 Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes | Análises Ecológicas no R">
 <meta name="twitter:description" content="Capítulo originalmente publicado por Gonçalves-Souza, Provete, Garey, da Silva &amp; Albuquerque (2019), in Methods and Techniques in Ethnobiology and Ethnoecology (publicação autorizada por Springer,...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -40,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -67,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -91,7 +117,7 @@
 </h2>
 <div id="um-bestiárioperguntas_ecologia-1-para-o-teste-de-hipóteses-você-está-fazendo-a-pergunta-certa" class="section level3" number="2.2.1">
 <h3>
-<span class="header-section-number">2.2.1</span> Um bestiário<a href="refer%C3%AAncias.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> para o teste de hipóteses (Você está fazendo a pergunta certa?)<a class="anchor" aria-label="anchor" href="#um-besti%C3%A1rioperguntas_ecologia-1-para-o-teste-de-hip%C3%B3teses-voc%C3%AA-est%C3%A1-fazendo-a-pergunta-certa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2.1</span> Um bestiário<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;O bestiário é uma literatura do Século XII que descrevia animais (reais ou imaginários) com uma visão divertida e fantasiosa. Parte da interpretação continha lições de moral dos monges católicos que escreviam e ilustravam os bestiários. Longe de ser uma lição de moral ou mesmo uma descrição fantasiosa, usamos o termo bestiário neste livro para expressar o que há de mais importante e fantástico (na visão dos autores) para fazer um bom teste de hipóteses.&lt;/p&gt;"><sup>1</sup></a> para o teste de hipóteses (Você está fazendo a pergunta certa?)<a class="anchor" aria-label="anchor" href="#um-besti%C3%A1rioperguntas_ecologia-1-para-o-teste-de-hip%C3%B3teses-voc%C3%AA-est%C3%A1-fazendo-a-pergunta-certa"><i class="fas fa-link"></i></a>
 </h3>
 <p>A maioria dos alunos e professores de ciências biológicas possuem aversão à palavra “estatística”. Não surpreendentemente, enquanto a maioria das disciplinas acadêmicas que compõem o “STEM” (termo em inglês para aglomerar <em>Ciência, Tecnologia, Engenharia e Matemática</em>) têm uma sólida formação estatística durante a graduação, cursos de ciências biológicas têm um currículo fraco ao integrar o pensamento estatístico dentro de um contexto biológico <span class="citation">(<a href="refer%C3%AAncias.html#ref-metz_teaching_2008" role="doc-biblioref">Metz 2008</a>)</span>. Esses cursos têm sido frequentemente ministrados sem qualquer abordagem prática para integrar os alunos em uma plataforma de solução de problemas <span class="citation">(<a href="refer%C3%AAncias.html#ref-horgan_teaching_1999" role="doc-biblioref">Horgan et al. 1999</a>)</span>. Infelizmente, a Etnobiologia, Ecologia e Conservação (daqui em diante EEC) não são exceções. Talvez mais importante, uma grande preocupação durante o treinamento estatístico de estudantes de EEC é a necessidade de trabalhar com problemas complexos e multidimensionais que exigem soluções analíticas ainda mais complicadas para um público sem experiência em estatística e matemática. Por este motivo, muitos pesquisadores consideram a estatística como a parte mais problemática de sua pesquisa científica. Argumentamos neste capítulo que a dificuldade de usar estatística em EEC está associada à ausência de uma plataforma de solução de problemas gerando hipóteses claras que são derivadas de uma teoria. No entanto, concordamos que há um grande desafio em algumas disciplinas como a Etnobiologia para integrar esta abordagem direcionada por hipóteses, uma vez que foi introduzida apenas recentemente (veja Phillips &amp; Gentry <span class="citation">(<a href="refer%C3%AAncias.html#ref-phillips_useful_1993" role="doc-biblioref">1993</a>)</span>, Albuquerque &amp; Hanazaki <span class="citation">(<a href="refer%C3%AAncias.html#ref-albuquerque_five_2009" role="doc-biblioref">2009</a>)</span>). Devido à falta de uma plataforma de solução de problemas, frequentemente percebemos que alunos/pesquisadores na EEC geralmente têm dificuldades de responder perguntas básicas para uma pesquisa científica, tais como:</p>
 <ol style="list-style-type: decimal">
@@ -125,7 +151,7 @@ Figura 2.2: (A) Tipos de variáveis e (B) visualização de dados para represent
 <h2>
 <span class="header-section-number">2.3</span> Fluxograma: Conectando variáveis para melhorar o desenho experimental e as análises estatísticas<a class="anchor" aria-label="anchor" href="#fluxograma-conectando-vari%C3%A1veis-para-melhorar-o-desenho-experimental-e-as-an%C3%A1lises-estat%C3%ADsticas"><i class="fas fa-link"></i></a>
 </h2>
-<p>McIntosh e Pontius <span class="citation">(<a href="refer%C3%AAncias.html#ref-mcintosh_science_2017" role="doc-biblioref">2017</a>)</span> afirmaram que o pensamento estatístico (representado na Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> inclui quatro etapas importantes: i) quais perguntas você investigaria (Seção 2.4), ii) como e onde coletar os dados <span class="citation">(<a href="refer%C3%AAncias.html#ref-ruxton_experimental_2016" role="doc-biblioref">Ruxton and Colegrave 2016</a>)</span>, iii) quais fatores devem ser considerados e como eles afetam suas variáveis de interesse (e como elas afetam umas às outras), e iv) qual análise estatística você deve usar e como interpretar e comunicar os resultados (Seção 2.4). No entanto, a etapa (3) deve ser feita antes de coletar os dados. Por exemplo, se você está interessado na investigação dos benefícios das matas ciliares para as espécies nativas de peixes, quais variáveis devem ser incluídas no estudo? Se você escolher rios com e sem mata ciliar como única variável preditora, seu projeto de amostragem irá omitir outras variáveis de confusão, como ordem do rio e carbono orgânico do solo a montante. Vellend <span class="citation">(<a href="refer%C3%AAncias.html#ref-vellend_theory_2016" role="doc-biblioref">2016</a>)</span> nomeou este problema como o “problema de três caixas” (ver também Ruxton &amp; Colegrave <span class="citation">(<a href="refer%C3%AAncias.html#ref-ruxton_experimental_2016" role="doc-biblioref">2016</a>)</span>), que se refere à limitação em inferir que X (variável independente) causa variação em Y (variável depende) quando outras variáveis criam ou ampliam a correlação entre X e Y (ver Figura 2 em Ruxton &amp; Colegrave <span class="citation">(<a href="refer%C3%AAncias.html#ref-ruxton_experimental_2016" role="doc-biblioref">2016</a>)</span>). Uma ferramenta útil para compreender a relação entre todas as variáveis relevantes do seu estudo é um fluxograma. No “fluxograma de pesquisa” (ver também Magnusson &amp; Mourão <span class="citation">(<a href="refer%C3%AAncias.html#ref-magnusson_statistics_2004" role="doc-biblioref">2004</a>)</span>) proposto aqui, variáveis dependentes (também conhecidas como resposta) e independentes (ou preditora), bem como covariáveis são representadas como caixas (com formas distintas: Figura <a href="cap2.html#fig:fig-research-flowchart">2.3</a>). Além disso, você pode usar uma seta para representar uma (possível) via causal indicando força e sinal (positivo ou negativo) da variável preditora na variável dependente (Figura <a href="cap2.html#fig:fig-research-flowchart">2.3</a>). Ao fazer isso, você pode melhorar o desenho experimental ou observacional incluindo ou controlando variáveis de confusão o que, por sua vez, pode ajudar a separar a contribuição relativa de diferentes variáveis preditoras em seu sistema. Mais importante, fazer conexões entre variáveis melhora sua capacidade de visualizar o “Quadro geral” de sua pesquisa, o que pode afetar seu experimento, análise estatística e revisão da literatura. Na verdade, Arlidge et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-arlidge_using_2017" role="doc-biblioref">2017</a>)</span> argumentam que fluxogramas facilitam a construção de narrativas, melhorando: i) a definição de múltiplas hipóteses, ii) coleta, interpretação e disseminação de dados e iii) a comunicação do conteúdo do estudo. Você também pode ler os livros de Magnusson et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-magnusson_statistics_2004" role="doc-biblioref">2004</a>)</span> para entender mais como usar fluxogramas para auxiliar análises estatísticas e Ford <span class="citation">(<a href="refer%C3%AAncias.html#ref-ford_scientific_2004" role="doc-biblioref">2000</a>)</span> que recomenda o uso de uma abordagem analítica para fomentar o desenvolvimento da pesquisa. Além disso, o fluxograma de pesquisa pode ser usado como uma ferramenta forte para contemplar os conselhos de Ford <span class="citation">(<a href="refer%C3%AAncias.html#ref-ford_scientific_2004" role="doc-biblioref">2000</a>)</span>, que foram: i) definir a pergunta da pesquisa, ii) definir a teoria a ser usada, iii) definir a técnica de investigação (por exemplo, experimento, observação de campo), iv) definir as medições, v) definir como fazer inferência, e vi) interpretar, generalizar e sintetizar a partir de dados que, por sua vez, são usados para refinar a teoria e modificar (quando necessário) questões futuras (Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a>).</p>
+<p>McIntosh e Pontius <span class="citation">(<a href="refer%C3%AAncias.html#ref-mcintosh_science_2017" role="doc-biblioref">2017</a>)</span> afirmaram que o pensamento estatístico representado na Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a> inclui quatro etapas importantes: i) quais perguntas você investigaria (Seção 2.4), ii) como e onde coletar os dados <span class="citation">(<a href="refer%C3%AAncias.html#ref-ruxton_experimental_2016" role="doc-biblioref">Ruxton and Colegrave 2016</a>)</span>, iii) quais fatores devem ser considerados e como eles afetam suas variáveis de interesse (e como elas afetam umas às outras), e iv) qual análise estatística você deve usar e como interpretar e comunicar os resultados (Seção 2.4). No entanto, a etapa (3) deve ser feita antes de coletar os dados. Por exemplo, se você está interessado na investigação dos benefícios das matas ciliares para as espécies nativas de peixes, quais variáveis devem ser incluídas no estudo? Se você escolher rios com e sem mata ciliar como única variável preditora, seu projeto de amostragem irá omitir outras variáveis de confusão, como ordem do rio e carbono orgânico do solo a montante. Vellend <span class="citation">(<a href="refer%C3%AAncias.html#ref-vellend_theory_2016" role="doc-biblioref">2016</a>)</span> nomeou este problema como o “problema de três caixas”, que se refere à limitação em inferir que X (variável independente) causa variação em Y (variável dependente) quando outras variáveis criam ou ampliam a correlação entre X e Y (ver Figura 2 em Ruxton &amp; Colegrave <span class="citation">(<a href="refer%C3%AAncias.html#ref-ruxton_experimental_2016" role="doc-biblioref">2016</a>)</span>). Uma ferramenta útil para compreender a relação entre todas as variáveis relevantes do seu estudo é um fluxograma. No “fluxograma de pesquisa” (ver também Magnusson &amp; Mourão <span class="citation">(<a href="refer%C3%AAncias.html#ref-magnusson_statistics_2004" role="doc-biblioref">2004</a>)</span>) proposto aqui, variáveis dependentes (também conhecidas como resposta) e independentes (ou preditora), bem como covariáveis são representadas como caixas (com formas distintas: Figura <a href="cap2.html#fig:fig-research-flowchart">2.3</a>). Além disso, você pode usar uma seta para representar uma (possível) via causal indicando força e sinal (positivo ou negativo) da variável preditora na variável dependente (Figura <a href="cap2.html#fig:fig-research-flowchart">2.3</a>). Ao fazer isso, você pode melhorar o desenho experimental ou observacional incluindo ou controlando variáveis de confusão o que, por sua vez, pode ajudar a separar a contribuição relativa de diferentes variáveis preditoras em seu sistema. Mais importante, fazer conexões entre variáveis melhora sua capacidade de visualizar o “Quadro geral” de sua pesquisa, o que pode afetar seu experimento, análise estatística e revisão da literatura. Na verdade, Arlidge et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-arlidge_using_2017" role="doc-biblioref">2017</a>)</span> argumentam que fluxogramas facilitam a construção de narrativas, melhorando: i) a definição de múltiplas hipóteses, ii) coleta, interpretação e disseminação de dados e iii) a comunicação do conteúdo do estudo. Você também pode ler os livros de Magnusson et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-magnusson_statistics_2004" role="doc-biblioref">2004</a>)</span> para entender mais como usar fluxogramas para auxiliar análises estatísticas e Ford <span class="citation">(<a href="refer%C3%AAncias.html#ref-ford_scientific_2004" role="doc-biblioref">2000</a>)</span> que recomenda o uso de uma abordagem analítica para fomentar o desenvolvimento da pesquisa. Além disso, o fluxograma de pesquisa pode ser usado como uma ferramenta forte para contemplar os conselhos de Ford <span class="citation">(<a href="refer%C3%AAncias.html#ref-ford_scientific_2004" role="doc-biblioref">2000</a>)</span>, que foram: i) definir a pergunta da pesquisa, ii) definir a teoria a ser usada, iii) definir a técnica de investigação (por exemplo, experimento, observação de campo), iv) definir as medições, v) definir como fazer inferência, e vi) interpretar, generalizar e sintetizar a partir de dados que, por sua vez, são usados para refinar a teoria e modificar (quando necessário) questões futuras (Figura <a href="cap2.html#fig:fig-statistical-thinking">2.1</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-research-flowchart"></span>
 <img src="img/cap02_fig03.png" alt='Exemplo de como usar um fluxograma para melhorar o entendimento do sistema estudado. A pergunta teórica "Qual é o impacto da invasão na comunidade nativa e nas propriedades do ecossistema?" pode gerar duas predições: i) a planta exótica *Prosopis juliflora* reduz a diversidade beta de comunidades de plantas nativas, e ii) *Prosopis juliflora* modifica a composição das comunidades de plantas e reduz o estoque de carbono e as taxas de decomposição. Após selecionar suas predições, você pode construir um fluxograma conectando as variáveis relevantes e as associações entre elas. Além disso, você pode usar as informações na **Caixa 1** para identificar que tipo de variável você irá coletar e quais figuras podem ser usadas (b).' width="100%" height="100%"><p class="caption">
@@ -140,7 +166,7 @@ Figura 2.3: Exemplo de como usar um fluxograma para melhorar o entendimento do s
 <blockquote>
 <p><em>As teorias são generalizações. As teorias contêm perguntas. Para algumas teorias, as perguntas são explícitas e representam o que a teoria pretende explicar. Para outras, as questões são implícitas e se relacionam com a quantidade e tipo de generalização, dada a escolha de métodos e exemplos usados por pesquisadores na construção da teoria. As teorias mudam continuamente, à medida que exceções são encontradas às suas generalizações e como questões implícitas sobre método e opções de estudos são expostas. - E. David Ford <span class="citation">(<a href="refer%C3%AAncias.html#ref-ford_scientific_2004" role="doc-biblioref">2000</a>)</span></em></p>
 </blockquote>
-<p>Como argumentamos antes, uma questão relevante e testável precede as análises estatísticas. Assim, apresentamos a seguir 12 questões que podem estimular pesquisas futuras na ECC. Observe, no entanto, que não queremos dizer que eles são as únicas questões relevantes a serem testadas na EEC - ver, por exemplo, Sutherland et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-sutherland_identification_2013" role="doc-biblioref">2013</a>)</span> para uma avaliação completa da pesquisa de ponta em Ecologia; e Caixa 6.1 em Pickett et al. [-<span class="citation">Pickett, Kolasa, and Jones (<a href="refer%C3%AAncias.html#ref-pickett_ecological_2007" role="doc-biblioref">2007</a>)</span>]<a href="refer%C3%AAncias.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Especificamente, essas questões são muito amplas e podem ser desenvolvidas em perguntas, hipóteses e predições mais restritas. Depois de cada questão teórica, apresentamos um estudo que testou essas hipóteses bem como as variáveis relevantes que podem estimular estudos futuros.</p>
+<p>Como argumentamos antes, uma questão relevante e testável precede as análises estatísticas. Assim, apresentamos a seguir 12 questões que podem estimular pesquisas futuras na ECC. Observe, no entanto, que não queremos dizer que eles são as únicas questões relevantes a serem testadas na EEC - ver, por exemplo, Sutherland et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-sutherland_identification_2013" role="doc-biblioref">2013</a>)</span> para uma avaliação completa da pesquisa de ponta em Ecologia; e Caixa 6.1 em Pickett et al. [-<span class="citation">Pickett, Kolasa, and Jones (<a href="refer%C3%AAncias.html#ref-pickett_ecological_2007" role="doc-biblioref">2007</a>)</span>]<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Após a publicação original deste capítulo, Ulysses Albuquerque e colaboradores publicaram artigo sugerindo questões fundamentais em Etnobiologia: Albuquerque et al. 2019, Acta Bot. Bras. 33, 2.&lt;/p&gt;"><sup>2</sup></a>. Especificamente, essas questões são muito amplas e podem ser desenvolvidas em perguntas, hipóteses e predições mais restritas. Depois de cada questão teórica, apresentamos um estudo que testou essas hipóteses bem como as variáveis relevantes que podem estimular estudos futuros.</p>
 <ol style="list-style-type: lower-alpha">
 <li><strong>Como o uso da terra afeta a manutenção da biodiversidade e a distribuição de espécies em diferentes escalas espaciais?</strong></li>
 </ol>
@@ -202,11 +228,12 @@ Figura 2.3: Exemplo de como usar um fluxograma para melhorar o entendimento do s
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="cap1.html"><span class="header-section-number">1</span> Introdução</a></div>
 <div class="next"><a href="cap3.html"><span class="header-section-number">3</span> Pré-requisitos</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap2"><span class="header-section-number">2</span> Voltando ao básico: como dominar a arte de fazer perguntas cientificamente relevantes</a></li>
 <li><a class="nav-link" href="#introdu%C3%A7%C3%A3o"><span class="header-section-number">2.1</span> Introdução</a></li>
@@ -220,8 +247,8 @@ Figura 2.3: Exemplo de como usar um fluxograma para melhorar o entendimento do s
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/02_perguntas_ecologia.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/02_perguntas_ecologia.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/02_perguntas_ecologia.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/02_perguntas_ecologia.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -233,11 +260,11 @@ Figura 2.3: Exemplo de como usar um fluxograma para melhorar o entendimento do s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>

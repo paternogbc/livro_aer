@@ -6,21 +6,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 15 Dados geoespaciais | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
-<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 15 Dados geoespaciais | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap15.html">
 <meta property="og:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
+<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 15 Dados geoespaciais | Análises Ecológicas no R">
-<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
+<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -40,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -67,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -78,7 +104,7 @@
 <div id="pré-requisitos-do-capítulo-11" class="section level2 unnumbered">
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-11"><i class="fas fa-link"></i></a>
 </h2>
-<p>Pacotes e dados que serão utilizados nesse capítulo.</p>
+<p>Pacotes e dados que serão utilizados neste capítulo.</p>
 <div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
@@ -92,7 +118,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeaGIT/geobr">geobr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://paleolimbot.github.io/ggspatial/">ggspatial</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap">tmap</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmaptools">tmaptools</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/mapview">mapview</a></span><span class="op">)</span>
@@ -131,11 +157,11 @@
 <h2>
 <span class="header-section-number">15.2</span> Vetor<a class="anchor" aria-label="anchor" href="#vetor"><i class="fas fa-link"></i></a>
 </h2>
-<p>Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizada espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar de filtros ou agregações dos dados de cada feição (Figura <a href="cap15.html#fig:fig-vetor-tipos">15.1</a>).</p>
+<p>Dados vetoriais são usados para mapear fenômenos ou objetos espacialmente explícitos que possuem localização ou dimensões bem definidas, representado a partir de formas geométricas (como pontos, linhas e polígonos) e possuem a possibilidade de ter associado a eles informações tabulares. A tabela de atributos é uma tabela que inclui dados geoespaciais e dados alfanuméricos. Os dados geoespaciais são representados por feições geolocalizadas espacialmente (ponto, linha ou polígono), e os dados alfanuméricos (tabela de dados). Dessa forma, a tabela de atributos reúne informações sobre cada feição e pode ser utilizada para realizar filtros ou agregações dos dados de cada feição (Figura <a href="cap15.html#fig:fig-vetor-tipos">15.1</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-tipos"></span>
-<img src="img/cap15_fig01.png" alt="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de:Olaya [-@olaya2020])." width="100%" height="100%"><p class="caption">
-Figura 15.1: Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de:Olaya <span class="citation">(<a href="refer%C3%AAncias.html#ref-olaya2020" role="doc-biblioref">2020</a>)</span>).
+<img src="img/cap15_fig01.png" alt="Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de: Olaya [-@olaya2020]." width="100%" height="100%"><p class="caption">
+Figura 15.1: Representação das geometrias de ponto, linha e polígono e atributos. Adaptado de: Olaya <span class="citation">(<a href="refer%C3%AAncias.html#ref-olaya2020" role="doc-biblioref">2020</a>)</span>.
 </p>
 </div>
 <div id="sf-principal-pacote-no-r-para-dados-vetoriais" class="section level3" number="15.2.1">
@@ -169,18 +195,18 @@ Figura 15.1: Representação das geometrias de ponto, linha e polígono e atribu
 <span class="co">#&gt; Bounding box:  xmin: -180 ymin: -89.9 xmax: 180 ymax: 83.64513</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt; # A tibble: 177 × 11</span>
-<span class="co">#&gt;    iso_a2 name_long  continent region_un subregion type  area_km2     pop lifeExp gdpPercap                      geom</span>
-<span class="co">#&gt;  * &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;MULTIPOLYGON [°]&gt;</span>
-<span class="co">#&gt;  1 FJ     Fiji       Oceania   Oceania   Melanesia Sove…   1.93e4  8.86e5    70.0     8222. (((-180 -16.55522, -179.…</span>
-<span class="co">#&gt;  2 TZ     Tanzania   Africa    Africa    Eastern … Sove…   9.33e5  5.22e7    64.2     2402. (((33.90371 -0.95, 31.86…</span>
-<span class="co">#&gt;  3 EH     Western S… Africa    Africa    Northern… Inde…   9.63e4 NA         NA         NA  (((-8.66559 27.65643, -8…</span>
-<span class="co">#&gt;  4 CA     Canada     North Am… Americas  Northern… Sove…   1.00e7  3.55e7    82.0    43079. (((-132.71 54.04001, -13…</span>
-<span class="co">#&gt;  5 US     United St… North Am… Americas  Northern… Coun…   9.51e6  3.19e8    78.8    51922. (((-171.7317 63.78252, -…</span>
-<span class="co">#&gt;  6 KZ     Kazakhstan Asia      Asia      Central … Sove…   2.73e6  1.73e7    71.6    23587. (((87.35997 49.21498, 86…</span>
-<span class="co">#&gt;  7 UZ     Uzbekistan Asia      Asia      Central … Sove…   4.61e5  3.08e7    71.0     5371. (((55.96819 41.30864, 57…</span>
-<span class="co">#&gt;  8 PG     Papua New… Oceania   Oceania   Melanesia Sove…   4.65e5  7.76e6    65.2     3709. (((141.0002 -2.600151, 1…</span>
-<span class="co">#&gt;  9 ID     Indonesia  Asia      Asia      South-Ea… Sove…   1.82e6  2.55e8    68.9    10003. (((104.37 -1.084843, 104…</span>
-<span class="co">#&gt; 10 AR     Argentina  South Am… Americas  South Am… Sove…   2.78e6  4.30e7    76.3    18798. (((-68.63401 -52.63637, …</span>
+<span class="co">#&gt;    iso_a2 name_long      continent region_un subregion type  area_km2     pop lifeExp gdpPercap                      geom</span>
+<span class="co">#&gt;  * &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;MULTIPOLYGON [°]&gt;</span>
+<span class="co">#&gt;  1 FJ     Fiji           Oceania   Oceania   Melanesia Sove…   1.93e4  8.86e5    70.0     8222. (((-180 -16.55522, -179.…</span>
+<span class="co">#&gt;  2 TZ     Tanzania       Africa    Africa    Eastern … Sove…   9.33e5  5.22e7    64.2     2402. (((33.90371 -0.95, 31.86…</span>
+<span class="co">#&gt;  3 EH     Western Sahara Africa    Africa    Northern… Inde…   9.63e4 NA         NA         NA  (((-8.66559 27.65643, -8…</span>
+<span class="co">#&gt;  4 CA     Canada         North Am… Americas  Northern… Sove…   1.00e7  3.55e7    82.0    43079. (((-132.71 54.04001, -13…</span>
+<span class="co">#&gt;  5 US     United States  North Am… Americas  Northern… Coun…   9.51e6  3.19e8    78.8    51922. (((-171.7317 63.78252, -…</span>
+<span class="co">#&gt;  6 KZ     Kazakhstan     Asia      Asia      Central … Sove…   2.73e6  1.73e7    71.6    23587. (((87.35997 49.21498, 86…</span>
+<span class="co">#&gt;  7 UZ     Uzbekistan     Asia      Asia      Central … Sove…   4.61e5  3.08e7    71.0     5371. (((55.96819 41.30864, 57…</span>
+<span class="co">#&gt;  8 PG     Papua New Gui… Oceania   Oceania   Melanesia Sove…   4.65e5  7.76e6    65.2     3709. (((141.0002 -2.600151, 1…</span>
+<span class="co">#&gt;  9 ID     Indonesia      Asia      Asia      South-Ea… Sove…   1.82e6  2.55e8    68.9    10003. (((104.37 -1.084843, 104…</span>
+<span class="co">#&gt; 10 AR     Argentina      South Am… Americas  South Am… Sove…   2.78e6  4.30e7    76.3    18798. (((-68.63401 -52.63637, …</span>
 <span class="co">#&gt; # … with 167 more rows</span></code></pre></div>
 <p>Podemos fazer um mapa simples utilizando a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> desse objeto. Para facilitar, escolheremos apenas a primeira coluna <code>[1]</code> (Figura <a href="cap15.html#fig:fig-vetor-mundo">15.2</a>). Caso não escolhermos apenas uma coluna, um mapa para cada coluna será plotado.</p>
 <div class="alert alert-info">
@@ -205,15 +231,15 @@ Figura 15.2: Mapa vetorial do mundo.
 <p>Os dados no formato raster consistem em uma matriz (com linhas e colunas) em que os elementos representam células, geralmente igualmente espaçadas (pixels; Figura <a href="cap15.html#fig:fig-raster">15.3</a>). As células dos dados raster possuem duas informações: i) identificação das células (IDs das células) para especificar sua posição na matriz (Figura <a href="cap15.html#fig:fig-raster">15.3</a> A) e; ii) valores das células (Figura <a href="cap15.html#fig:fig-raster">15.3</a> B), que geralmente são coloridos para facilitar a interpretação da variação dos valores no espaço (Figura <a href="cap15.html#fig:fig-raster">15.3</a> C). Além disso, valores ausentes ou não amostrados são representados por <code>NA</code>, ou seja, <em>not available</em> (Figura <a href="cap15.html#fig:fig-raster">15.3</a> B e C).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-raster"></span>
-<img src="livro_files/figure-html/fig-raster-1.png" alt="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de:Lovelace et al. [-@lovelace2019]." width="100%" height="100%"><p class="caption">
-Figura 15.3: Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de:Lovelace et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-lovelace2019" role="doc-biblioref">2019</a>)</span>.
+<img src="livro_files/figure-html/fig-raster-1.png" alt="Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de: Lovelace et al. [-@lovelace2019]." width="100%" height="100%"><p class="caption">
+Figura 15.3: Raster: (A) IDs das células, (B) valores das células, (C) células coloridas. Adaptado de: Lovelace et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-lovelace2019" role="doc-biblioref">2019</a>)</span>.
 </p>
 </div>
-<p>Pode ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura <a href="cap15.html#fig:fig-vetor-tipos">15.1</a>, mas agora no formato raster (Figura <a href="cap15.html#fig:fig-raster-tipos">15.4</a>).</p>
+<p>Podemos ainda fazer uma comparação com as representações de dados vetoriais vistos na Figura <a href="cap15.html#fig:fig-vetor-tipos">15.1</a>, mas agora no formato raster (Figura <a href="cap15.html#fig:fig-raster-tipos">15.4</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-raster-tipos"></span>
-<img src="img/cap15_fig02.png" alt="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de:Olaya [-@olaya2020]." width="100%" height="100%"><p class="caption">
-Figura 15.4: Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de:Olaya <span class="citation">(<a href="refer%C3%AAncias.html#ref-olaya2020" role="doc-biblioref">2020</a>)</span>.
+<img src="img/cap15_fig02.png" alt="Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de: Olaya [-@olaya2020]." width="100%" height="100%"><p class="caption">
+Figura 15.4: Representação das geometrias de ponto, linha e polígono no formato raster. Adaptado de: Olaya <span class="citation">(<a href="refer%C3%AAncias.html#ref-olaya2020" role="doc-biblioref">2020</a>)</span>.
 </p>
 </div>
 <div id="raster-principal-pacote-no-r-para-dados-raster" class="section level3" number="15.3.1">
@@ -274,7 +300,7 @@ Figura 15.4: Representação das geometrias de ponto, linha e polígono no forma
 Figura 15.5: Mapa simples de um <code>RasterLayer</code>.
 </p>
 </div>
-<p>Além da classe <code>RasterLayer</code>, há mais duas classes que trabalham com múltiplas camadas: <code>RasterBrick</code> e <code>RasterStack</code>. Elas diferem em relação ao número de formatos de arquivo suportados, tipo de representação interna e velocidade de processamento.</p>
+<p>Além da classe <code>RasterLayer</code>, há mais duas classes que trabalham com múltiplas camadas: <code>RasterBrick</code> e <code>RasterStack</code>. Elas diferem em relação ao formato dos arquivos suportados, tipo de representação interna e velocidade de processamento.</p>
 <p>A classe <code>RasterBrick</code> geralmente corresponde à importação de um único arquivo de imagem de satélite multiespectral (multicamadas) ou a um único objeto com várias camadas na memória. A função <code><a href="https://rdrr.io/pkg/raster/man/brick.html">raster::brick()</a></code> cria um objeto <code>RasterBrick</code>.</p>
 <div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Raster layers</span>
@@ -343,12 +369,12 @@ Figura 15.7: Mapas simples de um raster <code>RasterStack</code>.
 <h2>
 <span class="header-section-number">15.4</span> Sistema de Referência de Coordenadas e Unidades<a class="anchor" aria-label="anchor" href="#sistema-de-refer%C3%AAncia-de-coordenadas-e-unidades"><i class="fas fa-link"></i></a>
 </h2>
-<p>Os dados geoespaciais (vetor e raster) possuem ainda um outro componente fundamental que é o Sistema de Referência de Coordenadas, ou do inglês <em>Coordinate Reference System (CRS)</em>. Esse componente define a referência espacial dos elementos geoespaciais (vetor e raster) na superfície da Terra. Esse componente é composto por dois principais conceitos: primeiro, que tipos de unidades estão sendo utilizadas para a representação geográfica, podendo assumir dois tipos - ângulos ou metros, que definem o Sistema de Coordenadas Geográficas e o Sistema de Coordenadas Projetadas, respectivamente. O segundo componente é o <em>datum</em>, que é a relação do sistema de coordenadas (geográfica ou projetada) com a superfície da Terra. Esse último componente faz parte de uma área da Cartografia denominada Geodésia que estuda a forma e dimensões da Terra, campo gravitacional e a localização de pontos fixos e sistemas de coordenadas. O livro de Lapaine &amp; Usery <span class="citation">(<a href="refer%C3%AAncias.html#ref-lapaine2017" role="doc-biblioref">2017</a>)</span> é um excelente material para se aprofundar nesse assunto.</p>
+<p>Os dados geoespaciais (vetor e raster) possuem ainda um outro componente fundamental que é o Sistema de Referência de Coordenadas, ou do inglês <em>Coordinate Reference System (CRS)</em>. Esse componente define a referência espacial dos elementos geoespaciais (vetor e raster) na superfície da Terra. Ele é composto por dois principais conceitos: primeiro, que tipos de unidades estão sendo utilizadas para a representação geográfica, podendo assumir dois tipos - ângulos ou metros, que definem o Sistema de Coordenadas Geográficas e o Sistema de Coordenadas Projetadas, respectivamente. O segundo componente é o <em>datum</em>, que é a relação do sistema de coordenadas (geográfica ou projetada) com a superfície da Terra. Esse último componente faz parte de uma área da Cartografia denominada Geodésia que estuda a forma e dimensões da Terra, campo gravitacional e a localização de pontos fixos e sistemas de coordenadas. O livro de Lapaine &amp; Usery <span class="citation">(<a href="refer%C3%AAncias.html#ref-lapaine2017" role="doc-biblioref">2017</a>)</span> é um excelente material para se aprofundar nesse assunto.</p>
 <div id="sistema-de-coordenadas-geográficas" class="section level3" number="15.4.1">
 <h3>
 <span class="header-section-number">15.4.1</span> Sistema de Coordenadas Geográficas<a class="anchor" aria-label="anchor" href="#sistema-de-coordenadas-geogr%C3%A1ficas"><i class="fas fa-link"></i></a>
 </h3>
-<p>O Sistema de Coordenadas Geográficas utiliza ângulos (graus) para representar feições na superfície da Terra através de dois valores: longitude e latitude. A longitude representa o eixo Leste-Oeste e a latitude o eixo Norte-Sul. Nesse sistema, a superfície da Terra é representada geralmente por uma superfície elipsoidal, pois a Terra é ligeiramente achatada nos polos devido ao seu movimento no entorno do seu eixo.</p>
+<p>O Sistema de Coordenadas Geográficas utiliza ângulos (graus) para representar feições na superfície da Terra através de dois valores: longitude e latitude. A longitude representa o eixo Leste-Oeste e a latitude o eixo Norte-Sul. Nesse sistema, a superfície da Terra é representada geralmente por uma superfície elipsoidal, pois a Terra é ligeiramente achatada nos polos devido ao movimento de rotação.</p>
 </div>
 <div id="sistema-de-coordenadas-projetadas" class="section level3" number="15.4.2">
 <h3>
@@ -368,7 +394,7 @@ Figura 15.7: Mapas simples de um raster <code>RasterStack</code>.
 <h3>
 <span class="header-section-number">15.4.4</span> Sistema de Referência de Coordenadas (CRS) no R<a class="anchor" aria-label="anchor" href="#sistema-de-refer%C3%AAncia-de-coordenadas-crs-no-r"><i class="fas fa-link"></i></a>
 </h3>
-<p>No R, há duas formas principais de representar um Sistema de Referência de Coordenadas: i) código <code>epsg</code> e ii) <code>proj4string</code>. O código EPSG (<em>European Petroleum Survey Group</em>) é uma sequência de números curta, referindo-se apenas a um CRS. O site <a href="http://epsg.io/">epsg.io</a> permite consultar diversas informações sobre um código, como procurar por um código, representação de mapas e fazer transformações de CRS.</p>
+<p>No R, há duas formas principais de representar um Sistema de Referência de Coordenadas: i) código <code>epsg</code> e ii) <code>proj4string</code>. O código EPSG (<em>European Petroleum Survey Group</em>) é uma sequência de números curta, referindo-se apenas a um CRS. O site <a href="http://epsg.io/">epsg.io</a> permite consultar diversas informações como procurar por um código, representação de mapas e fazer transformações de CRS.</p>
 <p>Já o <code>proj4string</code> permite mais flexibilidade para especificar diferentes parâmetros, como o tipo de projeção, <em>datum</em> e elipsoide. Dessa forma, é possível especificar muitas projeções, ou mesmo modificar as projeções existentes, tornando a representação <code>proj4string</code> mais complexa e flexível.</p>
 <p>Além disso, ainda é possível consultar uma extensa lista de CRSs no site <a href="https://spatialreference.org/">spatialreference.org</a>, que fornece descrições em diversos formatos, baseados em GDAL e Proj.4. Essa abordagem permite consultar uma URL que pode produzir uma referência espacial em um formato que seu software SIG ou o R pode utilizar como referência.</p>
 <p>Os pacotes (geo)espaciais no R suportam uma ampla variedade de CRSs e usam a biblioteca <a href="https://proj.org/index.html#">PROJ</a>. A função <code><a href="http://rgdal.r-forge.r-project.org/reference/make_EPSG.html">rgdal::make_EPSG()</a></code> retorna um <code>data frame</code> das projeções disponíveis, com informações dos códigos <code>epsg</code> e <code>proj4string</code> numa mesma tabela, facilitando a busca e uso de CRSs (Tabela <a href="cap15.html#tab:tab-epsg">15.1</a>).</p>
@@ -562,7 +588,7 @@ Diversos dados vetoriais e raster para o Brasil
 <a href="https://ecoregions2017.appspot.com/">Ecoregions</a>
 </td>
 <td style="text-align:left;">
-Dados de biorregiões e geo_vetor_biomas do mundo
+Dados de biorregiões e biomas do mundo
 </td>
 </tr>
 <tr>
@@ -692,10 +718,10 @@ Descrição
 <tbody>
 <tr>
 <td style="text-align:left;">
-<a href="https://mapgeo_vetor_biomas.org/">Mapgeo_vetor_biomas</a>
+<a href="https://mapgeo_vetor_biomas.org/">MapBiomas</a>
 </td>
 <td style="text-align:left;">
-Uso e cobertura da terra para o Brasil, Panamazonia Legal e Chaco, de 1985 a 2019
+Uso e cobertura da terra para o Brasil, Panamazonia Legal, Chaco e Mata Atlântica de 1985 a 2020
 </td>
 </tr>
 <tr>
@@ -900,7 +926,7 @@ Diversas bases de dados para o mundo
 <a href="https://cran.r-project.org/web/packages/rworldmap/index.html">rworldmap</a>
 </td>
 <td style="text-align:left;">
-Mapeando Dados Globais
+Visualização de dados globais
 </td>
 </tr>
 <tr>
@@ -924,7 +950,7 @@ Acesso para abrir imagens raster de mapas de ruas
 <a href="https://cran.r-project.org/web/packages/osmdata/index.html">osmdata</a>
 </td>
 <td style="text-align:left;">
-Baixe e importe dados do OpenStreetMap
+Baixa e importa dados do OpenStreetMap
 </td>
 </tr>
 <tr>
@@ -972,7 +998,7 @@ Fonte e processamento de dados oceanográficos
 <a href="https://cran.r-project.org/web/packages/envirem/index.html">envirem</a>
 </td>
 <td style="text-align:left;">
-Geração de Variáveis ENVIREM
+Geração de variáveis ENVIREM
 </td>
 </tr>
 <tr>
@@ -988,7 +1014,7 @@ Conjuntos de dados preditor de modelagem de distribuição de espécies
 <a href="https://cran.r-project.org/web/packages/metScanR/index.html">metScanR</a>
 </td>
 <td style="text-align:left;">
-Encontre, Mapeie e Colete Dados e Metadados Ambientais
+Encontra, mapeia e coleta dados e metadados ambientais
 </td>
 </tr>
 <tr>
@@ -1020,7 +1046,7 @@ Dados meteorológicos ‘NOAA’ de R
 <a href="https://cran.r-project.org/web/packages/RNCEP/index.html">RNCEP</a>
 </td>
 <td style="text-align:left;">
-Obtenha, organize e visualize dados meteorológicos NCEP
+Obtém, organiza e visualiza dados meteorológicos NCEP
 </td>
 </tr>
 <tr>
@@ -1458,7 +1484,7 @@ TRUE
 <p><strong>Importar dados vetoriais existentes</strong></p>
 <p>Para importar vetores existentes para o R, utilizaremos a função <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::st_read()</a></code>. A estrutura é semelhante para todos os formatos descritos na Tabela <a href="cap15.html#tab:tab-vetor-formatos">15.6</a>, de modo que sempre preencheremos o argumento <code>dsn</code> (<em>data source name</em>) com o nome do arquivo a ser importado. Entretanto, para banco de dados, como <em>GeoPackage</em>, pode ser necessário especificar a camada que se tem interesse com um segundo argumento chamado <code>layer</code>, com o nome da camada.</p>
 <p>Para quase todas as operações vetoriais nesse capítulo, usaremos os dados disponíveis para o município de Rio Claro/SP. Primeiramente, baixaremos esses dados da <a href="https://www.fbds.org.br/">FBDS (Fundação Brasileira para o Desenvolvimento Sustentável)</a>, através desse <a href="http://geo.fbds.org.br/">repositório de dados</a>. Em 2013, a FBDS deu início ao Projeto de Mapeamento em Alta Resolução dos Biomas Brasileiros, mapeando a cobertura da terra, hidrografia (nascentes, rios e lagos) e Áreas de Preservação Permanente (APPs). O mapeamento foi concluído para os municípios dos Biomas Mata Atlântica e Cerrado, e mais recentemente para os outros biomas. Para fazer o download dos arquivos de interesse, utilizaremos o R, através da função <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code>.</p>
-<p>Primeiramente, criaremos um diretório com a função <code>create.dir()</code>, usando a função <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code> para indicar o repositório (ver o Capítulo <a href="cap5.html#cap5">5</a>).</p>
+<p>Primeiramente, criaremos um diretório com a função <code><a href="https://rdrr.io/r/base/files2.html">dir.create()</a></code>, usando a função <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code> para indicar o repositório (ver o Capítulo <a href="cap5.html#cap5">5</a>).</p>
 <div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criar diretório</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"dados"</span><span class="op">)</span><span class="op">)</span>
@@ -1715,22 +1741,22 @@ Figura 15.12: Limite do Brasil.
 <span class="op">)</span>
 <span class="va">geo_anfibios_locais</span>
 <span class="co">#&gt; # A tibble: 1,163 × 25</span>
-<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_metho…</span>
-<span class="co">#&gt;    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;               </span>
-<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
-<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
-<span class="co">#&gt; # … with 1,153 more rows, and 17 more variables: period &lt;chr&gt;, month_start &lt;dbl&gt;, year_start &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,</span>
-<span class="co">#&gt; #   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period</span>
+<span class="co">#&gt;    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt; </span>
+<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
+<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
+<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;              tw,ni </span>
+<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt; # … with 1,153 more rows, and 16 more variables: month_start &lt;dbl&gt;, year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;,</span>
+<span class="co">#&gt; #   site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   precipitation &lt;dbl&gt;</span></code></pre></div>
 <p>Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote <code>ecodados</code>.</p>
 <div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
@@ -1748,22 +1774,21 @@ Figura 15.12: Limite do Brasil.
 <span class="co">#&gt; Bounding box:  xmin: -56.74194 ymin: -33.51083 xmax: -34.79667 ymax: -3.51525</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt; # A tibble: 1,163 × 24</span>
-<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_metho…</span>
-<span class="co">#&gt;  * &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;               </span>
-<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
-<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;                </span>
-<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
-<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
-<span class="co">#&gt; # … with 1,153 more rows, and 16 more variables: period &lt;chr&gt;, month_start &lt;dbl&gt;, year_start &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,</span>
-<span class="co">#&gt; #   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period</span>
+<span class="co">#&gt;  * &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt; </span>
+<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
+<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
+<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;              tw,ni </span>
+<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
+<span class="co">#&gt; # … with 1,153 more rows, and 15 more variables: month_start &lt;dbl&gt;, year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;,</span>
+<span class="co">#&gt; #   site &lt;chr&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Plot</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_anfibios_locais_vetor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"black"</span>, 
@@ -1861,17 +1886,16 @@ Figura 15.14: Camada raster do DEM em relação ao limite do município de Rio C
 <div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="fu">ecodados</span><span class="fu">::</span><span class="va">geo_raster_bioclim</span></code></pre></div>
-<p>Para importar essa série de camadas, primeiramente listaremos os arquivos e depois importar no formato <code>RasterStack</code> (Figura <a href="cap15.html#fig:fig-raster-wc">15.15</a>).</p>
+<p>Para importar essa série de camadas, primeiramente listaremos os arquivos e depois importaremos no formato <code>RasterStack</code> (Figura <a href="cap15.html#fig:fig-raster-wc">15.15</a>).</p>
 <div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Listar arquivos</span>
 <span class="va">arquivos_raster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"dados"</span>, <span class="st">"raster"</span><span class="op">)</span>, pattern <span class="op">=</span> <span class="st">"wc"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">".tif"</span>, <span class="va">.</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">arquivos_raster</span>
-<span class="co">#&gt;  [1] "wc2.1_10m_bio_1.tif"  "wc2.1_10m_bio_10.tif" "wc2.1_10m_bio_11.tif" "wc2.1_10m_bio_12.tif"</span>
-<span class="co">#&gt;  [5] "wc2.1_10m_bio_13.tif" "wc2.1_10m_bio_14.tif" "wc2.1_10m_bio_15.tif" "wc2.1_10m_bio_16.tif"</span>
-<span class="co">#&gt;  [9] "wc2.1_10m_bio_17.tif" "wc2.1_10m_bio_18.tif" "wc2.1_10m_bio_19.tif" "wc2.1_10m_bio_2.tif" </span>
-<span class="co">#&gt; [13] "wc2.1_10m_bio_3.tif"  "wc2.1_10m_bio_4.tif"  "wc2.1_10m_bio_5.tif"  "wc2.1_10m_bio_6.tif" </span>
-<span class="co">#&gt; [17] "wc2.1_10m_bio_7.tif"  "wc2.1_10m_bio_8.tif"  "wc2.1_10m_bio_9.tif"</span>
+<span class="co">#&gt;  [1] "wc2.1_10m_bio_1.tif"  "wc2.1_10m_bio_10.tif" "wc2.1_10m_bio_11.tif" "wc2.1_10m_bio_12.tif" "wc2.1_10m_bio_13.tif"</span>
+<span class="co">#&gt;  [6] "wc2.1_10m_bio_14.tif" "wc2.1_10m_bio_15.tif" "wc2.1_10m_bio_16.tif" "wc2.1_10m_bio_17.tif" "wc2.1_10m_bio_18.tif"</span>
+<span class="co">#&gt; [11] "wc2.1_10m_bio_19.tif" "wc2.1_10m_bio_2.tif"  "wc2.1_10m_bio_3.tif"  "wc2.1_10m_bio_4.tif"  "wc2.1_10m_bio_5.tif" </span>
+<span class="co">#&gt; [16] "wc2.1_10m_bio_6.tif"  "wc2.1_10m_bio_7.tif"  "wc2.1_10m_bio_8.tif"  "wc2.1_10m_bio_9.tif"</span>
 
 <span class="co">## Importar vários rasters como stack</span>
 <span class="va">geo_raster_bioclim</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/stack.html">stack</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"dados"</span>, <span class="st">"raster"</span>, <span class="va">arquivos_raster</span><span class="op">)</span><span class="op">)</span>
@@ -2597,8 +2621,8 @@ Figura 15.16: Limites do município de Rio Claro/SP com CRS SIRGAS2000/geográfi
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">co110_sf</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"gray"</span>,  main <span class="op">=</span> <span class="st">"WGS84/Geográfio"</span>, graticule <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-mundo-wgs84"></span>
-<img src="livro_files/figure-html/fig-vetor-mundo-wgs84-1.png" alt="Camada BIO01 para o mundo com CRS geográfico e datum WGS84." width="100%" height="100%"><p class="caption">
-Figura 15.17: Camada BIO01 para o mundo com CRS geográfico e datum WGS84.
+<img src="livro_files/figure-html/fig-vetor-mundo-wgs84-1.png" alt="Limite dos países do mundo com CRS geográfico e datum WGS84." width="100%" height="100%"><p class="caption">
+Figura 15.17: Limite dos países do mundo com CRS geográfico e datum WGS84.
 </p>
 </div>
 <p>Agora, reprojetaremos utilizando a Projeção de Mollweide (Figura <a href="cap15.html#fig:fig-vetor-mundo-moll">15.18</a>).</p>
@@ -2610,8 +2634,8 @@ Figura 15.17: Camada BIO01 para o mundo com CRS geográfico e datum WGS84.
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">co110_sf_moll</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"gray"</span>, main <span class="op">=</span> <span class="st">"Projeção de Mollweide"</span>, graticule <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-mundo-moll"></span>
-<img src="livro_files/figure-html/fig-vetor-mundo-moll-1.png" alt="Camada BIO01 para o mundo com CRS Projeção de Mollweide." width="100%" height="100%"><p class="caption">
-Figura 15.18: Camada BIO01 para o mundo com CRS Projeção de Mollweide.
+<img src="livro_files/figure-html/fig-vetor-mundo-moll-1.png" alt="Limite dos países do mundo com CRS Projeção de Mollweide." width="100%" height="100%"><p class="caption">
+Figura 15.18: Limite dos países do mundo com CRS Projeção de Mollweide.
 </p>
 </div>
 <p>Ou ainda podemos utilizar a Projeção Azimutal de Lambert com alguns parâmetros ajustados para centralizar a projeção no Brasil (Figura <a href="cap15.html#fig:fig-vetor-mundo-laea">15.19</a>).</p>
@@ -2624,8 +2648,8 @@ Figura 15.18: Camada BIO01 para o mundo com CRS Projeção de Mollweide.
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">co110_sf_laea</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"gray"</span>, main <span class="op">=</span> <span class="st">"Projeção Azimutal de Lambert"</span>, graticule <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-mundo-laea"></span>
-<img src="livro_files/figure-html/fig-vetor-mundo-laea-1.png" alt="amada BIO01 para o mundo com CRS Projeção Azimutal de Lambert centrado no Brasil." width="100%" height="100%"><p class="caption">
-Figura 15.19: amada BIO01 para o mundo com CRS Projeção Azimutal de Lambert centrado no Brasil.
+<img src="livro_files/figure-html/fig-vetor-mundo-laea-1.png" alt="Limite dos países do mundo com CRS Projeção Azimutal de Lambert centrado no Brasil." width="100%" height="100%"><p class="caption">
+Figura 15.19: Limite dos países do mundo com CRS Projeção Azimutal de Lambert centrado no Brasil.
 </p>
 </div>
 </div>
@@ -2633,8 +2657,8 @@ Figura 15.19: amada BIO01 para o mundo com CRS Projeção Azimutal de Lambert ce
 <h3>
 <span class="header-section-number">15.8.2</span> Raster<a class="anchor" aria-label="anchor" href="#raster-3"><i class="fas fa-link"></i></a>
 </h3>
-<p>A reprojeção de objetos raster não é uma tarefa tão simples quanto a reprojeção de vetores. Em vetores, a reprojeção altera as coordenadas de cada vértice. Entretanto, como rasters são compostos de células retangulares do mesmo tamanho, a reprojeção do raster envolve a criação de um novo objeto raster, envolvendo duas operações espaciais separadas: i) reprojeção vetorial dos centroides celulares para outro CRS (i.e., muda a posição e tamanho do pixel) e, ii) cálculo de novos valores do pixel por meio de reamostragem (i.e., muda o valor do pixel).</p>
-<p>A função <code><a href="https://rdrr.io/pkg/raster/man/projectRaster.html">raster::projectRaster()</a></code> possui alguns parâmetros que necessitam de algumas especificações. O argumento <code>from</code> que é o objeto raster de entrada que sofre a reprojeção. O argumento <code>to</code> é um objeto raster do qual todas as propriedades dos CRSs, como extensão e resolução serão associadas ao objeto raster indicado no argumento <code>from</code>. O argumento <code>res</code> permite ajustar a resolução do pixel de saída do objeto raster reprojetado.</p>
+<p>A reprojeção de objetos raster não é uma tarefa tão simples quanto a reprojeção de vetores. Em vetores, a reprojeção altera as coordenadas de cada vértice. Entretanto, como rasters são compostos de células retangulares do mesmo tamanho,a reprojeção do raster envolve a criação de um novo objeto raster, com duas operações espaciais separadas: i) reprojeção vetorial dos centroides celulares para outro CRS (i.e., muda a posição e tamanho do pixel) e, ii) cálculo de novos valores do pixel por meio de reamostragem (i.e., muda o valor do pixel).</p>
+<p>A função <code><a href="https://rdrr.io/pkg/raster/man/projectRaster.html">raster::projectRaster()</a></code> possui alguns parâmetros que necessitam de algumas especificações. O argumento <code>from</code> é o objeto raster de entrada que sofre a reprojeção. O argumento <code>to</code> é um objeto raster do qual todas as propriedades dos CRSs, como extensão e resolução serão associadas ao objeto raster indicado no argumento <code>from</code>. O argumento <code>res</code> permite ajustar a resolução do pixel de saída do objeto raster reprojetado.</p>
 <p>O argumento <code>crs</code> aceita apenas as definições de <code>proj4string</code> extensas de um CRS em vez de códigos EPSG concisos. Contudo, é possível usar um código <code>EPSG</code> em uma definição de <code>proj4string</code> com <code>+init=epsg:EPSG</code>. Por exemplo, pode-se usar a definição <code>+init=epsg:4326</code> para definir CRS para WGS84 (código EPSG de 4326). A biblioteca <code>PROJ</code> adiciona automaticamente o resto dos parâmetros e os converte em <code>+init=epsg:4326 +proj=longlat +datum=WGS84 + no_defs + ellps=WGS84 + towgs84=0,0,0</code>.</p>
 <p>O argumento <code>method</code> permite escolher entre os métodos <code>ngb</code> (vizinho mais próximo) ou <code>biliniar</code> (interpolação bilinear), sendo o primeiro mais indicado para reprojeção de rasters categóricos, pois os valores estimados devem ser iguais aos do raster original. O método <code>ngb</code> define cada novo valor de célula para o valor da célula mais próxima (centro) do raster de entrada. Já o método <code>biliniar</code> é indicado para raster contínuos e calcula o valor da célula de saída com base nas quatro células mais próximas no raster original, sendo a média ponderada da distância dos valores dessas quatro células. Existem outras formas de interpolação, mas não as abordaremos aqui.</p>
 <p>Aqui, vamos reprojetar os dados de elevação para Rio Claro/SP. Para que esse processo seja mais rápido, iremos antes ajustar a extensão do raster para o limite do município usando a função <code><a href="https://rdrr.io/pkg/raster/man/crop.html">raster::crop()</a></code> (Figura <a href="cap15.html#fig:fig-raster-crop">15.20</a>). Essa função é melhor explicada na seção de cortes e máscaras, mais adiante.</p>
@@ -2744,7 +2768,7 @@ Figura 15.22: Reprojeção do raster de média de temperatura anual (BIO01) para
 <h3>
 <span class="header-section-number">15.9.1</span> Operações de atributos<a class="anchor" aria-label="anchor" href="#opera%C3%A7%C3%B5es-de-atributos"><i class="fas fa-link"></i></a>
 </h3>
-<p>São modificação de objetos geoespaciais baseado em informações não espaciais associadas a dados geoespaciais, como a tabela de atributos ou valores das células e nome das camadas dos rasters.</p>
+<p>São modificação de objetos geoespaciais baseado em informações não espaciais, como a tabela de atributos ou valores das células e nome das camadas dos rasters.</p>
 <p><strong>Vetor</strong></p>
 <p>As principais operações de atributos vetoriais são com respeito à tabela de atributos, sendo as principais: i) filtro, ii) junção, iii) agregação e iv) manipulação da tabela de atributos. A lista de possíveis operações é longa, dessa forma, apresentaremos algumas operações utilizando as principais funções e listamos as demais funções e suas operações, que dependerão de objetivos específicos.</p>
 <p>Quase todas as operações serão as mesmas realizadas pelo pacote <code>dplyr</code> em uma tabela de dados (ver o Capítulo <a href="cap5.html#cap5">5</a>), sendo algumas operações específicas para alterar apenas campos da tabela de atributos e outras que refletem operações nas feições, ou seja, alterarão através da tabela de atributos as características das feições. Essas funções e suas operações são descritas com detalhes na Tabela <a href="cap15.html#tab:tab-vetor-operacoes-atributos">15.11</a>.</p>
@@ -3115,10 +3139,10 @@ Figura 15.25: Camada BIO01 selecionada pelas operações de subconjunto.
 <div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Stack - nomes</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">geo_raster_bioclim</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "wc2.1_10m_bio_1"  "wc2.1_10m_bio_10" "wc2.1_10m_bio_11" "wc2.1_10m_bio_12" "wc2.1_10m_bio_13"</span>
-<span class="co">#&gt;  [6] "wc2.1_10m_bio_14" "wc2.1_10m_bio_15" "wc2.1_10m_bio_16" "wc2.1_10m_bio_17" "wc2.1_10m_bio_18"</span>
-<span class="co">#&gt; [11] "wc2.1_10m_bio_19" "wc2.1_10m_bio_2"  "wc2.1_10m_bio_3"  "wc2.1_10m_bio_4"  "wc2.1_10m_bio_5" </span>
-<span class="co">#&gt; [16] "wc2.1_10m_bio_6"  "wc2.1_10m_bio_7"  "wc2.1_10m_bio_8"  "wc2.1_10m_bio_9"</span>
+<span class="co">#&gt;  [1] "wc2.1_10m_bio_1"  "wc2.1_10m_bio_10" "wc2.1_10m_bio_11" "wc2.1_10m_bio_12" "wc2.1_10m_bio_13" "wc2.1_10m_bio_14"</span>
+<span class="co">#&gt;  [7] "wc2.1_10m_bio_15" "wc2.1_10m_bio_16" "wc2.1_10m_bio_17" "wc2.1_10m_bio_18" "wc2.1_10m_bio_19" "wc2.1_10m_bio_2" </span>
+<span class="co">#&gt; [13] "wc2.1_10m_bio_3"  "wc2.1_10m_bio_4"  "wc2.1_10m_bio_5"  "wc2.1_10m_bio_6"  "wc2.1_10m_bio_7"  "wc2.1_10m_bio_8" </span>
+<span class="co">#&gt; [19] "wc2.1_10m_bio_9"</span>
 
 <span class="co">## Stack - renomear</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">geo_raster_bioclim</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"bio"</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">19</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"bio0"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">)</span>
@@ -3136,12 +3160,10 @@ Figura 15.25: Camada BIO01 selecionada pelas operações de subconjunto.
 
 <span class="co">## Stack - média de todas as células de cada camada bioclimática</span>
 <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/cellStats.html">cellStats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">geo_raster_bioclim</span>, stat <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
-<span class="co">#&gt;       bio01       bio10       bio11       bio12       bio13       bio14       bio15       bio16       bio17 </span>
-<span class="co">#&gt;  -4.0378283   7.2035545 -13.8963286 550.0569022  93.4633916  15.3689993  74.7084151 241.6525005  55.4149542 </span>
-<span class="co">#&gt;       bio18       bio19       bio02       bio03       bio04       bio05       bio06       bio07       bio08 </span>
-<span class="co">#&gt; 156.4237816 108.8950626   9.9432120  34.5221528 880.1215546  13.9386423 -19.7938943  33.7325366  -0.9226276 </span>
-<span class="co">#&gt;       bio09 </span>
-<span class="co">#&gt;  -5.3774489</span></code></pre></div>
+<span class="co">#&gt;       bio01       bio10       bio11       bio12       bio13       bio14       bio15       bio16       bio17       bio18 </span>
+<span class="co">#&gt;  -4.0378283   7.2035545 -13.8963286 550.0569022  93.4633916  15.3689993  74.7084151 241.6525005  55.4149542 156.4237816 </span>
+<span class="co">#&gt;       bio19       bio02       bio03       bio04       bio05       bio06       bio07       bio08       bio09 </span>
+<span class="co">#&gt; 108.8950626   9.9432120  34.5221528 880.1215546  13.9386423 -19.7938943  33.7325366  -0.9226276  -5.3774489</span></code></pre></div>
 <p>Ou ainda, podemos analisar a frequência com que cada valor dos pixels ocorre, utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/freq.html">raster::freq()</a></code>.</p>
 <div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Raster - frequência das células</span>
@@ -3381,7 +3403,7 @@ NA
 Figura 15.26: Nascentes dentro de florestas no município de Rio Claro/SP.
 </p>
 </div>
-<p>Entretanto, muitas vezes queremos fazer o filtro de feições que estão fora de feições de outro objeto espacial. Para isso, podemos usar a função <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">sf::st_disjoint()</a></code> ou ainda utilizando o operador <code>[]</code>, mas com o argumento <code>op</code>, nesse caso utilizando a mesma função <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">sf::st_disjoint()</a></code> como operação (Figura <a href="cap15.html#fig:fig-vetor-filtro-espacial-externo">15.27</a>). Atentar o segundo vazio nesse filtro.</p>
+<p>Entretanto, muitas vezes queremos fazer o filtro de feições que estão fora de feições de outro objeto espacial. Para isso, podemos usar a função <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">sf::st_disjoint()</a></code> ou ainda utilizando o operador <code>[]</code>, mas com o argumento <code>op</code>, nesse caso utilizando a mesma função <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">sf::st_disjoint()</a></code> como operação (Figura <a href="cap15.html#fig:fig-vetor-filtro-espacial-externo">15.27</a>). Atentar o segundo argumento vazio nessa operação.</p>
 <div class="sourceCode" id="cb637"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Filtro espacial - externo</span>
 <span class="va">geo_vetor_nascentes_floresta_ext</span> <span class="op">&lt;-</span> <span class="va">geo_vetor_nascentes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -3439,7 +3461,7 @@ Figura 15.29: Agregação espacial contabilizando o número de nascentes para ca
 </p>
 </div>
 <p><strong>Distância espacial</strong></p>
-<p>A distância espacial é a distância calculada em duas dimensões (2D) entre um objeto espacial x e y baseado no CRS e para cada feição dos objetos geoespaciais. Para realizar esse cálculo, utilizamos a função <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">sf::st_distance()</a></code>. Em nosso exemplo, vamos calcular a distância das nascentes até a floresta mais próxima, e adicionando essa informação para cada ponto na tabela de atributos com a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>, para o município de Rio Claro/SP (Figura <a href="cap15.html#fig:fig-vetor-distancia-espacial">15.30</a>).</p>
+<p>A distância espacial é a distância calculada em duas dimensões (2D) entre um objeto espacial x e y baseado no CRS e para cada feição dos objetos geoespaciais. Para realizar esse cálculo, utilizamos a função <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">sf::st_distance()</a></code>. Em nosso exemplo, vamos calcular a distância das nascentes até a floresta mais próxima, e adicionar essa informação para cada ponto na tabela de atributos com a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>, para o município de Rio Claro/SP (Figura <a href="cap15.html#fig:fig-vetor-distancia-espacial">15.30</a>).</p>
 <div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Distância espacial</span>
 <span class="va">geo_vetor_nascentes_dist_flo</span> <span class="op">&lt;-</span> <span class="va">geo_vetor_nascentes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -3456,7 +3478,7 @@ Figura 15.30: Distância espacial das nascentes até o fragmento de floresta mai
 <p><strong>Raster</strong></p>
 <p>As principais operações espaciais para dados raster podem ser classificas, segundo Lovelace et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-lovelace2019" role="doc-biblioref">2019</a>)</span>, em: i) operações locais (por célula), ii) operações focais (por bloco de múltiplas células regulares - e.g. 3x3), iii) operações zonais (por bloco de múltiplas células irregulares) e iv) operações globais (por um ou vários rasters inteiros). Cada uma delas é aplicada para objetivos e escalas espaciais específicas. Para os exemplos desta seção, utilizaremos o dado raster de elevação para o município de Rio Claro/SP.</p>
 <p><strong>Operações locais</strong></p>
-<p>As operações locais contemplam todas as operações realizadas célula a célula em uma ou várias camadas de um objeto raster. A álgebra de raster é uma das mais comuns, simples e poderosas operações no R envolvendo rasters. Com ela podemos fazer operações simples através de operadores aritméticos (soma, subtração, multiplicação, divisão ou potenciação) entre dois ou mais objetos raster, ou utilizar funções para alterar todos os valores dos pixels como, por exemplo, as funções <code>lo10()</code> ou <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>, ou ainda a função <code><a href="https://rdrr.io/pkg/raster/man/scale.html">raster::scale()</a></code> para padronizar ou centralizar os valores dos rasters (Figura <a href="cap15.html#fig:fig-raster-local-aritmetico">15.31</a>).</p>
+<p>As operações locais contemplam todas as operações realizadas célula a célula em uma ou várias camadas de um objeto raster. A álgebra de raster é uma das mais comuns, simples e poderosas operações no R envolvendo rasters. Com ela podemos fazer operações simples através de operadores aritméticos (soma, subtração, multiplicação, divisão ou potenciação) entre dois ou mais objetos raster, ou utilizar funções para alterar todos os valores dos pixels como, por exemplo, as funções <code><a href="https://rdrr.io/r/base/Log.html">log10()</a></code> ou <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>, ou ainda a função <code><a href="https://rdrr.io/pkg/raster/man/scale.html">raster::scale()</a></code> para padronizar ou centralizar os valores dos rasters (Figura <a href="cap15.html#fig:fig-raster-local-aritmetico">15.31</a>).</p>
 <div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Soma</span>
 <span class="va">geo_raster_srtm_rio_claro2</span> <span class="op">&lt;-</span> <span class="va">geo_raster_srtm_rio_claro</span> <span class="op">+</span> <span class="va">geo_raster_srtm_rio_claro</span>
@@ -3478,7 +3500,7 @@ Figura 15.30: Distância espacial das nascentes até o fragmento de floresta mai
 Figura 15.31: Rasters de soma e log10 do mapa de elevação para Rio Claro/SP.
 </p>
 </div>
-<p>Além das operações aritméticas, a álgebra de rasters também permite operações lógicas, como criar um raster (binário - composto por 1 quando a operação lógica é verdadeira, e 0 quanto é falsa). Em nosso caso, buscamos todos os pixels acima de 600 metros para o raster de elevação de Rio Claro/SP (Figura <a href="cap15.html#fig:fig-raster-local-logico">15.32</a>).</p>
+<p>Além das operações aritméticas, a álgebra de rasters também permite operações lógicas, como criar um raster binário (composto por 1 quando a operação lógica é verdadeira, e 0 quanto é falsa). Em nosso caso, buscamos todos os pixels acima de 600 metros para o raster de elevação de Rio Claro/SP (Figura <a href="cap15.html#fig:fig-raster-local-logico">15.32</a>).</p>
 <div class="sourceCode" id="cb647"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Acima de 600</span>
 <span class="va">geo_raster_srtm_rio_claro_acima_600</span> <span class="op">&lt;-</span> <span class="va">geo_raster_srtm_rio_claro</span> <span class="op">&gt;</span> <span class="fl">600</span></code></pre></div>
@@ -3515,7 +3537,7 @@ Figura 15.32: Operação local lógica mostrando todos os pixels acima de 600 me
 Figura 15.33: Operação local de multiplicação de todos os pixels por eles mesmos do raster de elevação para Rio Claro/SP.
 </p>
 </div>
-<p>A predição de objetos raster (utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/predict.html">raster::predict()</a></code>) é outra aplicação extremamente útil em operações locais, nós a veremos mais à frente nesse capítulo. Essa função possui basicamente dois argumentos: <code>object</code> que é os rasters preditores e <code>model</code> com o modelo ajustado para o qual os valores serão preditos com base nos valores dos rasters. A partir da relação entre variáveis respostas (e.g, pontos no espaço, como ocorrência ou riqueza de espécies), e variáveis preditoras (rasters contínuos de elevação, pH, precipitação, temperatura, cobertura da terra ou classe de solo), criamos modelos usando funções como <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> ou uma técnica de aprendizado de máquina, e fazemos predições espaciais aplicando os coeficientes estimados aos valores dos raster preditores (consulte od Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap8.html#cap8">8</a>).</p>
+<p>A predição de objetos raster (utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/predict.html">raster::predict()</a></code>) é outra aplicação extremamente útil em operações locais, nós a veremos mais à frente neste capítulo. Essa função possui basicamente dois argumentos: <code>object</code> que é os rasters preditores e <code>model</code> com o modelo ajustado para o qual os valores serão preditos com base nos valores dos rasters. A partir da relação entre variáveis respostas (e.g, pontos no espaço, como ocorrência ou riqueza de espécies), e variáveis preditoras (rasters contínuos de elevação, pH, precipitação, temperatura, cobertura da terra ou classe de solo), criamos modelos usando funções como <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> ou uma técnica de aprendizado de máquina, e fazemos predições espaciais aplicando os coeficientes estimados aos valores dos raster preditores (consulte od Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap8.html#cap8">8</a>).</p>
 <p>Por fim, a reclassificação de rasters é outra operação muito comum quando trabalhamos com rasters. Nela é realizada a classificação de intervalos de valores numéricos em grupos, e.g. agrupar um modelo digital de elevação em classes de valores. A função que faz essa operação é a <code><a href="https://rdrr.io/pkg/raster/man/reclassify.html">raster::reclassify()</a></code>. Ela possui dois argumentos: <code>x</code> que é o raster a ser reclassificado, e o segundo <code>rcl</code> para o qual devemos construir uma matriz de reclassificação, onde a primeira coluna é a extremidade inferior, a segunda coluna é a extremidade superior, e a terceira coluna representa o novo valor para os intervalos das colunas um e dois. Vamos reclassificar o raster de elevação de Rio Claro/SP para os intervalos 400–600, 600–800 e 800–1000 que são reclassificados para os valores 1, 2 e 3, respectivamente (Figura <a href="cap15.html#fig:fig-raster-local-reclassificacao">15.34</a>).</p>
 <div class="sourceCode" id="cb651"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Matriz de reclassificação</span>
@@ -3602,7 +3624,7 @@ Figura 15.36: Raster de distância Euclidiana dos pixels abaixo de 500 m de elev
 </h3>
 <p>As operações geométricas realizam modificações em objetos geoespaciais baseado na geometria do vetor ou do raster e na interação e conversão entre vetor-raster. As operações geométricas vetoriais podem ser unárias (funcionam em uma única geometria) ou binárias (modificam uma geometria com base na forma de outra geometria). Ainda podemos fazer transformações para alterar os tipos vetores, que refletirá se as feições são únicas ou múltiplas, inclusive na tabela de atributos. As operações geométricas em rasters envolvem mudar a posição, tamanho e número dos pixels subjacentes e atribuir-lhes novos valores. Por fim, podemos ainda fazer operações de interações e conversões entre raster-vetor para ajustar rasters a vetores, assim como converter um objeto espacial vetorial para raster e vice-versa.</p>
 <p><strong>Vetor</strong></p>
-<p>Como dissemos, as operações geométricas em vetores criarão ou alterar a geometria de objetos da classe <code>sf</code>, podendo fazer alterações em única geometria (unárias): i) simplificação, ii) centroides, iii) pontos aleatórios, iv) buffers, v) polígono convexo, vi) polígonos de Voronoi, vii) quadrículas e hexágonos; ou modificar uma geometria com base na forma de outra geometria (binárias), viii) união e ix) recortes; ou ainda fazer transformações de tipo de geometrias.</p>
+<p>Como dissemos, as operações geométricas em vetores criam ou alteraram a geometria de objetos da classe <code>sf</code>, podendo fazer alterações em única geometria (unárias): i) simplificação, ii) centroides, iii) pontos aleatórios, iv) buffers, v) polígono convexo, vi) polígonos de Voronoi, vii) quadrículas e hexágonos; ou modificar uma geometria com base na forma de outra geometria (binárias), viii) união e ix) recortes; ou ainda fazer transformações de tipo de geometrias.</p>
 <p>Para exemplificar as operações geométricas com vetores, vamos utilizar os dados do limite, nascentes, hidrologia e cobertura da terra para o município de Rio Claro/SP.</p>
 <p><strong>Simplificação</strong></p>
 <p>A simplificação possui o intuito de generalizar linhas ou polígonos, diminuindo assim suas complexidades em relação ao número de vértices. É utilizada para representação em mapas menores ou mapas interativos ou ainda quando um objeto vetorial é muito grande. A função utilizada é a <code><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">sf::st_simplify()</a></code>, que usa o argumento <code>x</code> para uma geometria de entrada e <code>dTolerance</code> para controlar o nível de generalização nas unidades do mapa. Em nosso exemplo, simplificaremos a hidrografia de Rio Claro/SP (Figura <a href="cap15.html#fig:fig-vetor-simplificacao">15.37</a>).</p>
@@ -3616,8 +3638,8 @@ Figura 15.36: Raster de distância Euclidiana dos pixels abaixo de 500 m de elev
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_vetor_hidrografia_simplificado</span><span class="op">$</span><span class="va">geometry</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/adjustcolor.html">adjustcolor</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="fl">.7</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-simplificacao"></span>
-<img src="livro_files/figure-html/fig-vetor-simplificacao-1.png" alt="Simplificação da hidrografia para Rio Claro/SP." width="100%" height="100%"><p class="caption">
-Figura 15.37: Simplificação da hidrografia para Rio Claro/SP.
+<img src="livro_files/figure-html/fig-vetor-simplificacao-1.png" alt="Simplificação da hidrografia para Rio Claro/SP. As linhas em azul é a hidrografia original e as linhas em preto mostram a simplificação." width="100%" height="100%"><p class="caption">
+Figura 15.37: Simplificação da hidrografia para Rio Claro/SP. As linhas em azul é a hidrografia original e as linhas em preto mostram a simplificação.
 </p>
 </div>
 <p><strong>Centroides</strong></p>
@@ -3688,7 +3710,7 @@ Figura 15.41: Buffers quadrados de 1000 metros para os 30 pontos aleatórios no 
 </p>
 </div>
 <p><strong>Polígono convexo</strong></p>
-<p>Uma análise bastante comum, principalmente realizada pela IUCN, é a criação de polígonos convexos, para definir a extensão de ocorrência de uma espécie (<em>Extent of occurrence</em> - EOO). Nesse sentido, essa operação ligará os pontos externos de um conjunto de pontos e cria um polígono a partir deles. Podemos criar esse polígono com a função <code><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">sf::st_convex_hull()</a></code>. Um único passo que precisamos adiantar é utilizar a função <code><a href="https://r-spatial.github.io/sf/reference/geos_combine.html">sf::st_union()</a></code> para unir todos os pontos e criar um objeto <code>sf</code> <code>MULTIPOINT</code>, já iremos explicar com mais detalhes adiante. Vamos utilizar os pontos aleatórios que criamos anteriormente para criar o polígono convexo (Figura <a href="cap15.html#fig:fig-vetor-convexo">15.42</a>).</p>
+<p>Uma análise bastante comum, principalmente realizada pela IUCN, é a criação de polígonos convexos, para definir a extensão de ocorrência de uma espécie (<em>Extent of occurrence</em> - EOO). Nesse sentido, essa operação liga os pontos externos de um conjunto de pontos e cria um polígono a partir deles. Podemos criar esse polígono com a função <code><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">sf::st_convex_hull()</a></code>. Um único passo que precisamos adiantar é utilizar a função <code><a href="https://r-spatial.github.io/sf/reference/geos_combine.html">sf::st_union()</a></code> para unir todos os pontos e criar um objeto <code>sf</code> <code>MULTIPOINT</code>, já iremos explicar com mais detalhes adiante. Vamos utilizar os pontos aleatórios que criamos anteriormente para criar o polígono convexo (Figura <a href="cap15.html#fig:fig-vetor-convexo">15.42</a>).</p>
 <div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Polígono convexo</span>
 <span class="va">geo_vetor_rio_claro_sirgas2000_utm23s_convexo</span> <span class="op">&lt;-</span> <span class="va">geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -3789,11 +3811,11 @@ Figura 15.45: Hexágonos equivalentes a quadrículas de 2000 metros de arestas e
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_vetor_rio_claro_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/adjustcolor.html">adjustcolor</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="fl">.1</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-uniao"></span>
-<img src="livro_files/figure-html/fig-vetor-uniao-1.png" alt="União - dissolução - dos buffers criados a partir de pontos aleatórios para Rio Claro/SP." width="100%" height="100%"><p class="caption">
-Figura 15.46: União - dissolução - dos buffers criados a partir de pontos aleatórios para Rio Claro/SP.
+<img src="livro_files/figure-html/fig-vetor-uniao-1.png" alt="União - dissolução - dos buffers criados a partir dos 30 pontos aleatórios para Rio Claro/SP." width="100%" height="100%"><p class="caption">
+Figura 15.46: União - dissolução - dos buffers criados a partir dos 30 pontos aleatórios para Rio Claro/SP.
 </p>
 </div>
-<p><strong>Recorte e apagar (“clipar” e “erase”)</strong></p>
+<p><strong>Recorte e apagar (“clip” e “erase”)</strong></p>
 <p>O recorte realiza um subconjunto espacial envolvendo dois objetos geoespaciais. O recorte é aplicado somente a linhas e polígonos, ou seja, usaremos linhas e polígonos para recortar linhas ou polígonos. Esse recorte pode ser realizado de três formas: i) intersecção (subconjunto das geometrias sobrepostas entre os dois objetos), ii) diferença (subconjunto das geometrias do primeiro objeto sem sobreposição com o segundo objeto), e iii) diferença simétrica (apenas as geometrias não sobrepostas entre os dois objetos). Respectivamente para cada uma dessas operações temos funções específicas: <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">sf::st_intersection()</a></code>, <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">sf::st_difference()</a></code> e <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">sf::st_sym_difference()</a></code>.</p>
 <p>Para nosso exemplo, faremos o recorte da hidrografia em relação aos buffers criados e unidos para os 30 pontos aleatórios em Rio Claro/SP. Primeiramente, faremos o recorte para dentro dos buffers com a função <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">sf::st_intersection()</a></code> (Figura <a href="cap15.html#fig:fig-vetor-interseccao">15.47</a>).</p>
 <div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
@@ -3806,8 +3828,8 @@ Figura 15.46: União - dissolução - dos buffers criados a partir de pontos ale
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_vetor_hidrografia_interseccao</span><span class="op">$</span><span class="va">geometry</span>, col <span class="op">=</span> <span class="st">"blue"</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-interseccao"></span>
-<img src="livro_files/figure-html/fig-vetor-interseccao-1.png" alt="Recorte da hidrografia para dentro dos buffers dos 30 aleatórios para Rio Claro/SP." width="100%" height="100%"><p class="caption">
-Figura 15.47: Recorte da hidrografia para dentro dos buffers dos 30 aleatórios para Rio Claro/SP.
+<img src="livro_files/figure-html/fig-vetor-interseccao-1.png" alt="Recorte da hidrografia para fora dos buffers dos 30 pontos aleatórios para Rio Claro/SP." width="100%" height="100%"><p class="caption">
+Figura 15.47: Recorte da hidrografia para fora dos buffers dos 30 pontos aleatórios para Rio Claro/SP.
 </p>
 </div>
 <p>Para nosso segundo exemplo, realizamos o recorte da hidrografia em relação aos buffers, mas agora para fora dos buffers utilizando a função <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">sf::st_difference()</a></code> (Figura <a href="cap15.html#fig:fig-vetor-difereca">15.48</a>), que seria semelhando a operação de apagar (“erase”).</p>
@@ -3851,7 +3873,7 @@ Essas operações funcionam para as três classes dos objetos raster: <code>Rast
 </div>
 <p>Para exemplificar as operações geométricas com rasters, vamos utilizar os dados de elevação para o município de Rio Claro/SP e bioclimáticos para o mundo.</p>
 <p><strong>Agregação</strong></p>
-<p>Na agregação de rasters, aumentaremos o tamanho dos pixels (diminuindo a resolução), agregando os valores dos pixels em um pixel maior. Podemos realizar essa operação com a função <code><a href="https://rdrr.io/pkg/raster/man/aggregate.html">raster::aggregate()</a></code>, que possui três argumentos: <code>x</code> corresponde ao objeto raster de entrada, <code>fact</code> é o fator de agregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de agregação de 10 fará com o novo raster tenha a resolução de 900 m), e <code>fun</code> é a função utilizada para realizar a agregação dos pixels (Figura <a href="cap15.html#fig:fig-raster-agregacao">15.50</a>).</p>
+<p>Na agregação de rasters, aumentamos o tamanho dos pixels (diminuindo a resolução), agregando os valores dos pixels em um pixel maior. Podemos realizar essa operação com a função <code><a href="https://rdrr.io/pkg/raster/man/aggregate.html">raster::aggregate()</a></code>, que possui três argumentos: <code>x</code> corresponde ao objeto raster de entrada, <code>fact</code> é o fator de agregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de agregação de 10 fará com o novo raster tenha a resolução de 900 m), e <code>fun</code> é a função utilizada para realizar a agregação dos pixels (Figura <a href="cap15.html#fig:fig-raster-agregacao">15.50</a>).</p>
 <p>Em nosso exemplo, vamos aumentar o tamanho dos pixels para 900 metros do raster de elevação para Rio Claro/SP.</p>
 <div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Agregação - aumentar o tamanho do pixel</span>
@@ -3876,7 +3898,7 @@ Figura 15.50: Agregação (aumento do pixel para 900 metros) utilizando a média
 </p>
 </div>
 <p><strong>Desagregação</strong></p>
-<p>De modo contrário, na desagregação de rasters, diminuiremos o tamanho dos pixels (aumentando a resolução), preenchendo com novos valores. Podemos realizar essa operação com a função <code>raster::desaggregate()</code>, que assim como a função anterior, possui três argumentos: <code>x</code> corresponde ao objeto raster de entrada, <code>fact</code> é o fator de desagregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de desagregação de 2 fará com que o novo raster tenha a resolução de 45 m), e <code>method</code> é a função utilizada para realizar a desagregação dos pixels (Figura <a href="cap15.html#fig:fig-raster-desagregacao">15.51</a>).</p>
+<p>De modo contrário, na desagregação de rasters, diminuímos o tamanho dos pixels (aumentando a resolução), preenchendo com novos valores. Podemos realizar essa operação com a função <code>raster::desaggregate()</code>, que assim como a função anterior, possui três argumentos: <code>x</code> corresponde ao objeto raster de entrada, <code>fact</code> é o fator de desagregação e corresponde ao número que definirá o novo tamanho do pixel (e.g., se um raster tem resolução de 90 m, um fator de desagregação de 2 fará com que o novo raster tenha a resolução de 45 m), e <code>method</code> é a função utilizada para realizar a desagregação dos pixels (Figura <a href="cap15.html#fig:fig-raster-desagregacao">15.51</a>).</p>
 <p>Nesse exemplo, vamos diminuir o tamanho dos pixels para 45 metros do raster de elevação para Rio Claro/SP.</p>
 <div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Desagregação - diminuir o tamanho do pixel</span>
@@ -3919,7 +3941,7 @@ Figura 15.51: Desagregação (diminuição do pixel para 45 metros) utilizando o
 <span class="co">#&gt; values     : 19.8383, 20.60492  (min, max)</span></code></pre></div>
 <div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Plot</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_raster_bioclim</span>, col <span class="op">=</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_raster_bioclim_rc</span><span class="op">$</span><span class="va">bio01</span>, col <span class="op">=</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_vetor_rio_claro</span><span class="op">$</span><span class="va">geom</span>, col <span class="op">=</span> <span class="cn">NA</span>, border <span class="op">=</span> <span class="st">"red"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-raster-reamostragem"></span>
@@ -3928,7 +3950,7 @@ Figura 15.52: Reamostragem (alinhamento dos rasters) utilizando o método biline
 </p>
 </div>
 <p><strong>Interações raster-vetor</strong></p>
-<p>Podemos fazer operações da interação entre objetos vetoriais e raster, como ajustes da extensão e limite do raster para vetores (corte e máscara), extração dos valores dos pixels para vetores (pontos, linhas e polígonos), e estatísticas zonais dos valores dos pixels dos raster para um vetor (polígonos).</p>
+<p>Podemos fazer operações da interação entre objetos vetoriais e raster, como ajustes da extensão e limite do raster para vetores (corte e máscara), extração dos valores dos pixels para vetores (pontos, linhas e polígonos), e estatísticas zonais dos valores dos pixels dos raster para um vetor (linhas e polígonos).</p>
 <p><strong>Cortes e máscaras</strong></p>
 <p>Muitas vezes precisamos ajustar o tamanho de um objeto raster a uma área menor de interesse, geralmente definido por um objeto vetorial. Para realizar essa operação, dispomos de duas funções: <code><a href="https://rdrr.io/pkg/raster/man/crop.html">raster::crop()</a></code> e <code><a href="https://rdrr.io/pkg/raster/man/mask.html">raster::mask()</a></code>.</p>
 <div class="alert alert-info">
@@ -4032,9 +4054,9 @@ Figura 15.58: Extração dos valores de elevação e resumo pela média para os 
 </p>
 </div>
 <p><strong>Conversões raster-vetor</strong></p>
-<p>Por fim, podemos ainda fazer operações de conversão entre objetos vetoriais para raster e vice-versa. Nessas operações, podemos resumir ou transformar objetos vetoriais (pontos, linhas ou polígonos) para rasters, escolhendo um raster previamente existente, processo denominado rasterização. Também podemos realizar o processo inverso, i.e., transformar o raster em um vetor, podendo esse vetor ser um gride pontos, linhas ou polígonos, operação chamada de vetorização.</p>
+<p>Por fim, podemos ainda fazer operações de conversão entre objetos vetoriais para raster e vice-versa. Nessas operações, podemos resumir ou transformar objetos vetoriais (pontos, linhas ou polígonos) para rasters, escolhendo um raster previamente existente, processo denominado rasterização. Também podemos realizar o processo inverso, i.e., transformar o raster em um vetor, podendo esse vetor ser pontos, linhas ou polígonos, operação chamada de vetorização.</p>
 <p><strong>Rasterização</strong></p>
-<p>A conversão de vetor para raster pode ser realizada de pontos, linhas ou polígonos para rasters. Nesse processo, podemos utilizar uma função para resumir os dados pontuais para os pixels do raster que criaremos. Para essa operação, podemos utilizar a função <code><a href="https://rdrr.io/pkg/raster/man/rasterize.html">raster::rasterize()</a></code>, com o argumento <code>x</code> sendo o vetor de pontos de entrada, <code>y</code> o raster base, <code>field</code> a coluna ou campo da tabela de atributos do objeto vetorial para os quais os valores serão utilizados e <code>fun</code> a função utilizada para agregação dos dados.</p>
+<p>A conversão de vetor para raster pode ser realizada de pontos, linhas ou polígonos para rasters. Nesse processo, podemos utilizar uma função para resumir os dados pontuais para os pixels do raster que criaremos. Para essa operação, podemos utilizar a função <code><a href="https://rdrr.io/pkg/raster/man/rasterize.html">raster::rasterize()</a></code>, com o argumento <code>x</code> sendo o vetor de entrada, <code>y</code> o raster base, <code>field</code> a coluna ou campo da tabela de atributos do objeto vetorial para os quais os valores serão utilizados e <code>fun</code> a função utilizada para agregação dos dados.</p>
 <p>Aqui, vamos contabilizar a quantidade de nascentes por pixel, utilizando como base o raster para o qual mudamos a resolução para 900 metros (Figura <a href="cap15.html#fig:fig-raster-rasterizacao-pontos">15.59</a>).</p>
 <div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Rasterizar pontos</span>
@@ -4068,7 +4090,7 @@ Figura 15.59: Rasterização das nascentes, com a operação de contabilização
 Figura 15.60: Rasterização da hidrografia, com a operação de contabilização de linhas para Rio Claro/SP.
 </p>
 </div>
-<p>Podemos ainda rasterizar polígonos, de modo que cada pixel do raster a ser criado receberáo valor da tabela de atributos, ou uma análise pelo vizinho mais próximo no caso de um campo categórico, como a cobertura da terra, que também vai depender da resolução do raster base e do tamanho da feição do polígono. Para nosso exemplo, antes de criar o raster vamos transforma a coluna de classe de cobertura da terra em <code>factor</code> (Figura <a href="cap15.html#fig:fig-raster-rasterizacao-poligonos">15.61</a>). Entretanto, essa operação de rasterização tende a demorar muito no caso de polígonos muito detalhados ou um raster com pixels muito pequenos, sendo que dois pacotes aceleram esse processamento (<code>fasterize</code> e <code>gdalUtils</code>), com suas respectivas funções: <code><a href="https://rdrr.io/pkg/fasterize/man/fasterize.html">fasterize::fasterize()</a></code> e <code><a href="https://rdrr.io/pkg/gdalUtils/man/gdal_rasterize.html">gdalUtils::gdal_rasterize()</a></code>.</p>
+<p>Podemos ainda rasterizar polígonos, de modo que cada pixel do raster a ser criado receberá o valor da tabela de atributos, ou uma análise pelo vizinho mais próximo no caso de um campo categórico, como a cobertura da terra, que também vai depender da resolução do raster base e do tamanho da feição do polígono. Para nosso exemplo, antes de criar o raster vamos transforma a coluna de classe de cobertura da terra em <code>factor</code> (Figura <a href="cap15.html#fig:fig-raster-rasterizacao-poligonos">15.61</a>). Entretanto, essa operação de rasterização tende a demorar muito no caso de polígonos muito detalhados ou um raster com pixels muito pequenos, sendo que dois pacotes aceleram esse processamento (<code>fasterize</code> e <code>gdalUtils</code>), com suas respectivas funções: <code><a href="https://rdrr.io/pkg/fasterize/man/fasterize.html">fasterize::fasterize()</a></code> e <code><a href="https://rdrr.io/pkg/gdalUtils/man/gdal_rasterize.html">gdalUtils::gdal_rasterize()</a></code>.</p>
 <div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Rasterizar polígonos</span>
 <span class="va">geo_vetor_cobertura_rasterizacao</span> <span class="op">&lt;-</span> <span class="va">geo_vetor_cobertura</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -4106,7 +4128,7 @@ Figura 15.61: Rasterização da cobertura da terra para Rio Claro/SP.
 Figura 15.62: Vetorização do raster de elevação criando um gride de pontos para Rio Claro/SP.
 </p>
 </div>
-<p>Nesse outro exemplo, vamos vetorizar o raster de elevação para Rio Claro/SP novamente, mas agora criando isolinhas (Figura <a href="cap15.html#fig:fig-raster-vetorizacao-linhas">15.63</a>).</p>
+<p>Neste outro exemplo, vamos vetorizar o raster de elevação para Rio Claro/SP novamente, mas agora criando isolinhas (Figura <a href="cap15.html#fig:fig-raster-vetorizacao-linhas">15.63</a>).</p>
 <div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Vetorização de linhas</span>
 <span class="va">geo_raster_srtm_rio_claro_sirgas2000_utm23s_agre_media_linhas</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/rasterToContour.html">rasterToContour</a></span><span class="op">(</span>
@@ -4174,12 +4196,12 @@ Figura 15.64: Vetorização do raster de cobertura da terra para Rio Claro/SP, n
 <li>Mapa secundário (geralmente muito menor que o mapa principal e com o intuito de mostrar a localização do mapa principal num contexto mais amplo, como país ou continente)</li>
 <li>Título (para resumir o intuito do mapa)</li>
 <li>Legenda (apresentando as informações detalhadas das classes ou escala de valores, geralmente identificando as cores e/ou texturas),</li>
-<li>Barra de escala (representando quantas unidades do mapa representam do mundo real)</li>
+<li>Barra de escala (representando a relação entre as unidades do mapa e o mundo real)</li>
 <li>Indicador de orientação (Norte) (indicando o norte geográfico, podendo ser representado por uma flecha, bússola ou compasso)</li>
 <li>Gride de coordenadas (coordenadas presentes nas laterais)</li>
-<li>Descrição do CRS (indicando qual o CRS)</li>
+<li>Descrição do CRS (indicando qual o Sistema de Referência de Coordenadas)</li>
 <li>Informações de origem (informações sobre a fonte dos dados representados no mapa)</li>
-<li>Além de outros elementos auxiliares (como elementos textuais e figuras extras)</li>
+<li>Outros elementos auxiliares (como elementos textuais e figuras extras)</li>
 </ol>
 <p>Podemos visualizar todos esses elementos resumidos na Figura <a href="cap15.html#fig:fig-mapa-elementos">15.65</a>.</p>
 <div class="figure" style="text-align: center">
@@ -4324,7 +4346,7 @@ Transforme polígonos geoespaciais em grades regulares ou hexagonais
 <a href="https://cran.r-project.org/web/packages/globe/index.html"><code>globe</code></a>
 </td>
 <td style="text-align:left;">
-Plot 2D and 3D Views of the Earth, Including Major Coastline
+Mapas de visualização 2D e 3D da Terra, incluindo as linhas de costa
 </td>
 </tr>
 <tr>
@@ -4332,7 +4354,7 @@ Plot 2D and 3D Views of the Earth, Including Major Coastline
 <a href="https://cran.r-project.org/web/packages/linemap/index.html"><code>linemap</code></a>
 </td>
 <td style="text-align:left;">
-Line Maps
+Mapas de linhas
 </td>
 </tr>
 </tbody>
@@ -4345,7 +4367,7 @@ Line Maps
 <p>Mapas estáticos são mapas simples e fixos para visualização de dados, sendo o tipo mais comum de saída visual. No início da composição de mapas no R, esse era o único tipo de mapa que a linguagem permitia produzir, principalmente utilizando o pacote <code>sp</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-pebesma_roger_2005" role="doc-biblioref">E. J. Pebesma and Bivand 2005</a>)</span>. No entanto, com o advento de ferramentas de visualização dinâmicas no R, como componentes HTML, os mapas puderam ser compostos de forma dinâmica (animados e interativos).</p>
 <p>Neste tópico abordaremos funções simples para composição de mapas estáticos, como o <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code>, além de pacotes para composição de mapas mais elaborados, como os pacotes <code>ggplot2</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-R-ggplot2" role="doc-biblioref">Wickham et al. 2020</a>)</span> e <code>tmap</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-R-tmap" role="doc-biblioref">Tennekes 2021</a>)</span>.</p>
 <p><strong>Função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code></strong></p>
-<p>A função genérica <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> é a maneira mais rápida de compor mapas estáticos utilizando objetos geoespaciais vetoriais e raster, funcionando para ambos os pacotes que apresentamos anteriormente (<code>sf</code> e <code>raster</code>). Apesar da simplicidade, essa função geralmente tende a criar mapas com relativa velocidade, nos auxiliando principalmente em fases iniciais de desenvolvimento de um projeto. Essa função oferece dezenas de argumentos em Base R, permitindo alguns ajustes limitados, com resultados bastante interessantes.</p>
+<p>A função genérica <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> é a maneira mais rápida de compor mapas estáticos utilizando objetos geoespaciais vetoriais e raster, funcionando para ambos os pacotes que apresentamos anteriormente (<code>sf</code> e <code>raster</code>). Apesar da simplicidade, essa função geralmente tende a criar mapas com relativa velocidade, nos auxiliando principalmente em fases iniciais de desenvolvimento de um projeto. Essa função oferece dezenas de argumentos em <em>R Base</em>, permitindo alguns ajustes limitados, com resultados bastante interessantes.</p>
 <p>Como dito anteriormente, a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> vai funcionar diferentemente dependendo da classe do objeto geoespacial. Para objetos geoespaciais <code>sf</code>, a função vai plotar um mapa para cada coluna da tabela de atributos. Vamos usar de exemplo nosso mapa de biomas mostrado com os principais elementos de um mapa, podendo inclusive selecionar apenas a coluna de características geoespaciais (<code>geom</code>).</p>
 <p>Primeiramente, vamos fazer o download dos dados de limites de biomas, retirando os sistemas costeiros, usando o pacote <code>geobr</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-R-geobr" role="doc-biblioref">Pereira and Goncalves 2021</a>)</span>.</p>
 <div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
@@ -4423,7 +4445,7 @@ Figura 15.69: Mapa feito com a função <code><a href="https://r-spatial.github.
 <p>Além do pacote <code>ggplot2</code>, podemos utilizar o pacote <code>ggspatial</code> para acrescentar elementos geoespaciais como a barra de escala e o indicador de orientação (Norte), através das funções <code><a href="https://paleolimbot.github.io/ggspatial/reference/annotation_scale.html">annotation_scale()</a></code> e <code><a href="https://paleolimbot.github.io/ggspatial/reference/annotation_north_arrow.html">annotation_north_arrow()</a></code>, respectivamente, além de outras funções específicas que não abordaremos nesta seção.</p>
 <p>A estrutura de composição das funções do pacote <code>ggplot2</code> vai funcionar parecido com a estruturação de gráficos já vista no Capítulo <a href="cap6.html#cap6">6</a>, de modo que a cada função iremos utilizando o sinal de <code>+</code> para acrescentar outra camada. Indicaremos os dados com a função <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> e a coluna da tabela de atributos que queremos representar com a função <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. Em seguida, utilizamos a função <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> para indicar que trata-se de um objeto <code>sf</code>.</p>
 <p>Além dessas funções, podemos ainda fazer alterações nos mapas através das funções: <code>scale_*()</code> que vai alterar as características indicadas em <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, <code>coord_*()</code> que vai alterar construção do mapa em relação às coordenadas, <code>facet_*()</code> que altera a disposição de vários mapas, e <code>theme_*()</code> e <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> que alterarão características relacionadas ao tema, como cores de fundo, fontes e legenda. Podemos ainda utilizar as funções <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate()</a></code> para adicionar textos e <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> para alterar o texto do título, legenda e eixos.</p>
-<p>Vamos demonstrar esse funcionamento para compor o mapa de geo_vetor_biomas, apresentado no início desta seção (Figura <a href="cap15.html#fig:fig-vetor-mapa-ggplot2">15.70</a>).</p>
+<p>Vamos demonstrar esse funcionamento para compor o mapa de biomas, apresentado no início desta seção (Figura <a href="cap15.html#fig:fig-vetor-mapa-ggplot2">15.70</a>).</p>
 <div class="sourceCode" id="cb721"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Plot</span>
 <span class="va">mapa_vetor_biomas_ggplot2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">geo_vetor_biomas</span><span class="op">)</span> <span class="op">+</span>
@@ -4451,7 +4473,7 @@ Figura 15.69: Mapa feito com a função <code><a href="https://r-spatial.github.
 Figura 15.70: Mapa de Biomas do Brasil com o pacote <code>ggplot2</code>.
 </p>
 </div>
-<p>Para objetos raster, o uso do pacote <code>ggplot2</code> para compor mapas requer um passo preliminar. Primeiramente, vamos criar um <code>data frame</code> com os dados do raster, com as linhas sendo os pixels e as colunas sendo as coordenadas centrais da longitude e latitude, além dos valores de cada camada em cada coluna. Esse passo pode ser realizado com a função <code><a href="https://rdrr.io/pkg/raster/man/rasterToPoints.html">raster::rasterToPoints()</a></code>.</p>
+<p>Para objetos raster, o uso do pacote <code>ggplot2</code> para compor mapas requer um passo preliminar. Primeiramente, vamos criar um <code>data frame</code> com os dados do raster, com as linhas sendo os pixels e as colunas sendo as coordenadas centrais da longitude e latitude, além dos valores de cada camada em cada coluna. Esse passo pode ser realizado com a função <code><a href="https://rdrr.io/pkg/raster/man/rasterToPoints.html">raster::rasterToPoints()</a></code> ou <code><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">raster::as.data.frame()</a></code>.</p>
 <p>Uma vez que temos esses dados organizados, podemos utilizar as funções <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> para indicar o <code>data frame</code>, e as colunas com a função <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. Em seguida, utilizamos a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster()</a></code> para indicar que trata-se de um objeto raster. Além dessas funções, podemos ainda utilizar as demais funções para alterar as características do mapa, como comentamos acima. Entretanto, devemos nos atentar para a função <code>coord_*()</code> e escolher aquela que vai fazer a construção do mapa em relação à coordenadas e resolução das células.</p>
 <p>Como exemplo, vamos compor o mapa de elevação para Rio Claro/SP, adicionando também o limite do município (Figura <a href="cap15.html#fig:fig-raster-mapa-ggplot2">15.71</a>).</p>
 <div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
@@ -4646,7 +4668,7 @@ Figura 15.74: Mapa raster de elevação com o pacote <code>tmap</code>.
 Figura 15.75: Mapa vetor facetado dos estados brasileiros ao longo do tempo com o pacote <code>tmap</code>.
 </p>
 </div>
-<p>Uma solução é a composição de mapas animados. Apesar de dependerem da publicação digital, os mapas animados podem aprimorar relatórios físicos à medida que o vínculo a uma página da web contendo a versão animada torna-se simples. Existem várias maneiras de gerar animações em R, e uma forma é com o pacote <code>gganimate</code> e <code>ggplot2</code>. Entretanto, aqui veremos a criação de mapas animados com <code>tmap</code>.</p>
+<p>Uma solução é a composição de mapas animados. Apesar de dependerem da publicação digital, os mapas animados podem aprimorar relatórios físicos à medida que o vínculo a uma página da web contendo a versão animada torna-se simples. Existem várias maneiras de gerar animações em R, por exemplo, com o pacote <code>gganimate</code>. Entretanto, aqui veremos a criação de mapas animados com <code>tmap</code>.</p>
 <p>Podemos criar mapas animados alterando dois argumentos da função <code><a href="https://rdrr.io/pkg/tmap/man/tm_facets.html">tm_facets()</a></code>:</p>
 <ul>
 <li>trocando o <code>by = year</code> por <code>along = year</code>
@@ -4654,7 +4676,7 @@ Figura 15.75: Mapa vetor facetado dos estados brasileiros ao longo do tempo com 
 <li>indicando o <code>free.coords = FALSE</code>
 </li>
 </ul>
-<p>Por fim, podemos exportar o mapa animado no formato de <code>.gif</code> utilizando a função <code><a href="https://rdrr.io/pkg/tmap/man/tmap_animation.html">tmap::tmap_animation()</a></code>, indicando a taxa de atualização com o argumento <code>delay</code> (Figura <a href="cap15.html#fig:fig-vetor-brasil-tmap-animated">15.76</a>). Alguns pacotes extras são requeridos dependendo do sistema operacional utilizado.</p>
+<p>Por fim, podemos exportar o mapa animado no formato de <code>.gif</code> utilizando a função <code><a href="https://rdrr.io/pkg/tmap/man/tmap_animation.html">tmap::tmap_animation()</a></code>, indicando a taxa de atualização com o argumento <code>delay</code> (Figura <a href="cap15.html#fig:fig-vetor-brasil-tmap-animated">15.76</a>). Para visualização do .gif animado, acessar o <a href="https://paternogbc.github.io/livro_aer/cap15.html#mapas-animados">livro on-line</a>. Alguns pacotes extras são requeridos dependendo do sistema operacional utilizado.</p>
 <div class="sourceCode" id="cb733"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mudar o modo de exibição do tmap</span>
 <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tmap_mode.html">tmap_mode</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span>
@@ -4680,7 +4702,7 @@ Figura 15.76: Mapa vetorial animado mostrando os estados brasileiros ao longo do
 <h3>
 <span class="header-section-number">15.10.5</span> Mapas interativos<a class="anchor" aria-label="anchor" href="#mapas-interativos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Mapas interativos podem assumir muitas formas, sendo que a mais comum e útil é a capacidade de deslocar e ampliar qualquer parte de um conjunto de dados geoespaciais sobreposto em um “mapa da web”. Diversos pacotes nos permitem criar esse tipo de mapa, sendo os mais comuns o <code>tmap</code>, <code>mapview</code> e <code>leaflet</code>.</p>
+<p>Mapas interativos podem assumir muitas formas, sendo que a mais comum e útil é a capacidade de deslocar e ampliar qualquer parte de um conjunto de dados geoespaciais sobreposto em um “mapa da web”. Diversos pacotes nos permitem criar esse tipo de mapa, sendo os mais comuns o <code>tmap</code>, <code>mapview</code> e <code>leaflet</code>. Para visualização dos mapas interativos, acessar o <a href="https://paternogbc.github.io/livro_aer/cap15.html#mapas-interativos">livro on-line</a>.</p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
 Destacamos que esses mapas irão ser compostos numa janela especial de “Viewer”.</p>
@@ -4798,7 +4820,7 @@ Figura 15.79: Mapa vetorial interativo com o pacote <code>leaflet</code>.
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">longitude</span>, <span class="va">latitude</span>, .after <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>lon <span class="op">=</span> <span class="va">longitude</span>, lat <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"lon"</span>, <span class="st">"lat"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></code></pre></div>
-<p>Agora vamos baixar o limite do Bioma da Mata Atlântica para o Brasil, converter o GCS para WGS84/Geo e ajustar sua extensão para remover as ilhas no Oceano Atlântico.</p>
+<p>Agora vamos baixar o limite do Bioma da Mata Atlântica para o Brasil, converter o CRS para WGS84/Geo e ajustar sua extensão para remover as ilhas no Oceano Atlântico.</p>
 <div class="sourceCode" id="cb745"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Download do Bioma da Mata Atlântica</span>
 <span class="va">geo_vetor_mata_atlantica</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geobr/man/read_biomes.html">read_biomes</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -5232,8 +5254,8 @@ amp1006
     <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>legend.outside <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-vetor-aa-var"></span>
-<img src="livro_files/figure-html/fig-vetor-aa-var-1.png" alt="Mapa mostrando os valores das variáveis bioclimáticas (BIO01:BIO06) para os locais amostrados de comunidades de anfíbios para hexágonos no limite da Mata Atlântica." width="100%" height="100%"><p class="caption">
-Figura 15.85: Mapa mostrando os valores das variáveis bioclimáticas (BIO01:BIO06) para os locais amostrados de comunidades de anfíbios para hexágonos no limite da Mata Atlântica.
+<img src="livro_files/figure-html/fig-vetor-aa-var-1.png" alt="Mapa com os valores das variáveis bioclimáticas (BIO01:BIO06) para os locais amostrados de comunidades de anfíbios para o limite da Mata Atlântica." width="100%" height="100%"><p class="caption">
+Figura 15.85: Mapa com os valores das variáveis bioclimáticas (BIO01:BIO06) para os locais amostrados de comunidades de anfíbios para o limite da Mata Atlântica.
 </p>
 </div>
 </div>
@@ -5279,7 +5301,7 @@ Figura 15.85: Mapa mostrando os valores das variáveis bioclimáticas (BIO01:BIO
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="fu">ecodados</span><span class="fu">::</span><span class="va">geo_raster_globcover_mata_atlantica</span></code></pre></div>
 <div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Plot</span>
+<code class="sourceCode R"><span class="co">## Plot</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_raster_globcover_mata_atlantica</span>, col <span class="op">=</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-raster-globcover"></span>
@@ -5298,11 +5320,11 @@ Figura 15.86: Camada raster do GlobCover 2.3 para o Bioma da Mata Atlântica.
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_intersects</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.</span>, y <span class="op">=</span> <span class="va">geo_vetor_mata_atlantica</span>, sparse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 
-<span class="co">## Buffers de ~1 km</span>
+<span class="co">## Buffers de ~10 km</span>
 <span class="va">geo_anfibios_especies_locais_vetor_mata_atlantica_buffer10km</span> <span class="op">&lt;-</span>
-    <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span><span class="va">geo_anfibios_especies_locais_vetor_mata_atlantica</span>,
-                  dist <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
-<p>Podemos conferir no mapa da Figura <a href="cap15.html#fig:fig-vetor-aa-ma-buffer">15.87</a>.</p>
+<span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span><span class="va">geo_anfibios_especies_locais_vetor_mata_atlantica</span>,
+dist <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></code></pre></div>
+<p>Podemos conferir no mapa da Figura <a href="cap15.html#fig:fig-vetor-aa-ma-buffer">15.87</a>, atente para o aumento artificial do tamanho dos buffers para permitir a visualização.</p>
 <div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mudar o modo de exibição do tmap</span>
 <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tmap_mode.html">tmap_mode</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span>
@@ -5338,20 +5360,20 @@ Figura 15.87: Distribuição de 50 localidades aleatórios e buffers de ~1 km (f
     <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/adorn_percentages.html">adorn_percentages</a></span><span class="op">(</span><span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/adorn_pct_formatting.html">adorn_pct_formatting</a></span><span class="op">(</span>rounding <span class="op">=</span> <span class="st">"half up"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">geo_anfibios_locais_vetor_ma_buffer10km_ext</span><span class="op">)</span>
-<span class="co">#&gt;  id classe_30 classe_40 classe_14 classe_20 classe_130 classe_50 classe_60 classe_190 classe_210 classe_110</span>
-<span class="co">#&gt;   1      7.7%     92.3%      0.0%      0.0%       0.0%      0.0%      0.0%       0.0%       0.0%       0.0%</span>
-<span class="co">#&gt;   2     21.6%     45.9%     24.3%      8.1%       0.0%      0.0%      0.0%       0.0%       0.0%       0.0%</span>
-<span class="co">#&gt;   3     56.3%     12.5%      9.4%     21.9%       0.0%      0.0%      0.0%       0.0%       0.0%       0.0%</span>
-<span class="co">#&gt;   4     38.9%     25.0%     27.8%      0.0%       8.3%      0.0%      0.0%       0.0%       0.0%       0.0%</span>
-<span class="co">#&gt;   5      0.0%     66.7%      0.0%      8.3%      16.7%      5.6%      2.8%       0.0%       0.0%       0.0%</span>
-<span class="co">#&gt;   6     31.4%      2.9%      0.0%     11.4%      37.1%      5.7%      0.0%      11.4%       0.0%       0.0%</span>
-<span class="co">#&gt;  classe_200 classe_120  Total</span>
-<span class="co">#&gt;        0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;        0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;        0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;        0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;        0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;        0.0%       0.0% 100.0%</span></code></pre></div>
+<span class="co">#&gt;  id classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20 classe_210</span>
+<span class="co">#&gt;   1       0.1%       0.2%       0.7%      12.0%      0.5%       0.1%       8.7%       0.6%      0.6%      24.8%</span>
+<span class="co">#&gt;   2       0.0%       1.7%       0.3%       8.4%     26.6%       0.5%       0.0%       0.0%     14.7%       1.5%</span>
+<span class="co">#&gt;   3       0.0%       0.0%       0.0%       4.9%     20.2%       0.0%       0.0%       0.0%     17.6%       0.2%</span>
+<span class="co">#&gt;   4       0.0%       2.3%       0.0%      26.0%      3.6%       0.0%       0.0%       0.0%     23.0%       0.2%</span>
+<span class="co">#&gt;   5       0.0%       0.0%       0.0%      13.5%      0.3%       0.0%       0.0%       0.1%     14.2%       0.0%</span>
+<span class="co">#&gt;   6       0.0%       0.4%       0.3%       7.2%      7.0%       0.0%       0.0%       0.0%     21.2%       0.0%</span>
+<span class="co">#&gt;  classe_30 classe_40 classe_50 classe_190 classe_60 classe_200 classe_220 classe_140  Total</span>
+<span class="co">#&gt;       5.0%     43.7%      3.1%       0.0%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;      19.2%     17.9%      8.9%       0.4%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;      28.6%     27.2%      0.6%       0.0%      0.6%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;      41.2%      3.6%      0.0%       0.0%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;       5.2%     53.6%     12.9%       0.0%      0.1%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;      21.1%     35.8%      1.4%       5.2%      0.2%       0.1%       0.0%       0.0% 100.0%</span></code></pre></div>
 <p>Agora podemos combinar esses dados aos dados dos buffers.</p>
 <div class="sourceCode" id="cb769"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Combinação</span>
@@ -5360,27 +5382,28 @@ Figura 15.87: Distribuição de 50 localidades aleatórios e buffers de ~1 km (f
     y <span class="op">=</span> <span class="va">geo_anfibios_locais_vetor_ma_buffer10km_ext</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_drop_geometry</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">geo_anfibios_locais_vetor_ma_buffer10km_ext_bind</span>
-<span class="co">#&gt; # A tibble: 50 × 15</span>
-<span class="co">#&gt;    id     species_number classe_30 classe_40 classe_14 classe_20 classe_130 classe_50 classe_60 classe_190 classe_210</span>
-<span class="co">#&gt;  * &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;     </span>
-<span class="co">#&gt;  1 amp17…             10 7.7%      92.3%     0.0%      0.0%      0.0%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt;  2 amp13…             16 21.6%     45.9%     24.3%     8.1%      0.0%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt;  3 amp11…             19 56.3%     12.5%     9.4%      21.9%     0.0%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt;  4 amp10…             20 38.9%     25.0%     27.8%     0.0%      8.3%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt;  5 amp12…              3 0.0%      66.7%     0.0%      8.3%      16.7%      5.6%      2.8%      0.0%       0.0%      </span>
-<span class="co">#&gt;  6 amp11…              9 31.4%     2.9%      0.0%      11.4%     37.1%      5.7%      0.0%      11.4%      0.0%      </span>
-<span class="co">#&gt;  7 amp18…             14 0.0%      100.0%    0.0%      0.0%      0.0%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt;  8 amp10…              8 0.0%      23.5%     0.0%      76.5%     0.0%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt;  9 amp11…              5 18.8%     0.0%      62.5%     18.8%     0.0%       0.0%      0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt; 10 amp13…              7 37.8%     2.7%      0.0%      24.3%     21.6%      13.5%     0.0%      0.0%       0.0%      </span>
-<span class="co">#&gt; # … with 40 more rows, and 4 more variables: classe_110 &lt;chr&gt;, classe_200 &lt;chr&gt;, classe_120 &lt;chr&gt;, Total &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 50 × 21</span>
+<span class="co">#&gt;    id     species_number classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20</span>
+<span class="co">#&gt;  * &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 amp17…             10 0.1%       0.2%       0.7%       12.0%      0.5%      0.1%       8.7%       0.6%       0.6%     </span>
+<span class="co">#&gt;  2 amp13…             16 0.0%       1.7%       0.3%       8.4%       26.6%     0.5%       0.0%       0.0%       14.7%    </span>
+<span class="co">#&gt;  3 amp11…             19 0.0%       0.0%       0.0%       4.9%       20.2%     0.0%       0.0%       0.0%       17.6%    </span>
+<span class="co">#&gt;  4 amp10…             20 0.0%       2.3%       0.0%       26.0%      3.6%      0.0%       0.0%       0.0%       23.0%    </span>
+<span class="co">#&gt;  5 amp12…              3 0.0%       0.0%       0.0%       13.5%      0.3%      0.0%       0.0%       0.1%       14.2%    </span>
+<span class="co">#&gt;  6 amp11…              9 0.0%       0.4%       0.3%       7.2%       7.0%      0.0%       0.0%       0.0%       21.2%    </span>
+<span class="co">#&gt;  7 amp18…             14 0.0%       0.0%       0.1%       3.9%       4.3%      0.0%       0.0%       0.0%       22.6%    </span>
+<span class="co">#&gt;  8 amp10…              8 0.0%       0.8%       0.0%       8.4%       11.5%     0.0%       0.0%       0.0%       53.3%    </span>
+<span class="co">#&gt;  9 amp11…              5 0.0%       0.2%       0.1%       2.6%       24.5%     0.0%       0.0%       0.1%       42.9%    </span>
+<span class="co">#&gt; 10 amp13…              7 0.0%       1.2%       0.2%       9.9%       8.5%      0.0%       0.0%       0.2%       21.9%    </span>
+<span class="co">#&gt; # … with 40 more rows, and 10 more variables: classe_210 &lt;chr&gt;, classe_30 &lt;chr&gt;, classe_40 &lt;chr&gt;, classe_50 &lt;chr&gt;,</span>
+<span class="co">#&gt; #   classe_190 &lt;chr&gt;, classe_60 &lt;chr&gt;, classe_200 &lt;chr&gt;, classe_220 &lt;chr&gt;, classe_140 &lt;chr&gt;, Total &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="predições-espaciais-de-objetos-raster" class="section level3" number="15.11.4">
 <h3>
 <span class="header-section-number">15.11.4</span> Predições espaciais de objetos raster<a class="anchor" aria-label="anchor" href="#predi%C3%A7%C3%B5es-espaciais-de-objetos-raster"><i class="fas fa-link"></i></a>
 </h3>
 <p>O pacote <code>raster</code> além de permitir realizar a manipulação e visualização de dados raster no R, também permite a extrapolação do ajuste de análises, como <code>LMs</code>, <code>GLMs</code>, <code>GAMs</code> dentre outras (Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap8.html#cap8">8</a>). Aqui, faremos uma pequena demonstração utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/predict.html">raster::predict()</a></code>, predizendo o resultado de dois ajustes de GLMs para a presença/ausência de uma espécie de anuro e a extrapolação do número de espécies de anfíbios para o Bioma da Mata Atlântica.</p>
-<p>Para ajustar um GLM para dados de presença/ausência, podemos usar a tabela já criada anteriormente, com as espécies e as coordenadas, e fazer uma junção com a última tabela que criamos com os dados bioclimáticos.</p>
+<p>Para ajustar um GLM para dados de presença/ausência, podemos usar o conjunto de dados já criado anteriormente, com as espécies e as coordenadas, e fazer uma junção com a última tabela que criamos com os dados bioclimáticos.</p>
 <div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Junção dos dados ambientais aos dados de espécies</span>
 <span class="va">geo_anfibios_locais_especies_vetor_bioclim</span> <span class="op">&lt;-</span> <span class="va">geo_anfibios_especies</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -5403,7 +5426,7 @@ Figura 15.87: Distribuição de 50 localidades aleatórios e buffers de ~1 km (f
 <span class="va">geo_anfibios_locais_especies_vetor_bioclim_hb_cor</span> <span class="op">&lt;-</span> <span class="va">geo_anfibios_locais_especies_vetor_bioclim_hb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pa</span>, <span class="va">bio01</span><span class="op">:</span><span class="va">bio19</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">corr</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Agora sim, podemos ajustar um modelo simples da presença e ausência dessa espécie, utilizando as variáveis não correlacionadas, através de um GLM para a família binomial. Nosso intuito não analisar se o modelo atende à todos os pressupostos, e sim exemplificar a predição espacial, para esses detalhes, consulte o Capítulo <a href="cap8.html#cap8">8</a>.</p>
+<p>Agora sim, podemos ajustar um modelo simples da presença e ausência dessa espécie, utilizando as variáveis não correlacionadas, através de um GLM para a família binomial. Nosso intuito não é analisar se o modelo atende à todos os pressupostos, e sim exemplificar a predição espacial, para esses detalhes, consulte o Capítulo <a href="cap8.html#cap8">8</a>.</p>
 <div class="sourceCode" id="cb773"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Ajustar um modelo GLM binomial</span>
 <span class="va">modelo_pa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">pa</span> <span class="op">~</span> <span class="va">.</span>, 
@@ -5453,7 +5476,7 @@ Para que a predição funcione, os nomes das camadas raster <code>geo_raster_bio
 <div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Seleção dos pixels de presença/ausência potencial</span>
 <span class="va">modelo_pa_pred_corte</span> <span class="op">&lt;-</span> <span class="va">modelo_pa_pred</span> <span class="op">&gt;=</span> <span class="fl">.01</span></code></pre></div>
-<p>Por fim, vamos produzir dois mapas mostrando os valores das predições, o mapa binário e as ocorrências da espécie (Figura <a href="cap15.html#fig:fig-raster-pred-modelo-bin">15.89</a>).</p>
+<p>Por fim, vamos produzir dois mapas mostrando os valores das predições e o mapa binário da espécie (Figura <a href="cap15.html#fig:fig-raster-pred-modelo-bin">15.89</a>).</p>
 <div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mudar o modo de exibição do tmap</span>
 <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tmap_mode.html">tmap_mode</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span>
@@ -5469,15 +5492,15 @@ Para que a predição funcione, os nomes das camadas raster <code>geo_raster_bio
     <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_facets.html">tm_facets</a></span><span class="op">(</span>free.scales.raster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-raster-pred-modelo-bin"></span>
-<img src="livro_files/figure-html/fig-raster-pred-modelo-bin-1.png" alt="Mapa da predição contínua e binária do modelo ajustado para a presença/ausência da espécie *Haddadus binotatus* na Mata Atlântica e suas ocorrências." width="100%" height="100%"><p class="caption">
-Figura 15.89: Mapa da predição contínua e binária do modelo ajustado para a presença/ausência da espécie <em>Haddadus binotatus</em> na Mata Atlântica e suas ocorrências.
+<img src="livro_files/figure-html/fig-raster-pred-modelo-bin-1.png" alt="Predição contínua e binária do modelo ajustado para a presença/ausência da espécie *Haddadus binotatus* na Mata Atlântica." width="100%" height="100%"><p class="caption">
+Figura 15.89: Predição contínua e binária do modelo ajustado para a presença/ausência da espécie <em>Haddadus binotatus</em> na Mata Atlântica.
 </p>
 </div>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
 Essa análise foi realizada com o intuito de exemplificar o funcionamento da função <code><a href="https://rdrr.io/pkg/raster/man/predict.html">raster::predict()</a></code>, para mais detalhes, consultar livros específicos da área de Modelagem de Distribuição de Espécies ou Modelagem de Nicho Ecológico <span class="citation">Fletcher and Fortin (<a href="refer%C3%AAncias.html#ref-fletcher2018" role="doc-biblioref">2018</a>)</span>.</p>
 </div>
-<p>Em nossa segunda análise, vamos predizer os dados de riqueza para todo o bioma da Mata Atlântica. Para isso, temos de retirar novamente as variáveis correlacionadas.</p>
+<p>Em nossa segunda análise, vamos predizer os dados de riqueza de anfíbios (i.e. número de espécies) para todo o bioma da Mata Atlântica. Para isso, temos de retirar novamente as variáveis correlacionadas.</p>
 <div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Correlação</span>
 <span class="va">corr</span> <span class="op">&lt;-</span> <span class="va">geo_anfibios_locais_vetor_bioclim</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -5491,7 +5514,7 @@ Essa análise foi realizada com o intuito de exemplificar o funcionamento da fun
     <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_drop_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">species_number</span>, <span class="va">bio01</span><span class="op">:</span><span class="va">bio19</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">corr</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Agora sim, podemos criar os GLMs com famílias de distribuição apropriadas para dados de contagem como Poisson e Binomial Negativa. Nosso intuito não analisar se o modelo atende à todos os pressupostos, e sim exemplificar a predição espacial, para esses detalhes, consulte o Capítulo <a href="cap8.html#cap8">8</a>.</p>
+<p>Agora sim, podemos criar os GLMs com famílias de distribuição apropriadas para dados de contagem como Poisson e Binomial Negativa. Novamente, nosso intuito não é analisar se o modelo atende a todos os pressupostos, e sim exemplificar a predição espacial; para esses detalhes, consulte o Capítulo <a href="cap8.html#cap8">8</a>.</p>
 <div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modelo Poisson</span>
 <span class="va">modelo_riq_pois</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span>
@@ -5568,7 +5591,7 @@ Essa análise foi realizada com o intuito de exemplificar o funcionamento da fun
 <h3>
 <span class="header-section-number">15.12.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-10"><i class="fas fa-link"></i></a>
 </h3>
-<p>Listamos aqui as principais referências sobre manipulação, visualização de dados geoespaciais e análises geoespaciais no R. Recomendamos aos interessados os livros: i) Lovelace, Nowosad &amp; Muenchow <span class="citation">(<a href="refer%C3%AAncias.html#ref-lovelace2019" role="doc-biblioref">2019</a>)</span> <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a>, ii) Mas et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-mas2019" role="doc-biblioref">2019</a>)</span> <a href="https://bit.ly/2KpSI7C">Análise espacial com R</a>, iii) Olaya <span class="citation">(<a href="refer%C3%AAncias.html#ref-olaya2020" role="doc-biblioref">2020</a>)</span> <a href="http://volaya.github.io/libro-sig/">Sistemas de Información Geográfica</a>, iv) Moraga <span class="citation">(<a href="refer%C3%AAncias.html#ref-moraga_geospatial_2019" role="doc-biblioref">2019</a>)</span> <a href="https://www.paulamoraga.com/book-geospatial/">Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny</a>, v) Brunsdon &amp; Comber <span class="citation">(<a href="refer%C3%AAncias.html#ref-brunsdon_introduction_2015" role="doc-biblioref">2015</a>)</span> <a href="https://bookdown.org/lexcomber/brunsdoncomber2e/">An Introduction to Spatial Analysis and Mapping in R</a>, vi) Wegmann, Leutner &amp; Dech <span class="citation">(<a href="refer%C3%AAncias.html#ref-wegmann2016" role="doc-biblioref">2016</a>)</span> Remote Sensing and GIS for Ecologists: Using Open Source Software, vii) Wegmann, Schwalb-Willmann &amp; Dech <span class="citation">(<a href="refer%C3%AAncias.html#ref-wegmann2020" role="doc-biblioref">2020</a>)</span> An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, viii) Fletcher &amp; Fortin <span class="citation">(<a href="refer%C3%AAncias.html#ref-fletcher2018" role="doc-biblioref">2018</a>)</span> Spatial ecology and conservation modeling: Applications with R, ix) Lapaine, Miljenko, Usery, E. Lynn <span class="citation">(<a href="refer%C3%AAncias.html#ref-lapaine2017" role="doc-biblioref">2017</a>)</span> Choosing a Map Projection.</p>
+<p>Listamos aqui as principais referências sobre manipulação, visualização de dados geoespaciais e análises geoespaciais no R. Recomendamos aos (às) interessados(as) os livros: i) Lovelace, Nowosad &amp; Muenchow <span class="citation">(<a href="refer%C3%AAncias.html#ref-lovelace2019" role="doc-biblioref">2019</a>)</span> <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a>, ii) Mas et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-mas2019" role="doc-biblioref">2019</a>)</span> <a href="https://bit.ly/2KpSI7C">Análise espacial com R</a>, iii) Olaya <span class="citation">(<a href="refer%C3%AAncias.html#ref-olaya2020" role="doc-biblioref">2020</a>)</span> <a href="http://volaya.github.io/libro-sig/">Sistemas de Información Geográfica</a>, iv) Moraga <span class="citation">(<a href="refer%C3%AAncias.html#ref-moraga_geospatial_2019" role="doc-biblioref">2019</a>)</span> <a href="https://www.paulamoraga.com/book-geospatial/">Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny</a>, v) Brunsdon &amp; Comber <span class="citation">(<a href="refer%C3%AAncias.html#ref-brunsdon_introduction_2015" role="doc-biblioref">2015</a>)</span> <a href="https://bookdown.org/lexcomber/brunsdoncomber2e/">An Introduction to Spatial Analysis and Mapping in R</a>, vi) Wegmann, Leutner &amp; Dech <span class="citation">(<a href="refer%C3%AAncias.html#ref-wegmann2016" role="doc-biblioref">2016</a>)</span> Remote Sensing and GIS for Ecologists: Using Open Source Software, vii) Wegmann, Schwalb-Willmann &amp; Dech <span class="citation">(<a href="refer%C3%AAncias.html#ref-wegmann2020" role="doc-biblioref">2020</a>)</span> An Introduction to Spatial Data Analysis Remote Sensing and GIS with Open Source Software, viii) Fletcher &amp; Fortin <span class="citation">(<a href="refer%C3%AAncias.html#ref-fletcher2018" role="doc-biblioref">2018</a>)</span> Spatial ecology and conservation modeling: Applications with R, ix) Lapaine, Miljenko, Usery, E. Lynn <span class="citation">(<a href="refer%C3%AAncias.html#ref-lapaine2017" role="doc-biblioref">2017</a>)</span> Choosing a Map Projection.</p>
 </div>
 <div id="links-10" class="section level3" number="15.12.2">
 <h3>
@@ -5612,7 +5635,7 @@ Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o paco
 <div class="prev"><a href="cap14.html"><span class="header-section-number">14</span> Diversidade Funcional</a></div>
 <div class="next"><a href="gloss%C3%A1rio.html">Glossário</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap15"><span class="header-section-number">15</span> Dados geoespaciais</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-11">Pré-requisitos do capítulo</a></li>
@@ -5692,8 +5715,8 @@ Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o paco
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/15_geoespacial.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/15_geoespacial.Rmd">Edite esta página <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/15_geoespacial.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/15_geoespacial.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -5705,11 +5728,11 @@ Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o paco
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização: 2022-02-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>

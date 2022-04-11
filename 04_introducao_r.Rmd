@@ -2,7 +2,7 @@
 
 ## Pré-requisitos do capítulo {-}
 
-Pacotes e dados que serão utilizados nesse capítulo.
+Pacotes e dados que serão utilizados neste capítulo.
 
 ```{r eval=FALSE}
 ## Pacotes
@@ -22,15 +22,15 @@ Este capítulo, na maioria das vezes, pode desestimular as pessoas que estão in
 
 ## R e RStudio
 
-Com o R, é possível manipular, analisar e visualizar dados, além de escrever desde pequenas linhas de códigos até programas inteiros. O R é a versão em código aberto de uma linguagem de programação  chamada de S, criada por John M. Chambers (Stanford University, CA, EUA) nos anos 1980 no Bell Labs, que contou com três versões: Old S (1976-1987), New S (1988-1997) e S4 (1998), utilizada na IDE S-PLUS (1988-2008). Essa linguagem tornou-se bastante popular e vários produtos comerciais que a usam ainda estão disponíveis, como o SAS.
+Com o R é possível manipular, analisar e visualizar dados, além de escrever desde pequenas linhas de códigos até programas inteiros. O R é a versão em código aberto de uma linguagem de programação  chamada de S, criada por John M. Chambers (Stanford University, CA, EUA) nos anos 1980 no Bell Labs, que contou com três versões: Old S (1976-1987), New S (1988-1997) e S4 (1998), utilizada na IDE S-PLUS (1988-2008). Essa linguagem tornou-se bastante popular e vários produtos comerciais que a usam ainda estão disponíveis, como o SAS.
 
 No final dos anos 1990, Robert Gentleman e Ross Ihaka (ambos da Universidade de Auckland, Nova Zelândia), iniciaram o desenvolvimento da versão livre da linguagem S, a linguagem R, com o seguinte histórico: Desenvolvimento (1997-2000), Versão 1 (2000-2004), Versão 2 (2004-2013), Versão 3 (2013-2020) e Versão 4 (2020). Para mais detalhes do histórico de desenvolvimento das linguagens S e R, consultar Wickham [-@wickham2013]. Atualmente a linguagem R é mantida por uma rede de colaboradores denominada *R Core Team*. A origem do nome R é desconhecida, mas reza a lenda que ao lançarem o nome da linguagem os autores se valeram da letra que vinha antes do S, uma vez que a linguagem R foi baseada nela e utilizaram a letra "R". Outra história conta que pelo fato do nome dos dois autores iniciarem por "R", batizaram a linguagem com essa letra, vai saber.
 
 Um aspecto digno de nota é que a linguagem R é uma linguagem de programação interpretada, assim como o [Python](https://www.python.org/), mas contrária a outras linguagens como C e Java, que são compiladas. Isso a faz ser mais fácil de ser utilizada, pois processa linhas de código e as transforma em linguagem de máquina (código binário que o computador efetivamente lê), apesar desse fato diminuir a velocidade de processamento.
 
-Para começarmos a trabalhar com o R é necessário baixá-lo na página do **R Project**. Os detalhes de instalação são apresentados no Capítulo \@ref(cap3). Reserve algum tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
+Para começarmos a trabalhar com o R é necessário baixá-lo na página do **R Project**. Os detalhes de instalação são apresentados no Capítulo \@ref(cap3). Reserve um tempo para explorar esta página do R-Project. Existem vários [livros](http://www.r-project.org/doc/bib/R-books.html) dedicados a diversos assuntos baseados no R. Além disso, estão disponíveis [manuais](http://cran.r-project.org/manuals.html) em [diversas línguas](http://cran.r-project.org/other-docs.html) para serem baixados gratuitamente.
 
-Como o R é um software livre, não existe a possibilidade de o usuário entrar em contato com um serviço de suporte de usuários, muito comuns em softwares pagos. Ao invés disso, existem várias listas de e-mails que fornecem suporte à [comunidade de usuários](http://www.r-project.org/mail.html). Nós, particularmente, recomendamos o ingresso nas seguintes listas: R-help, R-sig-ecolog, [R-br](http://www.leg.ufpr.br/doku.php/software:rbr) e [discourse.curso-r](https://discourse.curso-r.com/). Este último reúne um grupo de pessoas usuárias brasileiras do programa R.
+Como o R é um software livre, não existe a possibilidade de o usuário entrar em contato com um serviço de suporte de usuários, muito comuns em softwares pagos. Ao invés disso, existem várias listas de e-mails que fornecem suporte à [comunidade de usuários](http://www.r-project.org/mail.html). Nós, particularmente, recomendamos o ingresso nas seguintes listas: R-help, R-sig-ecolog, [R-br](http://www.leg.ufpr.br/doku.php/software:rbr) e [discourse.curso-r](https://discourse.curso-r.com/). Os dois últimos grupos reúnem pessoas usuárias brasileiras do programa R.
 
 Apesar de podermos utilizar o R com o IDE (Ambiente de Desenvolvimento Integrado - *Integrated Development Environment*) RGui que vem com a instalação da linguagem R para usuários Windows (Figura \@ref(fig:fig-rgui)) ou no próprio terminal para usuários Linux e MacOS, existem alguns IDEs específicos para facilitar nosso uso dessa linguagem.
 
@@ -40,7 +40,7 @@ knitr::include_graphics("img/cap04_fig01.png")
 
 Dessa forma, nós que escrevemos este livro utilizamos o IDE RStudio e assumimos que você que está lendo fará o mesmo.
 
-O RStudio permite diversas personalizações, grande parte delas contidas em `Tools > Global options`. Incentivamos as leitoras e leitores a "fuçar" com certa dose de cuidado, nas opções para personalização. Dentre essas mudanças, destacamos duas:
+O RStudio permite diversas personalizações, grande parte delas contidas em `Tools > Global options`. Incentivamos as leitoras e leitores a "fuçar" com certa dose de cuidado, nas opções para personalização. Dentre essas mudanças, destacamos três:
 
 1. `Tools > Global options > Appearance > Editor theme`: para escolher um tema para seu RStudio
 1. `Tools > Global options > Code > [X] Soft-wrap R source files`: com essa opção habilitada, quando escrevemos comentários longos ou mudamos a largura da janela que estamos trabalhando, todo o texto e o código se ajustam a janela automaticamente
@@ -50,6 +50,8 @@ O RStudio permite diversas personalizações, grande parte delas contidas em `To
 <strong> 📝 Importante </strong>\
 Para evitar possíveis erros é importante instalar primeiro o software da linguagem R e depois o IDE RStudio.
 :::
+
+O RStudio permite também trabalhar com projetos. **Projeto do RStudio** é uma forma de organizar os arquivos de scripts e dados dentro de um diretório, facilitando o compartilhamento de fluxo de análises de dados e aumentando assim a reprodutibilidade. Podemos criar um Projeto do RStudio indo em `File > New Project` ou no ícone de cubo azul escuro que possui um R dentro com um um círculo verde com um sinal de `+` na parte superior esquerda ou ainda no canto superior direito que possui cubo azul escrito `Project` que serve para gerenciar os projetos e depois em `New Project.` Depois de escolher uma dessas opções, uma janela se abrirá onde escolhemos uma das três opções: i) New Directory (para criar um diretório novo com diversas opções), ii) Existing Directory (para escolher um diretório já existente) e iii) Version Control (para criar um projeto que será versionado pelo git ou Subversion).
 
 ## Funcionamento da linguagem R
 
@@ -74,7 +76,7 @@ Detalhando algumas dessas janelas e abas, temos:
 
 No RStudio, alguns atalhos são fundamentais para aumentar nossa produtividade:
 
--   **F1**: abre o painel de *Help* quando digitado em cima de uma função
+-   **F1**: abre o painel de *Help* quando digitado em cima do nome de uma função
 -   **Ctrl + Enter**: roda a linha de código selecionada no script
 -   **Ctrl + Shift + N**: abre um novo script
 -   **Ctrl + S**: salva um script
@@ -93,7 +95,7 @@ No RStudio, alguns atalhos são fundamentais para aumentar nossa produtividade:
 
 ### Console
 
-O console é onde a versão da linguagem R instalada é carregada para executar os códigos da linguagem R (Figura \@ref(fig:fig-rstudio) janela 2). Na janela do console aparecerá o símbolo `>`, seguido de uma barra vertical `|` que fica piscando (cursor), onde digitaremos ou enviaremos nossos códigos do script. Podemos fazer um pequeno exercício: vamos digitar `10 + 2`, seguido da tecla `Enter` para que essa operação seja executada.
+O console é onde a versão da linguagem R instalada é carregada para executar os códigos da linguagem R (Figura \@ref(fig:fig-rstudio) janela 2). Na janela do console aparecerá o símbolo `>`, seguido de uma barra vertical `|` que fica piscando (cursor), onde digitamos ou enviamos nossos códigos do script. Podemos fazer um pequeno exercício: vamos digitar `10 + 2`, seguido da tecla `Enter` para que essa operação seja executada.
 
 ```{r}
 10 + 2
@@ -109,15 +111,15 @@ Podemos ver o histórico dos códigos executados no console na aba **History** (
 
 ### Scripts
 
-Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (Figura \@ref(fig:fig-rstudio) janela 1). Para criar um script, basta ir em `File > New File > R Script`, ou clicando no ícone com uma folha branca e um círculo verde com um sinal de `+`, logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`.
+Scripts são arquivos de texto simples, criados com a extensão (terminação) `.R` (Figura \@ref(fig:fig-rstudio) janela 1). Para criar um script, basta ir em `File > New File > R Script`, ou clicar no ícone com uma folha branca e um círculo verde com um sinal de `+`, logo abaixo de `File`, ou ainda usando o atalho `Ctrl + Shift + N`.
 
-Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em **Source** ou usando o atalho `Ctrl + Shift + Enter`; ou ii) apenas a linha onde o cursor estiver posicionado, independentemente de sua posição naquela linha, clicando em **Run** ou usando o atalho `Ctrl + Enter`.
+Uma vez escrito os códigos no script podemos rodar esses códigos de duas formas: i) todo o script de uma vez, clicando em *Source* (que fina no canto superior direito da aba script) ou usando o atalho `Ctrl + Shift + Enter`; ou ii) apenas a linha onde o cursor estiver posicionado, independentemente de sua posição naquela linha, clicando em **Run** ou usando o atalho `Ctrl + Enter`.
 
-Devemos sempre salvar nossos scripts, tomando por via de regra: primeiro criar o arquivo e depois ir salvando nesse mesmo arquivo a cada passo de desenvolvimento das análises (não é raro o RStudio fechar sozinho e você perder algum tempo de trabalho). Há diversos motivos para criar um script: continuar o desenvolvimento desse script em outro momento ou em outro computador, preservar trabalhos passados, ou ainda compartilhar seus códigos com outras pessoas. Para criar ou salvar um script basta ir em `File > Save`, escolher um diretório e nome para o script e salvá-lo. Podemos ainda utilizar o atalho `Ctrl + S`.
+Devemos sempre salvar nossos scripts, tomando por via de regra: primeiro criar o arquivo e depois ir salvando nesse mesmo arquivo a cada passo de desenvolvimento das análises (não é raro o RStudio fechar sozinho e você perder algum tempo de trabalho). Há diversos motivos para se criar um script: continuar o desenvolvimento desse script em outro momento ou em outro computador, preservar trabalhos passados, ou ainda compartilhar seus códigos com outras pessoas. Para criar ou salvar um script basta ir em `File > Save`, escolher um diretório e nome para o script e salvá-lo. Podemos ainda utilizar o atalho `Ctrl + S`.
 
 Em relação aos scripts, há ainda os comentários, representados pelos símbolos `#` (hash), `#'` (hash-linha) e `#>` (hash-maior). A diferença entre eles é que para o segundo e terceiro, quando pressionamos a tecla `Enter` o comentário `#'` e `#>` são inseridos automaticamente na linha seguinte. Linhas de códigos do script contendo comentários em seu início não são lidos pelo console do R. Se o comentário estiver no final da linha, essa linha de código ainda será lida. Os comentários são utilizados geralmente para: i) descrever informações sobre dados ou funções e/ou ii) suprimir linhas de código. 
 
-É interessante ter no início de cada script um cabeçalho identificando o objetivo ou análise, autor e data para facilitar o compartilhamento e reprodutibilidade. Os comentários podem ser inseridos ou retirados das linhas com o atalho: `Ctrl + Shift + C`.
+É interessante ter no início de cada script um cabeçalho identificando o objetivo ou análise, autor e data para facilitar o compartilhamento e reprodutibilidade. Os comentários podem ser inseridos ou retirados das linhas com o atalho `Ctrl + Shift + C`.
 
 ```{r}
 #' ---
@@ -137,7 +139,7 @@ Além disso, podemos usar comentários para adicionar informações sobre os có
 
 Por fim, outro ponto fundamental é ter boas práticas de estilo de código. Quanto mais organizado e padronizado estiver seus scripts, mais fácil de entendê-los e de procurar possíveis erros. Existem dois guias de boas práticas para adequar seus scripts: [Hadley Wickham](http://adv-r.had.co.nz/Style.html) e [Google](https://google.github.io/styleguide/Rguide.xml).
 
-Ainda em relação aos scripts, temos os *Code Snippets* (Fragmentos de código), que são macros de texto usadas para inserir rapidamente fragmentos comuns de código. Por exemplo, o snippet `fun` insere uma definição de função R. Para mais detalhes, ler o artigo do RStudio: [link](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets).
+Ainda em relação aos scripts, temos os *Code Snippets* (Fragmentos de código), que são macros de texto usadas para inserir rapidamente fragmentos comuns de código. Por exemplo, o snippet `fun` insere uma definição de função R. Para mais detalhes, ler o artigo do RStudio [Code Snippets](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets).
 
 ```{r eval=FALSE}
 # fun {snippet}
@@ -202,7 +204,7 @@ Veja no exemplo abaixo como o uso dos parênteses muda o resultado.
 
 ### Objetos
 
-Objetos são palavras às quais são atribuídos dados. A atribuição possibilita a manipulação de dados ou armazenar os resultados de análises. Utilizaremos os símbolos `<` (menor), seguido de `-` (menos), sem espaço, dessa forma `<-`. Também podemos utilizar o símbolo de igual (`=`), mas não recomendamos, por não fazer parte das boas práticas de escrita de códigos em R. Podemos inserir essa combinação de símbolos com o atalho `Alt + -`. Para demonstrar, vamos atribuir o valor `10` à palavra `obj_10`, e chamar esse objeto novamente para verificar seu conteúdo.
+Objetos são palavras às quais são atribuídos dados. A atribuição possibilita a manipulação de dados ou armazenamento dos resultados de análises. Utilizaremos os símbolos `<` (menor), seguido de `-` (menos), sem espaço, dessa forma `<-`. Também podemos utilizar o símbolo de igual (`=`), mas não recomendamos, por não fazer parte das boas práticas de escrita de códigos em R. Podemos inserir essa combinação de símbolos com o atalho `Alt + -`. Para demonstrar, vamos atribuir o valor `10` à palavra `obj_10`, e chamar esse objeto novamente para verificar seu conteúdo.
 
 ```{r}
 ## Atribuição - símbolo (<-)
@@ -233,7 +235,7 @@ Segundo, o R tem limitações ao nomear objetos:
 
 -   nome de objetos só podem começar por letras (`a-z` ou `A-Z`) ou pontos (`.`)
 -   nome de objetos só podem conter letras (`a-z` ou `A-Z`), números (`0-9`), underscores (`_`) ou pontos (`.`)
--   R é *case-sensitive*, i.e., ele reconhece letras maiúsculas como diferentes de letras minúscula. Assim, um objeto chamado "resposta" é diferente do objeto "RESPOSTA"
+-   R é *case-sensitive*, i.e., ele reconhece letras maiúsculas como diferentes de letras minúsculas. Assim, um objeto chamado "resposta" é diferente do objeto "RESPOSTA"
 -   devemos evitar acentos ou cedilha (`ç`) para facilitar a memorização dos objetos e também para evitar erros de codificação (*encoding*) de caracteres
 -   nomes de objetos não podem ser iguais a nomes especiais, reservados para programação (`break`, `else`, `FALSE`, `for`, `function`, `if`, `Inf`, `NA`, `NaN`, `next`, `repeat`, `return`, `TRUE`, `while`)
 
@@ -286,7 +288,7 @@ rep(x = 1:5, times = 10)
 rep(x = 1:5, each = 10)
 ```
 
-Um ponto fundamental e que deve ser entendido nesse ponto, é o fluxo de atribuições do resultado da operação de funções a novos objetos. No desenvolvimento de qualquer script na linguagem R, grande parte da estrutura do mesmo será dessa forma: atribuição de dados a objetos > operações com funções > atribuição dos resultados a novos objetos > operações com funções desses novos objetos > atribuição dos resultados a novos objetos. Ao entender esse funcionamento, começamos a entender como devemos pensar na organização do nosso script para montar as análises que precisamos.
+Um ponto fundamental e que deve ser entendido é o fluxo de atribuições do resultado da operação de funções a novos objetos. No desenvolvimento de qualquer script na linguagem R, grande parte da estrutura do mesmo será dessa forma: atribuição de dados a objetos > operações com funções > atribuição dos resultados a novos objetos > operações com funções desses novos objetos > atribuição dos resultados a novos objetos. Ao entender esse funcionamento, começamos a entender como devemos pensar na organização do nosso script para montar as análises que precisamos.
 
 ```{r}
 ## Atribuicão dos resultados
@@ -310,7 +312,7 @@ Por fim, é fundamental também entender a origem das funções que usamos no R.
 
 ### Pacotes
 
-Pacotes são conjuntos extras de funções para executar tarefas específicas, além dos pacotes instalados no *R Base*. Existe literalmente milhares de pacotes (~19,000 enquanto escrever esse livro) para as mais diversas tarefas: estatística, ecologia, geografia, sensoriamento remoto, econometria, ciências sociais, gráficos, *machine learning*, etc. Podemos verificar este vasto conjunto de pacotes pelo [link](https://cran.r-project.org/web/packages/available_packages_by_name.html) que lista por nome os pacotes oficiais, ou seja, que passaram pelo crivo do **CRAN**. Existem ainda muito mais pacotes em desenvolvimento, geralmente disponibilizados em repositórios do **GitHub** ou **GitLab**.
+Pacotes são conjuntos extras de funções para executar tarefas específicas, além dos pacotes instalados no *R Base*. Existe literalmente milhares de pacotes (~19,000 enquanto estamos escrevendo esse livro) para as mais diversas tarefas: estatística, ecologia, geografia, sensoriamento remoto, econometria, ciências sociais, gráficos, *machine learning*, etc. Podemos verificar este vasto conjunto de pacotes pelo [link](https://cran.r-project.org/web/packages/available_packages_by_name.html) que lista por nome os pacotes oficiais, ou seja, que passaram pelo crivo do **CRAN**. Existem ainda muito mais pacotes em desenvolvimento, geralmente disponibilizados em repositórios do **GitHub** ou **GitLab**.
 
 Podemos listar esses pacotes disponíveis no **CRAN** com esse código.
 
@@ -393,7 +395,7 @@ devtools::install_github("paternogbc/ecodados")
 library("ecodados")
 ```
 
-Pode ser que em algumas circunstâncias iremos precisar instalar pacotes com versões específicas para algumas análises. A forma mais simples de fazer isso é instalar um pacote a partir de um arquivo compactado `.tar.gz`. Para isso podemos ir à base do CRAN e realizar o download: <https://cran.r-project.org/src/contrib/Archive/>. Para exemplificar, vamos instalar o pacote `vegan 2.4.0`.
+Pode ser que em algumas circunstâncias precisaremos instalar pacotes com versões específicas para algumas análises. A forma mais simples de fazer isso é instalar um pacote a partir de um arquivo compactado `.tar.gz`. Para isso podemos ir à base do CRAN e realizar o download: <https://cran.r-project.org/src/contrib/Archive/>. Para exemplificar, vamos instalar o pacote `vegan 2.4.0`.
 
 ```{r eval=FALSE}
 ## Download do arquivo .tar.gz
@@ -453,7 +455,7 @@ devtools::install_github()
 
 ### Ajuda (*Help*)
 
-Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) janela 4) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas. Abaixo descrever esses tópicos:
+Um importante passo para melhorar a usabilidade e ter mais familiaridade com a linguagem R é aprender a usar a ajuda (*help*) de cada função. Para tanto, podemos utilizar a função `help()` ou o operador `?`, depois de ter carregado o pacote, para abrir uma nova aba (Figura \@ref(fig:fig-rstudio) janela 4) que possui diversas informações sobre a função de interesse. O arquivo de ajuda do R possui geralmente nove ou dez tópicos, que nos auxiliam muito no entendimento dos dados de entrada, argumentos e que operações estão sendo realizadas.Abaixo descrevemos esses tópicos:
 
 -   **Description**: resumo da função
 -   **Usage**: como utilizar a função e quais os seus argumentos
@@ -496,7 +498,7 @@ Outra ferramenta de busca é a página [rseek](http://www.rseek.org), na qual é
 
 ### Ambiente (*Environment*)
 
-O ambiente *Environment* como vimos é onde os objetos criados são armazenados. É fundamental entender que um objeto é uma alocação de um pequeno espaço na memória RAM do nosso computador, onde o R armazenará um valor ou o resultado de uma função, utilizando o nome dos objetos que definimos na atribuição. Sendo assim, se fizermos uma atribuição de um objeto maior que o tamanho da memória RAM do nosso computador, esse objeto não será alocado, e a atribuição não funcionará, retornando um erro. Existem opções para contornar esse tipo de limitação, mas não a abordaremos aqui. Entretanto, podemos utilizar a função `object.size()` para saber quanto espaço nosso objeto criado está alocando de memória RAM.
+O ambiente (*environment*), como vimos, é onde os objetos criados são armazenados. É fundamental entender que um objeto é uma alocação de um pequeno espaço na memória RAM do nosso computador, onde o R armazenará um valor ou o resultado de uma função, utilizando o nome dos objetos que definimos na atribuição. Sendo assim, se fizermos a atribuição de um objeto maior que o tamanho da memória RAM do nosso computador, esse objeto não será alocado, e a atribuição não funcionará, retornando um erro. Existem opções para contornar esse tipo de limitação, mas não a abordaremos aqui. Entretanto, podemos utilizar a função `object.size()` para saber quanto espaço nosso objeto criado está alocando de memória RAM.
 
 ```{r}
 ## Tamanho de um objeto
@@ -556,7 +558,7 @@ save(obj1, obj2, file = "meus_objs.RData")
 load("meus_objs.RData")
 ```
 
-Ou ainda podemos salvar apenas um objeto com a extensão `.rds`. Para isso, usamos as funções `saveRDS()` e `readRDS()`, para exportar e importar esses dados, respectivamente. É importante ressaltar que nesse formato `.rds`, apenas um objeto é salvo por arquivo criado e que para que o objeto seja criado no *Workspace* do R, ele precisa ser lido e atribuído à um objeto.
+Ou ainda, podemos salvar apenas um objeto com a extensão `.rds`. Para isso, usamos as funções `saveRDS()` e `readRDS()`, para exportar e importar esses dados, respectivamente. É importante ressaltar que nesse formato `.rds`, apenas um objeto é salvo por arquivo criado e que para que o objeto seja criado no *Workspace* do R, ele precisa ser lido e atribuído à um objeto.
 
 ```{r eval=FALSE}
 ## Salvar um objeto para um arquivo
@@ -591,7 +593,7 @@ knitr::write_bib("vegan", file = "vegan_ex.bib")
 
 ### Principais erros de iniciantes
 
-Errar quando está começando a usar o R é muito comum e faz parte do aprendizado. Entretanto, os erros nunca devem ser encarados como uma forma de desestímulo, mas sim como um desafio para continuar tentando. Todos nós, autores desse livro, e provavelmente usuários mais ou menos experientes, já passaram por um momento em que se quer desistir de tudo. Jovem aprendiz de R, a única diferença entre você que está iniciando agora e nós que usamos há mais tempo são as horas a mais de uso (e ódio). O que temos a mais é experiência para olhar o erro, lê-lo e conseguir interpretar o que está errado e saber buscar ajuda.
+Errar quando se está começando a usar o R é muito comum e faz parte do aprendizado. Entretanto, os erros nunca devem ser encarados como uma forma de desestímulo, mas sim como um desafio para continuar tentando. Todos nós, autores deste livro inclusive, e provavelmente usuários mais ou menos experientes, já passaram por um momento em que se quer desistir de tudo. Jovem aprendiz de R, a única diferença entre você que está iniciando agora e nós que usamos o R há mais tempo são as horas a mais de uso (e ódio). O que temos a mais é experiência para olhar o erro, lê-lo e conseguir interpretar o que está errado e saber buscar ajuda.
 
 Dessa forma, o ponto mais importante de quem está iniciando é ter paciência, calma, bom humor, ler e entender as mensagens de erros. Recomendamos uma prática que pode ajudar: caso não esteja conseguindo resolver alguma parte do seu código, deixe ele de lado um tempo, descanse, faça uma caminhada, tome um banho, converse com seus animais de estimação ou plantas, tenha um pato de borracha ou outro objeto inanimado (um dos autores tem um sapinho de madeira), explique esse código para esse pato (processo conhecido como [Debug com Pato de Borracha](https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha)), logo a solução deve aparecer.
 
@@ -782,18 +784,18 @@ as.complex()
 ## Exemplo
 num <- 1:5
 num
-class(num)
+mode(num)
 
-fac <- as.factor(num)
-fac
-class(fac)
+cha <- as.character(num)
+cha
+mode(cha)
 ```
 
 **Estrutura dos objetos**
 
 Uma vez entendido a natureza dos modos dos elementos dos objetos no R, podemos passar para o passo seguinte e entender como esses elementos são estruturados dentro dos objetos.
 
-Essa estruturação irá nos contar sobre a organização dos elementos, com relação aos modos e dimensionalidade da disposição dos elementos (Figura \@ref(fig:fig-r-estruturas)). De modo bem simples, os elementos podem ser estruturados em cinco tipos:
+Essa estruturação irá nos contar sobre a organização dos elementos, com relação aos modos e dimensionalidade da disposição desses elementos (Figura \@ref(fig:fig-r-estruturas)). De modo bem simples, os elementos podem ser estruturados em cinco tipos:
 
 1.  **Vetores e fatores**: homogêneo (*um modo*) e unidimensional (*uma dimensão*). Um tipo especial de vetor são os fatores, usados para designar variáveis categóricas
 2.  **Matrizes**: homogêneo (*um modo*) e bidimensional (*duas dimensões*)
@@ -1025,7 +1027,7 @@ ve[5]
 ## Seleciona os elementos de 1 a 5
 ve[1:5]
 
-## Retira o decimo elemento
+## Retira o décimo elemento
 ve[-10]
 
 ## Retira os elementos 2 a 9
@@ -1333,13 +1335,13 @@ O diretório de trabalho é o endereço da pasta (ou diretório) de onde o R imp
 
 Podemos utilizar o próprio RStudio para tal tarefa, indo em `Session > Set Work Directory > Choose Directory...` ou simplesmente utilizar o atalho `Ctrl + Shift + H`.
 
-Podemos ainda utilizar funções do R para definir o diretório. Para tanto, podemos navegar com o aplicativo de gerenciador de arquivos (e.g., Windows Explorer) até nosso diretório de interesse e copiar o endereço na barra superior. Voltamos para o R e colamos esse endereço entre aspas como um argumento da função `setwd()`. É fundamental destacar que em no Windows é necessário inverter as barras (`\` por `/` ou duplicar elas `\\`).
+Podemos ainda utilizar funções do R para definir o diretório. Para tanto, podemos navegar com o aplicativo de gerenciador de arquivos (e.g., Windows Explorer) até nosso diretório de interesse e copiar o endereço na barra superior. Voltamos para o R e colamos esse endereço entre aspas como argumento da função `setwd()`. É fundamental destacar que no Windows é necessário inverter as barras (`\` por `/` ou duplicar elas `\\`).
 
 Aconselhamos ainda utilizar as funções `getwd()` para retornar o diretório definido na sessão do R, assim como as funções `dir()` ou `list.files()` para listagem dos arquivos no diretório, ambas medidas de conferência do diretório correto.
 
 ```{r eval=FALSE}
 ## Definir o diretório de trabalho
-setwd("/home/mude/data/github/livro_r_ecologia/dados")
+setwd("/home/mude/data/github/livro_aer/dados")
 
 ## Verificar o diretório
 getwd()
@@ -1427,7 +1429,7 @@ head(intror_anfibios_locais)
 
 Uma vez importados os dados para o R, geralmente antes de iniciarmos qualquer manipulação, visualização ou análise de dados, fazemos a conferência desses dados. Para isso, podemos utilizar as funções listadas na Tabela \@ref(tab:tab-funcoes-conf-multi).
 
-Dentre todas essas funções de verificação, destacamos a importância destas funções apresentadas abaixo para saber se as variáveis foram importadas e interpretadas corretamente e reconhecer erros de digitação, por exemplo.
+Dentre todas as funções de verificação, destacamos a importância destas funções apresentadas abaixo para saber se as variáveis foram importadas e interpretadas corretamente e reconhecer erros de digitação, por exemplo.
 
 ```{r}
 ## Primeiras linhas
@@ -1490,11 +1492,11 @@ openxlsx::write.xlsx(intror_anfibios_locais_na, "ATLANTIC_AMPHIBIAN_sites_na.xls
 
 ## Para se aprofundar
 
-Listamos a seguir livros e links com material que recomendamos para seguir com sua aprendizagem em R Base.
+Listamos a seguir livros e links com material que recomendamos para seguir com sua aprendizagem em *R Base*.
 
 ### Livros
 
-Recomendamos aos interessados os livros: i) Crawley [-@crawley_r_2012] The R Book, ii) Davies [-@davies_book_2016] The Book of R: A First Course in Programming and Statistics, iii) Gillespie e Lovelace [-@gillespie_efficient_2017] Efficient R programming, iv) Holmes e Huber [-@holmes_modern_2019] Modern Statistics for Modern Biology, v) Irizarry e Love [-@irizarry_data_2017] Data Analysis for the Life Sciences with R, vi) James e colaboradores [-@james_introduction_2013] An Introduction to Statistical Learning: with Applications in R, vii) Kabacoff [-@kabacoff_r_2011] R in Action: Data analysis and graphics with R, viii) Matloff [-@matloff_art_2011] The Art of R Programming: A Tour of Statistical Software Design, ix) Long e Teetor [-@long_r_2019] R Cookbook e x) Wickham [-@wickham_advanced_2019] Advanced R.
+Recomendamos aos (às) interessados(as) os livros: i) Crawley [-@crawley_r_2012] The R Book, ii) Davies [-@davies_book_2016] The Book of R: A First Course in Programming and Statistics, iii) Gillespie e Lovelace [-@gillespie_efficient_2017] Efficient R programming, iv) Holmes e Huber [-@holmes_modern_2019] Modern Statistics for Modern Biology, v) Irizarry e Love [-@irizarry_data_2017] Data Analysis for the Life Sciences with R, vi) James e colaboradores [-@james_introduction_2013] An Introduction to Statistical Learning: with Applications in R, vii) Kabacoff [-@kabacoff_r_2011] R in Action: Data analysis and graphics with R, viii) Matloff [-@matloff_art_2011] The Art of R Programming: A Tour of Statistical Software Design, ix) Long e Teetor [-@long_r_2019] R Cookbook e x) Wickham [-@wickham_advanced_2019] Advanced R.
 
 ### Links
 Existem centenas de ferramentas online para aprender e explorar o R. Dentre elas, indicamos os seguintes links (em português e inglês):  
