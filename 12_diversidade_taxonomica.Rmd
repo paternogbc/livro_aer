@@ -2,13 +2,13 @@
 
 ## Pré-requisitos do capítulo {-}
 
-Pacotes e dados que serão utilizados nesse capítulo.
+Pacotes e dados que serão utilizados neste capítulo.
 
 ```{r}
 ## Pacotes
 library(devtools)
 library(ecodados)
-library (vegan)
+library(vegan)
 library(ggplot2)
 library(BiodiversityR)
 library(hillR)
@@ -21,7 +21,7 @@ precipitacao        <- ecodados::precipitacao_div_taxonomica
 
 ## Aspectos teóricos
 
-A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.) [@magurran_biological_2011; @gotelli2013]. Whittaker [-@whittaker1960; -@whittaker1972] particionou a diversidade em três componentes: i) diversidade alfa que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) diversidade beta que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) diversidade gama que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.
+A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.) [@magurran_biological_2011; @gotelli2013]. Whittaker [-@whittaker1960; -@whittaker1972] particionou a diversidade em três componentes: i) **diversidade alfa** que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) **diversidade beta** que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) **diversidade gama** que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.
 
 Neste capítulo, iremos abordar a diversidade taxonômica que ignora a relação de parentesco entre as espécies (e.g. diversidade filogenética - Capítulo \@ref(cap13)) e as diferentes funções que as espécies realizam no ecossistema (e.g. diversidade funcional - Capítulo \@ref(cap14)). Na diversidade taxonômica, pesquisadores estão interessados na riqueza de espécies (e.g. número de espécies), na distribuição de abundância das espécies (e.g. fato que algumas espécies são comuns e outras raras) e/ou diversidade de espécies (e.g. índices que descrevem a relação entre a riqueza e a distribuição da abundância relativa das espécies) nas localidades.
 
@@ -70,10 +70,8 @@ Neste exemplo, avaliaremos a riqueza de espécies de 10 comunidades. Os dados de
 
 **Variáveis**
 
--   Variáveis resposta e preditoras
-
-    -   Data frame com as comunidades (unidade amostral) nas linhas e as espécies (variável resposta) nas colunas
-    -   Data frame com as comunidades (unidade amostral) nas linhas e precipitação anual (variável preditora) na coluna
+-   Data frame com as comunidades (unidade amostral) nas linhas e as espécies (variável resposta) nas colunas
+-   Data frame com as comunidades (unidade amostral) nas linhas e precipitação anual (variável preditora) na coluna
 
 **Checklist**
 

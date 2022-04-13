@@ -61,8 +61,8 @@ Onde:
 
 -   As amostras devem ser independentes
 -   As unidades amostrais são selecionadas aleatoriamente
--   Distribuição normal (gaussiana) dos resíduos. 
--   Homogeneidade da variância. 
+-   Distribuição normal (gaussiana) dos resíduos
+-   Homogeneidade da variância
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -76,9 +76,9 @@ Onde:
 
 Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura \@ref(fig:fig-homo-norm)) [@zuur_protocol_2009]. 
 
--   A homogeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura \@ref(fig:fig-homo-norm)A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). 
+-   A premissa de homogeneidade da variância pode ser avaliada através do gráfico de dispersão dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura \@ref(fig:fig-homo-norm)A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil). 
 
--   A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura \@ref(fig:fig-homo-norm)B).
+-   A premissa de normalidade dos resíduos pode ser avaliada através do gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura \@ref(fig:fig-homo-norm)B).
 
 ```{r fig-homo-norm, echo=FALSE, fig.cap="Inspeção gráfica da homogeneidade da variância (A) e normalidade dos resíduos (B). Os símbolos verdes indicam que os gráficos em que os resíduos apresentam distribuição homogênea e normal, enquanto os símbolos vermelhos indicam os gráficos em que os resíduos violam as premissas do teste."}
 knitr::include_graphics(path = "img/cap07_fig01.jpg")
@@ -99,8 +99,6 @@ Neste exemplo, avaliaremos o comprimento rostro-cloacal (CRC em milímetros) de 
 - O CRC dos machos será maior na estação chuvosa porque há uma vantagem seletiva para os indivíduos maiores durante a atividade reprodutiva
 
 **Variáveis**
-
-- Variáveis resposta e preditoras
 
 - Data frame com os indivíduos (unidade amostral) nas linhas e CRC (mm - variável resposta contínua) e estação (variável preditora categórica) como colunas
 
@@ -204,8 +202,6 @@ Os dados foram alterados em relação a publicação original para se enquadrare
 
 **Variáveis**
 
--   Variáveis resposta e preditoras
-
 -   Data frame com os indivíduos (unidade amostral) nas linhas e CRC (mm - variável resposta contínua) e estação (variável preditora categórica) como colunas
 
 **Checklist**
@@ -304,8 +300,6 @@ Neste exemplo, avaliaremos a diferença na riqueza de espécies de artrópodes r
 
 **Variáveis**
 
-- Variáveis resposta e preditoras
-
 -   data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pré-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas
 
 **Checklist**
@@ -384,7 +378,6 @@ Neste exemplo, avaliaremos a correlação entre a altura do tronco e o tamanho d
 
 **Variáveis**
 
--   Variáveis
 -   data frame com os indivíduos (unidade amostral) nas linhas e altura do tronco e tamanho da raiz (duas variáveis têm que ser contínuas) como colunas
 
 **Checklist**
@@ -469,10 +462,8 @@ Neste exemplo, avaliaremos a relação entre o gradiente de temperatura média a
 - Os CRC das populações serão menores em localidades mais quentes do que em localidades mais frias de acordo com a Hipótese do Balanço de Calor [@olalla-tárraga2007]
 
 **Variáveis**
-
--   Variáveis resposta e preditoras
-        
-    -   Data frame com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura média anual (variável preditora) como colunas
+   
+-   Data frame com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura média anual (variável preditora) como colunas
 
 **Checklist**
 
@@ -570,8 +561,6 @@ Utilizaremos o mesmo exemplo da regressão linear simples. Contudo, além do gra
 - Os CRC das populações serão menores em localidades com clima quente e chuvoso do que em localidades com clima frio e seco
 
 **Variáveis**
-
-- Variáveis resposta e preditoras
 
 -   data frame com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura e precipitação (variáveis preditoras) como colunas
 
@@ -695,9 +684,7 @@ Neste exemplo hipotético, avaliaremos se o adubo X-2020 disponibilizado recente
 
 **Variáveis**
 
--   Variáveis resposta e preditoras
-
-    -   Data frame com as plantas (unidade amostral) nas linhas e o crescimento dos indivíduos de *C. arabica* (variável resposta) e os tratamentos (variável preditora) nas colunas
+-   Data frame com as plantas (unidade amostral) nas linhas e o crescimento dos indivíduos de *C. arabica* (variável resposta) e os tratamentos (variável preditora) nas colunas
 
 **Checklist**
 
@@ -795,8 +782,6 @@ Neste exemplo hipotético, avaliaremos se o tempo que o corpo leva para eliminar
 - O tempo de eliminação da droga vai ser mais rápido nos pacientes XX e jovens
 
 **Variáveis**
-
--   Variáveis resposta e preditoras
 
 -   data frame com os pacientes (unidade amostral) nas linhas e o tempo de eliminação da droga (variável resposta) e os tratamentos sexo e idade dos pacientes (variáveis preditoras) nas colunas
 
@@ -919,7 +904,12 @@ Percebam que as linhas se cruzam. Esse é um exemplo clássico de interação. N
 
 ### ANOVA em blocos aleatorizados
 
-No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco [@gotelli_primer_2012]. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse. Importante, os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.
+No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco [@gotelli_primer_2012]. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse.
+
+::: {.alert .alert-info}
+<strong> 📝 Importante </strong>\
+Os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.
+:::
 
 **Exemplo prático 1 - ANOVA em blocos aleatorizados**
 
@@ -943,9 +933,7 @@ Os valores da riqueza de espécies foram alterados em relação a publicação o
 
 **Variáveis**
 
--   Variáveis resposta e preditoras
-
-    -   Data frame com as poças (unidade amostral) nas linhas e a riqueza de espécies (variável reposta), distância dos fragmentos florestais (variável preditora categórica) e fragmentos florestais (blocos) nas colunas
+-   Data frame com as poças (unidade amostral) nas linhas e a riqueza de espécies (variável reposta), distância dos fragmentos florestais (variável preditora categórica) e fragmentos florestais (blocos) nas colunas
 
 **Checklist**
 
@@ -970,7 +958,7 @@ summary(model_bloco)
 
 Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.
 
-O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a forma errada de analisar delineamento experimental com blocos.
+O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a **forma errada** de analisar delineamento experimental com blocos.
 
 ```{r}
 ## Forma errada de análisar Anova em blocos
@@ -1026,8 +1014,6 @@ Neste exemplo hipotético, avaliaremos o efeito da herbivoria na biomassa dos fr
 
 **Variáveis**
 
--   Variáveis resposta e preditoras
-
 -   data frame com os indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas
 
 **Checklist**
@@ -1046,7 +1032,6 @@ head(dados_ancova)
 Códigos para o cálculo da ANCOVA (Figura \@ref(fig:fig-ancova-diag)).
 
 ```{r fig-ancova-diag, fig.cap="Gráficos de diagnóstico dos resíduos da ANCOVA."}
-## Gráfico
 ## Ancova
 modelo_ancova <- lm(Biomassa ~ Herbivoria * Raiz, data = dados_ancova)
 
@@ -1102,7 +1087,7 @@ concentrar nas seguintes funções.
 -   **Linear**: `corLin(form=\~lat+long)`
 -   **Razão quadrática**: `corRatio(form=\~lat+long)`
 
-**Exemplo prático**
+**Exemplo prático 1 - GLS**
 
 **Explicação dos dados**
 
@@ -1196,7 +1181,7 @@ ratio_model <- gls(riqueza ~ agua, mite_dat,
                    corRatio(form = ~lat+long, nugget = TRUE))
 ```
 
-Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessário comparar os modelos para escolher o mais "provável", utilizando a seleção de modelos pelo Critério de Seleção de Akaike (AIC) [@chiles_1999; @burnham2002; @fortin_dale_2005] (Figura \@ref(fig:fig-diag-ratio)). AIC é um método estatístico que compara os modelos criados na sua pesquisa e seleciona o melhor entre eles. Diferente do LRT que compara apenas modelos aninhados, o AIC compara modelos com diferentes combinações de variáveis preditoras. Uma vez que a fórmula do AIC penaliza parâmetros extras no modelo, se dois modelos explicam igualmente a variação dos dados, o modelo com menos parâmetros terá o menor valor de AIC e será selecionado como o melhor modelo. 
+Agora, depois de ajustar o modelo GLS com os  diferentes variogramas é necessário comparar os modelos para escolher o mais "provável", utilizando a seleção de modelos pelo **Critério de Seleção de Akaike (AIC)** [@chiles_1999; @burnham2002; @fortin_dale_2005] (Figura \@ref(fig:fig-diag-ratio)). AIC é um método estatístico que compara os modelos criados na sua pesquisa e seleciona o melhor entre eles. Diferente do LRT que compara apenas modelos aninhados, o AIC compara modelos com diferentes combinações de variáveis preditoras. Uma vez que a fórmula do AIC penaliza parâmetros extras no modelo, se dois modelos explicam igualmente a variação dos dados, o modelo com menos parâmetros terá o menor valor de AIC e será selecionado como o melhor modelo. 
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -1229,7 +1214,7 @@ plot(variog_mod1, main = "Variograma Modelo Normal")
 
 **Interpretação dos resultados**
 
-Dessa forma, O valor mais apropriado da estatística t é de -4.33 (*ratio_model*) ao invés de -7.78 (*no_spat_gls*). Neste caso, a decisão (quantidade de água afetando a riqueza de ácaros) não foi afetada (*P* \< 0.05 nos dois modelos), somente a estatística do teste.
+Dessa forma, o valor mais apropriado da estatística t é de -4.33 (*ratio_model*) ao invés de -7.78 (*no_spat_gls*). Neste caso, a decisão (quantidade de água afetando a riqueza de ácaros) não foi afetada (*P* \< 0.05 nos dois modelos), somente a estatística do teste.
 
 ## Para se aprofundar
 
@@ -1237,7 +1222,7 @@ Listamos a seguir livros e links que recomendamos para seguir com sua aprendizag
 
 ### Livros
 
-Recomendamos aos interessados os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis, ii) Gotelli & Ellison [-@gotelli_primer_2012] A primer of ecological statistics, iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists, iv) Zuur e colabodores [-@zuur_analysing_2007] Analysing Ecological Data e v) Touchon [-@touchon_applied_2021] Applied statistics with R: a practical guide for the life sciences.
+Recomendamos aos interessados(as) os livros: i) Zar [-@zar_biostatistical_2010] Biostatiscal analysis, ii) Gotelli & Ellison [-@gotelli_primer_2012] A primer of ecological statistics, iii) Quinn & Keough [-@quinn_experimental_2002] Experimental design and data analysis for biologists, iv) Zuur e colabodores [-@zuur_analysing_2007] Analysing Ecological Data e v) Touchon [-@touchon_applied_2021] Applied statistics with R: a practical guide for the life sciences.
 
 ### Links
 
