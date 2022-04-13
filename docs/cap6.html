@@ -124,12 +124,12 @@
 <h2>
 <span class="header-section-number">6.1</span> Contextualização<a class="anchor" aria-label="anchor" href="#contextualiza%C3%A7%C3%A3o-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>A visualização de dados através de gráficos frequentemente é a melhor forma de apresentar e interpretar as informações contidas em seus estudos, fazendo uma síntese para melhor entendimento de padrões. Geralmente, os gráficos são necessários em quase todas as análises estatísticas, além de enriquecer a argumentação e discussão de hipóteses levantadas para publicações, trabalhos de consultoria, TCCs, dissertações, teses, entre outros.</p>
+<p>A visualização de dados através de gráficos frequentemente é a melhor forma de apresentar e interpretar informações ecológicas pois sintetiza os dados e facilita o entendimento de padrões. Geralmente, os gráficos são necessários em quase todas as análises estatísticas, além de enriquecer a argumentação e discussão de hipóteses levantadas para publicações, trabalhos de consultoria, TCCs, dissertações, teses, entre outros.</p>
 <p>Existem vários tipos de gráficos para representar os padrões em seus dados para diferentes finalidades. Esses diferentes tipos de gráficos podem até mesmo ser usados para representar o mesmo tipo de dado. Nesta seção, focaremos nos gráficos mais simples para representar uma ou duas variáveis (i.e., gráficos bidimensionais). Dependendo do tipo de variável (categórica ou contínua – veja os tipos de variáveis na Figura <a href="cap2.html#fig:fig-box">2.2</a> do Capítulo <a href="cap2.html#cap2">2</a>), os gráficos mais indicados para representar os dados mudam. De forma simplificada, os gráficos são representações dos nossos dados tabulares, de modo que os eixos representam as colunas e as feições (pontos, linhas, barras, caixas, etc.) representam as linhas.</p>
 <p>Comumente nos gráficos são representados uma ou duas colunas, quando muito três, em gráficos de três dimensões. Para mais colunas, partimos para dados agregados que podem ser vistos no Capítulo <a href="cap9.html#cap9">9</a> de análises multivariadas. Além disso, a utilização de mais de duas colunas pode estar relacionado com outras partes estéticas (e.g. <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> no pacote <code>ggplot2</code>) do gráfico como cor, forma ou tamanho de pontos, linhas ou outras feições.</p>
 <p>Dessa forma, dedicamos esse capítulo inteiramente a apresentar os principais conceitos, como a gramática de gráficos, e uma apresentação geral que pode funcionar como “um guia de bolso” de gráficos, uma vez que apresentamos os principais tipos de gráficos para análises ecológicas e estatísticas. Além disso, no último tópico focamos na finalização (ajustes finos) de gráficos para publicações. Este capítulo fornece a base conceitual necessária para entender a visualização gráfica de dados apresentada ao longo do livro.</p>
 <p>Existe uma ampla gama de pacotes para fazer gráficos no R, sendo esse um ponto muito forte dessa linguagem. Além disso, essa grande disponibilidade de pacotes e funções permitem a visualização dos mais diferentes tipos de dados, o que torna a linguagem R detentora de alta praticidade, uma vez que a maior parte dos pacotes possui uma sintaxe relativamente simples para a apresentação de gráficos excelentes e de ótima qualidade. Mais adiante no Capítulo <a href="cap15.html#cap15">15</a>, ampliamos a discussão da visualização gráfica com ferramentas para visualização de dados geoespaciais no R.</p>
-<p>Este capítulo foi organizado em quatro partes: i) principais pacotes, ii) gramática dos gráficos, iii) tipos de gráficos (um guia de bolso para visualização de vários gráficos no R), e iv) edição de gráficos com alta qualidade para publicação. Apesar de apresentarmos diferentes pacotes com grande potencial para visualização gráfica, focaremos neste capítulo no pacote <code>ggplot2</code>, talvez o pacote mais comum e com maior gama de possibilidades de criação de excelentes gráficos.</p>
+<p>Este capítulo foi organizado em quatro partes: i) principais pacotes, ii) gramática dos gráficos, iii) tipos de gráficos (um guia de bolso para visualização de vários gráficos no R), e iv) edição de gráficos com alta qualidade para publicação. Apesar de apresentarmos diferentes pacotes com grande potencial para visualização gráfica, focaremos neste capítulo no pacote <code>ggplot2</code>, talvez o pacote mais utilizado e com maior gama de possibilidades de criação de excelentes gráficos.</p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
 Neste capítulo, vamos ensinar gradativamente os comandos para construir gráficos e como editar suas diferentes camadas. Por este motivo, o leitor não verá uma padronização nos temas dos gráficos (fonte, cor, fundo do painel, etc.), uma vez que os gráficos sem edição (padrão do ggplot2) possuem temas pré-definidos. Desse modo, para fazer um gráfico com maior qualidade (chamamos aqui de versão “com ajustes finos”) será necessário adicionar comandos extras que são exatamente o foco deste capítulo. Em alguns comandos básicos o leitor vai perceber que devido aos dados utilizados, os eixos vão possuir palavras em inglês misturadas com as palavras em português. Optamos por não traduzir esses nomes para preservar o padrão que será visualizado nos primeiros comandos que cada leitor irá fazer em seu computador.</p>
@@ -142,11 +142,11 @@ Neste capítulo, vamos ensinar gradativamente os comandos para construir gráfic
 </h2>
 <p>A seguir, apresentamos uma listagem dos principais pacotes para visualização de dados no R, além das principais funções desses pacotes.</p>
 <ul>
-<li><p><a href="http://search.r-project.org/R/library/graphics/html/00Index.html"><em>graphics</em></a>: é o pacote padrão (<em>default</em>) do R para produzir gráficos simples, porém útil para visualizações rápidas de quase todos as classes de objetos. Possui funções como: <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code>, <code><a href="https://rdrr.io/r/graphics/barplot.html">barplot()</a></code>, <code><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot()</a></code>, <code><a href="https://rdrr.io/r/graphics/abline.html">abline()</a></code>, <code><a href="https://rdrr.io/r/graphics/points.html">points()</a></code>, <code><a href="https://rdrr.io/r/graphics/lines.html">lines()</a></code> e <code><a href="https://rdrr.io/r/graphics/polygon.html">polygon()</a></code>. Destacamos que a função <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> pode estar presente em diversos pacotes</p></li>
+<li><p><a href="http://search.r-project.org/R/library/graphics/html/00Index.html"><em>graphics</em></a>: é o pacote padrão (<em>default</em>) do R para produzir gráficos simples, porém útil para visualizações rápidas de quase todos as classes de objetos. Possui funções como: <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code>, <code><a href="https://rdrr.io/pkg/raster/man/hist.html">hist()</a></code>, <code><a href="https://rdrr.io/pkg/raster/man/barplot.html">barplot()</a></code>, <code><a href="https://rdrr.io/pkg/raster/man/boxplot.html">boxplot()</a></code>, <code><a href="https://rdrr.io/r/graphics/abline.html">abline()</a></code>, <code><a href="https://rdrr.io/r/graphics/points.html">points()</a></code>, <code><a href="https://rdrr.io/r/graphics/lines.html">lines()</a></code> e <code><a href="https://rdrr.io/r/graphics/polygon.html">polygon()</a></code>. Destacamos que a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> pode estar presente em diversos pacotes</p></li>
 <li><p><a href="https://ggplot2.tidyverse.org/"><em>ggplot2</em></a>: pacote integrado ao <em>tidyverse</em> (Capítulo <a href="cap5.html#cap5">5</a>), possui uma sintaxe própria baseada na gramática de gráficos por camadas (<em>layers</em>), necessitando de funções específicas para objetos de classes diferentes, demandando geralmente mais tempo para a construção dos códigos. Possui funções como <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, <code>geom_*()</code>, <code>facet_*()</code>, <code>stats_*()</code>, <code>coord_*()</code> e <code>theme_*()</code>, que são conectadas pelo operador <code>+</code></p></li>
 <li><p><a href="https://exts.ggplot2.tidyverse.org/"><em>ggplot2 extentions</em></a>: conjunto de pacotes que adicionam diversas expansões ao pacote <code>ggplot2</code>. Exemplos: <a href="https://gganimate.com/"><em>gganimate</em></a>, <a href="https://ggobi.github.io/ggally/"><em>GGally</em></a>, <a href="https://patchwork.data-imaginist.com/"><em>patchwork</em></a> e <a href="https://dreamrs.github.io/esquisse/"><em>esquisse</em></a></p></li>
-<li><p><a href="https://docs.ropensci.org/visdat/"><em>visdat</em></a>: cria visualizações preliminares de dados exploratórios de um conjunto de dados inteiro para identificar problemas ou recursos inesperados usando ‘ggplot2’. Possui diversas funções específicas: <code>vis_dat()</code> para visão geral dos dados, <code>vis_miss()</code> para visão de dados faltantes (<code>NA</code>) e <code>vis_compare()</code> para visualizar a diferença entre dados</p></li>
-<li><p><a href="https://rpkgs.datanovia.com/ggpubr/"><em>ggpubr</em></a>: pacote que fornece funções simplificadas para criar e personalizar gráficos para publicação, baseados no <code>ggplot2</code>. Possui funções específicas: <code>gghistogram()</code>, <code>ggdensity()</code>, <code>ggboxplot()</code>, <code>ggviolin()</code>, <code>ggbarplot()</code> e <code>ggscatter()</code></p></li>
+<li><p><a href="https://docs.ropensci.org/visdat/"><em>visdat</em></a>: cria visualizações preliminares de dados exploratórios de um conjunto de dados inteiro para identificar problemas ou recursos inesperados usando ‘ggplot2’. Possui diversas funções específicas: <code><a href="https://docs.ropensci.org/visdat/reference/vis_dat.html">vis_dat()</a></code> para visão geral dos dados, <code><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss()</a></code> para visão de dados faltantes (<code>NA</code>) e <code><a href="https://docs.ropensci.org/visdat/reference/vis_compare.html">vis_compare()</a></code> para visualizar a diferença entre dados</p></li>
+<li><p><a href="https://rpkgs.datanovia.com/ggpubr/"><em>ggpubr</em></a>: pacote que fornece funções simplificadas para criar e personalizar gráficos para publicação, baseados no <code>ggplot2</code>. Possui funções específicas: <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/gghistogram.html">gghistogram()</a></code>, <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggdensity.html">ggdensity()</a></code>, <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggboxplot.html">ggboxplot()</a></code>, <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggviolin.html">ggviolin()</a></code>, <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggbarplot.html">ggbarplot()</a></code> e <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggscatter.html">ggscatter()</a></code></p></li>
 <li><p><a href="http://lattice.r-forge.r-project.org/">lattice</a>: pacote para visualização de dados inspirado nos gráficos treliça (do inglês <em>Trellis</em>, geralmente para dados com muitas variáveis que geram uma matriz retangular de gráficos). Também possui funções específicas: <code><a href="https://rdrr.io/pkg/lattice/man/xyplot.html">xyplot()</a></code>, <code><a href="https://rdrr.io/pkg/lattice/man/histogram.html">histogram()</a></code>, <code><a href="https://rdrr.io/pkg/lattice/man/histogram.html">densityplot()</a></code>, <code><a href="https://rdrr.io/pkg/lattice/man/xyplot.html">barchart()</a></code>, <code><a href="https://rdrr.io/pkg/lattice/man/xyplot.html">bwplot()</a></code> e <code><a href="https://rdrr.io/pkg/lattice/man/xyplot.html">dotplot()</a></code>. O pacote <a href="http://latticeextra.r-forge.r-project.org/">latticeExtra</a> disponibiliza algumas possibilidades a mais para esse pacote</p></li>
 <li><p><a href="https://plotly.com/r/">plotly</a>: pacote para criar gráficos interativos da web por meio da biblioteca gráfica de JavaScript de código aberto <a href="https://plotly.com/">plotly.js</a>. Também possui funções específicas: <code>plot_ly()</code>, <code>add_histogram()</code>, <code>add_bars()</code>, <code>add_boxplot()</code>, <code>add_markers()</code>, <code>add_paths()</code>, <code>add_lines()</code> e <code>add_polygons()</code></p></li>
 </ul>
@@ -156,7 +156,7 @@ Neste capítulo, vamos ensinar gradativamente os comandos para construir gráfic
 <span class="header-section-number">6.3</span> Grámatica dos gráficos<a class="anchor" aria-label="anchor" href="#gr%C3%A1matica-dos-gr%C3%A1ficos"><i class="fas fa-link"></i></a>
 </h2>
 <p>O livro <em>The Grammar of Graphics</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wilkinson2005" role="doc-biblioref">Wilkinson and Wills 2005</a>)</span> utiliza uma analogia da linguística para criar uma “gramática” para a visualização gráfica. Segundo ele, a língua se torna expressiva pelo fato da gramática criar um sistema de regras que tornam as declarações com significado conhecido. De maneira semelhante, a ideia da <em>gramática dos gráficos</em> cria regras para representação gráfica dos dados a partir de atributos estéticos (do inglês <em>aesthetic</em>) como cor, forma e tamanho que definem a geometria dos objetos, como pontos, linhas e barras <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>)</span>. Além disso, esta gramática reconhece que tais elementos podem ser organizados em camadas, tal como construímos um mapa com diferentes camadas como elevação, hidrografia, rodovias, limites políticos, etc.</p>
-<p>Inspirado pela <em>gramática dos gráficos</em> proposta por Wilkinson &amp; Wills <span class="citation">(<a href="refer%C3%AAncias.html#ref-wilkinson2005" role="doc-biblioref">2005</a>)</span>, Hadley Wickham cria o pacote <code>ggplot2</code>, onde “gg” representa a contração de <em>Grammar of Graphics</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>)</span>. As camadas nesta gramática (<em>layered-grammar</em>) são organizadas da seguinte forma:</p>
+<p>Inspirado pela <em>gramática dos gráficos</em> proposta por Wilkinson &amp; Wills <span class="citation">(<a href="refer%C3%AAncias.html#ref-wilkinson2005" role="doc-biblioref">2005</a>)</span>, Hadley Wickham criou o pacote <code>ggplot2</code>, onde “gg” representa a contração de <em>Grammar of Graphics</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>)</span>. As camadas nesta gramática (<em>layered-grammar</em>) são organizadas da seguinte forma:</p>
 <ul>
 <li>
 <strong>Camada 1</strong> - dados <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>: são as informações no formato <code>data.frame</code> que serão usadas nas diferentes camadas nas funções <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, <code>geom_*()</code>, <code>stat_*()</code>, <code>facet_*()</code> e <code>scale_*()</code>
@@ -219,7 +219,7 @@ Figura 6.1: Esquema gráfico ilustrando as camadas que definem a strutura de org
 <li>
 <strong>Gráfico pareado (<em>pairs plot</em>)</strong>: relação entre valores de duas colunas para dados contínuos (X e Y), para colunas par-a-par</li>
 </ul>
-<p>Para facilitar a compreensão das regras da gramática dos dados, cada tipo de gráfico segue a mesma estrutura de organização, que respeita as camadas de informação descritas na seção anterior. Podemos perceber, portanto, que algumas camadas não são necessárias dependendo do tipo de gráfico ou do conjunto de dados que pretendemos analisar.</p>
+<p>Para facilitar a compreensão das regras da gramática dos gráficos, cada tipo de gráfico segue a mesma estrutura de organização, que respeita as camadas de informação descritas na seção anterior. Podemos perceber, portanto, que algumas camadas não são necessárias dependendo do tipo de gráfico ou do conjunto de dados que pretendemos analisar.</p>
 <p>Nos exemplos a seguir, a <em>versão padrão</em> se refere à representação determinada no <em>default</em> das funções do pacote <code>ggplot2</code>. Desse modo, somente informamos as variáveis que serão utilizadas dentro de cada camada e a forma geométrica (i.e., tipo de gráfico) desejada. Porém, para cada tipo gráfico apresentamos funções e argumentos para ajustes finos e personalizados.</p>
 <div id="histograma-histogram" class="section level3" number="6.4.1">
 <h3>
@@ -239,7 +239,7 @@ Figura 6.1: Esquema gráfico ilustrando as camadas que definem a strutura de org
 Figura 6.2: Histograma de uma distribuição normal com 10000 observações.
 </p>
 </div>
-<p>Neste histograma é possível entender que a maioria dos valores no objeto <code>dist_normal</code> estão próximos ao valor da média, i.e., zero. Em Ecologia, os histogramas são utilizados para visualizar, por exemplo, a variação morfológica entre espécies (subespécies, gênero, famílias, etc.), variação de parâmetros populacionais entre diferentes espécies ou dentro da mesma espécie em diferentes localidades.</p>
+<p>Neste histograma é possível entender que a maioria dos valores da variável <code>x</code> do objeto dist_normal estão próximos ao valor da média, i.e., zero. Em Ecologia, os histogramas são utilizados para visualizar, por exemplo, a variação morfológica entre espécies (subespécies, gênero, famílias, etc.), variação de parâmetros populacionais entre diferentes espécies ou dentro da mesma espécie em diferentes localidades.</p>
 <p><strong>Versão padrão</strong></p>
 <p>Vamos utilizar o conjunto de dados <em>palmerpenguins</em> para construir um histograma da distribuição da variável <em><code>comprimento_nadadeira</code></em> com a função <code>geom_hitogram()</code>. Esta função utiliza uma variável contínua no eixo X e a frequência de cada categoria de intervalo de valores no eixo Y. O gráfico a seguir representa a frequência de uma variável (neste caso, a medida de todos os pinguins, independente da espécie) (Figura <a href="cap6.html#fig:fig-hist-flipper">6.3</a>).</p>
 <div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
@@ -308,12 +308,12 @@ Figura 6.6: Histograma da variável <code>comprimento_nadadeira</code> com ajust
 <li><code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code></li>
 <li>Eixo X (<code>x</code>): variável contínua (<code>comprimento_nadadeira</code>)</li>
 <li>Preenchimento (<code>fill</code>): variável categórica (<code>especies</code>) que define as cores tendo como base o número de níveis dentro desta categoria</li>
-<li><code>geom()</code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/geom.html">geom()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>: para que a variável contínua seja plotada como histograma</li>
 <li>Transparência das linhas e preenchimentos (<code>alpha</code>): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)</li>
 <li>Posição das barras: o argumento <code>position</code> define se as barras devem ser inseridas de maneira sobreposta (<code>position = "identity"</code>) ou não (<code>position = "dodge"</code>)</li>
-<li><code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>: para definir manualmente as cores</li>
 <li><code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code></li>
@@ -396,11 +396,11 @@ Figura 6.10: Gráfico de densidade da variável <code>comprimento_nadadeira</cod
 <li><code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code></li>
 <li>Eixo X (<code>x</code>): variável contínua (<code>comprimento_nadadeira</code>)</li>
 <li>Preenchimento (<code>fill</code>): variável categórica (<code>especies</code>) que define as cores tendo como base o número de níveis dentro desta categoria</li>
-<li><code>geom()</code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/geom.html">geom()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density()</a></code>: para que a variável contínua seja plotada como densidade</li>
 <li>Transparência das linhas e preenchimentos (<code>alpha</code>): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)</li>
-<li><code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>: para definir manualmente as cores de preferência do usuário</li>
 <li>
@@ -467,11 +467,10 @@ Uma das limitações do diagrama de pontos é que a sobreposição dos pontos po
 </div>
 <p><strong>Principais camadas utilizadas na função <code><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot()</a></code></strong></p>
 <ul>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>:</li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code></li>
 <li>Eixo X (<code>x</code>): variável contínua (<code>comprimento_nadadeira</code>)</li>
 <li>Preenchimento (<code>fill</code>): variável categórica (<code>especies</code>) que define as cores tendo como base o número de níveis dentro desta categoria</li>
-<li><code>geom():</code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/geom.html">geom()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot()</a></code>: para que a variável contínua seja plotada como diagrama de pontos</li>
 <li>Transparência dos pontos (<code>alpha</code>): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)</li>
@@ -479,18 +478,16 @@ Uma das limitações do diagrama de pontos é que a sobreposição dos pontos po
 </li>
 <li>Tamanho dos pontos (<code>dotsize</code>): valor padrão (se não for especificado) é 1</li>
 <li>Posição dos pontos: o argumento <code>position</code> define se os pontos devem ser inseridos de maneira sobreposta (<code>position = "identity"</code>) ou não (<code>position = "dodge"</code>)</li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code></li>
 <li>
-<code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code>:</li>
+<code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>: para definir manualmente as cores de preferência do usuário</li>
 <li>
-<code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code> para definir manualmente as cores de preferência do usuário</li>
+<code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code>: e <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous()</a></code> determinam os limites (valor mínimo e máximo) para os dois eixos e, além disso, os intervalos entre os valores (<code>breaks</code>)</li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code></li>
 <li>
-<code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code> e <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous()</a></code> determinam os limites (valor mínimo e máximo) para os dois eixos e, além disso, os intervalos entre os valores (<code>breaks</code>)</li>
+<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>: para selecionar o tema com fundo branco</li>
 <li>
-<code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>:</li>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>para selecionar o tema com fundo branco</li>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> para personalizar os títulos dos eixos X e Y, e da legenda</li>
+<code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code>: para personalizar os títulos dos eixos X e Y, e da legenda</li>
 </ul>
 </div>
 <div id="gráfico-de-barras-bar-plot" class="section level3" number="6.4.4">
@@ -521,7 +518,7 @@ Uma das limitações do diagrama de pontos é que a sobreposição dos pontos po
 Figura 6.14: Gráfico de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim.
 </p>
 </div>
-<p>Além disso, é possível alterar as cores (<code>color</code>) e preenchimento (<code>fill</code>) das barras, bem como sua transparência (<code>alpha</code>) e largura (<code>width</code>), como demonstrado nos próximos quatro gráficos (Figura <a href="cap6.html#fig:fig-bar-species-color">6.15</a>).</p>
+<p>Além disso, é possível alterar as cores (<code>color</code>) e o preenchimento (<code>fill</code>) das barras, bem como sua transparência (<code>alpha</code>) e largura (<code>width</code>), como demonstrado nos próximos quatro gráficos (Figura <a href="cap6.html#fig:fig-bar-species-color">6.15</a>).</p>
 <div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modificando o preenchimento</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_count</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
@@ -660,7 +657,7 @@ Figura 6.21: Gráfico de setores do tipo <em>donuts</em> indicando a proporção
 </p>
 </div>
 <p><strong>Comparando gráficos de setores com gráfico de barras</strong></p>
-<p>O mesmo conjunto de dados pode ser visualizado de diferentes formas. Não diferente, a comparação da proporção de ocorrências de diferentes categorias pode ser feita de várias maneiras. Abaixo, apresentamos a comparação da proporção de indivíduos por cada uma das três espécies dos dados <code>penguins</code> (Figura <a href="cap6.html#fig:fig-prop">6.22</a>).</p>
+<p>O mesmo conjunto de dados pode ser visualizado de diferentes formas. Não diferente, a comparação da proporção de ocorrências de diferentes categorias pode ser feita de várias maneiras. Abaixo, apresentamos a comparação da proporção de indivíduos de cada uma das três espécies no banco de dados <code>penguins</code> (Figura <a href="cap6.html#fig:fig-prop">6.22</a>).</p>
 <div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de barras - vertical  </span>
 <span class="va">g_bar_v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_prop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">prop</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -720,7 +717,7 @@ Figura 6.22: Comparação da proporção de indivíduos por cada uma das três e
 <li>Eixo Y (<code>y</code>): variável contínua (<code>comprimento_nadadeira</code>)</li>
 <li>Preenchimento (<code>fill</code>): a variável categórica (<code>especies</code>) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>
 </li>
-<li><code>geom()</code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/geom.html">geom()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>: para que as variáveis categóricas sejam plotadas como gráficos de barra ou setores</li>
 <li>Transparência das barras (<code>alpha</code>): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)</li>
@@ -734,7 +731,7 @@ Figura 6.22: Comparação da proporção de indivíduos por cada uma das três e
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/coord_polar.html">coord_polar()</a></code>: sistema de coordenadas para gerar barras circulares sobrepostas (<em>stacked</em>) que são usadas nos gráficos de setores (<em>pie chart</em> e <em>donut chart</em>)</li>
 <li>o argumento <code>start = 0</code> indica o local de início do gráfico que, neste caso, começa na “hora” 0 em um “relógio” de 12 horas</li>
-<li><code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>: para definir manualmente as cores de preferência do usuário</li>
 <li><code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code></li>
@@ -876,8 +873,8 @@ Figura 6.30: Gráfico de caixa e de violino para a variável <code>comprimento_n
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Gráfico de violino com boxplot"</span>, x <span class="op">=</span> <span class="st">"Espécies"</span>, y <span class="op">=</span> <span class="st">"Comprimento da nadadeira (mm)"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-boxplot-violin-fino"></span>
-<img src="livro_files/figure-html/fig-boxplot-violin-fino-1.png" alt="Gráfico de caixa, violino, e caixa e violino para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos." width="100%" height="100%"><img src="livro_files/figure-html/fig-boxplot-violin-fino-2.png" alt="Gráfico de caixa, violino, e caixa e violino para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos." width="100%" height="100%"><img src="livro_files/figure-html/fig-boxplot-violin-fino-3.png" alt="Gráfico de caixa, violino, e caixa e violino para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos." width="100%" height="100%"><p class="caption">
-Figura 6.31: Gráfico de caixa, violino, e caixa e violino para a variável <code>comprimento_nadadeira</code> para cada espécie de penguim, com ajustes finos.
+<img src="livro_files/figure-html/fig-boxplot-violin-fino-1.png" alt="Gráfico de caixa combinado ou não com Gráfico de violino e jitter para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos." width="100%" height="100%"><img src="livro_files/figure-html/fig-boxplot-violin-fino-2.png" alt="Gráfico de caixa combinado ou não com Gráfico de violino e jitter para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos." width="100%" height="100%"><img src="livro_files/figure-html/fig-boxplot-violin-fino-3.png" alt="Gráfico de caixa combinado ou não com Gráfico de violino e jitter para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos." width="100%" height="100%"><p class="caption">
+Figura 6.31: Gráfico de caixa combinado ou não com Gráfico de violino e jitter para a variável <code>comprimento_nadadeira</code> para cada espécie de penguim, com ajustes finos.
 </p>
 </div>
 <p><strong>Principais camadas utilizadas no <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> e <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin()</a></code></strong></p>
@@ -886,7 +883,7 @@ Figura 6.31: Gráfico de caixa, violino, e caixa e violino para a variável <cod
 <li>Eixo X (<code>x</code>): variável categórica (<code>especies</code>)</li>
 <li>Eixo Y (<code>y</code>): variável contínua (<code>comprimento_nadadeira</code>)</li>
 <li>Preenchimento (<code>fill</code>): a variável categórica (<code>especies</code>) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>.</li>
-<li><code>geom():</code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/geom.html">geom()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>: para que as variáveis contínuas e categóricas sejam plotadas como gráficos de caixas ou violinos</li>
 <li>
@@ -902,7 +899,7 @@ Figura 6.31: Gráfico de caixa, violino, e caixa e violino para a variável <cod
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter()</a></code>: esta função basicamente “agita” aleatoriamente os pontos para evitar a sobreposição de valores idênticos. Esta função produz a mesma representação se usar a função <code>geom_point(position = "jitter")</code>
 </li>
-<li><code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code></li>
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>: para definir manualmente as cores de preferência do usuário</li>
 <li><code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code></li>
@@ -947,7 +944,7 @@ Figura 6.32: Gráfico de dispersão relacionando as variáveis <code>comprimento
 Figura 6.33: Gráfico de dispersão relacionando as variáveis <code>comprimento_bico</code> e <code>comprimento_nadadeira</code> para cada espécie de penguim, com alterações na cor, tamanho e preenchimento dos pontos.
 </p>
 </div>
-<p>A forma dos pontos permite dois controles importantes: a forma em si (símbolos como círculo, quadrado, etc.) e a possibilidade de preenchimento da forma. A figura a seguir discrimina esses símbolos e o valor que deve ser utilizado para desenhar a forma preferida. É importante notar que os símbolos 21 a 25 possuem dois argumentos: (i) cor (que, na verdade, é a cor da borda do símbolo) e (ii) a cor que define o preenchimento do símbolo. O tipo de símbolo é definido pelo argumento <code>shape</code> (Figura <a href="cap6.html#fig:fig-point-shape">6.34</a>).</p>
+<p>A forma dos pontos permite dois controles importantes: a forma em si (símbolos como círculo, quadrado, etc.) e a possibilidade de preenchimento da forma. A figura a seguir discrimina esses símbolos e o valor que deve ser utilizado para desenhar a forma preferida. É importante notar que os símbolos 21 a 25 possuem dois argumentos: (i) color, que, na verdade é a cor da borda do símbolo e (ii) fill, a cor de preenchimento do símbolo. O tipo de símbolo é definido pelo argumento <code>shape</code> (Figura <a href="cap6.html#fig:fig-point-shape">6.34</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-point-shape"></span>
 <img src="img/cap06_fig02.png" alt="Tipos de símbolos disponíveis para representar pontos." width="50%" height="100%"><p class="caption">
@@ -969,12 +966,12 @@ Figura 6.34: Tipos de símbolos disponíveis para representar pontos.
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-scatter-shape"></span>
-<img src="livro_files/figure-html/fig-scatter-shape-1.png" alt="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com alterações no formato." width="100%" height="100%"><img src="livro_files/figure-html/fig-scatter-shape-2.png" alt="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com alterações no formato." width="100%" height="100%"><img src="livro_files/figure-html/fig-scatter-shape-3.png" alt="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com alterações no formato." width="100%" height="100%"><p class="caption">
-Figura 6.35: Gráfico de dispersão relacionando as variáveis <code>comprimento_bico</code> e <code>comprimento_nadadeira</code> para cada espécie de penguim, com alterações no formato.
+<img src="livro_files/figure-html/fig-scatter-shape-1.png" alt="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de pinguim, com variações na cor e no preenchimento dos pontos." width="100%" height="100%"><img src="livro_files/figure-html/fig-scatter-shape-2.png" alt="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de pinguim, com variações na cor e no preenchimento dos pontos." width="100%" height="100%"><img src="livro_files/figure-html/fig-scatter-shape-3.png" alt="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de pinguim, com variações na cor e no preenchimento dos pontos." width="100%" height="100%"><p class="caption">
+Figura 6.35: Gráfico de dispersão relacionando as variáveis <code>comprimento_bico</code> e <code>comprimento_nadadeira</code> para cada espécie de pinguim, com variações na cor e no preenchimento dos pontos.
 </p>
 </div>
 <p><strong>Definindo linhas de ajuste</strong></p>
-<p>Quando usamos modelos estatísticos como, por exemplo, <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, <code>gam()</code>, entre outros (veja mais nos Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap8.html#cap8">8</a>), podemos utilizar os valores preditos para demonstrar a relação entre as variáveis X e Y. No <code>ggplot2</code>, a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> faz esse ajuste com certa simplicidade (Figura <a href="cap6.html#fig:fig-scatter-smooth">6.36</a>).</p>
+<p>Quando usamos modelos estatísticos como, por exemplo, <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code>, entre outros (veja mais nos Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap8.html#cap8">8</a>), podemos utilizar os valores preditos para demonstrar a relação entre as variáveis X e Y. No <code>ggplot2</code>, a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> faz esse ajuste com certa simplicidade (Figura <a href="cap6.html#fig:fig-scatter-smooth">6.36</a>).</p>
 <div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Linha de ajuste</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -1030,7 +1027,7 @@ Figura 6.38: Gráfico de dispersão relacionando as variáveis <code>x</code> e 
 </h3>
 <p>Muitas vezes precisamos plotar a relação de mais de uma variável, e muitas vezes essas variáveis são de mais de um tipo (contínua, categórica, etc.). O gráfico mais indicado nesses casos é o gráfico pareado <span class="citation">(<a href="refer%C3%AAncias.html#ref-emerson_generalized_2013" role="doc-biblioref">Emerson et al. 2013</a>)</span> que nos auxilia à ter uma visão geral do conjunto de dados e de suas interrelações. Esse gráfico também é chamado de <em>pairs plot</em> ou <a href="https://www.data-to-viz.com/graph/correlogram.html">correlograma</a>.</p>
 <p><strong>Gráfico pareado com variáveis contínuas</strong></p>
-<p>A função <code>ggpairs()</code>do pacote <code>GGally</code> permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, <code>especies</code>) (Figura <a href="cap6.html#fig:fig-pairs-cont">6.39</a>).</p>
+<p>A função <code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs()</a></code> do pacote <code>GGally</code> permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, <code>especies</code>) (Figura <a href="cap6.html#fig:fig-pairs-cont">6.39</a>).</p>
 <div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico pareado com variáveis contínuas</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -1046,7 +1043,7 @@ Figura 6.39: Gráfico pareado relacionando várias variáveis contínuas para as
 </p>
 </div>
 <p><strong>Gráfico pareado com vários tipos de variáveis</strong></p>
-<p>Como alternativa, a função <strong><code>ggpairs()</code></strong> permite também incluir variáveis categóricas nas comparações. Neste caso, ela reconhece o tipo de gráfico (boxplot, dispersão, etc.) a partir dos modos das variáveis (Figura <a href="cap6.html#fig:fig-pairs-cont-cat">6.40</a>).</p>
+<p>Como alternativa, a função <strong><code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs()</a></code></strong> permite também incluir variáveis categóricas nas comparações. Neste caso, ela reconhece o tipo de gráfico (boxplot, dispersão, etc.) a partir dos modos das variáveis (Figura <a href="cap6.html#fig:fig-pairs-cont-cat">6.40</a>).</p>
 <div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico pareado com variáveis contínuas e categóricas</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -1071,7 +1068,7 @@ Figura 6.40: Gráfico pareado relacionando várias variáveis contínuas e categ
 <li><p>Utilizar ajuste manual nas funções <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_shape_manual()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual()</a></code> ou <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code> sem indicar no argumento <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> as variáveis que devem definir cada um desses elementos gráficos</p></li>
 <li><p>Utilizar ajuste manual na função <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_size_manual()</a></code> indicando uma variável categórica em vez de numérica</p></li>
 <li><p>Número de cores indicadas como valores no <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code> ou <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual()</a></code>: ao definir as cores de maneira personalizada (ou seja, não usando o padrão da função) é muito comum utilizarmos o número de cores usados por algum tutorial ou livro. Com frequência, o exemplo seguido e seus dados não possuem o mesmo número de cores dos nossos dados. Deste modo, você pode usar códigos no R para ajudar a quantificar o número de cores necessárias. Por exemplo, para os dados <code>penguins</code>, o código a seguir indica o número de cores necessárias: <code>length(levels(penguins\$species))</code>. Assim, será necessário indicar três cores diferentes dentro da função <code>scale_*()</code>.</p></li>
-<li><p>Função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code>: como falado, a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> é muito útil (e simples) para gerar as linhas de ajuste (<em>best fit</em>) típicas de modelos lineares e não lineares. Porém, fique alerta ao usar, por exemplo, <code>geom_smooth(method = lm)</code>, o modelo linear utilizado para testar sua predição foi o <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. Se tiver utilizado <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>ou <code>gam()</code> o ajuste deve ser produzido a partir desses modelos.</p></li>
+<li><p>Função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code>: como explicado acima, a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> é muito útil (e simples) para gerar as linhas de ajuste (<em>best fit</em>) típicas de modelos lineares e não lineares. Porém, fique alerta ao usar, por exemplo, <code>geom_smooth(method = lm)</code>, o modelo linear utilizado para testar sua predição foi o <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. Se tiver utilizado <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>ou <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> o ajuste deve ser produzido a partir desses modelos.</p></li>
 <li><p>Uso incorreto do modo das variáveis: neste caso, o usuário utilizar uma variável numérica (por exemplo, 1, 2 e 3) como variável categórica. Neste caso, é preciso transformar a variável numérica em variável categóricas (antes de fazer o ggplot2 ou dentro do <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>).</p></li>
 </ul>
 <p>Veja exemplos (Figura <a href="cap6.html#fig:fig-plot-error">6.41</a>).</p>
@@ -1092,7 +1089,7 @@ Figura 6.40: Gráfico pareado relacionando várias variáveis contínuas e categ
 
 <span class="co">## Figura correta, com transformação prévia da variável ano</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ano_f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">ano</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ano_f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span><span class="va">ano</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ano_f</span>, y <span class="op">=</span> <span class="va">comprimento_bico</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -1115,7 +1112,7 @@ Figura 6.41: Gráficos mostrando erros comuns na criação de gráficos no pacot
 </h3>
 <p>É possível controlar a posição, cores e fonte da legenda em diversos locais com alguns argumentos dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>:</p>
 <ul>
-<li><p><code>legend.position</code>: controla a posição na área do gráfico: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> ou <code>none</code>. Além disso, é possível inserir a legenda internamento no gráfico indicando as posições nos eixos X e Y</p></li>
+<li><p><code>legend.position</code>: controla a posição na área do gráfico: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> ou <code>none</code>. Além disso, é possível inserir a legenda internamente no gráfico indicando as posições nos eixos X e Y</p></li>
 <li><p><code>legend.box</code>: determina as características do retângulo onde a legenda é inserida: <code>legend.box.background</code> (combinado com <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>) e <code>legend.box.margin</code> (combinado com <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>)</p></li>
 <li><p><code>legend.text</code>: controla a cor e tamanho da legenda (as duas informações devem ser inseridas dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>)</p></li>
 <li><p><code>legend.title</code>: personaliza a cor e tamanho da legenda também dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code></p></li>
@@ -1461,9 +1458,9 @@ Figura 6.47: Gráficos mostrando a finalização de gráficos para publicação 
 </p>
 </div>
 </div>
-<div id="exportando-dados-com-alta-qualidade-com-a-função-ggsave" class="section level3" number="6.5.5">
+<div id="exportando-gráficos-com-alta-qualidade-com-a-função-ggsave" class="section level3" number="6.5.5">
 <h3>
-<span class="header-section-number">6.5.5</span> Exportando dados com alta qualidade com a função <code>ggsave()</code><a class="anchor" aria-label="anchor" href="#exportando-dados-com-alta-qualidade-com-a-fun%C3%A7%C3%A3o-ggsave"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.5.5</span> Exportando gráficos com alta qualidade com a função <code>ggsave()</code><a class="anchor" aria-label="anchor" href="#exportando-gr%C3%A1ficos-com-alta-qualidade-com-a-fun%C3%A7%C3%A3o-ggsave"><i class="fas fa-link"></i></a>
 </h3>
 <p>O último passo para construir gráficos com qualidade de publicação é exportar em um formato específico, como .png, .pdf ou .svg (entre outros). A função <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> não só permite que você tenha o controle sobre o formato, mas também sobre a qualidade e tamanho desejados com os seguintes argumentos:</p>
 <ul>
@@ -1531,7 +1528,7 @@ Figura 6.48: Gráfico criado para a exportação no pacote <code>ggplot2</code>.
 <h2>
 <span class="header-section-number">6.6</span> Para se aprofundar<a class="anchor" aria-label="anchor" href="#para-se-aprofundar-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>Listamos a seguir livros e links que recomendamos para seguir com sua aprendizagem em R e gráficos.</p>
+<p>Listamos abaixo livros e links que recomendamos para seguir com sua aprendizagem em R e gráficos.</p>
 <div id="livros-2" class="section level3" number="6.6.1">
 <h3>
 <span class="header-section-number">6.6.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-2"><i class="fas fa-link"></i></a>
@@ -1608,7 +1605,7 @@ Utilize o banco de dados <code>penguins</code> para criar um <a href="https://an
 <li><a class="nav-link" href="#elementos-gr%C3%A1ficos-eixo-fonte-gride"><span class="header-section-number">6.5.2</span> Elementos gráficos: eixo, fonte, gride</a></li>
 <li><a class="nav-link" href="#temas-personalizados-ggtheme"><span class="header-section-number">6.5.3</span> Temas personalizados ggtheme()</a></li>
 <li><a class="nav-link" href="#criando-seu-pr%C3%B3prio-theme_custom"><span class="header-section-number">6.5.4</span> Criando seu próprio theme_custom()</a></li>
-<li><a class="nav-link" href="#exportando-dados-com-alta-qualidade-com-a-fun%C3%A7%C3%A3o-ggsave"><span class="header-section-number">6.5.5</span> Exportando dados com alta qualidade com a função ggsave()</a></li>
+<li><a class="nav-link" href="#exportando-gr%C3%A1ficos-com-alta-qualidade-com-a-fun%C3%A7%C3%A3o-ggsave"><span class="header-section-number">6.5.5</span> Exportando gráficos com alta qualidade com a função ggsave()</a></li>
 </ul>
 </li>
 <li>
@@ -1635,7 +1632,7 @@ Utilize o banco de dados <code>penguins</code> para criar um <a href="https://an
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

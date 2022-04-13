@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
-<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library (vegan) library(ggplot2) library(BiodiversityR)...">
+<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(devtools) library(ecodados) library(vegan) library(ggplot2) library(BiodiversityR) library(hillR)...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap12.html">
 <meta property="og:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library (vegan) library(ggplot2) library(BiodiversityR)...">
+<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(devtools) library(ecodados) library(vegan) library(ggplot2) library(BiodiversityR) library(hillR)...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R">
-<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(devtools) library(ecodados) library (vegan) library(ggplot2) library(BiodiversityR)...">
+<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(devtools) library(ecodados) library(vegan) library(ggplot2) library(BiodiversityR) library(hillR)...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -104,12 +104,12 @@
 <div id="pré-requisitos-do-capítulo-8" class="section level2 unnumbered">
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-8"><i class="fas fa-link"></i></a>
 </h2>
-<p>Pacotes e dados que serão utilizados nesse capítulo.</p>
+<p>Pacotes e dados que serão utilizados neste capítulo.</p>
 <div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span> <span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.worldagroforestry.org/output/tree-diversity-analysis">BiodiversityR</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daijiang/hillR">hillR</a></span><span class="op">)</span>
@@ -123,7 +123,7 @@
 <h2>
 <span class="header-section-number">12.1</span> Aspectos teóricos<a class="anchor" aria-label="anchor" href="#aspectos-te%C3%B3ricos-3"><i class="fas fa-link"></i></a>
 </h2>
-<p>A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.) <span class="citation">(<a href="refer%C3%AAncias.html#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>; <a href="refer%C3%AAncias.html#ref-gotelli2013" role="doc-biblioref">Gotelli and Chao 2013</a>)</span>. Whittaker <span class="citation">(<a href="refer%C3%AAncias.html#ref-whittaker1960" role="doc-biblioref">1960</a>, <a href="refer%C3%AAncias.html#ref-whittaker1972" role="doc-biblioref">1972</a>)</span> particionou a diversidade em três componentes: i) diversidade alfa que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) diversidade beta que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) diversidade gama que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.</p>
+<p>A diversidade biológica é um conceito multifacetado que pode ser definido e analisado de diferentes maneiras (e.g. diversidade genética, taxonômica, funcional, filogenética, ecossistêmica, etc.) <span class="citation">(<a href="refer%C3%AAncias.html#ref-magurran_biological_2011" role="doc-biblioref">Magurran and McGill 2011</a>; <a href="refer%C3%AAncias.html#ref-gotelli2013" role="doc-biblioref">Gotelli and Chao 2013</a>)</span>. Whittaker <span class="citation">(<a href="refer%C3%AAncias.html#ref-whittaker1960" role="doc-biblioref">1960</a>, <a href="refer%C3%AAncias.html#ref-whittaker1972" role="doc-biblioref">1972</a>)</span> particionou a diversidade em três componentes: i) <strong>diversidade alfa</strong> que é caracterizada pela diversidade dentro do habitat ou unidade amostral, ii) <strong>diversidade beta</strong> que é caracterizada pela variação na diversidade entre habitats ou unidades amostrais, e iii) <strong>diversidade gama</strong> que é caracterizada pela combinação da diversidade alfa e beta ou definida como a diversidade regional englobando todos os habitat ou unidades amostrais. Portanto, não existe um método que quantifique todos os parâmetros associados à diversidade biológica. Consequentemente, a escolha da métrica de diversidade dependerá: i) do objetivo do estudo, e ii) das informações disponíveis para o pesquisador.</p>
 <p>Neste capítulo, iremos abordar a diversidade taxonômica que ignora a relação de parentesco entre as espécies (e.g. diversidade filogenética - Capítulo <a href="cap13.html#cap13">13</a>) e as diferentes funções que as espécies realizam no ecossistema (e.g. diversidade funcional - Capítulo <a href="cap14.html#cap14">14</a>). Na diversidade taxonômica, pesquisadores estão interessados na riqueza de espécies (e.g. número de espécies), na distribuição de abundância das espécies (e.g. fato que algumas espécies são comuns e outras raras) e/ou diversidade de espécies (e.g. índices que descrevem a relação entre a riqueza e a distribuição da abundância relativa das espécies) nas localidades.</p>
 </div>
 <div id="diversidade-alfa" class="section level2" number="12.2">
@@ -168,13 +168,8 @@
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li>
-<p>Variáveis resposta e preditoras</p>
-<ul>
 <li>Data frame com as comunidades (unidade amostral) nas linhas e as espécies (variável resposta) nas colunas</li>
 <li>Data frame com as comunidades (unidade amostral) nas linhas e precipitação anual (variável preditora) na coluna</li>
-</ul>
-</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -900,7 +895,7 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

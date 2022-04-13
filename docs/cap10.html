@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 10 Rarefação | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
-<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(iNEXT) library(ecodados) library(ggplot2) library(vegan) library(nlme) library(dplyr)...">
+<meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(iNEXT) library(ecodados) library(ggplot2) library(vegan) library(nlme) library(dplyr)...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Capítulo 10 Rarefação | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap10.html">
 <meta property="og:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
-<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(iNEXT) library(ecodados) library(ggplot2) library(vegan) library(nlme) library(dplyr)...">
+<meta property="og:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(iNEXT) library(ecodados) library(ggplot2) library(vegan) library(nlme) library(dplyr)...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 10 Rarefação | Análises Ecológicas no R">
-<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados nesse capítulo. ## Pacotes library(iNEXT) library(ecodados) library(ggplot2) library(vegan) library(nlme) library(dplyr)...">
+<meta name="twitter:description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(iNEXT) library(ecodados) library(ggplot2) library(vegan) library(nlme) library(dplyr)...">
 <meta name="twitter:image" content="https://analises-ecologicas.netlify.app/img/capa.jpeg">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -104,7 +104,7 @@
 <div id="pré-requisitos-do-capítulo-6" class="section level2 unnumbered">
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-6"><i class="fas fa-link"></i></a>
 </h2>
-<p>Pacotes e dados que serão utilizados nesse capítulo.</p>
+<p>Pacotes e dados que serão utilizados neste capítulo.</p>
 <div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://chao.stat.nthu.edu.tw/wordpress/software_download/">iNEXT</a></span><span class="op">)</span>
@@ -162,8 +162,7 @@ Esta última restrição foi superada por Colwell et al. <span class="citation">
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>Matriz ou data frame com as abundâncias das espécies de morcegos (variável resposta) registradas nos três fragmentos florestais (variável preditora)</p></li>
+<li>Matriz ou data frame com as abundâncias das espécies de morcegos (variável resposta) registradas nos três fragmentos florestais (variável preditora)</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -229,8 +228,7 @@ Figura 10.1: Curvas de rarefação baseada nos indivíduos de morcegos.
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>Matriz ou data frame com as abundâncias das espécies de anuros e répteis (variável resposta) registradas em coleções científicas e coletas de campo (variável preditora)</p></li>
+<li>Matriz ou data frame com as abundâncias das espécies de anuros e répteis (variável resposta) registradas em coleções científicas e coletas de campo (variável preditora)</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -270,7 +268,7 @@ Figura 10.2: Curvas de rarefação baseada nos indivíduos de répteis.
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Foram registradas oito espécies de répteis nas coletas de campo (48 indivíduos) e 28 espécies nas coleções científicas (77 indivíduos). Com base na rarefação, concluímos que a riqueza de espécies de répteis obtida nas coleções científicas (20,5) é 2,9 vezes maior do que a obtida em coletas de campo (7,05).</p>
+<p>Foram registradas oito espécies de répteis nas coletas de campo (48 indivíduos) e 28 espécies nas coleções científicas (77 indivíduos). Com base na rarefação, concluímos que a riqueza de espécies de répteis obtida nas coleções científicas (20,5) é 2,5 vezes maior do que a obtida em coletas de campo.</p>
 <p>Olhando os dados dos anuros.</p>
 <div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho</span>
@@ -314,8 +312,7 @@ Figura 10.3: Curvas de rarefação baseada nos indivíduos de anuros.
 <p>Usaremos os mesmos dados de espécies de morcegos amostradas em três fragmentos florestais <span class="citation">(<a href="refer%C3%AAncias.html#ref-breviglieri2008" role="doc-biblioref">Breviglieri 2008</a>)</span>. Contudo, ao invés de padronizarmos a riqueza de espécies pela abundância, iremos padronizar pelo número de amostras.</p>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>Lista de vetores. Cada vetor deve conter como primeira informação o número total de amostras (variável preditora), seguido da frequência de ocorrência das espécies (i.e. número de amostras em que cada espécie foi registrada - variável resposta)</p></li>
+<li>Lista de vetores. Cada vetor deve conter como primeira informação o número total de amostras (variável preditora), seguido da frequência de ocorrência das espécies (i.e. número de amostras em que cada espécie foi registrada - variável resposta)</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -404,8 +401,7 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>Matriz ou data frame com as abundâncias das espécies de ácaros (variável resposta) registradas em 70 comunidades (variável preditora)</p></li>
+<li>Matriz ou data frame com as abundâncias das espécies de ácaros (variável resposta) registradas em 70 comunidades (variável preditora)</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -417,7 +413,7 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 <code class="sourceCode R"><span class="co">## Menos abundância</span>
 <span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span>
 <span class="co"># Para as análises teremos que transpor a planilha.</span>
-<span class="va">composicao_acaros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span>
+<span class="va">composicao_acaros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span>
 
 <span class="co"># Verificar qual é a menor abundância registrada nas comunidades. </span>
 <span class="va">abun_min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colSums</a></span><span class="op">(</span><span class="va">composicao_acaros</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -592,7 +588,7 @@ Use os dados dos exercícios anteriores e calcule a rarefação baseada na cober
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

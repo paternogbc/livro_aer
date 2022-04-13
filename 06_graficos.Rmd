@@ -22,7 +22,7 @@ colnames(penguins) <- c("especies", "ilha", "comprimento_bico",
 
 ## Contextualização
 
-A visualização de dados através de gráficos frequentemente é a melhor forma de apresentar e interpretar as informações contidas em seus estudos, fazendo uma síntese para melhor entendimento de padrões. Geralmente, os gráficos são necessários em quase todas as análises estatísticas, além de enriquecer a argumentação e discussão de hipóteses levantadas para publicações, trabalhos de consultoria, TCCs, dissertações, teses, entre outros.
+A visualização de dados através de gráficos frequentemente é a melhor forma de apresentar e interpretar informações ecológicas pois sintetiza os dados e facilita o entendimento de padrões. Geralmente, os gráficos são necessários em quase todas as análises estatísticas, além de enriquecer a argumentação e discussão de hipóteses levantadas para publicações, trabalhos de consultoria, TCCs, dissertações, teses, entre outros.
 
 Existem vários tipos de gráficos para representar os padrões em seus dados para diferentes finalidades. Esses diferentes tipos de gráficos podem até mesmo ser usados para representar o mesmo tipo de dado. Nesta seção, focaremos nos gráficos mais simples para representar uma ou duas variáveis (i.e., gráficos bidimensionais). Dependendo do tipo de variável (categórica ou contínua – veja os tipos de variáveis na Figura \@ref(fig:fig-box) do Capítulo \@ref(cap2)), os gráficos mais indicados para representar os dados mudam. De forma simplificada, os gráficos são representações dos nossos dados tabulares, de modo que os eixos representam as colunas e as feições (pontos, linhas, barras, caixas, etc.) representam as linhas.
 
@@ -32,7 +32,7 @@ Dessa forma, dedicamos esse capítulo inteiramente a apresentar os principais co
 
 Existe uma ampla gama de pacotes para fazer gráficos no R, sendo esse um ponto muito forte dessa linguagem. Além disso, essa grande disponibilidade de pacotes e funções permitem a visualização dos mais diferentes tipos de dados, o que torna a linguagem R detentora de alta praticidade, uma vez que a maior parte dos pacotes possui uma sintaxe relativamente simples para a apresentação de gráficos excelentes e de ótima qualidade. Mais adiante no Capítulo \@ref(cap15), ampliamos a discussão da visualização gráfica com ferramentas para visualização de dados geoespaciais no R.
 
-Este capítulo foi organizado em quatro partes: i) principais pacotes, ii) gramática dos gráficos, iii) tipos de gráficos (um guia de bolso para visualização de vários gráficos no R), e iv) edição de gráficos com alta qualidade para publicação. Apesar de apresentarmos diferentes pacotes com grande potencial para visualização gráfica, focaremos neste capítulo no pacote `ggplot2`, talvez o pacote mais comum e com maior gama de possibilidades de criação de excelentes gráficos.
+Este capítulo foi organizado em quatro partes: i) principais pacotes, ii) gramática dos gráficos, iii) tipos de gráficos (um guia de bolso para visualização de vários gráficos no R), e iv) edição de gráficos com alta qualidade para publicação. Apesar de apresentarmos diferentes pacotes com grande potencial para visualização gráfica, focaremos neste capítulo no pacote `ggplot2`, talvez o pacote mais utilizado e com maior gama de possibilidades de criação de excelentes gráficos.
 
 ::: {.alert .alert-info}
 <strong> 📝 Importante </strong>\
@@ -63,7 +63,7 @@ A seguir, apresentamos uma listagem dos principais pacotes para visualização d
 
 O livro *The Grammar of Graphics* [@wilkinson2005] utiliza uma analogia da linguística para criar uma "gramática" para a visualização gráfica. Segundo ele, a língua se torna expressiva pelo fato da gramática criar um sistema de regras que tornam as declarações com significado conhecido. De maneira semelhante, a ideia da *gramática dos gráficos* cria regras para representação gráfica dos dados a partir de atributos estéticos (do inglês *aesthetic*) como cor, forma e tamanho que definem a geometria dos objetos, como pontos, linhas e barras [@wickham2016]. Além disso, esta gramática reconhece que tais elementos podem ser organizados em camadas, tal como construímos um mapa com diferentes camadas como elevação, hidrografia, rodovias, limites políticos, etc.
 
-Inspirado pela *gramática dos gráficos* proposta por Wilkinson & Wills [-@wilkinson2005], Hadley Wickham cria o pacote `ggplot2`, onde "gg" representa a contração de *Grammar of Graphics* [@wickham2016]. As camadas nesta gramática (*layered-grammar*) são organizadas da seguinte forma:
+Inspirado pela *gramática dos gráficos* proposta por Wilkinson & Wills [-@wilkinson2005], Hadley Wickham criou o pacote `ggplot2`, onde "gg" representa a contração de *Grammar of Graphics* [@wickham2016]. As camadas nesta gramática (*layered-grammar*) são organizadas da seguinte forma:
 
 - **Camada 1** - dados `ggplot()`: são as informações no formato `data.frame` que serão usadas nas diferentes camadas nas funções `aes()`, `geom_*()`, `stat_*()`, `facet_*()` e `scale_*()`
 - **Camada 2** - mapeamento `aes()`: atributos estéticos, determina que colunas do `data.frame` serão usadas para as representações geométricas, assim como tamanho, forma, cor, preenchimento e transparência
@@ -108,7 +108,7 @@ Nesta seção, listamos os principais tipos de gráficos e fazemos uma descriç�
 -   **Gráfico de caixa (*box plot* e *violin plot*)**: distribuição de valores contínuos de uma coluna (Y) para dois ou mais fatores categóricos de outra coluna (X) no formato de caixas e também no formato de "violinos" (considerando a variação e distribuição)
 -   **Gráfico pareado (*pairs plot*)**: relação entre valores de duas colunas para dados contínuos (X e Y), para colunas par-a-par
 
-Para facilitar a compreensão das regras da gramática dos dados, cada tipo de gráfico segue a mesma estrutura de organização, que respeita as camadas de informação descritas na seção anterior. Podemos perceber, portanto, que algumas camadas não são necessárias dependendo do tipo de gráfico ou do conjunto de dados que pretendemos analisar. 
+Para facilitar a compreensão das regras da gramática dos gráficos, cada tipo de gráfico segue a mesma estrutura de organização, que respeita as camadas de informação descritas na seção anterior. Podemos perceber, portanto, que algumas camadas não são necessárias dependendo do tipo de gráfico ou do conjunto de dados que pretendemos analisar. 
 
 Nos exemplos a seguir, a *versão padrão* se refere à representação determinada no *default* das funções do pacote `ggplot2`. Desse modo, somente informamos as variáveis que serão utilizadas dentro de cada camada e a forma geométrica (i.e., tipo de gráfico) desejada. Porém, para cada tipo gráfico apresentamos funções e argumentos para ajustes finos e personalizados.
 
@@ -125,7 +125,7 @@ ggplot(data = dist_normal, aes(x = x)) +
     geom_histogram()
 ```
 
-Neste histograma é possível entender que a maioria dos valores no objeto `dist_normal` estão próximos ao valor da média, i.e., zero. Em Ecologia, os histogramas são utilizados para visualizar, por exemplo, a variação morfológica entre espécies (subespécies, gênero, famílias, etc.), variação de parâmetros populacionais entre diferentes espécies ou dentro da mesma espécie em diferentes localidades.
+Neste histograma é possível entender que a maioria dos valores da variável `x` do objeto dist_normal estão próximos ao valor da média, i.e., zero. Em Ecologia, os histogramas são utilizados para visualizar, por exemplo, a variação morfológica entre espécies (subespécies, gênero, famílias, etc.), variação de parâmetros populacionais entre diferentes espécies ou dentro da mesma espécie em diferentes localidades.
 
 **Versão padrão**
 
@@ -316,21 +316,21 @@ Uma das limitações do diagrama de pontos é que a sobreposição dos pontos po
 
 **Principais camadas utilizadas na função `geom_dotplot()`**
 
-- `aes()`:
+- `aes()`
 - Eixo X (`x`): variável contínua (`comprimento_nadadeira`)
 - Preenchimento (`fill`): variável categórica (`especies`) que define as cores tendo como base o número de níveis dentro desta categoria
-- `geom():` 
+- `geom()` 
 - `geom_dotplot()`: para que a variável contínua seja plotada como diagrama de pontos
 - Transparência dos pontos (`alpha`): 0.5 (varia de 0, transparência máxima, a 1, sem transparência)
 - Cor da borda do ponto (`color`): valor padrão (se não for especificado) é `black`
 - Tamanho dos pontos (`dotsize`): valor padrão (se não for especificado) é 1
 - Posição dos pontos: o argumento `position` define se os pontos devem ser inseridos de maneira sobreposta (`position = "identity"`) ou não (`position = "dodge"`)
-- `scale()`:
-- `scale_fill_manual()` para definir manualmente as cores de preferência do usuário
-- `scale_x_continuous()` e `scale_y_continuous()` determinam os limites (valor mínimo e máximo) para os dois eixos e, além disso, os intervalos entre os valores (`breaks`)
-- `theme()`: 
-- `theme_bw()`para selecionar o tema com fundo branco
-- `labs()` para personalizar os títulos dos eixos X e Y, e da legenda
+- `scale()`
+- `scale_fill_manual()`: para definir manualmente as cores de preferência do usuário
+- `scale_x_continuous()`: e `scale_y_continuous()` determinam os limites (valor mínimo e máximo) para os dois eixos e, além disso, os intervalos entre os valores (`breaks`)
+- `theme()` 
+- `theme_bw()`: para selecionar o tema com fundo branco
+- `labs()`: para personalizar os títulos dos eixos X e Y, e da legenda
 
 ### Gráfico de barras (*bar plot*)
 
@@ -351,7 +351,7 @@ ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity")
 ```
 
-Além disso, é possível alterar as cores (`color`) e preenchimento (`fill`) das barras, bem como sua transparência (`alpha`) e largura (`width`), como demonstrado nos próximos quatro gráficos (Figura \@ref(fig:fig-bar-species-color)).
+Além disso, é possível alterar as cores (`color`) e o preenchimento (`fill`) das barras, bem como sua transparência (`alpha`) e largura (`width`), como demonstrado nos próximos quatro gráficos (Figura \@ref(fig:fig-bar-species-color)).
 
 ```{r fig-bar-species-color, fig.cap="Gráficos de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, modificando cor, preenchimento, transparência e largura das barras."}
 ## Modificando o preenchimento
@@ -471,7 +471,7 @@ ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = especies)) +
 
 **Comparando gráficos de setores com gráfico de barras**
 
-O mesmo conjunto de dados pode ser visualizado de diferentes formas. Não diferente, a comparação da proporção de ocorrências de diferentes categorias pode ser feita de várias maneiras. Abaixo, apresentamos a comparação da proporção de indivíduos por cada uma das três espécies dos dados `penguins` (Figura \@ref(fig:fig-prop)).
+O mesmo conjunto de dados pode ser visualizado de diferentes formas. Não diferente, a comparação da proporção de ocorrências de diferentes categorias pode ser feita de várias maneiras. Abaixo, apresentamos a comparação da proporção de indivíduos de cada uma das três espécies no banco de dados `penguins` (Figura \@ref(fig:fig-prop)).
 
 ```{r fig-prop, fig.cap="Comparação da proporção de indivíduos por cada uma das três espécies dos dados feita através de gráfico de barras, setores do tipo *pie* e setores do tipo *donuts*.", message=FALSE, warning=FALSE, out.width="100%"}
 ## Gráfico de barras - vertical  
@@ -629,7 +629,7 @@ ggplot(data = penguins, aes(y = comprimento_nadadeira, x = especies, fill = espe
 
 **Ajustes finos (versão personalizada)**
 
-```{r fig-boxplot-violin-fino, fig.cap="Gráfico de caixa, violino, e caixa e violino para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos."}
+```{r fig-boxplot-violin-fino, fig.cap="Gráfico de caixa combinado ou não com Gráfico de violino e jitter para a variável `comprimento_nadadeira` para cada espécie de penguim, com ajustes finos."}
 ## Gráfico de caixas exemplo
 ggplot(data = penguins, aes(x = especies, y = comprimento_nadadeira, fill = especies)) +
     geom_boxplot(width = .5, show.legend = FALSE) +
@@ -661,7 +661,7 @@ ggplot(data = penguins, aes(x = especies, y = comprimento_nadadeira, fill = espe
 - Eixo X (`x`): variável categórica (`especies`)
 - Eixo Y (`y`): variável contínua (`comprimento_nadadeira`)
 - Preenchimento (`fill`): a variável categórica (`especies`) define a cor do preenchimento e os níveis dentro desta categoria determinam o número de cores que devem ser indicadas no `scale_fill_manual()`.
-- `geom():`
+- `geom()`
 - `geom_boxplot()`: para que as variáveis contínuas e categóricas sejam plotadas como gráficos de caixas ou violinos
 - `width`: largura das barras ou dos pontos(valor padrão: width = 1)
 - `fill`: pode definir uma cor padrão (caso não tenha utilizado o fill dentro do argumento `aes()`) como `fill = "gray"`
@@ -704,7 +704,7 @@ ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     labs(title = "Com transparência")
 ```
 
-A forma dos pontos permite dois controles importantes: a forma em si (símbolos como círculo, quadrado, etc.) e a possibilidade de preenchimento da forma. A figura a seguir discrimina esses símbolos e o valor que deve ser utilizado para desenhar a forma preferida. É importante notar que os símbolos 21 a 25 possuem dois argumentos: (i) cor (que, na verdade, é a cor da borda do símbolo) e (ii) a cor que define o preenchimento do símbolo. O tipo de símbolo é definido pelo argumento `shape` (Figura \@ref(fig:fig-point-shape)).
+A forma dos pontos permite dois controles importantes: a forma em si (símbolos como círculo, quadrado, etc.) e a possibilidade de preenchimento da forma. A figura a seguir discrimina esses símbolos e o valor que deve ser utilizado para desenhar a forma preferida. É importante notar que os símbolos 21 a 25 possuem dois argumentos: (i) color, que, na verdade é a cor da borda do símbolo e (ii) fill, a cor de preenchimento do símbolo. O tipo de símbolo é definido pelo argumento `shape` (Figura \@ref(fig:fig-point-shape)).
 
 ```{r fig-point-shape, out.width ="50%", echo=FALSE, fig.cap="Tipos de símbolos disponíveis para representar pontos."}
 knitr::include_graphics("img/cap06_fig02.png")
@@ -712,7 +712,7 @@ knitr::include_graphics("img/cap06_fig02.png")
 
 Assim, é possível controlar cores, formas e preenchimento combinado os argumentos `shape`, `fill` e `color` com a função `scale_manual()`. É importante notar que para os símbolos entre 15 e 20 só podemos controlar o argumento cor, enquanto os símbolos entre 21 e 25 podemos controlar a cor e o preenchimento (Figura \@ref(fig:fig-scatter-shape)).
 
-```{r fig-scatter-shape, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de penguim, com alterações no formato."}
+```{r fig-scatter-shape, fig.cap="Gráfico de dispersão relacionando as variáveis `comprimento_bico` e `comprimento_nadadeira` para cada espécie de pinguim, com variações na cor e no preenchimento dos pontos."}
 ## Formato e tamanho
 ggplot(data = penguins, aes(x = comprimento_bico, y = comprimento_nadadeira)) +
     geom_point(shape = 1, size = 4)
@@ -774,7 +774,7 @@ Muitas vezes precisamos plotar a relação de mais de uma variável, e muitas ve
 
 **Gráfico pareado com variáveis contínuas**
 
-A função `ggpairs()`do pacote `GGally` permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, `especies`) (Figura \@ref(fig:fig-pairs-cont)).
+A função `ggpairs()` do pacote `GGally` permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, `especies`) (Figura \@ref(fig:fig-pairs-cont)).
 
 ```{r fig-pairs-cont, fig.cap="Gráfico pareado relacionando várias variáveis contínuas para as espécies de penguins."}
 ## Gráfico pareado com variáveis contínuas
@@ -810,7 +810,7 @@ Abaixo, apresentamos uma lista não exaustiva dos erros mais comuns que cometemo
 
 - Número de cores indicadas como valores no `scale_fill_manual()` ou `scale_color_manual()`: ao definir as cores de maneira personalizada (ou seja, não usando o padrão da função) é muito comum utilizarmos o número de cores usados por algum tutorial ou livro. Com frequência, o exemplo seguido e seus dados não possuem o mesmo número de cores dos nossos dados. Deste modo, você pode usar códigos no R para ajudar a quantificar o número de cores necessárias. Por exemplo, para os dados `penguins`, o código a seguir indica o número de cores necessárias: `length(levels(penguins\$species))`. Assim, será necessário indicar três cores diferentes dentro da função `scale_*()`.
 
-- Função `geom_smooth()`: como falado, a função `geom_smooth()` é muito útil (e simples) para gerar as linhas de ajuste (*best fit*) típicas de modelos lineares e não lineares. Porém, fique alerta ao usar, por exemplo, `geom_smooth(method = lm)`, o modelo linear utilizado para testar sua predição foi o `lm()`. Se tiver utilizado `glm()`ou `gam()` o ajuste deve ser produzido a partir desses modelos.
+- Função `geom_smooth()`: como explicado acima, a função `geom_smooth()` é muito útil (e simples) para gerar as linhas de ajuste (*best fit*) típicas de modelos lineares e não lineares. Porém, fique alerta ao usar, por exemplo, `geom_smooth(method = lm)`, o modelo linear utilizado para testar sua predição foi o `lm()`. Se tiver utilizado `glm()`ou `gam()` o ajuste deve ser produzido a partir desses modelos.
 
 - Uso incorreto do modo das variáveis: neste caso, o usuário utilizar uma variável numérica (por exemplo, 1, 2 e 3) como variável categórica. Neste caso, é preciso transformar a variável numérica em variável categóricas (antes de fazer o ggplot2 ou dentro do `aes()`). 
 
@@ -846,7 +846,7 @@ penguins %>%
 
 É possível controlar a posição, cores e fonte da legenda em diversos locais com alguns argumentos dentro da função `theme()`:
 
-- `legend.position`: controla a posição na área do gráfico: `top`, `right`, `bottom`, `left` ou `none`. Além disso, é possível inserir a legenda internamento no gráfico indicando as posições nos eixos X e Y
+- `legend.position`: controla a posição na área do gráfico: `top`, `right`, `bottom`, `left` ou `none`. Além disso, é possível inserir a legenda internamente no gráfico indicando as posições nos eixos X e Y
 
 - `legend.box`: determina as características do retângulo onde a legenda é inserida: `legend.box.background` (combinado com `element_rect()`) e `legend.box.margin` (combinado com `margin()`)
 
@@ -1165,7 +1165,7 @@ ggplot(data = penguins,
          shape = "Espécies", caption = "Fonte = palmerpinguins")
 ```
 
-### Exportando dados com alta qualidade com a função `ggsave()`
+### Exportando gráficos com alta qualidade com a função `ggsave()`
 
 O último passo para construir gráficos com qualidade de publicação é exportar em um formato específico, como .png, .pdf ou .svg (entre outros). A função `ggsave()` não só permite que você tenha o controle sobre o formato, mas também sobre a qualidade e tamanho desejados com os seguintes argumentos:
 
@@ -1225,7 +1225,7 @@ ggsave(filename = "g1.svg",
 
 ## Para se aprofundar
 
-Listamos a seguir livros e links que recomendamos para seguir com sua aprendizagem em R e gráficos.
+Listamos abaixo livros e links que recomendamos para seguir com sua aprendizagem em R e gráficos.
 
 ### Livros
 

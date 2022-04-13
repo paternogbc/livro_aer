@@ -162,8 +162,8 @@ Estatísticas frequentistas como as que serão abordadas neste capítulo são ba
 <ul>
 <li>As amostras devem ser independentes</li>
 <li>As unidades amostrais são selecionadas aleatoriamente</li>
-<li>Distribuição normal (gaussiana) dos resíduos.</li>
-<li>Homogeneidade da variância.</li>
+<li>Distribuição normal (gaussiana) dos resíduos</li>
+<li>Homogeneidade da variância</li>
 </ul>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br></p>
@@ -175,8 +175,8 @@ Estatísticas frequentistas como as que serão abordadas neste capítulo são ba
 <p><strong>Avaliação das premissas</strong></p>
 <p>Uma das maneiras de avaliarmos as premissas de normalidade e homogeneidade da variância relacionadas às análises do teste T, ANOVA e regressões lineares simples e múltiplas é o uso da inspeção gráfica da distribuição dos resíduos (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>) <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_protocol_2009" role="doc-biblioref">A. F. Zuur, Ieno, and Elphick 2010</a>)</span>.</p>
 <ul>
-<li><p>A homogeneidade da variância utiliza um gráfico dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil).</p></li>
-<li><p>A normalidade dos resíduos utiliza um gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>B).</p></li>
+<li><p>A premissa de homogeneidade da variância pode ser avaliada através do gráfico de dispersão dos resíduos (eixo X) pelos valores preditos da variável resposta (eixo Y) (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>A). A distribuição dos resíduos será homogênea se não observarmos nenhum padrão na distribuição dos pontos (i.e. forma em V, U ou funil).</p></li>
+<li><p>A premissa de normalidade dos resíduos pode ser avaliada através do gráfico de quantis-quantis (QQ-plots). A distribuição dos resíduos será normal se os pontos estiverem próximos à reta (Figura <a href="cap7.html#fig:fig-homo-norm">7.1</a>B).</p></li>
 </ul>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-homo-norm"></span>
@@ -197,18 +197,17 @@ Figura 7.1: Inspeção gráfica da homogeneidade da variância (A) e normalidade
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>Data frame com os indivíduos (unidade amostral) nas linhas e CRC (mm - variável resposta contínua) e estação (variável preditora categórica) como colunas</p></li>
+<li>Data frame com os indivíduos (unidade amostral) nas linhas e CRC (mm - variável resposta contínua) e estação (variável preditora categórica) como colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Vamos olhar os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Vamos olhar os dados usando a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">CRC_PN_macho</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">CRC_PN_macho</span><span class="op">)</span> 
 <span class="co">#&gt;    CRC Estacao</span>
 <span class="co">#&gt; 1 3.82 Chuvosa</span>
 <span class="co">#&gt; 2 3.57 Chuvosa</span>
@@ -251,7 +250,7 @@ A Hipótese Nula (H<sub>0</sub>) destes testes é que a distribuição é normal
 <p>Teste de Levene para homogeneidade de variância dos resíduos.</p>
 <div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Teste de homogeneidade de variância</span>
-<span class="fu"><a href="https://rdrr.io/pkg/car/man/leveneTest.html">leveneTest</a></span><span class="op">(</span><span class="va">CRC</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Estacao</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">CRC_PN_macho</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/car/man/leveneTest.html">leveneTest</a></span><span class="op">(</span><span class="va">CRC</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Estacao</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">CRC_PN_macho</span><span class="op">)</span>
 <span class="co">#&gt; Levene's Test for Homogeneity of Variance (center = median)</span>
 <span class="co">#&gt;       Df F value Pr(&gt;F)</span>
 <span class="co">#&gt; group  1  1.1677 0.2852</span>
@@ -311,18 +310,17 @@ Os dados foram alterados em relação a publicação original para se enquadrare
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>Data frame com os indivíduos (unidade amostral) nas linhas e CRC (mm - variável resposta contínua) e estação (variável preditora categórica) como colunas</p></li>
+<li>Data frame com os indivíduos (unidade amostral) nas linhas e CRC (mm - variável resposta contínua) e estação (variável preditora categórica) como colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Olhar os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Olhar os dados usando a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">CRC_LP_femea</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">CRC_LP_femea</span><span class="op">)</span> 
 <span class="co">#&gt;    CRC Estacao</span>
 <span class="co">#&gt; 1 2.72 Chuvosa</span>
 <span class="co">#&gt; 2 2.10 Chuvosa</span>
@@ -355,7 +353,7 @@ Figura 7.4: Normalidade dos resíduos usando o QQ-plot.
 <p>Agora vamos avaliar a homogeneidade da variância.</p>
 <div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Teste de homogeneidade da variância</span>
-<span class="fu"><a href="https://rdrr.io/pkg/car/man/leveneTest.html">leveneTest</a></span><span class="op">(</span><span class="va">CRC</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Estacao</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">CRC_LP_femea</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/car/man/leveneTest.html">leveneTest</a></span><span class="op">(</span><span class="va">CRC</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Estacao</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">CRC_LP_femea</span><span class="op">)</span>
 <span class="co">#&gt; Levene's Test for Homogeneity of Variance (center = median)</span>
 <span class="co">#&gt;       Df F value  Pr(&gt;F)  </span>
 <span class="co">#&gt; group  1  9.8527 0.01053 *</span>
@@ -427,18 +425,17 @@ Figura 7.5: Boxplot da análise do Teste T para duas amostras independentes com 
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pré-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas</p></li>
+<li>data frame com as localidades nas linhas e riqueza de espécies (variável resposta contínua) e estado (Pré-queimada ou Pós-queimada - variável preditora categórica) da localidade nas colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Olhando os dados com a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Olhando os dados com a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Pareado</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">Pareado</span><span class="op">)</span> 
 <span class="co">#&gt;   Areas Riqueza       Estado</span>
 <span class="co">#&gt; 1     1      92 Pre-Queimada</span>
 <span class="co">#&gt; 2     2      74 Pre-Queimada</span>
@@ -517,7 +514,6 @@ Figura 7.7: Exemplo de correlações negativa (A), positiva (B) e nula (C) e var
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li>Variáveis</li>
 <li>data frame com os indivíduos (unidade amostral) nas linhas e altura do tronco e tamanho da raiz (duas variáveis têm que ser contínuas) como colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
@@ -525,10 +521,10 @@ Figura 7.7: Exemplo de correlações negativa (A), positiva (B) e nula (C) e var
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Vamos olhar os dados com a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Vamos olhar os dados com a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">correlacao_arbustos</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">correlacao_arbustos</span><span class="op">)</span> 
 <span class="co">#&gt;   Tamanho_raiz Tamanho_tronco</span>
 <span class="co">#&gt; 1    10.177049       19.54383</span>
 <span class="co">#&gt; 2     6.622634       17.13558</span>
@@ -626,22 +622,17 @@ A linha de tendência tracejada no gráfico é apenas para ilustrar a relação 
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li>
-<p>Variáveis resposta e preditoras</p>
-<ul>
 <li>Data frame com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura média anual (variável preditora) como colunas</li>
-</ul>
-</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Olhando os dados com a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Olhando os dados com a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_regressao</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_regressao</span><span class="op">)</span> 
 <span class="co">#&gt;      Municipio      CRC Temperatura Precipitacao</span>
 <span class="co">#&gt; 1     Acorizal 22.98816    24.13000       1228.2</span>
 <span class="co">#&gt; 2  Alpinopolis 22.91788    20.09417       1487.6</span>
@@ -657,7 +648,7 @@ A linha de tendência tracejada no gráfico é apenas para ilustrar a relação 
 <div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar as premissas do teste</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">modelo_regressao</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">modelo_regressao</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># volta a configuração dos gráficos para o formato padrão </span>
 <span class="co">#&gt; null device </span>
 <span class="co">#&gt;           1</span></code></pre></div>
@@ -757,18 +748,17 @@ Figura 7.10: Gráfico mostrando a relação entre as variáveis e modelo linear 
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>data frame com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura e precipitação (variáveis preditoras) como colunas</p></li>
+<li>data frame com as populações (unidade amostral) nas linhas e CRC (variável resposta) médio (mm) e temperatura e precipitação (variáveis preditoras) como colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Olhando os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Olhando os dados usando a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_regressao_mul</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_regressao_mul</span><span class="op">)</span> 
 <span class="co">#&gt;      Municipio      CRC Temperatura Precipitacao</span>
 <span class="co">#&gt; 1     Acorizal 22.98816    24.13000       1228.2</span>
 <span class="co">#&gt; 2  Alpinopolis 22.91788    20.09417       1487.6</span>
@@ -902,12 +892,7 @@ ANOVA de medidas repetidas e ANOVA <em>split-plot</em> são análises com desenh
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li>
-<p>Variáveis resposta e preditoras</p>
-<ul>
 <li>Data frame com as plantas (unidade amostral) nas linhas e o crescimento dos indivíduos de <em>C. arabica</em> (variável resposta) e os tratamentos (variável preditora) nas colunas</li>
-</ul>
-</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
@@ -917,7 +902,7 @@ ANOVA de medidas repetidas e ANOVA <em>split-plot</em> são análises com desenh
 <p>Olhando os dados e criando o modelo para Anova de um fator.</p>
 <div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_anova_simples</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_anova_simples</span><span class="op">)</span> 
 <span class="co">#&gt;   Crescimento Tratamento</span>
 <span class="co">#&gt; 1       7.190   Controle</span>
 <span class="co">#&gt; 2       6.758   Controle</span>
@@ -1026,18 +1011,17 @@ Figura 7.12: Gráfico de caixa mostrando o resultado da ANOVA de um fator.
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>data frame com os pacientes (unidade amostral) nas linhas e o tempo de eliminação da droga (variável resposta) e os tratamentos sexo e idade dos pacientes (variáveis preditoras) nas colunas</p></li>
+<li>data frame com os pacientes (unidade amostral) nas linhas e o tempo de eliminação da droga (variável resposta) e os tratamentos sexo e idade dos pacientes (variáveis preditoras) nas colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e as variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Verificando os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Verificando os dados usando a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_dois_fatores</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_dois_fatores</span><span class="op">)</span> 
 <span class="co">#&gt;    Tempo Pessoas Idade</span>
 <span class="co">#&gt; 1 18.952      XX Jovem</span>
 <span class="co">#&gt; 2 16.513      XX Jovem</span>
@@ -1132,7 +1116,7 @@ Figura 7.14: Gráfico de caixa mostrando o resultado da ANOVA fatorial.
 <p>Neste exemplo, novamente hipotético, usaremos os mesmos dados do exemplo anterior. Entretanto, alteramos os dados para que agora a interação seja significativa.</p>
 <div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Olhando os dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_dois_fatores_interacao2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_dois_fatores_interacao2</span><span class="op">)</span>
 <span class="co">#&gt;    Tempo Pessoas Idade</span>
 <span class="co">#&gt; 1 18.952      XX Jovem</span>
 <span class="co">#&gt; 2 16.513      XX Jovem</span>
@@ -1187,7 +1171,11 @@ Figura 7.15: Gráfico de caixa mostrando o resultado da ANOVA fatorial com inter
 <h3>
 <span class="header-section-number">7.6.3</span> ANOVA em blocos aleatorizados<a class="anchor" aria-label="anchor" href="#anova-em-blocos-aleatorizados"><i class="fas fa-link"></i></a>
 </h3>
-<p>No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">Gotelli and Ellison 2012</a>)</span>. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse. Importante, os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.</p>
+<p>No delineamento experimental com blocos aleatorizados, cada fator é agrupado em blocos, com réplicas de cada nível do fator representado em cada bloco <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">Gotelli and Ellison 2012</a>)</span>. O bloco é uma área ou período de tempo dentro do qual as condições ambientais são relativamente homogêneas. O objetivo do uso dos blocos é controlar fontes de variações indesejadas na variável dependente que não são de interesse do pesquisador. Desta maneira, podemos retirar dos resíduos os efeitos das variações indesejadas que não são do nosso interesse, e testar com maior poder estatístico os efeitos dos tratamentos de interesse.</p>
+<div class="alert alert-info">
+<p><strong> 📝 Importante </strong><br>
+Os blocos devem ser arranjados de forma que as condições ambientais sejam mais similares dentro dos blocos do que entre os blocos.</p>
+</div>
 <p><strong>Exemplo prático 1 - ANOVA em blocos aleatorizados</strong></p>
 <p><strong>Explicação dos dados</strong></p>
 <p>Neste exemplo, avaliaremos a riqueza de espécies de anuros amostradas em poças artificiais instaladas a diferentes distâncias de seis fragmentos florestais no sudeste do Brasil <span class="citation">(<a href="refer%C3%AAncias.html#ref-daSilva2011" role="doc-biblioref">da Silva et al. 2012</a>)</span>. Os fragmentos florestais apresentam diferenças entre si que não são do interesse do pesquisador. Por isso, eles foram incluídos como blocos nas análises. As poças artificiais foram instaladas em todos os fragmentos florestais com base no seguinte delineamento experimental <span class="citation">(<a href="refer%C3%AAncias.html#ref-daSilva2011" role="doc-biblioref">da Silva et al. 2012</a>)</span>: i) quatro poças no interior do fragmento a 100 m de distância da borda do fragmento; ii) quatro poças no interior no fragmento a 50 m de distância da borda do fragmento; iii) quatro poças na borda do fragmento; iv) quatro poças na matriz de pastagem a 50 m de distância da borda do fragmento; e v) quatro poças na matriz de pastagem a 100 m de distância da borda do fragmento. Percebam que todos os tratamentos foram instalados em todos os blocos.</p>
@@ -1205,22 +1193,17 @@ Os valores da riqueza de espécies foram alterados em relação a publicação o
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li>
-<p>Variáveis resposta e preditoras</p>
-<ul>
 <li>Data frame com as poças (unidade amostral) nas linhas e a riqueza de espécies (variável reposta), distância dos fragmentos florestais (variável preditora categórica) e fragmentos florestais (blocos) nas colunas</li>
-</ul>
-</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Olhando os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Olhando os dados usando a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_bloco</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_bloco</span><span class="op">)</span> 
 <span class="co">#&gt;   Riqueza Blocos    Pocas</span>
 <span class="co">#&gt; 1      90      A  Int-50m</span>
 <span class="co">#&gt; 2      95      A Int-100m</span>
@@ -1245,7 +1228,7 @@ Os valores da riqueza de espécies foram alterados em relação a publicação o
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>Lembre-se que nos delineamentos experimentais em bloco, o pesquisador não está interessado no efeito do bloco, mas sim em controlar a variação associada a ele.</p>
-<p>O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a forma errada de analisar delineamento experimental com blocos.</p>
+<p>O que não pode acontecer é ignorar o efeito do bloco que é incorporado pelos resíduos quando não informado no modelo. Veja abaixo a <strong>forma errada</strong> de analisar delineamento experimental com blocos.</p>
 <div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Forma errada de análisar Anova em blocos</span>
 <span class="va">modelo_errado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Riqueza</span> <span class="op">~</span> <span class="va">Pocas</span>, data <span class="op">=</span> <span class="va">dados_bloco</span><span class="op">)</span>
@@ -1261,7 +1244,7 @@ Os valores da riqueza de espécies foram alterados em relação a publicação o
 <p>O resultado da ANOVA (Pr(&gt;F) &lt; 0.001) indica que devemos rejeitar a hipótese nula que não há diferença entre as médias dos grupos. Contudo, os resultados não mostram quais são os grupos que apresentam diferenças. Para isso, temos que realizar testes de comparações múltiplas <em>post-hoc</em> para detectar os grupos que apresentam diferenças significativas entre as médias.</p>
 <div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Teste de Tuckey's honest significant difference</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lsmeans/man/ref.grid.html">lsmeans</a></span><span class="op">(</span><span class="va">model_bloco</span>, <span class="st">"Pocas"</span><span class="op">)</span>, adjust <span class="op">=</span> <span class="st">"tukey"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/pairs.html">pairs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lsmeans/man/ref.grid.html">lsmeans</a></span><span class="op">(</span><span class="va">model_bloco</span>, <span class="st">"Pocas"</span><span class="op">)</span>, adjust <span class="op">=</span> <span class="st">"tukey"</span><span class="op">)</span>
 <span class="co">#&gt;  contrast                estimate   SE df t.ratio p.value</span>
 <span class="co">#&gt;  Borda - (Int-100m)        16.000 6.57 20   2.436  0.1463</span>
 <span class="co">#&gt;  Borda - (Int-50m)         19.833 6.57 20   3.020  0.0472</span>
@@ -1316,18 +1299,17 @@ Figura 7.16: Gráfico de caixa mostrando o resultado da ANOVA de blocos aleatori
 </ul>
 <p><strong>Variáveis</strong></p>
 <ul>
-<li><p>Variáveis resposta e preditoras</p></li>
-<li><p>data frame com os indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas</p></li>
+<li>data frame com os indivíduos da espécie de planta (unidade amostral) nas linhas e a biomassa dos frutos (variável resposta), herbivoria (variável preditora categórica) e tamanho da raiz (covariável contínua) nas colunas</li>
 </ul>
 <p><strong>Checklist</strong></p>
 <ul>
 <li>Verificar se o seu data frame está com as unidades amostrais nas linhas e variáveis preditoras e respostas nas colunas</li>
 </ul>
 <p><strong>Análise</strong></p>
-<p>Olhando os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<p>Olhando os dados usando a função <code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>.</p>
 <div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_ancova</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">dados_ancova</span><span class="op">)</span> 
 <span class="co">#&gt;    Raiz Biomassa Herbivoria</span>
 <span class="co">#&gt; 1 6.225    59.77   Sem_herb</span>
 <span class="co">#&gt; 2 6.487    60.98   Sem_herb</span>
@@ -1337,8 +1319,7 @@ Figura 7.16: Gráfico de caixa mostrando o resultado da ANOVA de blocos aleatori
 <span class="co">#&gt; 6 5.359    35.53   Sem_herb</span></code></pre></div>
 <p>Códigos para o cálculo da ANCOVA (Figura <a href="cap7.html#fig:fig-ancova-diag">7.17</a>).</p>
 <div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Gráfico</span>
-<span class="co">## Ancova</span>
+<code class="sourceCode R"><span class="co">## Ancova</span>
 <span class="va">modelo_ancova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Biomassa</span> <span class="op">~</span> <span class="va">Herbivoria</span> <span class="op">*</span> <span class="va">Raiz</span>, data <span class="op">=</span> <span class="va">dados_ancova</span><span class="op">)</span>
 
 <span class="co"># Verificando as premissas da Ancova</span>
@@ -1422,7 +1403,7 @@ concentrar nas seguintes funções.</p>
 <strong>Razão quadrática</strong>: <code>corRatio(form=\~lat+long)</code>
 </li>
 </ul>
-<p><strong>Exemplo prático</strong></p>
+<p><strong>Exemplo prático 1 - GLS</strong></p>
 <p><strong>Explicação dos dados</strong></p>
 <p>Neste exemplo, utilizamos os dados de riqueza de espécies de ácaros (Oribatidae) em 70 amostras de musgo (gênero <em>Sphagnum</em>) <span class="citation">(<a href="refer%C3%AAncias.html#ref-borcard_partialling_1992" role="doc-biblioref">Borcard, Legendre, and Drapeau 1992</a>)</span>. Para cada amostra, além da riqueza de ácaros, os autores registraram a quantidade de água no substrato e as coordenadas geográficas. Os dados completos estão disponíveis no pacote <code>vegan</code>.</p>
 <div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
@@ -1442,7 +1423,7 @@ concentrar nas seguintes funções.</p>
 
 <span class="co">## Resíduos</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">linear_model</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">linear_model</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
 
 <span class="co">## Resultados do modelo</span>
 <span class="va">res_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linear_model</span><span class="op">)</span>
@@ -1479,7 +1460,7 @@ Figura 7.20: Variograma representando a semi-variância <em>y(h)</em> em funçã
                                resType <span class="op">=</span> <span class="st">"normalized"</span><span class="op">)</span> 
 
 <span class="co">## Gráfico</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">variog_mod1</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">variog_mod1</span><span class="op">)</span>
 
 <span class="co">## Índice I de Moran</span>
 
@@ -1525,7 +1506,7 @@ Figura 7.21: Variograma para os resíduos do modelo GLS ajustado.
 <span class="co">## Covariância razão quadrática</span>
 <span class="va">ratio_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/gls.html">gls</a></span><span class="op">(</span><span class="va">riqueza</span> <span class="op">~</span> <span class="va">agua</span>, <span class="va">mite_dat</span>, 
                    <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/corRatio.html">corRatio</a></span><span class="op">(</span>form <span class="op">=</span> <span class="op">~</span><span class="va">lat</span><span class="op">+</span><span class="va">long</span>, nugget <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Agora, depois de ajustar o modelo GLS com os diferentes variogramas é necessário comparar os modelos para escolher o mais “provável”, utilizando a seleção de modelos pelo Critério de Seleção de Akaike (AIC) <span class="citation">(<a href="refer%C3%AAncias.html#ref-chiles_1999" role="doc-biblioref">Chiles and Delfiner 1999</a>; <a href="refer%C3%AAncias.html#ref-burnham2002" role="doc-biblioref">K. A. Burnham and Anderson 2002</a>; <a href="refer%C3%AAncias.html#ref-fortin_dale_2005" role="doc-biblioref">Fortin and Dale 2005</a>)</span> (Figura <a href="cap7.html#fig:fig-diag-ratio">7.22</a>). AIC é um método estatístico que compara os modelos criados na sua pesquisa e seleciona o melhor entre eles. Diferente do LRT que compara apenas modelos aninhados, o AIC compara modelos com diferentes combinações de variáveis preditoras. Uma vez que a fórmula do AIC penaliza parâmetros extras no modelo, se dois modelos explicam igualmente a variação dos dados, o modelo com menos parâmetros terá o menor valor de AIC e será selecionado como o melhor modelo.</p>
+<p>Agora, depois de ajustar o modelo GLS com os diferentes variogramas é necessário comparar os modelos para escolher o mais “provável”, utilizando a seleção de modelos pelo <strong>Critério de Seleção de Akaike (AIC)</strong> <span class="citation">(<a href="refer%C3%AAncias.html#ref-chiles_1999" role="doc-biblioref">Chiles and Delfiner 1999</a>; <a href="refer%C3%AAncias.html#ref-burnham2002" role="doc-biblioref">K. A. Burnham and Anderson 2002</a>; <a href="refer%C3%AAncias.html#ref-fortin_dale_2005" role="doc-biblioref">Fortin and Dale 2005</a>)</span> (Figura <a href="cap7.html#fig:fig-diag-ratio">7.22</a>). AIC é um método estatístico que compara os modelos criados na sua pesquisa e seleciona o melhor entre eles. Diferente do LRT que compara apenas modelos aninhados, o AIC compara modelos com diferentes combinações de variáveis preditoras. Uma vez que a fórmula do AIC penaliza parâmetros extras no modelo, se dois modelos explicam igualmente a variação dos dados, o modelo com menos parâmetros terá o menor valor de AIC e será selecionado como o melhor modelo.</p>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
 O valor de AIC por si só não tem significado. Ele precisa ser comparado com outro modelo. Contudo, um modelo só será considerado superior a outro quando a diferença entre os seus valores de AIC (i.e, <em>delta</em>) forem maiores do que 2. <span class="citation">(<a href="refer%C3%AAncias.html#ref-burnham2002" role="doc-biblioref">K. A. Burnham and Anderson 2002</a>)</span></p>
@@ -1534,16 +1515,16 @@ O valor de AIC por si só não tem significado. Ele precisa ser comparado com ou
 <code class="sourceCode R"><span class="co">## Seleção de modelos</span>
 <span class="va">aic_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">no_spat_gls</span>, <span class="va">espher_model</span>, <span class="va">expon_model</span>, <span class="va">gauss_model</span>, <span class="va">cor_linear_model</span>, <span class="va">ratio_model</span><span class="op">)</span>
 <span class="va">aic_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">AIC</span><span class="op">)</span>
-<span class="co">#&gt;                  df      AIC</span>
-<span class="co">#&gt; ratio_model       5 373.1186</span>
-<span class="co">#&gt; expon_model       5 373.2439</span>
-<span class="co">#&gt; no_spat_gls       3 383.8616</span>
-<span class="co">#&gt; espher_model      5 387.8616</span>
-<span class="co">#&gt; gauss_model       5 387.8616</span>
-<span class="co">#&gt; cor_linear_model  5 387.8616</span>
+<span class="co">#&gt;   df      AIC</span>
+<span class="co">#&gt; 1  5 373.1186</span>
+<span class="co">#&gt; 2  5 373.2439</span>
+<span class="co">#&gt; 3  3 383.8616</span>
+<span class="co">#&gt; 4  5 387.8616</span>
+<span class="co">#&gt; 5  5 387.8616</span>
+<span class="co">#&gt; 6  5 387.8616</span>
 
 <span class="co">## Gráfico</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">ratio_model</span>, type <span class="op">=</span> <span class="st">"normalized"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">ratio_model</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">ratio_model</span>, type <span class="op">=</span> <span class="st">"normalized"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">ratio_model</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-diag-ratio"></span>
 <img src="livro_files/figure-html/fig-diag-ratio-1.png" alt="Gráfico dos resíduos em relação aos dados ajustados do modelo GLS Ratio." width="100%" height="100%"><p class="caption">
@@ -1566,8 +1547,8 @@ Figura 7.22: Gráfico dos resíduos em relação aos dados ajustados do modelo G
 <span class="co">#&gt; agua        -0.0223793 0.002876239 -7.78075 5.481035e-11</span>
 
 <span class="co">## Gráficos</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ratio_variog</span>, main <span class="op">=</span> <span class="st">"Variograma como Modelo Ratio"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">variog_mod1</span>, main <span class="op">=</span> <span class="st">"Variograma Modelo Normal"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">ratio_variog</span>, main <span class="op">=</span> <span class="st">"Variograma como Modelo Ratio"</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">variog_mod1</span>, main <span class="op">=</span> <span class="st">"Variograma Modelo Normal"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-variog-ratio"></span>
 <img src="livro_files/figure-html/fig-variog-ratio-1.png" alt="Variogramas para os resíduos do modelo GLS Normal e Ratio." width="100%" height="100%"><img src="livro_files/figure-html/fig-variog-ratio-2.png" alt="Variogramas para os resíduos do modelo GLS Normal e Ratio." width="100%" height="100%"><p class="caption">
@@ -1575,7 +1556,7 @@ Figura 7.23: Variogramas para os resíduos do modelo GLS Normal e Ratio.
 </p>
 </div>
 <p><strong>Interpretação dos resultados</strong></p>
-<p>Dessa forma, O valor mais apropriado da estatística t é de -4.33 (<em>ratio_model</em>) ao invés de -7.78 (<em>no_spat_gls</em>). Neste caso, a decisão (quantidade de água afetando a riqueza de ácaros) não foi afetada (<em>P</em> &lt; 0.05 nos dois modelos), somente a estatística do teste.</p>
+<p>Dessa forma, o valor mais apropriado da estatística t é de -4.33 (<em>ratio_model</em>) ao invés de -7.78 (<em>no_spat_gls</em>). Neste caso, a decisão (quantidade de água afetando a riqueza de ácaros) não foi afetada (<em>P</em> &lt; 0.05 nos dois modelos), somente a estatística do teste.</p>
 </div>
 <div id="para-se-aprofundar-3" class="section level2" number="7.8">
 <h2>
@@ -1586,7 +1567,7 @@ Figura 7.23: Variogramas para os resíduos do modelo GLS Normal e Ratio.
 <h3>
 <span class="header-section-number">7.8.1</span> Livros<a class="anchor" aria-label="anchor" href="#livros-3"><i class="fas fa-link"></i></a>
 </h3>
-<p>Recomendamos aos interessados os livros: i) Zar <span class="citation">(<a href="refer%C3%AAncias.html#ref-zar_biostatistical_2010" role="doc-biblioref">2010</a>)</span> Biostatiscal analysis, ii) Gotelli &amp; Ellison <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">2012</a>)</span> A primer of ecological statistics, iii) Quinn &amp; Keough <span class="citation">(<a href="refer%C3%AAncias.html#ref-quinn_experimental_2002" role="doc-biblioref">2002</a>)</span> Experimental design and data analysis for biologists, iv) Zuur e colabodores <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_analysing_2007" role="doc-biblioref">2007</a>)</span> Analysing Ecological Data e v) Touchon <span class="citation">(<a href="refer%C3%AAncias.html#ref-touchon_applied_2021" role="doc-biblioref">2021</a>)</span> Applied statistics with R: a practical guide for the life sciences.</p>
+<p>Recomendamos aos interessados(as) os livros: i) Zar <span class="citation">(<a href="refer%C3%AAncias.html#ref-zar_biostatistical_2010" role="doc-biblioref">2010</a>)</span> Biostatiscal analysis, ii) Gotelli &amp; Ellison <span class="citation">(<a href="refer%C3%AAncias.html#ref-gotelli_primer_2012" role="doc-biblioref">2012</a>)</span> A primer of ecological statistics, iii) Quinn &amp; Keough <span class="citation">(<a href="refer%C3%AAncias.html#ref-quinn_experimental_2002" role="doc-biblioref">2002</a>)</span> Experimental design and data analysis for biologists, iv) Zuur e colabodores <span class="citation">(<a href="refer%C3%AAncias.html#ref-zuur_analysing_2007" role="doc-biblioref">2007</a>)</span> Analysing Ecological Data e v) Touchon <span class="citation">(<a href="refer%C3%AAncias.html#ref-touchon_applied_2021" role="doc-biblioref">2021</a>)</span> Applied statistics with R: a practical guide for the life sciences.</p>
 </div>
 <div id="links-3" class="section level3" number="7.8.2">
 <h3>
@@ -1669,7 +1650,7 @@ Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 lo
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-11.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
