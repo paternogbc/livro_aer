@@ -296,7 +296,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="va">tidy_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">tidy_anfibios_locais</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">tidy_anfibios_locais</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tidy_anfibios_locais</span><span class="op">)</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/data-import.html">11 Data import</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="tibble" class="section level2" number="5.5">
@@ -520,7 +520,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
                                   <span class="va">Region</span><span class="op">:</span><span class="va">Island</span>, 
                                   sep <span class="op">=</span> <span class="st">", "</span>,
                                   remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_unir</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Region"</span>, <span class="st">"Island"</span>, <span class="st">"region_island"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_unir</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Region"</span>, <span class="st">"Island"</span>, <span class="st">"region_island"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 3</span>
 <span class="co">#&gt;   Region Island    region_island    </span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            </span>
@@ -543,7 +543,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
                                         into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"stage"</span>, <span class="st">"egg_stage"</span><span class="op">)</span>, 
                                         sep <span class="op">=</span> <span class="st">", "</span>,
                                         remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_separar</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stage"</span>, <span class="st">"stage"</span>, <span class="st">"egg_stage"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_separar</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stage"</span>, <span class="st">"stage"</span>, <span class="st">"egg_stage"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 3</span>
 <span class="co">#&gt;   Stage              stage egg_stage  </span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;      </span>
@@ -558,7 +558,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="va">penguins_raw_separar_linhas</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span>,
                                                     <span class="va">Stage</span>,
                                                     sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_separar_linhas</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"studyName"</span>, <span class="st">"Sample Number"</span>, <span class="st">"Species"</span>, 
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_separar_linhas</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"studyName"</span>, <span class="st">"Sample Number"</span>, <span class="st">"Species"</span>, 
                                      <span class="st">"Region"</span>, <span class="st">"Island"</span>, <span class="st">"Stage"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 6</span>
 <span class="co">#&gt;   studyName `Sample Number` Species                             Region Island    Stage      </span>
@@ -578,7 +578,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Remover todas as linhas com NAs</span>
 <span class="va">penguins_raw_todas_na</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_todas_na</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_todas_na</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 17</span>
 <span class="co">#&gt;   studyName `Sample Number` Species      Region Island Stage `Individual ID` `Clutch Comple…` `Date Egg` `Culmen Length…`</span>
 <span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;            &lt;date&gt;                &lt;dbl&gt;</span>
@@ -594,7 +594,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Remover linhas de colunas específicas com NAs</span>
 <span class="va">penguins_raw_colunas_na</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span>,
                                           <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html">any_of</a></span><span class="op">(</span><span class="st">"Comments"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_colunas_na</span><span class="op">[</span>, <span class="st">"Comments"</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_colunas_na</span><span class="op">[</span>, <span class="st">"Comments"</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 1</span>
 <span class="co">#&gt;   Comments                             </span>
 <span class="co">#&gt;   &lt;chr&gt;                                </span>
@@ -608,7 +608,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Substituir NAs por outro valor</span>
 <span class="va">penguins_raw_subs_na</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span>,
                                           <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Comments <span class="op">=</span> <span class="st">"Unknown"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_subs_na</span><span class="op">[</span>, <span class="st">"Comments"</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_subs_na</span><span class="op">[</span>, <span class="st">"Comments"</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 1</span>
 <span class="co">#&gt;   Comments                      </span>
 <span class="co">#&gt;   &lt;chr&gt;                         </span>
@@ -627,7 +627,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar colunas</span>
 <span class="va">penguins_raw_sel_col</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">13</span><span class="op">)</span><span class="op">]</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_sel_col</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_sel_col</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 3</span>
 <span class="co">#&gt;   `Sample Number` Species                             `Body Mass (g)`</span>
 <span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                                         &lt;dbl&gt;</span>
@@ -642,7 +642,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="va">penguins_raw_pivot_wider</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw_sel_col</span>, 
                                                names_from <span class="op">=</span> <span class="va">Species</span>, 
                                                values_from <span class="op">=</span> <span class="va">`Body Mass (g)`</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_pivot_wider</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_pivot_wider</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 4</span>
 <span class="co">#&gt;   `Sample Number` `Adelie Penguin (Pygoscelis adeliae)` `Gentoo penguin (Pygoscelis papua)` `Chinstrap penguin (Pygosce…`</span>
 <span class="co">#&gt;             &lt;dbl&gt;                                 &lt;dbl&gt;                               &lt;dbl&gt;                         &lt;dbl&gt;</span>
@@ -656,7 +656,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar colunas</span>
 <span class="va">penguins_raw_sel_col</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">13</span><span class="op">)</span><span class="op">]</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_sel_col</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_sel_col</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 6</span>
 <span class="co">#&gt;   `Sample Number` Species                             `Culmen Length …` `Culmen Depth …` `Flipper Lengt…` `Body Mass (g)`</span>
 <span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                                           &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;</span>
@@ -672,7 +672,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
                                                  cols <span class="op">=</span> <span class="va">`Culmen Length (mm)`</span><span class="op">:</span><span class="va">`Body Mass (g)`</span>,
                                                  names_to <span class="op">=</span> <span class="st">"medidas"</span>, 
                                                  values_to <span class="op">=</span> <span class="st">"valores"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_pivot_longer</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_pivot_longer</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 4</span>
 <span class="co">#&gt;   `Sample Number` Species                             medidas             valores</span>
 <span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                               &lt;chr&gt;                 &lt;dbl&gt;</span>
@@ -698,7 +698,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <p>Sua gramática simples contém funções verbais para manipulação de dados, baseada em:</p>
 <ul>
 <li>Verbos: <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, etc.</li>
-<li>Replicação: <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">if_any()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">if_all()</a></code>, <code><a href="https://rdrr.io/pkg/ape/man/where.html">where()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>, etc.</li>
+<li>Replicação: <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">if_any()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">if_all()</a></code>, <code>where()</code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>, etc.</li>
 <li>Agrupamento: <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code>
 </li>
 <li>Junções: <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code>, etc.</li>
@@ -777,7 +777,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Reordenar colunas - nome</span>
 <span class="va">penguins_relocate_col</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">year</span>, .after <span class="op">=</span> <span class="va">island</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_relocate_col</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_relocate_col</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm body_mass_g</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;</span>
@@ -791,7 +791,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Reordenar colunas - posição</span>
 <span class="va">penguins_relocate_ncol</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">year</span>, .after <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_relocate_ncol</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_relocate_ncol</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm body_mass_g</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;</span>
@@ -814,7 +814,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
                   bill_depth <span class="op">=</span> <span class="va">bill_depth_mm</span>,
                   flipper_length <span class="op">=</span> <span class="va">flipper_length_mm</span>,
                   body_mass <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_rename</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_rename</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length bill_depth flipper_length body_mass sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;      &lt;dbl&gt;          &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -828,7 +828,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## mudar o nome de todas as colunas</span>
 <span class="va">penguins_rename_with</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_rename_with</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_rename_with</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   SPECIES ISLAND    BILL_LENGTH_MM BILL_DEPTH_MM FLIPPER_LENGTH_MM BODY_MASS_G SEX     YEAR</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -848,7 +848,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Selecionar colunas por posição</span>
 <span class="va">penguins_select_position</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_select_position</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_select_position</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 4</span>
 <span class="co">#&gt;   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g</span>
 <span class="co">#&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;</span>
@@ -862,7 +862,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Selecionar colunas por nomes</span>
 <span class="va">penguins_select_names</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">:</span><span class="va">body_mass_g</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_select_names</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_select_names</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 4</span>
 <span class="co">#&gt;   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g</span>
 <span class="co">#&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;</span>
@@ -876,7 +876,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Selecionar colunas por padrão</span>
 <span class="va">penguins_select_contains</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"_mm"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_select_contains</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_select_contains</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 3</span>
 <span class="co">#&gt;   bill_length_mm bill_depth_mm flipper_length_mm</span>
 <span class="co">#&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;</span>
@@ -896,7 +896,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Coluna como vetor</span>
 <span class="va">penguins_select_pull</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_select_pull</span>, <span class="fl">15</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_select_pull</span>, <span class="fl">15</span><span class="op">)</span>
 <span class="co">#&gt;  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1 38.6 34.6</span></code></pre></div>
 </div>
 <div id="mutate" class="section level3" number="5.8.8">
@@ -908,7 +908,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Adicionar colunas</span>
 <span class="va">penguins_mutate</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>body_mass_kg <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">/</span><span class="fl">1e3</span>, .before <span class="op">=</span> <span class="va">sex</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_mutate</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_mutate</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 9</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g body_mass_kg sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -921,8 +921,8 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Modificar várias colunas</span>
 <span class="va">penguins_mutate_across</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span>, <span class="va">as.character</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_mutate_across</span><span class="op">)</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span>, <span class="va">as.character</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_mutate_across</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;chr&gt;  &lt;int&gt;</span>
@@ -942,7 +942,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Reordenar linhas - crescente</span>
 <span class="va">penguins_arrange</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -956,7 +956,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Reordenar linhas - decrescente</span>
 <span class="va">penguins_arrange_desc</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange_desc</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange_desc</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;</span>
@@ -970,7 +970,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Reordenar linhas - decrescente</span>
 <span class="va">penguins_arrange_desc_m</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">body_mass_g</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange_desc_m</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange_desc_m</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;</span>
@@ -983,8 +983,8 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Reordenar linhas - multiplas colunas</span>
 <span class="va">penguins_arrange_across</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange_across</span><span class="op">)</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_arrange_across</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1004,7 +1004,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Filtrar linhas</span>
 <span class="va">penguins_filter</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_filter</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_filter</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1018,7 +1018,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Filtrar linhas</span>
 <span class="va">penguins_filter_two</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span> <span class="op">&amp;</span> <span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_two</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_two</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1031,9 +1031,9 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Filtrar linhas</span>
 <span class="va">penguins_filter_in</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op"><a href="https://rdrr.io/pkg/raster/man/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span>,
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span>,
                   <span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_in</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_in</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1047,7 +1047,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Filtrar linhas - NA</span>
 <span class="va">penguins_filter_na</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_na</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_na</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1061,7 +1061,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Filtrar linhas - intervalos</span>
 <span class="va">penguins_filter_between</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="va">body_mass_g</span>, <span class="fl">3000</span>, <span class="fl">4000</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_between</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_between</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1074,8 +1074,8 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Filtrar linhas por várias colunas</span>
 <span class="va">penguins_filter_if</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">if_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.integer</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">&gt;</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_if</span><span class="op">)</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">if_all</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.integer</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">&gt;</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_filter_if</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1095,7 +1095,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Seleciona linhas</span>
 <span class="va">penguins_slice</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">300</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_slice</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_slice</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1109,7 +1109,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Seleciona linhas - head</span>
 <span class="va">penguins_slice_head</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_slice_head</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_slice_head</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1122,7 +1122,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Seleciona linhas - max</span>
 <span class="va">penguins_slice_max</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">body_mass_g</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_slice_max</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_slice_max</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;</span>
@@ -1136,7 +1136,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Seleciona linhas - sample</span>
 <span class="va">penguins_slice_sample</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_slice_sample</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_slice_sample</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1156,7 +1156,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Retirar linhas com valores repetidos</span>
 <span class="va">penguins_distinct</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_distinct</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_distinct</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 1</span>
 <span class="co">#&gt;   body_mass_g</span>
 <span class="co">#&gt;         &lt;int&gt;</span>
@@ -1170,7 +1170,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Retirar linhas com valores repetidos - manter as outras colunas</span>
 <span class="va">penguins_distinct_keep_all</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">body_mass_g</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_distinct_keep_all</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_distinct_keep_all</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1183,8 +1183,8 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Retirar linhas com valores repetidos para várias colunas</span>
 <span class="va">penguins_distinct_keep_all_across</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.integer</span><span class="op">)</span><span class="op">)</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_distinct_keep_all_across</span><span class="op">)</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.integer</span><span class="op">)</span><span class="op">)</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_distinct_keep_all_across</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1234,7 +1234,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <code class="sourceCode R"><span class="co">## Agrupamento</span>
 <span class="va">penguins_group_by</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_group_by</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_group_by</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt; # Groups:   species [1]</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
@@ -1248,8 +1248,8 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Agrupamento de várias colunas</span>
 <span class="va">penguins_group_by_across</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_group_by_across</span><span class="op">)</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_group_by_across</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
 <span class="co">#&gt; # Groups:   species, island, sex [3]</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
@@ -1283,7 +1283,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">## Resumo para várias colunas</span>
 <span class="va">penguins_summarise_across</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">penguins_summarise_across</span>
 <span class="co">#&gt; # A tibble: 3 × 6</span>
 <span class="co">#&gt;   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year</span>
@@ -1296,7 +1296,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <h3>
 <span class="header-section-number">5.8.16</span> bind_rows() e bind_cols()<a class="anchor" aria-label="anchor" href="#bind_rows-e-bind_cols"><i class="fas fa-link"></i></a>
 </h3>
-<p>Muitas vezes teremos de combinar duas ou mais tabelas de dados. Podemos utilizar as funções <em>R Base</em> <code><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">rbind()</a></code> e <code><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind()</a></code>, como vimos no Capítulo <a href="cap4.html#cap4">4</a>. Entretanto, pode ser interessante avançar para as funções <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_cols()</a></code> do formato <em>tidyverse</em>. A ideia é muito semelhante: a primeira função combina dados por linhas e a segunda por colunas. Entretanto, há algumas vantagens no uso dessas funções, como a identificação das linhas pelo argumento <code>.id</code> para a primeira função, e a conferência do nome das colunas pelo argumento <code>.name_repair</code> para a segunda função.</p>
+<p>Muitas vezes teremos de combinar duas ou mais tabelas de dados. Podemos utilizar as funções <em>R Base</em> <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> e <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code>, como vimos no Capítulo <a href="cap4.html#cap4">4</a>. Entretanto, pode ser interessante avançar para as funções <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_cols()</a></code> do formato <em>tidyverse</em>. A ideia é muito semelhante: a primeira função combina dados por linhas e a segunda por colunas. Entretanto, há algumas vantagens no uso dessas funções, como a identificação das linhas pelo argumento <code>.id</code> para a primeira função, e a conferência do nome das colunas pelo argumento <code>.name_repair</code> para a segunda função.</p>
 <div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar as linhas para dois tibbles</span>
 <span class="va">penguins_01</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
@@ -1304,7 +1304,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Combinar as linhas</span>
 <span class="va">penguins_bind_rows</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">penguins_01</span>, <span class="va">penguins_02</span>, .id <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_bind_rows</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_bind_rows</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 9</span>
 <span class="co">#&gt;   id    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span>
@@ -1317,7 +1317,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 
 <span class="co">## Combinar as colunas</span>
 <span class="va">penguins_bind_cols</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">penguins_01</span>, <span class="va">penguins_02</span>, .name_repair <span class="op">=</span> <span class="st">"unique"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_bind_cols</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_bind_cols</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 × 16</span>
 <span class="co">#&gt;   species...1 island...2 bill_length_mm..… bill_depth_mm..… flipper_length_… body_mass_g...6 sex...7 year...8 species...9</span>
 <span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;                  &lt;dbl&gt;            &lt;dbl&gt;            &lt;int&gt;           &lt;int&gt; &lt;fct&gt;      &lt;int&gt; &lt;fct&gt;      </span>
@@ -1366,7 +1366,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 
 <span class="co">## Junção - left</span>
 <span class="va">penguins_left_join</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="va">penguin_islands</span>, by <span class="op">=</span> <span class="st">"island"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">penguins_left_join</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_left_join</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 10</span>
 <span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year longitude latitude</span>
 <span class="co">#&gt;   &lt;fct&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -1499,26 +1499,26 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>Primeiramente, vamos converter dados de string para fator, utilizando a função <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">forcats::as_factor()</a></code>.</p>
 <div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## String</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)</span>
 <span class="co">#&gt; [4] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)</span>
 <span class="co">#&gt; 3 Levels: Adelie Penguin (Pygoscelis adeliae) ... Chinstrap penguin (Pygoscelis antarctica)</span></code></pre></div>
 <p>Podemos facilmente mudar o nome dos níveis utilizando a função <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">forcats::fct_recode()</a></code>.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mudar o nome dos níveis</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span>, a <span class="op">=</span> <span class="st">"Adelie"</span>, c <span class="op">=</span> <span class="st">"Chinstrap"</span>, g <span class="op">=</span> <span class="st">"Gentoo"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span>, a <span class="op">=</span> <span class="st">"Adelie"</span>, c <span class="op">=</span> <span class="st">"Chinstrap"</span>, g <span class="op">=</span> <span class="st">"Gentoo"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] a a a a a a</span>
 <span class="co">#&gt; Levels: a c g</span></code></pre></div>
 <p>Para inverter os níveis, usamos a função <code><a href="https://forcats.tidyverse.org/reference/fct_rev.html">forcats::fct_rev()</a></code>.</p>
 <div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Inverter os níveis</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Gentoo Chinstrap Adelie</span></code></pre></div>
 <p>Uma operação muito comum com fatores é mudar a ordem dos níveis. Quando precisamos especificar a ordem dos níveis, podemos fazer essa operação manualmente com a função <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">forcats::fct_relevel()</a></code>.</p>
 <div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Especificar a ordem dos níveis</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Adelie"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Adelie"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Chinstrap Gentoo Adelie</span></code></pre></div>
 <p>Como vimos, a reordenação dos níveis pode ser feita manualmente. Mas existem outras formas automáticas de reordenação seguindo algumas regras, para as quais existem funções específicas.</p>
@@ -1532,25 +1532,25 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 </ul>
 <div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Níveis pela ordem em que aparecem</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Adelie Gentoo Chinstrap</span>
 
 <span class="co">## Ordem (decrescente) de frequência</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Adelie Gentoo Chinstrap</span></code></pre></div>
 <p>Por fim, podemos fazer a agregação de níveis raros em um nível utilizando a função <code><a href="https://forcats.tidyverse.org/reference/fct_lump.html">forcats::fct_lump()</a></code>.</p>
 <div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Agregação de níveis raros em um nível</span>
-<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Adelie Gentoo Other</span></code></pre></div>
 <p>Podemos ainda utilizar essas funções em complemento com o pacote <code>dplyr</code> para fazer manipulações de fatores nas colunas de <code>tibbles</code>.</p>
 <div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Transformar várias colunas em fator</span>
 <span class="va">penguins_raw_multi_factor</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>, <span class="fu">forcats</span><span class="fu">::</span><span class="va"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>, <span class="fu">forcats</span><span class="fu">::</span><span class="va"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/factors.html">15 Factors</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="lubridate" class="section level2" number="5.11">
@@ -1581,11 +1581,11 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Extrair a data nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13"</span>
+<span class="co">#&gt; [1] "2022-04-14"</span>
 
 <span class="co">## Extrair a data e tempo nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 14:30:23 -03"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-14 00:20:29 -03"</span></code></pre></div>
 <p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
 <ul>
 <li>De um string</li>
@@ -1639,11 +1639,11 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data para data-horário</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 UTC"</span>
+<span class="co">#&gt; [1] "2022-04-14 UTC"</span>
 
 <span class="co">## Data-horário para data</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-14"</span></code></pre></div>
 <p>Uma vez que entendemos como podemos criar dados de data/horário, podemos explorar funções para acessar e definir componentes individuais. Para essa tarefa existe uma grande quantidade de funções para acessar partes específicas de datas e horários.</p>
 <ul>
 <li>
@@ -1675,14 +1675,14 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] Apr</span>
 <span class="co">#&gt; Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; Oct &lt; Nov &lt; Dec</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">day</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 13</span>
+<span class="co">#&gt; [1] 14</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
+<span class="co">#&gt; [1] 5</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; [1] Wed</span>
+<span class="co">#&gt; [1] Thu</span>
 <span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 23.53739</span></code></pre></div>
+<span class="co">#&gt; [1] 30.04105</span></code></pre></div>
 <p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data</span>
@@ -1692,10 +1692,10 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2020</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">01</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">13</span></code></pre></div>
-<p>Mais convenientemente, podemos utilizar a função <code><a href="https://rdrr.io/pkg/raster/man/update.html">update()</a></code> para alterar vários valores de uma vez.</p>
+<p>Mais convenientemente, podemos utilizar a função <code><a href="https://rdrr.io/r/stats/update.html">update()</a></code> para alterar vários valores de uma vez.</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Incluir vários valores</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/update.html">update</a></span><span class="op">(</span><span class="va">data</span>, year <span class="op">=</span> <span class="fl">2020</span>, month <span class="op">=</span> <span class="fl">1</span>, mday <span class="op">=</span> <span class="fl">1</span>, hour <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">data</span>, year <span class="op">=</span> <span class="fl">2020</span>, month <span class="op">=</span> <span class="fl">1</span>, mday <span class="op">=</span> <span class="fl">1</span>, hour <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2020-01-01 01:04:56 UTC"</span></code></pre></div>
 <p>Muitas vezes precisamos fazer operações com datas, como: adição, subtração, multiplicação e divisão. Para tanto, é preciso entender três classes importantes que representam intervalos de tempo.</p>
 <ul>
@@ -1759,11 +1759,11 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Somando durações a datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">ddays</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-14"</span>
+<span class="co">#&gt; [1] "2022-04-15"</span>
 
 <span class="co">## Subtraindo durações de datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">dyears</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2021-04-12 18:00:00 UTC"</span>
+<span class="co">#&gt; [1] "2021-04-13 18:00:00 UTC"</span>
 
 <span class="co">## Multiplicando durações</span>
 <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">dyears</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
@@ -1813,16 +1813,16 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Somando datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-06-22"</span>
+<span class="co">#&gt; [1] "2022-06-23"</span>
 
 <span class="co">## Subtraindo datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-02-02"</span>
+<span class="co">#&gt; [1] "2022-02-03"</span>
 
 <span class="co">## Criando datas recorrentes</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "2022-04-13" "2022-04-20" "2022-04-27" "2022-05-04" "2022-05-11" "2022-05-18" "2022-05-25" "2022-06-01" "2022-06-08"</span>
-<span class="co">#&gt; [10] "2022-06-15" "2022-06-22"</span></code></pre></div>
+<span class="co">#&gt;  [1] "2022-04-14" "2022-04-21" "2022-04-28" "2022-05-05" "2022-05-12" "2022-05-19" "2022-05-26" "2022-06-02" "2022-06-09"</span>
+<span class="co">#&gt; [10] "2022-06-16" "2022-06-23"</span></code></pre></div>
 <p>Por fim, intervalos são períodos de tempo limitados por duas datas, possuindo uma duração com um ponto de partida, que o faz preciso para determinar uma duração. Intervalos são objetos da classe <code>Interval</code>. Da mesma forma que para duração e períodos, há uma série de funções para realizar essas operações.</p>
 <ul>
 <li>
@@ -1868,13 +1868,13 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_start</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2011-11-30 UTC"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_end</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 UTC"</span>
+<span class="co">#&gt; [1] "2022-04-14 UTC"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_length</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] 327196800</span>
+<span class="co">#&gt; [1] 327283200</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_flip</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2022-04-13 UTC--2011-11-30 UTC</span>
+<span class="co">#&gt; [1] 2022-04-14 UTC--2011-11-30 UTC</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_shift</a></span><span class="op">(</span><span class="va">r_intervalo</span>, <span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">duration</a></span><span class="op">(</span>days <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2011-12-30 UTC--2022-05-13 UTC</span></code></pre></div>
+<span class="co">#&gt; [1] 2011-12-30 UTC--2022-05-14 UTC</span></code></pre></div>
 <p>Uma operação de destaque é verificar a sobreposição entre dois intervalos.</p>
 <div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar sobreposição - int_overlaps</span>
@@ -1890,24 +1890,24 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Períodos dentro de um intervalo - anos</span>
 <span class="va">r_intervalo</span> <span class="op">/</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 10.36712</span>
+<span class="co">#&gt; [1] 10.36986</span>
 <span class="va">r_intervalo</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 10</span>
 
 <span class="co">## Períodos dentro de um intervalo - dias e semandas</span>
 <span class="va">filho_intervalo</span> <span class="op">/</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">days</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3121</span>
+<span class="co">#&gt; [1] 3122</span>
 <span class="va">filho_intervalo</span> <span class="op">/</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 445.8571</span></code></pre></div>
+<span class="co">#&gt; [1] 446</span></code></pre></div>
 <p>Ainda podemos fazer transformações dos dados para períodos e ter todas as unidades de data e tempo que o intervalo compreende.</p>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Tempo total estudando R</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as.period.html">as.period</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] "10y 4m 14d 0H 0M 0S"</span>
+<span class="co">#&gt; [1] "10y 4m 15d 0H 0M 0S"</span>
 
 <span class="co">## Idade do meu filho</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as.period.html">as.period</a></span><span class="op">(</span><span class="va">filho_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] "8y 6m 18d 0H 0M 0S"</span></code></pre></div>
+<span class="co">#&gt; [1] "8y 6m 19d 0H 0M 0S"</span></code></pre></div>
 <p>Por fim, fusos horários tendem a ser um fator complicador quando precisamos analisar informações instantâneas de tempo (horário) de outras partes do planeta, ou mesmo fazer conversões dos horários. No <code>lubridate</code> há funções para ajudar nesse sentido. Para isso, podemos utilizar a função <code><a href="https://lubridate.tidyverse.org/reference/with_tz.html">lubridate::with_tz()</a></code> e no argumento <code>tzone</code> informar o fuso horário para a transformação do horário.</p>
 <p>Podemos descobrir o fuso horário que o R está considerando com a função <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code>.</p>
 <div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
@@ -1919,22 +1919,22 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <code class="sourceCode R"><span class="co">## Verificar os fuso horários</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/timezones.html">OlsonNames</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 595</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/timezones.html">OlsonNames</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/timezones.html">OlsonNames</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Africa/Abidjan"     "Africa/Accra"       "Africa/Addis_Ababa" "Africa/Algiers"     "Africa/Asmara"     </span>
 <span class="co">#&gt; [6] "Africa/Asmera"</span></code></pre></div>
 <p>Podemos nos perguntar que horas são em outra parte do globo ou fazer as conversões facilmente no <em>lubridate</em>.</p>
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Que horas são em...</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 14:30:23 -03"</span>
+<span class="co">#&gt; [1] "2022-04-14 00:20:30 -03"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 17:30:23 GMT"</span>
+<span class="co">#&gt; [1] "2022-04-14 03:20:30 GMT"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"Europe/Berlin"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 19:30:23 CEST"</span>
+<span class="co">#&gt; [1] "2022-04-14 05:20:30 CEST"</span>
 
 <span class="co">## Altera o fuso sem mudar a hora</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/force_tz.html">force_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-13 14:30:23 GMT"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-14 00:20:30 GMT"</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="purrr" class="section level2" number="5.12">
@@ -1943,12 +1943,12 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 </h2>
 <p>O pacote <code>purrr</code> implementa a <em>Programação Funcional</em> no R, fornecendo um conjunto completo e consistente de ferramentas para trabalhar com funções e vetores. A programação funcional é um assunto bastante extenso, sendo mais conhecido no R pela família de funções <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map()</a></code>, que permite substituir muitos <em>loops for</em> por um código mais sucinto e fácil de ler. Não focaremos aqui nas outras funções, pois esse é um assunto extremamente extenso.</p>
 <p>Todas as funções deste pacote são listadas na <a href="https://purrr.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
-<p>Um <em>loop for</em> pode ser entendido como uma iteração: um bloco de códigos é repetido mudando um contador de uma lista de possibilidades. Vamos exemplificar com uma iteração bem simples, onde imprimiremos no console os valores de 1 a 10, utilizando a função <code>for()</code>, um contador <code>i</code> em um vetor de dez números <code>1:10</code> que será iterado, no bloco de códigos definido entre <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, usando a função <code><a href="https://www.math.uzh.ch/pages/spam/reference/print.html">print()</a></code> para imprimir os valores.</p>
+<p>Um <em>loop for</em> pode ser entendido como uma iteração: um bloco de códigos é repetido mudando um contador de uma lista de possibilidades. Vamos exemplificar com uma iteração bem simples, onde imprimiremos no console os valores de 1 a 10, utilizando a função <code>for()</code>, um contador <code>i</code> em um vetor de dez números <code>1:10</code> que será iterado, no bloco de códigos definido entre <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, usando a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> para imprimir os valores.</p>
 <p>A ideia é bastante simples: a função <code>for()</code> vai atribuir o primeiro valor da lista ao contador <code>i</code>, esse contador será utilizado em todo o bloco de códigos. Quando o bloco terminar, o segundo valor é atribuído ao contador <code>i</code> e entra no bloco de códigos, repetindo esse processo até que todos os elementos da lista tenham sido atribuídos ao contador.</p>
 <div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Loop for</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span>
-    <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; [1] 2</span>
@@ -2069,7 +2069,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resumo dos dados</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span>
 <span class="co">#&gt;    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g              year </span>
@@ -2221,7 +2221,7 @@ Oficialmente a pandemia de COVID-19 começou no Brasil com o primeiro caso no di
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-13.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
