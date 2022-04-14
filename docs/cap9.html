@@ -63,10 +63,10 @@
 
     <div id="main-nav" class="collapse-lg">
       <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input id="search" class="form-control" type="search" placeholder="Procurar" aria-label="Procurar">
 </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+      <nav aria-label="Sumário"><h2>Sumário</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -93,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -675,188 +675,79 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <p>Antes de explicar a análise, imagine que vamos usar uma matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes. A quantidade de indivíduos de cada espécie coletada em cada cidade será o valor de preenchimento desta matriz. Sendo assim, a matriz possui oito objetos (cidades, representando unidades amostrais) e cinco descritores (espécies).</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:tab-pca-dados">Tabela 9.1: </span>Matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes.
-</caption>
-<thead><tr>
-<th style="text-align:center;">
-Cidade
-</th>
-<th style="text-align:center;">
-Espécie.1
-</th>
-<th style="text-align:center;">
-Espécie.2
-</th>
-<th style="text-align:center;">
-Espécie.3
-</th>
-<th style="text-align:center;">
-Espécie.4
-</th>
-<th style="text-align:center;">
-Espécie.5
-</th>
+<span id="tab:tab-pca-dados">Tabela 9.1: </span>Matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes.</caption>
+<thead><tr class="header">
+<th align="center">Cidade</th>
+<th align="center">Espécie.1</th>
+<th align="center">Espécie.2</th>
+<th align="center">Espécie.3</th>
+<th align="center">Espécie.4</th>
+<th align="center">Espécie.5</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-Cidade 1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="center">Cidade 1</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 2
-</td>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="even">
+<td align="center">Cidade 2</td>
+<td align="center">7</td>
+<td align="center">6</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 3
-</td>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="center">Cidade 3</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 4
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="even">
+<td align="center">Cidade 4</td>
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">9</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 5
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-12
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="center">Cidade 5</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">4</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 6
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-6
-</td>
+<tr class="even">
+<td align="center">Cidade 6</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center">6</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 7
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-9
-</td>
+<tr class="odd">
+<td align="center">Cidade 7</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">9</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 8
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-12
-</td>
+<tr class="even">
+<td align="center">Cidade 8</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">12</td>
 </tr>
 </tbody>
 </table></div>
@@ -2510,7 +2401,7 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 <div class="prev"><a href="cap8.html"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></div>
 <div class="next"><a href="cap10.html"><span class="header-section-number">10</span> Rarefação</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Nesta página"><h2>Nesta página</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap9"><span class="header-section-number">9</span> Análises Multidimensionais</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-5">Pré-requisitos do capítulo</a></li>
@@ -2558,8 +2449,8 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/09_analises_multidimensionais.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/09_analises_multidimensionais.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/09_analises_multidimensionais.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/09_analises_multidimensionais.Rmd">Editar esta página <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -2571,11 +2462,11 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+    <p>Este livro foi compilado com o pacote R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
   </div>
 
 </div></div>

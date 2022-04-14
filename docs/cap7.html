@@ -63,10 +63,10 @@
 
     <div id="main-nav" class="collapse-lg">
       <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input id="search" class="form-control" type="search" placeholder="Procurar" aria-label="Procurar">
 </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+      <nav aria-label="Sumário"><h2>Sumário</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -93,7 +93,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/paternogbc/livro_aer">Ver código fonte <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -1515,13 +1515,13 @@ O valor de AIC por si só não tem significado. Ele precisa ser comparado com ou
 <code class="sourceCode R"><span class="co">## Seleção de modelos</span>
 <span class="va">aic_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">no_spat_gls</span>, <span class="va">espher_model</span>, <span class="va">expon_model</span>, <span class="va">gauss_model</span>, <span class="va">cor_linear_model</span>, <span class="va">ratio_model</span><span class="op">)</span>
 <span class="va">aic_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">AIC</span><span class="op">)</span>
-<span class="co">#&gt;   df      AIC</span>
-<span class="co">#&gt; 1  5 373.1186</span>
-<span class="co">#&gt; 2  5 373.2439</span>
-<span class="co">#&gt; 3  3 383.8616</span>
-<span class="co">#&gt; 4  5 387.8616</span>
-<span class="co">#&gt; 5  5 387.8616</span>
-<span class="co">#&gt; 6  5 387.8616</span>
+<span class="co">#&gt;                  df      AIC</span>
+<span class="co">#&gt; ratio_model       5 373.1186</span>
+<span class="co">#&gt; expon_model       5 373.2439</span>
+<span class="co">#&gt; no_spat_gls       3 383.8616</span>
+<span class="co">#&gt; espher_model      5 387.8616</span>
+<span class="co">#&gt; gauss_model       5 387.8616</span>
+<span class="co">#&gt; cor_linear_model  5 387.8616</span>
 
 <span class="co">## Gráfico</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">ratio_model</span>, type <span class="op">=</span> <span class="st">"normalized"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">ratio_model</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -1608,7 +1608,7 @@ Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 lo
 <div class="prev"><a href="cap6.html"><span class="header-section-number">6</span> Visualização de dados</a></div>
 <div class="next"><a href="cap8.html"><span class="header-section-number">8</span> Modelos Lineares Generalizados</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Nesta página"><h2>Nesta página</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap7"><span class="header-section-number">7</span> Modelos lineares</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-3">Pré-requisitos do capítulo</a></li>
@@ -1637,8 +1637,8 @@ Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 lo
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/07_modelos_lineares.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/07_modelos_lineares.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/paternogbc/livro_aer/blob/master/07_modelos_lineares.Rmd">Ver fonte <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/paternogbc/livro_aer/edit/master/07_modelos_lineares.Rmd">Editar esta página <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -1650,11 +1650,11 @@ Avalie se a precipitação anual afeta a riqueza de espécies de anuros em 44 lo
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" was written by Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. It was last built on 2022-04-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+    <p>Este livro foi compilado com o pacote R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
   </div>
 
 </div></div>
