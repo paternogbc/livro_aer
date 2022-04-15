@@ -66,7 +66,7 @@
         <input id="search" class="form-control" type="search" placeholder="Procurar" aria-label="Procurar">
 </form>
 
-      <nav aria-label="Sumário"><h2>Sumário</h2>
+      <nav aria-label="Sumário"><h2><b>Sumário</b></h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem-vindos</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
@@ -1593,7 +1593,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 
 <span class="co">## Extrair a data e tempo nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-14 19:31:15 -03"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-14 20:36:46 -03"</span></code></pre></div>
 <p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
 <ul>
 <li>De um string</li>
@@ -1690,7 +1690,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] Thu</span>
 <span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 15.43006</span></code></pre></div>
+<span class="co">#&gt; [1] 46.69494</span></code></pre></div>
 <p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data</span>
@@ -1934,15 +1934,15 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Que horas são em...</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-14 19:31:15 -03"</span>
+<span class="co">#&gt; [1] "2022-04-14 20:36:46 -03"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-14 22:31:15 GMT"</span>
+<span class="co">#&gt; [1] "2022-04-14 23:36:46 GMT"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"Europe/Berlin"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-15 00:31:15 CEST"</span>
+<span class="co">#&gt; [1] "2022-04-15 01:36:46 CEST"</span>
 
 <span class="co">## Altera o fuso sem mudar a hora</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/force_tz.html">force_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-14 19:31:15 GMT"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-14 20:36:46 GMT"</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="purrr" class="section level2" number="5.12">
@@ -2159,7 +2159,7 @@ Oficialmente a pandemia de COVID-19 começou no Brasil com o primeiro caso no di
 <div class="prev"><a href="cap4.html"><span class="header-section-number">4</span> Introdução ao R</a></div>
 <div class="next"><a href="cap6.html"><span class="header-section-number">6</span> Visualização de dados</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Nesta página"><h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Nesta página"><h2><b>Nesta página</b></h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap5"><span class="header-section-number">5</span> Tidyverse</a></li>
 <li><a class="nav-link" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-1">Pré-requisitos do capítulo</a></li>

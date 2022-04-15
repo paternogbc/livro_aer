@@ -34,6 +34,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
 
   <!-- CSS -->
+  <style type="text/css">
+    $-- Taken From Pandoc 'styles.html'
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+  $if(csl-css)$
+  <style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    $if(csl-entry-spacing)$
+      margin-bottom: $csl-entry-spacing$;
+    $endif$
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  $endif$
   $for(css)$
   <link rel="stylesheet" href="$css$" />
   $endfor$
@@ -61,11 +92,11 @@
 
     <div id="main-nav" class="collapse-lg">
       <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input id="search" class="form-control" type="search" placeholder="Procurar" aria-label="Procurar">
       </form>
 
       <nav aria-label="Sumário">
-        <h2>Sumário</h2>
+        <h2><b>Sumário</b></h2>
         <div id="book-toc"></div>
 
         <div class="book-extra">
@@ -89,14 +120,14 @@ $endfor$
   </main>
 
   <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Neste capítulo">
-      <h2>Nesta página</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Nesta página">
+      <h2><b>Nesta página</b></h2>
       <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
           <li><a id="book-source" href="#">Ver fonte <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edite esta página <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Editar esta página <i class="fab fa-github"></i></a></li>
         </ul>
       </div>
     </nav>
@@ -109,11 +140,11 @@ $endfor$
   <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>$title$</strong>$if(subtitle)$: $subtitle$$endif$" foi escrito por $for(author)$$author$$sep$, $endfor$. $if(date)$ültima atualização: $date$.$endif$</p>
+    <p>"<strong>$title$</strong>$if(subtitle)$: $subtitle$$endif$" foi escrito por $for(author)$$author$$sep$, $endfor$. $if(date)$Última atualização $date$.$endif$</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-        <p>Este livro foi compilado com o pacote <a class="text-light" href="https://bookdown.org">bookdown</a> </p>
+    <p>Este livro foi compilado com o pacote R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
   </div>
 
 </div></div>
