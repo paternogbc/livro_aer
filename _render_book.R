@@ -14,6 +14,10 @@ rmarkdown::clean_site(preview = FALSE)
 # Update ecodados
 # remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
 
+# Template
+download.file(url = "https://github.com/paternogbc/livro_aer/blob/master/templates/bs4_book.html",
+              destfile = paste0(system.file("templates", package = "bookdown"), "/bs4_book.html"), mode = "wb")
+
 # Render html -------------------------------------------------------------
 # tic()
 # rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')
