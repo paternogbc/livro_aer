@@ -7,7 +7,7 @@
 <title>Capítulo 4 Introdução ao R | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ecodados) ## Dados necessários intror_anfibios_locais &lt;- ecodados::intror_anfibios_locais  4.1...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Capítulo 4 Introdução ao R | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap4.html">
@@ -229,8 +229,8 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <p>O resultado retorna o valor <code>12</code>, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação <code>1:42</code>, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o <code>[1]</code>, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, <code>[37]</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">42</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39</span>
-<span class="co">#&gt; [40] 40 41 42</span></code></pre></div>
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37</span>
+<span class="co">#&gt; [38] 38 39 40 41 42</span></code></pre></div>
 <p>Podemos ver o histórico dos códigos executados no console na aba <strong>History</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 3).</p>
 </div>
 <div id="scripts" class="section level3" number="4.3.2">
@@ -567,7 +567,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número atual de pacotes no CRAN</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 19018</span></code></pre></div>
+<span class="co">#&gt; [1] 18961</span></code></pre></div>
 <p>Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos verificar pacotes carregados pelo <em>R Base</em> utilizando a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar pacotes carregados</span>
@@ -609,10 +609,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <p>Vamos carregar o pacote <code>vegan</code> que instalamos anteriormente. Podemos ir na aba <strong>Packages</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 4) e assinalar o pacote que queremos carregar ou utilizar a função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar pacotes</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: permute</span>
-<span class="co">#&gt; Loading required package: lattice</span>
-<span class="co">#&gt; This is vegan 2.5-7</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan">vegan</a></span><span class="op">)</span></code></pre></div>
 <p>Como dissemos, alguns pacotes em desenvolvimento encontram-se disponíveis em repositórios do <a href="https://github.com/">GitHub</a>, <a href="https://gitlab.com">GitLab</a> e <a href="https://www.bioconductor.org/">Bioconductor</a>. Para instalar pacotes do GitHub, por exemplo, precisamos instalar e carregar o pacote <code>devtools</code>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Instalar pacote devtools</span>
@@ -641,31 +638,54 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageDescription</a></span><span class="op">(</span><span class="st">"vegan"</span><span class="op">)</span>
 <span class="co">#&gt; Package: vegan</span>
 <span class="co">#&gt; Title: Community Ecology Package</span>
-<span class="co">#&gt; Version: 2.5-7</span>
-<span class="co">#&gt; Author: Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn,</span>
-<span class="co">#&gt;             Peter R. Minchin, R. B. O'Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard</span>
-<span class="co">#&gt;             Szoecs, Helene Wagner</span>
-<span class="co">#&gt; Maintainer: Jari Oksanen &lt;jhoksane@gmail.com&gt;</span>
+<span class="co">#&gt; Version: 2.6-2</span>
+<span class="co">#&gt; Authors@R: c(person("Jari", "Oksanen", role=c("aut","cre"), email="jhoksane@gmail.com"), person("Gavin</span>
+<span class="co">#&gt;            L.", "Simpson", role="aut", email="ucfagls@gmail.com"), person("F. Guillaume", "Blanchet",</span>
+<span class="co">#&gt;            role="aut"), person("Roeland", "Kindt", role="aut"), person("Pierre", "Legendre",</span>
+<span class="co">#&gt;            role="aut"), person("Peter R.", "Minchin", role="aut"), person("R.B.", "O'Hara",</span>
+<span class="co">#&gt;            role="aut"), person("Peter", "Solymos", role="aut"), person("M. Henry H.", "Stevens",</span>
+<span class="co">#&gt;            role="aut"), person("Eduard", "Szoecs", role="aut"), person("Helene", "Wagner", role="aut"),</span>
+<span class="co">#&gt;            person("Matt", "Barbour", role="aut"), person("Michael", "Bedward", role="aut"),</span>
+<span class="co">#&gt;            person("Ben", "Bolker", role="aut"), person("Daniel", "Borcard", role="aut"),</span>
+<span class="co">#&gt;            person("Gustavo", "Carvalho", role="aut"), person("Michael", "Chirico", role="aut"),</span>
+<span class="co">#&gt;            person("Miquel", "De Caceres", role="aut"), person("Sebastien", "Durand", role="aut"),</span>
+<span class="co">#&gt;            person("Heloisa Beatriz Antoniazi", "Evangelista", role="aut"), person("Rich", "FitzJohn",</span>
+<span class="co">#&gt;            role="aut"), person("Michael", "Friendly", role="aut"), person("Brendan","Furneaux",</span>
+<span class="co">#&gt;            role="aut"), person("Geoffrey", "Hannigan", role="aut"), person("Mark O.", "Hill",</span>
+<span class="co">#&gt;            role="aut"), person("Leo", "Lahti", role="aut"), person("Dan", "McGlinn", role="aut"),</span>
+<span class="co">#&gt;            person("Marie-Helene", "Ouellette", role="aut"), person("Eduardo", "Ribeiro Cunha",</span>
+<span class="co">#&gt;            role="aut"), person("Tyler", "Smith", role="aut"), person("Adrian", "Stier", role="aut"),</span>
+<span class="co">#&gt;            person("Cajo J.F.", "Ter Braak", role="aut"), person("James", "Weedon", role="aut"))</span>
 <span class="co">#&gt; Depends: permute (&gt;= 0.9-0), lattice, R (&gt;= 3.4.0)</span>
 <span class="co">#&gt; Suggests: parallel, tcltk, knitr, markdown</span>
 <span class="co">#&gt; Imports: MASS, cluster, mgcv</span>
 <span class="co">#&gt; VignetteBuilder: utils, knitr</span>
 <span class="co">#&gt; Description: Ordination methods, diversity analysis and other functions for community and vegetation</span>
-<span class="co">#&gt;             ecologists.</span>
+<span class="co">#&gt;            ecologists.</span>
 <span class="co">#&gt; License: GPL-2</span>
 <span class="co">#&gt; BugReports: https://github.com/vegandevs/vegan/issues</span>
-<span class="co">#&gt; URL: https://cran.r-project.org, https://github.com/vegandevs/vegan</span>
+<span class="co">#&gt; URL: https://github.com/vegandevs/vegan</span>
 <span class="co">#&gt; NeedsCompilation: yes</span>
-<span class="co">#&gt; Packaged: 2020-11-27 13:22:03 UTC; jarioksa</span>
+<span class="co">#&gt; Packaged: 2022-04-17 15:30:56 UTC; jarioksa</span>
+<span class="co">#&gt; Author: Jari Oksanen [aut, cre], Gavin L. Simpson [aut], F. Guillaume Blanchet [aut], Roeland Kindt</span>
+<span class="co">#&gt;            [aut], Pierre Legendre [aut], Peter R. Minchin [aut], R.B. O'Hara [aut], Peter Solymos</span>
+<span class="co">#&gt;            [aut], M. Henry H. Stevens [aut], Eduard Szoecs [aut], Helene Wagner [aut], Matt Barbour</span>
+<span class="co">#&gt;            [aut], Michael Bedward [aut], Ben Bolker [aut], Daniel Borcard [aut], Gustavo Carvalho</span>
+<span class="co">#&gt;            [aut], Michael Chirico [aut], Miquel De Caceres [aut], Sebastien Durand [aut], Heloisa</span>
+<span class="co">#&gt;            Beatriz Antoniazi Evangelista [aut], Rich FitzJohn [aut], Michael Friendly [aut], Brendan</span>
+<span class="co">#&gt;            Furneaux [aut], Geoffrey Hannigan [aut], Mark O. Hill [aut], Leo Lahti [aut], Dan McGlinn</span>
+<span class="co">#&gt;            [aut], Marie-Helene Ouellette [aut], Eduardo Ribeiro Cunha [aut], Tyler Smith [aut], Adrian</span>
+<span class="co">#&gt;            Stier [aut], Cajo J.F. Ter Braak [aut], James Weedon [aut]</span>
+<span class="co">#&gt; Maintainer: Jari Oksanen &lt;jhoksane@gmail.com&gt;</span>
 <span class="co">#&gt; Repository: CRAN</span>
-<span class="co">#&gt; Date/Publication: 2020-11-28 15:10:02 UTC</span>
-<span class="co">#&gt; Built: R 4.1.2; x86_64-pc-linux-gnu; 2022-01-14 17:10:16 UTC; unix</span>
+<span class="co">#&gt; Date/Publication: 2022-04-17 17:00:02 UTC</span>
+<span class="co">#&gt; Built: R 4.1.3; x86_64-pc-linux-gnu; 2022-04-18 13:54:17 UTC; unix</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; -- File: /home/mude/R/x86_64-pc-linux-gnu-library/4.1/vegan/Meta/package.rds</span></code></pre></div>
 <p>A maioria dos pacotes possui conjuntos de dados que podem ser acessados pela função <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>. Esses conjuntos de dados podem ser usados para testar as funções do pacote. Se estiver com dúvida na maneira como você deve preparar a planilha para realizar uma análise específica, entre na Ajuda (<em>Help</em>) da função e veja os conjuntos de dados que estão no exemplo desta função. Como exemplo, vamos carregar os dados <code>dune</code> do pacote <code>vegan</code>, que são dados de observações de 30 espécies vegetais em 20 locais.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar dados de um pacote</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan">vegan</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dune</span><span class="op">)</span>
 <span class="va">dune</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;   Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere</span>
@@ -804,8 +824,8 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite R in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical</span>
-<span class="co">#&gt;   Computing, Vienna, Austria. URL https://www.R-project.org/.</span>
+<span class="co">#&gt;   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for</span>
+<span class="co">#&gt;   Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -827,23 +847,23 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'vegan' in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt, Pierre Legendre, Dan McGlinn, Peter</span>
-<span class="co">#&gt;   R. Minchin, R. B. O'Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs and Helene</span>
-<span class="co">#&gt;   Wagner (2020). vegan: Community Ecology Package. R package version 2.5-7.</span>
-<span class="co">#&gt;   https://CRAN.R-project.org/package=vegan</span>
+<span class="co">#&gt;   Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R.</span>
+<span class="co">#&gt;   Minchin, R.B. O'Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour,</span>
+<span class="co">#&gt;   Michael Bedward, Ben Bolker, Daniel Borcard, Gustavo Carvalho, Michael Chirico, Miquel De Caceres,</span>
+<span class="co">#&gt;   Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan</span>
+<span class="co">#&gt;   Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo</span>
+<span class="co">#&gt;   Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak and James Weedon (2022). vegan:</span>
+<span class="co">#&gt;   Community Ecology Package. R package version 2.6-2. https://CRAN.R-project.org/package=vegan</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   @Manual{,</span>
 <span class="co">#&gt;     title = {vegan: Community Ecology Package},</span>
-<span class="co">#&gt;     author = {Jari Oksanen and F. Guillaume Blanchet and Michael Friendly and Roeland Kindt and Pierre Legendre and Dan McGlinn and Peter R. Minchin and R. B. O'Hara and Gavin L. Simpson and Peter Solymos and M. Henry H. Stevens and Eduard Szoecs and Helene Wagner},</span>
-<span class="co">#&gt;     year = {2020},</span>
-<span class="co">#&gt;     note = {R package version 2.5-7},</span>
+<span class="co">#&gt;     author = {Jari Oksanen and Gavin L. Simpson and F. Guillaume Blanchet and Roeland Kindt and Pierre Legendre and Peter R. Minchin and R.B. O'Hara and Peter Solymos and M. Henry H. Stevens and Eduard Szoecs and Helene Wagner and Matt Barbour and Michael Bedward and Ben Bolker and Daniel Borcard and Gustavo Carvalho and Michael Chirico and Miquel {De Caceres} and Sebastien Durand and Heloisa Beatriz Antoniazi Evangelista and Rich FitzJohn and Michael Friendly and Brendan Furneaux and Geoffrey Hannigan and Mark O. Hill and Leo Lahti and Dan McGlinn and Marie-Helene Ouellette and Eduardo {Ribeiro Cunha} and Tyler Smith and Adrian Stier and Cajo J.F. {Ter Braak} and James Weedon},</span>
+<span class="co">#&gt;     year = {2022},</span>
+<span class="co">#&gt;     note = {R package version 2.6-2},</span>
 <span class="co">#&gt;     url = {https://CRAN.R-project.org/package=vegan},</span>
-<span class="co">#&gt;   }</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ATTENTION: This citation information has been auto-generated from the package DESCRIPTION file and may need</span>
-<span class="co">#&gt; manual editing, see 'help("citation")'.</span></code></pre></div>
+<span class="co">#&gt;   }</span></code></pre></div>
 <p>Podemos ainda utilizar a função <code>write_bib()</code> do pacote <code>knitr</code> para exportar a citação do pacote no formato <code>.bib</code>.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Exportar uma citação em formato .bib</span>
@@ -888,7 +908,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <p>Geralmente a mensagem de erro será de que a função não foi encontrada ou algo nesse sentido. Carregando o pacote, esse erro é contornado.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar o pacote</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan">vegan</a></span><span class="op">)</span>
 
 <span class="co">## Carregar dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dune</span><span class="op">)</span>
@@ -1125,8 +1145,8 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
                                    size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fator_nominal</span>
-<span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta pastagem</span>
-<span class="co">#&gt; [14] pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span>
+<span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta</span>
+<span class="co">#&gt; [13] pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span>
 <span class="co">#&gt; Levels: floresta pastagem cerrado</span>
 
 <span class="co">## Fator ordinal</span>
@@ -1134,16 +1154,16 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
                                    size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"baixa"</span>, <span class="st">"media"</span>, <span class="st">"alta"</span><span class="op">)</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">fator_ordinal</span>
-<span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media baixa</span>
-<span class="co">#&gt; [20] baixa</span>
+<span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media</span>
+<span class="co">#&gt; [19] baixa baixa</span>
 <span class="co">#&gt; Levels: baixa &lt; media &lt; alta</span>
 
 <span class="co">## Conversão</span>
 <span class="va">fator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span>, 
                               size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fator</span>
-<span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado  pastagem</span>
-<span class="co">#&gt; [14] pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span>
+<span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado </span>
+<span class="co">#&gt; [13] pastagem pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span>
 <span class="co">#&gt; Levels: cerrado floresta pastagem</span></code></pre></div>
 <p><strong>Matriz</strong></p>
 <p>A matriz representa dados no formato de tabela, com linhas e colunas. As linhas geralmente representam unidades amostrais (locais, transectos, parcelas) e as colunas representam variáveis numéricas (discretas ou contínuas), variáveis binárias (TRUE ou FALSE) ou descrições (informações em texto).</p>
@@ -1935,34 +1955,34 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="va">intror_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">intror_anfibios_locais</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
-<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span>
-<span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span>
-<span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude</span>
-<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543</span>
-<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15</span>
-<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29</span>
-<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25</span>
-<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750</span>
-<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745</span>
-<span class="co">#&gt;   temperature precipitation</span>
-<span class="co">#&gt; 1       24.98           853</span>
-<span class="co">#&gt; 2       26.53          1318</span>
-<span class="co">#&gt; 3       26.45          1248</span>
-<span class="co">#&gt; 4       26.55          1376</span>
-<span class="co">#&gt; 5       21.35          1689</span>
-<span class="co">#&gt; 6       20.45          1249</span></code></pre></div>
+<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods</span>
+<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt</span>
+<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt</span>
+<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt</span>
+<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt</span>
+<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;</span>
+<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt;   complementary_methods      period month_start year_start month_finish year_finish effort_months country state</span>
+<span class="co">#&gt; 1                  &lt;NA&gt; mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí</span>
+<span class="co">#&gt; 2                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
+<span class="co">#&gt; 3                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
+<span class="co">#&gt; 4                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
+<span class="co">#&gt; 5                  &lt;NA&gt;    mo,da,ni           7       1988            8        2001           157  Brazil Ceará</span>
+<span class="co">#&gt; 6                  &lt;NA&gt;        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará</span>
+<span class="co">#&gt;   state_abbreviation            municipality                                site  latitude longitude</span>
+<span class="co">#&gt; 1              BR-PI         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194</span>
+<span class="co">#&gt; 2              BR-CE São Gonçalo do Amarante                               Dunas -3.545527 -38.85783</span>
+<span class="co">#&gt; 3              BR-CE São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869</span>
+<span class="co">#&gt; 4              BR-CE São Gonçalo do Amarante                               Taíba -3.515250 -38.91880</span>
+<span class="co">#&gt; 5              BR-CE                Baturité                   Serra de Baturité -4.280556 -38.91083</span>
+<span class="co">#&gt; 6              BR-CE             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806</span>
+<span class="co">#&gt;   coordinate_precision altitude temperature precipitation</span>
+<span class="co">#&gt; 1                   gm      543       24.98           853</span>
+<span class="co">#&gt; 2                   dd       15       26.53          1318</span>
+<span class="co">#&gt; 3                   dd       29       26.45          1248</span>
+<span class="co">#&gt; 4                   dd       25       26.55          1376</span>
+<span class="co">#&gt; 5                   gm      750       21.35          1689</span>
+<span class="co">#&gt; 6                 &lt;NA&gt;      745       20.45          1249</span></code></pre></div>
 </div>
 <div id="conferência-dos-dados-importados" class="section level3" number="4.4.7">
 <h3>
@@ -1973,65 +1993,65 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Primeiras linhas</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
-<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span>
-<span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span>
-<span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude</span>
-<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543</span>
-<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15</span>
-<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29</span>
-<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25</span>
-<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750</span>
-<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745</span>
-<span class="co">#&gt;   temperature precipitation</span>
-<span class="co">#&gt; 1       24.98           853</span>
-<span class="co">#&gt; 2       26.53          1318</span>
-<span class="co">#&gt; 3       26.45          1248</span>
-<span class="co">#&gt; 4       26.55          1376</span>
-<span class="co">#&gt; 5       21.35          1689</span>
-<span class="co">#&gt; 6       20.45          1249</span>
+<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods</span>
+<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt</span>
+<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt</span>
+<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt</span>
+<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt</span>
+<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;</span>
+<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt;   complementary_methods      period month_start year_start month_finish year_finish effort_months country state</span>
+<span class="co">#&gt; 1                  &lt;NA&gt; mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí</span>
+<span class="co">#&gt; 2                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
+<span class="co">#&gt; 3                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
+<span class="co">#&gt; 4                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
+<span class="co">#&gt; 5                  &lt;NA&gt;    mo,da,ni           7       1988            8        2001           157  Brazil Ceará</span>
+<span class="co">#&gt; 6                  &lt;NA&gt;        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará</span>
+<span class="co">#&gt;   state_abbreviation            municipality                                site  latitude longitude</span>
+<span class="co">#&gt; 1              BR-PI         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194</span>
+<span class="co">#&gt; 2              BR-CE São Gonçalo do Amarante                               Dunas -3.545527 -38.85783</span>
+<span class="co">#&gt; 3              BR-CE São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869</span>
+<span class="co">#&gt; 4              BR-CE São Gonçalo do Amarante                               Taíba -3.515250 -38.91880</span>
+<span class="co">#&gt; 5              BR-CE                Baturité                   Serra de Baturité -4.280556 -38.91083</span>
+<span class="co">#&gt; 6              BR-CE             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806</span>
+<span class="co">#&gt;   coordinate_precision altitude temperature precipitation</span>
+<span class="co">#&gt; 1                   gm      543       24.98           853</span>
+<span class="co">#&gt; 2                   dd       15       26.53          1318</span>
+<span class="co">#&gt; 3                   dd       29       26.45          1248</span>
+<span class="co">#&gt; 4                   dd       25       26.55          1376</span>
+<span class="co">#&gt; 5                   gm      750       21.35          1689</span>
+<span class="co">#&gt; 6                 &lt;NA&gt;      745       20.45          1249</span>
 
 <span class="co">## Últimas linhas</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;           id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
-<span class="co">#&gt; 1158 amp2158             1389              3     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 1159 amp2159             1389              9     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 1160 amp2160             1389              6     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 1161 amp2161             1389              1     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 1162 amp2162             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 1163 amp2163             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt;      period month_start year_start month_finish year_finish effort_months   country    state state_abbreviation</span>
-<span class="co">#&gt; 1158   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span>
-<span class="co">#&gt; 1159   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span>
-<span class="co">#&gt; 1160   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span>
-<span class="co">#&gt; 1161   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span>
-<span class="co">#&gt; 1162   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span>
-<span class="co">#&gt; 1163   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones               AR-N</span>
-<span class="co">#&gt;         municipality                          site  latitude longitude coordinate_precision altitude temperature</span>
-<span class="co">#&gt; 1158 Manuel Belgrano          Comandante Andresito -25.66944 -54.04556                  gms      251       19.94</span>
-<span class="co">#&gt; 1159         Posadas                       Posadas -27.45333 -55.89250                  gms      105       21.30</span>
-<span class="co">#&gt; 1160      Montecarlo                    Montecarlo -26.56889 -53.60889                  gms      597       18.35</span>
-<span class="co">#&gt; 1161       San Pedro                Refugio Moconá -27.14083 -53.92611                  gms      202       19.92</span>
-<span class="co">#&gt; 1162        Cainguás Balneario Municipal Cuñá Pirú -27.08722 -54.95278                  gms      213       21.04</span>
-<span class="co">#&gt; 1163           Oberá       Chacra San Juan de Dios -27.47333 -55.17194                  gms      254       20.67</span>
-<span class="co">#&gt;      precipitation</span>
-<span class="co">#&gt; 1158          1780</span>
-<span class="co">#&gt; 1159          1768</span>
-<span class="co">#&gt; 1160          1954</span>
-<span class="co">#&gt; 1161          1850</span>
-<span class="co">#&gt; 1162          1553</span>
-<span class="co">#&gt; 1163          1683</span>
+<span class="co">#&gt;           id reference_number species_number record sampled_habitat active_methods passive_methods</span>
+<span class="co">#&gt; 1158 amp2158             1389              3     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt; 1159 amp2159             1389              9     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt; 1160 amp2160             1389              6     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt; 1161 amp2161             1389              1     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt; 1162 amp2162             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt; 1163 amp2163             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="co">#&gt;      complementary_methods period month_start year_start month_finish year_finish effort_months   country    state</span>
+<span class="co">#&gt; 1158                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
+<span class="co">#&gt; 1159                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
+<span class="co">#&gt; 1160                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
+<span class="co">#&gt; 1161                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
+<span class="co">#&gt; 1162                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
+<span class="co">#&gt; 1163                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
+<span class="co">#&gt;      state_abbreviation    municipality                          site  latitude longitude coordinate_precision</span>
+<span class="co">#&gt; 1158               AR-N Manuel Belgrano          Comandante Andresito -25.66944 -54.04556                  gms</span>
+<span class="co">#&gt; 1159               AR-N         Posadas                       Posadas -27.45333 -55.89250                  gms</span>
+<span class="co">#&gt; 1160               AR-N      Montecarlo                    Montecarlo -26.56889 -53.60889                  gms</span>
+<span class="co">#&gt; 1161               AR-N       San Pedro                Refugio Moconá -27.14083 -53.92611                  gms</span>
+<span class="co">#&gt; 1162               AR-N        Cainguás Balneario Municipal Cuñá Pirú -27.08722 -54.95278                  gms</span>
+<span class="co">#&gt; 1163               AR-N           Oberá       Chacra San Juan de Dios -27.47333 -55.17194                  gms</span>
+<span class="co">#&gt;      altitude temperature precipitation</span>
+<span class="co">#&gt; 1158      251       19.94          1780</span>
+<span class="co">#&gt; 1159      105       21.30          1768</span>
+<span class="co">#&gt; 1160      597       18.35          1954</span>
+<span class="co">#&gt; 1161      202       19.92          1850</span>
+<span class="co">#&gt; 1162      213       21.04          1553</span>
+<span class="co">#&gt; 1163      254       20.67          1683</span>
 
 <span class="co">## Número de linhas e colunas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
@@ -2221,7 +2241,7 @@ Una as colunas dos objetos <code>df_amos10</code> e <code>ma_amos10</code> e atr
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

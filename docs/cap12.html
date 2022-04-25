@@ -7,7 +7,7 @@
 <title>Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(devtools) library(ecodados) library(vegan) library(ggplot2) library(BiodiversityR) library(hillR)...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Capítulo 12 Diversidade Taxonômica | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap12.html">
@@ -109,7 +109,7 @@
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan">vegan</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.worldagroforestry.org/output/tree-diversity-analysis">BiodiversityR</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daijiang/hillR">hillR</a></span><span class="op">)</span>
@@ -482,18 +482,18 @@ Figura 12.3: Teste de cinco Diagramas de Whittaker para a Comunidade 2.
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Deviance for RAD models:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;                  Com_1       Com_2       Com_3       Com_4       Com_5       Com_6       Com_7       Com_8       Com_9</span>
-<span class="co">#&gt; Null        8.2193e+01  1.7524e+02  8.9085e+00  4.2265e+01  4.9719e+00  4.7099e+00  1.1507e+00  1.8998e+00  2.7703e+00</span>
-<span class="co">#&gt; Preemption  2.2878e+01  7.9560e+01  1.5423e+00  1.4332e+01  3.0438e+00  4.5536e+00  7.7259e-01  1.7847e+00  9.2518e-01</span>
-<span class="co">#&gt; Lognormal   1.7764e-15  4.7350e+01  1.0161e+00  2.9441e-02  1.9303e+00  4.8898e+00 -2.2053e-25  1.4556e+00  2.0626e-01</span>
-<span class="co">#&gt; Zipf       -1.7764e-15  2.6612e+01  2.1659e-01  1.5846e-02  3.6094e+00  8.3245e+00 -2.2073e-25  6.6938e-01  4.7931e-01</span>
-<span class="co">#&gt; Mandelbrot -1.7764e-15  2.6612e+01  2.0926e-01  1.1390e-02  1.8740e+00  4.1131e+00  0.0000e+00  6.6938e-01  2.3634e-01</span>
-<span class="co">#&gt;            Com_10</span>
-<span class="co">#&gt; Null       1.1146</span>
-<span class="co">#&gt; Preemption 0.7428</span>
-<span class="co">#&gt; Lognormal  0.5079</span>
-<span class="co">#&gt; Zipf       0.8730</span>
-<span class="co">#&gt; Mandelbrot 0.4456</span>
+<span class="co">#&gt;                  Com_1       Com_2       Com_3       Com_4       Com_5       Com_6       Com_7       Com_8</span>
+<span class="co">#&gt; Null        8.2193e+01  1.7524e+02  8.9085e+00  4.2265e+01  4.9719e+00  4.7099e+00  1.1507e+00  1.8998e+00</span>
+<span class="co">#&gt; Preemption  2.2878e+01  7.9560e+01  1.5423e+00  1.4332e+01  3.0438e+00  4.5536e+00  7.7259e-01  1.7847e+00</span>
+<span class="co">#&gt; Lognormal   1.7764e-15  4.7350e+01  1.0161e+00  2.9441e-02  1.9303e+00  4.8898e+00 -2.2053e-25  1.4556e+00</span>
+<span class="co">#&gt; Zipf       -1.7764e-15  2.6612e+01  2.1659e-01  1.5846e-02  3.6094e+00  8.3245e+00 -2.2073e-25  6.6938e-01</span>
+<span class="co">#&gt; Mandelbrot -1.7764e-15  2.6612e+01  2.0926e-01  1.1390e-02  1.8740e+00  4.1131e+00  0.0000e+00  6.6938e-01</span>
+<span class="co">#&gt;                  Com_9 Com_10</span>
+<span class="co">#&gt; Null        2.7703e+00 1.1146</span>
+<span class="co">#&gt; Preemption  9.2518e-01 0.7428</span>
+<span class="co">#&gt; Lognormal   2.0626e-01 0.5079</span>
+<span class="co">#&gt; Zipf        4.7931e-01 0.8730</span>
+<span class="co">#&gt; Mandelbrot  2.3634e-01 0.4456</span>
 
 <span class="co"># Vamos fazer um gráfico para cada comunidade</span>
 <span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">curvas_dominancia_todas</span>, log <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span></code></pre></div>
@@ -895,7 +895,7 @@ Usando os dados - <code>anuros_composicao</code> - calcule a partição da diver
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

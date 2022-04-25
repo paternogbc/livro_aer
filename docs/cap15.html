@@ -7,7 +7,7 @@
 <title>Capítulo 15 Dados geoespaciais | Análises Ecológicas no R</title>
 <meta name="author" content="Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno,   Diogo Borges Provete, Maurício Humberto Vancine">
 <meta name="description" content="Pré-requisitos do capítulo Pacotes e dados que serão utilizados neste capítulo. ## Pacotes library(ecodados) library(here) library(tidyverse) library(sf) library(raster) library(rgdal)...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Capítulo 15 Dados geoespaciais | Análises Ecológicas no R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://analises-ecologicas.netlify.app/cap15.html">
@@ -195,18 +195,18 @@ Figura 15.1: Representação das geometrias de ponto, linha e polígono e atribu
 <span class="co">#&gt; Bounding box:  xmin: -180 ymin: -89.9 xmax: 180 ymax: 83.64513</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt; # A tibble: 177 × 11</span>
-<span class="co">#&gt;    iso_a2 name_long      continent region_un subregion type  area_km2     pop lifeExp gdpPercap                      geom</span>
-<span class="co">#&gt;  * &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;MULTIPOLYGON [°]&gt;</span>
-<span class="co">#&gt;  1 FJ     Fiji           Oceania   Oceania   Melanesia Sove…   1.93e4  8.86e5    70.0     8222. (((-180 -16.55522, -179.…</span>
-<span class="co">#&gt;  2 TZ     Tanzania       Africa    Africa    Eastern … Sove…   9.33e5  5.22e7    64.2     2402. (((33.90371 -0.95, 31.86…</span>
-<span class="co">#&gt;  3 EH     Western Sahara Africa    Africa    Northern… Inde…   9.63e4 NA         NA         NA  (((-8.66559 27.65643, -8…</span>
-<span class="co">#&gt;  4 CA     Canada         North Am… Americas  Northern… Sove…   1.00e7  3.55e7    82.0    43079. (((-132.71 54.04001, -13…</span>
-<span class="co">#&gt;  5 US     United States  North Am… Americas  Northern… Coun…   9.51e6  3.19e8    78.8    51922. (((-171.7317 63.78252, -…</span>
-<span class="co">#&gt;  6 KZ     Kazakhstan     Asia      Asia      Central … Sove…   2.73e6  1.73e7    71.6    23587. (((87.35997 49.21498, 86…</span>
-<span class="co">#&gt;  7 UZ     Uzbekistan     Asia      Asia      Central … Sove…   4.61e5  3.08e7    71.0     5371. (((55.96819 41.30864, 57…</span>
-<span class="co">#&gt;  8 PG     Papua New Gui… Oceania   Oceania   Melanesia Sove…   4.65e5  7.76e6    65.2     3709. (((141.0002 -2.600151, 1…</span>
-<span class="co">#&gt;  9 ID     Indonesia      Asia      Asia      South-Ea… Sove…   1.82e6  2.55e8    68.9    10003. (((104.37 -1.084843, 104…</span>
-<span class="co">#&gt; 10 AR     Argentina      South Am… Americas  South Am… Sove…   2.78e6  4.30e7    76.3    18798. (((-68.63401 -52.63637, …</span>
+<span class="co">#&gt;    iso_a2 name_long  continent region_un subregion type  area_km2     pop lifeExp gdpPercap                      geom</span>
+<span class="co">#&gt;  * &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;MULTIPOLYGON [°]&gt;</span>
+<span class="co">#&gt;  1 FJ     Fiji       Oceania   Oceania   Melanesia Sove…   1.93e4  8.86e5    70.0     8222. (((-180 -16.55522, -179.…</span>
+<span class="co">#&gt;  2 TZ     Tanzania   Africa    Africa    Eastern … Sove…   9.33e5  5.22e7    64.2     2402. (((33.90371 -0.95, 31.86…</span>
+<span class="co">#&gt;  3 EH     Western S… Africa    Africa    Northern… Inde…   9.63e4 NA         NA         NA  (((-8.66559 27.65643, -8…</span>
+<span class="co">#&gt;  4 CA     Canada     North Am… Americas  Northern… Sove…   1.00e7  3.55e7    82.0    43079. (((-132.71 54.04001, -13…</span>
+<span class="co">#&gt;  5 US     United St… North Am… Americas  Northern… Coun…   9.51e6  3.19e8    78.8    51922. (((-171.7317 63.78252, -…</span>
+<span class="co">#&gt;  6 KZ     Kazakhstan Asia      Asia      Central … Sove…   2.73e6  1.73e7    71.6    23587. (((87.35997 49.21498, 86…</span>
+<span class="co">#&gt;  7 UZ     Uzbekistan Asia      Asia      Central … Sove…   4.61e5  3.08e7    71.0     5371. (((55.96819 41.30864, 57…</span>
+<span class="co">#&gt;  8 PG     Papua New… Oceania   Oceania   Melanesia Sove…   4.65e5  7.76e6    65.2     3709. (((141.0002 -2.600151, 1…</span>
+<span class="co">#&gt;  9 ID     Indonesia  Asia      Asia      South-Ea… Sove…   1.82e6  2.55e8    68.9    10003. (((104.37 -1.084843, 104…</span>
+<span class="co">#&gt; 10 AR     Argentina  South Am… Americas  South Am… Sove…   2.78e6  4.30e7    76.3    18798. (((-68.63401 -52.63637, …</span>
 <span class="co">#&gt; # … with 167 more rows</span></code></pre></div>
 <p>Podemos fazer um mapa simples utilizando a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> desse objeto. Para facilitar, escolheremos apenas a primeira coluna <code>[1]</code> (Figura <a href="cap15.html#fig:fig-vetor-mundo">15.2</a>). Caso não escolhermos apenas uma coluna, um mapa para cada coluna será plotado.</p>
 <div class="alert alert-info">
@@ -1741,22 +1741,22 @@ Figura 15.12: Limite do Brasil.
 <span class="op">)</span>
 <span class="va">geo_anfibios_locais</span>
 <span class="co">#&gt; # A tibble: 1,163 × 25</span>
-<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period</span>
-<span class="co">#&gt;    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt; </span>
-<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
-<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
-<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;              tw,ni </span>
-<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt; # … with 1,153 more rows, and 16 more variables: month_start &lt;dbl&gt;, year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;,</span>
-<span class="co">#&gt; #   site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   precipitation &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_metho…</span>
+<span class="co">#&gt;    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;               </span>
+<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
+<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
+<span class="co">#&gt; # … with 1,153 more rows, and 17 more variables: period &lt;chr&gt;, month_start &lt;dbl&gt;, year_start &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,</span>
+<span class="co">#&gt; #   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;</span></code></pre></div>
 <p>Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote <code>ecodados</code>.</p>
 <div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
@@ -1774,21 +1774,22 @@ Figura 15.12: Limite do Brasil.
 <span class="co">#&gt; Bounding box:  xmin: -56.74194 ymin: -33.51083 xmax: -34.79667 ymax: -3.51525</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt; # A tibble: 1,163 × 24</span>
-<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period</span>
-<span class="co">#&gt;  * &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt; </span>
-<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
-<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;  </span>
-<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;              tw,ni </span>
-<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…</span>
-<span class="co">#&gt; # … with 1,153 more rows, and 15 more variables: month_start &lt;dbl&gt;, year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;,</span>
-<span class="co">#&gt; #   site &lt;chr&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_metho…</span>
+<span class="co">#&gt;  * &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;               </span>
+<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;                </span>
+<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;                </span>
+<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
+<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                </span>
+<span class="co">#&gt; # … with 1,153 more rows, and 16 more variables: period &lt;chr&gt;, month_start &lt;dbl&gt;, year_start &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,</span>
+<span class="co">#&gt; #   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Plot</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_anfibios_locais_vetor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"black"</span>, 
@@ -1892,10 +1893,11 @@ Figura 15.14: Camada raster do DEM em relação ao limite do município de Rio C
 <span class="va">arquivos_raster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"dados"</span>, <span class="st">"raster"</span><span class="op">)</span>, pattern <span class="op">=</span> <span class="st">"wc"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">".tif"</span>, <span class="va">.</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">arquivos_raster</span>
-<span class="co">#&gt;  [1] "wc2.1_10m_bio_1.tif"  "wc2.1_10m_bio_10.tif" "wc2.1_10m_bio_11.tif" "wc2.1_10m_bio_12.tif" "wc2.1_10m_bio_13.tif"</span>
-<span class="co">#&gt;  [6] "wc2.1_10m_bio_14.tif" "wc2.1_10m_bio_15.tif" "wc2.1_10m_bio_16.tif" "wc2.1_10m_bio_17.tif" "wc2.1_10m_bio_18.tif"</span>
-<span class="co">#&gt; [11] "wc2.1_10m_bio_19.tif" "wc2.1_10m_bio_2.tif"  "wc2.1_10m_bio_3.tif"  "wc2.1_10m_bio_4.tif"  "wc2.1_10m_bio_5.tif" </span>
-<span class="co">#&gt; [16] "wc2.1_10m_bio_6.tif"  "wc2.1_10m_bio_7.tif"  "wc2.1_10m_bio_8.tif"  "wc2.1_10m_bio_9.tif"</span>
+<span class="co">#&gt;  [1] "wc2.1_10m_bio_1.tif"  "wc2.1_10m_bio_10.tif" "wc2.1_10m_bio_11.tif" "wc2.1_10m_bio_12.tif"</span>
+<span class="co">#&gt;  [5] "wc2.1_10m_bio_13.tif" "wc2.1_10m_bio_14.tif" "wc2.1_10m_bio_15.tif" "wc2.1_10m_bio_16.tif"</span>
+<span class="co">#&gt;  [9] "wc2.1_10m_bio_17.tif" "wc2.1_10m_bio_18.tif" "wc2.1_10m_bio_19.tif" "wc2.1_10m_bio_2.tif" </span>
+<span class="co">#&gt; [13] "wc2.1_10m_bio_3.tif"  "wc2.1_10m_bio_4.tif"  "wc2.1_10m_bio_5.tif"  "wc2.1_10m_bio_6.tif" </span>
+<span class="co">#&gt; [17] "wc2.1_10m_bio_7.tif"  "wc2.1_10m_bio_8.tif"  "wc2.1_10m_bio_9.tif"</span>
 
 <span class="co">## Importar vários rasters como stack</span>
 <span class="va">geo_raster_bioclim</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/stack.html">stack</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"dados"</span>, <span class="st">"raster"</span>, <span class="va">arquivos_raster</span><span class="op">)</span><span class="op">)</span>
@@ -3139,10 +3141,10 @@ Figura 15.25: Camada BIO01 selecionada pelas operações de subconjunto.
 <div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Stack - nomes</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">geo_raster_bioclim</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "wc2.1_10m_bio_1"  "wc2.1_10m_bio_10" "wc2.1_10m_bio_11" "wc2.1_10m_bio_12" "wc2.1_10m_bio_13" "wc2.1_10m_bio_14"</span>
-<span class="co">#&gt;  [7] "wc2.1_10m_bio_15" "wc2.1_10m_bio_16" "wc2.1_10m_bio_17" "wc2.1_10m_bio_18" "wc2.1_10m_bio_19" "wc2.1_10m_bio_2" </span>
-<span class="co">#&gt; [13] "wc2.1_10m_bio_3"  "wc2.1_10m_bio_4"  "wc2.1_10m_bio_5"  "wc2.1_10m_bio_6"  "wc2.1_10m_bio_7"  "wc2.1_10m_bio_8" </span>
-<span class="co">#&gt; [19] "wc2.1_10m_bio_9"</span>
+<span class="co">#&gt;  [1] "wc2.1_10m_bio_1"  "wc2.1_10m_bio_10" "wc2.1_10m_bio_11" "wc2.1_10m_bio_12" "wc2.1_10m_bio_13"</span>
+<span class="co">#&gt;  [6] "wc2.1_10m_bio_14" "wc2.1_10m_bio_15" "wc2.1_10m_bio_16" "wc2.1_10m_bio_17" "wc2.1_10m_bio_18"</span>
+<span class="co">#&gt; [11] "wc2.1_10m_bio_19" "wc2.1_10m_bio_2"  "wc2.1_10m_bio_3"  "wc2.1_10m_bio_4"  "wc2.1_10m_bio_5" </span>
+<span class="co">#&gt; [16] "wc2.1_10m_bio_6"  "wc2.1_10m_bio_7"  "wc2.1_10m_bio_8"  "wc2.1_10m_bio_9"</span>
 
 <span class="co">## Stack - renomear</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">geo_raster_bioclim</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"bio"</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">19</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"bio0"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">)</span>
@@ -3160,10 +3162,12 @@ Figura 15.25: Camada BIO01 selecionada pelas operações de subconjunto.
 
 <span class="co">## Stack - média de todas as células de cada camada bioclimática</span>
 <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/cellStats.html">cellStats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">geo_raster_bioclim</span>, stat <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
-<span class="co">#&gt;       bio01       bio10       bio11       bio12       bio13       bio14       bio15       bio16       bio17       bio18 </span>
-<span class="co">#&gt;  -4.0378283   7.2035545 -13.8963286 550.0569022  93.4633916  15.3689993  74.7084151 241.6525005  55.4149542 156.4237816 </span>
-<span class="co">#&gt;       bio19       bio02       bio03       bio04       bio05       bio06       bio07       bio08       bio09 </span>
-<span class="co">#&gt; 108.8950626   9.9432120  34.5221528 880.1215546  13.9386423 -19.7938943  33.7325366  -0.9226276  -5.3774489</span></code></pre></div>
+<span class="co">#&gt;       bio01       bio10       bio11       bio12       bio13       bio14       bio15       bio16       bio17 </span>
+<span class="co">#&gt;  -4.0378283   7.2035545 -13.8963286 550.0569022  93.4633916  15.3689993  74.7084151 241.6525005  55.4149542 </span>
+<span class="co">#&gt;       bio18       bio19       bio02       bio03       bio04       bio05       bio06       bio07       bio08 </span>
+<span class="co">#&gt; 156.4237816 108.8950626   9.9432120  34.5221528 880.1215546  13.9386423 -19.7938943  33.7325366  -0.9226276 </span>
+<span class="co">#&gt;       bio09 </span>
+<span class="co">#&gt;  -5.3774489</span></code></pre></div>
 <p>Ou ainda, podemos analisar a frequência com que cada valor dos pixels ocorre, utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/freq.html">raster::freq()</a></code>.</p>
 <div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Raster - frequência das células</span>
@@ -5383,20 +5387,21 @@ Figura 15.87: Distribuição de 50 localidades aleatórios e buffers de ~1 km (f
     <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_drop_geometry</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">geo_anfibios_locais_vetor_ma_buffer10km_ext_bind</span>
 <span class="co">#&gt; # A tibble: 50 × 21</span>
-<span class="co">#&gt;    id     species_number classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20</span>
-<span class="co">#&gt;  * &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 amp17…             10 0.1%       0.2%       0.7%       12.0%      0.5%      0.1%       8.7%       0.6%       0.6%     </span>
-<span class="co">#&gt;  2 amp13…             16 0.0%       1.7%       0.3%       8.4%       26.6%     0.5%       0.0%       0.0%       14.7%    </span>
-<span class="co">#&gt;  3 amp11…             19 0.0%       0.0%       0.0%       4.9%       20.2%     0.0%       0.0%       0.0%       17.6%    </span>
-<span class="co">#&gt;  4 amp10…             20 0.0%       2.3%       0.0%       26.0%      3.6%      0.0%       0.0%       0.0%       23.0%    </span>
-<span class="co">#&gt;  5 amp12…              3 0.0%       0.0%       0.0%       13.5%      0.3%      0.0%       0.0%       0.1%       14.2%    </span>
-<span class="co">#&gt;  6 amp11…              9 0.0%       0.4%       0.3%       7.2%       7.0%      0.0%       0.0%       0.0%       21.2%    </span>
-<span class="co">#&gt;  7 amp18…             14 0.0%       0.0%       0.1%       3.9%       4.3%      0.0%       0.0%       0.0%       22.6%    </span>
-<span class="co">#&gt;  8 amp10…              8 0.0%       0.8%       0.0%       8.4%       11.5%     0.0%       0.0%       0.0%       53.3%    </span>
-<span class="co">#&gt;  9 amp11…              5 0.0%       0.2%       0.1%       2.6%       24.5%     0.0%       0.0%       0.1%       42.9%    </span>
-<span class="co">#&gt; 10 amp13…              7 0.0%       1.2%       0.2%       9.9%       8.5%      0.0%       0.0%       0.2%       21.9%    </span>
-<span class="co">#&gt; # … with 40 more rows, and 10 more variables: classe_210 &lt;chr&gt;, classe_30 &lt;chr&gt;, classe_40 &lt;chr&gt;, classe_50 &lt;chr&gt;,</span>
-<span class="co">#&gt; #   classe_190 &lt;chr&gt;, classe_60 &lt;chr&gt;, classe_200 &lt;chr&gt;, classe_220 &lt;chr&gt;, classe_140 &lt;chr&gt;, Total &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      species_number classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180</span>
+<span class="co">#&gt;  * &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     </span>
+<span class="co">#&gt;  1 amp1716             10 0.1%       0.2%       0.7%       12.0%      0.5%      0.1%       8.7%       0.6%      </span>
+<span class="co">#&gt;  2 amp1351             16 0.0%       1.7%       0.3%       8.4%       26.6%     0.5%       0.0%       0.0%      </span>
+<span class="co">#&gt;  3 amp1168             19 0.0%       0.0%       0.0%       4.9%       20.2%     0.0%       0.0%       0.0%      </span>
+<span class="co">#&gt;  4 amp1085             20 0.0%       2.3%       0.0%       26.0%      3.6%      0.0%       0.0%       0.0%      </span>
+<span class="co">#&gt;  5 amp1258              3 0.0%       0.0%       0.0%       13.5%      0.3%      0.0%       0.0%       0.1%      </span>
+<span class="co">#&gt;  6 amp1160              9 0.0%       0.4%       0.3%       7.2%       7.0%      0.0%       0.0%       0.0%      </span>
+<span class="co">#&gt;  7 amp1843             14 0.0%       0.0%       0.1%       3.9%       4.3%      0.0%       0.0%       0.0%      </span>
+<span class="co">#&gt;  8 amp1060              8 0.0%       0.8%       0.0%       8.4%       11.5%     0.0%       0.0%       0.0%      </span>
+<span class="co">#&gt;  9 amp1141              5 0.0%       0.2%       0.1%       2.6%       24.5%     0.0%       0.0%       0.1%      </span>
+<span class="co">#&gt; 10 amp1333              7 0.0%       1.2%       0.2%       9.9%       8.5%      0.0%       0.0%       0.2%      </span>
+<span class="co">#&gt; # … with 40 more rows, and 11 more variables: classe_20 &lt;chr&gt;, classe_210 &lt;chr&gt;, classe_30 &lt;chr&gt;, classe_40 &lt;chr&gt;,</span>
+<span class="co">#&gt; #   classe_50 &lt;chr&gt;, classe_190 &lt;chr&gt;, classe_60 &lt;chr&gt;, classe_200 &lt;chr&gt;, classe_220 &lt;chr&gt;, classe_140 &lt;chr&gt;,</span>
+<span class="co">#&gt; #   Total &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="predições-espaciais-de-objetos-raster" class="section level3" number="15.11.4">
 <h3>
@@ -5728,7 +5733,7 @@ Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o paco
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-14.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1174,21 +1174,21 @@ nmds.beta <- metaMDS(sps.dis, previous.best = sol1)
 nmds.beta$stress # valor ideal entre 0 e 0.2
 
 ## Exportar os valores para fazer gráfico 
-dat.graf <- data.frame(vegan::scores(nmds.beta), altitude = env2$altitude)
+dat.graf <- data.frame(nmds.beta$points, altitude = env2$altitude)
 
 ## Definir os grupos ("HULL") para serem categorizados no gráfico 
-grp.mon <- dat.graf[dat.graf$altitude == "Montanhoso", ][chull(dat.graf[dat.graf$altitude == "Montanhoso", c("NMDS1", "NMDS2")]), ]
+grp.mon <- dat.graf[dat.graf$altitude == "Montanhoso", ][chull(dat.graf[dat.graf$altitude == "Montanhoso", c("MDS1", "MDS2")]), ]
 
-grp.int <- dat.graf[dat.graf$altitude == "Intermediário", ][chull(dat.graf[dat.graf$altitude == "Intermediário", c("NMDS1", "NMDS2")]), ]
+grp.int <- dat.graf[dat.graf$altitude == "Intermediário", ][chull(dat.graf[dat.graf$altitude == "Intermediário", c("MDS1", "MDS2")]), ]
 
-grp.pla <- dat.graf[dat.graf$altitude == "Plano", ][chull(dat.graf[dat.graf$altitude == "Plano", c("NMDS1", "NMDS2")]), ]
+grp.pla <- dat.graf[dat.graf$altitude == "Plano", ][chull(dat.graf[dat.graf$altitude == "Plano", c("MDS1", "MDS2")]), ]
 
 ## Combinar dados dos grupos para cada Convex Hull
 hull.data <- rbind(grp.mon, grp.int, grp.pla) 
 head(hull.data)
 
 ## Gráfico
-ggplot(dat.graf, aes(x = NMDS1, y = NMDS2, color = altitude, shape = altitude)) + 
+ggplot(dat.graf, aes(x = MDS1, y = MDS2, color = altitude, shape = altitude)) + 
     geom_point(size = 4, alpha = 0.7) + 
     geom_polygon(data = hull.data, aes(fill = altitude, group = altitude), alpha = 0.3) + 
     scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
