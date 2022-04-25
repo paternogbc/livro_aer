@@ -223,7 +223,15 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <p>Quando carregamos o pacote <code>tidyverse</code> podemos notar uma mensagem indicando quais pacotes foram carregados, suas respectivas versões e os conflitos com outros pacotes.</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar o pacote tidyverse</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="co">#&gt; ── Attaching packages ──────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</span>
+<span class="co">#&gt; ✔ ggplot2 3.3.5     ✔ purrr   0.3.4</span>
+<span class="co">#&gt; ✔ tibble  3.1.6     ✔ dplyr   1.0.8</span>
+<span class="co">#&gt; ✔ tidyr   1.2.0     ✔ stringr 1.4.0</span>
+<span class="co">#&gt; ✔ readr   2.1.2     ✔ forcats 0.5.1</span>
+<span class="co">#&gt; ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span>
+<span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
+<span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></code></pre></div>
 <p>Podemos ainda listar todos os pacotes do <em>tidyverse</em> com a função <code><a href="https://tidyverse.tidyverse.org/reference/tidyverse_packages.html">tidyverse::tidyverse_packages()</a></code>.</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Listar todos os pacotes do tidyverse </span>
@@ -1585,7 +1593,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 
 <span class="co">## Extrair a data e tempo nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 11:26:24 -03"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-25 14:33:54 -03"</span></code></pre></div>
 <p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
 <ul>
 <li>De um string</li>
@@ -1682,7 +1690,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] Mon</span>
 <span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 24.29277</span></code></pre></div>
+<span class="co">#&gt; [1] 54.68167</span></code></pre></div>
 <p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data</span>
@@ -1926,15 +1934,15 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Que horas são em...</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 11:26:24 -03"</span>
+<span class="co">#&gt; [1] "2022-04-25 14:33:54 -03"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 14:26:24 GMT"</span>
+<span class="co">#&gt; [1] "2022-04-25 17:33:54 GMT"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"Europe/Berlin"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 16:26:24 CEST"</span>
+<span class="co">#&gt; [1] "2022-04-25 19:33:54 CEST"</span>
 
 <span class="co">## Altera o fuso sem mudar a hora</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/force_tz.html">force_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 11:26:24 GMT"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-25 14:33:54 GMT"</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="purrr" class="section level2" number="5.12">

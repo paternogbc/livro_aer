@@ -1515,13 +1515,13 @@ O valor de AIC por si só não tem significado. Ele precisa ser comparado com ou
 <code class="sourceCode R"><span class="co">## Seleção de modelos</span>
 <span class="va">aic_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">no_spat_gls</span>, <span class="va">espher_model</span>, <span class="va">expon_model</span>, <span class="va">gauss_model</span>, <span class="va">cor_linear_model</span>, <span class="va">ratio_model</span><span class="op">)</span>
 <span class="va">aic_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">AIC</span><span class="op">)</span>
-<span class="co">#&gt;   df      AIC</span>
-<span class="co">#&gt; 1  5 373.1186</span>
-<span class="co">#&gt; 2  5 373.2439</span>
-<span class="co">#&gt; 3  3 383.8616</span>
-<span class="co">#&gt; 4  5 387.8616</span>
-<span class="co">#&gt; 5  5 387.8616</span>
-<span class="co">#&gt; 6  5 387.8616</span>
+<span class="co">#&gt;                  df      AIC</span>
+<span class="co">#&gt; ratio_model       5 373.1186</span>
+<span class="co">#&gt; expon_model       5 373.2439</span>
+<span class="co">#&gt; no_spat_gls       3 383.8616</span>
+<span class="co">#&gt; espher_model      5 387.8616</span>
+<span class="co">#&gt; gauss_model       5 387.8616</span>
+<span class="co">#&gt; cor_linear_model  5 387.8616</span>
 
 <span class="co">## Gráfico</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">ratio_model</span>, type <span class="op">=</span> <span class="st">"normalized"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">ratio_model</span><span class="op">)</span><span class="op">)</span></code></pre></div>
