@@ -105,7 +105,7 @@
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pacotes e dados que serão utilizados neste capítulo.</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
@@ -217,11 +217,11 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 </ul>
 <p>Destacamos a grande expansão e aplicabilidade dos pacotes <a href="https://rmarkdown.rstudio.com/">rmarkdown</a>, <a href="https://yihui.org/knitr/">knitr</a> e <a href="https://bookdown.org/">bookdown</a>, que permitiram a escrita deste livro usando essas ferramentas e linguagem de marcação, chamada <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
 <p>Para instalar os principais pacotes que integram o <em>tidyverse</em> podemos instalar o pacote <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Instalar o pacote tidyverse</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
 <p>Quando carregamos o pacote <code>tidyverse</code> podemos notar uma mensagem indicando quais pacotes foram carregados, suas respectivas versões e os conflitos com outros pacotes.</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar o pacote tidyverse</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="co">#&gt; ── Attaching packages ──────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</span>
@@ -233,7 +233,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
 <span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></code></pre></div>
 <p>Podemos ainda listar todos os pacotes do <em>tidyverse</em> com a função <code><a href="https://tidyverse.tidyverse.org/reference/tidyverse_packages.html">tidyverse::tidyverse_packages()</a></code>.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Listar todos os pacotes do tidyverse </span>
 <span class="fu">tidyverse</span><span class="fu">::</span><span class="fu"><a href="https://tidyverse.tidyverse.org/reference/tidyverse_packages.html">tidyverse_packages</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "broom"         "cli"           "crayon"        "dbplyr"        "dplyr"         "dtplyr"        "forcats"      </span>
@@ -242,11 +242,11 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <span class="co">#&gt; [22] "reprex"        "rlang"         "rstudioapi"    "rvest"         "stringr"       "tibble"        "tidyr"        </span>
 <span class="co">#&gt; [29] "xml2"          "tidyverse"</span></code></pre></div>
 <p>Também podemos verificar se os pacotes estão atualizados, senão, podemos atualizá-los com a função <code><a href="https://tidyverse.tidyverse.org/reference/tidyverse_update.html">tidyverse::tidyverse_update()</a></code>.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar e atualizar os pacotes do tidyverse </span>
 <span class="fu">tidyverse</span><span class="fu">::</span><span class="fu"><a href="https://tidyverse.tidyverse.org/reference/tidyverse_update.html">tidyverse_update</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="st">"http://cran.us.r-project.org"</span><span class="op">)</span></code></pre></div>
 <p>Todas as funções dos pacotes tidyverse usam <strong>fonte minúscula</strong> e <strong><code>_</code> (<em>underscore</em>)</strong> para separar os nomes internos das funções, seguindo a mesma sintaxe do Python (“Snake Case”). Neste sentido de padronização, é importante destacar ainda que existe um guia próprio para que os scripts sigam a recomendação de padronização, o <a href="https://style.tidyverse.org/">The tidyverse style guide</a>, criado pelo próprio Hadley Wickham. Para pessoas que desenvolvem funções e pacotes existe o <a href="https://design.tidyverse.org/">Tidyverse design guide</a> criado pelo <em>Tidyverse team</em>.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Funções no formato snake case</span>
 <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="op">)</span>
@@ -254,7 +254,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Por fim, para evitar possíveis conflitos de funções com o mesmo nome entre pacotes, recomendamos fortemente o hábito de usar as funções precedidas do operador <code>::</code> e o respectivo pacote. Assim, garante-se que a função utilizada é referente ao pacote daquela função. Segue um exemplo com as funções apresentadas anteriormente.</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Funções seguidas de seus respectivos pacotes</span>
 <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="op">)</span>
@@ -271,7 +271,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <p>Dentro do fluxo de trabalho do tidyverse, devemos sempre trabalhar com <strong>Projetos do RStudio</strong> (ver Capítulo <a href="cap4.html#cap4">4</a>). Junto com o projeto, também podemos fazer uso do pacote <code>here</code>. Ele permite construir caminhos para os arquivos do projeto de forma mais simples e com maior reprodutibilidade.</p>
 <p>Esse pacote cobre o ponto de mudarmos o diretório de trabalho que discutimos no Capítulo <a href="cap4.html#cap4">4</a>, dado que muitas vezes mudar o diretório com a função <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> tende a ser demorado e tedioso, principalmente quando se trata de um script em que várias pessoas estão trabalhando em diferentes computadores e sistemas operacionais. Além disso, ele elimina a questão da fragilidade dos scripts, pois geralmente um script está com os diretórios conectados exatamente a um lugar e a um momento. Por fim, ele também simplifica o trabalho com subdiretórios, facilitando importar ou exportar arquivos para subdiretórios.</p>
 <p>Seu uso é relativamente simples: uma vez criado e aberto o RStudio pelo Projeto do RStudio, o diretório automaticamente é definido para o diretório do projeto. Depois disso, podemos usar a função <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code> para definir os subdiretórios onde estão os dados. O exemplo da aplicação fica para a seção seguinte, quando iremos de fato importar um arquivo tabular para o R. Logo abaixo, mostramos como instalar e carregar o pacote <code>here</code>.</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Instalar</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span>
 
@@ -286,7 +286,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <p>Usamos as funções <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> e <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_csv()</a></code> para importar e exportar arquivos .csv do R, respectivamente. Para dados com a extensão .txt, podemos utilizar as funções <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_tsv()</a></code> ou ainda <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_delim()</a></code>. Para arquivos tabulares com a extensão .xlsx, temos de instalar e carregar dois pacotes adicionais: <code>readxl</code> e <code>writexl</code>, dos quais usaremos as funções <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code>, <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_xlsx()</a></code> ou <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_xls()</a></code> para importar dados, atentado para o fato de podermos indicar a aba com os dados com o argumento <code>sheet</code>, e <code><a href="https://docs.ropensci.org/writexl/reference/write_xlsx.html">writexl::write_xlsx()</a></code> para exportar.</p>
 <p>Se o arquivo .csv foi criado com separador de decimais sendo <code>.</code> e separador de colunas sendo <code>,</code>, usamos as funções listadas acima normalmente. Caso seja criado com separador de decimais sendo <code>,</code> e separador de colunas sendo <code>;</code>, devemos usar a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv2()</a></code> para importar e <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_csv2()</a></code> para exportar nesse formato, que é mais comum no Brasil.</p>
 <p>Para exemplificar como essas funções funcionam, vamos importar novamente os dados de comunidades de anfíbios da Mata Atlântica <span class="citation">(<a href="refer%C3%AAncias.html#ref-vancine2018" role="doc-biblioref">Vancine et al. 2018</a>)</span>, que fizemos o download no Capítulo <a href="cap4.html#cap4">4</a>. Estamos usando a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code>, indicando os diretórios com a função <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code>, e a classe do arquivo é <code>tibble</code>. Devemos atentar para o argumento <code>locale = readr::locale(encoding = "latin1")</code>,que selecionamos aqui como <code>latin1</code> para corrigir um erro de caracteres, que o autor dos dados cometeu quando publicou esse data paper.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar locais</span>
 <span class="va">tidy_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>
     <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"dados"</span>, <span class="st">"tabelas"</span>, <span class="st">"ATLANTIC_AMPHIBIANS_sites.csv"</span><span class="op">)</span>,
@@ -301,7 +301,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
 <span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></code></pre></div>
 <p>Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote <code>ecodados</code>.</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="va">tidy_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">tidy_anfibios_locais</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tidy_anfibios_locais</span><span class="op">)</span></code></pre></div>
@@ -315,7 +315,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <p>Geralmente, quando utilizamos funções tidyverse para importar dados para o R, é essa classe que os dados adquirem depois de serem importados. Além da importação de dados, podemos criar um tibble no R usando a função <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble::tibble()</a></code>, semelhante ao uso da função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>. Podemos ainda converter um <code>data.frame</code> para um <code>tibble</code> usando a função <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">tibble::as_tibble()</a></code>. Entretanto, em alguns momentos precisaremos da classe <code>data.frame</code> para algumas funções específicas, e podemos converter um <code>tibble</code> para <code>data.frame</code> usando a função <code><a href="https://tibble.tidyverse.org/reference/deprecated.html">tibble::as_data_frame()</a></code>.</p>
 <p>Existem duas diferenças principais no uso do <code>tibble</code> e do <code>data.frame</code>: impressão e subconjunto. Objetos da classe <code>tibbles</code> possuem um método de impressão que mostra a contagem do número de linhas e colunas, e apenas as primeiras 10 linhas e todas as colunas que couberem na tela no console, além dos modos ou tipos das colunas. Dessa forma, cada coluna ou variável, pode ser do modo numbers (<code>int</code> ou <code>dbl</code>), character (<code>chr</code>), logical (<code>lgl</code>), factor (<code>fctr</code>), date + time (<code>dttm</code>) e date (<code>date</code>), além de outras <a href="https://tibble.tidyverse.org/articles/types.html">inúmeras possibilidades</a>.</p>
 <p>Todas as funções deste pacote são listadas na <a href="https://tibble.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Tibble - impressão</span>
 <span class="va">tidy_anfibios_locais</span>
 <span class="co">#&gt; # A tibble: 1,163 × 25</span>
@@ -336,13 +336,13 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <span class="co">#&gt; #   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;</span></code></pre></div>
 <p>Para o subconjunto, como vimos no Capítulo <a href="cap4.html#cap4">4</a>, para selecionar colunas e linhas de objetos bidimensionais podemos utilizar os operadores <code>[]</code> ou <code>[[]]</code>, associado com números separados por vírgulas ou o nome da coluna entre aspas, e o operador <code>$</code> para extrair uma coluna pelo seu nome. Comparando um <code>data.frame</code> a um <code>tibble</code>, o último é mais rígido na seleção das colunas: ele nunca faz correspondência parcial e gera um aviso se a coluna que você está tentando acessar não existe.</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Tibble - subconjunto</span>
 <span class="va">tidy_anfibios_locais</span><span class="op">$</span><span class="va">ref</span>
 <span class="co">#&gt; Warning: Unknown or uninitialised column: `ref`.</span>
 <span class="co">#&gt; NULL</span></code></pre></div>
 <p>Por fim, podemos “espiar” os dados utilizando a função <code><a href="https://pillar.r-lib.org/reference/glimpse.html">tibble::glimpse()</a></code> para ter uma noção geral de número de linhas, colunas, e conteúdo de todas as colunas. Essa é a função <em>tidyverse</em> da função <em>R Base</em> <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>.</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Espiar os dados</span>
 <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">tidy_anfibios_locais</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,163</span>
@@ -369,7 +369,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
 <p>A principal vantagem do uso dos pipes é facilitar a depuração (<em>debugging</em> - achar erros) nos códigos, porque seu uso torna a linguagem R mais próxima do que falamos e pensamos, uma vez que evita o uso de funções dentro de funções (funções compostas, lembra-se do fog e gof do ensino médio? Evitamos eles aqui também).</p>
 <p>Digitar <code>%&gt;%</code> é um pouco chato, dessa forma, existe um atalho para sua inserção nos scripts: <code>Ctrl + Shift + M</code>.</p>
 <p>Para deixar esse tópico menos estranho a quem possa ver essa operação pela primeira vez, vamos fazer alguns exemplos.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## R Base - sem pipe</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 71.06335</span>
@@ -380,7 +380,7 @@ Figura 5.1: Modelo das ferramentas necessárias em um projeto típico de ciênci
     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 71.06335</span></code></pre></div>
 <p>Essas operações ainda estão simples, vamos torná-las mais complexas com várias funções compostas. É nesses casos que a propriedade organizacional do uso do pipe emerge: podemos facilmente ver o encadeamento de operações, onde cada função é disposta numa linha. Apenas um adendo: a função <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> fixa a amostragem de funções que geram valores aleatórios, como é o caso da função <code><a href="https://rdrr.io/r/stats/Poisson.html">rpois()</a></code>.</p>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Fixar amostragem</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
 
@@ -455,17 +455,17 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.7.1</span> palmerpenguins<a class="anchor" aria-label="anchor" href="#palmerpenguins"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para exemplificar o funcionamento dessas funções, usaremos os dados de medidas de pinguins chamados <a href="https://allisonhorst.github.io/palmerpenguins"><em>palmerpenguins</em></a>, disponíveis no pacote <code>palmerpenguins</code>.</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Instalar o pacote</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"palmerpenguins"</span><span class="op">)</span></code></pre></div>
 <p>Esses dados foram coletados e disponibilizados pela <a href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dra. Kristen Gorman</a> e pela <a href="https://pal.lternet.edu/">Palmer Station, Antarctica LTER</a>, membro da Long Term Ecological Research Network.</p>
 <p>O pacote <code>palmerpenguins</code> contém dois conjuntos de dados. Um é chamado de <code>penguins</code> e é uma versão simplificada dos dados brutos. O segundo conjunto de dados é <code>penguins_raw</code> e contém todas as variáveis e nomes originais. Ambos os conjuntos de dados contêm dados para 344 pinguins, de três espécies diferentes, coletados em três ilhas no arquipélago de Palmer, na Antártica. Destacamos também a versão traduzida desses dados para o português, disponível no pacote <a href="https://cienciadedatos.github.io/dados/"><code>dados</code></a>.</p>
 <p>Vamos utilizar principalmente o conjunto de dados <code>penguins_raw</code>, que é a versão dos dados brutos.</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar o pacote palmerpenguins</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></code></pre></div>
 <p>Podemos ainda verificar os dados, pedindo uma ajuda de cada um dos objetos.</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Ajuda dos dados</span>
 <span class="op">?</span><span class="va">penguins</span>
 <span class="op">?</span><span class="va">penguins_raw</span></code></pre></div>
@@ -475,7 +475,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.7.2</span> glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
 </h3>
 <p>Primeiramente, vamos observar os dados e utilizar a função <code><a href="https://pillar.r-lib.org/reference/glimpse.html">tibble::glimpse()</a></code> para ter uma noção geral dos dados.</p>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Visualizar os dados</span>
 <span class="va">penguins_raw</span>
 <span class="co">#&gt; # A tibble: 344 × 17</span>
@@ -521,7 +521,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.7.3</span> unite()<a class="anchor" aria-label="anchor" href="#unite"><i class="fas fa-link"></i></a>
 </h3>
 <p>Primeiramente, vamos exemplificar como juntar e separar colunas. Vamos utilizar a função <code><a href="https://tidyr.tidyverse.org/reference/unite.html">tidyr::unite()</a></code> para unir as colunas. Há diversos parâmetros para alterar como esta função funciona, entretanto, é importante destacar três deles: <code>col</code> nome da coluna que vai receber as colunas unidas, <code>sep</code> indicando o caractere separador das colunas unidas, e <code>remove</code> para uma resposta lógica se as colunas unidas são removidas ou não. Vamos unir as colunas “Region” e “Island” na nova coluna “region_island”.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Unir colunas</span>
 <span class="va">penguins_raw_unir</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span>, 
                                   col <span class="op">=</span> <span class="st">"region_island"</span>,
@@ -544,7 +544,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.7.4</span> separate()<a class="anchor" aria-label="anchor" href="#separate"><i class="fas fa-link"></i></a>
 </h3>
 <p>De forma contrária, podemos utilizar as funções <code><a href="https://tidyr.tidyverse.org/reference/separate.html">tidyr::separate()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">tidyr::separate_rows()</a></code> para separar elementos de uma coluna em mais colunas. Respectivamente, a primeira função separa uma coluna em novas colunas conforme a separação, e a segunda função separa uma coluna, distribuindo os elementos nas linhas. Novamente, há diversos parâmetros para mudar o comportamento dessas funções, mas destacaremos aqui quatro deles: <code>col</code> coluna a ser separada, <code>into</code> os nomes das novas colunas, <code>sep</code> indicando o caractere separador das colunas, e <code>remove</code> para uma resposta lógica se as colunas separadas são removidas ou não. Vamos separar a coluna “Stage” nas colunas “stage” e “egg_stage”.</p>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Separar colunas</span>
 <span class="va">penguins_raw_separar</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span>, 
                                         col <span class="op">=</span> <span class="va">Stage</span>,
@@ -583,7 +583,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.7.5</span> drop_na() e replace_na()<a class="anchor" aria-label="anchor" href="#drop_na-e-replace_na"><i class="fas fa-link"></i></a>
 </h3>
 <p><em>Valor faltante</em> (<code>NA</code>) é um tipo especial de elemento que são discutidos no Capítulo <a href="cap4.html#cap4">4</a> e são relativamente comuns em conjuntos de dados. Em <em>R Base</em>, vimos algumas formas de lidar com esse tipo de elemento. No formato <code>tidyverse</code>, existem também várias formas de lidar com eles, mas aqui focaremos nas funções <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">tidyr::drop_na()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/replace_na.html">tidyr::replace_na()</a></code>, para retirar linhas e substituir esses valores, respectivamente.</p>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Remover todas as linhas com NAs</span>
 <span class="va">penguins_raw_todas_na</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_raw</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_todas_na</span><span class="op">)</span>
@@ -632,7 +632,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.7.6</span> pivot_longer() e pivot_wider()<a class="anchor" aria-label="anchor" href="#pivot_longer-e-pivot_wider"><i class="fas fa-link"></i></a>
 </h3>
 <p>Por fim, trataremos da pivotagem ou remodelagem de dados. Veremos como mudar o formato do nosso conjunto de dados de longo (<em>long</em>) para largo (<em>wide</em>) e vice-versa. Primeiramente, vamos ver como partir de um dado longo (<em>long</em>) e criar um dado largo (<em>wide</em>). Essa é uma operação semelhante à “Tabela Dinâmica” das planilhas eletrônicas. Consiste em usar uma coluna para distribuir seus valores em outras colunas, de modo que os valores dos elementos são preenchidos corretamente, reduzindo assim o número de linhas e aumentando o número de colunas. Essa operação é bastante comum em Ecologia de Comunidades, quando queremos transformar uma lista de espécies em uma matriz de comunidades, com várias espécies nas colunas. Para realizar essa operação, usamos a função <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">tidyr::pivot_wider()</a></code>. Dos diversos parâmetros que podem compor essa função, dois deles são fundamentais: <code>names_from</code> que indica a coluna de onde os nomes serão usados e <code>values_from</code> que indica que indica a coluna com os valores.</p>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar colunas</span>
 <span class="va">penguins_raw_sel_col</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">13</span><span class="op">)</span><span class="op">]</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_sel_col</span><span class="op">)</span>
@@ -661,7 +661,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="co">#&gt; 5               5                                  3450                                5400                      3725</span>
 <span class="co">#&gt; 6               6                                  3650                                4550                      3950</span></code></pre></div>
 <p>De modo oposto, podemos partir de um conjunto de dados largo (<em>wide</em>), ou seja, com várias colunas, e queremos que essas colunas preencham uma única coluna, e que os valores antes espalhados nessas várias colunas sejam adicionados um embaixo do outro, numa única coluna, no formato longo (<em>long</em>). Para essa operação, podemos utilizar a função <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer()</a></code>. Novamente, dos diversos parâmetros que podem compor essa função, três deles são fundamentais: <code>cols</code> indicando as colunas que serão usadas para serem pivotadas, <code>names_to</code> que indica a coluna de onde os nomes serão usados e <code>values_to</code> que indica a coluna com os valores.</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar colunas</span>
 <span class="va">penguins_raw_sel_col</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">13</span><span class="op">)</span><span class="op">]</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">penguins_raw_sel_col</span><span class="op">)</span>
@@ -750,7 +750,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 </h3>
 <p>As funções do <code>dplyr</code> podem seguir uma mesma sintaxe: o <code>tibble</code> será sempre o primeiro argumento dessas funções, seguido de um operador pipe (<code>%&gt;%</code>) e pelo nome da função que irá fazer a manipulação nesses dados. Isso permite o encadeamento de várias operações consecutivas mantendo a estrutura do dado original e acrescentando mudanças num encadeamento lógico.</p>
 <p>Sendo assim, as funções verbais não precisam modificar necessariamente o tibble original, sendo que as operações de manipulações podem e devem ser atribuídas a um novo objeto.</p>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Sintaxe</span>
 <span class="va">tb_dplyr</span> <span class="op">&lt;-</span> <span class="va">tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">funcao_verbal1</span><span class="op">(</span><span class="va">argumento1</span>, <span class="va">argumento2</span>, <span class="va">...</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -772,7 +772,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.3</span> palmerpenguins<a class="anchor" aria-label="anchor" href="#palmerpenguins-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para nossos exemplos, vamos utilizar novamente os dados de pinguins <a href="https://allisonhorst.github.io/palmerpenguins"><em>palmerpenguins</em></a>. Esses dados estão disponíveis no pacote <code>palmerpenguins</code>. Vamos utilizar principalmente o conjunto de dados <code>penguins</code>, que é a versão simplificada dos dados brutos <code>penguins_raw</code>.</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar o pacote palmerpenguins</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></code></pre></div>
 </div>
@@ -781,7 +781,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.4</span> relocate()<a class="anchor" aria-label="anchor" href="#relocate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Primeiramente, vamos reordenar as colunas com a função <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">dplyr::relocate()</a></code>, onde simplesmente listamos as colunas que queremos mudar de posição e para onde elas devem ir. Para esse último passo há dois argumentos: <code>.before</code> que indica a coluna onde a coluna realocada deve se mover antes, e o argumento <code>.after</code> indicando onde deve se mover depois. Ambos podem ser informados com os nomes ou posições dessas colunas com números.</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Reordenar colunas - nome</span>
 <span class="va">penguins_relocate_col</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">year</span>, .after <span class="op">=</span> <span class="va">island</span><span class="op">)</span>
@@ -815,7 +815,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.5</span> rename()<a class="anchor" aria-label="anchor" href="#rename"><i class="fas fa-link"></i></a>
 </h3>
 <p>Podemos renomear colunas facilmente com a função <code><a href="https://dplyr.tidyverse.org/reference/rename.html">dplyr::rename()</a></code>, onde primeiramente informamos o nome que queremos que a coluna tenha, seguido do operador <code>=</code> e a coluna do nosso dado (“nova_coluna = antiga_coluna”). Também podemos utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/rename.html">dplyr::rename_with()</a></code>, que faz a mudança do nome em múltiplas colunas, que pode depender ou não de resultados booleanos.</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Renomear as colunas</span>
 <span class="va">penguins_rename</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>bill_length <span class="op">=</span> <span class="va">bill_length_mm</span>,
@@ -852,7 +852,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.6</span> select()<a class="anchor" aria-label="anchor" href="#select"><i class="fas fa-link"></i></a>
 </h3>
 <p>Outra operação bastante usual dentro da manipulação de dados tabulares é a seleção de colunas. Podemos fazer essa operação com a função <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code>, que seleciona colunas pelo nome ou pela sua posição. Aqui há uma série de possibilidades de seleção de colunas, desde utilizar operadores como <code>:</code> para selecionar intervalos de colunas, <code>!</code> para tomar o complemento (todas menos as listadas), além de funções como <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">dplyr::starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">dplyr::ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">dplyr::contains()</a></code> para procurar colunas com um padrão de texto do nome da coluna.</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar colunas por posição</span>
 <span class="va">penguins_select_position</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
@@ -900,7 +900,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.7</span> pull()<a class="anchor" aria-label="anchor" href="#pull"><i class="fas fa-link"></i></a>
 </h3>
 <p>Quando usamos a função <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code>, mesmo que para apenas uma coluna, o retorno da função é sempre um <code>tibble</code>. Caso precisemos que essa coluna se torne um vetor dentro do encadeamento dos <code>pipes</code>, usamos a função <code><a href="https://dplyr.tidyverse.org/reference/pull.html">dplyr::pull()</a></code>, que extrai uma única coluna como vetor.</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coluna como vetor</span>
 <span class="va">penguins_select_pull</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span>
@@ -912,7 +912,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.8</span> mutate()<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Uma das operações mais úteis dentre as operações para colunas é adicionar ou atualizar os valores de colunas. Para essa operação, usaremos a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>. Podemos ainda usar os argumentos <code>.before</code> e <code>.after</code> para indicar onde a nova coluna deve ficar, além do parâmetro <code>.keep</code> com diversas possibilidades de manter colunas depois de usar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>. Por fim, é fundamental destacar o uso das funções de replicação: <code><a href="https://dplyr.tidyverse.org/reference/across.html">dplyr::across()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">dplyr::if_any()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/across.html">dplyr::if_all()</a></code>, para os quais a função fará alterações em múltiplas colunas de uma vez, dependendo de resultados booleanos.</p>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Adicionar colunas</span>
 <span class="va">penguins_mutate</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>body_mass_kg <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">/</span><span class="fl">1e3</span>, .before <span class="op">=</span> <span class="va">sex</span><span class="op">)</span>
@@ -946,7 +946,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.9</span> arrange()<a class="anchor" aria-label="anchor" href="#arrange"><i class="fas fa-link"></i></a>
 </h3>
 <p>Além de operações em colunas, podemos fazer operações em linhas. Vamos começar com a reordenação das linhas com base nos valores das colunas. Para essa operação, usamos a função <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">dplyr::arrange()</a></code>. Podemos reordenar por uma ou mais colunas de forma crescente ou decrescente usando a função <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> ou o operador <code>-</code> antes da coluna de interesse. Da mesma forma que na função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>, podemos usar as funções de replicação para ordenar as linhas para várias colunas de uma vez, dependendo de resultados booleanos.</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Reordenar linhas - crescente</span>
 <span class="va">penguins_arrange</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span>
@@ -1008,7 +1008,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.10</span> filter()<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
 </h3>
 <p>Uma das principais e mais usuais operações que podemos realizar em linhas é a seleção de linhas através do filtro por valores de uma ou mais colunas, utilizando a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>. Para realizar os filtros utilizaremos grande parte dos operadores relacionais e lógicos que listamos na Tabela <a href="cap4.html#tab:tab-operadores">4.1</a> no Capítulo <a href="cap4.html#cap4">4</a>, especialmente os lógicos para combinações de filtros em mais de uma coluna. Além desses operadores, podemos utilizar a função <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> para filtros em elementos faltantes, e as funções <code><a href="https://dplyr.tidyverse.org/reference/between.html">dplyr::between()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/near.html">dplyr::near()</a></code> para filtros entre valores, e para valores próximos com certa tolerância, respectivamente. Por fim, podemos usar as funções de replicação para filtro das linhas para mais de uma coluna, dependendo de resultados booleanos.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Filtrar linhas</span>
 <span class="va">penguins_filter</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span>
@@ -1099,7 +1099,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.11</span> slice()<a class="anchor" aria-label="anchor" href="#slice"><i class="fas fa-link"></i></a>
 </h3>
 <p>Além da seleção de linhas por filtros, podemos fazer a seleção das linhas por intervalos, indicando quais linhas desejamos, usando a função <code><a href="https://dplyr.tidyverse.org/reference/slice.html">dplyr::slice()</a></code>, e informando o argumento <code>n</code> para o número da linha ou intervalo das linhas. Essa função possui variações no sufixo muito interessantes: <code><a href="https://dplyr.tidyverse.org/reference/slice.html">dplyr::slice_head()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/slice.html">dplyr::slice_tail()</a></code> seleciona as primeiras e últimas linhas, <code><a href="https://dplyr.tidyverse.org/reference/slice.html">dplyr::slice_min()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/slice.html">dplyr::slice_max()</a></code> seleciona linhas com os maiores e menores valores de uma coluna, e <code><a href="https://dplyr.tidyverse.org/reference/slice.html">dplyr::slice_sample()</a></code> seleciona linhas aleatoriamente.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Seleciona linhas</span>
 <span class="va">penguins_slice</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">300</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -1160,7 +1160,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.12</span> distinct()<a class="anchor" aria-label="anchor" href="#distinct"><i class="fas fa-link"></i></a>
 </h3>
 <p>A última operação que apresentaremos para linhas é a retirada de linhas com valores repetidos com base nos valores de uma ou mais colunas, utilizando a função <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">dplyr::distinct()</a></code>. Essa função por padrão retorna apenas a(s) coluna(s) utilizada(s) para retirar as linhas com valores repetidos, sendo necessário acrescentar o argumento <code>.keep_all = TRUE</code> para retornar todas as colunas. Por fim, podemos usar as funções de replicação para retirar linhas com valores repetidos para mais de uma coluna, dependendo de resultados booleanos.</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Retirar linhas com valores repetidos</span>
 <span class="va">penguins_distinct</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span>
@@ -1208,7 +1208,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.13</span> count()<a class="anchor" aria-label="anchor" href="#count"><i class="fas fa-link"></i></a>
 </h3>
 <p>Agora entraremos no assunto de resumo das observações. Podemos fazer contagens resumos dos nossos dados, utilizando para isso a função <code><a href="https://dplyr.tidyverse.org/reference/count.html">dplyr::count()</a></code>. Essa função contará valores de uma ou mais colunas, geralmente para variáveis categóricas, semelhante à função <em>R Base</em> <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>, mas num contexto <em>tidyverse</em>.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Contagens de valores para uma coluna</span>
 <span class="va">penguins_count</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>
@@ -1238,7 +1238,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.14</span> group_by()<a class="anchor" aria-label="anchor" href="#group_by"><i class="fas fa-link"></i></a>
 </h3>
 <p>Uma grande parte das operações feitas nos dados são realizadas em grupos definidos por valores de colunas com dados categóricas. A função <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by()</a></code> transforma um <code>tibble</code> em um <code>tibble grouped</code>, onde as operações são realizadas “por grupo”. Essa função é utilizada geralmente junto com a função <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarise()</a></code>, que veremos logo em seguida. O agrupamento não altera a aparência dos dados (além de informar como estão agrupados). A função <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::ungroup()</a></code> remove o agrupamento. Podemos ainda usar funções de replicação para fazer os agrupamentos para mais de uma coluna, dependendo de resultados booleanos.</p>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Agrupamento</span>
 <span class="va">penguins_group_by</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>
@@ -1274,7 +1274,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.15</span> summarise()<a class="anchor" aria-label="anchor" href="#summarise"><i class="fas fa-link"></i></a>
 </h3>
 <p>Como dissemos, muitas vezes queremos resumir nossos dados, principalmente para ter uma noção geral das variáveis (colunas) ou mesmo começar a análise exploratória resumindo variáveis contínuas por grupos de variáveis categóricas. Dessa forma, ao utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarise()</a></code> teremos um novo <code>tibble</code> com os dados resumidos, que é a agregação ou resumo dos dados através de funções. Da mesma forma que outras funções, podemos usar funções de replicação para resumir valores para mais de uma coluna, dependendo de resultados booleanos.</p>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resumo</span>
 <span class="va">penguins_summarise</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1305,7 +1305,7 @@ Figura 5.2: As três regras que tornam um conjunto de dados <em>tidy</em>. Adapt
 <span class="header-section-number">5.8.16</span> bind_rows() e bind_cols()<a class="anchor" aria-label="anchor" href="#bind_rows-e-bind_cols"><i class="fas fa-link"></i></a>
 </h3>
 <p>Muitas vezes teremos de combinar duas ou mais tabelas de dados. Podemos utilizar as funções <em>R Base</em> <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> e <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code>, como vimos no Capítulo <a href="cap4.html#cap4">4</a>. Entretanto, pode ser interessante avançar para as funções <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_cols()</a></code> do formato <em>tidyverse</em>. A ideia é muito semelhante: a primeira função combina dados por linhas e a segunda por colunas. Entretanto, há algumas vantagens no uso dessas funções, como a identificação das linhas pelo argumento <code>.id</code> para a primeira função, e a conferência do nome das colunas pelo argumento <code>.name_repair</code> para a segunda função.</p>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar as linhas para dois tibbles</span>
 <span class="va">penguins_01</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
 <span class="va">penguins_02</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fl">51</span><span class="op">:</span><span class="fl">55</span><span class="op">)</span>
@@ -1365,7 +1365,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 </li>
 </ul>
 <p>Aqui, vamos demostrar apenas a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">dplyr::left_join()</a></code>, combinando um <code>tibble</code> de coordenadas geográficas das ilhas com o conjunto de dados do penguins.</p>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Adicionar uma coluna chave de ids</span>
 <span class="va">penguin_islands</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
     island <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Torgersen"</span>, <span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>, <span class="st">"Alpha"</span><span class="op">)</span>,
@@ -1423,12 +1423,12 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>Todas as funções deste pacote são listadas na <a href="https://stringr.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
 <p>Demonstraremos algumas funções para algumas operações mais comuns, utilizando um vetor de um elemento, com o string “penguins”.</p>
 <p>Podemos explorar o comprimento de strings com a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">stringr::str_length()</a></code>.</p>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Comprimento</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penguins"</span><span class="op">)</span>
 <span class="co">#&gt; [1] 8</span></code></pre></div>
 <p>Extrair um string por sua posição usando a função <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">stringr::str_sub()</a></code> ou por um padrão com <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">stringr::str_extract()</a></code>.</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Extrair pela posição</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penguins"</span>, end <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; [1] "pen"</span>
@@ -1437,18 +1437,18 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penguins"</span>, pattern <span class="op">=</span> <span class="st">"p"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "p"</span></code></pre></div>
 <p>Substituir strings por outros strings com <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">stringr::str_replace()</a></code>.</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Substituir</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penguins"</span>, pattern <span class="op">=</span> <span class="st">"i"</span>, replacement <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "penguyns"</span></code></pre></div>
 <p>Separar strings por um padrão com a função <code><a href="https://stringr.tidyverse.org/reference/str_split.html">stringr::str_split()</a></code>.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Separar</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"p-e-n-g-u-i-n-s"</span>, pattern <span class="op">=</span> <span class="st">"-"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]</span>
 <span class="co">#&gt; [1,] "p"  "e"  "n"  "g"  "u"  "i"  "n"  "s"</span></code></pre></div>
 <p>Inserir espaços em brancos pela esquerda, direita ou ambos com a função <code><a href="https://stringr.tidyverse.org/reference/str_pad.html">stringr::str_pad()</a></code>.</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Inserir espacos em branco</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penguins"</span>, width <span class="op">=</span> <span class="fl">10</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "  penguins"</span>
@@ -1457,7 +1457,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penguins"</span>, width <span class="op">=</span> <span class="fl">10</span>, side <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span>
 <span class="co">#&gt; [1] " penguins "</span></code></pre></div>
 <p>Também podemos remover espaços em branco da esquerda, direita ou ambos, utilizando <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">stringr::str_trim()</a></code>.</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Remover espacos em branco</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">" penguins "</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "penguins "</span>
@@ -1466,7 +1466,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">" penguins "</span>, side <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "penguins"</span></code></pre></div>
 <p>Podemos também alterar minúsculas e maiúsculas em diferentes posições do string, com várias funções.</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Alterar minúsculas e maiúsculas</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"Penguins"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "penguins"</span>
@@ -1477,14 +1477,14 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"penGuins"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Penguins"</span></code></pre></div>
 <p>Podemos ainda ordenar os elementos de um vetor por ordem alfabética de forma crescente ou decrescente, usando <code><a href="https://stringr.tidyverse.org/reference/str_order.html">stringr::str_sort()</a></code>.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Ordenar</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_order.html">str_sort</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">letters</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"</span>
 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_order.html">str_sort</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">letters</span>, dec <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "z" "y" "x" "w" "v" "u" "t" "s" "r" "q" "p" "o" "n" "m" "l" "k" "j" "i" "h" "g" "f" "e" "d" "c" "b" "a"</span></code></pre></div>
 <p>Podemos ainda utilizar essas funções em complemento com o pacote <code>dplyr</code>, para alterar os strings de colunas ou nome das colunas.</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Alterar valores das colunas</span>
 <span class="va">penguins_stringr_valores</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>species <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span><span class="op">)</span>
@@ -1501,30 +1501,30 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>O pacote <code>forcats</code> fornece um conjunto de ferramentas úteis para facilitar a manipulação de fatores. Como dito no Capítulo <a href="cap4.html#cap4">4</a>, usamos fatores geralmente quando temos dados categóricos, que são variáveis que possuem um conjunto de valores fixos e conhecidos. As funções são utilizadas principalmente para: i) mudar a ordem dos níveis, ii) mudar os valores dos níveis, iii) adicionar e remover níveis, iv) combinar múltiplos níveis, além de outras operações.</p>
 <p>Todas as funções deste pacote são listadas na <a href="https://forcats.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
 <p>Vamos utilizar ainda os dados <code>penguins</code> e <code>penguins_raw</code> para exemplificar o uso do pacote <code>forcats</code>.</p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar o pacote palmerpenguins</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></code></pre></div>
 <p>Primeiramente, vamos converter dados de string para fator, utilizando a função <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">forcats::as_factor()</a></code>.</p>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## String</span>
 <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)</span>
 <span class="co">#&gt; [4] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)</span>
 <span class="co">#&gt; 3 Levels: Adelie Penguin (Pygoscelis adeliae) ... Chinstrap penguin (Pygoscelis antarctica)</span></code></pre></div>
 <p>Podemos facilmente mudar o nome dos níveis utilizando a função <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">forcats::fct_recode()</a></code>.</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mudar o nome dos níveis</span>
 <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span>, a <span class="op">=</span> <span class="st">"Adelie"</span>, c <span class="op">=</span> <span class="st">"Chinstrap"</span>, g <span class="op">=</span> <span class="st">"Gentoo"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] a a a a a a</span>
 <span class="co">#&gt; Levels: a c g</span></code></pre></div>
 <p>Para inverter os níveis, usamos a função <code><a href="https://forcats.tidyverse.org/reference/fct_rev.html">forcats::fct_rev()</a></code>.</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Inverter os níveis</span>
 <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Gentoo Chinstrap Adelie</span></code></pre></div>
 <p>Uma operação muito comum com fatores é mudar a ordem dos níveis. Quando precisamos especificar a ordem dos níveis, podemos fazer essa operação manualmente com a função <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">forcats::fct_relevel()</a></code>.</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Especificar a ordem dos níveis</span>
 <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Adelie"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
@@ -1538,7 +1538,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>
 <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">forcats::fct_inseq()</a></code>: pelo valor numérico do nível</li>
 </ul>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Níveis pela ordem em que aparecem</span>
 <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
@@ -1549,13 +1549,13 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Adelie Gentoo Chinstrap</span></code></pre></div>
 <p>Por fim, podemos fazer a agregação de níveis raros em um nível utilizando a função <code><a href="https://forcats.tidyverse.org/reference/fct_lump.html">forcats::fct_lump()</a></code>.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Agregação de níveis raros em um nível</span>
 <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] Adelie Adelie Adelie Adelie Adelie Adelie</span>
 <span class="co">#&gt; Levels: Adelie Gentoo Other</span></code></pre></div>
 <p>Podemos ainda utilizar essas funções em complemento com o pacote <code>dplyr</code> para fazer manipulações de fatores nas colunas de <code>tibbles</code>.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Transformar várias colunas em fator</span>
 <span class="va">penguins_raw_multi_factor</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>, <span class="fu">forcats</span><span class="fu">::</span><span class="va"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -1568,7 +1568,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>O pacote <code>lubridate</code> fornece um conjunto de funções para a manipulação de dados de data e horário. Dessa forma, esse pacote facilita a manipulação dessa classe de dado no R, pois geralmente esses dados não são intuitivos e mudam dependendo do tipo de objeto de data e horário. Além disso, os métodos que usam datas e horários devem levar em consideração fusos horários, anos bissextos, horários de verão, além de outras particularidades. Existem diversas funções nesse pacote, sendo as mesmas focadas em: i) transformações de data/horário, ii) componentes, iii) arredondamentos, iv) durações, v) períodos, vi) intervalos, além de muitas outras funções específicas.</p>
 <p>Todas as funções deste pacote são listadas na <a href="https://lubridate.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
 <p>Apesar de estar inserido no escopo do <em>tidyverse</em>, este pacote não é carregado com os demais, requisitando seu carregamento solo.</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
 <p>Existem três tipos de dados data/horário:</p>
@@ -1586,14 +1586,14 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>Para trabalhar exclusivamente com horários, podemos utilizar o pacote <code>hms</code>.</p>
 <p>É fundamental também destacar que algumas letras terão um significado temporal, sendo abreviações de diferentes períodos em inglês: <strong>y</strong>ear (ano), <strong>m</strong>onth (mês), <strong>w</strong>eak (semana), <strong>d</strong>ay (dia), <strong>h</strong>our (hora), <strong>m</strong>inute (minuto), e <strong>s</strong>econd (segundo).</p>
 <p>Para acessar a informação da data e horários atuais podemos utilizar as funções <code><a href="https://lubridate.tidyverse.org/reference/now.html">lubridate::today()</a></code> e <code><a href="https://lubridate.tidyverse.org/reference/now.html">lubridate::now()</a></code>.</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Extrair a data nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25"</span>
+<span class="co">#&gt; [1] "2022-04-27"</span>
 
 <span class="co">## Extrair a data e tempo nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 14:33:54 -03"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-27 16:45:14 -03"</span></code></pre></div>
 <p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
 <ul>
 <li>De um string</li>
@@ -1601,12 +1601,12 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>De um objeto de data/horário existente</li>
 </ul>
 <p>Os dados de data/horário geralmente estão no formato de strings. Podemos transformar os dados especificando a ordem dos seus componentes, ou seja, a ordem em que ano, mês e dia aparecem no string, usando as letras <code>y</code> (ano), <code>m</code> (mês) e <code>d</code> (dia) na mesma ordem, por exemplo, <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">lubridate::dmy()</a></code>.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Strings e números para datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"03-03-2021"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2021-03-03"</span></code></pre></div>
 <p>Essas funções também aceitam números sem aspas, além de serem muito versáteis e funcionarem em outros diversos formatos.</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Strings e números para datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"03-Mar-2021"</span><span class="op">)</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="fl">03032021</span><span class="op">)</span>
@@ -1614,7 +1614,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"03/03/2021"</span><span class="op">)</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"03.03.2021"</span><span class="op">)</span></code></pre></div>
 <p>Além da data, podemos especificar horários atrelados a essas datas. Para criar uma data com horário adicionamos um underscore (<code>_</code>) e <code>h</code> (hora), <code>m</code> (minuto) e <code>s</code> (segundo) ao nome da função, além do argumento <code>tz</code> para especificar o <em>fuso horário</em> (tema tratado mais adiante nessa seção).</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Especificar horários e fuso horário</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_h</a></span><span class="op">(</span><span class="st">"03-03-2021 13"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2021-03-03 13:00:00 UTC"</span>
@@ -1625,7 +1625,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hms</a></span><span class="op">(</span><span class="st">"03-03-2021 13:32:01"</span>, tz <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2021-03-03 13:32:01 -03"</span></code></pre></div>
 <p>Podemos ainda ter componentes individuais de data/horário em múltiplas colunas. Para realizar essa transformação, podemos usar as funções <code><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">lubridate::make_date()</a></code> e <code><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">lubridate::make_datetime()</a></code>.</p>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados com componentes individuais</span>
 <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
     ano <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2021</span>, <span class="fl">2021</span>, <span class="fl">2021</span><span class="op">)</span>,
@@ -1644,14 +1644,14 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; 2  2021     2    20    14     44 2021-02-20 14:44:00</span>
 <span class="co">#&gt; 3  2021     3    31    18     55 2021-03-31 18:55:00</span></code></pre></div>
 <p>Por fim, podemos criar datas modificando entre data/horário e data, utilizando as funções <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">lubridate::as_datetime()</a></code> e <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">lubridate::as_date()</a></code>.</p>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data para data-horário</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 UTC"</span>
+<span class="co">#&gt; [1] "2022-04-27 UTC"</span>
 
 <span class="co">## Data-horário para data</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-27"</span></code></pre></div>
 <p>Uma vez que entendemos como podemos criar dados de data/horário, podemos explorar funções para acessar e definir componentes individuais. Para essa tarefa existe uma grande quantidade de funções para acessar partes específicas de datas e horários.</p>
 <ul>
 <li>
@@ -1673,7 +1673,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>
 <code><a href="https://lubridate.tidyverse.org/reference/second.html">second()</a></code>: acessa os segundos</li>
 </ul>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Extrair</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2022</span>
@@ -1683,16 +1683,16 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] Apr</span>
 <span class="co">#&gt; Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; Oct &lt; Nov &lt; Dec</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">day</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 25</span>
+<span class="co">#&gt; [1] 27</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; [1] 4</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; [1] Mon</span>
+<span class="co">#&gt; [1] Wed</span>
 <span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 54.68167</span></code></pre></div>
+<span class="co">#&gt; [1] 14.1338</span></code></pre></div>
 <p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data</span>
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hms</a></span><span class="op">(</span><span class="st">"04-03-2021 01:04:56"</span><span class="op">)</span>
 
@@ -1701,7 +1701,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">01</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">13</span></code></pre></div>
 <p>Mais convenientemente, podemos utilizar a função <code><a href="https://rdrr.io/r/stats/update.html">update()</a></code> para alterar vários valores de uma vez.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Incluir vários valores</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">data</span>, year <span class="op">=</span> <span class="fl">2020</span>, month <span class="op">=</span> <span class="fl">1</span>, mday <span class="op">=</span> <span class="fl">1</span>, hour <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2020-01-01 01:04:56 UTC"</span></code></pre></div>
@@ -1735,7 +1735,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>
 <code><a href="https://lubridate.tidyverse.org/reference/duration.html">dseconds()</a></code>: duração de segundos</li>
 </ul>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Subtração de datas</span>
 <span class="va">tempo_estudando_r</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"30-11-2011"</span><span class="op">)</span>
 
@@ -1764,14 +1764,14 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">dyears</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
 <span class="co">#&gt; [1] "3155760000s (~100 years)"</span></code></pre></div>
 <p>Podemos ainda utilizar as durações para fazer operações aritméticas com datas como adição, subtração e multiplicação.</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Somando durações a datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">ddays</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-26"</span>
+<span class="co">#&gt; [1] "2022-04-28"</span>
 
 <span class="co">## Subtraindo durações de datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">dyears</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2021-04-24 18:00:00 UTC"</span>
+<span class="co">#&gt; [1] "2021-04-26 18:00:00 UTC"</span>
 
 <span class="co">## Multiplicando durações</span>
 <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">dyears</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
@@ -1797,7 +1797,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>
 <code><a href="https://lubridate.tidyverse.org/reference/period.html">years()</a></code>: período em anos</li>
 </ul>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criando períodos</span>
 <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">period</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"second"</span>, <span class="st">"minute"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "5M 90S"</span>
@@ -1818,19 +1818,19 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
 <span class="co">#&gt; [1] "100y 0m 0d 0H 0M 0S"</span></code></pre></div>
 <p>Além disso, podemos fazer operações com os períodos, somando e subtraindo.</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Somando datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-07-04"</span>
+<span class="co">#&gt; [1] "2022-07-06"</span>
 
 <span class="co">## Subtraindo datas</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-02-14"</span>
+<span class="co">#&gt; [1] "2022-02-16"</span>
 
 <span class="co">## Criando datas recorrentes</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "2022-04-25" "2022-05-02" "2022-05-09" "2022-05-16" "2022-05-23" "2022-05-30" "2022-06-06" "2022-06-13"</span>
-<span class="co">#&gt;  [9] "2022-06-20" "2022-06-27" "2022-07-04"</span></code></pre></div>
+<span class="co">#&gt;  [1] "2022-04-27" "2022-05-04" "2022-05-11" "2022-05-18" "2022-05-25" "2022-06-01" "2022-06-08" "2022-06-15"</span>
+<span class="co">#&gt;  [9] "2022-06-22" "2022-06-29" "2022-07-06"</span></code></pre></div>
 <p>Por fim, intervalos são períodos de tempo limitados por duas datas, possuindo uma duração com um ponto de partida, que o faz preciso para determinar uma duração. Intervalos são objetos da classe <code>Interval</code>. Da mesma forma que para duração e períodos, há uma série de funções para realizar essas operações.</p>
 <ul>
 <li>
@@ -1860,7 +1860,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>
 <code>%within%</code>: testa se o primeiro intervalo está contido no segundo</li>
 </ul>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criando duas datas - início de estudos do R e nascimento do meu filho</span>
 <span class="va">r_inicio</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"30-11-2011"</span><span class="op">)</span>
 <span class="va">filho_nascimento</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"26-09-2013"</span><span class="op">)</span>
@@ -1876,15 +1876,15 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_start</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
 <span class="co">#&gt; [1] "2011-11-30 UTC"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_end</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 UTC"</span>
+<span class="co">#&gt; [1] "2022-04-27 UTC"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_length</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] 328233600</span>
+<span class="co">#&gt; [1] 328406400</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_flip</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2022-04-25 UTC--2011-11-30 UTC</span>
+<span class="co">#&gt; [1] 2022-04-27 UTC--2011-11-30 UTC</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_shift</a></span><span class="op">(</span><span class="va">r_intervalo</span>, <span class="fu"><a href="https://lubridate.tidyverse.org/reference/duration.html">duration</a></span><span class="op">(</span>days <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2011-12-30 UTC--2022-05-25 UTC</span></code></pre></div>
+<span class="co">#&gt; [1] 2011-12-30 UTC--2022-05-27 UTC</span></code></pre></div>
 <p>Uma operação de destaque é verificar a sobreposição entre dois intervalos.</p>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar sobreposição - int_overlaps</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">int_overlaps</a></span><span class="op">(</span><span class="va">r_intervalo</span>, <span class="va">filho_intervalo</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span>
@@ -1895,35 +1895,35 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="va">filho_intervalo</span> <span class="op"><a href="https://lubridate.tidyverse.org/reference/within-interval.html">%within%</a></span> <span class="va">r_intervalo</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>Podemos ainda calcular quantos períodos existem dentro de um intervalo, utilizando as operações de <code>/</code> e <code>%/%</code>.</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Períodos dentro de um intervalo - anos</span>
 <span class="va">r_intervalo</span> <span class="op">/</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 10.4</span>
+<span class="co">#&gt; [1] 10.40548</span>
 <span class="va">r_intervalo</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 10</span>
 
 <span class="co">## Períodos dentro de um intervalo - dias e semandas</span>
 <span class="va">filho_intervalo</span> <span class="op">/</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">days</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3133</span>
+<span class="co">#&gt; [1] 3135</span>
 <span class="va">filho_intervalo</span> <span class="op">/</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">weeks</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 447.5714</span></code></pre></div>
+<span class="co">#&gt; [1] 447.8571</span></code></pre></div>
 <p>Ainda podemos fazer transformações dos dados para períodos e ter todas as unidades de data e tempo que o intervalo compreende.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Tempo total estudando R</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as.period.html">as.period</a></span><span class="op">(</span><span class="va">r_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] "10y 4m 26d 0H 0M 0S"</span>
+<span class="co">#&gt; [1] "10y 4m 28d 0H 0M 0S"</span>
 
 <span class="co">## Idade do meu filho</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as.period.html">as.period</a></span><span class="op">(</span><span class="va">filho_intervalo</span><span class="op">)</span>
-<span class="co">#&gt; [1] "8y 6m 30d 0H 0M 0S"</span></code></pre></div>
+<span class="co">#&gt; [1] "8y 7m 1d 0H 0M 0S"</span></code></pre></div>
 <p>Por fim, fusos horários tendem a ser um fator complicador quando precisamos analisar informações instantâneas de tempo (horário) de outras partes do planeta, ou mesmo fazer conversões dos horários. No <code>lubridate</code> há funções para ajudar nesse sentido. Para isso, podemos utilizar a função <code><a href="https://lubridate.tidyverse.org/reference/with_tz.html">lubridate::with_tz()</a></code> e no argumento <code>tzone</code> informar o fuso horário para a transformação do horário.</p>
 <p>Podemos descobrir o fuso horário que o R está considerando com a função <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code>.</p>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Fuso horário no R</span>
 <span class="fu"><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "America/Sao_Paulo"</span></code></pre></div>
 <p>No R há uma listagem dos nomes dos fusos horários que podemos utilizar no argumento <code>tzone</code> para diferentes fusos horários.</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar os fuso horários</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/timezones.html">OlsonNames</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 595</span>
@@ -1931,18 +1931,18 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] "Africa/Abidjan"     "Africa/Accra"       "Africa/Addis_Ababa" "Africa/Algiers"     "Africa/Asmara"     </span>
 <span class="co">#&gt; [6] "Africa/Asmera"</span></code></pre></div>
 <p>Podemos nos perguntar que horas são em outra parte do globo ou fazer as conversões facilmente no <em>lubridate</em>.</p>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Que horas são em...</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 14:33:54 -03"</span>
+<span class="co">#&gt; [1] "2022-04-27 16:45:14 -03"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 17:33:54 GMT"</span>
+<span class="co">#&gt; [1] "2022-04-27 19:45:14 GMT"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"Europe/Berlin"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 19:33:54 CEST"</span>
+<span class="co">#&gt; [1] "2022-04-27 21:45:14 CEST"</span>
 
 <span class="co">## Altera o fuso sem mudar a hora</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/force_tz.html">force_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-04-25 14:33:54 GMT"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-04-27 16:45:14 GMT"</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="purrr" class="section level2" number="5.12">
@@ -1953,7 +1953,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <p>Todas as funções deste pacote são listadas na <a href="https://purrr.tidyverse.org/reference/index.html">página de referência</a> do pacote.</p>
 <p>Um <em>loop for</em> pode ser entendido como uma iteração: um bloco de códigos é repetido mudando um contador de uma lista de possibilidades. Vamos exemplificar com uma iteração bem simples, onde imprimiremos no console os valores de 1 a 10, utilizando a função <code>for()</code>, um contador <code>i</code> em um vetor de dez números <code>1:10</code> que será iterado, no bloco de códigos definido entre <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, usando a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> para imprimir os valores.</p>
 <p>A ideia é bastante simples: a função <code>for()</code> vai atribuir o primeiro valor da lista ao contador <code>i</code>, esse contador será utilizado em todo o bloco de códigos. Quando o bloco terminar, o segundo valor é atribuído ao contador <code>i</code> e entra no bloco de códigos, repetindo esse processo até que todos os elementos da lista tenham sido atribuídos ao contador.</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Loop for</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
@@ -1969,7 +1969,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] 9</span>
 <span class="co">#&gt; [1] 10</span></code></pre></div>
 <p>Com essa ideia em mente, a programação funcional faz a mesma operação utilizando a função <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map()</a></code>. O mesmo <em>loop for</em> ficaria dessa forma.</p>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Loop for com map</span>
 <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, .f <span class="op">=</span> <span class="va">print</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1</span>
@@ -2020,7 +2020,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <code>.f</code>: uma função</li>
 </ul>
 <p>Num outro exemplo, aplicaremos a função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> para somar os valores de vários elementos de uma lista.</p>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Função map</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sum</span><span class="op">)</span>
@@ -2052,7 +2052,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <li>
 <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfc()</a></code>: retorna um data frame (por colunas)</li>
 </ul>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Variações da função map</span>
 <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sum</span><span class="op">)</span>
 <span class="co">#&gt; [1] 15 16  3 10</span>
@@ -2060,7 +2060,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] "1 2 3 4 5" "4 5 7"     "1 1 1"     "2 2 2 2 2"</span></code></pre></div>
 <p>Essas funcionalidades já eram conhecidas no <em>R Base</em> pelas funções da <em>família <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code></em>: <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">vapply()</a></code>, <code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code>, <code><a href="https://rdrr.io/r/base/rapply.html">rapply()</a></code> e <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code>. Essas funções formam a base de combinações mais complexas e ajudam a realizar operações com poucas linhas de código, para diferentes retornos.</p>
 <p>Temos ainda duas variantes da função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>: <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::map2()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap()</a></code>, para duas ou mais listas, respectivamente. Como vimos para a primeira função, existem várias variações do sufixo para modificar o retorno da função.</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Listas</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
@@ -2074,7 +2074,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap_dbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span><span class="op">)</span>, <span class="va">prod</span><span class="op">)</span>
 <span class="co">#&gt; [1]  27 125   0   1</span></code></pre></div>
 <p>Essas funções podem ser usadas em conjunto para implementar rotinas de manipulação e análise de dados com poucas linhas de código, mas que não exploraremos em sua completude aqui. Listamos dois exemplos simples.</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resumo dos dados</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -2082,7 +2082,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
     <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span>
 <span class="co">#&gt;    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g              year </span>
 <span class="co">#&gt;          43.92193          17.15117         200.91520        4201.75439        2008.02924</span></code></pre></div>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise dos dados</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split</a></span><span class="op">(</span><span class="va">island</span>, <span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -2229,7 +2229,7 @@ Oficialmente a pandemia de COVID-19 começou no Brasil com o primeiro caso no di
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -105,7 +105,7 @@
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pacotes e dados que serão utilizados neste capítulo.</p>
-<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes </span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://pbil.univ-lyon1.fr/ADE-4/">ade4</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
@@ -248,7 +248,7 @@ onde</p>
 </ul>
 <p><strong>Análises</strong></p>
 <p>Para começar, vamos primeiro importar os dados e depois calcular a matriz de distância que seja adequada para o tipo de dado que temos (abundância de espécies - dados de contagem) (Figura <a href="cap9.html#fig:fig-dend">9.1</a>).</p>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Composição de espécies (seis primeiras localidades)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>
 <span class="co">#&gt;         BP4  PP4 PP3  AP1 AP2 PP1 PP2 BP9  PT1 PT2 PT3 BP2 PT5</span>
@@ -277,13 +277,13 @@ Figura 9.1: Dendrograma mostrando uma análise de agrupamento de anuros.
 </div>
 <p><strong>Avaliando a qualidade do dendrograma</strong></p>
 <p>Precisamos verificar se o agrupamento reduziu a dimensionalidade da matriz de forma eficiente, de maneira a não distorcer a informação. Fazemos isso calculando o <strong>Coeficiente de Correlação Cofenética</strong> que é uma medida que nos indica quão bem o resultado do agrupamento corresponde às (dis)similaridades originais.</p>
-<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coeficiente de correlação cofenética</span>
 <span class="va">cofresult</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">dendro</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">cofresult</span>, <span class="va">distBocaina</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.9455221</span></code></pre></div>
 <p>Um coeficiente de correlação cofenética &gt; .7 indica uma boa representação. Portanto, o nosso resultado de 0.9455221 é alto, garantindo que o dendrograma é adequado (Figura <a href="cap9.html#fig:fig-dend-group">9.2</a>). Note que testar a “significância” deste coeficiente não é adequado, já que seria algo tautológico (circular). Claro que definir o que seria um valor “alto” ou “baixo” da correlação é um pouco arbitrário, mas pode-se usar como “regra do polegar”.</p>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">dendro</span>, main <span class="op">=</span> <span class="st">"Dendrograma"</span>, 
      ylab <span class="op">=</span> <span class="st">"Similaridade (índice de Horn)"</span>,
@@ -303,7 +303,7 @@ Figura 9.2: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
 <p>No exemplo anterior, vimos que é difícil interpretar os grupos baseado num nível de corte. A seguir, vamos utilizar o pacote <code>pvclust</code> que calcula automaticamente o nível de corte de similaridade baseado no <em>Bootstrap</em> de cada nó. Uma desvantagem deste método é que ele somente aceita índices de similaridade da função <code><a href="https://rdrr.io/pkg/factoextra/man/dist.html">dist()</a></code>, que possui apenas a distância <em>Euclidiana</em>, <em>Manhattan</em> e <em>Canberra</em>. Uma maneira de contornarmos essa limitação é utilizar transformações dos dados disponíveis na função <code><a href="https://rdrr.io/pkg/BiodiversityR/man/disttransform.html">disttransform()</a></code> no pacote <code>BiodiversityR</code> ou a função <code><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand()</a></code> do pacote <code>vegan</code>. Também é possível utilizar a transformação de Box-Cox para dados multivariados, disponível no <a href="http://www.ecography.org/appendix/ecog-03498">material suplementar</a> de Legendre &amp; Borcard <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2018" role="doc-biblioref">2018</a>)</span>. Esta transformação é geralmente utilizada para tornar a distribuição dos dados mais simétrica (menos enviesada para valores extremos: reduzir o <em>skewness</em> dos dados).</p>
 <p><strong>Análises</strong></p>
 <p>Vamos utilizar o mesmo conjunto de dados do Exemplo 1 para responder à mesma pergunta. Aqui vamos utilizar a distância de <em>Chord</em> (que é indicada para dados de composição de espécies) para calcular a matriz de distância. Se transformarmos uma matriz usando a transformação <em>Chord</em> e depois calcularmos a distância Euclidiana, isso equivale à calcular diretamente a distância de <em>Chord</em> (Figura <a href="cap9.html#fig:fig-dend-boot-chor">9.3</a>).</p>
-<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;     Aper Bahe Rict Cleuco Dmic Dmin Hpoly Lfur Pbar Polf Pmelano Sduar Shay Sobt Ssqual Bokerm</span>
@@ -332,7 +332,7 @@ Figura 9.3: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
 </p>
 </div>
 <p>É possível notar que existe um único grupo com BS &gt; 95%. Agora vamos tentar usar a distância de <em>Hellinger</em>, que é recomendada (junto com a distância de <em>Chord</em>) para transformar dados de composição de espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2001" role="doc-biblioref">Legendre and Gallagher 2001</a>)</span> (Figura <a href="cap9.html#fig:fig-dend-boot-hell">9.4</a>).</p>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Passo 1: transformar dados com Hellinger</span>
 <span class="va">bocaina_transf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/disttransform.html">disttransform</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">bocaina</span><span class="op">)</span>, <span class="st">"hellinger"</span><span class="op">)</span>
 
@@ -383,7 +383,7 @@ Neste caso, estamos realizando uma análise exploratória e não temos uma predi
 </ul>
 <p><strong>Análises</strong></p>
 <p>Vamos iniciar selecionando e padronizando os dados.</p>
-<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mostrar somente seis primeiras espécies de seis localidades</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">doubs</span><span class="op">$</span><span class="va">fish</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;   Cogo Satr Phph Neba Thth Teso</span>
@@ -405,7 +405,7 @@ Neste caso, estamos realizando uma análise exploratória e não temos uma predi
 <span class="co">## Função do pacote vegan para normalizar os dados</span>
 <span class="va">spe.norm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">spe</span>, method <span class="op">=</span> <span class="st">"normalize"</span><span class="op">)</span> </code></pre></div>
 <p>O argumento <code>centers</code> na função <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code> indica o número de grupos que se quer formar. Neste exemplo, estamos utilizando <code>centers = 4</code>.</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## K-Means</span>
 <span class="va">spe.kmeans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">spe.norm</span>, centers <span class="op">=</span> <span class="fl">4</span>, nstart <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="va">spe.kmeans</span>
@@ -442,11 +442,11 @@ Neste caso, estamos realizando uma análise exploratória e não temos uma predi
 <span class="co">#&gt; [8] "iter"         "ifault"</span></code></pre></div>
 <p>O objeto que fornece o resultado contém: i) o tamanho (número de objetos) em cada um dos 4 grupos, ii) o centroide de cada grupo e o pertencimento de cada espécie a cada grupo, e iii) o quanto da Soma de Quadrados dos dados é explicada por esta conformação de grupos.</p>
 <p>No entanto, não é possível saber <em>a priori</em> qual o número “ideal” de grupos. Para descobrir isso, repetimos o <em>k-means</em> com uma série de valores de <strong>K</strong>. Isso pode ser feito na função <code><a href="https://rdrr.io/pkg/vegan/man/cascadeKM.html">cascadeKM()</a></code>.</p>
-<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Repetindo o K-Means</span>
 <span class="va">spe.KM.cascade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cascadeKM.html">cascadeKM</a></span><span class="op">(</span><span class="va">spe.norm</span>, inf.gr <span class="op">=</span> <span class="fl">2</span>, sup.gr <span class="op">=</span> <span class="fl">10</span>, iter <span class="op">=</span> <span class="fl">100</span>, criterion <span class="op">=</span> <span class="st">"ssi"</span><span class="op">)</span> </code></pre></div>
 <p>Tanto <strong>calinski</strong> quando <strong>ssi</strong> são bons critérios para encontrar o número ideal de grupos. Quanto maior o valor de <strong>ssi</strong>, melhor (veja <code>?cascadeKM()</code> mais detalhes). Os valores de ssi é o critério utilizado pelo algoritimo para achar o agrupamento ótimo dos objetos (Figura <a href="cap9.html#fig:fig-kmeans">9.5</a>).</p>
-<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resumo dos resultados</span>
 <span class="va">spe.KM.cascade</span><span class="op">$</span><span class="va">results</span>
 <span class="co">#&gt;      2 groups  3 groups  4 groups  5 groups   6 groups  7 groups  8 groups  9 groups 10 groups</span>
@@ -495,7 +495,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 </ul>
 <p><strong>Análises</strong></p>
 <p>O IndVal está disponível tanto no pacote <code>indicspecies</code>, quando no <code>labdsv</code>. Para este exemplo, iremos usar o <code>labdsv</code>. Primeiro, vamos agrupar as unidades amostrais (poças) que informa os grupos de fitofisionomias onde as poças se localizam e para os quais deseja-se encontrar espécies indicadoras.</p>
-<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bocaina</span><span class="op">)</span>
 <span class="co">#&gt;         BP4  PP4 PP3  AP1 AP2 PP1 PP2 BP9  PT1 PT2 PT3 BP2 PT5</span>
@@ -530,7 +530,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <span class="co">#&gt; 1 2 </span>
 <span class="co">#&gt; 2 1</span></code></pre></div>
 <p>Para apresentar uma tabela dos resultados para todas as espécies temos de processar os dados.</p>
-<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resultados</span>
 <span class="va">tab_indval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span>maxcls <span class="op">=</span> <span class="va">res_indval</span><span class="op">$</span><span class="va">maxcls</span>,
                                ind.value <span class="op">=</span> <span class="va">res_indval</span><span class="op">$</span><span class="va">indcls</span>,
@@ -752,7 +752,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 </tbody>
 </table></div>
 <p>O primeiro passo da PCA é obter uma matriz centralizada, onde cada valor é subtraído da média da coluna que aquele valor pertence. Esta centralização pode ser calculada com a função <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code>.</p>
-<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="va">aranhas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
     sp1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
@@ -765,7 +765,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <span class="co">## Centralização</span>
 <span class="va">aranha.cent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">aranhas</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>O segundo passo é calcular uma matriz de covariância (ou matriz de dispersão) e, a partir desta matriz, obter os autovalores e autovetores. <strong>Os autovalores</strong> representam a porcentagem de explicação de cada eixo e podem ser calculados dividindo a soma do autovalor de cada eixo pela soma de todos os autovalores. No exemplo que apresentamos, os dois primeiros eixos representam 47,20% e 35,01% de toda variação, respectivamente. <strong>Os autovetores</strong>, por sua vez, representam os valores que multiplicam as variáveis originais e, desse modo, indicam a direção desses valores. Por fim, os componentes principais (Matriz F) são obtidos multiplicando os autovetores com os valores da matriz centralizada.</p>
-<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Matriz de covaiância</span>
 <span class="va">matriz_cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">aranha.cent</span><span class="op">)</span>
 
@@ -803,7 +803,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="va">autovalores</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">autovalores</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 47.201691 35.008126 12.135225  3.807112  1.847846</span></code></pre></div>
 <p>Agora, é possível visualizar a relação entre as cidades e similaridade nas espécies de aranhas que vivem em cada uma delas (Figura <a href="cap9.html#fig:fig-pca">9.6</a>).</p>
-<div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">matriz_F</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PC1</span>, y <span class="op">=</span> <span class="va">PC2</span>, label <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">matriz_F</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
@@ -839,7 +839,7 @@ Figura 9.6: Biplot da PCA ordenando as cidades pela composição das espécies d
 </ul>
 <p><strong>Análises</strong></p>
 <p>Antes de começar, é necessário remover dados ausentes (se houver) e editar nomes das variáveis (ponto importante para determinar como devem aparecer no gráfico).</p>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb365"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar se existem NAs nos dados</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 19</span>
@@ -850,7 +850,7 @@ Figura 9.6: Biplot da PCA ordenando as cidades pela composição das espécies d
 <span class="co">## Manter somentes dados contínuos que pretende aplicar a PCA</span>
 <span class="va">penguins_trait</span> <span class="op">&lt;-</span> <span class="va">penguins</span><span class="op">[</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></code></pre></div>
 <p>Agora sim, os dados estão prontos para fazer a PCA. Um argumento é essencial na análise, o <code>scale.unit</code>. Se você utilizar dentro deste argumento a seleção <code>TRUE</code>, a função padroniza automaticamente as variáveis para terem a média 0 e variância 1. Esta padronização é essencial quando as variáveis estão em escalas muito diferentes. No exemplo selecionado, temos variáveis como comprimento do bico (em milímetros) e massa corporal (em gramas).</p>
-<div class="sourceCode" id="cb365"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Compare com este código a variância das variáveis</span>
 <span class="va">penguins_trait</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, 
@@ -871,7 +871,7 @@ Figura 9.6: Biplot da PCA ordenando as cidades pela composição das espécies d
 <span class="co">## PCA</span>
 <span class="va">pca.p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/PCA.html">PCA</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">penguins_trait</span>, scale.unit <span class="op">=</span> <span class="cn">TRUE</span>, graph <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Apesar da simplicidade do código para executar a PCA, o objeto resultante da análise possui diversas informações que são essenciais para sua plena interpretação. Dentre elas, se destacam os autovalores, escores e cargas (<em>loadings</em>). Os autovalores representam a porcentagem de explicação de cada eixo. Os escores representam as coordenadas (posições no espaço multidimensional) representando os objetos (geralmente localidades ou indivíduos) e descritores (geralmente espécies ou variáveis ambientais e espaciais). Os <em>loadings</em>, por sua vez, representam a combinação linear entre os escores (nova posição do valor do descritor no espaço ordenado) e os valores originais dos descritores (Figura <a href="cap9.html#fig:fig-pca-scree">9.7</a>).</p>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Autovalores: porcentagem de explicação para usar no gráfico</span>
 <span class="va">pca.p</span><span class="op">$</span><span class="va">eig</span> 
 <span class="co">#&gt;        eigenvalue percentage of variance cumulative percentage of variance</span>
@@ -929,7 +929,7 @@ Figura 9.7: Scree plot mostrando a porcentagem de contribuição de cada eixo pa
 </p>
 </div>
 <p>O pacote <code>FactoMineR</code> criou uma função (<code><a href="https://rdrr.io/pkg/FactoMineR/man/dimdesc.html">dimdesc()</a></code>) que seleciona as melhores variáveis (aquelas mais explicativas) para cada eixo através de uma análise fatorial. No exemplo com pinguins, o primeiro eixo (objeto <code>pca.p$eig</code>) explica ~69% da variação morfológica. A função <code><a href="https://rdrr.io/pkg/FactoMineR/man/dimdesc.html">dimdesc()</a></code> mostra que as quatro variáveis morfológicas estão fortemente associadas com o eixo 1. Porém, enquanto comprimento da nadadeira, massa corporal e comprimento do bico estão positivamente associados com o eixo 1 (correlação positiva), a largura do bico tem relação negativa. O eixo 2, por sua vez, explica ~20% da variação, sendo relacionado somente com largura e comprimento do bico.</p>
-<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Variáveis mais importantes para o Eixo 1</span>
 <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/dimdesc.html">dimdesc</a></span><span class="op">(</span><span class="va">pca.p</span><span class="op">)</span><span class="op">$</span><span class="va">Dim.1</span> 
 <span class="co">#&gt; $quanti</span>
@@ -952,7 +952,7 @@ Figura 9.7: Scree plot mostrando a porcentagem de contribuição de cada eixo pa
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "condes" "list"</span></code></pre></div>
 <p>Agora podemos utilizar o famoso <strong>biplot</strong> para representar a comparação morfológica dos pinguins dentro e entre espécies (Figura <a href="cap9.html#fig:fig-pca-biplot">9.8</a>).</p>
-<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_pca.html">fviz_pca_biplot</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">pca.p</span>, 
                 geom.ind <span class="op">=</span> <span class="st">"point"</span>, 
                 fill.ind <span class="op">=</span> <span class="va">penguins</span><span class="op">$</span><span class="va">especies</span>, 
@@ -1005,7 +1005,7 @@ Figura 9.8: Biplot da PCA ordenando os dados morfológicos de penguins.
 </ul>
 <p><strong>Análises</strong></p>
 <p>Vamos primeiramente padronizar dos dados, calcular uma matriz de distância com método <em>Bray-Curtis</em> e depois calcular a PCoA.</p>
-<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Padronização dos dados com Hellinger</span>
 <span class="va">mite.hel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mite</span>, method <span class="op">=</span> <span class="st">"hellinger"</span><span class="op">)</span> 
 
@@ -1015,7 +1015,7 @@ Figura 9.8: Biplot da PCA ordenando os dados morfológicos de penguins.
 <span class="co">## PCoA</span>
 <span class="va">pcoa.sps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/pcoa.html">pcoa</a></span><span class="op">(</span>D <span class="op">=</span> <span class="va">sps.dis</span>, correction <span class="op">=</span> <span class="st">"cailliez"</span><span class="op">)</span></code></pre></div>
 <p>Assim como na PCA, a porcentagem de explicação dos eixos é uma das informações mais importantes pois descrevem a efetividade da redução da dimensionalidade dos dados.</p>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Porcentagem de explicação do Eixo 1</span>
 <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="va">pcoa.sps</span><span class="op">$</span><span class="va">values</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">pcoa.sps</span><span class="op">$</span><span class="va">trace</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; [1] 49.10564</span>
@@ -1034,7 +1034,7 @@ Figura 9.8: Biplot da PCA ordenando os dados morfológicos de penguins.
 <span class="co">## Juntar com algum dado categórico de interesse para fazer a figura</span>
 <span class="va">pcoa.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>topografia <span class="op">=</span> <span class="va">mite.env</span><span class="op">$</span><span class="va">Topo</span>, <span class="va">eixos</span><span class="op">)</span></code></pre></div>
 <p>Para visualizar os resultados da PCoA, vamos exportar os escores dos eixos para usar no pacote <code>ggplot2</code> (Figura <a href="cap9.html#fig:fig-pcoa-biplot">9.9</a>).</p>
-<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Escores dos dois primeiros eixos</span>
 <span class="va">eixos</span> <span class="op">&lt;-</span> <span class="va">pcoa.sps</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> 
 
@@ -1086,7 +1086,7 @@ Figura 9.9: Biplot da PCoA ordenando as espécies de ácaros entre diferentes to
 <li>Preditora: temperatura e chuva (contínuas) e altitude (categórica com três níveis)</li>
 <li>Dependentes: riqueza de espécies de aves</li>
 </ul>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="va">env_cont</span> <span class="op">&lt;-</span> <span class="va">env</span><span class="op">[</span>,<span class="op">-</span><span class="fl">8</span><span class="op">]</span>
 <span class="va">env.pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/PCA.html">PCA</a></span><span class="op">(</span><span class="va">env_cont</span>, scale.unit <span class="op">=</span> <span class="cn">TRUE</span>, graph <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -1124,7 +1124,7 @@ Figura 9.9: Biplot da PCoA ordenando as espécies de ácaros entre diferentes to
 <span class="co">#&gt; comp 6 0.04312874              0.6161248                          99.62790</span>
 <span class="co">#&gt; comp 7 0.02604718              0.3721025                         100.00000</span></code></pre></div>
 <p>O objeto <code>env.pca$eig</code> demonstra que os três primeiros eixos explicam 94.54% da variação total dos dados climáticos. O intuito da PCR é reduzir a dimensionalidade, ou seja, o número de variáveis preditoras ou dependentes para facilitar a interpretação e garantir que as variáveis não sejam correlacionadas. O próximo passo então é obter os valores dos escores que representam os valores convertidos para serem usados em uma determinada análise, como a regressão múltipla.</p>
-<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Passo 1: obter os primeiros eixos </span>
 <span class="va">pred.env</span> <span class="op">&lt;-</span> <span class="va">ind_env</span><span class="op">$</span><span class="va">coord</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> 
 
@@ -1134,7 +1134,7 @@ Figura 9.9: Biplot da PCoA ordenando as espécies de ácaros entre diferentes to
 <span class="co">## Passo 3: combinar os dois valores em um único data.frame</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">pred.env</span>, <span class="va">riqueza</span><span class="op">)</span> </code></pre></div>
 <p>Agora que os dados foram combinados em uma única data frame, podemos utilizar os códigos apresentados no Capítulo <a href="cap7.html#cap7">7</a> para testar nossa hipótese (Figura <a href="cap9.html#fig:fig-pcr-aves-diag">9.10</a>).</p>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Regressão múltipla</span>
 <span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">riqueza</span> <span class="op">~</span> <span class="va">Dim.1</span> <span class="op">+</span> <span class="va">Dim.2</span> <span class="op">+</span> <span class="va">Dim.3</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
@@ -1181,7 +1181,7 @@ Figura 9.10: Diagnósticos dos modelo PCR para aves.
 </p>
 </div>
 <p>Como percebemos, a Dim.1 foi o único gradiente ambiental que afetou a riqueza de espécies. Para interpretar esta dimensão (e outras importantes), podemos usar a função <code><a href="https://rdrr.io/pkg/FactoMineR/man/dimdesc.html">dimdesc()</a></code> para verificar as variáveis mais importantes. Neste caso, os valores mais extremos de correlação (maior que 0.8) indicam que a temperatura do mês de janeiro e julho bem como a chuva do mês de julho foram as variáveis mais importantes para determinar o gradiente ambiental expresso na dimensão 1. Assim, podemos fazer um gráfico para representar a relação entre Eixo 1 (gradiente chuva-temperatura) e a riqueza de espécies de aves. Valores negativos do eixo 1 (Gradiente ambiental - PC1) representam localidades com mais chuva, ao passo que valores positivos indicam localidades com temperaturas maiores (Figura <a href="cap9.html#fig:fig-pcr-aves-model">9.11</a>).</p>
-<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Dim.1</span>, y <span class="op">=</span> <span class="va">riqueza</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, fill <span class="op">=</span> <span class="st">"#525252"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">21</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, color <span class="op">=</span> <span class="st">"#1a1a1a"</span>, fill <span class="op">=</span> <span class="st">"cyan4"</span><span class="op">)</span> <span class="op">+</span>
@@ -1209,7 +1209,7 @@ Figura 9.11: Modelo linear representando a relação entre Eixo 1 (gradiente chu
 <li>Dependentes: riqueza de espécies de ácaros</li>
 </ul>
 <p>O primeiro passo então é utilizar um método de distância apropriado para o seu conjunto de dados. Em nosso exemplo, utilizaremos a distância de Gower, que é usada para dados mistos (veja Capítulo <a href="cap14.html#cap14">14</a>).</p>
-<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Matriz de distância</span>
 <span class="va">env.dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FD/man/gowdis.html">gowdis</a></span><span class="op">(</span><span class="va">mite.env</span><span class="op">)</span>
 
@@ -1224,7 +1224,7 @@ Figura 9.11: Modelo linear representando a relação entre Eixo 1 (gradiente chu
 <span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="va">env.mite.pco</span><span class="op">$</span><span class="va">values</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">env.mite.pco</span><span class="op">$</span><span class="va">trace</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
 <span class="co">#&gt; [1] 32.15486</span></code></pre></div>
 <p>O próximo passo é exportar os escores para as análises <em>a posteriori</em> (Figura <a href="cap9.html#fig:fig-pcr-acaros-diag">9.12</a>).</p>
-<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Selecionar os dois primeiros eixos</span>
 <span class="va">pred.scores.mite</span> <span class="op">&lt;-</span> <span class="va">env.mite.pco</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> 
 
@@ -1263,7 +1263,7 @@ Figura 9.12: Diagnósticos dos modelo PCR para ácaros.
 </p>
 </div>
 <p>Finalmente, após interpretar os resultados do modelo, podemos fazer a figura com as variáveis (eixos) importantes (Figura <a href="cap9.html#fig:fig-pcr-acaros-model">9.13</a>).</p>
-<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">g_acari_axi1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pred.vars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Axis.1</span>, y <span class="op">=</span> <span class="va">riqueza</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, fill <span class="op">=</span> <span class="st">"#525252"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">21</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, color <span class="op">=</span> <span class="st">"#1a1a1a"</span>, fill<span class="op">=</span><span class="st">"cyan4"</span><span class="op">)</span> <span class="op">+</span> 
@@ -1318,7 +1318,7 @@ Figura 9.13: Modelo linear representando a relação entre Eixo 1 e Eixo 2 e a r
 <li>Dependente: composição de espécies de aves</li>
 </ul>
 <p><strong>Análises</strong></p>
-<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Passo 1: transformação de hellinger da matriz de espécies</span>
 <span class="co"># caso tenha dados de abundância.</span>
 <span class="va">species.hel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, method <span class="op">=</span> <span class="st">"hellinger"</span><span class="op">)</span>
@@ -1343,7 +1343,7 @@ Figura 9.13: Modelo linear representando a relação entre Eixo 1 e Eixo 2 e a r
 <span class="co">## Matriz final com variáveis preditoras</span>
 <span class="va">env.pad.cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">env.pad</span>, altitude <span class="op">=</span> <span class="va">env</span><span class="op">$</span><span class="va">altitude</span><span class="op">)</span></code></pre></div>
 <p>Depois de selecionar um subconjunto dos dados com o método <em>Forward Selection</em> e padronizá-los (média 0 e desvio padrão 1), o modelo da RDA é construído como modelos lineares (Figura <a href="cap9.html#fig:fig-rda">9.14</a>). A Ordenação Multi-Escala (MSO) também é ajustada para analisar a autocorrelação espacial.</p>
-<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## RDA com dados selecionados e padronizados</span>
 <span class="va">rda.bird</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cca.html">rda</a></span><span class="op">(</span><span class="va">species.hel</span> <span class="op">~</span> <span class="va">rain.jul</span> <span class="op">+</span> <span class="va">maxi.jul</span> <span class="op">+</span> <span class="va">altitude</span>, data <span class="op">=</span> <span class="va">env.pad.cat</span><span class="op">)</span>
 
@@ -1402,7 +1402,7 @@ Figura 9.14: Ordenação multi-escala (MSO) para entender os resultados da orden
 </p>
 </div>
 <p>Da mesma forma que nas ordenações irrestritas, podemos fazer um gráfico para visualizar as ordenações, mas agora esse gráfico é denominado “triplot”, pois possui os dados das duas ordenações (Figura <a href="cap9.html#fig:fig-rda-triplot">9.15</a>).</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Triplot da RDA</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggord/man/ggord.html">ggord</a></span><span class="op">(</span><span class="va">rda.bird</span>, ptslab <span class="op">=</span> <span class="cn">TRUE</span>, size <span class="op">=</span> <span class="fl">1</span>, addsize <span class="op">=</span> <span class="fl">3</span>, repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
@@ -1424,7 +1424,7 @@ Figura 9.15: Triplot da RDA.
 <p>Um dos problemas da abordagem anterior é que tanto a composição de espécies como as variáveis ambientais estão estruturadas espacialmente. Talvez mais importantes, para que os valores de probabilidade da RDA sejam interpretados corretamente (e para evitar Erro do Tipo I), os resíduos do modelo não devem estar correlacionados espacialmente, como demonstrado com a análise MSO. Uma alternativa é incluir a matriz de dados espaciais (matrix W) como valor condicional dentro da RDA. Esta análise é conhecida como RDA parcial.</p>
 <p>Porém, a obtenção dos dados espaciais da matriz W é mais complexo do que simplesmente incluir dados de localização geográfica (latitude e longitude), como feito em alguns modelos lineares (e.g., <em>Generalized Least Squares</em> - GLS Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap10.html#cap10">10</a>). Existem diversas ferramentas que descrevem e incorporam o componente espacial em métodos multidimensionais, mas os Mapas de Autovetores de Moran (MEM) são certamente os mais utilizados <span class="citation">(<a href="refer%C3%AAncias.html#ref-dray_community_2012" role="doc-biblioref">Dray et al. 2012</a>)</span>. A análise MEM consiste na ordenação (PCoA) de uma matriz truncada obtida através da localização geográfica das localidades utilizando distância euclidiana, matriz de conectividade e matriz espacial ponderada. Os autovalores obtidos no MEM são idênticos aos coeficientes de correlação espacial de Moran <em>I</em>. Um procedimento chave desta análise é a definição de um limiar de trucamento (do inglês <em>truncate threshold</em>). Este limiar é calculado a partir de uma “árvore de espaço mínimo” (<em>Minimum Spanning Tree</em> - MST) que conecta todos os pontos de coleta. Na prática, pontos com valores menores do que o limiar definido pela MST indicam que eles estão conectados e, assim possuem correlação positiva. Outro ponto importante desta análise é a obtenção da matriz espacial ponderada (<em>Spatial Weighting Matrix</em> - SWM). A seleção da matriz SWM é parte essencial do cálculo dos MEM e não deve ser feita arbitrariamente <span class="citation">(<a href="refer%C3%AAncias.html#ref-bauman_optimizing_2018" role="doc-biblioref">Bauman, Drouet, Fortin, et al. 2018</a>)</span>. Por este motivo, a análise recebe este nome <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_numerical_2012" role="doc-biblioref">Legendre and Legendre 2012</a>)</span>. Finalmente, o método produz autovetores que representam preditores espaciais que podem ser utilizados na RDA parcial (e em outras análises). É importante ressaltar que o critério de seleção do número de autovetores é bastante debatido na literatura e, para isso, sugerimos a leitura dos seguintes artigos: <span class="citation">(<a href="refer%C3%AAncias.html#ref-diniz-filho_spatial_2012" role="doc-biblioref">Diniz-Filho et al. 2012</a>; <a href="refer%C3%AAncias.html#ref-bauman_optimizing_2018" role="doc-biblioref">Bauman, Drouet, Fortin, et al. 2018</a>; <a href="refer%C3%AAncias.html#ref-bauman_disentangling_2018" role="doc-biblioref">Bauman, Drouet, Dray, et al. 2018</a>)</span>.</p>
 <p>Então, o primeiro passo para realizar uma RDA parcial é de gerar os autovetores espaciais (MEMs).</p>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="co"># Matriz padronizada de composição de espécies. </span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">species.hel</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> 
@@ -1499,7 +1499,7 @@ Figura 9.15: Triplot da RDA.
 <span class="co">## É necessário atribuir os nomes das linhas</span>
 <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">spatial.pred</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span> </code></pre></div>
 <p>Depois de gerar os valores dos autovetores espaciais (MEM), é possível executar a RDA parcial utilizando esses valores no argumento <code>Conditional</code>.</p>
-<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Combinar variáveis ambientais e espaciais em um único data.frame</span>
 <span class="va">pred.vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">env.pad.cat</span>, <span class="va">spatial.pred</span><span class="op">)</span>
 
@@ -1548,7 +1548,7 @@ Figura 9.15: Triplot da RDA.
 <span class="co">#&gt; $adj.r.squared</span>
 <span class="co">#&gt; [1] 0.02330319</span></code></pre></div>
 <p>Se você comparar os resultados do objeto res.p.var (RDA parcial) com res.var (RDA simples) é possível perceber como a estrutura espacial nos resíduos aumenta a probabilidade de cometer Erro do Tipo I. O modelo da RDA parcial mostra que não existem qualquer efeito direto das variáveis ambientais sobre a composição de espécies (conclusão com a RDA simples). Na verdade, tanto a composição de espécies quanto as variáveis climáticas estão fortemente estruturadas no espaço, como demonstramos a seguir.</p>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Padrão espacial na composição de espécies</span>
 <span class="va">pca.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/dudi.pca.html">dudi.pca</a></span><span class="op">(</span><span class="va">species.hel</span>, scale <span class="op">=</span> <span class="cn">FALSE</span>, scannf <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">moran.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.mc.html">moran.mc</a></span><span class="op">(</span><span class="va">pca.comp</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">mat_listw</span>, <span class="fl">999</span><span class="op">)</span>
@@ -1582,7 +1582,7 @@ Figura 9.15: Triplot da RDA.
 <span class="co">#&gt; statistic = 0.72714, observed rank = 1000, p-value = 0.001</span>
 <span class="co">#&gt; alternative hypothesis: greater</span></code></pre></div>
 <p>Como resultado, é possível que a variação ambiental espacialmente estruturada seja o principal efeito sobre a composição de espécies. Uma maneira de visualizar a contribuição relativa de diferentes matrizes (ambiental e espacial, por exemplo) é utilizar o método de partição de variância. O resultado deste modelo indica que, de fato, não existe efeito direto das variáveis ambientais e sim do componente representado pela autocorrelação espacial dessas variáveis (Figura <a href="cap9.html#fig:fig-rda-parcial">9.16</a>).</p>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Triplot da RDA</span>
 <span class="co"># Partição de variância.</span>
 <span class="va">pv.birds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/varpart.html">varpart</a></span><span class="op">(</span><span class="va">species.hel</span>, <span class="va">env.pad.cat</span>, <span class="va">spatial.pred</span><span class="op">)</span>
@@ -1602,7 +1602,7 @@ Figura 9.16: Diagrama de Venn mostrando a partição de variância da RDA.
 <p>Acima, apresentamos a análise RDA que permite comparar, por exemplo, se variáveis ambientais determinam a variação na composição de espécies. A RDA utiliza os dados brutos de composição de espécies e é baseada em uma PCA (i.e., requer distância euclidiana). Porém, em algumas situações é necessário utilizar outras medidas de distância tais como <em>Bray-Curtis</em> ou Gower. Esta análise é bastante útil também quando a matriz resposta já é uma matriz de distância, tais como as que são geradas por decomposição da diversidade beta. Neste caso, Legendre &amp; Anderson <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre_distance-based_1999" role="doc-biblioref">1999</a>)</span> propuseram a análise db-RDA (RDA baseada em distância). O primeiro passo da análise é gerar uma matriz de distância a partir da matriz bruta (e.g., composição de espécies). Depois, a técnica executa uma PCoA (corrigindo potenciais autovetores com autovalores negativos; ver discussão acima) para comparar com os termos do modelo (matriz <strong>X</strong>, como na RDA).
 Para exemplificar como esta análise pode ser implementada no R, vamos usar o mesmo exemplo demonstrado na análise RDA (ver acima). Porém, vamos fazer um ajuste sutil na pergunta “o clima e a altitude modificam a dissimilaridade (diversidade beta) de espécies de aves?”. Veja que neste caso, estamos perguntando diretamente sobre uma medida de diversidade beta, que será calculada com o método <em>Bray-Curtis</em>. As variáveis preditoras serão as mesmas obtidas no exemplo da RDA: <code>env.pad.cat</code>.</p>
 <p><strong>Análise</strong></p>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Passo 1: transformação de hellinger da matriz de espécies</span>
 <span class="co"># caso tenha dados de abundância.</span>
 <span class="va">species.hel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">species</span>, <span class="st">"hellinger"</span><span class="op">)</span>
@@ -1694,14 +1694,14 @@ Para exemplificar como esta análise pode ser implementada no R, vamos usar o me
 <li>Preditoras: Temperatura e chuva (contínuas) e altitude (categórica com três níveis)</li>
 <li>Dependente: composição de espécies de aves</li>
 </ul>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Composição de espécies padronizar com método de Hellinger</span>
 <span class="va">species.hel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, method <span class="op">=</span> <span class="st">"hellinger"</span><span class="op">)</span>
 
 <span class="co">## Matriz de distância com método Bray-Curtis</span>
 <span class="va">sps.dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species.hel</span>, method <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></code></pre></div>
 <p>Para reduzir o número de variáveis no modelo, você pode considerar duas abordagens. A primeira, e mais importante delas, é manter somente variáveis preditoras que você tenha razão biológica para mantê-la e, além disso, que esteja relacionada com suas hipóteses. Assim, uma vez que você já removeu variáveis que não possuem relevância biológica, você deve usar diferentes métodos para remover as variáveis muito correlacionadas (<em>forward selection</em>, <em>Variance Inflation Factor (VIF)</em>, entre outros). Neste exemplo, vamos simplesmente fazer uma correlação múltipla e remover as variáveis com correlação maior do que 0.9 ou -0.9. A função <code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs()</a></code> mostra um gráfico bem didático para representar a relação entre todas as variáveis e o valor (r) desta correlação (mais em Capítulo <a href="cap7.html#cap7">7</a>) (Figura <a href="cap9.html#fig:fig-permanova-prev">9.17</a>).</p>
-<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verifica correlação entre as variáveis</span>
 <span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">env</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu">tema_livro</span><span class="op">(</span><span class="op">)</span>
@@ -1715,7 +1715,7 @@ Figura 9.17: Correlograma mostrando a correlação entre as variáveis.
 </p>
 </div>
 <p>Após selecionar as variáveis do modelo, vamos executar a PERMANOVA e entender as principais etapas para interpretar corretamente o teste. A função <code><a href="https://rdrr.io/pkg/vegan/man/vegan-deprecated.html">adonis()</a></code> do pacote <code>vegan</code> é uma boa opção. Porém, é importante referir o programa PRIMER e PERMANOVA+ como ótima opção para implementar a PERMANOVA e ter maior controle em desenhos complexos <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova+_2008" role="doc-biblioref">M. J. Anderson, Gorley, and Clarke 2008</a>)</span>. Assim como nos modelos lineares apresentados no Capítulo <a href="cap7.html#cap7">7</a>, os argumentos seguem o mesmo formato, com variável dependente separada por um “~” das variáveis preditoras. Porém, alguns autores demonstraram que a PERMANOVA (assim como Mantel e ANOSIM) não pode identificar se diferenças significativas do teste (usando a estatística <em>pseudo-F</em>) devem-se à diferenças no posição, na dispersão ou ambos. Ou seja, ao comparar grupos não é possível identificar se existe mudanças de composição (posição) ou se a variação da composição de espécies dentro de um grupo (dispersão) é maior do que a variação dentro do outro grupo <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova_2013" role="doc-biblioref">M. J. Anderson and Walsh 2013</a>)</span>. Para solucionar este problema, é possível combinar a PERMANOVA com a análise PERMDISP (ou BETADISPER, como chamado no pacote <code>vegan</code> implementado através da função <code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html">betadisper()</a></code>). Esta análise permite comparar se existe heterogeneidade nas variâncias entre grupos. Deste modo, com a presença de heterogeneidade de variâncias (valor do BETADISPER significativo), é possível saber que as diferenças entre os grupos ocorrem principalmente por diferenças na dispersão e não, necessariamente, de posição. Mais detalhes sobre a relevância de combinar essas duas análises estão disponíveis em Anderson &amp; Walsh <span class="citation">(<a href="refer%C3%AAncias.html#ref-anderson_permanova_2013" role="doc-biblioref">2013</a>)</span>.</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## PERMANOVA</span>
 <span class="va">perm.aves</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/adonis.html">adonis2</a></span><span class="op">(</span><span class="va">sps.dis</span> <span class="op">~</span> <span class="va">mini.jan</span> <span class="op">+</span> <span class="va">rain.tot</span> <span class="op">+</span> <span class="va">altitude</span>, data <span class="op">=</span> <span class="va">env2</span><span class="op">)</span>
 <span class="va">perm.aves</span> <span class="co">### Diferenças entre os tratamentos?</span>
@@ -1748,7 +1748,7 @@ Figura 9.17: Correlograma mostrando a correlação entre as variáveis.
 <span class="co">#&gt; Residuals 20 0.0290636 0.0014532</span></code></pre></div>
 <p>Em nosso exemplo, a temperatura, precipitação e altitude afetaram a variação na composição de espécies. Porém, para identificar se as diferenças de composição entre os níveis da variável altitude, é necessário interpretar os resultados da análise BETADISPER. O código <code>permutest(betad.aves)</code> mostra que o valor de probabilidade da análise foi de 0.253, ou seja, a hipótese nula de que a variância entre grupos é homogênea é aceita. Assim, não existe diferenças na dispersão entre grupos, sugerindo que a diferença encontrada na PERMANOVA (objeto <code>perm.aves</code>) se deve, em parte, à mudança na composição de espécies de aves entre diferentes altitudes (R<sup>2</sup> = 0.135). Além disso, a precipitação (R<sup>2</sup> = 0.183) e temperatura (R<sup>2</sup> = 0.127) foram fatores importantes na variação da composição de espécies.</p>
 <p>Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA. A literatura ecológica tem usado a Análise de Escalonamento não-Métrico (<em>non-Metric Multidimensional Scaling</em> - nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros (Figura <a href="cap9.html#fig:fig-nmds">9.18</a>).</p>
-<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Matriz de distância representando a variação na composição de espécies (método Bray-Curtis)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">sps.dis</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;           S01        S02        S03       S04       S05       S06</span>
@@ -1892,7 +1892,7 @@ Figura 9.18: Biplot mostrando o resultado do nMDS.
 </ul>
 <p><strong>Análises</strong></p>
 <p>Aqui vamos utilizar além do conjunto de dados <code>bocaina</code> já conhecido, outras duas matrizes disponíveis no pacote <code>ecodados</code>: <code>bocaina.xy</code> e <code>bocaina.env</code>, que contêm as coordenadas geográficas e variáveis ambientais das poças, respectivamente.</p>
-<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bocaina.env</span><span class="op">)</span>
 <span class="co">#&gt;       pH  tur   DO  temp veg  dep canopy conduc hydro area</span>
@@ -1922,7 +1922,7 @@ Figura 9.18: Biplot mostrando o resultado do nMDS.
 <span class="va">dissimil.bocaina</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">comp.bo.pad</span>, <span class="st">"bray"</span><span class="op">)</span>
 <span class="va">dissimil.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">env.bocaina</span>, <span class="st">"euclidian"</span><span class="op">)</span></code></pre></div>
 <p>Vamos verificar a correlação entre a distância geográfica em linha reta e a dissimilaridade ambiental (Figura <a href="cap9.html#fig:fig-mantel">9.19</a>)</p>
-<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mantel</span>
 <span class="co"># Espaço vs. ambiente</span>
 <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/mantel.html">mantel</a></span><span class="op">(</span><span class="va">Dist.km</span>, <span class="va">dissimil.env</span><span class="op">)</span> 
@@ -1958,7 +1958,7 @@ Figura 9.19: Relação das matrizes de (dis)similaridade dos dados.
 </p>
 </div>
 <p>Vamos verificar a correlação entre a distância geográfica em linha reta e a dissimilaridade na composição de espécies (Figura <a href="cap9.html#fig:fig-mantel1">9.20</a>)</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mantel</span>
 <span class="co"># Espaço vs. composição</span>
 <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/mantel.html">mantel</a></span><span class="op">(</span><span class="va">Dist.km</span>, <span class="va">dissimil.bocaina</span><span class="op">)</span> 
@@ -1994,7 +1994,7 @@ Figura 9.20: Relação das matrizes de (dis)similaridade dos dados.
 </p>
 </div>
 <p>Vamos verificar a correlação entre a dissimilaridade ambiental e a dissimilaridade na composição de espécies (Figura <a href="cap9.html#fig:fig-mantel2">9.21</a>)</p>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mantel</span>
 <span class="co"># Ambiente vs. composição</span>
 <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/mantel.html">mantel</a></span><span class="op">(</span><span class="va">dissimil.env</span>, <span class="va">dissimil.bocaina</span><span class="op">)</span> 
@@ -2032,7 +2032,7 @@ Figura 9.21: Relação das matrizes de (dis)similaridade dos dados.
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Os resultados mostraram que existe uma relação positiva, embora fraca, entre a dissimilaridade ambiental e a dissimilaridade na composição de espécies. Este resultado está de acordo com a nossa hipótese inicial. No entanto, vimos também que existe uma relação positiva e significativa entre a distância em linha reta entre as poças e a dissimilaridade ambiental. Logo, para de fato testar a relação entre o ambiente e a composição de espécies temos de levar em conta o espaço.</p>
 <p>Para isto temos de realizar um teste de Mantel Parcial.</p>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mantel Parcial</span>
 <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/mantel.html">mantel.partial</a></span><span class="op">(</span><span class="va">dissimil.bocaina</span>, <span class="va">dissimil.env</span>, <span class="va">Dist.km</span><span class="op">)</span> <span class="co">#comp. vs. ambiente controlando o espaço</span>
 <span class="co">#&gt; </span>
@@ -2058,7 +2058,7 @@ Figura 9.21: Relação das matrizes de (dis)similaridade dos dados.
 <p>Embora seja um tipo de análise bastante popular, o Mantel e a sua versão parcial parecem não ser muito adequadas para lidar com autocorrelação espacial. Os autores dos artigos abaixo sugerem inclusive que esse tipo de análise não é adequado para testar a maioria das hipóteses em Ecologia, incluindo diversidade beta. Esse é um tema bastante discutido na literatura e não vamos nos alongar muito sobre isso, mas referimos o(a) leitor(a) para os seguintes artigos chave: Legendre et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2015" role="doc-biblioref">2015</a>)</span>, Legendre &amp; Fortin <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2010" role="doc-biblioref">2010</a>)</span>, e Legendre <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2000" role="doc-biblioref">2000</a>)</span>.</p>
 <p>No entanto, Crabot et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-crabot2019" role="doc-biblioref">2019</a>)</span> propuseram uma modificação no teste que leva em conta autocorrelação espacial ao gerar o modelo nulo usado para o teste de hipótese. É utilizado um procedimento chamado <em>Moran Spectral Randomization</em> porque preserva a autocorrelação global medida por meio do I de Moran global. A grande vantagem é que este teste utiliza toda a flexibilidade dos <em>Moran Eigenvector Maps</em> (MEMs), que é apresentado na parte de RDA, permitindo analisar relações entre as matrizes em múltiplas escalas espaciais. Vejamos como o teste funciona.</p>
 <p>Primeiro precisamos construir um objeto com as duas matrizes que desejamos testar, no nosso caso composição de espécies e espaço. Depois precisamos construir explicitamente a nossa hipótese de relação espacial entre os locais por meio de uma rede de vizinhança. Esta rede é uma estrutura que nos dirá como (e eventualmente com qual intensidade) se há relação entre os locais. Aqui, entende-se que nos referimos à probabilidade de fluxo de indivíduos entre os locais.</p>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mantel</span>
 <span class="va">compos_espac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/mantel.randtest.html">mantel.randtest</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">dissimil.bocaina</span><span class="op">)</span>, <span class="va">Dist.km</span><span class="op">)</span>
 <span class="va">compos_espac</span>
@@ -2074,7 +2074,7 @@ Figura 9.21: Relação das matrizes de (dis)similaridade dos dados.
 <span class="co">#&gt;     Std.Obs Expectation    Variance </span>
 <span class="co">#&gt; 3.265589171 0.002421976 0.012933827</span></code></pre></div>
 <p>Note que até aqui não há nada de novo, apenas utilizamos uma função diferente para realizar o teste de Mantel, agora no pacote <code>ade4</code> ao invés do <code>vegan</code>. Agora temos de construir a nossa rede de vizinhança. Optamos neste exemplo por uma rede bastante simples, que é a <em>Minimum Spanning Tree</em>. Essa é a rede espacial mínima que mantém todos os pontos ligados entre si (Figura <a href="cap9.html#fig:fig-mantel-espacial">9.22</a>).</p>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Minimum Spanning Tree</span>
 <span class="va">nb.boc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/adespatial/man/mst.nb.html">mst.nb</a></span><span class="op">(</span><span class="va">Dist.km</span><span class="op">)</span> <span class="co"># calcula uma Minimum Spanning Tree</span>
 <span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">nb.boc</span>, <span class="va">bocaina.xy</span><span class="op">)</span></code></pre></div>
@@ -2085,7 +2085,7 @@ Figura 9.22: Rede de vizinhança com a <em>Minimum Spanning Tree</em>
 </p>
 </div>
 <p>No gráfico, podemos ver a “cara” da rede. Cada ponto representa um local (poça) e as linhas representam a ligação hipotética entre eles, plotamos no espaço geográfico, ou seja, o Norte aponta pra cima. Agora temos apenas que converter o formato <code>nb</code> para <code>listw</code> e finalmente entrar com esses objetos na função que realizará a análise.</p>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Conversão</span>
 <span class="va">lw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">nb.boc</span><span class="op">)</span>
 
@@ -2104,7 +2104,7 @@ Figura 9.22: Rede de vizinhança com a <em>Minimum Spanning Tree</em>
 <span class="co">#&gt;  1.21335033  0.17433665  0.02702631</span></code></pre></div>
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Vamos comparar com o Mantel comum.</p>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Mantel comum</span>
 <span class="va">compos_espac</span>
 <span class="co">#&gt; Monte-Carlo test</span>
@@ -2142,7 +2142,7 @@ Figura 9.22: Rede de vizinhança com a <em>Minimum Spanning Tree</em>
 </ul>
 <p><strong>Análises</strong></p>
 <p>No exemplo escolhido, as duas matrizes representam a composição de espécies em diferentes riachos. Desse modo, o ideal é transformar esta matriz bruta em matriz de distância com o método Bray-Curtis (<code><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist()</a></code>). O próximo passo, então, é realizar uma <code>Análise de Coordenadas Principais (PCoA)</code> (veja abaixo) para gerar duas matrizes de ordenação que serão comparadas com a função <code><a href="https://rdrr.io/pkg/vegan/man/procrustes.html">procrustes()</a></code>. Por fim, utilizamos a função <code><a href="https://rdrr.io/pkg/vegan/man/procrustes.html">protest()</a></code> para testar a significância da concordância entre as matrizes (Figura <a href="cap9.html#fig:fig-procrustes">9.23</a>).</p>
-<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fish_comm</span><span class="op">)</span>
 <span class="co">#&gt;       sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10 sp11 sp12 sp13 sp14 sp15 sp16 sp17 sp18 sp19 sp20 sp21 sp22 sp23 sp24</span>
@@ -2211,7 +2211,7 @@ Figura 9.23: Biplot mostrando o resultado da análise de PROCRUSTES.
 </h2>
 <p>Mais recentemente, alguns autores têm proposto métodos multivariados baseados em modelos. Estes métodos têm se diversificado hoje em dia e existem pacotes que realizam praticamente todas as análises que vimos acima, com a diferença que utilizam distribuições de probabilidade dado um modelo (e.g., Poisson) ao invés de coeficientes de dissimilaridades. Vamos exemplificar o uso de um desses métodos, mas não vamos fazer uma revisão extensiva. Caso o(a) leitor(a) deseje conhecer mais, recomendamos consultar principalmente os pacotes <code>gllvm</code>, <code>ecoCopula</code> e <code>Hmsc</code>.</p>
 <p>Um dos primeiros métodos foi proposto em 2012 pelo grupo de David Warton <span class="citation">(<a href="refer%C3%AAncias.html#ref-warton2012" role="doc-biblioref">Warton, Wright, and Wang 2012</a>)</span>, implementado no pacote <code>mvabund</code>. Anteriormente neste mesmo ano foi publicado um artigo pelo mesmo grupo <span class="citation">(<a href="refer%C3%AAncias.html#ref-wang2012" role="doc-biblioref">Wang et al. 2012</a>)</span> em que os autores demonstraram que métodos baseados em dissimilaridade, especialmente PERMANOVA, não conseguem modelar adequadamente dados multivariados de contagem (e.g., abundância) por não levarem em conta a relação monotônica entre média e variância. Vejamos o que isso quer dizer utilizando os dados do artigo de da Silva et al. <span class="citation">(<a href="refer%C3%AAncias.html#ref-dasilva2017" role="doc-biblioref">2017</a>)</span> (Figura <a href="cap9.html#fig:fig-media-var">9.24</a>).</p>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados com seis primeiras localidades e espécies</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">anuros_permanova</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;                   Chiasmocleis_albopunctata Dendropsophus_elianae Dendropsophus_jimi Dendropsophus_nanus</span>
@@ -2249,7 +2249,7 @@ Figura 9.24: Gráfico mostrando a média-variância para dados de abundância mu
 <p>A proposta implementada no pacote <code>mvabund</code> é baseada em Modelos Lineares Generalizados (GLMs) que você já conhece do Capítulo <a href="cap8.html#cap8">8</a>. Ou seja, este método permite que sejam modeladas as abundâncias das espécies num contexto multivariado utilizando explicitamente distribuições de probabilidade, tais como aquelas que utilizamos (e.g., Poisson, Binomial negativa, etc.). Isso faz com que demos peso semelhante às espécies. Vejamos um exemplo de como o modelo é ajustado e como é feito teste de hipótese.</p>
 <p><strong>Exemplo 1</strong></p>
 <p>A principal pergunta do artigo citado acima foi testar se a composição de espécies que obtemos em campo e de coleção científicas é diferente. Isso tem implicações para levantamentos de fauna, já que podemos complementar um tipo de dado com outro ou saber se eles são redundantes. Aqui, <code>grupos</code> é apenas um fator que indica se aquela linha da matriz apresenta dados obtidos em campo ou coleção. Vamos testar a hipótese nula de que não há diferença na composição entre as duas fontes de dados ajustando um modelo com distribuição binomial negativa (Figura <a href="cap9.html#fig:fig-mvabund">9.25</a>).</p>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">abund_tr</span> <span class="op">~</span> <span class="va">grupos</span>, cex.axis <span class="op">=</span> <span class="fl">0.8</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -2265,7 +2265,7 @@ Figura 9.25: Gráfico mostrando as abundâncias para os dois grupos.
 </div>
 <p>O gráfico mostrando os dados possui log da abundância das espécies e o fator (campo vs. coleção). Com essa análise exploratória de dados já podemos identificar se há diferença ou não na abundância das espécies em cada local. Vemos que algumas espécies são bem mais abundantes no campo do que em coleções, tais como <em>Leptodactylus mystacinus</em> e <em>Rhinella ornata</em>.</p>
 <p>Uma grande vantagem desse tipo de método baseado em modelos é que, assim como um GLM típico, também podemos realizar diagnose dos resíduos utilizando plots de resíduos versus predito. Vejamos como isso funciona (Figura <a href="cap9.html#fig:fig-mvabund-diag">9.26</a>).</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagnose</span>
 <span class="fu"><a href="https://rdrr.io/pkg/mvabund/man/mvabund-internal.html">plot</a></span><span class="op">(</span><span class="va">modelo1</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -2276,7 +2276,7 @@ Figura 9.26: Diagnose dos resíduos do modelo ajustado.
 </div>
 <p>Aqui vemos que os dados se distribuem de maneira mais ou menos homogênea e sem um padrão claro ao redor do zero. Isso indica que a distribuição Binomial negativa foi adequada para modelar estes dados. E agora sim podemos interpretar os resultados com mais segurança.</p>
 <p><strong>Interpretação dos resultados</strong></p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Resultados</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelo1</span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -2292,7 +2292,7 @@ Figura 9.26: Diagnose dos resíduos do modelo ajustado.
 <span class="co">#&gt;  Test statistics calculated assuming response assumed to be uncorrelated </span>
 <span class="co">#&gt;  P-value calculated using 999 resampling iterations via pit.trap resampling (to account for correlation in testing).</span></code></pre></div>
 <p>Aqui vemos que há sim uma diferença significativa na abundância relativa das espécies entre o campo e coleção. Mas até então estamos levando em conta toda a matriz numa abordagem multivariada. No entanto, não sabemos qual(is) espécie(s) são responsáveis por este padrão. Para investigar isso, podemos realizar uma Análise de Deviance separada para cada espécie, isso é o que a linha abaixo faz.</p>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelo1</span>, p.uni <span class="op">=</span> <span class="st">"adjusted"</span><span class="op">)</span>
 <span class="co">#&gt; Time elapsed: 0 hr 0 min 7 sec</span>
@@ -2381,7 +2381,7 @@ Utilize os dados “mite” do pacote vegan para testar o efeito de variáveis a
 B. Os vetores espaciais obtidos com a análise MEM explicam a variação na composição de espécies? Eles são mais ou menos importantes do que as variáveis ambientais?
 C. Discuta as diferenças de interpretação entre a RDA, RDAp, dbRDA e PERMANOVA.</p>
 <p>Dados necessários:</p>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mite.env</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mite.xy</span><span class="op">)</span></code></pre></div>
@@ -2469,7 +2469,7 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

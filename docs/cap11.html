@@ -105,7 +105,7 @@
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-7"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pacotes e dados que serão utilizados neste capítulo.</p>
-<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://chao.stat.nthu.edu.tw/wordpress/software_download/">iNEXT</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
@@ -180,7 +180,7 @@
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos olhar os dados.</p>
-<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_coleta</span><span class="op">)</span>
 <span class="co">#&gt;       Boana_albopunctata Boana_faber Boana_raniceps Dendropsophus_eliane Dendropsophus_melanargyrius</span>
@@ -212,7 +212,7 @@
 <span class="co">#&gt; Dia_5                    17                   1                  0</span>
 <span class="co">#&gt; Dia_6                     0                   1                  0</span></code></pre></div>
 <p>Cálculo do estimador de riqueza - Chao 1.</p>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">est_chao1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/specpool.html">estaccumR</a></span><span class="op">(</span><span class="va">dados_coleta</span>, permutations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_chao1</span>, display <span class="op">=</span> <span class="st">"chao"</span><span class="op">)</span>
@@ -237,7 +237,7 @@
 <span class="co">#&gt; [1] "summary.poolaccum"</span></code></pre></div>
 <p>Percebam que a função retorna: <code>N</code> = número de amostragens, <code>Chao</code> = valor médio da estimativa do índice de Chao, <code>2.5%</code> e <code>97.5%</code> = intervalo de confiança de 95%, e <code>Std.Dev</code> = desvio padrão. Esses dados são obtidos usando permutações, sem reposição, que alteram a ordem das amostragens. Neste exemplo, usamos 100 permutações.</p>
 <p>Vamos visualizar os resultados com intervalo de confiança de 95% (Figura <a href="cap11.html#fig:fig-chao1">11.1</a>).</p>
-<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para fazer o gráfico</span>
 <span class="va">resultados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_chao1</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S"</span>, <span class="st">"chao"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">res_chao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resultados</span><span class="op">$</span><span class="va">chao</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="va">resultados</span><span class="op">$</span><span class="va">S</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
@@ -290,7 +290,7 @@ Figura 11.1: Resultados com intervalo de confiança de 95% para o estimador Chao
 <p>Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.</p>
 <p><strong>Análise</strong></p>
 <p>Cálculo do estimador de riqueza - ACE.</p>
-<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">est_ace</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/specpool.html">estaccumR</a></span><span class="op">(</span><span class="va">dados_coleta</span>, permutations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_ace</span>, display <span class="op">=</span> <span class="st">"ace"</span><span class="op">)</span>
@@ -314,7 +314,7 @@ Figura 11.1: Resultados com intervalo de confiança de 95% para o estimador Chao
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "summary.poolaccum"</span></code></pre></div>
 <p>Visualizar os resultados com intervalo de confiança de 95% (Figura <a href="cap11.html#fig:fig-ace">11.2</a>).</p>
-<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para fazer o gráfico</span>
 <span class="va">resultados_ace</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_ace</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S"</span>, <span class="st">"ace"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">res_ace</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resultados_ace</span><span class="op">$</span><span class="va">ace</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="va">resultados_ace</span><span class="op">$</span><span class="va">S</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
@@ -380,7 +380,7 @@ Você perceberá que ao longo do capítulo as recomendações sobre qual é o me
 <p>Usaremos novamente os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.</p>
 <p><strong>Análise</strong></p>
 <p>Cálculo do estimador de riqueza - Chao 2.</p>
-<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">est_chao2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/specpool.html">poolaccum</a></span><span class="op">(</span><span class="va">dados_coleta</span>, permutations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_chao2</span>, display <span class="op">=</span> <span class="st">"chao"</span><span class="op">)</span>
@@ -402,7 +402,7 @@ Você perceberá que ao longo do capítulo as recomendações sobre qual é o me
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "summary.poolaccum"</span></code></pre></div>
 <p>Visualizar os resultados com intervalo de confiança de 95% (Figura <a href="cap11.html#fig:fig-chao2">11.3</a>).</p>
-<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para fazer o gráfico</span>
 <span class="va">resultados_chao2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_chao2</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S"</span>, <span class="st">"chao"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">res_chao2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resultados_chao2</span><span class="op">$</span><span class="va">chao</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="va">resultados_chao2</span><span class="op">$</span><span class="va">S</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
@@ -458,7 +458,7 @@ Figura 11.3: Resultados com intervalo de confiança de 95% para o estimador Chao
 <p>Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.</p>
 <p><strong>Análise</strong></p>
 <p>Cálculo do estimador de riqueza - Jackknife 1.</p>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">est_jack1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/specpool.html">poolaccum</a></span><span class="op">(</span><span class="va">dados_coleta</span>, permutations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_jack1</span>, display <span class="op">=</span> <span class="st">"jack1"</span><span class="op">)</span>
@@ -480,7 +480,7 @@ Figura 11.3: Resultados com intervalo de confiança de 95% para o estimador Chao
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "summary.poolaccum"</span></code></pre></div>
 <p>Visualizar os resultados com 95% intervalo de confiança (Figura <a href="cap11.html#fig:fig-jack1">11.4</a>).</p>
-<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para fazer o gráfico</span>
 <span class="va">resultados_jack1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_jack1</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S"</span>, <span class="st">"jack1"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">res_jack1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resultados_jack1</span><span class="op">$</span><span class="va">jack1</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="va">resultados_jack1</span><span class="op">$</span><span class="va">S</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
@@ -535,7 +535,7 @@ Figura 11.4: Resultados com intervalo de confiança de 95% para o estimador Jack
 <p>Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.</p>
 <p><strong>Análise</strong></p>
 <p>Cálculo do estimador de riqueza - Jackknife 2.</p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">est_jack2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/specpool.html">poolaccum</a></span><span class="op">(</span><span class="va">dados_coleta</span>, permutations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_jack2</span>, display <span class="op">=</span> <span class="st">"jack2"</span><span class="op">)</span>
@@ -557,7 +557,7 @@ Figura 11.4: Resultados com intervalo de confiança de 95% para o estimador Jack
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "summary.poolaccum"</span></code></pre></div>
 <p>Visualizar os resultados com intervalo de confiança de 95% (Figura <a href="cap11.html#fig:fig-jack2">11.5</a>).</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para fazer o gráfico</span>
 <span class="va">resultados_jack2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_jack2</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S"</span>, <span class="st">"jack2"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">res_jack2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resultados_jack2</span><span class="op">$</span><span class="va">jack2</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="va">resultados_jack2</span><span class="op">$</span><span class="va">S</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
@@ -612,7 +612,7 @@ Figura 11.5: Resultados com intervalo de confiança de 95% para o estimador Jack
 <p>Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.</p>
 <p><strong>Análise</strong></p>
 <p>Cálculo do estimador de riqueza - Bootstrap.</p>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">est_boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/specpool.html">poolaccum</a></span><span class="op">(</span><span class="va">dados_coleta</span>, permutations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_boot</span>, display <span class="op">=</span> <span class="st">"boot"</span><span class="op">)</span>
@@ -634,7 +634,7 @@ Figura 11.5: Resultados com intervalo de confiança de 95% para o estimador Jack
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "summary.poolaccum"</span></code></pre></div>
 <p>Visualizar os resultados com intervalo de confiança de 95% (Figura <a href="cap11.html#fig:fig-boot">11.6</a>).</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para fazer o gráfico</span>
 <span class="va">resultados_boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">est_boot</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S"</span>, <span class="st">"boot"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">res_boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resultados_boot</span><span class="op">$</span><span class="va">boot</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="va">resultados_boot</span><span class="op">$</span><span class="va">S</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
@@ -685,7 +685,7 @@ A extrapolação torna-se altamente incerta quando estendida para o dobro ou mai
 <p>Usaremos os mesmos dados hipotéticos de 17 espécies de anuros amostradas em 14 dias de coletas de campo em um habitat reprodutivo localizado na região Noroeste do Estado de São Paulo, Brasil.</p>
 <p><strong>Análise</strong></p>
 <p>Cálculo da extrapolação da riqueza com base no número de indivíduos (Figura <a href="cap11.html#fig:fig-extra">11.7</a>).</p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para análises considerando a abundância</span>
 <span class="va">dados_inext_abu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colSums</a></span><span class="op">(</span><span class="va">dados_coleta</span><span class="op">)</span> 
 <span class="va">resultados_abundancia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/iNEXT.html">iNEXT</a></span><span class="op">(</span><span class="va">dados_inext_abu</span>, q <span class="op">=</span> <span class="fl">0</span>, datatype <span class="op">=</span> <span class="st">"abundance"</span>, 
@@ -707,7 +707,7 @@ Figura 11.7: Resultados com intervalo de confiança de 95% para a extrapolação
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Veja que o ponto no final da linha contínua representa as 17 espécies de anuros (eixo Y) observadas entre os 304 indivíduos (eixo X). A extrapolação máxima (600 indivíduos no nosso exemplo) estima um aumento de até oito espécies (intervalo de confiança) caso amostrássemos mais 296 indivíduos.</p>
 <p>Cálculo da extrapolação da riqueza com base no número de amostras (Figura <a href="cap11.html#fig:fig-boot-riq">11.8</a>).</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Preparando os dados para análises considerando a incidência</span>
 <span class="co"># Precisa transpor o data frame.</span>
 <span class="va">dados_inext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/as.incfreq.html">as.incfreq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">dados_coleta</span><span class="op">)</span><span class="op">)</span> 
@@ -750,7 +750,7 @@ Figura 11.8: Resultados com intervalo de confiança de 95% para extrapolação d
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos iniciar calculando a riqueza extrapolada com base na comunidade com maior abundância.</p>
-<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Transposição</span>
 <span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span>
 <span class="co"># Para as análises teremos que transpor a planilha.</span>
@@ -767,7 +767,7 @@ Figura 11.8: Resultados com intervalo de confiança de 95% para extrapolação d
                                  datatype <span class="op">=</span> <span class="st">"abundance"</span>, 
                                  endpoint <span class="op">=</span> <span class="fl">781</span><span class="op">)</span></code></pre></div>
 <p>Lembrando, estamos interessados no valor rarefeito considerando a abundância total de 781 indivíduos. Esta informação está armazenada na linha 40 e na coluna 4 dos data frames salvos no objeto <code>resultados_extrapolacao$iNextEst</code>. Assim, para obtermos o valor rarefeito de interesse, vamos criar um <code>loop for</code> para facilitar a extração da riqueza rarefeita para as 70 comunidades.</p>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="co"># Criando um data.frame vazio para salvar os dados</span>
 <span class="va">resultados_comunidades_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
@@ -783,7 +783,7 @@ Figura 11.8: Resultados com intervalo de confiança de 95% para extrapolação d
     <span class="va">riqueza_extrapolada</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">resultados_comunidades_ext</span><span class="op">[</span><span class="fl">40</span>, <span class="fl">4</span><span class="op">]</span> <span class="co"># 8 abundância e 4 riqueza rarefeita</span>
 <span class="op">}</span></code></pre></div>
 <p>Agora, seguindo os passos descritos no Capítulo <a href="cap7.html#cap7">7</a>, vamos identificar o melhor modelo que representa a estrutura espacial dos dados extrapolados.</p>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="co"># Criando data frame com todas as variáveis</span>
 <span class="va">dados_combinado_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">riqueza_extrapolada</span>, <span class="va">agua</span>, <span class="va">coord</span><span class="op">)</span>
@@ -818,7 +818,7 @@ Figura 11.8: Resultados com intervalo de confiança de 95% para extrapolação d
                    data <span class="op">=</span> <span class="va">dados_combinado_ext</span>, 
                    <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/corRatio.html">corRatio</a></span><span class="op">(</span>form <span class="op">=</span> <span class="op">~</span><span class="va">lat</span> <span class="op">+</span> <span class="va">long</span>, nugget <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Vamos usar a seleção de modelos por AIC para selecionar o modelo mais “provável” explicando a distribuição da riqueza extrapolada das espécies de ácaros (Figura <a href="cap11.html#fig:fig-ext-resi-acaros">11.9</a>).</p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Seleção dos modelos</span>
 <span class="va">aic_fit_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">no_spat_gls</span>, <span class="va">espher_model</span>, 
                    <span class="va">cor_linear_model</span>, <span class="va">expon_model</span>, 
@@ -841,7 +841,7 @@ Figura 11.9: Visualização dos resíduos do modelo selecionado.
 </p>
 </div>
 <p>De forma geral, a distribuição dos resíduos está adequada com apenas dois pontos fugindo da nuvem. Contudo, eles podem influenciar os resultados (Figura <a href="cap11.html#fig:fig-ext-model-acaros">11.10</a>).</p>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Visualizando os resultados e calculando pseudo-R-squared.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ratio_model</span><span class="op">)</span><span class="op">$</span><span class="va">tTable</span> 
 <span class="co">#&gt;                   Value   Std.Error   t-value      p-value</span>
@@ -954,7 +954,7 @@ Vamos refazer o exercício 10 do Capítulo 7 que usa <em>Generalized Least Squar
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

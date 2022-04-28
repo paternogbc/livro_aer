@@ -105,7 +105,7 @@
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-2"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pacotes que serão utilizados nesse capítulo.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span>
@@ -185,16 +185,16 @@ Figura 6.1: Esquema gráfico ilustrando as camadas que definem a strutura de org
 </p>
 </div>
 <p>Em resumo, o mapeamento gráfico do ggplot2 segue a seguinte estrutura <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="cap6.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
-<span id="cb177-2"><a href="cap6.html#cb177-2" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
-<span id="cb177-3"><a href="cap6.html#cb177-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
-<span id="cb177-4"><a href="cap6.html#cb177-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>, </span>
-<span id="cb177-5"><a href="cap6.html#cb177-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
-<span id="cb177-6"><a href="cap6.html#cb177-6" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
-<span id="cb177-7"><a href="cap6.html#cb177-7" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb177-8"><a href="cap6.html#cb177-8" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb177-9"><a href="cap6.html#cb177-9" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>SCALE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
-<span id="cb177-10"><a href="cap6.html#cb177-10" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>THEME_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="cap6.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb178-2"><a href="cap6.html#cb178-2" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
+<span id="cb178-3"><a href="cap6.html#cb178-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
+<span id="cb178-4"><a href="cap6.html#cb178-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>, </span>
+<span id="cb178-5"><a href="cap6.html#cb178-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
+<span id="cb178-6"><a href="cap6.html#cb178-6" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb178-7"><a href="cap6.html#cb178-7" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb178-8"><a href="cap6.html#cb178-8" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb178-9"><a href="cap6.html#cb178-9" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>SCALE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb178-10"><a href="cap6.html#cb178-10" aria-hidden="true" tabindex="-1"></a>    <span class="er">&lt;</span>THEME_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
 </div>
 <div id="tipos-de-gráficos" class="section level2" number="6.4">
 <h2>
@@ -226,7 +226,7 @@ Figura 6.1: Esquema gráfico ilustrando as camadas que definem a strutura de org
 <span class="header-section-number">6.4.1</span> Histograma (<em>histogram</em>)<a class="anchor" aria-label="anchor" href="#histograma-histogram"><i class="fas fa-link"></i></a>
 </h3>
 <p>O <a href="https://www.data-to-viz.com/graph/histogram.html">histograma</a> é um gráfico extremamente popular, sendo bastante útil para visualizar a distribuição de variáveis contínuas. É bem provável que você já tenha visto um histograma quando aprendeu pela primeira vez a famosa <em>distribuição normal</em> (Figura <a href="cap6.html#fig:fig-hist-norm">6.2</a>).</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="va">dist_normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
@@ -242,7 +242,7 @@ Figura 6.2: Histograma de uma distribuição normal com 10000 observações.
 <p>Neste histograma é possível entender que a maioria dos valores da variável <code>x</code> do objeto dist_normal estão próximos ao valor da média, i.e., zero. Em Ecologia, os histogramas são utilizados para visualizar, por exemplo, a variação morfológica entre espécies (subespécies, gênero, famílias, etc.), variação de parâmetros populacionais entre diferentes espécies ou dentro da mesma espécie em diferentes localidades.</p>
 <p><strong>Versão padrão</strong></p>
 <p>Vamos utilizar o conjunto de dados <em>palmerpenguins</em> para construir um histograma da distribuição da variável <em><code>comprimento_nadadeira</code></em> com a função <code>geom_hitogram()</code>. Esta função utiliza uma variável contínua no eixo X e a frequência de cada categoria de intervalo de valores no eixo Y. O gráfico a seguir representa a frequência de uma variável (neste caso, a medida de todos os pinguins, independente da espécie) (Figura <a href="cap6.html#fig:fig-hist-flipper">6.3</a>).</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Histograma da coluna flipper_length_mm</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -254,7 +254,7 @@ Figura 6.3: Histograma da variável <code>comprimento_nadadeira</code>.
 </div>
 <p><strong>Definindo o número de classes</strong></p>
 <p>Vamos utilizar o argumento <code>bins</code> para definir em quantas classes a variável <code>x</code> deve ser dividida (Figura <a href="cap6.html#fig:fig-hist-bins">6.4</a>).</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Histograma com 10 classes</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
@@ -272,7 +272,7 @@ Figura 6.4: Histograma da variável <code>comprimento_nadadeira</code> para dife
 </div>
 <p><strong>Comparando múltiplas categorias</strong></p>
 <p>Se quisermos comparar a distribuição de uma variável contínua entre diferentes categorias, podemos utilizar o argumento <code>fill</code> para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável X (<code>x = comprimento_nadadeira</code>) entre espécies diferentes (<code>fill = especies</code>) (Figura <a href="cap6.html#fig:fig-hist-cat">6.5</a>).</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Histograma com cores para diferentes categorias com sobreposição</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span>
@@ -289,7 +289,7 @@ Figura 6.5: Histograma da variável <code>comprimento_nadadeira</code> para dife
 </p>
 </div>
 <p><strong>Ajustes finos (versão personalizada)</strong></p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Histograma exemplo</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.4</span>, position <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
@@ -330,7 +330,7 @@ Figura 6.6: Histograma da variável <code>comprimento_nadadeira</code> com ajust
 <p>Nesta seção aprenderemos a criar um <a href="https://www.data-to-viz.com/graph/density.html">gráfico de densidade</a> no R utilizando o <code>ggplot2</code>. Assim como o histograma, o <strong>gráfico de densidade</strong> é utilizado para visualizar a distribuição de uma variável contínua em intervalos. Esse gráfico é uma variação do histograma que utiliza <a href="https://en.wikipedia.org/wiki/Kernel_smoother">Kernel Smoother</a> e, além de ser muito útil para visualizar distribuições, pode ser usado para testar várias hipóteses ecológicas, como descrito no Capítulo <a href="cap14.html#cap14">14</a>.</p>
 <p><strong>Versão padrão</strong></p>
 <p>Vamos utilizar o conjunto de dados <em>palmerpenguins</em> para plotar a distribuição da variável <em><code>comprimento_nadadeira</code></em> em um gráfico de densidade. Utilizaremos a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density()</a></code> para plotar uma variável no eixo X (Figura <a href="cap6.html#fig:fig-dens-flipper">6.7</a>).</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de densidade</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -341,7 +341,7 @@ Figura 6.7: Gráfico de densidade da variável <code>comprimento_nadadeira</code
 </p>
 </div>
 <p>Além da versão de densidade em linha, é possível utilizar o argumento <code>fill</code> para definir a cor de preenchimento do gráfico e o argumento <code>alpha</code> para definir a transparência do preenchimento. Utilizamos ainda o argumento <code>color</code> para definir a cor da linha (Figura <a href="cap6.html#fig:fig-dens-flipper-color">6.8</a>).</p>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Argumento fill</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"cyan4"</span><span class="op">)</span>
@@ -357,7 +357,7 @@ Figura 6.8: Gráfico de densidade da variável <code>comprimento_nadadeira</code
 </div>
 <p><strong>Comparando múltiplas categorias</strong></p>
 <p>Em algumas situações queremos comparar a distribuição de uma variável contínua entre diferentes categorias. Dessa forma, podemos utilizar o argumento <code>fill</code> para colorir o gráfico. No exemplo abaixo, utilizamos cores diferentes para ilustrar a distribuição da variável x entre espécies diferentes (<code>fill = especies</code>) (Figura <a href="cap6.html#fig:fig-dens-flipper-cat">6.9</a>).</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## O argumento fill preenche cada nível da coluna "especies" (sem transparência: alpha = 1)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -376,7 +376,7 @@ Figura 6.9: Gráfico de densidade da variável <code>comprimento_nadadeira</code
 </p>
 </div>
 <p><strong>Ajustes finos (versão personalizada)</strong></p>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de densidade exemplo</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span>
@@ -419,7 +419,7 @@ Figura 6.10: Gráfico de densidade da variável <code>comprimento_nadadeira</cod
 <p>Uma alternativa ao histograma e ao gráfico de densidade é o diagrama de pontos (<a href="https://datavizproject.com/data-type/dot-plot/">Dot plot</a>, apesar de ser relativamente menos usado em Ecologia.</p>
 <p><strong>Versão padrão</strong></p>
 <p>Vamos utilizar o conjunto de dados palmerpenguins para visualizar a distribuição da variável comprimento_nadadeira com o diagrama de pontos com a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot()</a></code> (Figura <a href="cap6.html#fig:fig-dot-flipper">6.11</a>).</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de pontos</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span>dotsize <span class="op">=</span> <span class="fl">.6</span><span class="op">)</span></code></pre></div>
@@ -431,7 +431,7 @@ Figura 6.11: Diagrama de pontos da variável <code>comprimento_nadadeira</code>.
 </div>
 <p><strong>Comparando múltiplas categorias</strong></p>
 <p>Assim como nas funções <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> e <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density()</a></code>, é possível comparar categorias na função <code><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot()</a></code> utilizando o argumento <code>fill</code>, bem como os argumentos <code>color</code>, <code>alpha</code> e <code>dotsize</code> (Figura <a href="cap6.html#fig:fig-dot-flipper-cat">6.12</a>).</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## O argumento fill preenche cada nível da coluna "especies" (sem transparência: alpha = 1)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span>dotsize <span class="op">=</span> <span class="fl">.9</span><span class="op">)</span>
@@ -446,7 +446,7 @@ Figura 6.12: Diagrama de pontos da variável <code>comprimento_nadadeira</code> 
 </p>
 </div>
 <p><strong>Ajustes finos (versão personalizada)</strong></p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diagrama de pontos exemplo</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">.7</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span>
@@ -497,7 +497,7 @@ Uma das limitações do diagrama de pontos é que a sobreposição dos pontos po
 <p>O <a href="https://www.data-to-viz.com/graph/barplot.html">gráfico de barras</a> é um dos gráficos mais usados em artigos e livros de Ecologia, uma vez que permite comparar valores absolutos ou médios (combinados com alguma medida de variação, como desvio padrão) de uma variável contínua entre diferentes níveis de uma variável categórica.</p>
 <p><strong>Versão padrão</strong></p>
 <p>O gráfico de barras utiliza retângulos para representar uma variável contínua ou a contagem de uma variável categórica, sendo que o comprimento dos retângulos é proporcional ao valor que ele representa. Por exemplo, é possível comparar qual a quantidade de indivíduos medidos para cada espécie de pinguim (Figura <a href="cap6.html#fig:fig-bar-species">6.14</a>).</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número de indivíduos coletados</span>
 <span class="va">penguins_count</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">especies</span><span class="op">)</span>
@@ -519,7 +519,7 @@ Figura 6.14: Gráfico de barras indicando a quantidade de indivíduos medidos de
 </p>
 </div>
 <p>Além disso, é possível alterar as cores (<code>color</code>) e o preenchimento (<code>fill</code>) das barras, bem como sua transparência (<code>alpha</code>) e largura (<code>width</code>), como demonstrado nos próximos quatro gráficos (Figura <a href="cap6.html#fig:fig-bar-species-color">6.15</a>).</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modificando o preenchimento</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_count</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, fill <span class="op">=</span> <span class="st">"cyan4"</span><span class="op">)</span>
@@ -544,7 +544,7 @@ Figura 6.15: Gráficos de barras indicando a quantidade de indivíduos medidos d
 </p>
 </div>
 <p>Outra possibilidade para representação do gráfico de barras é inverter a direção das barras com a função <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code> (Figura <a href="cap6.html#fig:fig-bar-species-invert">6.16</a>).</p>
-<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Barras vertical</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_count</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, width <span class="op">=</span> <span class="fl">.6</span><span class="op">)</span>
@@ -560,7 +560,7 @@ Figura 6.16: Gráficos de barras indicando a quantidade de indivíduos medidos d
 </p>
 </div>
 <p>É possível utilizar variáveis categóricas para definir cores e preenchimento e ilustrar, por exemplo, tratamentos ou espécies diferentes com os argumentos <code>fill</code> e <code>color</code> (Figura <a href="cap6.html#fig:fig-bar-species-fill">6.17</a>).</p>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de barras com preenchimento colorido</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_count</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span></code></pre></div>
@@ -572,7 +572,7 @@ Figura 6.17: Gráfico de barras indicando a quantidade de indivíduos medidos de
 </div>
 <p><strong>Adicionando medidas de variação</strong></p>
 <p>Em algumas comparações, utilizar somente os valores absolutos pode não ser a visualização mais apropriada, como, por exemplo, em desenhos de ANOVA (Capítulo <a href="cap7.html#cap7">7</a>). Desse modo, ao invés do valor máximo da barra representar o valor absoluto (e.g., número de indivíduos de uma espécie), ele vai representar o valor médio. Além disso, linhas adicionais (chamadas barras de erro) vão representar alguma medida de variação como desvio padrão, erro padrão, intervalo de confiança, entre outros (Figura <a href="cap6.html#fig:fig-bar-species-sd">6.18</a>).</p>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Calcular o desvio padrão por espécie</span>
 <span class="va">penguins_media</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">especies</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -591,7 +591,7 @@ Figura 6.18: Gráfico de barras indicando os valores médios e o desvio padrão 
 </p>
 </div>
 <p><strong>Ajustes finos (versão personalizada)</strong></p>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de barra exemplo</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_count</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
@@ -613,7 +613,7 @@ Figura 6.19: Gráfico de barras indicando a quantidade de indivíduos medidos de
 <p>Além do gráfico de barras, o <a href="https://www.data-to-viz.com/caveat/pie.html">gráfico de setores</a> representa uma alternativa para comparar a proporção entre categorias. Tais gráficos podem ser representados como <a href="https://datavizproject.com/data-type/pie-chart/"><em>pie charts</em></a> ou <a href="https://datavizproject.com/data-type/donut-chart/"><em>donut charts</em></a>, como demonstrado abaixo. No exemplo abaixo, utilizamos a mesma comparação realizada no item acima. Porém, os valores de contagem (número de indivíduos por espécie) devem ser transformados previamente em proporção.</p>
 <p><strong>Gráfico de setores (<em>pie chart</em>)</strong></p>
 <p>Gráfico de setores do tipo <em>pie</em> (Figura <a href="cap6.html#fig:fig-pie">6.20</a>).</p>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cálculo da proporção - pie</span>
 <span class="va">penguins_prop</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">especies</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -636,7 +636,7 @@ Figura 6.20: Gráfico de setores indicando a proporção de indivíduos medidos 
 </div>
 <p><strong>Gráfico de setores (<em>donut chart</em>)</strong></p>
 <p>Gráfico de setores do tipo <em>donuts</em> (Figura <a href="cap6.html#fig:fig-donut">6.21</a>).</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de setores - donut</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_prop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="va">prop</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
@@ -658,7 +658,7 @@ Figura 6.21: Gráfico de setores do tipo <em>donuts</em> indicando a proporção
 </div>
 <p><strong>Comparando gráficos de setores com gráfico de barras</strong></p>
 <p>O mesmo conjunto de dados pode ser visualizado de diferentes formas. Não diferente, a comparação da proporção de ocorrências de diferentes categorias pode ser feita de várias maneiras. Abaixo, apresentamos a comparação da proporção de indivíduos de cada uma das três espécies no banco de dados <code>penguins</code> (Figura <a href="cap6.html#fig:fig-prop">6.22</a>).</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de barras - vertical  </span>
 <span class="va">g_bar_v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_prop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">prop</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
@@ -754,7 +754,7 @@ Figura 6.23: Estrutura e elementos do boxplot.
 </div>
 <p><strong>Versão padrão</strong></p>
 <p>Vamos plotar uma variável contínua (<code>comprimento_nadadeira</code>) no eixo y em função de uma variável categórica no eixo x (<code>especies</code>). A definição de qual coluna do bando de dados é a x e qual é a y é feita dentro do na função <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> (Figura <a href="cap6.html#fig:fig-boxplot">6.24</a>).</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de caixas das coluna comprimento_nadadeira e espécies</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, x <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -765,7 +765,7 @@ Figura 6.24: Gráfico de caixa para a variável <code>comprimento_nadadeira</cod
 </p>
 </div>
 <p>É possível destacar, se houver, os pontos referentes aos <em>outliers</em> (valores discrepantes) com o argumento <code>outlier.color</code>. Caso tenha interesse, é possível também remover os outliers do gráfico (Figura <a href="cap6.html#fig:fig-boxplot-outlier">6.25</a>).</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Destaque dos outliers</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, x <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>outlier.color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
@@ -782,7 +782,7 @@ Figura 6.25: Gráfico de caixa para a variável <code>comprimento_nadadeira</cod
 </p>
 </div>
 <p>Outra opção para os gráficos do tipo boxplot é utilizar o argumento <code>notch = TRUE</code> para produzir diagramas de caixa entalhados (<em>notched</em>). Estes diagramas são úteis para inferir de forma aproximada se existe diferença significativa entre as médias dos grupos (Figura <a href="cap6.html#fig:fig-boxplot-notched">6.26</a>).</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico com caixa entalhadas</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, x <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>notch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
@@ -795,7 +795,7 @@ Figura 6.26: Gráfico de caixa para a variável <code>comprimento_nadadeira</cod
 </div>
 <p><strong>Comparando múltiplas categorias</strong></p>
 <p>No exemplo abaixo, utilizamos cores diferentes para ilustrar espécies diferentes através do argumento <code>fill = especies</code> (Figura <a href="cap6.html#fig:fig-boxplot-cat">6.27</a>).</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Modificando o preenchimento</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, x <span class="op">=</span> <span class="va">especies</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -808,7 +808,7 @@ Figura 6.27: Gráfico de caixa para a variável <code>comprimento_nadadeira</cod
 </div>
 <p><strong>Combinando boxplot com pontos (<em>jitter</em>)</strong></p>
 <p>Podemos ainda acrescentar pontos para mostrar a distribuição dos dados, fazendo uma “agitação” (<em>jitter</em>) dos pontos sobre as caixas (Figura <a href="cap6.html#fig:fig-boxplot-jitter">6.28</a>).</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Boxplot com jitters</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, 
                             x <span class="op">=</span> <span class="va">especies</span>, 
@@ -823,7 +823,7 @@ Figura 6.28: Gráfico de caixa para a variável <code>comprimento_nadadeira</cod
 </div>
 <p><strong>Gráfico de violino (<em>violin plot</em>) como alternativa ao boxplot</strong></p>
 <p>Além das caixas no boxplot, podemos utilizar o formato de “violino” (<a href="https://datavizproject.com/data-type/violin-plot/">gráfico de violino</a>) para representar a variação dos dados contínuos para as categorias. A informação adicional ao boxplot que o gráfico de violino permite visualizar é a densidade e distribuição dos pontos, assim como apresentamos acima no gráfico de densidades <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density()</a></code>. A diferença é que a densidade é espelhada e, desse modo, podemos visualizar os intervalores dos dados com maior ou menor concentração de valores (Figura <a href="cap6.html#fig:fig-violin">6.29</a>).</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de violino</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, x <span class="op">=</span> <span class="va">especies</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -835,7 +835,7 @@ Figura 6.29: Gráfico de violino para a variável <code>comprimento_nadadeira</c
 </p>
 </div>
 <p>É possível também combinar boxplot e gráfico de violino em um único gráfico (Figura <a href="cap6.html#fig:fig-boxplot-violin">6.30</a>).</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Combinando o gráfico de violino com o de caixas</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, x <span class="op">=</span> <span class="va">especies</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -847,7 +847,7 @@ Figura 6.30: Gráfico de caixa e de violino para a variável <code>comprimento_n
 </p>
 </div>
 <p><strong>Ajustes finos (versão personalizada)</strong></p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de caixas exemplo</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especies</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, fill <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.5</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -916,7 +916,7 @@ Figura 6.31: Gráfico de caixa combinado ou não com Gráfico de violino e jitte
 <p>O <a href="https://datavizproject.com/data-type/scatter-plot/">gráfico de dispersão</a> (em inglês, <em>scatter plot</em>) é famoso na Ecologia por ser a visualização preferida para representar a relação entre área e riqueza de espécies. Neste gráfico, os eixos X e Y são representados por variáveis contínuas. Em especial, os gráficos de dispersão são usados para representar os resultados testados por análises estatísticas como regressão linear, ANCOVA, mantel, PCA, PCoA, nMDS entre outros (para mais detalhes, consultar os Capítulos <a href="cap7.html#cap7">7</a>, <a href="cap8.html#cap8">8</a> e <a href="cap9.html#cap9">9</a>).</p>
 <p><strong>Versão padrão</strong></p>
 <p>Vamos utilizar o conjunto de dados <em>palmerpenguins</em> para construir um gráfico de dispersão relacionando as variáveis <code>comprimento_bico</code> e <code>comprimento_nadadeira</code> com a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>. Esta função utiliza variável contínuas no eixo X e no Y. O gráfico mostra os pares ordenados das medidas das duas variáveis (Figura <a href="cap6.html#fig:fig-scatter">6.32</a>).</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de dispersão das coluna comprimento_nadadeira e comprimento_bico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -928,7 +928,7 @@ Figura 6.32: Gráfico de dispersão relacionando as variáveis <code>comprimento
 </div>
 <p><strong>Definindo a cor, tamanho, forma e preenchimento dos pontos</strong></p>
 <p>Da mesma forma que para os outros gráficos, podemos alterar cor, tamanho, forma e preenchimento dos pontos (Figura <a href="cap6.html#fig:fig-scatter-col">6.33</a>).</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cor e tamanho dos pontos </span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"cyan4"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> 
@@ -952,7 +952,7 @@ Figura 6.34: Tipos de símbolos disponíveis para representar pontos.
 </p>
 </div>
 <p>Assim, é possível controlar cores, formas e preenchimento combinado os argumentos <code>shape</code>, <code>fill</code> e <code>color</code> com a função <code>scale_manual()</code>. É importante notar que para os símbolos entre 15 e 20 só podemos controlar o argumento cor, enquanto os símbolos entre 21 e 25 podemos controlar a cor e o preenchimento (Figura <a href="cap6.html#fig:fig-scatter-shape">6.35</a>).</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Formato e tamanho</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
@@ -972,7 +972,7 @@ Figura 6.35: Gráfico de dispersão relacionando as variáveis <code>comprimento
 </div>
 <p><strong>Definindo linhas de ajuste</strong></p>
 <p>Quando usamos modelos estatísticos como, por exemplo, <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, <code>gam()</code>, entre outros (veja mais nos Capítulos <a href="cap7.html#cap7">7</a> e <a href="cap8.html#cap8">8</a>), podemos utilizar os valores preditos para demonstrar a relação entre as variáveis X e Y. No <code>ggplot2</code>, a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> faz esse ajuste com certa simplicidade (Figura <a href="cap6.html#fig:fig-scatter-smooth">6.36</a>).</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Linha de ajuste</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">20</span>, size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
@@ -984,7 +984,7 @@ Figura 6.36: Gráfico de dispersão relacionando as variáveis <code>comprimento
 </p>
 </div>
 <p><strong>Ajustes finos (versão personalizada)</strong></p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico de dispersão exemplo</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>,
                             color <span class="op">=</span> <span class="va">especies</span>, shape <span class="op">=</span> <span class="va">especies</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -1002,7 +1002,7 @@ Figura 6.37: Gráfico de dispersão relacionando as variáveis <code>comprimento
 </p>
 </div>
 <p>Além disso, podemos relacionar dados não tão usuais. Recomendamos a leitura do artigo de Matejka &amp; Fitzmaurice <span class="citation">(<a href="refer%C3%AAncias.html#ref-matejka_same_2017" role="doc-biblioref">2017</a>)</span> que apresenta as armadilhas típicas que dados podem gerar quando evitamos de visualizá-los previamente (Figura <a href="cap6.html#fig:fig-scatter-dino">6.38</a>).</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico do dinossauro</span>
 <span class="va">datasaurus_dozen</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dataset</span> <span class="op">==</span> <span class="st">"dino"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1028,7 +1028,7 @@ Figura 6.38: Gráfico de dispersão relacionando as variáveis <code>x</code> e 
 <p>Muitas vezes precisamos plotar a relação de mais de uma variável, e muitas vezes essas variáveis são de mais de um tipo (contínua, categórica, etc.). O gráfico mais indicado nesses casos é o gráfico pareado <span class="citation">(<a href="refer%C3%AAncias.html#ref-emerson_generalized_2013" role="doc-biblioref">Emerson et al. 2013</a>)</span> que nos auxilia à ter uma visão geral do conjunto de dados e de suas interrelações. Esse gráfico também é chamado de <em>pairs plot</em> ou <a href="https://www.data-to-viz.com/graph/correlogram.html">correlograma</a>.</p>
 <p><strong>Gráfico pareado com variáveis contínuas</strong></p>
 <p>A função <code>ggpairs()</code> do pacote <code>GGally</code> permite criar múltiplos gráficos pareados comparando as variáveis contínuas no seu conjunto de dados. Além de demonstrar gráficos de dispersão de cada par de variáveis, ela apresenta gráficos de densidade de cada variável individualmente e, além disso, os valores de correlação entre os pares analisados com ou sem uma potencial variável categórica (neste caso, <code>especies</code>) (Figura <a href="cap6.html#fig:fig-pairs-cont">6.39</a>).</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico pareado com variáveis contínuas</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">massa_corporal</span>, <span class="va">comprimento_bico</span>, <span class="va">profundidade_bico</span>, <span class="va">comprimento_nadadeira</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -1044,7 +1044,7 @@ Figura 6.39: Gráfico pareado relacionando várias variáveis contínuas para as
 </div>
 <p><strong>Gráfico pareado com vários tipos de variáveis</strong></p>
 <p>Como alternativa, a função <strong><code>ggpairs()</code></strong> permite também incluir variáveis categóricas nas comparações. Neste caso, ela reconhece o tipo de gráfico (boxplot, dispersão, etc.) a partir dos modos das variáveis (Figura <a href="cap6.html#fig:fig-pairs-cont-cat">6.40</a>).</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico pareado com variáveis contínuas e categóricas</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sexo</span>, <span class="va">massa_corporal</span>, <span class="va">comprimento_bico</span>, <span class="va">profundidade_bico</span>, <span class="va">comprimento_nadadeira</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -1072,7 +1072,7 @@ Figura 6.40: Gráfico pareado relacionando várias variáveis contínuas e categ
 <li><p>Uso incorreto do modo das variáveis: neste caso, o usuário utilizar uma variável numérica (por exemplo, 1, 2 e 3) como variável categórica. Neste caso, é preciso transformar a variável numérica em variável categóricas (antes de fazer o ggplot2 ou dentro do <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>).</p></li>
 </ul>
 <p>Veja exemplos (Figura <a href="cap6.html#fig:fig-plot-error">6.41</a>).</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Figura incorreta, sem a transformação da variável ano</span>
 <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ano</span>, y <span class="op">=</span> <span class="va">comprimento_bico</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -1118,7 +1118,7 @@ Figura 6.41: Gráficos mostrando erros comuns na criação de gráficos no pacot
 <li><p><code>legend.title</code>: personaliza a cor e tamanho da legenda também dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code></p></li>
 </ul>
 <p>Vejamos alguns exemplos (Figura <a href="cap6.html#fig:fig-plot-final-legenda">6.42</a>).</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Legenda acima</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>,
@@ -1209,7 +1209,7 @@ Figura 6.42: Gráficos mostrando a finalização de gráficos para publicação 
 <li>Intervalo: define o valor intervalo entre os números dos eixos X e Y</li>
 </ul>
 <p>Vejamos mais alguns exemplos (Figura <a href="cap6.html#fig:fig-plot-final-eixos">6.43</a>).</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Nome dos eixos</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>,  
        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, 
@@ -1241,7 +1241,7 @@ Figura 6.43: Gráficos mostrando a finalização de gráficos para publicação 
 <li>Ângulo</li>
 </ul>
 <p>Vejamos outros exemplos com mudanças nos eixos (Figura <a href="cap6.html#fig:fig-plot-final-eixos-fonte">6.44</a>).</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cor e fonte dos eixos</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>,
@@ -1277,7 +1277,7 @@ Figura 6.44: Gráficos mostrando a finalização de gráficos para publicação 
 <li>Borda do gráfico (<code>panel.border</code>)</li>
 </ul>
 <p>Vejamos outros exemplos com mudanças ao gride (Figura <a href="cap6.html#fig:fig-plot-final-gride">6.45</a>).</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Linhas de grade principais</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>,
@@ -1346,7 +1346,7 @@ Figura 6.45: Gráficos mostrando a finalização de gráficos para publicação 
 <span class="header-section-number">6.5.3</span> Temas personalizados <code>ggtheme()</code><a class="anchor" aria-label="anchor" href="#temas-personalizados-ggtheme"><i class="fas fa-link"></i></a>
 </h3>
 <p>Existem vários temas criados dentro do universo <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html"><code>ggtheme()</code></a> que podem facilitar a escolha de um modelo com ótima qualidade para publicação. Abaixo, demonstramos os modelos mais utilizados (Figura <a href="cap6.html#fig:fig-plot-final-ggtheme">6.46</a>).</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## theme_gray</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>,
@@ -1392,7 +1392,7 @@ Figura 6.46: Gráficos mostrando a finalização de gráficos para publicação 
 <span class="header-section-number">6.5.4</span> Criando seu próprio <code>theme_custom()</code><a class="anchor" aria-label="anchor" href="#criando-seu-pr%C3%B3prio-theme_custom"><i class="fas fa-link"></i></a>
 </h3>
 <p>Por fim, é possível criar um tema personalizado como uma função. Assim, o usuário pode controlar todos os elementos gráficos em um único código. O maior benefício de personalizar uma função é que não será necessário fazer os ajustes finos em todos os gráficos que tiver construindo, o que pode representar grande economia de tempo e linhas de código (Figura <a href="cap6.html#fig:fig-plot-final-theme-custom">6.47</a>).</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criar uma função com os ajustes finos</span>
 <span class="va">tema_personalizado</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
     
@@ -1474,7 +1474,7 @@ Figura 6.47: Gráficos mostrando a finalização de gráficos para publicação 
 <code>dpi</code>: resolução ou qualidade da imagem, medida em pontos por polegada (<em>dots per inch</em>) (padrão = 300)</li>
 </ul>
 <p>Vejamos um último exemplo (Figura <a href="cap6.html#fig:fig-plot-final-export">6.48</a>).</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_bico</span>, y <span class="op">=</span> <span class="va">comprimento_nadadeira</span>,
@@ -1498,7 +1498,7 @@ Figura 6.48: Gráfico criado para a exportação no pacote <code>ggplot2</code>.
 </p>
 </div>
 <p>Podemos exportar esse gráfico de diferentes formas.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Exportar no formato PDF</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"g1.pdf"</span>, 
        plot <span class="op">=</span> <span class="va">g1</span>, 
@@ -1632,7 +1632,7 @@ Utilize o banco de dados <code>penguins</code> para criar um <a href="https://an
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -105,7 +105,7 @@
 <h2>Pré-requisitos do capítulo<a class="anchor" aria-label="anchor" href="#pr%C3%A9-requisitos-do-cap%C3%ADtulo-6"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pacotes e dados que serão utilizados neste capítulo.</p>
-<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacotes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://chao.stat.nthu.edu.tw/wordpress/software_download/">iNEXT</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ecodados</span><span class="op">)</span>
@@ -170,7 +170,7 @@ Esta última restrição foi superada por Colwell et al. <span class="citation">
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos olhar os dados usando a função <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho dos dados</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_rarefacao</span><span class="op">)</span>
 <span class="co">#&gt;                       MC_Tenentes MC_Talhadinho FF_Experimental</span>
@@ -186,14 +186,14 @@ Esta última restrição foi superada por Colwell et al. <span class="citation">
 <span class="co">#&gt;     MC_Tenentes   MC_Talhadinho FF_Experimental </span>
 <span class="co">#&gt;             166             413             223</span></code></pre></div>
 <p>Usaremos as funções do pacote <code>iNEXT</code> (iNterpolation e EXTrapolation) para o cálculo da rarefação <span class="citation">(<a href="refer%C3%AAncias.html#ref-hsieh_inext_2016" role="doc-biblioref">Hsieh, Ma, and Chao 2016</a>)</span>. Esta função permite estimar a riqueza de espécies utilizando a família <em>Hill-numbers</em> (Hill 1973; explicação dos conceitos da família <em>Hill-numbers</em> está detalhada no Capítulo <a href="cap12.html#cap12">12</a>. O argumento <code>q</code> refere-se a família Hill-numbers onde: <code>0</code> = riqueza de espécies, <code>1</code> = diversidade de Shannon e <code>2</code> = diversidade de Simpson. No exemplo abaixo, utilizamos somente <code>q = 0</code>.</p>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Rarefação</span>
 <span class="co"># Datatype refere-se ao tipo de dados que você vai analisar (e.g. abundância, incidência).</span>
 <span class="co"># Endpoint refere-se ao valor máximo que você determina para a extrapolação.</span>
 <span class="va">resultados_morcegos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/iNEXT.html">iNEXT</a></span><span class="op">(</span><span class="va">dados_rarefacao</span>, q <span class="op">=</span> <span class="fl">0</span>, 
                              datatype <span class="op">=</span> <span class="st">"abundance"</span>, endpoint <span class="op">=</span> <span class="fl">800</span><span class="op">)</span></code></pre></div>
 <p>Vamos visualizar os resultados (Figura <a href="cap10.html#fig:fig-rare-ind-morcegos">10.1</a>).</p>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="co"># type define o tipo de curva de rarefação</span>
 <span class="co"># 1 = curva de rarefação baseada no indivíduo ou amostra</span>
@@ -236,7 +236,7 @@ Figura 10.1: Curvas de rarefação baseada nos indivíduos de morcegos.
 </ul>
 <p><strong>Análise</strong></p>
 <p>Olhando os dados dos répteis.</p>
-<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rarefacao_repteis</span><span class="op">)</span>
 <span class="co">#&gt;                         Coleta.Campo Colecoes.Cientificas</span>
@@ -247,7 +247,7 @@ Figura 10.1: Curvas de rarefação baseada nos indivíduos de morcegos.
 <span class="co">#&gt; Bothrops__pauloensis               0                    1</span>
 <span class="co">#&gt; Bothrops_alternatus                0                    1</span></code></pre></div>
 <p>Análise usando o pacote <code>iNEXT</code> (Figura <a href="cap10.html#fig:fig-rare-ind-repteis">10.2</a>).</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">resultados_repteis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/iNEXT.html">iNEXT</a></span><span class="op">(</span><span class="va">rarefacao_repteis</span>, q <span class="op">=</span> <span class="fl">0</span>,
                             datatype <span class="op">=</span> <span class="st">"abundance"</span>, 
@@ -270,7 +270,7 @@ Figura 10.2: Curvas de rarefação baseada nos indivíduos de répteis.
 <p><strong>Interpretação dos resultados</strong></p>
 <p>Foram registradas oito espécies de répteis nas coletas de campo (48 indivíduos) e 28 espécies nas coleções científicas (77 indivíduos). Com base na rarefação, concluímos que a riqueza de espécies de répteis obtida nas coleções científicas (20,5) é 2,5 vezes maior do que a obtida em coletas de campo.</p>
 <p>Olhando os dados dos anuros.</p>
-<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rarefacao_anuros</span><span class="op">)</span>
 <span class="co">#&gt;                           Coleta.Campo Colecoes.Cientificas</span>
@@ -281,7 +281,7 @@ Figura 10.2: Curvas de rarefação baseada nos indivíduos de répteis.
 <span class="co">#&gt; Dendropsophus_minutus               24                    0</span>
 <span class="co">#&gt; Dendropsophus_sanborni               0                    1</span></code></pre></div>
 <p>Análise e visualização do gráfico (Figura <a href="cap10.html#fig:fig-rare-ind-anuros">10.3</a>).</p>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Análise</span>
 <span class="va">resultados_anuros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/iNEXT.html">iNEXT</a></span><span class="op">(</span><span class="va">rarefacao_anuros</span>, q <span class="op">=</span> <span class="fl">0</span>, 
                            datatype <span class="op">=</span> <span class="st">"abundance"</span>, endpoint <span class="op">=</span> <span class="fl">800</span><span class="op">)</span>
@@ -320,7 +320,7 @@ Figura 10.3: Curvas de rarefação baseada nos indivíduos de anuros.
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos olhar os dados.</p>
-<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Cabeçalho</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_amostras</span><span class="op">)</span>
 <span class="co">#&gt;          MC_Tenentes MC_Talhadinho FF_Experimental</span>
@@ -331,7 +331,7 @@ Figura 10.3: Curvas de rarefação baseada nos indivíduos de anuros.
 <span class="co">#&gt; sp4                8            10               8</span>
 <span class="co">#&gt; sp5                6             7               7</span></code></pre></div>
 <p>Vamos criar uma lista com as amostragens de cada comunidade e os códigos da análise.</p>
-<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="co"># Usamos [,] para excluir os NAs. Lembrando que valores antes da </span>
 <span class="co"># vírgula representam as linhas e os posteriores representam as colunas.</span>
@@ -343,7 +343,7 @@ Figura 10.3: Curvas de rarefação baseada nos indivíduos de anuros.
 <span class="va">res_rarefacao_amostras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/iNEXT.html">iNEXT</a></span><span class="op">(</span><span class="va">lista_rarefacao</span>, q <span class="op">=</span> <span class="fl">0</span>, 
                                 datatype <span class="op">=</span> <span class="st">"incidence_freq"</span><span class="op">)</span></code></pre></div>
 <p>Visualizar os resultados (Figura <a href="cap10.html#fig:fig-rare-amos-morcegos">10.4</a>).</p>
-<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/ggiNEXT.html">ggiNEXT</a></span><span class="op">(</span><span class="va">res_rarefacao_amostras</span> , type <span class="op">=</span> <span class="fl">1</span>, color.var <span class="op">=</span> <span class="st">"site"</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">12</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
@@ -370,7 +370,7 @@ Figura 10.4: Curvas de rarefação baseada em amostras de morcegos.
 <p>Neste exemplo, usaremos os mesmos dados de espécies de morcegos amostradas em três fragmentos florestais <span class="citation">(<a href="refer%C3%AAncias.html#ref-breviglieri2008" role="doc-biblioref">Breviglieri 2008</a>)</span>.</p>
 <p><strong>Análise</strong></p>
 <p>Os códigos para a realização da rarefação <em>coverage-based</em> são idênticos aos utilizados para o cálculo das curvas de rarefações baseadas nas abundâncias e amostras. Portanto, não repetiremos as linhas de código aqui e utilizaremos os resultados já calculados para a visualização dos gráficos. Para isso, digitamos <code>type</code> = 3 que representa a curva de rarefação <em>coverage-based</em> (Figura <a href="cap10.html#fig:fig-rare-cover-morcegos">10.5</a>).</p>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Gráfico</span>
 <span class="co"># Visualizar os resultados da rarefação *coverage-based*. </span>
 <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/ggiNEXT.html">ggiNEXT</a></span><span class="op">(</span><span class="va">res_rarefacao_amostras</span>, type <span class="op">=</span> <span class="fl">3</span>, color.var <span class="op">=</span> <span class="st">"site"</span><span class="op">)</span> <span class="op">+</span> 
@@ -409,7 +409,7 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 </ul>
 <p><strong>Análise</strong></p>
 <p>Vamos calcular a riqueza rarefeita com base na comunidade com menor abundância.</p>
-<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Menos abundância</span>
 <span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span>
 <span class="co"># Para as análises teremos que transpor a planilha.</span>
@@ -419,14 +419,14 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 <span class="va">abun_min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colSums</a></span><span class="op">(</span><span class="va">composicao_acaros</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Vamos calcular a riqueza rarefeita de espécies para todas as comunidades considerando a menor abundância.</p>
 <p>Para padronizar e facilitar a extração dos resultados, definimos os argumentos <code>knots</code> (i.e. representa o intervalo igualmente espaçado que a função irá utilizar para determinar a riqueza estimada) e <code>endpoint</code> (i.e. o valor final de amostras ou abundância extrapolados) com o valor de abundância = 8.</p>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Riqueza rarefeita</span>
 <span class="va">resultados_rarefacao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/iNEXT.html">iNEXT</a></span><span class="op">(</span><span class="va">composicao_acaros</span>, q <span class="op">=</span> <span class="fl">0</span>, 
                               datatype <span class="op">=</span> <span class="st">"abundance"</span>, 
                               knots <span class="op">=</span> <span class="va">abun_min</span>,
                               endpoint <span class="op">=</span> <span class="va">abun_min</span><span class="op">)</span></code></pre></div>
 <p>Lembrando, estamos interessados no valor rarefeito considerando a abundância de 8 indivíduos. Esta informação está armazenada na linha 8 e na coluna 4 dos data frames salvos no objeto <code>resultados_rarefação$iNextEst</code>. Assim, para obtermos o valor rarefeito de interesse, vamos criar um <code>loop for</code> para facilitar a extração da riqueza rarefeita para as 70 comunidades.</p>
-<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Riqueza rarefeita para cada comunidade</span>
 <span class="va">riqueza_rarefeita</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -436,12 +436,12 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
   <span class="va">riqueza_rarefeita</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">subset_res</span><span class="op">$</span><span class="va">qD</span>
 <span class="op">}</span></code></pre></div>
 <p>Vamos juntar esses resultados com os dados geográficos e ambientais.</p>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados finais</span>
 <span class="co"># Agrupando os dados em um data frame final.</span>
 <span class="va">dados_combinado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">riqueza_rarefeita</span>, <span class="va">agua</span>, <span class="va">coord</span><span class="op">)</span></code></pre></div>
 <p>Agora, seguindo os passos descritos no Capítulo <a href="cap7.html#cap7">7</a>, vamos identificar o melhor modelo que representa a estrutura espacial dos dados da riqueza rarefeita.</p>
-<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criando diferentes modelos usando a função gls</span>
 <span class="co">## Sem estrutura espacial</span>
 <span class="va">no_spat_gls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/gls.html">gls</a></span><span class="op">(</span><span class="va">riqueza_rarefeita</span> <span class="op">~</span> <span class="va">agua</span>, data <span class="op">=</span> <span class="va">dados_combinado</span>, 
@@ -463,7 +463,7 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 <span class="va">ratio_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/gls.html">gls</a></span><span class="op">(</span><span class="va">riqueza_rarefeita</span> <span class="op">~</span> <span class="va">agua</span>, data <span class="op">=</span> <span class="va">dados_combinado</span>, 
                    <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/corRatio.html">corRatio</a></span><span class="op">(</span>form <span class="op">=</span> <span class="op">~</span><span class="va">lat</span> <span class="op">+</span> <span class="va">long</span>, nugget <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Agora vamos usar a seleção de modelo por AIC para selecionar o modelo mais “provável” explicando a distribuição da riqueza rarefeita das espécies de ácaros (Figura <a href="cap10.html#fig:fig-rare-resi-acaros">10.6</a>).</p>
-<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Seleção dos modelos</span>
 <span class="va">aic_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">no_spat_gls</span>, <span class="va">espher_model</span>, <span class="va">expon_model</span>, 
                <span class="va">gauss_model</span>, <span class="va">ratio_model</span><span class="op">)</span>
@@ -484,7 +484,7 @@ Figura 10.6: Visualização dos resíduos do modelo selecionado.
 </p>
 </div>
 <p>Percebam que os pontos estão dispersos no gráfico e não apresentam padrões que indiquem heterogeneidade de variância (Figura <a href="cap10.html#fig:fig-rare-model-acaros">10.7</a>).</p>
-<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Visualizando os resultados</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">gauss_model</span><span class="op">)</span><span class="op">$</span><span class="va">tTable</span> 
 <span class="co">#&gt;                    Value    Std.Error   t-value      p-value</span>
@@ -588,7 +588,7 @@ Use os dados dos exercícios anteriores e calcule a rarefação baseada na cober
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-25.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
