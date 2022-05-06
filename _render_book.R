@@ -15,8 +15,8 @@ rmarkdown::clean_site(preview = FALSE)
 # remotes::install_github(repo = "paternogbc/ecodados", force = TRUE)
 
 # Template
-# download.file(url = "https://github.com/paternogbc/livro_aer/blob/master/templates/bs4_book.html",
-#               destfile = paste0(system.file("templates", package = "bookdown"), "/bs4_book.html"), mode = "wb")
+download.file(url = "https://raw.githubusercontent.com/paternogbc/livro_aer/master/templates/bs4_book.html",
+              destfile = paste0(system.file("templates", package = "bookdown"), "/bs4_book.html"), mode = "wb")
 
 # Render html -------------------------------------------------------------
 # tic()

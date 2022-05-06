@@ -557,7 +557,7 @@ Vamos iniciar calculando a riqueza extrapolada com base na comunidade com maior 
 ## Transposição
 # Os dados estão com as comunidades nas colunas e as espécies nas linhas. 
 # Para as análises teremos que transpor a planilha.
-composicao_acaros <- t(mite)
+composicao_acaros <- as.data.frame(t(mite))
 
 ## Dados
 # A comunidade com maior abundância tem 781 indivíduos. 
@@ -616,11 +616,6 @@ gauss_model <- gls(riqueza_extrapolada ~ agua,
                    data = dados_combinado_ext, 
                    corGaus(form = ~lat + long, nugget = TRUE))
 
-## Covariância linear
-cor_linear_model <- gls(riqueza_extrapolada ~ agua,
-                        data = dados_combinado_ext,
-                        corLin(form = ~lat + long, nugget = TRUE))
-
 ## Covariância razão quadrática
 ratio_model <- gls(riqueza_extrapolada ~ agua, 
                    data = dados_combinado_ext, 
@@ -631,9 +626,7 @@ Vamos usar a seleção de modelos por AIC para selecionar o modelo mais "prováv
 
 ```{r fig-ext-resi-acaros, fig.cap="Visualização dos resíduos do modelo selecionado."}
 ## Seleção dos modelos
-aic_fit_ext <- AIC(no_spat_gls, espher_model, 
-                   cor_linear_model, expon_model, 
-                   gauss_model, ratio_model)
+aic_fit_ext <- AIC(no_spat_gls, espher_model, expon_model, gauss_model, ratio_model)
 aic_fit_ext %>% arrange(AIC)
 
 ## Visualizando os resíduos do modelo com menor valor de AIC (veja Capítulo 7)

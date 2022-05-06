@@ -191,39 +191,36 @@ Figura 13.3: Filogenia de 37 espécies de aves endêmicas da Mata Atlântica, co
 </div>
 <p>Percebam que existem vários argumentos para modificar a largura e cor dos ramos, tamanho da fonte, distância entre a filogenia e os nomes das espécies e muito mais. Uma sugestão é visitar o blog do professor Liam Revell (<a href="http://blog.phytools.org/" class="uri">http://blog.phytools.org/</a>) que é o criador e mantenedor do pacote <code>phytools</code> no R.</p>
 <p><strong>Acessar informações da filogenia</strong></p>
-<p>Uma das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
+<p>Uma das características mais interessantes do R é que podemos acessar as informações do objeto que contém a filogenia. Neste caso, o nosso objeto é a filogenia e, muitas vezes, temos interesse nas informações que estão inseridas dentro da filogenia. Para sabermos quais são as informações que podemos acessar na filogenia, vamos usar a função <code><a href="https://rdrr.io/pkg/raster/man/names.html">names()</a></code>.</p>
 <div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Nomes</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">minha_arvore</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">minha_arvore</span><span class="op">)</span>
 <span class="co">#&gt; [1] "edge"        "edge.length" "Nnode"       "tip.label"</span></code></pre></div>
 <p>Temos acesso a quatro componentes da filogenia: i) ramo (<code>edge</code>), ii) comprimento do ramo (<code>edge.length</code>), iii) número de nós (<code>Nnode</code>), e iv) nome das espécies (<code>tip.label</code>). Podemos usar o operador <code>$</code> para acessar estes componentes. Veja abaixo como acessar o nome das 37 espécies de aves na filogenia ou o comprimento de cada um dos ramos da filogenia.</p>
 <div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Nome das espécies</span>
 <span class="va">minha_arvore</span><span class="op">$</span><span class="va">tip.label</span>
-<span class="co">#&gt;  [1] "Cranioleuca_pallida"          "Synallaxis_ruficapilla"       "Phacellodomus_ferrugineigula"</span>
-<span class="co">#&gt;  [4] "Cinclodes_pabsti"             "Conopophaga_melanops"         "Herpsilochmus_pileatus"      </span>
-<span class="co">#&gt;  [7] "Pyriglena_leucoptera"         "Formicivora_serrana"          "Chiroxiphia_caudata"         </span>
-<span class="co">#&gt; [10] "Neopelma_aurifrons"           "Carpornis_cucullata"          "Mionectes_rufiventris"       </span>
-<span class="co">#&gt; [13] "Phylloscartes_kronei"         "Dacnis_nigripes"              "Ramphocelus_bresilius"       </span>
-<span class="co">#&gt; [16] "Sporophila_frontalis"         "Tangara_seledon"              "Euphonia_pectoralis"         </span>
-<span class="co">#&gt; [19] "Cyanocorax_caeruleus"         "Brotogeris_tirica"            "Pionopsitta_pileata"         </span>
-<span class="co">#&gt; [22] "Pyrrhura_frontalis"           "Ramphastos_dicolorus"         "Pteroglossus_bailloni"       </span>
-<span class="co">#&gt; [25] "Veniliornis_maculifrons"      "Melanerpes_flavifrons"        "Malacoptila_striata"         </span>
-<span class="co">#&gt; [28] "Strix_hylophila"              "Pulsatrix_koeniswaldiana"     "Megascops_sanctaecatarinae"  </span>
-<span class="co">#&gt; [31] "Leucopternis_polionotus"      "Buteogallus_lacernulatus"     "Thalurania_glaucopis"        </span>
-<span class="co">#&gt; [34] "Stephanoxis_lalandi"          "Aramides_saracura"            "Ortalis_guttata"             </span>
+<span class="co">#&gt;  [1] "Cranioleuca_pallida"          "Synallaxis_ruficapilla"       "Phacellodomus_ferrugineigula" "Cinclodes_pabsti"            </span>
+<span class="co">#&gt;  [5] "Conopophaga_melanops"         "Herpsilochmus_pileatus"       "Pyriglena_leucoptera"         "Formicivora_serrana"         </span>
+<span class="co">#&gt;  [9] "Chiroxiphia_caudata"          "Neopelma_aurifrons"           "Carpornis_cucullata"          "Mionectes_rufiventris"       </span>
+<span class="co">#&gt; [13] "Phylloscartes_kronei"         "Dacnis_nigripes"              "Ramphocelus_bresilius"        "Sporophila_frontalis"        </span>
+<span class="co">#&gt; [17] "Tangara_seledon"              "Euphonia_pectoralis"          "Cyanocorax_caeruleus"         "Brotogeris_tirica"           </span>
+<span class="co">#&gt; [21] "Pionopsitta_pileata"          "Pyrrhura_frontalis"           "Ramphastos_dicolorus"         "Pteroglossus_bailloni"       </span>
+<span class="co">#&gt; [25] "Veniliornis_maculifrons"      "Melanerpes_flavifrons"        "Malacoptila_striata"          "Strix_hylophila"             </span>
+<span class="co">#&gt; [29] "Pulsatrix_koeniswaldiana"     "Megascops_sanctaecatarinae"   "Leucopternis_polionotus"      "Buteogallus_lacernulatus"    </span>
+<span class="co">#&gt; [33] "Thalurania_glaucopis"         "Stephanoxis_lalandi"          "Aramides_saracura"            "Ortalis_guttata"             </span>
 <span class="co">#&gt; [37] "Tinamus_solitarius"</span>
 
 <span class="co">## Comprimento dos ramos</span>
 <span class="va">minha_arvore</span><span class="op">$</span><span class="va">edge.length</span>
-<span class="co">#&gt;  [1]   8.3802647  18.8669712   1.7333865   3.6642170  10.6732942  15.2239228  11.0917270   1.7755983  28.3607791</span>
-<span class="co">#&gt; [10]   2.9678911   1.7546545   8.0910030   8.0910030   9.8456576  12.8135486  41.1743278  25.4606915   0.5546030</span>
-<span class="co">#&gt; [19]  16.9346316  16.9346316  17.4892346  18.4363079   4.6581580  13.5498048  17.3960309  17.3960309  30.9471871</span>
-<span class="co">#&gt; [28]  12.4567724  23.1472214  23.1472214  17.4065182  24.1723764  12.4712971   2.4600303  12.6082491  12.5529673</span>
-<span class="co">#&gt; [37]  12.6146793  15.2153841  27.6866812  51.8590576  50.4721698   1.0975337  28.3691666  28.3691666  29.4667004</span>
-<span class="co">#&gt; [46]   0.4805624   1.9967144   2.7687118  17.0272986  23.4955884  20.5338341  17.3003772  17.3003772  22.2636579</span>
-<span class="co">#&gt; [55]  15.5705534  15.5705534  61.3297997  50.6621138   5.3479249  22.3470597  22.3470597  27.6949846  66.5513507</span>
-<span class="co">#&gt; [64]  14.5744595  14.5744595  67.7448719  15.3776527  15.3776527  85.3364736 104.2034448 112.5837095</span></code></pre></div>
+<span class="co">#&gt;  [1]   8.3802647  18.8669712   1.7333865   3.6642170  10.6732942  15.2239228  11.0917270   1.7755983  28.3607791   2.9678911</span>
+<span class="co">#&gt; [11]   1.7546545   8.0910030   8.0910030   9.8456576  12.8135486  41.1743278  25.4606915   0.5546030  16.9346316  16.9346316</span>
+<span class="co">#&gt; [21]  17.4892346  18.4363079   4.6581580  13.5498048  17.3960309  17.3960309  30.9471871  12.4567724  23.1472214  23.1472214</span>
+<span class="co">#&gt; [31]  17.4065182  24.1723764  12.4712971   2.4600303  12.6082491  12.5529673  12.6146793  15.2153841  27.6866812  51.8590576</span>
+<span class="co">#&gt; [41]  50.4721698   1.0975337  28.3691666  28.3691666  29.4667004   0.4805624   1.9967144   2.7687118  17.0272986  23.4955884</span>
+<span class="co">#&gt; [51]  20.5338341  17.3003772  17.3003772  22.2636579  15.5705534  15.5705534  61.3297997  50.6621138   5.3479249  22.3470597</span>
+<span class="co">#&gt; [61]  22.3470597  27.6949846  66.5513507  14.5744595  14.5744595  67.7448719  15.3776527  15.3776527  85.3364736 104.2034448</span>
+<span class="co">#&gt; [71] 112.5837095</span></code></pre></div>
 <p><strong>Remover espécies da filogenia</strong></p>
 <p>Nas análises de diversidade filogenética, as espécies que estarão presentes na filogenia normalmente são aquelas que foram amostradas no seu estudo. Contudo, muitas vezes utilizamos filogenias contendo espécies que não estão presentes no nosso estudo. Neste caso, precisamos excluir essas espécies da filogenia. A função <code><a href="https://rdrr.io/pkg/ape/man/drop.tip.html">drop.tip()</a></code> faz essa tarefa.</p>
 <div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
@@ -350,7 +347,7 @@ Figura 13.5: Filogenia de espécies de plantas criada pelo pacote <code>V.PhyloM
 <p>Vamos conferir se os nomes das espécies de aves no data frame de composição são os mesmos da filogenia. O resultado <code>OK</code> indica que os nomes estão corretos. Caso contrário, você deve verificar e arrumar.</p>
 <div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Conferir os nomes das espécies</span>
-<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/name.check.html">name.check</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/name.check.html">name.check</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">composicao_especies</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "OK"</span></code></pre></div>
 <p>Agora vamos colocar os nomes das espécies do data frame na mesma ordem que os nomes aparecem na filogenia. Isso é obrigatório para algumas funções.</p>
 <div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
@@ -408,7 +405,7 @@ Este índice é correlacionado com a riqueza de espécies. Discutiremos essa que
 <div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Phylogenetic Endemism (PE)</span>
 <span class="co"># Transformando data.frame em matriz.</span>
-<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
+<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
 
 <span class="co"># Análise.</span>
 <span class="va">resultados_PE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloregion/man/phylo_endemism.html">phylo_endemism</a></span><span class="op">(</span><span class="va">dados_matriz</span>, <span class="va">filogenia_aves</span>, 
@@ -533,7 +530,7 @@ Os valores de PSV são idênticos ao MPD quando a filogenia é ultramétrica.</p
 <div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Variance of Pairwise Distance (VPD)</span>
 <span class="co"># Transformando data frame em matriz.</span>
-<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
+<span class="va">dados_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">composicao_especies_P</span><span class="op">)</span>
 
 <span class="co"># Transformar os dados para o formato requerido pelo pacote pez.</span>
 <span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pez/man/comparative.comm.html">comparative.comm</a></span><span class="op">(</span><span class="va">filogenia_aves</span>, <span class="va">dados_matriz</span><span class="op">)</span>
@@ -1090,7 +1087,7 @@ Figura 13.14: Relação dos componentes substituição e aninhamento da diversid
 
 <span class="co"># Função para calcular o SES eo valor de P.</span>
 <span class="va">ses.physo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">obs</span>, <span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">nulo_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>
+    <span class="va">nulo_phylosor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>
                                      <span class="op">(</span><span class="va">nulo_phylosor</span>, <span class="va">as.vector</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
     <span class="va">physo.obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>
     <span class="va">physo.mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">nulo_phylosor</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, 
@@ -1106,7 +1103,7 @@ Figura 13.14: Relação dos componentes substituição e aninhamento da diversid
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">physo.obs</span>, <span class="va">physo.mean</span>, <span class="va">physo.sd</span>, 
                <span class="va">physo.obs.rank</span>, <span class="va">physo.ses</span>, 
                physo.obs.p <span class="op">=</span> <span class="va">physo.obs.rank</span><span class="op">/</span>
-                   <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+                   <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/dimensions.html">dim</a></span><span class="op">(</span><span class="va">nulo_phylosor</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co">## Resultados</span>
@@ -1209,7 +1206,7 @@ Carregue os dados - <code>anuros_composicao</code> (i.e., 211 espécies de anuro
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -525,7 +525,6 @@ cwm_dis <- vegdist(cwm_fren, "euclidean")
 
 ## Passo 3: testar se a composição funcional varia entre as áreas com uma PERMANOVA
 perman_fren <- adonis(cwm_fren ~ Grazing, data = ambie_fren_dat)
-perman_fren
 
 ## Passo 4: comparar a variação dentro de cada grupo com Betadisper 
 betad_fren <- betadisper(cwm_dis, ambie_fren_dat$Grazing)

@@ -309,7 +309,7 @@ Vamos calcular a riqueza rarefeita com base na comunidade com menor abundância.
 ## Menos abundância
 # Os dados estão com as comunidades nas colunas e as espécies nas linhas. 
 # Para as análises teremos que transpor a planilha.
-composicao_acaros <- t(mite)
+composicao_acaros <- as.data.frame(t(mite))
 
 # Verificar qual é a menor abundância registrada nas comunidades. 
 abun_min <- min(colSums(composicao_acaros))
@@ -321,11 +321,11 @@ Para padronizar e facilitar a extração dos resultados, definimos os argumentos
 
 ```{r warning=FALSE, message=FALSE}
 ## Riqueza rarefeita
-resultados_rarefacao <- iNEXT(composicao_acaros, q = 0, 
+resultados_rarefacao <- iNEXT(composicao_acaros, 
+                              q = 0, 
                               datatype = "abundance", 
                               knots = abun_min,
                               endpoint = abun_min)
-
 ```
 
 Lembrando, estamos interessados no valor rarefeito considerando a abundância de 8 indivíduos. Esta informação está armazenada na linha 8 e na coluna 4 dos data frames salvos no objeto `resultados_rarefação$iNextEst`. Assim, para obtermos o valor rarefeito de interesse, vamos criar um `loop for` para facilitar a extração da riqueza rarefeita para as 70 comunidades. 

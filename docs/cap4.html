@@ -229,8 +229,8 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <p>O resultado retorna o valor <code>12</code>, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação <code>1:42</code>, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o <code>[1]</code>, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, <code>[37]</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">42</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37</span>
-<span class="co">#&gt; [38] 38 39 40 41 42</span></code></pre></div>
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41</span>
+<span class="co">#&gt; [42] 42</span></code></pre></div>
 <p>Podemos ver o histórico dos códigos executados no console na aba <strong>History</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 3).</p>
 </div>
 <div id="scripts" class="section level3" number="4.3.2">
@@ -274,152 +274,319 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <p>No R, podemos agrupar os operadores em cinco tipos: aritméticos, relacionais, lógicos, atribuição e diversos. Grande parte deles são descritos na Tabela <a href="cap4.html#tab:tab-operadores">4.1</a>.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:tab-operadores">Tabela 4.1: </span>Principais operadores no R.</caption>
-<thead><tr class="header">
-<th align="center">Operador</th>
-<th align="center">Tipo</th>
-<th align="center">Descrição</th>
+<span id="tab:tab-operadores">Tabela 4.1: </span>Principais operadores no R.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Operador
+</th>
+<th style="text-align:center;">
+Tipo
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="center">+</td>
-<td align="center">Aritmético</td>
-<td align="center">Adição</td>
+<tr>
+<td style="text-align:center;">
+<ul><li></ul>
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Adição
+</td>
 </tr>
-<tr class="even">
-<td align="center">-</td>
-<td align="center">Aritmético</td>
-<td align="center">Subtração</td>
+<tr>
+<td style="text-align:center;">
+<ul><li></ul>
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Subtração
+</td>
 </tr>
-<tr class="odd">
-<td align="center">*</td>
-<td align="center">Aritmético</td>
-<td align="center">Multiplicação</td>
+<tr>
+<td style="text-align:center;">
+<ul><li></ul>
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Multiplicação
+</td>
 </tr>
-<tr class="even">
-<td align="center">/</td>
-<td align="center">Aritmético</td>
-<td align="center">Divisão</td>
+<tr>
+<td style="text-align:center;">
+/
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão
+</td>
 </tr>
-<tr class="odd">
-<td align="center">%%</td>
-<td align="center">Aritmético</td>
-<td align="center">Resto da divisão</td>
+<tr>
+<td style="text-align:center;">
+%%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Resto da divisão
+</td>
 </tr>
-<tr class="even">
-<td align="center">%/%</td>
-<td align="center">Aritmético</td>
-<td align="center">Divisão inteira</td>
+<tr>
+<td style="text-align:center;">
+%/%
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Divisão inteira
+</td>
 </tr>
-<tr class="odd">
-<td align="center">^ ou **</td>
-<td align="center">Aritmético</td>
-<td align="center">Expoente</td>
+<tr>
+<td style="text-align:center;">
+^ ou **
+</td>
+<td style="text-align:center;">
+Aritmético
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
 </tr>
-<tr class="even">
-<td align="center">&gt;</td>
-<td align="center">Relacional</td>
-<td align="center">Maior</td>
+<tr>
+<td style="text-align:center;">
+&gt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;</td>
-<td align="center">Relacional</td>
-<td align="center">Menor</td>
+<tr>
+<td style="text-align:center;">
+&lt;
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor
+</td>
 </tr>
-<tr class="even">
-<td align="center">&gt;=</td>
-<td align="center">Relacional</td>
-<td align="center">Maior ou igual</td>
+<tr>
+<td style="text-align:center;">
+&gt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Maior ou igual
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;=</td>
-<td align="center">Relacional</td>
-<td align="center">Menor ou igual</td>
+<tr>
+<td style="text-align:center;">
+&lt;=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Menor ou igual
+</td>
 </tr>
-<tr class="even">
-<td align="center">==</td>
-<td align="center">Relacional</td>
-<td align="center">Igualdade</td>
+<tr>
+<td style="text-align:center;">
+==
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Igualdade
+</td>
 </tr>
-<tr class="odd">
-<td align="center">!=</td>
-<td align="center">Relacional</td>
-<td align="center">Diferença</td>
+<tr>
+<td style="text-align:center;">
+!=
+</td>
+<td style="text-align:center;">
+Relacional
+</td>
+<td style="text-align:center;">
+Diferença
+</td>
 </tr>
-<tr class="even">
-<td align="center">!</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico NÃO</td>
+<tr>
+<td style="text-align:center;">
+!
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico NÃO
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&amp;</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico elementar E</td>
+<tr>
+<td style="text-align:center;">
+&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico elementar E
+</td>
 </tr>
-<tr class="even">
-<td align="center">|</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico elementar OU</td>
+<tr><td style="text-align:center;">
+<div class="line-block"></div>
+</td></tr>
+<tr>
+<td style="text-align:center;">
+&amp;&amp;
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico E
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&amp;&amp;</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico E</td>
+<tr>
+<td style="text-align:center;">
+||
+</td>
+<td style="text-align:center;">
+Lógico
+</td>
+<td style="text-align:center;">
+Lógico OU
+</td>
 </tr>
-<tr class="even">
-<td align="center">||</td>
-<td align="center">Lógico</td>
-<td align="center">Lógico OU</td>
+<tr>
+<td style="text-align:center;">
+&lt;- ou =
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à esquerda
+</td>
 </tr>
-<tr class="odd">
-<td align="center">&lt;- ou =</td>
-<td align="center">Atribuição</td>
-<td align="center">Atribuição à esquerda</td>
+<tr>
+<td style="text-align:center;">
+&lt;&lt;-
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à esquerda
+</td>
 </tr>
-<tr class="even">
-<td align="center">&lt;&lt;-</td>
-<td align="center">Atribuição</td>
-<td align="center">Super atribuição à esquerda</td>
+<tr>
+<td style="text-align:center;">
+-&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Atribuição à direita
+</td>
 </tr>
-<tr class="odd">
-<td align="center">-&gt;</td>
-<td align="center">Atribuição</td>
-<td align="center">Atribuição à direita</td>
+<tr>
+<td style="text-align:center;">
+-&gt;&gt;
+</td>
+<td style="text-align:center;">
+Atribuição
+</td>
+<td style="text-align:center;">
+Super atribuição à direita
+</td>
 </tr>
-<tr class="even">
-<td align="center">-&gt;&gt;</td>
-<td align="center">Atribuição</td>
-<td align="center">Super atribuição à direita</td>
+<tr>
+<td style="text-align:center;">
+:
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Sequência unitária
+</td>
 </tr>
-<tr class="odd">
-<td align="center">:</td>
-<td align="center">Diversos</td>
-<td align="center">Sequência unitária</td>
+<tr>
+<td style="text-align:center;">
+%in%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Elementos que pertencem a um vetor
+</td>
 </tr>
-<tr class="even">
-<td align="center">%in%</td>
-<td align="center">Diversos</td>
-<td align="center">Elementos que pertencem a um vetor</td>
+<tr>
+<td style="text-align:center;">
+%*%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Multiplicar matriz com sua transposta
+</td>
 </tr>
-<tr class="odd">
-<td align="center">%*%</td>
-<td align="center">Diversos</td>
-<td align="center">Multiplicar matriz com sua transposta</td>
+<tr>
+<td style="text-align:center;">
+%&gt;%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (pacote magrittr)
+</td>
 </tr>
-<tr class="even">
-<td align="center">%&gt;%</td>
-<td align="center">Diversos</td>
-<td align="center">Pipe (pacote magrittr)</td>
+<tr>
+<td style="text-align:center;">
+|&gt;
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Pipe (R base nativo)
+</td>
 </tr>
-<tr class="odd">
-<td align="center">|&gt;</td>
-<td align="center">Diversos</td>
-<td align="center">Pipe (R base nativo)</td>
-</tr>
-<tr class="even">
-<td align="center">%–%</td>
-<td align="center">Diversos</td>
-<td align="center">Intervalo de datas (pacote lubridate)</td>
+<tr>
+<td style="text-align:center;">
+%–%
+</td>
+<td style="text-align:center;">
+Diversos
+</td>
+<td style="text-align:center;">
+Intervalo de datas (pacote lubridate)
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -566,8 +733,8 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <p>Podemos listar esses pacotes disponíveis no <strong>CRAN</strong> com esse código.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número atual de pacotes no CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 18894</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 18859</span></code></pre></div>
 <p>Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos verificar pacotes carregados pelo <em>R Base</em> utilizando a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar pacotes carregados</span>
@@ -592,7 +759,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Diretórios de intalação dos pacotes</span>
 <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html">.libPaths</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/home/mude/R/x86_64-pc-linux-gnu-library/4.1" "/usr/local/lib/R/site-library"               </span>
+<span class="co">#&gt; [1] "/home/mude/R/x86_64-pc-linux-gnu-library/4.2" "/usr/local/lib/R/site-library"               </span>
 <span class="co">#&gt; [3] "/usr/lib/R/site-library"                      "/usr/lib/R/library"</span></code></pre></div>
 <div class="alert alert-info">
 <p><strong> 📝 Importante </strong><br>
@@ -609,10 +776,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <p>Vamos carregar o pacote <code>vegan</code> que instalamos anteriormente. Podemos ir na aba <strong>Packages</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 4) e assinalar o pacote que queremos carregar ou utilizar a função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar pacotes</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan">vegan</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: permute</span>
-<span class="co">#&gt; Loading required package: lattice</span>
-<span class="co">#&gt; This is vegan 2.6-2</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan">vegan</a></span><span class="op">)</span></code></pre></div>
 <p>Como dissemos, alguns pacotes em desenvolvimento encontram-se disponíveis em repositórios do <a href="https://github.com/">GitHub</a>, <a href="https://gitlab.com">GitLab</a> e <a href="https://www.bioconductor.org/">Bioconductor</a>. Para instalar pacotes do GitHub, por exemplo, precisamos instalar e carregar o pacote <code>devtools</code>.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Instalar pacote devtools</span>
@@ -642,49 +806,45 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; Package: vegan</span>
 <span class="co">#&gt; Title: Community Ecology Package</span>
 <span class="co">#&gt; Version: 2.6-2</span>
-<span class="co">#&gt; Authors@R: c(person("Jari", "Oksanen", role=c("aut","cre"), email="jhoksane@gmail.com"), person("Gavin</span>
-<span class="co">#&gt;            L.", "Simpson", role="aut", email="ucfagls@gmail.com"), person("F. Guillaume", "Blanchet",</span>
-<span class="co">#&gt;            role="aut"), person("Roeland", "Kindt", role="aut"), person("Pierre", "Legendre",</span>
-<span class="co">#&gt;            role="aut"), person("Peter R.", "Minchin", role="aut"), person("R.B.", "O'Hara",</span>
-<span class="co">#&gt;            role="aut"), person("Peter", "Solymos", role="aut"), person("M. Henry H.", "Stevens",</span>
-<span class="co">#&gt;            role="aut"), person("Eduard", "Szoecs", role="aut"), person("Helene", "Wagner", role="aut"),</span>
-<span class="co">#&gt;            person("Matt", "Barbour", role="aut"), person("Michael", "Bedward", role="aut"),</span>
-<span class="co">#&gt;            person("Ben", "Bolker", role="aut"), person("Daniel", "Borcard", role="aut"),</span>
-<span class="co">#&gt;            person("Gustavo", "Carvalho", role="aut"), person("Michael", "Chirico", role="aut"),</span>
-<span class="co">#&gt;            person("Miquel", "De Caceres", role="aut"), person("Sebastien", "Durand", role="aut"),</span>
-<span class="co">#&gt;            person("Heloisa Beatriz Antoniazi", "Evangelista", role="aut"), person("Rich", "FitzJohn",</span>
-<span class="co">#&gt;            role="aut"), person("Michael", "Friendly", role="aut"), person("Brendan","Furneaux",</span>
-<span class="co">#&gt;            role="aut"), person("Geoffrey", "Hannigan", role="aut"), person("Mark O.", "Hill",</span>
-<span class="co">#&gt;            role="aut"), person("Leo", "Lahti", role="aut"), person("Dan", "McGlinn", role="aut"),</span>
-<span class="co">#&gt;            person("Marie-Helene", "Ouellette", role="aut"), person("Eduardo", "Ribeiro Cunha",</span>
-<span class="co">#&gt;            role="aut"), person("Tyler", "Smith", role="aut"), person("Adrian", "Stier", role="aut"),</span>
-<span class="co">#&gt;            person("Cajo J.F.", "Ter Braak", role="aut"), person("James", "Weedon", role="aut"))</span>
+<span class="co">#&gt; Authors@R: c(person("Jari", "Oksanen", role=c("aut","cre"), email="jhoksane@gmail.com"), person("Gavin L.",</span>
+<span class="co">#&gt;             "Simpson", role="aut", email="ucfagls@gmail.com"), person("F. Guillaume", "Blanchet", role="aut"),</span>
+<span class="co">#&gt;             person("Roeland", "Kindt", role="aut"), person("Pierre", "Legendre", role="aut"), person("Peter R.",</span>
+<span class="co">#&gt;             "Minchin", role="aut"), person("R.B.", "O'Hara", role="aut"), person("Peter", "Solymos", role="aut"),</span>
+<span class="co">#&gt;             person("M. Henry H.", "Stevens", role="aut"), person("Eduard", "Szoecs", role="aut"),</span>
+<span class="co">#&gt;             person("Helene", "Wagner", role="aut"), person("Matt", "Barbour", role="aut"), person("Michael",</span>
+<span class="co">#&gt;             "Bedward", role="aut"), person("Ben", "Bolker", role="aut"), person("Daniel", "Borcard", role="aut"),</span>
+<span class="co">#&gt;             person("Gustavo", "Carvalho", role="aut"), person("Michael", "Chirico", role="aut"), person("Miquel",</span>
+<span class="co">#&gt;             "De Caceres", role="aut"), person("Sebastien", "Durand", role="aut"), person("Heloisa Beatriz</span>
+<span class="co">#&gt;             Antoniazi", "Evangelista", role="aut"), person("Rich", "FitzJohn", role="aut"), person("Michael",</span>
+<span class="co">#&gt;             "Friendly", role="aut"), person("Brendan","Furneaux", role="aut"), person("Geoffrey", "Hannigan",</span>
+<span class="co">#&gt;             role="aut"), person("Mark O.", "Hill", role="aut"), person("Leo", "Lahti", role="aut"), person("Dan",</span>
+<span class="co">#&gt;             "McGlinn", role="aut"), person("Marie-Helene", "Ouellette", role="aut"), person("Eduardo", "Ribeiro</span>
+<span class="co">#&gt;             Cunha", role="aut"), person("Tyler", "Smith", role="aut"), person("Adrian", "Stier", role="aut"),</span>
+<span class="co">#&gt;             person("Cajo J.F.", "Ter Braak", role="aut"), person("James", "Weedon", role="aut"))</span>
 <span class="co">#&gt; Depends: permute (&gt;= 0.9-0), lattice, R (&gt;= 3.4.0)</span>
 <span class="co">#&gt; Suggests: parallel, tcltk, knitr, markdown</span>
 <span class="co">#&gt; Imports: MASS, cluster, mgcv</span>
 <span class="co">#&gt; VignetteBuilder: utils, knitr</span>
-<span class="co">#&gt; Description: Ordination methods, diversity analysis and other functions for community and vegetation</span>
-<span class="co">#&gt;            ecologists.</span>
+<span class="co">#&gt; Description: Ordination methods, diversity analysis and other functions for community and vegetation ecologists.</span>
 <span class="co">#&gt; License: GPL-2</span>
 <span class="co">#&gt; BugReports: https://github.com/vegandevs/vegan/issues</span>
 <span class="co">#&gt; URL: https://github.com/vegandevs/vegan</span>
 <span class="co">#&gt; NeedsCompilation: yes</span>
 <span class="co">#&gt; Packaged: 2022-04-17 15:30:56 UTC; jarioksa</span>
-<span class="co">#&gt; Author: Jari Oksanen [aut, cre], Gavin L. Simpson [aut], F. Guillaume Blanchet [aut], Roeland Kindt</span>
-<span class="co">#&gt;            [aut], Pierre Legendre [aut], Peter R. Minchin [aut], R.B. O'Hara [aut], Peter Solymos</span>
-<span class="co">#&gt;            [aut], M. Henry H. Stevens [aut], Eduard Szoecs [aut], Helene Wagner [aut], Matt Barbour</span>
-<span class="co">#&gt;            [aut], Michael Bedward [aut], Ben Bolker [aut], Daniel Borcard [aut], Gustavo Carvalho</span>
-<span class="co">#&gt;            [aut], Michael Chirico [aut], Miquel De Caceres [aut], Sebastien Durand [aut], Heloisa</span>
-<span class="co">#&gt;            Beatriz Antoniazi Evangelista [aut], Rich FitzJohn [aut], Michael Friendly [aut], Brendan</span>
-<span class="co">#&gt;            Furneaux [aut], Geoffrey Hannigan [aut], Mark O. Hill [aut], Leo Lahti [aut], Dan McGlinn</span>
-<span class="co">#&gt;            [aut], Marie-Helene Ouellette [aut], Eduardo Ribeiro Cunha [aut], Tyler Smith [aut], Adrian</span>
-<span class="co">#&gt;            Stier [aut], Cajo J.F. Ter Braak [aut], James Weedon [aut]</span>
+<span class="co">#&gt; Author: Jari Oksanen [aut, cre], Gavin L. Simpson [aut], F. Guillaume Blanchet [aut], Roeland Kindt [aut], Pierre</span>
+<span class="co">#&gt;             Legendre [aut], Peter R. Minchin [aut], R.B. O'Hara [aut], Peter Solymos [aut], M. Henry H. Stevens</span>
+<span class="co">#&gt;             [aut], Eduard Szoecs [aut], Helene Wagner [aut], Matt Barbour [aut], Michael Bedward [aut], Ben</span>
+<span class="co">#&gt;             Bolker [aut], Daniel Borcard [aut], Gustavo Carvalho [aut], Michael Chirico [aut], Miquel De Caceres</span>
+<span class="co">#&gt;             [aut], Sebastien Durand [aut], Heloisa Beatriz Antoniazi Evangelista [aut], Rich FitzJohn [aut],</span>
+<span class="co">#&gt;             Michael Friendly [aut], Brendan Furneaux [aut], Geoffrey Hannigan [aut], Mark O. Hill [aut], Leo</span>
+<span class="co">#&gt;             Lahti [aut], Dan McGlinn [aut], Marie-Helene Ouellette [aut], Eduardo Ribeiro Cunha [aut], Tyler</span>
+<span class="co">#&gt;             Smith [aut], Adrian Stier [aut], Cajo J.F. Ter Braak [aut], James Weedon [aut]</span>
 <span class="co">#&gt; Maintainer: Jari Oksanen &lt;jhoksane@gmail.com&gt;</span>
 <span class="co">#&gt; Repository: CRAN</span>
 <span class="co">#&gt; Date/Publication: 2022-04-17 17:00:02 UTC</span>
-<span class="co">#&gt; Built: R 4.1.3; x86_64-pc-linux-gnu; 2022-04-18 13:54:17 UTC; unix</span>
+<span class="co">#&gt; Built: R 4.2.0; x86_64-pc-linux-gnu; 2022-05-02 14:06:10 UTC; unix</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; -- File: /home/mude/R/x86_64-pc-linux-gnu-library/4.1/vegan/Meta/package.rds</span></code></pre></div>
+<span class="co">#&gt; -- File: /home/mude/R/x86_64-pc-linux-gnu-library/4.2/vegan/Meta/package.rds</span></code></pre></div>
 <p>A maioria dos pacotes possui conjuntos de dados que podem ser acessados pela função <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>. Esses conjuntos de dados podem ser usados para testar as funções do pacote. Se estiver com dúvida na maneira como você deve preparar a planilha para realizar uma análise específica, entre na Ajuda (<em>Help</em>) da função e veja os conjuntos de dados que estão no exemplo desta função. Como exemplo, vamos carregar os dados <code>dune</code> do pacote <code>vegan</code>, que são dados de observações de 30 espécies vegetais em 20 locais.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar dados de um pacote</span>
@@ -712,7 +872,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <p>Para fazer a atualização dos pacotes instalados pelo GitHub, recomendamos o uso do pacote <a href="https://github.com/hrbrmstr/dtupdate"><code>dtupdate</code></a>.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Atualização dos pacotes instalados pelo GitHub</span>
-<span class="fu">dtupdate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dtupdate/man/github_update.html">github_update</a></span><span class="op">(</span>auto.install <span class="op">=</span> <span class="cn">TRUE</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu">dtupdate</span><span class="fu">::</span><span class="fu">github_update</span><span class="op">(</span>auto.install <span class="op">=</span> <span class="cn">TRUE</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Destacamos e incentivamos ainda uma prática que achamos interessante para aumentar a reprodutibilidade de nossos códigos e scripts: a de chamar as funções de pacotes carregados dessa forma <code>pacote::função()</code>. Com o uso dessa prática, deixamos claro o pacote em que a função está implementada. Esta prática é importante por que com frequência pacotes diferentes criam funções com mesmo nome, mas com características internas (argumentos) diferentes. Assim, não expressar o pacote de interesse pode gerar erros na execução de suas análises. Destacamos aqui o exemplo de como instalar pacotes do GitHub do pacote <code>devtools</code>.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Pacote seguido da função implementada daquele pacote</span>
@@ -777,7 +937,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Listar todos os objetos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Podemos ainda remover todos os objetos criados com a função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> ou <code><a href="https://rdrr.io/r/base/rm.html">remove()</a></code>. Ou ainda fazer uma função composta para remover todos os objetos do <em>Environment</em>.</p>
+<p>Podemos ainda remover todos os objetos criados com a função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> ou <code><a href="https://rdrr.io/pkg/leaflet/man/remove.html">remove()</a></code>. Ou ainda fazer uma função composta para remover todos os objetos do <em>Environment</em>.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Remover um objeto</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">adi</span><span class="op">)</span>
@@ -794,10 +954,10 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Salvar todo o workspace</span>
 <span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"meu_workspace.RData"</span><span class="op">)</span></code></pre></div>
-<p>Depois disso, podemos fechar o RStudio tranquilamente e quando formos trabalhar novamente, podemos carregar os objetos criados indo em <code>Session -&gt; Load Workspace...</code> ou utilizando a função <code><a href="https://rdrr.io/r/base/load.html">load()</a></code>.</p>
+<p>Depois disso, podemos fechar o RStudio tranquilamente e quando formos trabalhar novamente, podemos carregar os objetos criados indo em <code>Session -&gt; Load Workspace...</code> ou utilizando a função <code><a href="https://rdrr.io/pkg/geiger/man/geiger-internal.html">load()</a></code>.</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Carregar todo o workspace</span>
-<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"meu_workspace.RData"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/geiger-internal.html">load</a></span><span class="op">(</span><span class="st">"meu_workspace.RData"</span><span class="op">)</span></code></pre></div>
 <p>Entretanto, em algumas ocasiões, não precisamos salvar todos os objetos. Dessa forma, podemos salvar apenas alguns objetos específicos usando a função <code><a href="https://rdrr.io/r/base/save.html">save()</a></code>, também com a extensão <code>.RData</code>.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Salvar apenas um objeto</span>
@@ -807,7 +967,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">obj1</span>, <span class="va">obj2</span>, file <span class="op">=</span> <span class="st">"meus_objs.RData"</span><span class="op">)</span>
 
 <span class="co">## Carregar os objetos</span>
-<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"meus_objs.RData"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/geiger/man/geiger-internal.html">load</a></span><span class="op">(</span><span class="st">"meus_objs.RData"</span><span class="op">)</span></code></pre></div>
 <p>Ou ainda, podemos salvar apenas um objeto com a extensão <code>.rds</code>. Para isso, usamos as funções <code><a href="https://rdrr.io/r/base/readRDS.html">saveRDS()</a></code> e <code><a href="https://rdrr.io/r/base/readRDS.html">readRDS()</a></code>, para exportar e importar esses dados, respectivamente. É importante ressaltar que nesse formato <code>.rds</code>, apenas um objeto é salvo por arquivo criado e que para que o objeto seja criado no <em>Workspace</em> do R, ele precisa ser lido e atribuído à um objeto.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Salvar um objeto para um arquivo</span>
@@ -827,8 +987,8 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite R in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for</span>
-<span class="co">#&gt;   Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</span>
+<span class="co">#&gt;   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical</span>
+<span class="co">#&gt;   Computing, Vienna, Austria. URL https://www.R-project.org/.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -841,8 +1001,8 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt;     url = {https://www.R-project.org/},</span>
 <span class="co">#&gt;   }</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; We have invested a lot of time and effort in creating R, please cite it when using it for data analysis.</span>
-<span class="co">#&gt; See also 'citation("pkgname")' for citing R packages.</span></code></pre></div>
+<span class="co">#&gt; We have invested a lot of time and effort in creating R, please cite it when using it for data analysis. See also</span>
+<span class="co">#&gt; 'citation("pkgname")' for citing R packages.</span></code></pre></div>
 <p>No resultado dessa função, há uma mensagem muito interessante: “See also ‘citation(“pkgname”)’ for citing R packages.”. Dessa forma, aconselhamos, sempre que possível, claro, citar também os pacotes utilizados nas análises para dar os devidos créditos aos desenvolvedores e desenvolvedoras das funções implementadas nos pacotes. Como exemplo, vamos ver como fica a citação do pacote <code>vegan</code>.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Citação do pacote vegan</span>
@@ -850,13 +1010,11 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'vegan' in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R.</span>
-<span class="co">#&gt;   Minchin, R.B. O'Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour,</span>
-<span class="co">#&gt;   Michael Bedward, Ben Bolker, Daniel Borcard, Gustavo Carvalho, Michael Chirico, Miquel De Caceres,</span>
-<span class="co">#&gt;   Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan</span>
-<span class="co">#&gt;   Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo</span>
-<span class="co">#&gt;   Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak and James Weedon (2022). vegan:</span>
-<span class="co">#&gt;   Community Ecology Package. R package version 2.6-2. https://CRAN.R-project.org/package=vegan</span>
+<span class="co">#&gt;   Oksanen J, Simpson G, Blanchet F, Kindt R, Legendre P, Minchin P, O'Hara R, Solymos P, Stevens M, Szoecs E,</span>
+<span class="co">#&gt;   Wagner H, Barbour M, Bedward M, Bolker B, Borcard D, Carvalho G, Chirico M, De Caceres M, Durand S, Evangelista</span>
+<span class="co">#&gt;   H, FitzJohn R, Friendly M, Furneaux B, Hannigan G, Hill M, Lahti L, McGlinn D, Ouellette M, Ribeiro Cunha E,</span>
+<span class="co">#&gt;   Smith T, Stier A, Ter Braak C, Weedon J (2022). _vegan: Community Ecology Package_. R package version 2.6-2,</span>
+<span class="co">#&gt;   &lt;https://CRAN.R-project.org/package=vegan&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -867,7 +1025,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt;     note = {R package version 2.6-2},</span>
 <span class="co">#&gt;     url = {https://CRAN.R-project.org/package=vegan},</span>
 <span class="co">#&gt;   }</span></code></pre></div>
-<p>Podemos ainda utilizar a função <code>write_bib()</code> do pacote <code>knitr</code> para exportar a citação do pacote no formato <code>.bib</code>.</p>
+<p>Podemos ainda utilizar a função <code><a href="https://rdrr.io/pkg/knitr/man/write_bib.html">write_bib()</a></code> do pacote <code>knitr</code> para exportar a citação do pacote no formato <code>.bib</code>.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Exportar uma citação em formato .bib</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/write_bib.html">write_bib</a></span><span class="op">(</span><span class="st">"vegan"</span>, file <span class="op">=</span> <span class="st">"vegan_ex.bib"</span><span class="op">)</span></code></pre></div>
@@ -926,20 +1084,20 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; 5 0.5000000 0.0000000        0 0.0000000 0.7071068 0.5000000</span>
 <span class="co">#&gt; 6 0.6324555 0.0000000        0 0.0000000 0.7745967 0.0000000</span></code></pre></div>
 <p><strong>5. Usar o nome da função de forma errônea</strong></p>
-<p>Esse erro não é tão comum, mas pode ser incômodo às vezes. Algumas funções possuem nomes no padrão “Camel Case”, i.e., com letras maiúsculas no meio do nome da função. Isso às vezes pode confundir, ou ainda, as funções podem ou não ser separadas com <code>.</code>, como <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code> e <code><a href="https://rdrr.io/r/base/colnames.html">rownames()</a></code>. No Capítulo <a href="cap5.html#cap5">5</a> sobre <em>tidyverse</em>, veremos que houve uma tentativa de padronização nos nomes das funções para “Snake Case”, i.e, todas as funções possuem letras minúsculas, com palavras separadas por <em>underscore</em> <code>_</code>.</p>
+<p>Esse erro não é tão comum, mas pode ser incômodo às vezes. Algumas funções possuem nomes no padrão “Camel Case”, i.e., com letras maiúsculas no meio do nome da função. Isso às vezes pode confundir, ou ainda, as funções podem ou não ser separadas com <code>.</code>, como <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code> e <code><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames()</a></code>. No Capítulo <a href="cap5.html#cap5">5</a> sobre <em>tidyverse</em>, veremos que houve uma tentativa de padronização nos nomes das funções para “Snake Case”, i.e, todas as funções possuem letras minúsculas, com palavras separadas por <em>underscore</em> <code>_</code>.</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Soma das colunas</span>
 <span class="fu">colsums</span><span class="op">(</span><span class="va">dune</span><span class="op">)</span>
 <span class="co">#&gt; Error in colsums(dune): could not find function "colsums"</span></code></pre></div>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Soma das colunas</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">dune</span><span class="op">)</span>
-<span class="co">#&gt; Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere Bromhord Chenalbu Cirsarve Comapalu Eleopalu Elymrepe Empenigr </span>
-<span class="co">#&gt;       16       48        5       36       21       13       15        1        2        4       25       26        2 </span>
-<span class="co">#&gt; Hyporadi Juncarti Juncbufo Lolipere Planlanc  Poaprat  Poatriv Ranuflam Rumeacet Sagiproc Salirepe Scorautu Trifprat </span>
-<span class="co">#&gt;        9       18       13       58       26       48       63       14       18       20       11       54        9 </span>
-<span class="co">#&gt; Trifrepe Vicilath Bracruta Callcusp </span>
-<span class="co">#&gt;       47        4       49       10</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/rowSums.html">colSums</a></span><span class="op">(</span><span class="va">dune</span><span class="op">)</span>
+<span class="co">#&gt; Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere Bromhord Chenalbu Cirsarve Comapalu Eleopalu Elymrepe Empenigr Hyporadi </span>
+<span class="co">#&gt;       16       48        5       36       21       13       15        1        2        4       25       26        2        9 </span>
+<span class="co">#&gt; Juncarti Juncbufo Lolipere Planlanc  Poaprat  Poatriv Ranuflam Rumeacet Sagiproc Salirepe Scorautu Trifprat Trifrepe Vicilath </span>
+<span class="co">#&gt;       18       13       58       26       48       63       14       18       20       11       54        9       47        4 </span>
+<span class="co">#&gt; Bracruta Callcusp </span>
+<span class="co">#&gt;       49       10</span></code></pre></div>
 <p><strong>6. Atentar para o diretório correto</strong></p>
 <p>Muitas vezes o erro é simplesmente porque o usuário(a) não definiu o diretório correto onde está o arquivo a ser importado ou exportado. Por isso é fundamental sempre verificar se o diretório foi definido corretamente, geralmente usando as funções <code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code> ou <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code> para listar no console a lista de arquivos no diretório. Podemos ainda usar o argumento <code>pattern</code> para listar arquivos por um padrão textual.</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
@@ -976,9 +1134,9 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <code class="sourceCode R"><span class="co">## Atributos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">dune</span><span class="op">)</span>
 <span class="co">#&gt; $names</span>
-<span class="co">#&gt;  [1] "Achimill" "Agrostol" "Airaprae" "Alopgeni" "Anthodor" "Bellpere" "Bromhord" "Chenalbu" "Cirsarve" "Comapalu"</span>
-<span class="co">#&gt; [11] "Eleopalu" "Elymrepe" "Empenigr" "Hyporadi" "Juncarti" "Juncbufo" "Lolipere" "Planlanc" "Poaprat"  "Poatriv" </span>
-<span class="co">#&gt; [21] "Ranuflam" "Rumeacet" "Sagiproc" "Salirepe" "Scorautu" "Trifprat" "Trifrepe" "Vicilath" "Bracruta" "Callcusp"</span>
+<span class="co">#&gt;  [1] "Achimill" "Agrostol" "Airaprae" "Alopgeni" "Anthodor" "Bellpere" "Bromhord" "Chenalbu" "Cirsarve" "Comapalu" "Eleopalu"</span>
+<span class="co">#&gt; [12] "Elymrepe" "Empenigr" "Hyporadi" "Juncarti" "Juncbufo" "Lolipere" "Planlanc" "Poaprat"  "Poatriv"  "Ranuflam" "Rumeacet"</span>
+<span class="co">#&gt; [23] "Sagiproc" "Salirepe" "Scorautu" "Trifprat" "Trifrepe" "Vicilath" "Bracruta" "Callcusp"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $row.names</span>
 <span class="co">#&gt;  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20"</span>
@@ -1047,7 +1205,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">## Conversões entre modos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.character.html">as.character</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/complex.html">as.complex</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -1056,7 +1214,7 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="va">num</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span>
 
-<span class="va">cha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span>
+<span class="va">cha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.character.html">as.character</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span>
 <span class="va">cha</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="va">cha</span><span class="op">)</span></code></pre></div>
 <p><strong>Estrutura dos objetos</strong></p>
@@ -1133,23 +1291,23 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coerção</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">colar</span>, <span class="va">amostragem</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "amostra 1" "amostra 2" "amostra 3" "amostra 4" "amostra 5" "45"        "23"        "76"        "63"       </span>
-<span class="co">#&gt; [10] "47"        "31"        "68"        "73"        "69"        "5"</span>
+<span class="co">#&gt;  [1] "amostra 1" "amostra 2" "amostra 3" "amostra 4" "amostra 5" "45"        "23"        "76"        "63"        "47"       </span>
+<span class="co">#&gt; [11] "31"        "68"        "73"        "69"        "5"</span>
 
 <span class="co">## Conversão</span>
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">repeticao</span><span class="op">)</span>
 <span class="co">#&gt;  [1] 1 0 1 0 1 0 1 0 1 0</span></code></pre></div>
 <p><strong>Fator</strong></p>
 <p>O fator representa medidas de uma variável categórica, podendo ser nominal ou ordinal. É fundamental destacar que fatores no R devem ser entendidos como um vetor de <strong>integer</strong>, i.e., ele é composto por números inteiros representando os níveis da variável categórica.</p>
-<p>Para criar um fator no R usamos uma função específica <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>, na qual podemos especificar os <strong>níveis</strong> com o argumento <code>level</code>, ou fazemos uma conversão usando a função <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code>. Trabalhar com fatores no <em>R Base</em> não é das tarefas mais agradáveis, sendo assim, no Capítulo <a href="cap5.html#cap5">5</a> usamos a versão <em>tidyverse</em> usando o pacote <code>forcats</code>. Destacamos ainda a existência de fatores nominais para variáveis categóricas nominais e fatores ordinais para variáveis categóricas ordinais, quando há ordenamento entre os níveis, como dias da semana ou classes de altura.</p>
+<p>Para criar um fator no R usamos uma função específica <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>, na qual podemos especificar os <strong>níveis</strong> com o argumento <code>level</code>, ou fazemos uma conversão usando a função <code><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor()</a></code>. Trabalhar com fatores no <em>R Base</em> não é das tarefas mais agradáveis, sendo assim, no Capítulo <a href="cap5.html#cap5">5</a> usamos a versão <em>tidyverse</em> usando o pacote <code>forcats</code>. Destacamos ainda a existência de fatores nominais para variáveis categóricas nominais e fatores ordinais para variáveis categóricas ordinais, quando há ordenamento entre os níveis, como dias da semana ou classes de altura.</p>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Fator nominal</span>
 <span class="va">fator_nominal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span>, 
                                    size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fator_nominal</span>
-<span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta</span>
-<span class="co">#&gt; [13] pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span>
+<span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta pastagem</span>
+<span class="co">#&gt; [14] pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span>
 <span class="co">#&gt; Levels: floresta pastagem cerrado</span>
 
 <span class="co">## Fator ordinal</span>
@@ -1157,16 +1315,15 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
                                    size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"baixa"</span>, <span class="st">"media"</span>, <span class="st">"alta"</span><span class="op">)</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">fator_ordinal</span>
-<span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media</span>
-<span class="co">#&gt; [19] baixa baixa</span>
+<span class="co">#&gt;  [1] alta  alta  baixa media baixa media alta  media baixa media baixa media alta  baixa media media alta  media baixa baixa</span>
 <span class="co">#&gt; Levels: baixa &lt; media &lt; alta</span>
 
 <span class="co">## Conversão</span>
-<span class="va">fator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span>, 
+<span class="va">fator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span>, 
                               size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fator</span>
-<span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado </span>
-<span class="co">#&gt; [13] pastagem pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span>
+<span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado  pastagem</span>
+<span class="co">#&gt; [14] pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span>
 <span class="co">#&gt; Levels: cerrado floresta pastagem</span></code></pre></div>
 <p><strong>Matriz</strong></p>
 <p>A matriz representa dados no formato de tabela, com linhas e colunas. As linhas geralmente representam unidades amostrais (locais, transectos, parcelas) e as colunas representam variáveis numéricas (discretas ou contínuas), variáveis binárias (TRUE ou FALSE) ou descrições (informações em texto).</p>
@@ -1192,21 +1349,21 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; [2,]    2    6   10</span>
 <span class="co">#&gt; [3,]    3    7   11</span>
 <span class="co">#&gt; [4,]    4    8   12</span></code></pre></div>
-<p>A segundo forma, podemos combinar vetores, utilizando a função <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> para combinar vetores por linha, i.e., um vetor embaixo do outro, e <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> para combinar vetores por coluna, i.e., um vetor ao lado do outro.</p>
+<p>A segundo forma, podemos combinar vetores, utilizando a função <code><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">rbind()</a></code> para combinar vetores por linha, i.e., um vetor embaixo do outro, e <code><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind()</a></code> para combinar vetores por coluna, i.e., um vetor ao lado do outro.</p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criar dois vetores</span>
 <span class="va">vec_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="va">vec_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>
 
 <span class="co">## Combinar por linhas - vertical - um embaixo do outro</span>
-<span class="va">ma_rbind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">vec_1</span>, <span class="va">vec_2</span><span class="op">)</span>
+<span class="va">ma_rbind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">rbind</a></span><span class="op">(</span><span class="va">vec_1</span>, <span class="va">vec_2</span><span class="op">)</span>
 <span class="va">ma_rbind</span>
 <span class="co">#&gt;       [,1] [,2] [,3]</span>
 <span class="co">#&gt; vec_1    1    2    3</span>
 <span class="co">#&gt; vec_2    4    5    6</span>
 
 <span class="co">## Combinar por colunas - horizontal - um ao lado do outro</span>
-<span class="va">ma_cbind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">vec_1</span>, <span class="va">vec_2</span><span class="op">)</span>
+<span class="va">ma_cbind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">vec_1</span>, <span class="va">vec_2</span><span class="op">)</span>
 <span class="va">ma_cbind</span>
 <span class="co">#&gt;      vec_1 vec_2</span>
 <span class="co">#&gt; [1,]     1     4</span>
@@ -1248,7 +1405,7 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; [5,]    0    1    0    1    0</span></code></pre></div>
 <p><strong>Data frame</strong></p>
 <p>O data frame também representa dados no formato de tabela, com linhas e colunas, muito semelhante à matriz. Mas diferentemente das matrizes, os data frames comportam mais de um modo em suas colunas. Dessa forma, as linhas do data frame ainda representam unidades amostrais (locais, transectos, parcelas), mas as colunas agora podem representar descrições (informações em texto), variáveis numéricas (discretas ou contínuas), variáveis binárias (TRUE ou FALSE) e variáveis categóricas (nominais ou ordinais).</p>
-<p>A forma mais simples de se criar data frames no R é através da combinação de vetores. Essa combinação é feita com a função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> e ocorre de forma horizontal, semelhante à função <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code>. Sendo assim, todos os vetores precisam ter o mesmo número de elementos, ou seja, o mesmo comprimento. Podemos ainda nomear as colunas de cada vetor. Outra forma, seria converter uma matriz em um data frame, utilizando a função <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>.</p>
+<p>A forma mais simples de se criar data frames no R é através da combinação de vetores. Essa combinação é feita com a função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> e ocorre de forma horizontal, semelhante à função <code><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind()</a></code>. Sendo assim, todos os vetores precisam ter o mesmo número de elementos, ou seja, o mesmo comprimento. Podemos ainda nomear as colunas de cada vetor. Outra forma, seria converter uma matriz em um data frame, utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame()</a></code>.</p>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criar três vetores</span>
 <span class="va">vec_ch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span><span class="op">)</span>
@@ -1283,7 +1440,7 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; [3,]    7    8    9</span>
 <span class="co">#&gt; [4,]   10   11   12</span>
 
-<span class="va">df_ma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">ma</span><span class="op">)</span>
+<span class="va">df_ma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">ma</span><span class="op">)</span>
 <span class="va">df_ma</span>
 <span class="co">#&gt;   V1 V2 V3</span>
 <span class="co">#&gt; 1  1  2  3</span>
@@ -1298,7 +1455,7 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <code class="sourceCode R"><span class="co">## Lista</span>
 <span class="va">lista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span>, <span class="co"># vector</span>
               <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="co"># factor</span>
-              <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># matrix</span>
+              <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># matrix</span>
 <span class="va">lista</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span>
@@ -1315,7 +1472,7 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">## Lista - nomear os elementos</span>
 <span class="va">lista_nome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>vector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span>, <span class="co"># vector</span>
               factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="co"># factor</span>
-              matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># matrix</span>
+              matrix <span class="op">=</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># matrix</span>
 <span class="va">lista_nome</span>
 <span class="co">#&gt; $vector</span>
 <span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span>
@@ -1394,164 +1551,320 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <p>Além da indexação, temos algumas funções que nos auxiliam em algumas operações com objetos unidimensionais, listadas na Tabela <a href="cap4.html#tab:tab-tab-funcoes-conf-uni">4.2</a>.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.</caption>
-<thead><tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
+<span id="tab:tab-tab-funcoes-conf-uni">Tabela 4.2: </span>Funções para verificação e resumo de dados unidimensionais.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code></td>
-<td align="center">Valor máximo</td>
-</tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code></td>
-<td align="center">Valor mínimo</td>
-</tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/range.html">range()</a></code></td>
-<td align="center">Amplitude</td>
-</tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/length.html">length()</a></code></td>
-<td align="center">Comprimento</td>
-</tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code></td>
-<td align="center">Soma</td>
-</tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code></td>
-<td align="center">Soma cumulativa</td>
-</tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code></td>
-<td align="center">Produto</td>
-</tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code></td>
-<td align="center">Raiz quadrada</td>
-</tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></td>
-<td align="center">Valor absoluto</td>
-</tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code></td>
-<td align="center">Expoente</td>
-</tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/Log.html">log()</a></code></td>
-<td align="center">Logaritmo natural</td>
-</tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/Log.html">log1p()</a></code></td>
-<td align="center">Logaritmo natural mais 1 <em>log(x + 1)</em>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>
+</td>
+<td style="text-align:center;">
+Valor máximo
 </td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/Log.html">log2()</a></code></td>
-<td align="center">Logaritmo base 2</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>
+</td>
+<td style="text-align:center;">
+Valor mínimo
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/Log.html">log10()</a></code></td>
-<td align="center">Logaritmo base 10</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/range.html">range()</a></code>
+</td>
+<td style="text-align:center;">
+Amplitude
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code></td>
-<td align="center">Média</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/length.html">length()</a></code>
+</td>
+<td style="text-align:center;">
+Comprimento
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code>mean.weighted()</code></td>
-<td align="center">Média ponderada</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>
+</td>
+<td style="text-align:center;">
+Soma
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code></td>
-<td align="center">Variância</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code>
+</td>
+<td style="text-align:center;">
+Soma cumulativa
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code></td>
-<td align="center">Desvio Padrão</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code>
+</td>
+<td style="text-align:center;">
+Produto
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code>mediam()</code></td>
-<td align="center">Mediana</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>
+</td>
+<td style="text-align:center;">
+Raiz quadrada
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code></td>
-<td align="center">Quantil</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>
+</td>
+<td style="text-align:center;">
+Valor absoluto
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">quarters()</a></code></td>
-<td align="center">Quartil</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code>
+</td>
+<td style="text-align:center;">
+Expoente
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/stats/IQR.html">IQR()</a></code></td>
-<td align="center">Amplitude interquartil</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></td>
-<td align="center">Arredondamento</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log1p()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo natural mais 1 <em>log(x + 1)</em>
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code></td>
-<td align="center">Ordenação</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log2()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 2
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/order.html">order()</a></code></td>
-<td align="center">Posição ordenada</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Log.html">log10()</a></code>
+</td>
+<td style="text-align:center;">
+Logaritmo base 10
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/rev.html">rev()</a></code></td>
-<td align="center">Reverso</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>
+</td>
+<td style="text-align:center;">
+Média
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code></td>
-<td align="center">Únicos</td>
+<tr>
+<td style="text-align:center;">
+<code>mean.weighted()</code>
+</td>
+<td style="text-align:center;">
+Média ponderada
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></td>
-<td align="center">Resumo estatístico</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>
+</td>
+<td style="text-align:center;">
+Variância
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code></td>
-<td align="center">Divide variável contínua em fator</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>
+</td>
+<td style="text-align:center;">
+Desvio Padrão
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/pretty.html">pretty()</a></code></td>
-<td align="center">Divide variável contínua em intervalos</td>
+<tr>
+<td style="text-align:center;">
+<code>mediam()</code>
+</td>
+<td style="text-align:center;">
+Mediana
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code></td>
-<td align="center">Padronização e centralização</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/quantile.html">quantile()</a></code>
+</td>
+<td style="text-align:center;">
+Quantil
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/grep.html">sub()</a></code></td>
-<td align="center">Substitui caracteres</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">quarters()</a></code>
+</td>
+<td style="text-align:center;">
+Quartil
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code></td>
-<td align="center">Posição de caracteres</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/stats/IQR.html">IQR()</a></code>
+</td>
+<td style="text-align:center;">
+Amplitude interquartil
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/any.html">any()</a></code></td>
-<td align="center">Algum valor?</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>
+</td>
+<td style="text-align:center;">
+Arredondamento
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/all.html">all()</a></code></td>
-<td align="center">Todos os valores?</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>
+</td>
+<td style="text-align:center;">
+Ordenação
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/which.html">which()</a></code></td>
-<td align="center">Quais valores?</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/order.html">order()</a></code>
+</td>
+<td style="text-align:center;">
+Posição ordenada
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code></td>
-<td align="center">Subconjunto</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/rev.html">rev()</a></code>
+</td>
+<td style="text-align:center;">
+Reverso
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></td>
-<td align="center">Operação condicional</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/unique.html">unique()</a></code>
+</td>
+<td style="text-align:center;">
+Únicos
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>
+</td>
+<td style="text-align:center;">
+Resumo estatístico
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/cut.html">cut()</a></code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em fator
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/pretty.html">pretty()</a></code>
+</td>
+<td style="text-align:center;">
+Divide variável contínua em intervalos
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code>
+</td>
+<td style="text-align:center;">
+Padronização e centralização
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/grep.html">sub()</a></code>
+</td>
+<td style="text-align:center;">
+Substitui caracteres
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code>
+</td>
+<td style="text-align:center;">
+Posição de caracteres
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/any.html">any()</a></code>
+</td>
+<td style="text-align:center;">
+Algum valor?
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/all.html">all()</a></code>
+</td>
+<td style="text-align:center;">
+Todos os valores?
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/which.html">which()</a></code>
+</td>
+<td style="text-align:center;">
+Quais valores?
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/subset.html">subset()</a></code>
+</td>
+<td style="text-align:center;">
+Subconjunto
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>
+</td>
+<td style="text-align:center;">
+Operação condicional
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -1586,18 +1899,18 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <code class="sourceCode R"><span class="co">## Acessar o primeiro elemento</span>
 <span class="va">li</span><span class="op">$</span><span class="va">elem1</span>
 <span class="co">#&gt; [1] 1</span></code></pre></div>
-<p>E ainda podemos utilizar funções para medir o comprimento dessa lista, listar os nomes dos elementos ou ainda renomear os elementos: <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> e <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
+<p>E ainda podemos utilizar funções para medir o comprimento dessa lista, listar os nomes dos elementos ou ainda renomear os elementos: <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> e <code><a href="https://rdrr.io/pkg/raster/man/names.html">names()</a></code>.</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Comprimento</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">li</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3</span>
 
 <span class="co">## Nomes</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">li</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">li</span><span class="op">)</span>
 <span class="co">#&gt; [1] "elem1" "elem2" "elem3"</span>
 
 <span class="co">## Renomear</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">li</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"elemento0"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">li</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"elemento0"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
 <span class="va">li</span>
 <span class="co">#&gt; $elemento01</span>
 <span class="co">#&gt; [1] 1</span>
@@ -1701,13 +2014,13 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="co">#&gt; [1] 10</span>
 
 <span class="co">## Converter colunas</span>
-<span class="va">df</span><span class="op">$</span><span class="va">abu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">abu</span><span class="op">)</span>
+<span class="va">df</span><span class="op">$</span><span class="va">abu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.character.html">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">abu</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">abu</span><span class="op">)</span>
 <span class="co">#&gt; [1] "character"</span>
 
 <span class="co">## Adicionar ou mudar colunas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
-<span class="va">df</span><span class="op">$</span><span class="va">abu2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, rep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">df</span><span class="op">$</span><span class="va">abu2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, rep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">df</span>
 <span class="co">#&gt;      sp abu      flo abu2</span>
 <span class="co">#&gt; 1   sp1   1    campo    0</span>
@@ -1741,71 +2054,136 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <p>Além disso, há uma série de funções para conferência e manipulação de dados que listamos na Tabela <a href="cap4.html#tab:tab-funcoes-conf-multi">4.3</a>.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.</caption>
-<thead><tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
+<span id="tab:tab-funcoes-conf-multi">Tabela 4.3: </span>Funções para verificação e resumo de dados multidimensionais.
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Função
+</th>
+<th style="text-align:center;">
+Descrição
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/utils/head.html">head()</a></code></td>
-<td align="center">Mostra as primeiras 6 linhas</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/headtail.html">head()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra as primeiras 6 linhas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code></td>
-<td align="center">Mostra as últimas 6 linhas</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/headtail.html">tail()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra as últimas 6 linhas
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code></td>
-<td align="center">Mostra o número de linhas</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code></td>
-<td align="center">Mostra o número de colunas</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/ncell.html">ncol()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra o número de colunas
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code></td>
-<td align="center">Mostra o número de linhas e de colunas</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/dimensions.html">dim()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra o número de linhas e de colunas
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/colnames.html">rownames()</a></code></td>
-<td align="center">Mostra os nomes das linhas (locais)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das linhas (locais)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code></td>
-<td align="center">Mostra os nomes das colunas (variáveis)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra os nomes das colunas (variáveis)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/utils/str.html">str()</a></code></td>
-<td align="center">Mostra as classes de cada coluna (estrutura)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra as classes de cada coluna (estrutura)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></td>
-<td align="center">Mostra um resumo dos valores de cada coluna</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>
+</td>
+<td style="text-align:center;">
+Mostra um resumo dos valores de cada coluna
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/colSums.html">rowSums()</a></code></td>
-<td align="center">Calcula a soma das linhas (horizontal)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/rowSums.html">rowSums()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das linhas (horizontal)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/colSums.html">colSums()</a></code></td>
-<td align="center">Calcula a soma das colunas (vertical)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/rowSums.html">colSums()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a soma das colunas (vertical)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/colSums.html">rowMeans()</a></code></td>
-<td align="center">Calcula a média das linhas (horizontal)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">rowMeans()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a média das linhas (horizontal)
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/colSums.html">colMeans()</a></code></td>
-<td align="center">Calcula a média das colunas (vertical)</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colMeans()</a></code>
+</td>
+<td style="text-align:center;">
+Calcula a média das colunas (vertical)
+</td>
 </tr>
-<tr class="even">
-<td align="center"><code><a href="https://rdrr.io/r/base/table.html">table()</a></code></td>
-<td align="center">Tabulação cruzada</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/r/base/table.html">table()</a></code>
+</td>
+<td style="text-align:center;">
+Tabulação cruzada
+</td>
 </tr>
-<tr class="odd">
-<td align="center"><code><a href="https://rdrr.io/r/base/t.html">t()</a></code></td>
-<td align="center">Matriz ou data frame transposto</td>
+<tr>
+<td style="text-align:center;">
+<code><a href="https://rdrr.io/pkg/raster/man/transpose.html">t()</a></code>
+</td>
+<td style="text-align:center;">
+Matriz ou data frame transposto
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -1957,35 +2335,35 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="va">intror_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">intror_anfibios_locais</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods</span>
-<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt</span>
-<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt</span>
-<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt</span>
-<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt</span>
-<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;</span>
-<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt;   complementary_methods      period month_start year_start month_finish year_finish effort_months country state</span>
-<span class="co">#&gt; 1                  &lt;NA&gt; mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí</span>
-<span class="co">#&gt; 2                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
-<span class="co">#&gt; 3                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
-<span class="co">#&gt; 4                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
-<span class="co">#&gt; 5                  &lt;NA&gt;    mo,da,ni           7       1988            8        2001           157  Brazil Ceará</span>
-<span class="co">#&gt; 6                  &lt;NA&gt;        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará</span>
-<span class="co">#&gt;   state_abbreviation            municipality                                site  latitude longitude</span>
-<span class="co">#&gt; 1              BR-PI         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194</span>
-<span class="co">#&gt; 2              BR-CE São Gonçalo do Amarante                               Dunas -3.545527 -38.85783</span>
-<span class="co">#&gt; 3              BR-CE São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869</span>
-<span class="co">#&gt; 4              BR-CE São Gonçalo do Amarante                               Taíba -3.515250 -38.91880</span>
-<span class="co">#&gt; 5              BR-CE                Baturité                   Serra de Baturité -4.280556 -38.91083</span>
-<span class="co">#&gt; 6              BR-CE             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806</span>
-<span class="co">#&gt;   coordinate_precision altitude temperature precipitation</span>
-<span class="co">#&gt; 1                   gm      543       24.98           853</span>
-<span class="co">#&gt; 2                   dd       15       26.53          1318</span>
-<span class="co">#&gt; 3                   dd       29       26.45          1248</span>
-<span class="co">#&gt; 4                   dd       25       26.55          1376</span>
-<span class="co">#&gt; 5                   gm      750       21.35          1689</span>
-<span class="co">#&gt; 6                 &lt;NA&gt;      745       20.45          1249</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
+<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span>
+<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
+<span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span>
+<span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span>
+<span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span>
+<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span>
+<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span>
+<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span>
+<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span>
+<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span>
+<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span>
+<span class="co">#&gt;   precipitation</span>
+<span class="co">#&gt; 1           853</span>
+<span class="co">#&gt; 2          1318</span>
+<span class="co">#&gt; 3          1248</span>
+<span class="co">#&gt; 4          1376</span>
+<span class="co">#&gt; 5          1689</span>
+<span class="co">#&gt; 6          1249</span></code></pre></div>
 </div>
 <div id="conferência-dos-dados-importados" class="section level3" number="4.4.7">
 <h3>
@@ -1995,77 +2373,70 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <p>Dentre todas as funções de verificação, destacamos a importância destas funções apresentadas abaixo para saber se as variáveis foram importadas e interpretadas corretamente e reconhecer erros de digitação, por exemplo.</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Primeiras linhas</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods</span>
-<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt</span>
-<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt</span>
-<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt</span>
-<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt</span>
-<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;</span>
-<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt;   complementary_methods      period month_start year_start month_finish year_finish effort_months country state</span>
-<span class="co">#&gt; 1                  &lt;NA&gt; mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí</span>
-<span class="co">#&gt; 2                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
-<span class="co">#&gt; 3                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
-<span class="co">#&gt; 4                  &lt;NA&gt; mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará</span>
-<span class="co">#&gt; 5                  &lt;NA&gt;    mo,da,ni           7       1988            8        2001           157  Brazil Ceará</span>
-<span class="co">#&gt; 6                  &lt;NA&gt;        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará</span>
-<span class="co">#&gt;   state_abbreviation            municipality                                site  latitude longitude</span>
-<span class="co">#&gt; 1              BR-PI         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194</span>
-<span class="co">#&gt; 2              BR-CE São Gonçalo do Amarante                               Dunas -3.545527 -38.85783</span>
-<span class="co">#&gt; 3              BR-CE São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869</span>
-<span class="co">#&gt; 4              BR-CE São Gonçalo do Amarante                               Taíba -3.515250 -38.91880</span>
-<span class="co">#&gt; 5              BR-CE                Baturité                   Serra de Baturité -4.280556 -38.91083</span>
-<span class="co">#&gt; 6              BR-CE             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806</span>
-<span class="co">#&gt;   coordinate_precision altitude temperature precipitation</span>
-<span class="co">#&gt; 1                   gm      543       24.98           853</span>
-<span class="co">#&gt; 2                   dd       15       26.53          1318</span>
-<span class="co">#&gt; 3                   dd       29       26.45          1248</span>
-<span class="co">#&gt; 4                   dd       25       26.55          1376</span>
-<span class="co">#&gt; 5                   gm      750       21.35          1689</span>
-<span class="co">#&gt; 6                 &lt;NA&gt;      745       20.45          1249</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
+<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
+<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span>
+<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
+<span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span>
+<span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span>
+<span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
+<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span>
+<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span>
+<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span>
+<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span>
+<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span>
+<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span>
+<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span>
+<span class="co">#&gt;   precipitation</span>
+<span class="co">#&gt; 1           853</span>
+<span class="co">#&gt; 2          1318</span>
+<span class="co">#&gt; 3          1248</span>
+<span class="co">#&gt; 4          1376</span>
+<span class="co">#&gt; 5          1689</span>
+<span class="co">#&gt; 6          1249</span>
 
 <span class="co">## Últimas linhas</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;           id reference_number species_number record sampled_habitat active_methods passive_methods</span>
-<span class="co">#&gt; 1158 amp2158             1389              3     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt; 1159 amp2159             1389              9     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt; 1160 amp2160             1389              6     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt; 1161 amp2161             1389              1     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt; 1162 amp2162             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt; 1163 amp2163             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="co">#&gt;      complementary_methods period month_start year_start month_finish year_finish effort_months   country    state</span>
-<span class="co">#&gt; 1158                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
-<span class="co">#&gt; 1159                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
-<span class="co">#&gt; 1160                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
-<span class="co">#&gt; 1161                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
-<span class="co">#&gt; 1162                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
-<span class="co">#&gt; 1163                  &lt;NA&gt;   &lt;NA&gt;          NA         NA           NA          NA            NA Argentina Misiones</span>
-<span class="co">#&gt;      state_abbreviation    municipality                          site  latitude longitude coordinate_precision</span>
-<span class="co">#&gt; 1158               AR-N Manuel Belgrano          Comandante Andresito -25.66944 -54.04556                  gms</span>
-<span class="co">#&gt; 1159               AR-N         Posadas                       Posadas -27.45333 -55.89250                  gms</span>
-<span class="co">#&gt; 1160               AR-N      Montecarlo                    Montecarlo -26.56889 -53.60889                  gms</span>
-<span class="co">#&gt; 1161               AR-N       San Pedro                Refugio Moconá -27.14083 -53.92611                  gms</span>
-<span class="co">#&gt; 1162               AR-N        Cainguás Balneario Municipal Cuñá Pirú -27.08722 -54.95278                  gms</span>
-<span class="co">#&gt; 1163               AR-N           Oberá       Chacra San Juan de Dios -27.47333 -55.17194                  gms</span>
-<span class="co">#&gt;      altitude temperature precipitation</span>
-<span class="co">#&gt; 1158      251       19.94          1780</span>
-<span class="co">#&gt; 1159      105       21.30          1768</span>
-<span class="co">#&gt; 1160      597       18.35          1954</span>
-<span class="co">#&gt; 1161      202       19.92          1850</span>
-<span class="co">#&gt; 1162      213       21.04          1553</span>
-<span class="co">#&gt; 1163      254       20.67          1683</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">tail</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="co">#&gt;           id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods period</span>
+<span class="co">#&gt; 1158 amp2158             1389              3     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;   &lt;NA&gt;</span>
+<span class="co">#&gt; 1159 amp2159             1389              9     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;   &lt;NA&gt;</span>
+<span class="co">#&gt; 1160 amp2160             1389              6     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;   &lt;NA&gt;</span>
+<span class="co">#&gt; 1161 amp2161             1389              1     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;   &lt;NA&gt;</span>
+<span class="co">#&gt; 1162 amp2162             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;   &lt;NA&gt;</span>
+<span class="co">#&gt; 1163 amp2163             1389              2     co            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;   &lt;NA&gt;</span>
+<span class="co">#&gt;      month_start year_start month_finish year_finish effort_months   country    state state_abbreviation    municipality</span>
+<span class="co">#&gt; 1158          NA         NA           NA          NA            NA Argentina Misiones               AR-N Manuel Belgrano</span>
+<span class="co">#&gt; 1159          NA         NA           NA          NA            NA Argentina Misiones               AR-N         Posadas</span>
+<span class="co">#&gt; 1160          NA         NA           NA          NA            NA Argentina Misiones               AR-N      Montecarlo</span>
+<span class="co">#&gt; 1161          NA         NA           NA          NA            NA Argentina Misiones               AR-N       San Pedro</span>
+<span class="co">#&gt; 1162          NA         NA           NA          NA            NA Argentina Misiones               AR-N        Cainguás</span>
+<span class="co">#&gt; 1163          NA         NA           NA          NA            NA Argentina Misiones               AR-N           Oberá</span>
+<span class="co">#&gt;                               site  latitude longitude coordinate_precision altitude temperature precipitation</span>
+<span class="co">#&gt; 1158          Comandante Andresito -25.66944 -54.04556                  gms      251       19.94          1780</span>
+<span class="co">#&gt; 1159                       Posadas -27.45333 -55.89250                  gms      105       21.30          1768</span>
+<span class="co">#&gt; 1160                    Montecarlo -26.56889 -53.60889                  gms      597       18.35          1954</span>
+<span class="co">#&gt; 1161                Refugio Moconá -27.14083 -53.92611                  gms      202       19.92          1850</span>
+<span class="co">#&gt; 1162 Balneario Municipal Cuñá Pirú -27.08722 -54.95278                  gms      213       21.04          1553</span>
+<span class="co">#&gt; 1163       Chacra San Juan de Dios -27.47333 -55.17194                  gms      254       20.67          1683</span>
 
 <span class="co">## Número de linhas e colunas</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1163</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">ncol</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
 <span class="co">#&gt; [1] 25</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/dimensions.html">dim</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1163   25</span></code></pre></div>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Nome das linhas e colunas</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
 
 <span class="co">## Estrutura dos dados</span>
@@ -2244,7 +2615,7 @@ Una as colunas dos objetos <code>df_amos10</code> e <code>ma_amos10</code> e atr
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-04-27.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
