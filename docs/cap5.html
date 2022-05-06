@@ -1584,7 +1584,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 
 <span class="co">## Extrair a data e tempo nesse instante</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-05-06 00:18:58 -03"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-05-06 00:39:52 -03"</span></code></pre></div>
 <p>Além dessas informações instantâneas, existem três maneiras de criar um dado de data/horário.</p>
 <ul>
 <li>De um string</li>
@@ -1681,7 +1681,7 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <span class="co">#&gt; [1] Fri</span>
 <span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 58.83928</span></code></pre></div>
+<span class="co">#&gt; [1] 53.06111</span></code></pre></div>
 <p>Além de acessar componentes de datas e horários, podemos usar essas funções para fazer a inclusão de informações de datas e horários.</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data</span>
@@ -1925,15 +1925,15 @@ Figura 5.3: Diferentes tipos de joins, representados com um diagrama de Venn. Ad
 <div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Que horas são em...</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-05-06 00:18:59 -03"</span>
+<span class="co">#&gt; [1] "2022-05-06 00:39:53 -03"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-05-06 03:18:59 GMT"</span>
+<span class="co">#&gt; [1] "2022-05-06 03:39:53 GMT"</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"Europe/Berlin"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-05-06 05:18:59 CEST"</span>
+<span class="co">#&gt; [1] "2022-05-06 05:39:53 CEST"</span>
 
 <span class="co">## Altera o fuso sem mudar a hora</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/force_tz.html">force_tz</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span>, tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2022-05-06 00:18:59 GMT"</span></code></pre></div>
+<span class="co">#&gt; [1] "2022-05-06 00:39:53 GMT"</span></code></pre></div>
 <p>Para se aprofundar no tema, recomendamos a leitura do Capítulo <a href="https://r4ds.had.co.nz/dates-and-times.html">16 Dates and times</a> de Wickham &amp; Grolemund <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
 <div id="purrr" class="section level2" number="5.12">
