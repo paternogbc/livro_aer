@@ -1,5 +1,7 @@
 # Análises Ecológicas no R | Livro
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/86753a17-4b6a-4ec1-9f71-311660ca0158/deploy-status)](https://app.netlify.com/sites/analises-ecologicas/deploys)
+
 | Este livro oferece uma introdução compreensiva aos métodos estatísticos mais utilizados em Ecologia. 
 
 ![analises ecologicas](img/capa.jpeg)
