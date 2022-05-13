@@ -419,7 +419,7 @@ Figura 10.5: Curvas de rarefação baseada coverage-based de morcegos.
 <code class="sourceCode R"><span class="co">## Menos abundância</span>
 <span class="co"># Os dados estão com as comunidades nas colunas e as espécies nas linhas. </span>
 <span class="co"># Para as análises teremos que transpor a planilha.</span>
-<span class="va">composicao_acaros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span><span class="op">)</span>
+<span class="va">composicao_acaros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">mite</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Verificar qual é a menor abundância registrada nas comunidades. </span>
 <span class="va">abun_min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/rowSums.html">colSums</a></span><span class="op">(</span><span class="va">composicao_acaros</span><span class="op">)</span><span class="op">)</span></code></pre></div>
