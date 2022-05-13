@@ -201,18 +201,18 @@ Figura 15.1: Representação das geometrias de ponto, linha e polígono e atribu
 <span class="co">#&gt; Bounding box:  xmin: -180 ymin: -89.9 xmax: 180 ymax: 83.64513</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt; # A tibble: 177 × 11</span>
-<span class="co">#&gt;    iso_a2 name_long        continent     region_un subregion  type  area_km2     pop lifeExp gdpPercap                      geom</span>
-<span class="co">#&gt;  * &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;MULTIPOLYGON [°]&gt;</span>
-<span class="co">#&gt;  1 FJ     Fiji             Oceania       Oceania   Melanesia  Sove…   1.93e4  8.86e5    70.0     8222. (((-180 -16.55522, -179.…</span>
-<span class="co">#&gt;  2 TZ     Tanzania         Africa        Africa    Eastern A… Sove…   9.33e5  5.22e7    64.2     2402. (((33.90371 -0.95, 31.86…</span>
-<span class="co">#&gt;  3 EH     Western Sahara   Africa        Africa    Northern … Inde…   9.63e4 NA         NA         NA  (((-8.66559 27.65643, -8…</span>
-<span class="co">#&gt;  4 CA     Canada           North America Americas  Northern … Sove…   1.00e7  3.55e7    82.0    43079. (((-132.71 54.04001, -13…</span>
-<span class="co">#&gt;  5 US     United States    North America Americas  Northern … Coun…   9.51e6  3.19e8    78.8    51922. (((-171.7317 63.78252, -…</span>
-<span class="co">#&gt;  6 KZ     Kazakhstan       Asia          Asia      Central A… Sove…   2.73e6  1.73e7    71.6    23587. (((87.35997 49.21498, 86…</span>
-<span class="co">#&gt;  7 UZ     Uzbekistan       Asia          Asia      Central A… Sove…   4.61e5  3.08e7    71.0     5371. (((55.96819 41.30864, 57…</span>
-<span class="co">#&gt;  8 PG     Papua New Guinea Oceania       Oceania   Melanesia  Sove…   4.65e5  7.76e6    65.2     3709. (((141.0002 -2.600151, 1…</span>
-<span class="co">#&gt;  9 ID     Indonesia        Asia          Asia      South-Eas… Sove…   1.82e6  2.55e8    68.9    10003. (((104.37 -1.084843, 104…</span>
-<span class="co">#&gt; 10 AR     Argentina        South America Americas  South Ame… Sove…   2.78e6  4.30e7    76.3    18798. (((-68.63401 -52.63637, …</span>
+<span class="co">#&gt;    iso_a2 name_long        continent     region_un subregion       type  area_km2     pop lifeExp gdpPercap                      geom</span>
+<span class="co">#&gt;  * &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;MULTIPOLYGON [°]&gt;</span>
+<span class="co">#&gt;  1 FJ     Fiji             Oceania       Oceania   Melanesia       Sove…   1.93e4  8.86e5    70.0     8222. (((-180 -16.55522, -179.…</span>
+<span class="co">#&gt;  2 TZ     Tanzania         Africa        Africa    Eastern Africa  Sove…   9.33e5  5.22e7    64.2     2402. (((33.90371 -0.95, 31.86…</span>
+<span class="co">#&gt;  3 EH     Western Sahara   Africa        Africa    Northern Africa Inde…   9.63e4 NA         NA         NA  (((-8.66559 27.65643, -8…</span>
+<span class="co">#&gt;  4 CA     Canada           North America Americas  Northern Ameri… Sove…   1.00e7  3.55e7    82.0    43079. (((-132.71 54.04001, -13…</span>
+<span class="co">#&gt;  5 US     United States    North America Americas  Northern Ameri… Coun…   9.51e6  3.19e8    78.8    51922. (((-171.7317 63.78252, -…</span>
+<span class="co">#&gt;  6 KZ     Kazakhstan       Asia          Asia      Central Asia    Sove…   2.73e6  1.73e7    71.6    23587. (((87.35997 49.21498, 86…</span>
+<span class="co">#&gt;  7 UZ     Uzbekistan       Asia          Asia      Central Asia    Sove…   4.61e5  3.08e7    71.0     5371. (((55.96819 41.30864, 57…</span>
+<span class="co">#&gt;  8 PG     Papua New Guinea Oceania       Oceania   Melanesia       Sove…   4.65e5  7.76e6    65.2     3709. (((141.0002 -2.600151, 1…</span>
+<span class="co">#&gt;  9 ID     Indonesia        Asia          Asia      South-Eastern … Sove…   1.82e6  2.55e8    68.9    10003. (((104.37 -1.084843, 104…</span>
+<span class="co">#&gt; 10 AR     Argentina        South America Americas  South America   Sove…   2.78e6  4.30e7    76.3    18798. (((-68.63401 -52.63637, …</span>
 <span class="co">#&gt; # … with 167 more rows</span></code></pre></div>
 <p>Podemos fazer um mapa simples utilizando a função <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> desse objeto. Para facilitar, escolheremos apenas a primeira coluna <code>[1]</code> (Figura <a href="cap15.html#fig:fig-vetor-mundo">15.2</a>). Caso não escolhermos apenas uma coluna, um mapa para cada coluna será plotado.</p>
 <div class="alert alert-info">
@@ -1747,21 +1747,21 @@ Figura 15.12: Limite do Brasil.
 <span class="op">)</span>
 <span class="va">geo_anfibios_locais</span>
 <span class="co">#&gt; # A tibble: 1,163 × 25</span>
-<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods period   </span>
-<span class="co">#&gt;    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;                  mo,da,ni </span>
-<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;     </span>
-<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;     </span>
-<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;                  tw,ni    </span>
-<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt; # … with 1,153 more rows, and 16 more variables: month_start &lt;dbl&gt;, year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period month_start</span>
+<span class="co">#&gt;    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt;        &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;              mo,da…           9</span>
+<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…          12</span>
+<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…          12</span>
+<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…          12</span>
+<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;              mo,da…           7</span>
+<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;            NA</span>
+<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             4</span>
+<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;              tw,ni            4</span>
+<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…           4</span>
+<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…           5</span>
+<span class="co">#&gt; # … with 1,153 more rows, and 15 more variables: year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;</span></code></pre></div>
 <p>Caso o download não funcione ou haja problemas com a importação, disponibilizamos os dados também no pacote <code>ecodados</code>.</p>
 <div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
@@ -1779,21 +1779,21 @@ Figura 15.12: Limite do Brasil.
 <span class="co">#&gt; Bounding box:  xmin: -56.74194 ymin: -33.51083 xmax: -34.79667 ymax: -3.51525</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt; # A tibble: 1,163 × 24</span>
-<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods period   </span>
-<span class="co">#&gt;  * &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;                  mo,da,ni </span>
-<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;     </span>
-<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;     </span>
-<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;                  tw,ni    </span>
-<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;                  mo,da,tw…</span>
-<span class="co">#&gt; # … with 1,153 more rows, and 15 more variables: month_start &lt;dbl&gt;, year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;,</span>
-<span class="co">#&gt; #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period month_start</span>
+<span class="co">#&gt;  * &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt;        &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 amp1001             1001             19 ab     fo,ll           as             pt              &lt;NA&gt;              mo,da…           9</span>
+<span class="co">#&gt;  2 amp1002             1002             16 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…          12</span>
+<span class="co">#&gt;  3 amp1003             1002             14 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…          12</span>
+<span class="co">#&gt;  4 amp1004             1002             13 co     fo,la,ll        as             pt              &lt;NA&gt;              mo,da…          12</span>
+<span class="co">#&gt;  5 amp1005             1003             30 co     fo,ll,br        as             &lt;NA&gt;            &lt;NA&gt;              mo,da…           7</span>
+<span class="co">#&gt;  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;            NA</span>
+<span class="co">#&gt;  7 amp1007             1005             23 co     sp              as             &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             4</span>
+<span class="co">#&gt;  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr       &lt;NA&gt;            &lt;NA&gt;              tw,ni            4</span>
+<span class="co">#&gt;  9 amp1009             1005             13 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…           4</span>
+<span class="co">#&gt; 10 amp1010             1006              1 ab     fo              &lt;NA&gt;           pt              &lt;NA&gt;              mo,da…           5</span>
+<span class="co">#&gt; # … with 1,153 more rows, and 14 more variables: year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, coordinate_precision &lt;chr&gt;,</span>
+<span class="co">#&gt; #   altitude &lt;dbl&gt;, temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Plot</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">geo_anfibios_locais_vetor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"black"</span>, 
@@ -3155,8 +3155,8 @@ Figura 15.25: Camada BIO01 selecionada pelas operações de subconjunto.
 
 <span class="co">## Stack - nomes</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">geo_raster_bioclim</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "bio01" "bio10" "bio11" "bio12" "bio13" "bio14" "bio15" "bio16" "bio17" "bio18" "bio19" "bio02" "bio03" "bio04" "bio05"</span>
-<span class="co">#&gt; [16] "bio06" "bio07" "bio08" "bio09"</span></code></pre></div>
+<span class="co">#&gt;  [1] "bio01" "bio10" "bio11" "bio12" "bio13" "bio14" "bio15" "bio16" "bio17" "bio18" "bio19" "bio02" "bio03" "bio04" "bio05" "bio06"</span>
+<span class="co">#&gt; [17] "bio07" "bio08" "bio09"</span></code></pre></div>
 <p><strong>Resumir</strong></p>
 <p>Muitas vezes queremos fazer cálculos para todos as células de um raster. Podemos resumir informações de todos os pixels fazendo cálculos simples com todos os pixels de cada camada com a função <code><a href="https://rdrr.io/pkg/raster/man/cellStats.html">raster::cellStats()</a></code>, sendo <code>x</code> o argumento do objeto raster e <code>stat</code> o nome da função resumo, como “mean” ou “sum”.</p>
 <div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
@@ -3166,10 +3166,10 @@ Figura 15.25: Camada BIO01 selecionada pelas operações de subconjunto.
 
 <span class="co">## Stack - média de todas as células de cada camada bioclimática</span>
 <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/cellStats.html">cellStats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">geo_raster_bioclim</span>, stat <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
-<span class="co">#&gt;       bio01       bio10       bio11       bio12       bio13       bio14       bio15       bio16       bio17       bio18 </span>
-<span class="co">#&gt;  -4.0378283   7.2035545 -13.8963286 550.0569022  93.4633916  15.3689993  74.7084151 241.6525005  55.4149542 156.4237816 </span>
-<span class="co">#&gt;       bio19       bio02       bio03       bio04       bio05       bio06       bio07       bio08       bio09 </span>
-<span class="co">#&gt; 108.8950626   9.9432120  34.5221528 880.1215546  13.9386423 -19.7938943  33.7325366  -0.9226276  -5.3774489</span></code></pre></div>
+<span class="co">#&gt;       bio01       bio10       bio11       bio12       bio13       bio14       bio15       bio16       bio17       bio18       bio19 </span>
+<span class="co">#&gt;  -4.0378283   7.2035545 -13.8963286 550.0569022  93.4633916  15.3689993  74.7084151 241.6525005  55.4149542 156.4237816 108.8950626 </span>
+<span class="co">#&gt;       bio02       bio03       bio04       bio05       bio06       bio07       bio08       bio09 </span>
+<span class="co">#&gt;   9.9432120  34.5221528 880.1215546  13.9386423 -19.7938943  33.7325366  -0.9226276  -5.3774489</span></code></pre></div>
 <p>Ou ainda, podemos analisar a frequência com que cada valor dos pixels ocorre, utilizando a função <code><a href="https://rdrr.io/pkg/raster/man/freq.html">raster::freq()</a></code>.</p>
 <div class="sourceCode" id="cb633"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Raster - frequência das células</span>
@@ -5366,20 +5366,20 @@ Figura 15.87: Distribuição de 50 localidades aleatórios e buffers de ~1 km (f
     <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/adorn_percentages.html">adorn_percentages</a></span><span class="op">(</span><span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/adorn_pct_formatting.html">adorn_pct_formatting</a></span><span class="op">(</span>rounding <span class="op">=</span> <span class="st">"half up"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">geo_anfibios_locais_vetor_ma_buffer10km_ext</span><span class="op">)</span>
-<span class="co">#&gt;  id classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20 classe_210 classe_30</span>
-<span class="co">#&gt;   1       0.1%       0.2%       0.7%      12.0%      0.5%       0.1%       8.7%       0.6%      0.6%      24.8%      5.0%</span>
-<span class="co">#&gt;   2       0.0%       1.7%       0.3%       8.4%     26.6%       0.5%       0.0%       0.0%     14.7%       1.5%     19.2%</span>
-<span class="co">#&gt;   3       0.0%       0.0%       0.0%       4.9%     20.2%       0.0%       0.0%       0.0%     17.6%       0.2%     28.6%</span>
-<span class="co">#&gt;   4       0.0%       2.3%       0.0%      26.0%      3.6%       0.0%       0.0%       0.0%     23.0%       0.2%     41.2%</span>
-<span class="co">#&gt;   5       0.0%       0.0%       0.0%      13.5%      0.3%       0.0%       0.0%       0.1%     14.2%       0.0%      5.2%</span>
-<span class="co">#&gt;   6       0.0%       0.4%       0.3%       7.2%      7.0%       0.0%       0.0%       0.0%     21.2%       0.0%     21.1%</span>
-<span class="co">#&gt;  classe_40 classe_50 classe_190 classe_60 classe_200 classe_220 classe_140  Total</span>
-<span class="co">#&gt;      43.7%      3.1%       0.0%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;      17.9%      8.9%       0.4%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;      27.2%      0.6%       0.0%      0.6%       0.0%       0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;       3.6%      0.0%       0.0%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;      53.6%     12.9%       0.0%      0.1%       0.0%       0.0%       0.0% 100.0%</span>
-<span class="co">#&gt;      35.8%      1.4%       5.2%      0.2%       0.1%       0.0%       0.0% 100.0%</span></code></pre></div>
+<span class="co">#&gt;  id classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20 classe_210 classe_30 classe_40</span>
+<span class="co">#&gt;   1       0.1%       0.2%       0.7%      12.0%      0.5%       0.1%       8.7%       0.6%      0.6%      24.8%      5.0%     43.7%</span>
+<span class="co">#&gt;   2       0.0%       1.7%       0.3%       8.4%     26.6%       0.5%       0.0%       0.0%     14.7%       1.5%     19.2%     17.9%</span>
+<span class="co">#&gt;   3       0.0%       0.0%       0.0%       4.9%     20.2%       0.0%       0.0%       0.0%     17.6%       0.2%     28.6%     27.2%</span>
+<span class="co">#&gt;   4       0.0%       2.3%       0.0%      26.0%      3.6%       0.0%       0.0%       0.0%     23.0%       0.2%     41.2%      3.6%</span>
+<span class="co">#&gt;   5       0.0%       0.0%       0.0%      13.5%      0.3%       0.0%       0.0%       0.1%     14.2%       0.0%      5.2%     53.6%</span>
+<span class="co">#&gt;   6       0.0%       0.4%       0.3%       7.2%      7.0%       0.0%       0.0%       0.0%     21.2%       0.0%     21.1%     35.8%</span>
+<span class="co">#&gt;  classe_50 classe_190 classe_60 classe_200 classe_220 classe_140  Total</span>
+<span class="co">#&gt;       3.1%       0.0%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;       8.9%       0.4%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;       0.6%       0.0%      0.6%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;       0.0%       0.0%      0.0%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;      12.9%       0.0%      0.1%       0.0%       0.0%       0.0% 100.0%</span>
+<span class="co">#&gt;       1.4%       5.2%      0.2%       0.1%       0.0%       0.0% 100.0%</span></code></pre></div>
 <p>Agora podemos combinar esses dados aos dados dos buffers.</p>
 <div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Combinação</span>
@@ -5389,20 +5389,20 @@ Figura 15.87: Distribuição de 50 localidades aleatórios e buffers de ~1 km (f
     <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_drop_geometry</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">geo_anfibios_locais_vetor_ma_buffer10km_ext_bind</span>
 <span class="co">#&gt; # A tibble: 50 × 21</span>
-<span class="co">#&gt;    id      species_number classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20</span>
-<span class="co">#&gt;  * &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 amp1716             10 0.1%       0.2%       0.7%       12.0%      0.5%      0.1%       8.7%       0.6%       0.6%     </span>
-<span class="co">#&gt;  2 amp1351             16 0.0%       1.7%       0.3%       8.4%       26.6%     0.5%       0.0%       0.0%       14.7%    </span>
-<span class="co">#&gt;  3 amp1168             19 0.0%       0.0%       0.0%       4.9%       20.2%     0.0%       0.0%       0.0%       17.6%    </span>
-<span class="co">#&gt;  4 amp1085             20 0.0%       2.3%       0.0%       26.0%      3.6%      0.0%       0.0%       0.0%       23.0%    </span>
-<span class="co">#&gt;  5 amp1258              3 0.0%       0.0%       0.0%       13.5%      0.3%      0.0%       0.0%       0.1%       14.2%    </span>
-<span class="co">#&gt;  6 amp1160              9 0.0%       0.4%       0.3%       7.2%       7.0%      0.0%       0.0%       0.0%       21.2%    </span>
-<span class="co">#&gt;  7 amp1843             14 0.0%       0.0%       0.1%       3.9%       4.3%      0.0%       0.0%       0.0%       22.6%    </span>
-<span class="co">#&gt;  8 amp1060              8 0.0%       0.8%       0.0%       8.4%       11.5%     0.0%       0.0%       0.0%       53.3%    </span>
-<span class="co">#&gt;  9 amp1141              5 0.0%       0.2%       0.1%       2.6%       24.5%     0.0%       0.0%       0.1%       42.9%    </span>
-<span class="co">#&gt; 10 amp1333              7 0.0%       1.2%       0.2%       9.9%       8.5%      0.0%       0.0%       0.2%       21.9%    </span>
-<span class="co">#&gt; # … with 40 more rows, and 10 more variables: classe_210 &lt;chr&gt;, classe_30 &lt;chr&gt;, classe_40 &lt;chr&gt;, classe_50 &lt;chr&gt;,</span>
-<span class="co">#&gt; #   classe_190 &lt;chr&gt;, classe_60 &lt;chr&gt;, classe_200 &lt;chr&gt;, classe_220 &lt;chr&gt;, classe_140 &lt;chr&gt;, Total &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt;    id      species_number classe_100 classe_110 classe_120 classe_130 classe_14 classe_150 classe_170 classe_180 classe_20 classe_210</span>
+<span class="co">#&gt;  * &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     </span>
+<span class="co">#&gt;  1 amp1716             10 0.1%       0.2%       0.7%       12.0%      0.5%      0.1%       8.7%       0.6%       0.6%      24.8%     </span>
+<span class="co">#&gt;  2 amp1351             16 0.0%       1.7%       0.3%       8.4%       26.6%     0.5%       0.0%       0.0%       14.7%     1.5%      </span>
+<span class="co">#&gt;  3 amp1168             19 0.0%       0.0%       0.0%       4.9%       20.2%     0.0%       0.0%       0.0%       17.6%     0.2%      </span>
+<span class="co">#&gt;  4 amp1085             20 0.0%       2.3%       0.0%       26.0%      3.6%      0.0%       0.0%       0.0%       23.0%     0.2%      </span>
+<span class="co">#&gt;  5 amp1258              3 0.0%       0.0%       0.0%       13.5%      0.3%      0.0%       0.0%       0.1%       14.2%     0.0%      </span>
+<span class="co">#&gt;  6 amp1160              9 0.0%       0.4%       0.3%       7.2%       7.0%      0.0%       0.0%       0.0%       21.2%     0.0%      </span>
+<span class="co">#&gt;  7 amp1843             14 0.0%       0.0%       0.1%       3.9%       4.3%      0.0%       0.0%       0.0%       22.6%     0.6%      </span>
+<span class="co">#&gt;  8 amp1060              8 0.0%       0.8%       0.0%       8.4%       11.5%     0.0%       0.0%       0.0%       53.3%     0.5%      </span>
+<span class="co">#&gt;  9 amp1141              5 0.0%       0.2%       0.1%       2.6%       24.5%     0.0%       0.0%       0.1%       42.9%     0.0%      </span>
+<span class="co">#&gt; 10 amp1333              7 0.0%       1.2%       0.2%       9.9%       8.5%      0.0%       0.0%       0.2%       21.9%     1.6%      </span>
+<span class="co">#&gt; # … with 40 more rows, and 9 more variables: classe_30 &lt;chr&gt;, classe_40 &lt;chr&gt;, classe_50 &lt;chr&gt;, classe_190 &lt;chr&gt;, classe_60 &lt;chr&gt;,</span>
+<span class="co">#&gt; #   classe_200 &lt;chr&gt;, classe_220 &lt;chr&gt;, classe_140 &lt;chr&gt;, Total &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="predições-espaciais-de-objetos-raster" class="section level3" number="15.11.4">
 <h3>
@@ -5734,7 +5734,7 @@ Crie um mapa final usando os resultados dos exercícios 4, 5 e 6. Utilize o paco
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-06.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

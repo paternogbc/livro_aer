@@ -235,8 +235,7 @@ Figura 4.2: Interface do RStudio. Os números indicam: (1) janela com abas de Sc
 <p>O resultado retorna o valor <code>12</code>, precedido de um valor entre colchetes. Esses colchetes demonstram a posição do elemento numa sequência de valores. Se fizermos essa outra operação <code>1:42</code>, o R vai criar uma sequência unitária de valores de 1 a 42. A depender da largura da janela do console, vai aparecer um número diferente entre colchetes indicando sua posição na sequência: antes do número 1 vai aparecer o <code>[1]</code>, depois quando a sequência for quebrada, vai aparecer o número correspondente da posição do elemento, por exemplo, <code>[37]</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">42</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41</span>
-<span class="co">#&gt; [42] 42</span></code></pre></div>
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42</span></code></pre></div>
 <p>Podemos ver o histórico dos códigos executados no console na aba <strong>History</strong> (Figura <a href="cap4.html#fig:fig-rstudio">4.2</a> janela 3).</p>
 </div>
 <div id="scripts" class="section level3" number="4.3.2">
@@ -573,7 +572,7 @@ Recomendamos sempre verificar o conteúdo dos objetos chamando-os novamente para
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Número atual de pacotes no CRAN</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 18871</span></code></pre></div>
+<span class="co">#&gt; [1] 18595</span></code></pre></div>
 <p>Primeiramente, com uma sessão do R sem carregar nenhum pacote extra, podemos verificar pacotes carregados pelo <em>R Base</em> utilizando a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Verificar pacotes carregados</span>
@@ -648,21 +647,21 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; Package: vegan</span>
 <span class="co">#&gt; Title: Community Ecology Package</span>
 <span class="co">#&gt; Version: 2.6-2</span>
-<span class="co">#&gt; Authors@R: c(person("Jari", "Oksanen", role=c("aut","cre"), email="jhoksane@gmail.com"), person("Gavin L.",</span>
-<span class="co">#&gt;             "Simpson", role="aut", email="ucfagls@gmail.com"), person("F. Guillaume", "Blanchet", role="aut"),</span>
-<span class="co">#&gt;             person("Roeland", "Kindt", role="aut"), person("Pierre", "Legendre", role="aut"), person("Peter R.",</span>
-<span class="co">#&gt;             "Minchin", role="aut"), person("R.B.", "O'Hara", role="aut"), person("Peter", "Solymos", role="aut"),</span>
-<span class="co">#&gt;             person("M. Henry H.", "Stevens", role="aut"), person("Eduard", "Szoecs", role="aut"),</span>
-<span class="co">#&gt;             person("Helene", "Wagner", role="aut"), person("Matt", "Barbour", role="aut"), person("Michael",</span>
-<span class="co">#&gt;             "Bedward", role="aut"), person("Ben", "Bolker", role="aut"), person("Daniel", "Borcard", role="aut"),</span>
-<span class="co">#&gt;             person("Gustavo", "Carvalho", role="aut"), person("Michael", "Chirico", role="aut"), person("Miquel",</span>
-<span class="co">#&gt;             "De Caceres", role="aut"), person("Sebastien", "Durand", role="aut"), person("Heloisa Beatriz</span>
-<span class="co">#&gt;             Antoniazi", "Evangelista", role="aut"), person("Rich", "FitzJohn", role="aut"), person("Michael",</span>
-<span class="co">#&gt;             "Friendly", role="aut"), person("Brendan","Furneaux", role="aut"), person("Geoffrey", "Hannigan",</span>
-<span class="co">#&gt;             role="aut"), person("Mark O.", "Hill", role="aut"), person("Leo", "Lahti", role="aut"), person("Dan",</span>
-<span class="co">#&gt;             "McGlinn", role="aut"), person("Marie-Helene", "Ouellette", role="aut"), person("Eduardo", "Ribeiro</span>
-<span class="co">#&gt;             Cunha", role="aut"), person("Tyler", "Smith", role="aut"), person("Adrian", "Stier", role="aut"),</span>
-<span class="co">#&gt;             person("Cajo J.F.", "Ter Braak", role="aut"), person("James", "Weedon", role="aut"))</span>
+<span class="co">#&gt; Authors@R: c(person("Jari", "Oksanen", role=c("aut","cre"), email="jhoksane@gmail.com"), person("Gavin L.", "Simpson",</span>
+<span class="co">#&gt;              role="aut", email="ucfagls@gmail.com"), person("F. Guillaume", "Blanchet", role="aut"), person("Roeland",</span>
+<span class="co">#&gt;              "Kindt", role="aut"), person("Pierre", "Legendre", role="aut"), person("Peter R.", "Minchin",</span>
+<span class="co">#&gt;              role="aut"), person("R.B.", "O'Hara", role="aut"), person("Peter", "Solymos", role="aut"), person("M.</span>
+<span class="co">#&gt;              Henry H.", "Stevens", role="aut"), person("Eduard", "Szoecs", role="aut"), person("Helene", "Wagner",</span>
+<span class="co">#&gt;              role="aut"), person("Matt", "Barbour", role="aut"), person("Michael", "Bedward", role="aut"),</span>
+<span class="co">#&gt;              person("Ben", "Bolker", role="aut"), person("Daniel", "Borcard", role="aut"), person("Gustavo",</span>
+<span class="co">#&gt;              "Carvalho", role="aut"), person("Michael", "Chirico", role="aut"), person("Miquel", "De Caceres",</span>
+<span class="co">#&gt;              role="aut"), person("Sebastien", "Durand", role="aut"), person("Heloisa Beatriz Antoniazi",</span>
+<span class="co">#&gt;              "Evangelista", role="aut"), person("Rich", "FitzJohn", role="aut"), person("Michael", "Friendly",</span>
+<span class="co">#&gt;              role="aut"), person("Brendan","Furneaux", role="aut"), person("Geoffrey", "Hannigan", role="aut"),</span>
+<span class="co">#&gt;              person("Mark O.", "Hill", role="aut"), person("Leo", "Lahti", role="aut"), person("Dan", "McGlinn",</span>
+<span class="co">#&gt;              role="aut"), person("Marie-Helene", "Ouellette", role="aut"), person("Eduardo", "Ribeiro Cunha",</span>
+<span class="co">#&gt;              role="aut"), person("Tyler", "Smith", role="aut"), person("Adrian", "Stier", role="aut"), person("Cajo</span>
+<span class="co">#&gt;              J.F.", "Ter Braak", role="aut"), person("James", "Weedon", role="aut"))</span>
 <span class="co">#&gt; Depends: permute (&gt;= 0.9-0), lattice, R (&gt;= 3.4.0)</span>
 <span class="co">#&gt; Suggests: parallel, tcltk, knitr, markdown</span>
 <span class="co">#&gt; Imports: MASS, cluster, mgcv</span>
@@ -674,13 +673,13 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; NeedsCompilation: yes</span>
 <span class="co">#&gt; Packaged: 2022-04-17 15:30:56 UTC; jarioksa</span>
 <span class="co">#&gt; Author: Jari Oksanen [aut, cre], Gavin L. Simpson [aut], F. Guillaume Blanchet [aut], Roeland Kindt [aut], Pierre</span>
-<span class="co">#&gt;             Legendre [aut], Peter R. Minchin [aut], R.B. O'Hara [aut], Peter Solymos [aut], M. Henry H. Stevens</span>
-<span class="co">#&gt;             [aut], Eduard Szoecs [aut], Helene Wagner [aut], Matt Barbour [aut], Michael Bedward [aut], Ben</span>
-<span class="co">#&gt;             Bolker [aut], Daniel Borcard [aut], Gustavo Carvalho [aut], Michael Chirico [aut], Miquel De Caceres</span>
-<span class="co">#&gt;             [aut], Sebastien Durand [aut], Heloisa Beatriz Antoniazi Evangelista [aut], Rich FitzJohn [aut],</span>
-<span class="co">#&gt;             Michael Friendly [aut], Brendan Furneaux [aut], Geoffrey Hannigan [aut], Mark O. Hill [aut], Leo</span>
-<span class="co">#&gt;             Lahti [aut], Dan McGlinn [aut], Marie-Helene Ouellette [aut], Eduardo Ribeiro Cunha [aut], Tyler</span>
-<span class="co">#&gt;             Smith [aut], Adrian Stier [aut], Cajo J.F. Ter Braak [aut], James Weedon [aut]</span>
+<span class="co">#&gt;              Legendre [aut], Peter R. Minchin [aut], R.B. O'Hara [aut], Peter Solymos [aut], M. Henry H. Stevens</span>
+<span class="co">#&gt;              [aut], Eduard Szoecs [aut], Helene Wagner [aut], Matt Barbour [aut], Michael Bedward [aut], Ben Bolker</span>
+<span class="co">#&gt;              [aut], Daniel Borcard [aut], Gustavo Carvalho [aut], Michael Chirico [aut], Miquel De Caceres [aut],</span>
+<span class="co">#&gt;              Sebastien Durand [aut], Heloisa Beatriz Antoniazi Evangelista [aut], Rich FitzJohn [aut], Michael</span>
+<span class="co">#&gt;              Friendly [aut], Brendan Furneaux [aut], Geoffrey Hannigan [aut], Mark O. Hill [aut], Leo Lahti [aut], Dan</span>
+<span class="co">#&gt;              McGlinn [aut], Marie-Helene Ouellette [aut], Eduardo Ribeiro Cunha [aut], Tyler Smith [aut], Adrian Stier</span>
+<span class="co">#&gt;              [aut], Cajo J.F. Ter Braak [aut], James Weedon [aut]</span>
 <span class="co">#&gt; Maintainer: Jari Oksanen &lt;jhoksane@gmail.com&gt;</span>
 <span class="co">#&gt; Repository: CRAN</span>
 <span class="co">#&gt; Date/Publication: 2022-04-17 17:00:02 UTC</span>
@@ -829,8 +828,8 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite R in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical</span>
-<span class="co">#&gt;   Computing, Vienna, Austria. URL https://www.R-project.org/.</span>
+<span class="co">#&gt;   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing,</span>
+<span class="co">#&gt;   Vienna, Austria. URL https://www.R-project.org/.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -852,10 +851,10 @@ Uma vez instalado um pacote, não há necessidade de instalá-lo novamente. Entr
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'vegan' in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Oksanen J, Simpson G, Blanchet F, Kindt R, Legendre P, Minchin P, O'Hara R, Solymos P, Stevens M, Szoecs E,</span>
-<span class="co">#&gt;   Wagner H, Barbour M, Bedward M, Bolker B, Borcard D, Carvalho G, Chirico M, De Caceres M, Durand S, Evangelista</span>
-<span class="co">#&gt;   H, FitzJohn R, Friendly M, Furneaux B, Hannigan G, Hill M, Lahti L, McGlinn D, Ouellette M, Ribeiro Cunha E,</span>
-<span class="co">#&gt;   Smith T, Stier A, Ter Braak C, Weedon J (2022). _vegan: Community Ecology Package_. R package version 2.6-2,</span>
+<span class="co">#&gt;   Oksanen J, Simpson G, Blanchet F, Kindt R, Legendre P, Minchin P, O'Hara R, Solymos P, Stevens M, Szoecs E, Wagner</span>
+<span class="co">#&gt;   H, Barbour M, Bedward M, Bolker B, Borcard D, Carvalho G, Chirico M, De Caceres M, Durand S, Evangelista H, FitzJohn</span>
+<span class="co">#&gt;   R, Friendly M, Furneaux B, Hannigan G, Hill M, Lahti L, McGlinn D, Ouellette M, Ribeiro Cunha E, Smith T, Stier A,</span>
+<span class="co">#&gt;   Ter Braak C, Weedon J (2022). _vegan: Community Ecology Package_. R package version 2.6-2,</span>
 <span class="co">#&gt;   &lt;https://CRAN.R-project.org/package=vegan&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
@@ -1148,8 +1147,8 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
                                    size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fator_nominal</span>
-<span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta pastagem</span>
-<span class="co">#&gt; [14] pastagem cerrado  cerrado  pastagem cerrado  floresta pastagem</span>
+<span class="co">#&gt;  [1] cerrado  cerrado  floresta pastagem pastagem cerrado  cerrado  pastagem cerrado  floresta floresta floresta pastagem pastagem</span>
+<span class="co">#&gt; [15] cerrado  cerrado  pastagem cerrado  floresta pastagem</span>
 <span class="co">#&gt; Levels: floresta pastagem cerrado</span>
 
 <span class="co">## Fator ordinal</span>
@@ -1164,8 +1163,8 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <span class="va">fator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"floresta"</span>, <span class="st">"pastagem"</span>, <span class="st">"cerrado"</span><span class="op">)</span>, 
                               size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fator</span>
-<span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado  pastagem</span>
-<span class="co">#&gt; [14] pastagem floresta cerrado  pastagem pastagem cerrado  floresta</span>
+<span class="co">#&gt;  [1] cerrado  pastagem floresta floresta cerrado  cerrado  pastagem cerrado  pastagem cerrado  pastagem cerrado  pastagem pastagem</span>
+<span class="co">#&gt; [15] floresta cerrado  pastagem pastagem cerrado  floresta</span>
 <span class="co">#&gt; Levels: cerrado floresta pastagem</span></code></pre></div>
 <p><strong>Matriz</strong></p>
 <p>A matriz representa dados no formato de tabela, com linhas e colunas. As linhas geralmente representam unidades amostrais (locais, transectos, parcelas) e as colunas representam variáveis numéricas (discretas ou contínuas), variáveis binárias (TRUE ou FALSE) ou descrições (informações em texto).</p>
@@ -1957,34 +1956,27 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <code class="sourceCode R"><span class="co">## Importar os dados pelo pacote ecodados</span>
 <span class="va">intror_anfibios_locais</span> <span class="op">&lt;-</span> <span class="fu">ecodados</span><span class="fu">::</span><span class="va">intror_anfibios_locais</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
-<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span>
-<span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span>
-<span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span>
-<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span>
-<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span>
-<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span>
-<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span>
-<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span>
-<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span>
-<span class="co">#&gt;   precipitation</span>
-<span class="co">#&gt; 1           853</span>
-<span class="co">#&gt; 2          1318</span>
-<span class="co">#&gt; 3          1248</span>
-<span class="co">#&gt; 4          1376</span>
-<span class="co">#&gt; 5          1689</span>
-<span class="co">#&gt; 6          1249</span></code></pre></div>
+<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods      period</span>
+<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;    mo,da,ni</span>
+<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;</span>
+<span class="co">#&gt;   month_start year_start month_finish year_finish effort_months country state state_abbreviation            municipality</span>
+<span class="co">#&gt; 1           9       2000            1        2002            16  Brazil Piauí              BR-PI         Canto do Buriti</span>
+<span class="co">#&gt; 2          12       2007            5        2009            17  Brazil Ceará              BR-CE São Gonçalo do Amarante</span>
+<span class="co">#&gt; 3          12       2007            5        2009            17  Brazil Ceará              BR-CE São Gonçalo do Amarante</span>
+<span class="co">#&gt; 4          12       2007            5        2009            17  Brazil Ceará              BR-CE São Gonçalo do Amarante</span>
+<span class="co">#&gt; 5           7       1988            8        2001           157  Brazil Ceará              BR-CE                Baturité</span>
+<span class="co">#&gt; 6          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE             Quebrangulo</span>
+<span class="co">#&gt;                                  site  latitude longitude coordinate_precision altitude temperature precipitation</span>
+<span class="co">#&gt; 1 Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98           853</span>
+<span class="co">#&gt; 2                               Dunas -3.545527 -38.85783                   dd       15       26.53          1318</span>
+<span class="co">#&gt; 3  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45          1248</span>
+<span class="co">#&gt; 4                               Taíba -3.515250 -38.91880                   dd       25       26.55          1376</span>
+<span class="co">#&gt; 5                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35          1689</span>
+<span class="co">#&gt; 6  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45          1249</span></code></pre></div>
 </div>
 <div id="conferência-dos-dados-importados" class="section level3" number="4.4.7">
 <h3>
@@ -1995,34 +1987,27 @@ Figura 4.3: Estruturas de dados mais comuns no R: vetores, matrizes, arrays, lis
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Primeiras linhas</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
-<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods</span>
-<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt;</span>
-<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;</span>
-<span class="co">#&gt;        period month_start year_start month_finish year_finish effort_months country state state_abbreviation</span>
-<span class="co">#&gt; 1 mo,da,tw,ni           9       2000            1        2002            16  Brazil Piauí              BR-PI</span>
-<span class="co">#&gt; 2 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 3 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 4 mo,da,tw,ni          12       2007            5        2009            17  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 5    mo,da,ni           7       1988            8        2001           157  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt; 6        &lt;NA&gt;          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE</span>
-<span class="co">#&gt;              municipality                                site  latitude longitude coordinate_precision altitude temperature</span>
-<span class="co">#&gt; 1         Canto do Buriti Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98</span>
-<span class="co">#&gt; 2 São Gonçalo do Amarante                               Dunas -3.545527 -38.85783                   dd       15       26.53</span>
-<span class="co">#&gt; 3 São Gonçalo do Amarante  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45</span>
-<span class="co">#&gt; 4 São Gonçalo do Amarante                               Taíba -3.515250 -38.91880                   dd       25       26.55</span>
-<span class="co">#&gt; 5                Baturité                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35</span>
-<span class="co">#&gt; 6             Quebrangulo  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45</span>
-<span class="co">#&gt;   precipitation</span>
-<span class="co">#&gt; 1           853</span>
-<span class="co">#&gt; 2          1318</span>
-<span class="co">#&gt; 3          1248</span>
-<span class="co">#&gt; 4          1376</span>
-<span class="co">#&gt; 5          1689</span>
-<span class="co">#&gt; 6          1249</span>
+<span class="co">#&gt;        id reference_number species_number record sampled_habitat active_methods passive_methods complementary_methods      period</span>
+<span class="co">#&gt; 1 amp1001             1001             19     ab           fo,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 2 amp1002             1002             16     co        fo,la,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 3 amp1003             1002             14     co        fo,la,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 4 amp1004             1002             13     co        fo,la,ll             as              pt                  &lt;NA&gt; mo,da,tw,ni</span>
+<span class="co">#&gt; 5 amp1005             1003             30     co        fo,ll,br             as            &lt;NA&gt;                  &lt;NA&gt;    mo,da,ni</span>
+<span class="co">#&gt; 6 amp1006             1004             42     co  tp,pp,la,ll,is           &lt;NA&gt;            &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;</span>
+<span class="co">#&gt;   month_start year_start month_finish year_finish effort_months country state state_abbreviation            municipality</span>
+<span class="co">#&gt; 1           9       2000            1        2002            16  Brazil Piauí              BR-PI         Canto do Buriti</span>
+<span class="co">#&gt; 2          12       2007            5        2009            17  Brazil Ceará              BR-CE São Gonçalo do Amarante</span>
+<span class="co">#&gt; 3          12       2007            5        2009            17  Brazil Ceará              BR-CE São Gonçalo do Amarante</span>
+<span class="co">#&gt; 4          12       2007            5        2009            17  Brazil Ceará              BR-CE São Gonçalo do Amarante</span>
+<span class="co">#&gt; 5           7       1988            8        2001           157  Brazil Ceará              BR-CE                Baturité</span>
+<span class="co">#&gt; 6          NA         NA           NA          NA            NA  Brazil Ceará              BR-CE             Quebrangulo</span>
+<span class="co">#&gt;                                  site  latitude longitude coordinate_precision altitude temperature precipitation</span>
+<span class="co">#&gt; 1 Parque Nacional Serra das Confusões -8.680000 -43.42194                   gm      543       24.98           853</span>
+<span class="co">#&gt; 2                               Dunas -3.545527 -38.85783                   dd       15       26.53          1318</span>
+<span class="co">#&gt; 3  Jardim Botânico Municipal de Bauru -3.574194 -38.88869                   dd       29       26.45          1248</span>
+<span class="co">#&gt; 4                               Taíba -3.515250 -38.91880                   dd       25       26.55          1376</span>
+<span class="co">#&gt; 5                   Serra de Baturité -4.280556 -38.91083                   gm      750       21.35          1689</span>
+<span class="co">#&gt; 6  Reserva Biológica de Pedra Talhada -9.229167 -36.42806                 &lt;NA&gt;      745       20.45          1249</span>
 
 <span class="co">## Últimas linhas</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">intror_anfibios_locais</span><span class="op">)</span>
@@ -2236,7 +2221,7 @@ Una as colunas dos objetos <code>df_amos10</code> e <code>ma_amos10</code> e atr
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-06.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
