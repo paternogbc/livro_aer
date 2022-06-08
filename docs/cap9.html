@@ -295,7 +295,7 @@ Figura 9.1: Dendrograma mostrando uma análise de agrupamento de anuros.
      ylab <span class="op">=</span> <span class="st">"Similaridade (índice de Horn)"</span>,
      xlab<span class="op">=</span><span class="st">""</span>, sub<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">ncol</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>
 <span class="va">MidPoint</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">dendro</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">n</span><span class="op">-</span><span class="va">k</span><span class="op">]</span> <span class="op">+</span> <span class="va">dendro</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">n</span><span class="op">-</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="va">MidPoint</span>, lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -311,7 +311,7 @@ Figura 9.2: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
 <p>Vamos utilizar o mesmo conjunto de dados do Exemplo 1 para responder à mesma pergunta. Aqui vamos utilizar a distância de <em>Chord</em> (que é indicada para dados de composição de espécies) para calcular a matriz de distância. Se transformarmos uma matriz usando a transformação <em>Chord</em> e depois calcularmos a distância Euclidiana, isso equivale à calcular diretamente a distância de <em>Chord</em> (Figura <a href="cap9.html#fig:fig-dend-boot-chor">9.3</a>).</p>
 <div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;     Aper Bahe Rict Cleuco Dmic Dmin Hpoly Lfur Pbar Polf Pmelano Sduar Shay Sobt Ssqual Bokerm</span>
 <span class="co">#&gt; BP4    0  859 1772      0    0    0    61    3  387    0       0     0    0    0      0      0</span>
 <span class="co">#&gt; PP4    3   14 1517      0    0   84   275    0  187    0       0  1150    6    0      0      1</span>
@@ -321,7 +321,7 @@ Figura 9.2: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
 <span class="co">#&gt; PP1    0  312    0      0    0    0   329    0    0    0       0     0    0    0      0      0</span>
 
 <span class="co">## Passo 1: transformar para distância de Chord</span>
-<span class="va">bocaina_transf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/disttransform.html">disttransform</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>, <span class="st">"chord"</span><span class="op">)</span>
+<span class="va">bocaina_transf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/disttransform.html">disttransform</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>, <span class="st">"chord"</span><span class="op">)</span>
 
 <span class="co">## Passo 2: realizar pvclust com método average e distância euclidiana</span>
 <span class="va">analise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pvclust/man/pvclust.html">pvclust</a></span><span class="op">(</span><span class="va">bocaina_transf</span>, method.hclust <span class="op">=</span> <span class="st">"average"</span>, method.dist <span class="op">=</span> <span class="st">"euclidean"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> 
@@ -340,7 +340,7 @@ Figura 9.3: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
 <p>É possível notar que existe um único grupo com BS &gt; 95%. Agora vamos tentar usar a distância de <em>Hellinger</em>, que é recomendada (junto com a distância de <em>Chord</em>) para transformar dados de composição de espécies <span class="citation">(<a href="refer%C3%AAncias.html#ref-legendre2001" role="doc-biblioref">Legendre and Gallagher 2001</a>)</span> (Figura <a href="cap9.html#fig:fig-dend-boot-hell">9.4</a>).</p>
 <div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Passo 1: transformar dados com Hellinger</span>
-<span class="va">bocaina_transf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/disttransform.html">disttransform</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">bocaina</span><span class="op">)</span>, <span class="st">"hellinger"</span><span class="op">)</span>
+<span class="va">bocaina_transf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiodiversityR/man/disttransform.html">disttransform</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">bocaina</span><span class="op">)</span>, <span class="st">"hellinger"</span><span class="op">)</span>
 
 <span class="co">## Passo 2: realizar pvclust com método average e distância euclidiana</span>
 <span class="va">analise2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pvclust/man/pvclust.html">pvclust</a></span><span class="op">(</span><span class="va">bocaina_transf2</span>, method.hclust<span class="op">=</span><span class="st">"average"</span>, method.dist<span class="op">=</span><span class="st">"euclidean"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> 
@@ -350,7 +350,7 @@ Figura 9.3: Dendrograma mostrando uma análise de agrupamento de anuros com uma 
      ylab <span class="op">=</span> <span class="st">"Distância Euclideana"</span>,
      xlab<span class="op">=</span><span class="st">""</span>, sub<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">ncol</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>
 <span class="va">MidPoint</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">dendro</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">n</span><span class="op">-</span><span class="va">k</span><span class="op">]</span> <span class="op">+</span> <span class="va">dendro</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">n</span><span class="op">-</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="va">MidPoint</span>, lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/pvclust/man/pvpick.html">pvrect</a></span><span class="op">(</span><span class="va">analise2</span><span class="op">)</span></code></pre></div>
@@ -418,21 +418,21 @@ Neste caso, estamos realizando uma análise exploratória e não temos uma predi
 <span class="co">#&gt; K-means clustering with 4 clusters of sizes 8, 12, 6, 3</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Cluster means:</span>
-<span class="co">#&gt;         Cogo        Satr       Phph       Neba        Thth        Teso       Chna       Chto       Lele      Lece       Baba</span>
-<span class="co">#&gt; 1 0.00000000 0.006691097 0.02506109 0.06987391 0.006691097 0.006691097 0.10687104 0.09377516 0.14194394 0.2011411 0.24327992</span>
-<span class="co">#&gt; 2 0.10380209 0.542300691 0.50086515 0.43325916 0.114024105 0.075651573 0.00000000 0.00000000 0.06983991 0.1237394 0.02385019</span>
-<span class="co">#&gt; 3 0.06167791 0.122088022 0.26993915 0.35942538 0.032664966 0.135403325 0.06212775 0.21568957 0.25887226 0.2722562 0.15647062</span>
-<span class="co">#&gt; 4 0.00000000 0.000000000 0.00000000 0.00000000 0.000000000 0.000000000 0.05205792 0.00000000 0.07647191 0.3166705 0.00000000</span>
-<span class="co">#&gt;        Spbi       Gogo       Eslu       Pefl      Rham       Legi       Scer       Cyca       Titi       Abbr      Icme       Acce</span>
-<span class="co">#&gt; 1 0.1326062 0.28386032 0.20630360 0.16920496 0.2214275 0.19066542 0.13171275 0.16019126 0.26230024 0.19561641 0.1331835 0.26713081</span>
-<span class="co">#&gt; 2 0.0000000 0.05670453 0.04722294 0.02949244 0.0000000 0.00000000 0.00000000 0.00000000 0.03833408 0.00000000 0.0000000 0.00000000</span>
-<span class="co">#&gt; 3 0.1574388 0.16822286 0.12276089 0.17261621 0.0793181 0.06190283 0.04516042 0.06190283 0.14539027 0.01473139 0.0000000 0.03192175</span>
-<span class="co">#&gt; 4 0.0000000 0.20500174 0.07647191 0.00000000 0.0000000 0.05205792 0.07647191 0.00000000 0.00000000 0.00000000 0.0000000 0.18058775</span>
-<span class="co">#&gt;         Ruru       Blbj      Alal       Anan</span>
-<span class="co">#&gt; 1 0.32103755 0.22883055 0.3326939 0.18873077</span>
-<span class="co">#&gt; 2 0.01049901 0.00000000 0.0000000 0.00000000</span>
-<span class="co">#&gt; 3 0.32201597 0.01473139 0.1095241 0.04739636</span>
-<span class="co">#&gt; 4 0.31667052 0.05205792 0.7618709 0.00000000</span>
+<span class="co">#&gt;         Cogo        Satr       Phph       Neba        Thth        Teso       Chna       Chto       Lele      Lece       Baba      Spbi       Gogo</span>
+<span class="co">#&gt; 1 0.00000000 0.006691097 0.02506109 0.06987391 0.006691097 0.006691097 0.10687104 0.09377516 0.14194394 0.2011411 0.24327992 0.1326062 0.28386032</span>
+<span class="co">#&gt; 2 0.10380209 0.542300691 0.50086515 0.43325916 0.114024105 0.075651573 0.00000000 0.00000000 0.06983991 0.1237394 0.02385019 0.0000000 0.05670453</span>
+<span class="co">#&gt; 3 0.06167791 0.122088022 0.26993915 0.35942538 0.032664966 0.135403325 0.06212775 0.21568957 0.25887226 0.2722562 0.15647062 0.1574388 0.16822286</span>
+<span class="co">#&gt; 4 0.00000000 0.000000000 0.00000000 0.00000000 0.000000000 0.000000000 0.05205792 0.00000000 0.07647191 0.3166705 0.00000000 0.0000000 0.20500174</span>
+<span class="co">#&gt;         Eslu       Pefl      Rham       Legi       Scer       Cyca       Titi       Abbr      Icme       Acce       Ruru       Blbj      Alal</span>
+<span class="co">#&gt; 1 0.20630360 0.16920496 0.2214275 0.19066542 0.13171275 0.16019126 0.26230024 0.19561641 0.1331835 0.26713081 0.32103755 0.22883055 0.3326939</span>
+<span class="co">#&gt; 2 0.04722294 0.02949244 0.0000000 0.00000000 0.00000000 0.00000000 0.03833408 0.00000000 0.0000000 0.00000000 0.01049901 0.00000000 0.0000000</span>
+<span class="co">#&gt; 3 0.12276089 0.17261621 0.0793181 0.06190283 0.04516042 0.06190283 0.14539027 0.01473139 0.0000000 0.03192175 0.32201597 0.01473139 0.1095241</span>
+<span class="co">#&gt; 4 0.07647191 0.00000000 0.0000000 0.05205792 0.07647191 0.00000000 0.00000000 0.00000000 0.0000000 0.18058775 0.31667052 0.05205792 0.7618709</span>
+<span class="co">#&gt;         Anan</span>
+<span class="co">#&gt; 1 0.18873077</span>
+<span class="co">#&gt; 2 0.00000000</span>
+<span class="co">#&gt; 3 0.04739636</span>
+<span class="co">#&gt; 4 0.00000000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Clustering vector:</span>
 <span class="co">#&gt;  1  2  3  4  5  6  7  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 </span>
@@ -444,8 +444,7 @@ Neste caso, estamos realizando uma análise exploratória e não temos uma predi
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Available components:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"         "iter"        </span>
-<span class="co">#&gt; [9] "ifault"</span></code></pre></div>
+<span class="co">#&gt; [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"         "iter"         "ifault"</span></code></pre></div>
 <p>O objeto que fornece o resultado contém: i) o tamanho (número de objetos) em cada um dos 4 grupos, ii) o centroide de cada grupo e o pertencimento de cada espécie a cada grupo, e iii) o quanto da Soma de Quadrados dos dados é explicada por esta conformação de grupos.</p>
 <p>No entanto, não é possível saber <em>a priori</em> qual o número “ideal” de grupos. Para descobrir isso, repetimos o <em>k-means</em> com uma série de valores de <strong>K</strong>. Isso pode ser feito na função <code><a href="https://rdrr.io/pkg/vegan/man/cascadeKM.html">cascadeKM()</a></code>.</p>
 <div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
@@ -514,7 +513,7 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <span class="va">fitofis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## Análise de espécies indicadoras</span>
-<span class="va">res_indval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/labdsv/man/indval.html">indval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>, <span class="va">fitofis</span><span class="op">)</span>
+<span class="va">res_indval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/labdsv/man/indval.html">indval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sp_compos</span><span class="op">)</span>, <span class="va">fitofis</span><span class="op">)</span>
 
 <span class="co"># A função summary só exibe o resultado para as espécies indicadoras</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">res_indval</span><span class="op">)</span>
@@ -681,192 +680,83 @@ Figura 9.5: Gráficos mostrando os resultados da análise de K-Means.
 <p>Antes de explicar a análise, imagine que vamos usar uma matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes. A quantidade de indivíduos de cada espécie coletada em cada cidade será o valor de preenchimento desta matriz. Sendo assim, a matriz possui oito objetos (cidades, representando unidades amostrais) e cinco descritores (espécies).</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:tab-pca-dados">Tabela 9.1: </span>Matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes.
-</caption>
-<thead><tr>
-<th style="text-align:center;">
-Cidade
-</th>
-<th style="text-align:center;">
-Espécie.1
-</th>
-<th style="text-align:center;">
-Espécie.2
-</th>
-<th style="text-align:center;">
-Espécie.3
-</th>
-<th style="text-align:center;">
-Espécie.4
-</th>
-<th style="text-align:center;">
-Espécie.5
-</th>
+<span id="tab:tab-pca-dados">Tabela 9.1: </span>Matriz com cinco espécies de aranhas que foram encontradas em oito cidades diferentes.</caption>
+<thead><tr class="header">
+<th align="center">Cidade</th>
+<th align="center">Espécie.1</th>
+<th align="center">Espécie.2</th>
+<th align="center">Espécie.3</th>
+<th align="center">Espécie.4</th>
+<th align="center">Espécie.5</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-Cidade 1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="center">Cidade 1</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 2
-</td>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="even">
+<td align="center">Cidade 2</td>
+<td align="center">7</td>
+<td align="center">6</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 3
-</td>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="center">Cidade 3</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 4
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="even">
+<td align="center">Cidade 4</td>
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">9</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 5
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-12
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="center">Cidade 5</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">4</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 6
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-6
-</td>
+<tr class="even">
+<td align="center">Cidade 6</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center">6</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 7
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-9
-</td>
+<tr class="odd">
+<td align="center">Cidade 7</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">9</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Cidade 8
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-12
-</td>
+<tr class="even">
+<td align="center">Cidade 8</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">12</td>
 </tr>
 </tbody>
 </table></div>
-<p>O primeiro passo da PCA é obter uma matriz centralizada, onde cada valor é subtraído da média da coluna que aquele valor pertence. Esta centralização pode ser calculada com a função <code><a href="https://rdrr.io/pkg/raster/man/scale.html">scale()</a></code>.</p>
+<p>O primeiro passo da PCA é obter uma matriz centralizada, onde cada valor é subtraído da média da coluna que aquele valor pertence. Esta centralização pode ser calculada com a função <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code>.</p>
 <div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Dados</span>
 <span class="va">aranhas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
@@ -878,7 +768,7 @@ Cidade 8
     row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"cidade"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## Centralização</span>
-<span class="va">aranha.cent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">aranhas</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">aranha.cent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">aranhas</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>O segundo passo é calcular uma matriz de covariância (ou matriz de dispersão) e, a partir desta matriz, obter os autovalores e autovetores. <strong>Os autovalores</strong> representam a porcentagem de explicação de cada eixo e podem ser calculados dividindo a soma do autovalor de cada eixo pela soma de todos os autovalores. No exemplo que apresentamos, os dois primeiros eixos representam 47,20% e 35,01% de toda variação, respectivamente. <strong>Os autovetores</strong>, por sua vez, representam os valores que multiplicam as variáveis originais e, desse modo, indicam a direção desses valores. Por fim, os componentes principais (Matriz F) são obtidos multiplicando os autovetores com os valores da matriz centralizada.</p>
 <div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Matriz de covaiância</span>
@@ -887,7 +777,7 @@ Cidade 8
 <span class="co">## Autovalores e autovetores</span>
 <span class="va">eigen_aranhas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">matriz_cov</span><span class="op">)</span>
 <span class="va">autovalores</span> <span class="op">&lt;-</span> <span class="va">eigen_aranhas</span><span class="op">$</span><span class="va">values</span>
-<span class="va">autovetores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">eigen_aranhas</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span>
+<span class="va">autovetores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">eigen_aranhas</span><span class="op">$</span><span class="va">vectors</span><span class="op">)</span>
 <span class="va">autovalores</span> <span class="co"># eigenvalue</span>
 <span class="co">#&gt; [1] 36.733031 27.243824  9.443805  2.962749  1.438020</span>
 
@@ -902,7 +792,7 @@ Cidade 8
 <span class="co">#&gt; sp5  0.7711688 -0.01860152  0.46560957  0.25003826  0.3544591</span>
 
 <span class="co">## Componentes principais</span>
-<span class="va">matriz_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">aranha.cent</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">autovetores</span><span class="op">)</span><span class="op">)</span>
+<span class="va">matriz_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">aranha.cent</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">autovetores</span><span class="op">)</span><span class="op">)</span>
 <span class="va">matriz_F</span>
 <span class="co">#&gt;               PC1        PC2        PC3        PC4        PC5</span>
 <span class="co">#&gt; cidade1 -2.979363 -4.4720575 -1.1533417 -3.2641923  0.5433206</span>
@@ -1572,7 +1462,7 @@ Figura 9.15: Triplot da RDA.
 <span class="co">#&gt; S06 1.100151 -0.6056705 Intermediário</span>
 
 <span class="co">## Passo 1: Gerar um arquivo LIST W: list binária de vizinhança</span>
-<span class="va">mat_knn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">2</span>, longlat <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">mat_knn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">2</span>, longlat <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">mat_nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knn2nb.html">knn2nb</a></span><span class="op">(</span><span class="va">mat_knn</span>, sym <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">mat_listw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mat_nb</span>, style <span class="op">=</span> <span class="st">"W"</span><span class="op">)</span>
 <span class="va">mat_listw</span>
@@ -1602,7 +1492,7 @@ Figura 9.15: Triplot da RDA.
 <span class="co">#&gt; Procedure stopped (alpha criteria): pvalue for variable 4 is 0.157000 (&gt; 0.050000)</span>
 
 <span class="co">## Passo 4: Matriz dos preditores espaciais escolhidos (MEMs)</span>
-<span class="va">spatial.pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">W_sel_mat</span><span class="op">$</span><span class="va">best</span><span class="op">$</span><span class="va">MEM.select</span><span class="op">)</span>
+<span class="va">spatial.pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">W_sel_mat</span><span class="op">$</span><span class="va">best</span><span class="op">$</span><span class="va">MEM.select</span><span class="op">)</span>
 
 <span class="co">## É necessário atribuir os nomes das linhas</span>
 <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">spatial.pred</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span> </code></pre></div>
@@ -1662,7 +1552,7 @@ Figura 9.15: Triplot da RDA.
 <span class="va">moran.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.mc.html">moran.mc</a></span><span class="op">(</span><span class="va">pca.comp</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">mat_listw</span>, <span class="fl">999</span><span class="op">)</span>
 
 <span class="co">## Padrão espacial das variáveis ambientais</span>
-<span class="va">env</span><span class="op">$</span><span class="va">altitude</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span><span class="va">env</span><span class="op">$</span><span class="va">altitude</span><span class="op">)</span>
+<span class="va">env</span><span class="op">$</span><span class="va">altitude</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">env</span><span class="op">$</span><span class="va">altitude</span><span class="op">)</span>
 <span class="va">ca.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/dudi.hillsmith.html">dudi.hillsmith</a></span><span class="op">(</span><span class="va">env</span>, scannf <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">moran.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.mc.html">moran.mc</a></span><span class="op">(</span><span class="va">ca.env</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">mat_listw</span>, <span class="fl">999</span><span class="op">)</span>
 
@@ -1858,7 +1748,7 @@ Figura 9.17: Correlograma mostrando a correlação entre as variáveis.
 <p>Como falado anteriormente, as análises de ordenação irrestritas (PCA, PCoA, nMDS) são utilizadas para explorar dados. Uma maneira poderosa de usá-las é combinando com análises que testam hipóteses, como PERMANOVA e RDA. A literatura ecológica tem usado a Análise de Escalonamento não-Métrico (<em>non-Metric Multidimensional Scaling</em> - nMDS) combinado com análises multidimensionais de variância (como a PERMANOVA) para visualização da similaridade na composição de espécies dentro e entre grupos. A seguir, implementamos o nMDS na matriz de composição de espécies de ácaros (Figura <a href="cap9.html#fig:fig-nmds">9.18</a>).</p>
 <div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Matriz de distância representando a variação na composição de espécies (método Bray-Curtis)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">sps.dis</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">sps.dis</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;           S01        S02        S03       S04       S05       S06</span>
 <span class="co">#&gt; S01 0.0000000 0.15133734 0.16720405 0.2559122 0.2559882 0.2588892</span>
 <span class="co">#&gt; S02 0.1513373 0.00000000 0.04114702 0.1190172 0.1289682 0.1391056</span>
@@ -2023,7 +1913,7 @@ Figura 9.18: Biplot mostrando o resultado do nMDS.
 <span class="va">Dist.km</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html">rdist.earth</a></span><span class="op">(</span><span class="va">bocaina.xy</span>, miles<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">)</span> <span class="co"># matriz de distância geográfica (geodésica) considerando a curvatura da Terra</span>
 
 <span class="co">## Padronizações</span>
-<span class="va">comp.bo.pad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/transpose.html">t</a></span><span class="op">(</span><span class="va">bocaina</span><span class="op">)</span>, <span class="st">"hellinger"</span><span class="op">)</span>
+<span class="va">comp.bo.pad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">bocaina</span><span class="op">)</span>, <span class="st">"hellinger"</span><span class="op">)</span>
 <span class="va">env.bocaina</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">bocaina.env</span><span class="op">[</span>,<span class="op">-</span><span class="fl">9</span><span class="op">]</span>, <span class="st">"standardize"</span><span class="op">)</span>
 
 <span class="co">## Dissimilaridades</span>
@@ -2050,8 +1940,8 @@ Figura 9.18: Biplot mostrando o resultado do nMDS.
 <span class="co">#&gt; Number of permutations: 999</span>
 
 <span class="co">## Preparar os dados para o gráfico</span>
-<span class="va">matrix.dist.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">Dist.km</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>, 
-                              y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.env</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
+<span class="va">matrix.dist.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">Dist.km</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>, 
+                              y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.env</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
 
 <span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">matrix.dist.env</span> , <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -2086,8 +1976,8 @@ Figura 9.19: Relação das matrizes de (dis)similaridade dos dados.
 <span class="co">#&gt; Number of permutations: 999</span>
 
 <span class="co">## Preparar os dados para o gráfico</span>
-<span class="va">matrix.dist.bocaina</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">Dist.km</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>, 
-                              y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.bocaina</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
+<span class="va">matrix.dist.bocaina</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">Dist.km</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>, 
+                              y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.bocaina</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
 
 <span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">matrix.dist.bocaina</span> , <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -2122,8 +2012,8 @@ Figura 9.20: Relação das matrizes de (dis)similaridade dos dados.
 <span class="co">#&gt; Number of permutations: 999</span>
 
 <span class="co">## Preparar os dados para o gráfico</span>
-<span class="va">matrix.bocaina.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.bocaina</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>, 
-                                 y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.env</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
+<span class="va">matrix.bocaina.env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.bocaina</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>, 
+                                 y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dissimil.env</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
 
 <span class="co">## Gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">matrix.bocaina.env</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -2261,20 +2151,20 @@ Figura 9.22: Rede de vizinhança com a <em>Minimum Spanning Tree</em>
 <span class="co">#&gt; site5   0   2   0   0   0   0   0   0   0    0    4    0    0    1    0    4    0    0    0    1    5    0    5    0</span>
 <span class="co">#&gt; site6   0   2   1   0   0   0   0   1   1    0    0    2    0    2    0    0    0    0    0    0    0    0    4    0</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">macroinv</span><span class="op">)</span>
-<span class="co">#&gt;       sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10 sp11 sp12 sp13 sp14 sp15 sp16 sp17 sp18 sp19 sp20 sp21 sp22 sp23 sp24 sp25 sp26 sp27</span>
-<span class="co">#&gt; site1   0   1   1   0   0   0   0   0   0    1    2    0    0    0    0    1    1    0    4    0    0    0    1    0    0    1    0</span>
-<span class="co">#&gt; site2   0   2   1   0   0   0   0   1   1    0    0    2    0    1    1    0    0    0    0    0    0    1    2    0    1    0    1</span>
-<span class="co">#&gt; site3   0   0   0   1   0   1   5   0   2    1    1    2    0    4    0    1    0    0    1    0    0    0    0    1    0    2    1</span>
-<span class="co">#&gt; site4   0   1   0   4   0   0   0   1   5    0    5    0    0    5    0    1    0    1    0    0    2    0    0    0    0    2    1</span>
-<span class="co">#&gt; site5   0   2   0   0   0   0   0   0   0    0    4    0    0    2    1    0    0    0    0    1    1    0    0    2    0    5    0</span>
-<span class="co">#&gt; site6   1   0   0   1   0   0   0   0   0    0    1    0    0    2    0    0    0    0    0    0    0    0    4    0    0    2    0</span>
-<span class="co">#&gt;       sp28 sp29 sp30 sp31 sp32 sp33 sp34 sp35 sp36</span>
-<span class="co">#&gt; site1    4    0    0    0    1    5    0    5    0</span>
-<span class="co">#&gt; site2    1    0    0    1    0    0    1    0    0</span>
-<span class="co">#&gt; site3    0    0    0    0    1    1    0    0    2</span>
-<span class="co">#&gt; site4    0    0    0    0    0    0    5    1    0</span>
-<span class="co">#&gt; site5    1    0    1    0    0    2    0    0    0</span>
-<span class="co">#&gt; site6    0    0    0    0    0    0    0    4    0</span>
+<span class="co">#&gt;       sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10 sp11 sp12 sp13 sp14 sp15 sp16 sp17 sp18 sp19 sp20 sp21 sp22 sp23 sp24 sp25 sp26 sp27 sp28 sp29</span>
+<span class="co">#&gt; site1   0   1   1   0   0   0   0   0   0    1    2    0    0    0    0    1    1    0    4    0    0    0    1    0    0    1    0    4    0</span>
+<span class="co">#&gt; site2   0   2   1   0   0   0   0   1   1    0    0    2    0    1    1    0    0    0    0    0    0    1    2    0    1    0    1    1    0</span>
+<span class="co">#&gt; site3   0   0   0   1   0   1   5   0   2    1    1    2    0    4    0    1    0    0    1    0    0    0    0    1    0    2    1    0    0</span>
+<span class="co">#&gt; site4   0   1   0   4   0   0   0   1   5    0    5    0    0    5    0    1    0    1    0    0    2    0    0    0    0    2    1    0    0</span>
+<span class="co">#&gt; site5   0   2   0   0   0   0   0   0   0    0    4    0    0    2    1    0    0    0    0    1    1    0    0    2    0    5    0    1    0</span>
+<span class="co">#&gt; site6   1   0   0   1   0   0   0   0   0    0    1    0    0    2    0    0    0    0    0    0    0    0    4    0    0    2    0    0    0</span>
+<span class="co">#&gt;       sp30 sp31 sp32 sp33 sp34 sp35 sp36</span>
+<span class="co">#&gt; site1    0    0    1    5    0    5    0</span>
+<span class="co">#&gt; site2    0    1    0    0    1    0    0</span>
+<span class="co">#&gt; site3    0    0    1    1    0    0    2</span>
+<span class="co">#&gt; site4    0    0    0    0    5    1    0</span>
+<span class="co">#&gt; site5    1    0    0    2    0    0    0</span>
+<span class="co">#&gt; site6    0    0    0    0    0    4    0</span>
 
 <span class="co">## Fixar a amostragem</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1001</span><span class="op">)</span> 
@@ -2338,7 +2228,7 @@ Figura 9.23: Biplot mostrando o resultado da análise de PROCRUSTES.
 <span class="co">#&gt; Limeira                                0</span>
 
 <span class="co">#retirando a coluna que contém o fator e deixando apenas dados de abundância</span>
-<span class="va">anuros_abund</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">anuros_permanova</span><span class="op">[</span>,<span class="op">-</span><span class="fl">28</span><span class="op">]</span><span class="op">)</span>
+<span class="va">anuros_abund</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">anuros_permanova</span><span class="op">[</span>,<span class="op">-</span><span class="fl">28</span><span class="op">]</span><span class="op">)</span>
 
 <span class="co">#incluindo apenas o fator a ser testado no modelo</span>
 <span class="va">grupos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">anuros_permanova</span><span class="op">[</span>,<span class="fl">28</span><span class="op">]</span><span class="op">)</span>
@@ -2403,7 +2293,7 @@ Figura 9.26: Diagnose dos resíduos do modelo ajustado.
 <div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## ANOVA</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelo1</span>, p.uni <span class="op">=</span> <span class="st">"adjusted"</span><span class="op">)</span>
-<span class="co">#&gt; Time elapsed: 0 hr 0 min 6 sec</span>
+<span class="co">#&gt; Time elapsed: 0 hr 0 min 7 sec</span>
 <span class="co">#&gt; Analysis of Deviance Table</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model: abund_tr ~ grupos</span>
@@ -2416,38 +2306,34 @@ Figura 9.26: Diagnose dos resíduos do modelo ajustado.
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Univariate Tests:</span>
-<span class="co">#&gt;             Chiasmocleis_albopunctata          Dendropsophus_elianae          Dendropsophus_jimi          Dendropsophus_nanus</span>
-<span class="co">#&gt;                                   Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)                 Dev</span>
-<span class="co">#&gt; (Intercept)                                                                                                                  </span>
-<span class="co">#&gt; grupos                          3.308    0.467                 0.394    0.836               0.23    0.836               2.197</span>
-<span class="co">#&gt;                      Dendropsophus_minutus          Dendropsophus_sanborni          Elachistocleis_cesari         </span>
-<span class="co">#&gt;             Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                                       </span>
-<span class="co">#&gt; grupos         0.707                 4.752    0.309                  2.197    0.707                 2.012    0.762</span>
-<span class="co">#&gt;             Hypsiboas_albopunctatus          Hypsiboas_faber          Hypsiboas_lundii          Hypsiboas_prasinus         </span>
-<span class="co">#&gt;                                 Dev Pr(&gt;Dev)             Dev Pr(&gt;Dev)              Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                                                </span>
-<span class="co">#&gt; grupos                        2.069    0.762           0.913    0.822            0.915    0.822              0.913    0.822</span>
-<span class="co">#&gt;             Itapotihyla_langsdorffii          Leptodactylus_fuscus          Leptodactylus_latrans          Leptodactylus_mystaceus</span>
-<span class="co">#&gt;                                  Dev Pr(&gt;Dev)                  Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                     Dev</span>
-<span class="co">#&gt; (Intercept)                                                                                                                       </span>
-<span class="co">#&gt; grupos                         0.911    0.836                4.652    0.309                 0.811    0.836                   1.869</span>
-<span class="co">#&gt;                      Leptodactylus_mystacinus          Physalaemus_centralis          Physalaemus_cuvieri         </span>
-<span class="co">#&gt;             Pr(&gt;Dev)                      Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                 Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                                       </span>
-<span class="co">#&gt; grupos         0.783                    9.772    0.045                 2.639    0.670               8.221    0.062</span>
-<span class="co">#&gt;             Physalaemus_marmoratus          Physalaemus_nattereri          Pseudis_paradoxa          Rhinella_ornata         </span>
-<span class="co">#&gt;                                Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)              Dev Pr(&gt;Dev)             Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                                                  </span>
-<span class="co">#&gt; grupos                       1.622    0.783                17.131    0.014             2.67    0.540          11.961    0.027</span>
-<span class="co">#&gt;             Rhinella_schneideri          Scinax_fuscomarginatus          Scinax_fuscovarius          Scinax_similis         </span>
-<span class="co">#&gt;                             Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)            Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                                                                                                 </span>
-<span class="co">#&gt; grupos                    3.363    0.467                   2.64    0.622              1.655    0.783          2.646    0.622</span>
-<span class="co">#&gt;             Trachycephalus_typhonius         </span>
-<span class="co">#&gt;                                  Dev Pr(&gt;Dev)</span>
-<span class="co">#&gt; (Intercept)                                  </span>
-<span class="co">#&gt; grupos                         1.622    0.783</span>
+<span class="co">#&gt;             Chiasmocleis_albopunctata          Dendropsophus_elianae          Dendropsophus_jimi          Dendropsophus_nanus         </span>
+<span class="co">#&gt;                                   Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)                 Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                                                                                                           </span>
+<span class="co">#&gt; grupos                          3.308    0.467                 0.394    0.836               0.23    0.836               2.197    0.707</span>
+<span class="co">#&gt;             Dendropsophus_minutus          Dendropsophus_sanborni          Elachistocleis_cesari          Hypsiboas_albopunctatus         </span>
+<span class="co">#&gt;                               Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                     Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                                                                                                               </span>
+<span class="co">#&gt; grupos                      4.752    0.309                  2.197    0.707                 2.012    0.762                   2.069    0.762</span>
+<span class="co">#&gt;             Hypsiboas_faber          Hypsiboas_lundii          Hypsiboas_prasinus          Itapotihyla_langsdorffii          Leptodactylus_fuscus</span>
+<span class="co">#&gt;                         Dev Pr(&gt;Dev)              Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)                      Dev Pr(&gt;Dev)                  Dev</span>
+<span class="co">#&gt; (Intercept)                                                                                                                                      </span>
+<span class="co">#&gt; grupos                0.913    0.822            0.915    0.822              0.913    0.822                    0.911    0.836                4.652</span>
+<span class="co">#&gt;                      Leptodactylus_latrans          Leptodactylus_mystaceus          Leptodactylus_mystacinus          Physalaemus_centralis</span>
+<span class="co">#&gt;             Pr(&gt;Dev)                   Dev Pr(&gt;Dev)                     Dev Pr(&gt;Dev)                      Dev Pr(&gt;Dev)                   Dev</span>
+<span class="co">#&gt; (Intercept)                                                                                                                                 </span>
+<span class="co">#&gt; grupos         0.309                 0.811    0.836                   1.869    0.783                    9.772    0.045                 2.639</span>
+<span class="co">#&gt;                      Physalaemus_cuvieri          Physalaemus_marmoratus          Physalaemus_nattereri          Pseudis_paradoxa         </span>
+<span class="co">#&gt;             Pr(&gt;Dev)                 Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                   Dev Pr(&gt;Dev)              Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                                                                                                               </span>
+<span class="co">#&gt; grupos         0.670               8.221    0.062                  1.622    0.783                17.131    0.014             2.67    0.540</span>
+<span class="co">#&gt;             Rhinella_ornata          Rhinella_schneideri          Scinax_fuscomarginatus          Scinax_fuscovarius          Scinax_similis</span>
+<span class="co">#&gt;                         Dev Pr(&gt;Dev)                 Dev Pr(&gt;Dev)                    Dev Pr(&gt;Dev)                Dev Pr(&gt;Dev)            Dev</span>
+<span class="co">#&gt; (Intercept)                                                                                                                                 </span>
+<span class="co">#&gt; grupos               11.961    0.027               3.363    0.467                   2.64    0.622              1.655    0.783          2.646</span>
+<span class="co">#&gt;                      Trachycephalus_typhonius         </span>
+<span class="co">#&gt;             Pr(&gt;Dev)                      Dev Pr(&gt;Dev)</span>
+<span class="co">#&gt; (Intercept)                                           </span>
+<span class="co">#&gt; grupos         0.622                    1.622    0.783</span>
 <span class="co">#&gt; Arguments:</span>
 <span class="co">#&gt;  Test statistics calculated assuming uncorrelated response (for faster computation) </span>
 <span class="co">#&gt; P-value calculated using 999 iterations via PIT-trap resampling.</span></code></pre></div>
@@ -2573,7 +2459,7 @@ ao objeto e use a função <code><a href="https://rdrr.io/r/stats/biplot.html">b
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-05-13.</p>
+    <p>"<strong>Análises Ecológicas no R</strong>" foi escrito por Fernando Rodrigues da Silva, Thiago Gonçalves-Souza, Gustavo Brant Paterno, <br> Diogo Borges Provete, Maurício Humberto Vancine. Última atualização 2022-06-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
