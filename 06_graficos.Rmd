@@ -376,11 +376,11 @@ ggplot(data = penguins_count, aes(x = especies, y = n)) +
 Outra possibilidade para representação do gráfico de barras é inverter a direção das barras com a função `coord_flip()` (Figura \@ref(fig:fig-bar-species-invert)).
 
 ```{r fig-bar-species-invert, fig.cap="Gráficos de barras indicando a quantidade de indivíduos medidos de cada espécie de pinguim, invertendo a direção das barras."}
-## Barras vertical
+## Barras verticais
 ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity", width = .6)
 
-## Barras horizontal
+## Barras horizontais
 ggplot(data = penguins_count, aes(x = especies, y = n)) +
     geom_bar(stat = "identity", width = .6) + 
     coord_flip()
@@ -517,7 +517,7 @@ g_donut <- ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = especies)) +
     theme(legend.position = "none") +
     labs(title = "Donut chart", fill = "Espécies")
 
-## Combinação dos gráfigos
+## Combinação dos gráficos
 grid.arrange(g_bar_v, g_bar_h, g_pie, g_donut, nrow = 2)
 ```
 
